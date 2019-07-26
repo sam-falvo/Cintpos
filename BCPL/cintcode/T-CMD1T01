@@ -1,0 +1,7 @@
+#!/home/mr/distribution/BCPL/cintcode/cintsys -s
+echo "bcpl com/playmus.b to cin/playmus hdrs BCPLHDRS t32 "
+bcpl com/playmus.b to cin/playmus hdrs BCPLHDRS t32 
+
+playmus 
+
+

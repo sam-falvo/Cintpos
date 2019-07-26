@@ -1,0 +1,47 @@
+**
+USER command
+Form:           USER  "PUID,AUTY,ALL/s,PRIVS/s,KILL=LOGOFF=DELETE/s"
+Purpose:        To display and use the information in the FRIDGE.
+Author:         CGG
+Specification:
+        Any (none or all) of the keywords
+                [ALL | PRIVS | KILL]
+        can be given.
+
+        If none are given:
+                The identity of the user is typed.  If his identity is not valid
+                then an indication of this is given.
+
+        PRIVS
+                As well as the user's identification any other objects in the
+                FRIDGE are listed.
+
+        ALL
+                Any objects listed are listed in full giving their PUID, AUTY,
+                TUID and TPUID in hex.  Note that their TUIDs and TPUIDs are
+                your proof that you a) are allowed to use the object and b) own
+                the object, respectively.  If anyone were to see them at the
+                terminal they could be copied and used.
+
+        KILL = LOGOFF = DELETE
+                The keywords PUID and AUTY can only be used with this keyword.
+                If they are used then they specify a UID set in the Fridge which
+                is to be deleted.  The PUID defaults to the user's own PUID and
+                AUTY defaults to PRIVILEGE.  Only the first UID set with the
+                specified PUID and authentity will be delete and an error given
+                if none can be found.  If neither PUID or AUTY is given then
+                all the objects in the FRIDGE are deleted, including the former
+                user's identity.  The former user's identity is typed.
+
+Examples:
+        USER
+        USER PRIVS
+        USER ALL PRIVS
+        USER ALL
+        USER KILL
+        USER DELETE aprivilege
+        USER DELETE system auth
+        USER KILL AUTY=auth
+        USER ALL PRIVS LOGOFF
+
+

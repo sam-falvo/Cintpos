@@ -1,0 +1,24 @@
+*access
+Random Access to Files
+
+To perform random access reads and writes to a file, use FINDUPDATE to open
+the file, NOTE and POINT to manipulate the file position pointer, and
+READWORDS and WRITEWORDS to transfer data.
+*number
+**
+There is no BLIB procedure for creating random numbers.
+There is a ring service (called RANDOM) running on DNS which will create random
+numbers using SA's specialized hardware. It returns 16, 32, 48 or 64 bit
+random numbers upon request. A procedure which may be included in BCPL programs
+is available in :G.BCPL.RANDOM; see HELP SOURCELIB RANDOM.
+Documentation on the interface can be found in the documentation on
+Dynamic Nameserver in the documentation folder or documentation drawer.
+
+Random numbers are generated bit-by-bit, one bit per millisecond. Thus the
+service is not really suited to generating large numbers of random bits for
+simulations. Anybody with such use in mind should generate the bits in advance,
+placing them into a file, for later yse,
+
+A statistical analysis of the randomness of the result will be forthcoming.
+
+

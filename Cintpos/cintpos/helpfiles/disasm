@@ -1,0 +1,32 @@
+*68000   #H  M68KDA
+*M68KDA  #H  M68KDA
+*PDP     #H  PDPDISASM
+*DA ..
+The DA command has been superseded by DISASM:
+
+*COMMAND
+*DA
+*LSI4
+*+
+DISASM command
+Form:           DISASM  "FROM/A,TO/K,OPT/K"
+Purpose:        To disassemble a program to LSI4 assembler
+Author:         RDE
+Specification:
+        This accepts TRIPOS binary input file FROM, and includes local and
+    external relocation information in the output.  DISASM outputs the
+    corresponding disassembly to the TO stream, or to the current output
+    stream if TO is absent.
+        Options to the disassembler can be specified using the OPT keyword.
+    Options are:       U       unformatted binary
+                       M       map all TRIPOS binary types
+                       E       print symbol settings
+                       A       disassemble ALL words
+                       N       narrower output
+                       Q       quick - don't disassemble hunks
+
+Examples:
+                DISASM binary OPT=n
+                DISASM bin.file to t:listing
+
+

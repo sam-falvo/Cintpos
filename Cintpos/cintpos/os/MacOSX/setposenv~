@@ -1,0 +1,35 @@
+# One way to set the environment variables for BCPL cintsys and cintpos
+# is as follows:
+
+# Edit the following line to specify the cintcode home directory
+# on your machine, and then execute the bash shell command:
+
+# . ./setbcplenv
+
+export BCPLROOT=$HOME/distribution/BCPL/cintcode
+export BCPLPATH=$BCPLROOT/cin
+export BCPLHDRS=$BCPLROOT/g
+export BCPLSCRIPTS=$BCPLROOT/s
+
+export POSROOT=$HOME/distribution/POS/cintcode
+export POSPATH=$POSROOT/cin
+export POSHDRS=$POSROOT/g
+export POSSCRIPTS=$POSROOT/s
+
+export PATH=$PATH:$BCPLROOT/bin:$POSROOT/bin
+
+# Under the C-shell something like the following might be better.
+
+#    source setbcplenv
+
+#    where the file setbcplenv is:
+
+#    setenv BCPLROOT ${HOME}/distribution/BCPL/cintcode
+
+#    setenv BCPLPATH ${BCPLROOT}/cin
+#    setenv BCPLHDRS ${BCPLROOT}/g
+#    setenv BCPLSCRIPTS ${BCPLROOT}/g
+#    setenv PATH     ${PATH}:${BCPLROOT}/bin
+
+
+# Note that BCPLROOT must be the absolute filename of the cintcode directory.

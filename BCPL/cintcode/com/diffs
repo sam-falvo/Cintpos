@@ -1,0 +1,1418 @@
+2,3c2
+< This (playmus11.b) is the version of playmus dating from 2011.
+< The current version is plaumus.b and is still under development.
+---
+> Still under development.
+7c6
+< possibly synchronising the accompanement with a solist.
+---
+> possibly synchronising the accompanement with the solist, if any.
+14,18d12
+< 18/05/2019
+< Reworking the definition of the MUS language and making corresponding
+< changes to playmus. This version make considerable use of floating
+< point arithmetic particularly in the macrogenerator.
+< 
+51c45
+< save and restore certain settings such as volume and tempo during
+---
+> save and restore certain setting such as volume and tempo during
+79,83c73
+< { // This function causes the current coroutine to be deleted
+<   // by telling killco to delete this coroutine.
+<   // The main function of killco is just deleteco.
+<   // This is only used in notecofn.
+<   writef("die: calling resumeco(killco, %n)*n", currco)
+---
+> { writef("die: calling resumeco(killco, %n)*n", currco)
+88,89c78
+< { // Copy str into name and append .mus if there are
+<   // no dots in str
+---
+> { // Append .mus if no extension
+121a111,112
+>   LET bartabcbupb,  bartabcbv  = 0, 0  // Self expanding bar table
+>   LET beattabcbupb, beattabcbv = 0, 0  // Self expanding beat table
+128,134c119
+<   LET bartabcbupb,  bartabcbv  = 0, 0  // Self expanding bar table
+<   LET beattabcbupb, beattabcbv = 0, 0  // Self expanding beat table
+<   bartabcb,  barmsecs  := @bartabcbupb,  0
+<   beattabcb, beatmsecs := @beattabcbupb, 0
+<   bartab, beattab := 0, 0
+< 
+<   lineno := 0
+---
+>   playmus_version := "Playmus v2.1" // Used here and in writemidi.
+136,137c121
+<   playmus_version := "Playmus 04/05/2019" // Used here and in writemidi.
+<   writef("*n%s*n", playmus_version)
+---
+>   writef("*n%s 25/07/2011 14:22*n", playmus_version)
+150c134,138
+<   //debugv!1 := TRUE // Trace pushval 
+---
+> debugv!1 := TRUE
+> 
+>   bartabcb,  barmsecs  := @bartabcbupb,  0
+>   beattabcb, beatmsecs := @beattabcbupb, 0
+>   bartab, beattab := 0, 0
+164d151
+<   errorcount := 0
+188,189c175
+<   // Room for 100 file names
+<   sourcefileupb := 100
+---
+>   sourcefileupb := 1000
+200,201c186,188
+<   // Higher numbers are for GET file names
+<   lineno := (1<<20) + 1 // lineno value of first line of "built-in"
+---
+>   // Higher numbers are GET files
+>   lineno := (1<<20) + 1
+>   nextlineno := lineno
+207c194
+<   bg_baseupb := 100_000    // BGPM workspace upb
+---
+>   bg_baseupb := 100_000
+217,236c204,223
+<   IF argv!1 DO startbarno := !(argv!1)     // START/N  -- First bar to play
+<   IF argv!2 DO endbarno   := !(argv!2)     // END/N    -- Last bar to play
+<   IF argv!3 DO erate      := !(argv!3)     // TADJ/N   -- Tempo adjustment
+<   IF argv!4 DO toname     := argv!4        // TO/K
+<   IF argv!5 DO bg_baseupb := !(argv!5)     // UPB/N/K    -- BGPM space
+<   optPp     := argv!6                      // PP/S     -- Print macrogenerated text 
+<   optLex    := argv!7                      // LEX/S    -- Trace lexical tokens
+<   optTree   := argv!8                      // TREE/S   -- Print init parse tree
+<   optPtree  := argv!9                      // PTREE/S  -- Print part trees
+<   optStrace := argv!10                     // STRACE/S -- Syn trace
+<   optNtrace := argv!11                     // NTRACE/S -- Note tracing
+<   optMtrace := argv!12                     // MTRACE/S -- Midi tracing playing
+<   IF argv!13 DO midifilename := argv!13    // MIDI/K   -- Midi output filename
+<   play := argv!14                          // PLAY/S   -- Play the midi data
+<   accompany := argv!15                     // ACC/S    -- Accompany listen to the
+<                                            //          -- microphone and keyboard
+<   IF argv!16 DO pitch := !(argv!16)        // PITCH/N  -- Change pitch
+<   graphdata := argv!17                     // GD/S     -- Generate graph data
+<   waiting := argv!18                       // WAIT/S   -- Wait before playing
+<   calibrating := argv!19                   // CALIB/S  -- Calibrate Midi-Mic delay
+---
+>   IF argv!1 DO startbarno := !(argv!1)  // START  -- First bar to play
+>   IF argv!2 DO endbarno   := !(argv!2)  // END    -- Last bar to play
+>   IF argv!3 DO erate      := !(argv!3)  // TADJ   -- Tempo adjustment
+>   IF argv!4 DO toname     := argv!4     // TO
+>   IF argv!5 DO bg_baseupb := !(argv!5)  // UPB    -- BGPM space
+>   optPp     := argv!6                   // PP     -- Print macrogenerated text 
+>   optLex    := argv!7                   // LEX    -- Trace lexical tokens
+>   optTree   := argv!8                   // TREE   -- Print init parse tree
+>   optPtree  := argv!9                   // PTREE  -- Print part trees
+>   optStrace := argv!10                  // STRACE -- Syn trace
+>   optNtrace := argv!11                  // NTRACE -- Note tracing
+>   optMtrace := argv!12                  // MTRACE -- Midi tracing playing
+>   IF argv!13 DO midifilename := argv!13 // MIDI   -- Midi output filename
+>   play := argv!14                       // PLAY   -- Play the midi data
+>   accompany := argv!15                  // ACC    -- Accompany listen to the
+>                                         //        -- microphone and keyboard
+>   IF argv!16 DO pitch := !(argv!16)     // PITCH  -- Change pitch
+>   graphdata := argv!17                  // GD     -- Generate graph data
+>   waiting := argv!18                    // WAIT   -- Wait before playing
+>   calibrating := argv!19                // CALIB  -- Calibrate Midi-Mic delay
+240,242d226
+<   fromname := "t0.mus" // #######################################################
+<   //optLex := TRUE
+< 
+248d231
+<   sourcefileno  := 1
+249a233
+>   sourcefileno  := 1
+259a244
+>   nextlineno := lineno
+291c276
+<     LET prevlineno = -1
+---
+>     LET prevlineno = 0
+293,295c278,279
+<     writef("*nTesting the output of the macrogenerator*n")
+< 
+<     { ch := rch()
+---
+>     { rch()
+>       IF ch=endstreamch BREAK
+298,299c282
+<       { newline()
+<         prlineno(lineno); writef(" ")
+---
+>       { writef("<%n/%n>", lineno>>20, lineno & #xFFFFF)
+302,319d284
+<       IF ch<32 SWITCHON ch INTO
+<       { DEFAULT:
+<           writef("<%n>", ch)
+<           LOOP
+< 
+<         CASE endstreamch:
+<           writef("<eof>", ch)
+<           BREAK
+< 
+<         CASE '*n':
+<           writef("<**n>", ch)
+<           LOOP
+< 
+<         CASE '*t':
+<           writef("<**t>", ch)
+<           LOOP
+<       }
+<       
+326c291
+<   ch := rch()
+---
+>   rch()
+383,385c348,350
+< //  writef("*nFiles:")
+< //  FOR i = 1 TO sourcefileno DO
+< //    writef(" %n:%s", i, sourcenamev!i)
+---
+>   writef("*nFiles:")
+>   FOR i = 1 TO sourcefileno DO
+>     writef(" <%n>=%s", i, sourcenamev!i)
+427a393,399
+> LET prlineno(ln) BE
+> { LET fno = ln>>20
+>   ln := ln & #xFFFFF
+>   writef("%s[%n]", sourcenamev!fno, ln)
+> //abort(1005)
+> }
+> 
+429c401
+< { 
+---
+> { // ch may be a <fno/ln> item
+447,453c419
+< { UNLESS lineno=plineno DO
+<   { // The line number has changed so push the new
+<     // lineno value.
+<     plineno := lineno
+<     bgpush(lineno)
+<   }
+<   IF bg_t=bg_s DO bg_error("Insufficient work space")
+---
+> { IF bg_t=bg_s DO bg_error("Insufficient work space")
+460,467c426,434
+< { // This gets the next character either from memory or an input file.
+<   // It sets lineno if a lineno value is encountered when reading
+<   // characters from memory.
+< 
+<   // If a newline charcter is read from file lineno is not incremented
+<   // until it is copied to memory are passed to the lexical analyser
+<   // by bgputch.
+< 
+---
+> { // This returns the next character from memory or an input file,
+>   // lineno is set to the <fno/ln> of the original source character.
+>   // <fno/ln> items occur whenever the line number changes and at the
+>   // start of every argument held in memory, except art the start of
+>   // the body of built in macros. lineno holds the <fno/ln> value of
+>   // the latest character from memory or file. For the newline character
+>   // it corresponds to the beginning of the next line.
+>   LET ch = ?
+> //writef("bggetch: called with bg_c=%n lineno=%x8*n", bg_c, lineno)
+470d436
+<          LET k = ?
+472,477c438,442
+<          k := !bg_c
+<          // bg_c points to the latest character in memory just read.
+< 
+<          IF k>=(1<<20) DO
+<          { // It was a lineno value so update lineno.
+<            lineno := k
+---
+>          ch := !bg_c
+>          // Check for fno/ln number
+>          IF ch>=(1<<20) DO
+>          { lineno := ch
+>            nextlineno := lineno
+480,481c445
+<          // ch is not a line number and lineno is its lineno value.
+<          RESULTIS k
+---
+>          RESULTIS ch
+483d446
+< 
+485,487c448,450
+<          // lineno holds the file and line number of the previous
+<          // character read from file.
+<          LET k = rdch()
+---
+>          lineno := nextlineno
+>          ch := rdch()
+>          IF ch='*n' DO nextlineno := lineno+1
+490c453,456
+<            UNLESS k=c_comment RESULTIS k
+---
+>            UNLESS ch=c_comment DO
+>            { //writef("[%n/%n]%c*n", lineno>>20, lineno & #xFFFFF, ch)
+>              RESULTIS ch
+>            }
+492c458
+<            // Skip a bgpm comment. Ie skip over all characters
+---
+>            // Skip a bgpm comment. Ie skip characters
+494,502c460,469
+<            // to the next non white space character.
+<            // While doing so increment lineno every time a newline
+<            // character is encountered.
+<  
+<            { k := rdch()
+<              IF k=endstreamch RESULTIS k
+<            } REPEATUNTIL k='*n'
+< 
+<            lineno := lineno + 1
+---
+>            // to the next non white space character. 
+>            { // Skip over the current line
+>              lineno := nextlineno
+>              ch := rdch()
+>              IF ch=endstreamch RESULTIS ch
+>              IF ch='*n' DO
+>              { nextlineno := lineno + 1
+>                BREAK
+>              }
+>            } REPEAT
+505,508c472,479
+<              k := rdch()
+<              IF k='*s' | ch='*t' LOOP
+<              UNLESS  k='*n' BREAK
+<              lineno := lineno+1
+---
+>              lineno := nextlineno
+>              ch := rdch()
+>              IF ch='*s' | ch='*t' LOOP
+>              IF ch='*n' DO
+>              { nextlineno := lineno+1
+>                LOOP
+>              }
+>              BREAK
+510,512c481
+< 
+<            // ch is a non white space character and
+<            // lineno is correctly set.
+---
+>            // ch is a non white space character
+517,521c486,489
+< AND arg(a, n) = VALOF
+< { IF !a<0 DO bg_error("Too few arguments")
+<   IF n=0 RESULTIS a
+<   a, n := a+!a+1, n-1
+< } REPEAT
+---
+> AND arg(a, n) = VALOF { IF !a<0 DO bg_error("Too few arguments")
+>                         IF n=0 RESULTIS a
+>                         a, n := a+!a+1, n-1
+>                       } REPEAT
+526,528c494,495
+< writef("lookup: "); prlineno(lineno); writef(" looking up *"%s*"*n",
+<         arg2str(name, buf))
+< abort(1000)
+---
+> //writef("lookup: <%n/%n> looking up *"%s*"*n",
+> //        lineno>>20, lineno&#xFFFFF, arg2str(name, buf))
+534c501
+< writef("lookup: p=%n q=%n pe=%n qe=%n*n", p, q, pe, qe)
+---
+> 
+537c504
+<       // Skip over lineno values.
+---
+>       // Skip over fno/ln items
+541c508
+<         IF ch1<(1<<20) BREAK
+---
+>         IF ch1<=255 BREAK
+543c510
+<       // Skip over lineno values.
+---
+>       // Skip over fno/ln items
+547c514
+<         IF ch2<(1<<20) BREAK
+---
+>         IF ch2<=255 BREAK
+549d515
+< writef("lookup: ch1=%n %c ch2=%n %c*n", ch1, ch1>32->ch1,'?', ch2, ch2>32->ch2,'?')
+558,559d523
+< writef("lookup: macro not found*n")
+< 
+561d524
+<   longjump(fin_p, fin_l)
+584c547
+< sawritef("define: Defining %s S=%n T=%n E=%n*n", name, bg_s, bg_t, bg_e)
+---
+> //sawritef("define: Defining %s S=%n T=%n E=%n*n", name, bg_s, bg_t, bg_e)
+589c552
+<   bgpush((1<<20) + 1) // Special lineo value for: built-in[1]
+---
+>   bgpush((1<<20) + 1) // Special <fno/ln> number for built-in macros
+596,597c559,560
+< sawritef("define: Defined  %s S=%n T=%n E=%n*n", name, bg_s, bg_t, bg_e)
+< abort(1001)
+---
+> //sawritef("define: Defined  %s S=%n T=%n E=%n*n", name, bg_s, bg_t, bg_e)
+> //abort(1001)
+603,624c566,568
+<   // It passes the expanded text to the lexical analyser by calls
+<   // of cowait(ch). BGPM ensures that the variable lineno holds both
+<   // the line number of every character it passed to the lexical
+<   // analyser. It does this by ensuring that lineno is correct every
+<   // time it reads a character from file by rdch, and it embeds lineno
+<   // value in any text held in memory such as macro arguments. This
+<   // ensures that lineno can be correctly set charcters are read from
+<   // file or internal memory. Macro arguments always start with a
+<   // lineno value and this includes the bodies of macros. When a
+<   // macro is called the lineno value of the semicolon that caused the
+<   // call is saved. This lineno value is restored when the expansion
+<   // of the macro completes. When a lineno value is encountered while
+<   // processing a macro body or argument it just update lineo which
+<   // will thus be correctlt set every time a character is passed to
+<   // the lexical analyser. The argument of cowait in bgputch is
+<   // always a charcter and not a lineno value. This character may
+<   // be endstreamch when the end of stream is encountered or the
+<   // special character -4 if the macrogenerator detects a fatal error.
+< 
+<   // The lexical analyser maintains a circular buffer of about the
+<   // most recent 64 characters. The characters are held in chbuf and
+<   // their corresponding lineno values in chbufln.
+---
+>   // It passes the expanded text to the lexical analyser by call
+>   // of cowait(ch), and maintains lineno to always hold the <fno/ln>
+>   // number of the latest character passed.
+631,642c575,586
+<   define("def",     s_def)      // Define a new macro
+<   define("set",     s_set)      // Replace the body of a macro
+<   define("get",     s_get)      // Get input from a specified file
+<   define("eval",    s_eval)     // Evaluate a numerical expression
+<   define("lquote",  s_lquote)   // Return '<'
+<   define("rquote",  s_rquote)   // Return '>'
+<   define("comment", s_comment)  // Retuen '%'
+<   define("eof",     s_eof)      // Return eof
+<   define("char",    s_char)     // Convert a number to a character
+<   define("rep",     s_rep)      // Repeat a value a number of times
+<   define("rnd",     s_rnd)      // Return a signed random number
+<   define("urnd",    s_urnd)     // Return a non negative random number
+---
+>   define("def",     s_def)
+>   define("set",     s_set)
+>   define("get",     s_get)
+>   define("eval",    s_eval)
+>   define("lquote",  s_lquote)
+>   define("rquote",  s_rquote)
+>   define("comment", s_comment)
+>   define("eof",     s_eof)
+>   define("char",    s_char)
+>   define("rep",     s_rep)
+>   define("rnd",     s_rnd)
+>   define("urnd",    s_urnd)
+644d587
+< wrenv(bg_e, 100)
+662c605
+< //writef(" "); prlineno(lineno); newline()
+---
+> //writef(" <%n/%n>*n", lineno>>20, lineno & #xFFFFF)
+668d610
+<            IF bg_ch='*n' DO lineno := lineno+1
+679c621,622
+<            lineno       := h3!getstreams // Restore lineno of ';' of $get!...;
+---
+>            lineno       := h3!getstreams // <fn0/ln> of ';' of $get!...;
+>            nextlineno   := lineno
+682a626,627
+> //writef("bgpm: eof sourcestream=%n <%n/%n>*n",
+> //        sourcestream, lineno>>20, lineno & #xFFFFF)
+688c633
+<              IF bg_ch<0 DO bg_error("Non character %n in quoted text", bg_ch)
+---
+>              IF bg_ch<0 DO bg_error("Non character in quoted text")
+692d636
+<              IF bg_ch='*n' DO lineno := lineno+1
+698,707c642,649
+<            bg_f := bgpush(bg_f)  // Position of start of new macro call
+<            bgpush(bg_h)          // Save start of previous arg start
+<            bgpush(?)             // Space for <fno/ln> of ';'
+<            bgpush(?)             // Space for e
+<            bgpush(?)             //       and t
+<            bg_h := bgpush(0)     // Start of zeroth arg of new call
+<            // Every argument starts with a lineno value
+<            bgpush(lineno)        // Push the lineno value of this '$'
+<            plineno := lineno     // Set plineno appropriately.
+<            // It is now ready to load the zeroth argument of a call.
+---
+>            bg_f := bgpush(bg_f)    // Position of start of new macro call
+>            bgpush(bg_h)            // Save start of previous arg start
+>            bgpush(?)               // Space for <fno/ln> of ';'
+>            bgpush(?)               // Space for e
+>            bgpush(?)               //       and t
+>            bg_h := bgpush(?)       // Start of zeroth arg of new call
+>            plineno := lineno
+>            bgpush(lineno)          // <fno/ln> value for this '$'
+711,713c653,654
+<            IF bg_h=0 DO
+<            { // Treat ! as an ordinary character if not reading macro arguments.
+<              bgputch(bg_ch)
+---
+>            IF bg_h=0 DO          // ignore if not reading macro arguments
+>            { bgputch(bg_ch)
+717,721c658,660
+<            bg_h := bgpush(0)     // Start a new argument.
+<            // Every argument starts with a lineno value
+<            bgpush(lineno)        // Push the lineno value of the '!'
+<            plineno := lineno     // Set plineno appropriately.
+<            // It is now ready to load the nextargument of a call.
+---
+>            bg_h := bgpush(?)       // Length field for the new arg
+>            plineno := lineno
+>            bgpush(lineno)          // <fno/ln> number of the '!'
+725,726c664
+<          { LET lno = lineno      // Save the lineno value of # in #dd
+< 
+---
+>          { LET lno = lineno      // Save the <fno/ln> of #dd
+728,729c666
+<            { // Treat # as an ordinary character if not loading macro arguments.
+<              bgputch(bg_ch)
+---
+>            { bgputch(bg_ch)
+732d668
+< 
+733a670,672
+>            { // Read and integer and use it to find the start
+>              // of the corresponding macro argument
+>              LET a = arg(bg_p+5, rdint())
+735,738c674
+<            { LET n = rdint() // Read the argument number.
+<              LET a = arg(bg_p+5, n) // Find the start of the nth argument.
+< 
+<              // Copy the nth argument
+---
+>              // Copy the specified argument
+741,746c677
+<                IF ch >= (1<<20) DO
+<                { // ch is a lineno value so update lineno
+<                  lineno := ch
+<                  LOOP
+<                }
+<                // A argument characters will have the right lineno values.
+---
+>                IF ch >= (1<<20) DO { lineno := ch; LOOP }
+749c680
+<              lineno := lno    // Restore the lineno value of the #dd.
+---
+>              lineno := lno    // Restore the <fno/ln> value of the #dd.
+757,759c688,689
+<            IF bg_h=0 DO
+<            { // Treat ; as an ordinary character if not reading arguments.
+<              bgputch(ch)
+---
+>            IF bg_h=0 DO           // Ignore if not reading arguments
+>            { bgputch(ch)
+764c694
+<            bgpush(s_eom)          // Append EOM marking end of args
+---
+>            bgpush(s_eom)            // Append EOM marking end of args
+769c699
+<            a!2 := lineno          // Save the lineno value of ';'.
+---
+>            a!2 := lineno          // Save <fno/ln> of ';'.
+772c702
+<            // Copy the call to the other stack.
+---
+>            // Copy the call to the top end.
+776d705
+<            // Start scanning the body of this macro.
+801c730,731
+<            lineno := bg_p!2          // Restore the previous lineno value.
+---
+>            lineno := bg_p!2          // Set <fno/ln> to that of ';'
+>            nextlineno := lineno
+822c752,753
+<            lineno := bg_p!2          // Restore the previous lineno value.
+---
+>            lineno := bg_p!2          // previous <fno/ln>
+>            nextlineno := lineno
+835d765
+<            // Truncate the length if necessary.
+837,838d766
+<            // Copy the value with its lineno values into the body
+<            // of the named macro.
+851c779
+<            FOR i = 1 TO len DO // Remove lineno values from the file name.
+---
+>            FOR i = 1 TO len DO
+862a791
+>            nextlineno := lineno
+870c799
+<            bgputch(FIX evalarg(1))
+---
+>            bgputch(evalarg(1)/1000)
+879,881c808,810
+<            FOR k = 1 TO FIX evalarg(1) DO
+<            { // Copy text to currest destination (memory or output),
+<              // dealing with lineno values appropriately.
+---
+>            FOR k = 1 TO evalarg(1)/1000 DO
+>            { //writef("s_rep: k=%n*n", k)
+> //abort(1022)
+883,889c812,813
+<              { LET ch = !q
+<                IF ch >= (1<<20) DO
+<                { lineno := ch
+<                  LOOP
+<                }
+<                // ch is not a lineno value.
+<                bgputch(ch)
+---
+>              { //writef("s_rep: q=%n lim=%n !q=%x8*n", q, a+!a, !q)
+>                bgputch(!q)
+895,900c819,822
+<       CASE s_rnd:      // $rnd!expression;
+<                        // Return a signed random number is
+<                        //        in specified range
+<          { LET rno =  randno(2_000_001) - 1_000_001
+<            // rno is a number in the range -1_000_000 to +1_000_000
+<            bgwrnum(evalarg(1) * FLOAT rno  / 1_000_000.0)
+---
+>       CASE s_rnd:                     // $rnd!expression;
+>                                       // Return a signed random number is
+>                                       //        in specified range
+>            bgwrnum(muldiv(randno(2_000_000)-1_000_000, evalarg(1), 1_000_000))
+902d823
+<          }
+904,909c825,828
+<       CASE s_urnd:     // $urnd!expression;
+<                        // Return an unsigned random number is
+<                        //        in specified range
+<          { LET rno =  randno(1_000_001) - 1
+<            // rno is a number in the range 0 to +1_000_000
+<            bgwrnum(evalarg(1) * FLOAT rno  / 1_000_000.0)
+---
+>       CASE s_urnd:                    // $urnd!expression;
+>                                       // Return an unsigned random number is
+>                                       //        in specified range
+>            bgwrnum(muldiv(randno(1_000_000), evalarg(1), 1_000_000))
+911d829
+<          }
+917,918c835
+< { // Only used only in the macrogenerator when reading #ddd
+<   // It returns the value as an integer.
+---
+> { // Only used for #ddd
+919a837
+>   GOTO M
+921,925c839
+<   { IF bg_ch >= (1<<20) DO
+<     { lineno := bg_ch
+<       bg_ch := bggetch()
+<       LOOP
+<     }
+---
+> L:bg_ch := bggetch()
+927c841,842
+<     UNLESS '0'<=bg_ch<='9' RESULTIS val
+---
+> M:IF bg_ch >= (1<<20) GOTO L
+>   IF '0'<=bg_ch<='9' DO { val := 10*val + bg_ch - '0'; GOTO L }
+929,931c844
+<     val := 10*val + bg_ch - '0'
+<     bg_ch := bggetch()
+<   } REPEAT
+---
+>   RESULTIS val
+938c851
+<   //writef("Searching for *"%s*" in the current directory*n", musfilename)
+---
+> //  writef("Searching for *"%s*" in the current directory*n", musfilename)
+941c854
+<   //UNLESS stream DO writef("Searching for *"%s*" in MUSHDRS*n", musfilename)
+---
+> //  UNLESS stream DO writef("Searching for *"%s*" in MUSHDRS*n", musfilename)
+943c856
+< //writef("performget: get stream=%n*n", stream)
+---
+> 
+964c877
+< //writef("performget: old lno = "); prlineno(lineno); newline()
+---
+> //writef("performget: old lno = <%n/%n>*n", lineno>>20, lineno&#xFFFFF)
+966c879,880
+< //writef("performget: new lno = "); prlineno(lineno); newline()
+---
+>   nextlineno := lineno
+> //writef("performget: new lno = <%n/%n>*n", lineno>>20, lineno&#xFFFFF)
+970,975d883
+< { LET res = evalarg1(n)
+<   //sawritef("evalarg => %13.6f*n", res)
+<   RESULTIS res
+< }
+< 
+< AND evalarg1(n) = VALOF
+982,984c890
+< { // This reads and evaluates a basic expression and
+<   // returns its value as a floating point number.
+<   bg_ch := getargch()
+---
+> { bg_ch := getargch()
+995c901
+<               RESULTIS  rdnum(getargch)
+---
+>               RESULTIS  bgrdnum()
+998c904
+<             { LET c = getargch()
+---
+>             { LET ch = getargch()
+1000c906
+<               RESULTIS FLOAT c
+---
+>               RESULTIS ch*1000
+1003,1005c909,910
+<     CASE '+': RESULTIS   bgexp(2)
+<     CASE '-': RESULTIS #-bgexp(2)
+<     CASE '~': RESULTIS FLOAT(~ FIX bgexp(2))
+---
+>     CASE '+': RESULTIS  bgexp(2)
+>     CASE '-': RESULTIS -bgexp(2)
+1007,1008c912
+<     CASE '(': { LET FLT res = bgexp(1)
+<                 UNLESS bg_ch=')' DO bg_error("')' expected")
+---
+>     CASE '(': { LET res = bgexp(1)
+1016c920
+< { LET FLT a = bgbexp()
+---
+> { LET a = bgbexp()
+1025,1027c929,930
+<       CASE 'r':  IF n<6 DO { LET ai = FIX a
+<                              LET bi = FIX bgexp(6)
+<                              a := FLOAT(ai>>bi)
+---
+>       CASE 'r':  IF n<6 DO { LET b = bgexp(6)
+>                              a := ((a/1000)>>(b/1000)) * 1000
+1033,1035c936,937
+<       CASE 'l':  IF n<6 DO { LET ai = FIX a
+<                              LET bi = FIX bgexp(6)
+<                              a := FLOAT(ai<<bi)
+---
+>       CASE 'l':  IF n<6 DO { LET b = bgexp(6)
+>                              a := ((a/1000)<<(b/1000)) * 1000
+1039,1040c941
+< 
+<       CASE '**': IF n<5 DO { a := a  *  bgexp(5); LOOP }
+---
+>       CASE '**': IF n<5 DO { a := muldiv(a, bgexp(5),  1_000); LOOP }
+1042,1044c943
+<       CASE '/':  IF n<5 DO { a := a  /  bgexp(5); LOOP }
+<                  RESULTIS a
+<       CASE 'm':  IF n<5 DO { a := a MOD bgexp(5); LOOP }
+---
+>       CASE '/':  IF n<5 DO { a := muldiv(a,  1_000, bgexp(5)); LOOP }
+1050,1052c949,950
+<       CASE '&':  IF n<3 DO { LET ai = FIX a
+<                              LET bi = FIX bgexp(3)
+<                              a := FLOAT(ai&bi)
+---
+>       CASE '&':  IF n<3 DO { LET b = bgexp(3)
+>                              a := ((a/1000) & (b/1000)) * 1000
+1056,1058c954,955
+<       CASE '|':  IF n<2 DO { LET ai = FIX a
+<                              LET bi = FIX bgexp(2)
+<                              a := FLOAT(ai|bi)
+---
+>       CASE '|':  IF n<2 DO { LET b = bgexp(2)
+>                              a := ((a/1000) | (b/1000)) * 1000
+1067,1069c964
+< { // Return the next character from memory, dealing with
+<   // any lineno values encoutered.
+<   LET p = argp+1
+---
+> { LET p = argp+1
+1074d968
+<   // ch is a lineno value
+1075a970,971
+>   nextlineno := lineno
+>   // Skip over fno/ln items
+1078,1171c974,990
+< AND rdnum(rdchfn) = VALOF
+< { // Read and return a floating point number from characters
+<   // read by rdchfn (which is getargch if inthe macro generator,
+<   // and rdch if not)
+<   // Syntax: [digits] [. digits]
+<   // where digits is one or more decimal digits. There must be
+<   // at least one digit before or after the decimal point.
+<   // Underscores can be embedded in digit sequences.
+<   // If successful, the result is the floating point number
+<   // and result2 is zero. On failure the result is zero
+<   // and result2 to -1.
+< 
+<   // The strategy is to read up to 9 digits following 
+<   // leading zeroes. Then ignore any additional digits.
+<   // Count the digits following the decimal point and deal.
+<   // Return the floating point number based on
+<   // the integer significand and the computed exponent using
+<   // sys(Sys_flt, fl_mk, val, exponent) correcting the sign if
+<   // necessary
+<   LET dcount = 0    // Number of digits before and after the decimal
+<                     // point. This must be >0 for a valid number.
+<   LET ecount = 0    // Number of ignored digits. Ignored digits are
+<                     // treated as if they were zeroes.
+<   LET dpos = -1     // =-1 or is equal to dcount when a decimal point
+<                     // was encountered. If dpos=-1 there is no decimal
+<                     // point, otherwise the number of digits
+<                     // after the decimal point is dcount-dpos.
+<   LET val, exponent = 0, 0
+<   LET ignoredigits = FALSE // If ignoredigits=TRUE, val will contain
+<                            // more significant decimal digits than
+<                            // can be represented by the resulting
+<                            // floating point number.
+< 
+< //sawritef("rdnum: entered*n")
+< 
+<   UNLESS '0'<=bg_ch<='9' | bg_ch='.' GOTO fail
+< 
+<   // Read the significand
+<   WHILE '0'<=bg_ch<='9' | bg_ch='.' DO
+<   {
+< //sawritef("rdnum: dealing with significand*n")
+<     SWITCHON ch INTO
+<     { DEFAULT: BREAK
+< 
+<       CASE '0':CASE '1': CASE '2': CASE '3': CASE '4': 
+<       CASE '5': CASE '6':CASE '7': CASE '8': CASE '9':
+<       { LET digval = bg_ch-'0'
+<         dcount := dcount+1  // Count of decimal digits
+<         UNLESS ignoredigits DO
+<           IF val > maxint/10 | 10*val > maxint-digval DO
+<             ignoredigits := TRUE
+< 
+<         // Do not use this digit if the result would be too large
+<         // for a BCPL integer.
+<         TEST ignoredigits
+<         THEN { // No more digits can be accumulated
+<                ecount := ecount+1 // Count of ignored digits
+<              }
+<         ELSE { // Accumulate the current decimal digit
+<                val := 10*val + digval
+<              }
+< 
+< //sawritef("rdnum: digit '%c' => val=%n ecount=%n*n", bg_ch, val, ecount)
+<         ENDCASE
+<       }
+< 
+<       CASE '.': 
+<         UNLESS dpos<0 GOTO fail // Must less than one decimal point
+<         dpos := dcount
+< //sawritef("rdnum: Found a dot, dpos=%n*n", dpos)
+<         ENDCASE
+<     }
+<     bg_ch := getargch()
+<   }
+< 
+< //sawritef("rdnum: Exited from significand loop*n")
+< 
+<   IF dpos<0 DO dpos := dcount
+< 
+<   exponent := ecount
+< 
+<   // and if dpos>=0 there were (dcount-dval) digits after the decimal
+<   // point, so this must be subtracted from exponent, equivalent to
+<   // dividing by 10^(dcount-dpos).
+<   IF dpos>=0 DO
+<     exponent := exponent - dcount + dpos
+< 
+< succ:
+<   // Convert val x 10^exponent to a floating point number of the
+<   // current BCPL word length.
+<   val := sys(Sys_flt, fl_mk, val, exponent)
+< //sawritef("rdnum: return result %13.6f*n", val)
+<   result2 :=  0  // Successful return
+< //abort(1234)
+---
+> AND bgrdnum() = VALOF
+> { // Only used in bexp
+>   LET val = 0
+>   WHILE '0'<=bg_ch<='9' DO { val := 10*val + bg_ch - '0'
+>                              bg_ch := getargch()
+>                            }
+>   UNLESS bg_ch='.'       RESULTIS val*1000
+>   bg_ch := getargch()
+>   UNLESS '0'<=bg_ch<='9' RESULTIS val*1000
+>   val := 10*val + bg_ch - '0'
+>   bg_ch := getargch()
+>   UNLESS '0'<=bg_ch<='9' RESULTIS val*100
+>   val := 10*val + bg_ch - '0'
+>   bg_ch := getargch()
+>   UNLESS '0'<=bg_ch<='9' RESULTIS val*10
+>   val := 10*val + bg_ch - '0'
+>   bg_ch := getargch()
+1173,1177d991
+< 
+< fail:
+< //abort(2345)
+<   result2 := -1
+<   RESULTIS 0
+1180,1210c994,1007
+< 
+< AND bgwrnum(FLT x) BE
+< { // This convert the floating point number x to
+<   // a sequence of digit and possibly a decimal point.
+<   // If the number can be represented as an integer
+<   // there will be no decimal point.
+<   LET FLT frac = sys(Sys_flt, fl_modf, x)
+<   LET intpart = FIX result2
+< //sawritef("bgwrnum: x=%13.6f*n", x)
+< //sawritef("bgwrnum: int part of x=%n frac part of x=%13.6f*n", intpart, frac)
+<   IF x<0 DO
+<   { bgputch('-')
+<     intpart := -intpart
+<     frac := -frac
+<   }
+<   wrpn(intpart)
+<   IF frac > 0 DO
+<   { LET scaledfrac = FIX sys(Sys_flt, fl_floor, (frac+0.0000005) * 1_000_000)
+<     LET digits = 0
+<     FOR i = 1 TO 6 DO
+<     { digits := digits*10 + scaledfrac MOD 10
+<       scaledfrac := scaledfrac/10
+<     }
+<     IF digits DO
+<     { bgputch('.')
+<       WHILE digits DO
+<       { bgputch(digits MOD 10 + '0')
+<         digits := digits/10
+<       }
+<     }
+<   }
+---
+> AND bgwrnum(n) BE
+> { LET frac = ?
+>   IF n<0 DO { bgputch('-'); n := -n }
+>   frac := n MOD 1000
+>   wrpn(n/1000)
+>   IF frac = 0 RETURN
+>   bgputch('.')
+>   bgputch(frac / 100 + '0')
+>   frac := frac MOD 100
+>   IF frac = 0 RETURN
+>   bgputch(frac / 10 + '0')
+>   frac := frac MOD 10
+>   IF frac = 0 RETURN
+>   bgputch(frac + '0')
+1240,1241c1037
+< { // This is for errors detected by the macrogenerator.
+<   LET out = output()
+---
+> { LET out = output()
+1243c1039
+<   writef("*n*n######### Error near "); prlineno(lineno); writef(": ")
+---
+>   writef("*n*n######### Error near <%n/%n>: ", lineno>>20, lineno & #xFFFFF)
+1245,1250d1040
+<   errorcount := errorcount+1
+<   IF errorcount>5 DO
+<   { writef("*n*n######### Error near "); prlineno(lineno); writef(": ")
+<     writef("Too many errors*n")
+<     cowait(-4) // Indicate a fatal error
+<   }
+1291,1292c1081
+<   prlineno(lno)
+<   writef("   ")
+---
+>   writef("<%n/%n>", lno>>20, lno & #xFFFFF)
+1313d1101
+< // wrenv outputs the list of defined macros
+1423,1435c1211,1218
+< LET rch() = VALOF
+< { // Return the next character obtained from the BGPM coroutine.
+< 
+<   LET char = callco(bgpmco)
+< 
+<   IF char<-2 DO longjump(fin_p, fin_l) // Fatal error found in BGPM
+< 
+<   // Save the character in the circular buffer for error messages.
+<   chcount := chcount+1
+<   chbuf  !(chcount&63) := char
+<   chbufln!(chcount&63) := lineno
+< 
+<   RESULTIS char
+---
+> LET rch() BE
+> { ch := callco(bgpmco)
+> //writef("*nrch: ch=%i3 <%n/%n>*n", ch, lineno>>20, lineno & #xFFFFF)
+>   UNLESS ch=endstreamch DO
+>   { chcount := chcount+1
+>     chbuf  !(chcount&63) := ch
+>     chbufln!(chcount&63) := lineno
+>   }
+1442,1443c1225,1226
+< //writef("lex: "); prlineno(lineno); writef(": ch=%n '%c'*n", ch, ch)
+< //abort(1000)
+---
+> //sawritef("lex: lineno=<%n/%n> ch=%n '%c'*n",
+> //  lineno>>20, lineno&#xFFFFF, ch, ch)
+1457c1240
+<                  ch := rch()
+---
+>                  rch()
+1461c1244
+<     CASE '+':   ch := rch()
+---
+>     CASE '+':   rch()
+1467d1249
+<                 // num and numtied can be used in shapes
+1469c1251
+<                 numval := rdnum(rch)    // A floating point value.
+---
+>                 numval := rdnum()
+1474c1256
+<                   ch := rch()
+---
+>                   rch()
+1479d1260
+<                 // All notes start with a to g
+1488c1269
+<                 ch := rch()
+---
+>                 rch()
+1490c1271
+<                 { ch := rch()
+---
+>                 { rch()
+1492c1273
+<                   ch := rch()
+---
+>                   rch()
+1494c1275
+<                   { notesharps := 1  // One sharp
+---
+>                   { notesharps := 1
+1497c1278
+<                   ch := rch()
+---
+>                   rch()
+1499,1500c1280,1281
+<                   ch := rch()
+<                   notesharps := 2    // A double sharp
+---
+>                   rch()
+>                   notesharps := 2
+1504c1285
+<                 { ch := rch()
+---
+>                 { rch()
+1506c1287
+<                   ch := rch()
+---
+>                   rch()
+1508c1289
+<                   { notesharps := -1  // One flat
+---
+>                   { notesharps := -1
+1511c1292
+<                   ch := rch()
+---
+>                   rch()
+1513,1514c1294,1295
+<                   ch := rch()
+<                   notesharps := -2    // A double flat
+---
+>                   rch()
+>                   notesharps := -2
+1521,1523c1302,1304
+<                   THEN reloctave := reloctave+1 // One octave up
+<                   ELSE reloctave := reloctave-1 // One octave down
+<                   ch := rch()
+---
+>                   THEN reloctave := reloctave+1
+>                   ELSE reloctave := reloctave-1
+>                   rch()
+1530c1311
+<                   ch := rch()
+---
+>                   rch()
+1537c1318
+<                   ch := rch()
+---
+>                   rch()
+1543c1324
+<                   ch := rch()
+---
+>                   rch()
+1548,1549c1329,1330
+<                 // reloctave = -9,..., 0,..., 9   an integer
+<                 // notelengthnum = -1, 0, 1, 2, 4, 8, 16,...   an integer
+---
+>                 // reloctave = -9,..., 0,..., 9
+>                 // notelengthnum = -1, 0, 1, 2, 4, 8, 16,...
+1554c1335
+<                ch := rch()
+---
+>                rch()
+1558c1339
+<                ch := rch()
+---
+>                rch()
+1562c1343
+<                ch := rch()
+---
+>                rch()
+1568c1349
+<               ch := rch()    // Reserved words, eg \vol
+---
+>               rch()    // Reserved words, eg \vol
+1574,1584c1355,1364
+<     CASE '[': token := s_lsquare;   ch := rch(); BREAK
+<     CASE ']': token := s_rsquare;   ch := rch(); BREAK
+<     CASE '(': token := s_lparen;    ch := rch(); BREAK
+<     CASE ')': token := s_rparen;    ch := rch(); BREAK 
+<     CASE '{': token := s_lcurly;    ch := rch(); BREAK
+<     CASE '}': token := s_rcurly;    ch := rch(); BREAK 
+<     CASE ':': token := s_colon;     ch := rch(); BREAK
+< 
+<     CASE '**':// *  and  *~  can both ccur in shapes
+<               token := s_star
+<               ch := rch()
+---
+>     CASE '[': token := s_lsquare;   rch(); BREAK
+>     CASE ']': token := s_rsquare;   rch(); BREAK
+>     CASE '(': token := s_lparen;    rch(); BREAK
+>     CASE ')': token := s_rparen;    rch(); BREAK 
+>     CASE '{': token := s_lcurly;    rch(); BREAK
+>     CASE '}': token := s_rcurly;    rch(); BREAK 
+>     CASE ':': token := s_colon;     rch(); BREAK
+> 
+>     CASE '**':token := s_star
+>               rch()
+1587c1367
+<                 ch := rch()
+---
+>                 rch()
+1591,1592c1371,1372
+<     CASE '|': ch := rch()
+<               IF ch='|' DO { token := s_doublebar; ch := rch(); BREAK }
+---
+>     CASE '|': rch()
+>               IF ch='|' DO { token := s_doublebar; rch(); BREAK }
+1596c1376
+<     CASE '/':   ch := rch()
+---
+>     CASE '/':   rch()
+1598c1378
+<                 { ch := rch() REPEATUNTIL ch='*n' | ch=endstreamch
+---
+>                 { rch() REPEATUNTIL ch='*n' | ch=endstreamch
+1605c1385
+<                   { ch := rch()
+---
+>                   { rch()
+1607c1387
+<                     { ch := rch() REPEATWHILE ch='**'
+---
+>                     { rch() REPEATWHILE ch='**'
+1611c1391
+<                     { ch := rch()
+---
+>                     { rch()
+1617c1397
+<                   ch := rch()
+---
+>                   rch()
+1627c1407
+<                 ch := rch()
+---
+>                 rch()
+1640c1420
+<                 ch := rch()
+---
+>                 rch()
+1647c1427
+< AND rdnum1() = VALOF
+---
+> AND rdnum() = VALOF
+1652c1432
+<                           ch := rch()
+---
+>                           rch()
+1655c1435
+<   ch := rch()
+---
+>   rch()
+1658c1438
+<   ch := rch()
+---
+>   rch()
+1661c1441
+<   ch := rch()
+---
+>   rch()
+1664c1444
+<   ch := rch()
+---
+>   rch()
+1750c1530
+< { LET prevln = -1    // Not a valid lineno value
+---
+> { LET prevln = 0
+1753,1755c1533,1534
+<   { LET i = p&63
+<     LET k  = chbuf!i     // k is a valid character
+<     LET ln = chbufln!i   // ln is its lineno value
+---
+>   { LET k  = chbuf!(p&63)
+>     LET ln = chbufln!(p&63)
+1758,1760c1537,1538
+<       { // The file number or linenumber has changed
+<         newline()
+<         prlineno(ln)
+---
+>       { UNLESS k='*n' DO newline()
+>         writef("<%n/%n>", ln>>20, ln&#xFFFFF)
+1763,1771c1541
+<       IF k='*n' DO
+<       { writef("<**n>")
+<         LOOP
+<       }
+<       IF k=endstreamch DO
+<       { writef("<eof>")
+<         LOOP
+<       }
+<       wrch(k)
+---
+>       UNLESS k='*n' DO wrch(k)
+1773a1544,1546
+>   writef("*n*nFiles:")
+>   FOR i = 1 TO sourcefileno DO
+>     writef(" <%n>=%s", i, sourcenamev!i)
+1783c1556
+<     ch := rch()
+---
+>     rch()
+1796c1569
+<   { ch := rch()
+---
+>   { rch()
+1804c1577
+<   ch := rch()
+---
+>   rch()
+1817c1590
+<   IF optLex DO writef("*nTesting the lexical analyser*n*n")
+---
+>   IF optLex DO newline()
+1836,1838c1609,1610
+<          writef(" %12.6f", numval)
+< wrchbuf()
+< abort(1001)
+---
+>          writef(" %8.3d", numval)
+> //abort(1001)
+1872d1643
+< //writef("optlex: ch=%c bg_ch=%c calling lex()*n", ch, bg_ch)
+1885,1891d1655
+< AND prlineno(ln) BE
+< { LET fno = ln>>20
+<   ln := ln & #xFFFFF
+<   writef("%s[%n]", sourcenamev!fno, ln)
+< //abort(1005)
+< }
+< 
+1915c1679
+<   UNTIL ch='*n' | ch=endstreamch DO ch := rch()
+---
+>   UNTIL ch='*n' | ch=endstreamch DO rch()
+1996c1760
+<   { LET FLT val = 2.0      // 2 secs default interval between scores.
+---
+>   { LET val = 2_000        // 2 secs default interval between scores.
+2018c1782
+<       writef("%i6 -> [%n, %s, %s, %8.3f]*n",
+---
+>       writef("%i6 -> [%n, %s, %s, %n]*n",
+2051,2052c1815,1816
+<                               0,           // No shape items yet
+<                              -1,           // qstart   No qbeat values yet
+---
+>                              0,            // No shape items yet
+>                              -1,           // qstart
+2140,2143c1904
+<   // Check that the current token is a number (s_num) and
+<   // return its (floating point) value, setting token to
+<   // the next lexical token.
+<   LET FLT a = numval
+---
+>   LET a = numval
+2149,2154c1910,1913
+< { // This is only used in control, timesig, bank and patch statements.
+< 
+<   // Check the current token is a number (s_num) and return its
+<   // value rounded to the nearest integer (as an integer.
+<   LET FLT a = rdnumber()
+<   RESULTIS FIX a
+---
+> { LET a = numval
+>   checkfor(s_num, "Integer expected")
+>   UNLESS a>=0 & a MOD 1000 = 0 DO synerr("%5.3d not an integer", a)
+>   RESULTIS a/1000
+4518,4522c4277,4281
+<     IF debugv!1 DO
+<     {  writef("pushval: replacing v=%i6 upb=%i5 with newv=%i7 upb=%i5*n",
+<                v, upb, newv, newupb)
+<       //abort(6666)
+<     }
+---
+> //IF debugv!1 DO
+> //{  writef("pushval: replacing v=%i6 upb=%i5 with newv=%i7 upb=%i5*n",
+> //           v, upb, newv, newupb)
+> //   //abort(6666)
+> //}
+4527,4528c4286,4287
+<   IF debugv!1 DO
+<     writef("pushval: updating v[%i3] with %i9*n", p, x)
+---
+> //IF debugv!1 DO
+> //  writef("pushval: updating v[%i3] with %i9*n", p, x)
+4540,4543c4299,4302
+< // where note is the absolute midi note number (after transposition and
+< // pitch change) and absq is the absolute qbeat position of the start of
+< // the note ignoring legato and delay effects. The nominal end position
+< // of every note in tlist is held in tqpos.
+---
+> // where note is the midi note number (after transposition and pitch change)
+> // and absq is the absolute qbeat position of the start of the note
+> // ignoring legato and delay effects. The nominal end position of every
+> // note in tlist is held in tqpos.
+4613c4372
+<     trerr(absqstart, "Unresolvable tied note %s", str)
+---
+> trerr(absqstart, "Unresolvable tied note %s", str)
+4702a4462
+>   // The globals
+4712c4472
+<   //                        kind = s_tempo,   s_tempoadj,
+---
+>   //                        kind = s_tempo, s_tempoadj,
+4714,4716c4474,4476
+<   //                               s_vibamp,  s_vibampadj,
+<   //                               s_vol,     s_voladj,
+<   //                               s_legato,  s_legatoadj,
+---
+>   //                               s_vibamp, s_vibampadj,
+>   //                               s_vol, s_voladj,
+>   //                               s_legato, s_legatoadj,
+4727,4729c4487,4489
+<   // The scaling parameters are held in scbase, scfaca and scfacb.
+<   // These are required for the implementation of (x)\tuplet(y).
+< 
+---
+>   // The scaling parameters are held in the globals
+>   // scbase, scfaca and scfacb. These are required for the implementation
+>   // of (x)\tuplet(y).
+4733d4492
+< 
+4741,4756c4500,4510
+<   // Midi data is appended to a list of midi events (midilist). The last
+<   // node of this list is pointed to by midiliste.
+< 
+<   // Each node in the list is of the form [link, msecs, midi_triple].
+< 
+<   // link points to the next item,
+<   // msecs is the absolute time of this event in milli-seconds from
+<   //      the start of the score,
+<   // midi_triple is a packed triplet of bytes representing a midi event.
+<   //       with 0, 1, 2 or 3 arguments.
+<   //      The least significant byte is the Midi operator (a status byte
+<   //      such as note_on or note_off + the Midi channel number(0..15)).
+<   //      The senior 24 bits of midi_triple provide up to 3 operand
+<   //      bytes, such as a midi note number and pressure.
+<   //      Although not currently used, a non midi operation can be
+<   //      represented using a least significant byte less that 128.
+---
+>   // Midi data is appended to a list of midi events (midilist) whose
+>   // last node is pointed to by midiliste.
+>   // Each node in the list is of the form [link, msecs, midi_triple]
+>   // where link points to the next item, msecs is the time of this event
+>   // in milli-seconds from the start of the score, and midi_triple is a packed
+>   // triplet of bytes representing a midi event. The least significant byte
+>   // is the Midi operator (eg note_on or note_off + the Midi
+>   // channel number(0..15)). The senior 24 bits provide up to 3 bytes of
+>   // operand, such as a midi note number and pressure. Although not
+>   // currently used, a non midi operation can be represented using a least
+>   // significant byte less that 128.
+4934c4688
+<                    writef("%9.3d Chan vol:  chan=%n vol=%n*n",
+---
+>                    writef("%9.3d Chan vol:  midichannel=%n vol=%n*n",
+4941c4695
+<                  writef("%9.3d Note On:   chan=%n note=%t4  vol=%n*n",
+---
+>                  writef("%9.3d Note On:   midichannel=%n note=%t4  vol=%n*n",
+4961c4715
+<                      writef("%9.3d Chan vol:  chan=%n vol=%n*n",
+---
+>                      writef("%9.3d Chan vol:  midichannel=%n vol=%n*n",
+4970c4724
+<                  writef("%9.3d Note On:   chan=%n note=%t4  vol=%n*n",
+---
+>                  writef("%9.3d Note On:   midichannel=%n note=%t4  vol=%n*n",
+5004c4758
+< //writef("%i7: Note off: chan=%n note=%i3  legato=%9.3d*n",
+---
+> //writef("%i7: Note off: midichannel=%n note=%i3  legato=%9.3d*n",
+5009c4763
+<               writef("%9.3d Note Off:  chan=%n note=%t4*n",
+---
+>               writef("%9.3d Note Off:  midichannel=%n note=%t4*n",
+5039c4793
+<       { writef("%9.3d Bank:      chan=%n MSB=%n*n",
+---
+>       { writef("%9.3d Bank:      midichannel=%n MSB=%n*n",
+5041c4795
+<         writef("%9.3d Bank:      chan=%n LSB=%n*n",
+---
+>         writef("%9.3d Bank:      midichannel=%n LSB=%n*n",
+5059c4813
+<       { writef("%9.3d Patch:     chan=%n prog=%n*n",
+---
+>       { writef("%9.3d Patch:     midichannel=%n prog=%n*n",
+5593c5347
+< AND pushnum(cb, n) BE
+---
+> AND pushpfx(cb, n) BE IF n DO
+5595c5349
+<   pushbyte(cb, n & 127)
+---
+>   pushbyte(cb, #x80+(n & 127))
+5598c5352
+< AND pushpfx(cb, n) BE IF n DO
+---
+> AND pushnum(cb, n) BE
+5600c5354
+<   pushbyte(cb, #x80+(n & 127))
+---
+>   pushbyte(cb, n & 127)
+5704c5458
+<     LET dr, r = 0, 0
+---
+>     LET dr = 0
+5718,5720c5472,5475
+<     { // Work out the real time in msecs of the item
+<       r := m2r_msecs(midimsecs, ocr, ocm, crate)
+<       dr := r - prevr  // The delta time in msecs
+---
+>     { // Work out the real time delay in msecs
+>       LET r = m2r_msecs(midimsecs, ocr, ocm, crate) // real msecs of item
+>       dr := r - prevr
+>       prevr := r
+5742d5496
+<         prevr := r
+5749d5502
+<         prevr := r
+5754,5755d5506
+<       // playmus does not currently generate these in the note track
+<       LOOP
+6081c5832
+<   // We have been told to commit suicide.
+---
+>   // We have been told to die

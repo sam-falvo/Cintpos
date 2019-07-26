@@ -1,0 +1,933 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+This is a recording of a console session made on 13th February 1979
+showing some of the features of the Tripos Portable Operating System
+running on a Computer Automation LSI4/30 computer. It was a 16 bit
+word addressed machine with 128Kb of RAM and an 80Mb hard disc. It was
+connected to other machines in the Laboratory, notably the CAP
+machine, an IBM 370 running Phoenix), and a PDP11/45.  The connection
+was by means of the Cambridge Ring running at 10MHz.
+
+Other console recordings made at about the same time have been
+appended to this file.
+
+Martin Richards
+11 August 1997
+
+ÿA
+File: b:basics
+
+ÿA
+
+ÿT
+> ÿêiÿnÿ!pÿuÿtÿ ÿtÿoÿ ÿtÿ-ÿsÿ"
+ÿ)gÿ	eÿtÿ ÿ"ÿlÿiÿbÿ
+hÿ	dÿ
+rÿ"ÿ
+ÿ
+ÿ'lÿ	eÿtÿ ÿ
+sÿtÿaÿrÿ
+tÿ(ÿ	)ÿ ÿbÿeÿ
+ÿ&$ÿ(ÿ ÿlÿeÿtÿ ÿfÿ(ÿnÿ)ÿ ÿ=ÿ ÿ%nÿ)=ÿ0ÿ ÿ-ÿ>ÿ ÿ1ÿ,ÿ	 ÿnÿ*ÿ fÿ(ÿnÿ-ÿ
+1ÿ)ÿ
+ÿ' ÿ ÿ ÿ*fÿ	oÿrÿ ÿiÿ ÿ=ÿ ÿ1ÿ ÿtÿoÿ ÿ5ÿ ÿdÿoÿ
+ÿ ÿ ÿ ÿ ÿ ÿ+wÿrÿ	iÿtÿ
+eÿfÿ(ÿ"ÿAfÿ(ÿ1%ÿ9nÿ!)ÿ' ÿ=ÿ ÿ=%ÿ-iÿa3ÿ**ÿnÿ*"ÿ@,ÿ ÿiÿ!,ÿ	 ÿfÿ(ÿiÿ)ÿ)ÿ:
+ÿ.$ÿ)ÿ(
+ÿ)/ÿ*ÿ!þ
+ÿ> ÿ5bÿcÿ	pÿlÿ ÿ	fÿ	rÿ	oÿmÿ ÿtÿ-ÿsÿ ÿtÿ	oÿ ÿtÿþ
+ÿÿ)BCPL - tþree spaþce 10000þ
+ÿöTreeþ size 25þ07
+ÿºLSI 4 þCG (Octoþber 197þ8)
+Workþspace siþze = 50þ00
+ÿPrograþm size =þ 79 worþds
+Maxiþmum workþspace uþsed = 13þ43 wordsþ
+ÿ>þ ÿŒ
+> ÿ#tÿ¢
+ÿf(1) =þ   1
+fþ(2) =  þ 2
+f(3)þ =   6
+þf(4) = þ 24
+f(5þ) = 120þ
+> ÿÒ
+þ> ÿ5tÿ;ÿtÿ;ÿtÿ;ÿtÿE
+ÿf(1) = þ  1
+f(þ2) =   þ2
+f(3) þ=   6
+fþ(4) =  þ24
+f(5)þ = 120
+ÿf(1þ) =   1þ
+f(2) =þ   2
+f(þ3) =   þ6
+f(4)þ =  24þ
+f(5) = þ120
+ÿf(1) þ=   1
+fþ(2) =   þ2
+f(3)þ =   6
+þf(4) =  þ24
+f(5)þ = 120þ
+ÿf(1þ) =   1þ
+f(2) =þ   2
+f(þ3) =   þ6
+f(4) þ=  24
+fþ(5) = 1þ20
+> ÿÿP
+þ> ÿ1eÿxÿþ
+ÿ!Dirþectory :þseminar þon Tuesþday 13-Fþeb-79
+ÿ  bounþce-s    þ        þ 1  Bloþck   05-þFeb-79 1þ7:39:18þ
+  lighþts     þ        þ  1  Bloþck   06þ-Feb-79 þ13:12:31þ
+  trnþ        þ        þ  1  Blþock   05þ-Feb-79 þ18:41:1þ3
+ þ capdemoþ       þ       4þ  Blocksþ  Fridaþy    10:þ58:06
+ þ rec-s þ        þ       1þ  Blockþ   05-Feþb-79 18þ:39:48
+þ  b  þ        þ        þ  1  Blþock   05þ-Feb-79 þ19:14:2þ9
+  þsend-s  þ        þ     1 þ Block  þ Wednesdþay 15:2þ7:40
+  þsend    þ       þ      1 þ Block  þ Wednesþday 15:2þ7:53
+þ  bþounce   þ        þ    1  þBlock   þ05-Feb-þ79 18:40þ:36
+ÿ  t þ        þ       þ    1  Bþlock   Tþoday   þ  13:19:þ27
+  riþngcli  þ        þ   11  Bþlocks  þFriday  þ  11:26:þ27
+  þbasics þ        þ      0 þ Blocksþ  Today þ    13:1þ8:09
+ þ rde    þ        þ      1þ  Block þ  Thursdþay  15:þ46:51
+þ  riþngclidemþo-1    þ    1  Bþlock   Fþriday  þ  14:54:þ51
+  rþec      þ        þ    1  þBlock   þ05-Feb-7þ9 19:15þ:09
+  þringcliþdemo    þ      9 þ Blocksþ  Fridayþ    15:þ06:44
+þ  trþn-s     þ       þ    1  Bþlock   0þ5-Feb-7þ9 18:40:þ55
+þ  t-s þ       þ        þ  1  Bloþck   Toþday     þ13:18:21þ
+þ  prcapþ        þ       þ 1  Blocþk   Fridþay    1þ5:11:10þ
+  teþxt     þ        þ    1  Bþlock   þFriday  þ  14:45:þ56
+> ÿy
+> ÿ#eÿxÿ ÿpÿaÿ
+tÿ` ÿ?ÿ@/ÿ(#ÿ$?ÿ!-ÿ$sÿ 
+ÿ$Directoþry :semiþnar on þTuesday þ13-Feb-7þ9
+  boþunce-s  þ        þ   1  Bþlock   0þ5-Feb-7þ9 17:39:þ18
+ÿ
+  rec-þs      þ        þ  1  Bloþck   05þ-Feb-79 þ18:39:48þ
+  b  þ        þ        þ  1  Blþock   05þ-Feb-79 þ19:14:2þ9
+ÿ  send-þs       þ        þ1  Blocþk   Wednþesday 15þ:27:40þ
+ÿ  t     þ       þ        þ1  Blockþ   Todaþy     13þ:19:27
+ÿ  trþn-s    þ        þ    1  Bþlock   þ05-Feb-7þ9 18:40þ:55
+ÿ  t-þs      þ        þ    1  Bþlock   þToday   þ  13:18þ:21
+ÿ> ÿÝ
+> ÿ,sÿtÿaÿ	tÿuÿ
+sÿ
+ÿTask þ1: runniþng
+Taskþ 2: waiþting
+Taþsk 3: waþiting
+þTask 4: þwaitingþ
+Task 6þ: waitinþg
+> ÿnrÿuÿnÿ ÿtÿ%
+ÿ	> ÿf(1) =þ   1
+f(þ2) =   2þ
+f(3) þ=   6
+þf(4þ) =  24þ
+f(5) =þ 120
+ÿ§rÿuÿnÿ ÿNtÿ;ÿtÿ(þ
+ÿ>þ ÿf(1) = þ  1
+f(2þ) =   2þ
+f(3) =þ   6
+þf(4) =  þ24
+f(5þ) = 120þ
+ÿfþ(1) =   þ1
+f(2)þ =   2
+þf(3) =  þ 6
+f(4þ) =  24þ
+f(5) =þ 120
+ÿÿ
+þ> ÿ2rÿ
+uÿnÿ ÿtÿ;ÿ3 ÿsÿtÿaÿtÿuÿsÿ;ÿ ÿtÿ
+ÿ> ÿf(1) =þ   1
+f(þ2) =   þ2
+f(3) þ=   6
+þf(4) þ=  24
+fþ(5) = 12þ0
+ÿTask þ1: waitiþng
+Taskþ 2: waiþting
+Taþsk 3: waþiting
+þTask 4: þwaitingþ
+Task 5þ: runninþg
+Taskþ 6: waitþing
+ÿf(1) þ=   1
+fþ(2) =   þ2
+f(3) þ=   6
+þf(4) =  þ24
+þf(5) = þ120
+ÿb
+þ> ÿ•
+> ÿ.rÿuÿnÿ ÿsÿpÿ/oÿoÿlÿ ÿrÿeÿ2sÿ6;ÿ ÿbÿ
+cÿ
+pÿlÿ ÿtÿ-ÿsÿ ÿ"tÿ7
+ÿ
+>þ ÿi
+ÿ> ÿŠsÿtÿaÿtÿuÿ
+sÿþ
+ÿ[Taþsk 1: ruþnning
+þTask 2: þwaitingþ
+Task 3þ: waitinþg
+þTask 4þ: waitiþng
+Taskþ 5: runnþing witþh packetþ(s)
+Tasþk 6: waþiting
+>þ ÿÿÿ¿
+> ÿdtÿyÿpÿeÿ ÿrÿeÿsÿ
+ÿBCPL - þtree spaþce 10000þ
+Tree þsize 250þ7
+LSI 4þ CG (Ocþtober 19þ78)
+Woþrkspace þsize = 5þ000
+Prþogram siþze = 79þ words
+þMaximum þworkspaþce used þ= 1343 wþords
+>þ ÿö
+> ÿtÿ
+yÿ	pÿeÿ ÿ"bÿoÿuÿnÿcÿeÿ-ÿsÿ0
+ÿget "þlibhdr"þ
+
+let þstart()þ be
+   þ qpkt(tþaskwait(þ)) repeaþt
+> ÿcbÿcÿ	pÿ	lÿ ÿbÿoÿuÿnÿcÿeÿ-ÿsÿ ÿ%bÿoÿuÿnÿcÿeÿ"þ
+ÿÿBCPL -þ tree sþpace 100þ00
+ÿóTþree sizþe 2446
+ÿ¶LSI 4 CþG (Octobþer 1978þ)
+Worksþpace sizþe = 500þ0
+ÿProgram þsize = þ32 wordsþ
+Maximuþm worksþpace useþd = 1277þ wordsþ
+ÿ>þ ÿZrÿuÿnÿ ÿ"bÿoÿuÿnÿcÿeÿ*þ
+ÿ> ÿLþ
+> ÿsÿtÿaÿtÿuÿ)sÿ!
+ÿTask 1:þ runninþg
+Task þ2: waitiþng
+Tasþk 3: waiþting
+Tþask 4: wþaiting
+þTask 5þ: waitinþg
+Task þ6: waitþing
+þ>þ ÿ¢
+> ÿ$tÿ	yÿ	pÿeÿ ÿsÿeÿnÿdÿ-ÿsÿ
+ÿget "lþibhdr"þ
+
+let þstart() þbe
+$( þlet v = þvec 2
+þ   v!0, þ v!1,  vþ!2 := -þ1, 5, 30þ000
+
+þ   wþrites("sþtartingþ*n")
+
+þ   $( þlet n = þv!2
+   þ   if nþ=0 breakþ
+      þv!2 := þn-1
+   þ   qpktþ(v)
+þ      v þ:= taskþwait()  þ$) repeaþt
+
+ þ  writeþs("done*þN")
+$)þ
+> ÿÿbÿcÿ
+pÿlÿ ÿsÿeÿnÿ
+dÿ-ÿsÿ ÿ
+sÿeÿ	nÿdÿ
+ÿÿBCþPL - treþe spaceþ 10000
+ÿùTþree sizþe 2565
+ÿ¼LSI 4 þCG (Octoþber 1978þ)
+Wþorkspaceþ size = þ5000
+ÿPrograþm size þ= 77 worþds
+Maxiþmum worþkspace uþsed = 1þ342 wordþs
+ÿ> ÿ©
+> ÿ!sÿeÿnÿdÿ-
+ÿstarþting
+ÿÿÿadonþe
+> ÿ¤rÿ
+uÿnÿ ÿ;sÿeÿ
+nÿdÿÁ
+ÿ> ÿstþarting
+ÿ=sÿtÿaÿtÿ(uÿsÿ
+ÿ
+Taskþ 1: runþning
+Taþsk 2: wþaiting
+þTask 3: þwaitingþ
+Task þ4: waitiþng
+Taskþ 5: intþerruptedþ
+Task þ6: waitiþng
+Tasþk 7: intþerruptedþ
+> ÿ’sÿtÿaÿtÿuÿsÿþ
+ÿTaþsk 1: ruþnning
+þTask 2: þwaitingþ
+Task 3þ: waitiþng
+Taskþ 4: waiþting
+Taþsk 5: iþnterruptþed
+Taþsk 6: wþaiting
+þTasþk 7: ruþnning wiþth packeþt(s)
+>þ ÿÚdonþe
+ÿu
+> ÿ^rÿœuÿnÿ$ ÿprÿ
+uÿwnÿ1 ÿsÿ
+tÿaÿ™tÿ9uÿAsÿq;ÿÓsÿeÿnÿdÿHþ
+ÿ
+> ÿTask þ1: waitiþng
+Tasþk 2: waiþting
+Tþask 3: wþaiting
+þTask 4:þ waitingþ
+Task þ5: waitiþng
+Taskþ 6: waiþting
+Taþsk 8: ruþnning
+ÿstartingþ
+ÿÿÿ\dþone
+ÿ\
+> ÿ„
+>þ ÿErÿuÿNnÿ4 ÿ)sÿeÿnÿ*dÿh
+ÿ
+> ÿstþartingþ
+ÿ%@ÿsÿ0ÿ2ÿ7 ÿsÿ7ÿ ÿhÿþ
+* ÿ]@ÿsÿ0ÿ 1ÿn ÿsÿtÿaÿtÿuÿ	sÿ
+ÿTþask 1: rþunningþ
+Task 2:þ waitingþ
+Task þ3: waitiþng
+Tasþk 4: waiþting
+þTask þ5: waitiþng
+Tasþk 6: waiþting
+Taþsk 7: iþnterruptþed heldþ
+> ÿ»@ÿsÿ0ÿ2ÿ)
+* ÿE1ÿ2ÿ3ÿp+ÿ4ÿ&=ÿ'
+    þ 127 * ÿX
+þ* ÿ¦eÿbÿ!
+
+þ
+Actþive Coroþutine sþtart   þ
+ start þ  11844þ   11847þ       -þ1      þ  5    1þ6199 
+ÿStacþk base 1þ1839 endþ 12839 þhwm 1188þ8 
+
+þCalleþd from
+þ
+Rootþ stack
+þ callcoþ  9838  þ     0 þ    1000þ     541þ7 
+ stþart   97þ74   119þ84     þ9778    þ  574   þ  8192 þ
+Stack þbase  9þ769 end þ 9969 hwþm  9899þ 
+
+Enþd of baþcktraceþ
+
+þ* ÿÿÿx1ÿ'0ÿ; ÿ pÿ&aÿŠ1ÿ1ÿC8ÿ14ÿV9ÿD
+þ* ÿ5eÿbÿ
+
+
+þActive þCoroutinþe startþ   
+ stþart   1þ1844   1þ1847    þ   -1  þ      5 þ      10þ 
+ÿSþtack baþse 11839þ end 12þ839 hwm þ11888 
+þ
+Callþed fromþ
+
+Rooþt stackþ
+ callþco  9838þ       0þ     10þ00     5þ417 
+ sþtart   þ9774   1þ1984    þ 9778  þ    574 þ    8192þ 
+Stacþk base  þ9769 endþ  9969 þhwm  989þ9 
+
+þEnd of bþacktracþe
+
+þ* ÿÿ_gÿtÿ1ÿ\0ÿ0ÿ"
+þ
+þG 0/   þ   350  þstart   þ stop  þ        þ 0      þ  0 
+Gþ 5/     þ   0    þ    0  þ      0 þ       0þ       þ 0 
+þG10/  þ      0 þ       þ0    118þ39     þ5367    þ    7 
+þG15/  gþetbyte  þputbyte þ level þ   longjþum  muldþiv  
+Gþ20/  aptþovec  saþrdch   þsawrch  þ createþc  deletþec 
+G25þ/  callþco   cowþait   reþsumec  þglobin  þ getvec þ 
+G30/þ  freeveþc  creaþted  delþeted  crþeatet  þdeletet þ
+G35/  þchangepþ  setflaþg  testfþla  aboþrt    hoþld    
+þG40/  rþelease  þtaskwai þ qpkt  þ   dqpktþ    packþstr 
+Gþ45/  unpþacks  enþdtask  þdelay   þ sendpkþt  returþnp 
+G5þ0/  initþio      þ1457   þ  2643  þ   2703 þ rdch  þ  
+G55/þ  unrdcþh   wrchþ     reaþdwor  wþritewo  þfindinp þ
+G60/ þ findoutþ  selectþi  seleþcto  endþread  enþdwrit þ
+G65/  iþnput   þ output þ  readn þ   newlþine  wriþted  
+þG70/  wrþiten   wþritehe þ writeocþ  writeþs   writþef  
+G7þ5/  capþital  coþmpch   cþompstr þ rdargs þ  rditemþ  
+G80þ/  findaþrg  loaþdseg  unþloads  cþallseg þ       0þ 
+G85/ þ datstrþi  datstþam      þ  0     þ   0   þ     0 þ
+G90/  þdeletef þ renameþf       þ 0      þ  0     þ   0 
+ÿG9þ5/      þ  0     þ   0   þ     0  þ      0þ        þ0 
+* ÿ‚wÿtÿ1ÿ0ÿ%
+
+þW 0/þ     -9þ84      þ  7     þ 499   þ     0  þ     10 þ
+W 5/ þ       0þ      20þ0     2þ697     þ9417    þ 9769 þ
+* ÿô@ÿsÿ<0ÿ1ÿ3 ÿsÿtÿaÿtÿuÿsÿ
+ÿTask 1þ: runniþng
+Taskþ 2: waiþting
+Taþsk 3: waþiting
+þTask 4: þwaitingþ
+Task 5þ: waitinþg
+Taskþ 6: waitþing
+Tasþk 7: inþterrupteþd held
+þ> ÿÞ@ÿsÿ90ÿ2ÿp ÿÿ;þ
+* ÿ£8ÿ-pÿ%wÿ$4ÿÿ&þ
+* doþne
+ÿo@ÿsÿ$0ÿ1ÿ
+>þ ÿ'
+> ÿŽ
+> ÿrÿeÿcÿ
+oÿrÿdÿ ÿoÿfÿfÿ
+
+
+
+ÿA
+ÿA
+ÿA
+ÿA
+
+
+
+
+This next console session demonstrates some of the features of the
+Tripos Command Language interpreter.
+
+ÿA
+File: b:coms
+
+ÿA
+
+> ÿ1rÿuÿnÿ ÿnÿ	eÿwÿcÿ	lÿ
+iÿ$
+ÿ> ÿNew þCLI tasþk 5
+> ÿÿ5
+> ÿpÿrÿoÿmÿ*pÿtÿ ÿ"ÿ>%ÿ$nÿ!>ÿ ÿ"ÿ&
+ÿ1> ÿ)
+1> ÿ“eÿdÿiÿtÿ ÿtÿ-ÿsÿ4
+ÿJtÿ4ÿ(
+ÿ)EDIT rþeady
+ÿgeþt "libhdþr"
+
+þlet stþart() beþ
+4.
+þ$þ( let fþ(n) = n=þ0 -> 1,þ n*f(n-1þ)
+ÿm@ÿsÿ0ÿ5ÿK
+> ÿ•
+> ÿ8pÿrÿ	oÿmÿpÿtÿ ÿ9"ÿ9%ÿ3nÿ&>ÿ ÿ0"ÿ#
+ÿ5> ÿ!þ
+5> ÿŽeÿ!xÿ ÿpÿaÿ'tÿ ÿ(ÿ2sÿ/ÿbÿ/ÿtÿ)ÿ#ÿ„?ÿ'-ÿ3sÿ>
+ÿ!Dirþectory þ:seminarþ on Tueþsday 13-þFeb-79þ
+þ  þbounce-sþ        þ     1 þ Block  þ 05-Feb-þ79 17:3þ9:18
+ÿ  senþd-s    þ        þ   1  Blþock   Wþednesdayþ 15:27:4þ0
+ÿ  trn-sþ        þ       þ 1  Blocþk   Todaþy     1þ4:08:04þ
+ÿ  t-s  þ       þ        þ 1  Blocþk   Todþay     1þ3:18:21þ
+ÿ5> ÿ¿@ÿsÿ0ÿ01ÿ+ ÿ2gÿ ÿfÿ(ÿ ÿfÿaÿcÿtÿ](ÿ? ÿmÿ#6ÿ
+þ4.þ
+$( lþet factþ(n) = n=þ0 -> 1, þn*fact(þn-1)
+þ6.þ
+þ     wrþitefactþ("fact(%þn) = %i3þ*n", i,þ fact(i)þ)
+ÿseÿ ÿXfÿ
+aÿcÿtÿ3 ÿ ÿPwÿ.
+þ6.
+þ    þ write(þ"fact(%nþ) = %i3*þn", i, þfact(i))þ
+ÿ1> ÿÿÿÿ>eÿdÿiÿtÿ ÿtÿ-ÿsÿj
+ÿ²EDIT reþady
+ÿ$mÿ.6ÿ" ÿaÿ ÿ
+eÿ ÿ
+fÿ
+ÿ6.
+þ     wriþtef("facþt(%n) =þ %i3*n",þ i, factþ(i))
+ÿ#wÿ
+ÿ1> ÿx
+þ1> ÿ
+1> ÿ@ÿsÿ0ÿ5ÿ
+5> ÿ8eÿ
+nÿdÿcÿlÿiÿ
+ÿCLI tasþk 5 endþing
+ÿä@ÿsÿ0ÿ1ÿ#
+1> ÿ6
+þ1> ÿ6aÿsÿ
+mÿ ÿ?ÿ
+ÿUPRþOG=FROM/þA,CODE=þTO,VER/Kþ,LIST/S,þSPACE/Kþ,HDR/K: ÿëlÿiÿgÿhÿtÿsÿ!-ÿ:sÿ8 ÿElÿiÿsÿ,tÿ/ ÿqtÿ%oÿ ÿ lÿiÿgÿ
+hÿtÿ)sÿ:
+ÿ|TRIPþOS LSI 4þ/30 Assþembler Vþersion 2ÿ
+þ
+ÿ       þ0000    þ        þ       þREL     þ0
+     þ  0000 0þ009    þ  START þ  DATA  þ  ENDSTþART-STARþT
+     þ  0001 þ0000    þ  LIGHTSþ  DATA þ   0
+  þ     000þ2 E27E 0þ001    þ     COPþY    $-1þ,Y
+   þ    0003þ 0404   þ       þ    SELPþ    A,:0þ4
+þ      þ 0004 9Cþ41 0001þ        þ JMP    þ 1(Y)
+þ        þ        þþ
+       þ0005 000þ0       þ       þDATA    þ0
+     þ  0006 þ0096    þ        þ  DATA þ   150
+þ       0þ007 0001þ       þ       DþATA    LþIGHTS-SþTART
+  þ     000þ8 0096 þ        þ     DATþA    15þ0
+     þ        þ        þ ENDSTAþRT
+    þ   0009 þ       þ        þ   END
+þ
+
+Noþ errors þdetecteþd
+
+
+þAssemblþy statisþtics (wþords):þ
+
+   þ        þAbsolutþe   Reloþcatableþ
+
+þCode   þ        þ 0     þ      9þ
+Reloc.þ info   þ  0     þ      0þ
+
+þ1020 wþords of þsymbol tþable weþre usedþ
+
+
+Asþsembly þcompleteþ
+ÿ1> ÿY
+1>þ ÿ9tÿyÿpÿeÿhÿeÿxÿ ÿ!lÿiÿgÿhÿtÿ$sÿ.
+ÿ
+
+þ 03E8 þ0009 00þ09 0000 þE27E 040þ4 9C41 0þ000 009þ6 0001 0þ096 03EAþ
+1> ÿ×
+1>þ ÿ
+1> ÿ&tÿ	yÿpÿ"eÿ ÿbÿþ
+ÿ.þk file/þa
+echo þ"compilþing <filþe>-s to þ<file>"þ
+run spþool resþ;bcpl <fþile>-s tþo <fileþ>; spoolþ; echo þ"done*n"þ
+1> ÿ«
+þ1> ÿLrÿeÿfÿGlÿeÿcÿtÿ, ÿ5bÿ ÿ Aÿ BÿCÿDÿ2
+ÿechþo "compþiling ABþCD-s to þABCD"
+rþun spooþl res;bcþpl ABCD-þs to ABþCD; spoþol; echoþ "done*nþ"
+1> ÿ©
+1> ÿPcÿ ÿbÿ ÿtÿI
+ÿŽcompiliþng t-s tþo t
+ÿ1>þ ÿk
+ÿ1> ÿÿ eÿxÿ ÿ?ÿ	?ÿ
+?ÿ
+ÿ)Direcþtory "??þ?" not þfound
+1þ> ÿçdoneþ
+
+ÿ£
+1þ> ÿ1tÿyÿpÿeÿ ÿ
+rÿeÿ"sÿ$
+ÿBCþPL - treþe space þ10000
+þTree sizþe 2510
+þLSI 4 CþG (Octobþer 1978)þ
+Worksþpace sizþe = 500þ0
+Progrþam size þ= 80 woþrds
+Maxþimum woþrkspace þused = 1þ345 worþds
+1> ÿÿJsÿtÿaÿtÿRuÿsÿ
+ÿTask 1:þ runningþ
+Task þ2: waitiþng
+Taskþ 3: waiþting
+Taþsk 4: waþiting
+þTask 6: þwaitingþ
+1> ÿmcÿpÿuÿ6
+ÿ1> ÿ‹
+1> ÿ?sÿ	tÿ
+aÿ tÿ%uÿsÿ! ÿtÿcÿbÿTþ
+ÿTasþk 1: priþ 1000, þstk 200þ wds, gvþ 350 wdþs, runniþng
+Tasþk 2: priþ 2000, þstk 200 þwds, gv þ199 wdsþ, waitiþng
+Taskþ 3: priþ 4000, sþtk 200 wþds, gv þ191 wds,þ waitinþg
+Task þ4: pri þ3000, stþk 200 wþds, gv 4þ01 wds,þ waitinþg
+Task þ5: pri þ1, stk 1þ00 wds,þ gv 159 þwds, intþerrupteþd
+Taskþ 6: pri þ3900, stþk 400 wþds, gv þ152 wds,þ waitinþg
+Task þ7: pri þ32766, sþtk 100 þwds, gv þ159 wdsþ, waitinþg
+1> ÿÿ 
+1> ÿErÿeÿcÿoÿ
+rÿdÿ  ÿoÿfÿfÿ
+
+
+ÿA
+ÿA
+ÿA
+ÿA
+
+
+
+This next recording illustrates low level communication using the 
+Cambridge Ring. It shows the transmission of a million 16 bit word
+message from the LSI4 round the ring to itself.
+
+
+ÿA
+ÿA
+ÿA
+ÿA
+
+File: b:ring
+
+ÿA
+
+> ÿ1tÿyÿpÿeÿ ÿrÿeÿcÿ-ÿsÿ
+1þ> ÿget "þlibhdr"þ
+
+let þstart()þ be
+$( þlet rdcbþ = loadþseg(":d.þringrx-þdev")
+ þ  let rdþev = crþeatedev(þrdcb)
+ þ  let rþbuf = geþtvec(999þ)
+   wþrites("rþeceiver þstartedþ*n")
+
+þ   foþr i = 1 þto 1000 þdo
+   þ sendpktþ(-1, rdeþv, ?, ?þ, ?,
+  þ        þ  27,  þ // sourþce compþuter idþ
+       þ     100þ0, // bþuffer siþze
+    þ       þ rbuf)
+þ
+   þwrites(þ"a milliþon wordþs receivþed*n")
+þ   deleþtedev(rdþev)
+   þunloadsþeg(rdcb)þ
+   freþevec(rbuþf)
+$)þ
+þ1> ÿÿÿrÿuÿnÿ ÿ(rÿeÿcÿ—
+ÿ
+1> ÿreceiþver starþted
+ÿ³
+1> ÿ:sÿtÿaÿtÿ.uÿsÿ$
+ÿTþask 1: rþunning
+þTaskþ 2: waitþing
+Tasþk 3: waþiting
+Tþask 4: wþaitingþ
+Task þ5: waitþing
+Tasþk 6: waiþting
+þ1> ÿ¡
+þ1> ÿtÿ	yÿpÿeÿ ÿtÿrÿnÿ-ÿsÿ
+ÿget "lþibhdr"
+þ
+let þstart() þbe
+$( þlet tdcbþ = loadsþeg(":d.þringtx-dþev")
+  þ let tdþev = creþatedev(tþdcb)
+ þ  let tbþuf = getþvec(999þ)
+   wrþites("tþransmittþer startþed*n")þ
+
+   þfor i = þ1 to 100þ0 do
+ þ   sendpþkt(-1, tþdev, ?,þ ?, ?,
+þ       þ     27,þ   // deþstinatiþon compuþter id
+þ       þ     100þ0, // buþffer siþze
+    þ        þtbuf)
+þ
+þ   wriþtes("a mþillion þwords trþansmittþed*n")
+þ   deletþedev(tdþev)
+   þunloadseþg(tdcb)þ
+   frþeevec(tbþuf)
+$)þ
+1>þ ÿå
+þ1> ÿÿJrÿuÿ!nÿ# ÿtÿrÿnÿd
+ÿ
+1> ÿtraþnsmittþer staþrted
+ÿ¥
+1þ> ÿ+sÿtÿaÿtÿuÿ
+sÿ
+ÿTask 1þ: runnþing
+Tþask 2:þ waitiþng
+Taþsk 3: wþaitingþ
+Task þ4: waiþting
+Tþask 5:þ waitiþng witþh packþet(s)þ
+Task 6þ: waitþing
+Tþask 7: wþaiting þwith pacþket(s)
+þ1> ÿÿ†sÿtÿaÿtÿ&uÿsÿ'þ
+ÿTþask 1: þrunniþng
+Taþsk 2: þwaitinþg
+Tasþk 3: waþiting
+þTask þ4: waitþing
+þTask þ5: waiþting wþith paþcket(sþ)
+Tasþk 6: wþaitingþ
+Task þ7: waitþing
+þ1> ÿÿÿÿáa mþillion wþords reþceived
+þa milliþon wordsþ transmiþtted
+ÿr
+1þ> ÿY
+1> ÿ!rÿeÿcÿoÿrÿdÿ ÿoÿfÿfÿ
+
+ÿA
+ÿA
+ÿA
+ÿA
+
+
+
+
+The next recording is a brief demonstration of the use of the CAP machine
+from the LSI4 via the Cambridge Ring.
+
+ÿA
+
+File: b:capdemo
+
+ÿA
+
+> ÿAÿÿðpÿrÿoÿmÿpÿtÿU ÿ,"ÿ%LÿSÿIÿ.4ÿ>ÿ	 ÿ"ÿ+
+ÿLþSI4> ÿTlÿ
+oÿaÿdÿ
+rÿiÿnÿgÿhÿaÿ	nÿ
+dÿ9
+ÿ$Ring þreceiverþ:    deþvice -6þ
+Ring tþransmittþer: devþice -7
+þRing hanþdler:  þ   task þ  5
+LSIþ4> ÿMrÿ	uÿnÿ ÿrÿeÿa þÿ þÿ"nÿeÿwÿcÿlÿiÿ3
+ÿLSI4þ> ÿNew CLI þtask 7
+þLSI4> ÿßcÿoÿnÿnÿeÿ
+cÿtÿ ÿcÿ
+aÿpÿ[
+ÿ£Connectiþon estaþblished þwith CLIþ task 9þ in capþ
+ÿUseþr: ÿ9bÿjÿkÿ&
+ÿePasswoþrd: ÿ&@ÿzÿÏ
+ÿ±>ÿÿeÿxÿ9 ÿ=.ÿfÿ
+rÿoÿmÿ=rÿiÿnÿgÿ" ÿ;xÿ ÿlÿp
+ÿÿD.FROMþRING Youþr statusþ is /CVþXY
+ÿ>ÿƒsÿtÿaÿtÿuÿsÿ ÿ	aÿlÿlÿ
+ÿ©Job 0þ DESPOOþL from /þN to /LþP
+ÿJobþ 9 BJK tþo LSI4
+ÿJob 1þ0 /TT2 sþtartingþ to /TT2þ
+ÿ3 jobsþ
+ÿ>ÿDrÿuÿnÿ ÿrÿeÿcÿ
+eÿiÿvÿeÿ
+ÿõJþob 11
+ÿ >ÿ‰sÿtÿaÿ
+tÿuÿ
+sÿ ÿaÿlÿlÿ)
+ÿHJob 0 DþESPOOL fþrom /N þto /LP
+ÿJob 9 þBJK to þLSI4
+ÿJþob 10 AJþH to /TþT2
+ÿJob 11 þRECEIVEþ from /Nþ to /TTþ1
+ÿ4 jobsþ
+ÿ>ÿÿ$@ÿsÿ0ÿ7ÿ
+LSIþ4> ÿ_sÿ
+eÿ
+tÿ ÿ:ÿsÿ	eÿmÿiÿnÿaÿrÿ:
+ÿLSþI4> ÿ¼tÿrÿaÿnÿsÿ	mÿiÿtÿ4 ÿdtÿ-ÿsÿ ÿtÿoÿ ÿcÿ	aÿpÿ4 ÿaÿ
+sÿ ÿ.ÿ*ÿ.ÿbÿjÿkÿ#.ÿ)fÿ	rÿoÿmÿrÿiÿnÿgÿ..ÿ%tÿiþ
+ÿÇLSþI4> ÿ/@ÿsÿ0ÿ1ÿþ
+ÿ>ÿ<eÿxÿ ÿ.ÿfÿ	rÿoÿmÿrÿiÿnÿgÿ& ÿxÿ ÿlÿ
+ÿ¹.FROMRINþG Your sþtatus iþs /CVXYþ
+þ.T   þ     segþ
+ÿ>ÿšbÿ	cÿpÿlÿ ÿ.ÿfÿrÿoÿmÿrÿiÿnÿgÿ".ÿtÿ› ÿWpÿcÿbÿ'=ÿ.ÿtÿ" ÿlÿiÿbÿhÿdÿrÿ3=ÿA.ÿ*ÿ.ÿlÿ.ÿbÿcÿpÿlÿ$.ÿlÿiÿbÿhÿ	dÿ
+rÿ.þ
+ÿÿBCPL þ12 Jan 7þ9  stacþksize 3þ572
+ÿÿÿTree siþze 1765þ
+ÿþ
+ÿOCODE þsize 38þ
+ÿCAþPCG Versþion 5.0 þstacksiþze=876
+ÿ
+ÿLengthþ 66 wordþs; 3 stþatics
+ÿÅPcb þslots upþdated: þ P1 I2
+ÿCompilatþion sucþcessfulþ
+ÿ>ÿ=tÿ1
+ÿ-fact(1)þ =   1
+ÿfact(2)þ =   2þ
+ÿfþact(3) þ=   6
+ÿfacþt(4) =  þ24
+ÿfþact(5) =þ 120
+ÿ>ÿ±fÿiÿ-nÿiÿsÿhÿ<
+ÿƒJob 9 BþJK finisþhed
+ÿ3@ÿsÿ0ÿ7ÿ
+LSIþ4> ÿ3rÿ
+eÿcÿoÿrÿdÿ ÿoÿfÿ
+fÿ
+
+
+ÿA
+ÿA
+ÿA
+ÿA
+
+
+
+This next recording illustrates communication with Phoenix on the
+Cambridge University Mainframe computer (an IBM 370/165), and a
+PDP11/45 running Tripos.
+
+ÿA
+ÿA
+ÿA
+ÿA
+
+File: b:rcdemo
+
+ÿA
+
+> ÿAlÿ	oÿaÿdÿrÿ	iÿnÿgÿ/hÿaÿnÿdÿ(
+ÿ(Ring reþceiver:þ    deviþce -6
+Rþing traþnsmitterþ: deviceþ -7
+Riþng handlþer:    þ task   þ5
+> ÿGrÿuÿnÿ ÿnÿ
+eÿwÿcÿ
+lÿ
+iÿ"
+ÿ> ÿNþew CLI þtask 7
+þ> ÿ˜@ÿsÿ
+0ÿ<7ÿ)
+>þ ÿžpÿhÿxÿ%
+ÿ! ÿ‡þ
+ÿ@X7F
+ÿ 
+ÿ
+LOGON ÿ=mÿ
+rÿ1ÿ0ÿE ÿbpÿwÿ% ÿ@ÿ*zÿ]þ
+ÿm91@X18þ@X10pHxCþaÿÿLast þsession þ 9 FEB þ79 14.3þ9
+ÿSTARþTED  9 FþEB 14.4þ1 PRIORIþTY 11.3þ
+ÿÿÿÿtÿeÿrÿmÿiÿnÿaÿlÿ1 ÿAhÿaÿlÿfÿdÿuÿpÿ+þ
+ÿ	tY9{iwxþ6@X10tx6þ3r}x
+ÿ‰'Tapeþ Errorsþ' - 2.1þ5 today,þ Cockcrþoft
+REAþDY
+REþADY
+ÿw
+ÿRþEADY
+ÿ¸iÿnÿfÿoÿ ÿfÿ
+iÿnÿdÿ' ÿ*pÿ&bÿ1ÿ3ÿ,ÿbÿjÿkÿB1ÿ$,ÿmÿrÿ1ÿ0ÿ
+ÿ$PB1þ3 via EþPSS
+ÿ
+BJK1 PDPþ 11/45 þLaser Roþom
+ÿMR10 þTitan Rþoom (12þ00b)
+þREADY
+ÿònÿoÿtÿiÿfÿyÿ ÿbÿjÿkÿ"1ÿ5 ÿ/pÿlÿeÿFaÿsÿeÿ% ÿ‘wÿ	iÿlÿ
+lÿ ÿyÿoÿuÿ ÿrÿuÿnÿ ÿrÿ
+iÿnÿgÿcÿ	lÿiÿS ÿdoÿnÿ ÿ	tÿhÿeÿ	 ÿ$pÿ
+dÿpÿ/1ÿ
+1ÿlÿT
+ÿ%READþY
+ÿÿÊnÿ
+oÿtÿiÿfÿyÿ ÿbÿjÿkÿ1ÿ ÿýIÿ ÿwÿiÿ
+lÿlÿ ÿrÿuÿnÿ ÿrÿeÿ!cÿ%eÿiÿ	vÿeÿ ÿhÿ	eÿrÿ
+eÿB ÿ(ÿoÿ
+nÿ
+ ÿtÿhÿeÿ ÿlÿsÿ	iÿ
+4ÿ)ÿ
+ÿ1RþEADY
+ÿÏ**þ*FROM BþJK1 - OKþ - I'll þdo it nþow
+ÿÿƒ@ÿsÿ0ÿ
+1ÿ
+> ÿ)rÿuÿnÿ ÿrÿ
+eÿcÿeÿiÿvÿeÿþ
+ÿ> ÿzþ
+> ÿþ
+> ÿ@ÿsÿ0ÿ7ÿ
+
+ÿREAþDY
+ÿštÿyÿpÿeÿ ÿ	.ÿtÿeÿ	sÿtÿ
+ÿ6GETþ "LIBHDRþ"
+
+ÿLET SþTART() þBE
+ÿ$(þ LET F(Nþ) = N=0þ -> 1, Nþ*F(N-1)þ
+ÿ þ  FOR I þ= 1 TO þ5 DO
+ÿ    þ WRITEFþ("F(%N)þ = %I5*þN", I, Fþ(I))
+$)þ
+READYþ
+ÿ*bÿcÿpÿlÿ	cÿ ÿpÿrÿoÿgÿrÿaÿmÿ+=ÿ.ÿtÿeÿsÿtÿ ÿpÿ
+aÿrÿmÿcÿ ÿ/ÿNNÿGÿ#þ
+ÿƒ***WAITþINGÿÿ
+ÿ³BCPLþ 5 SEPT þ78  STAþCKSIZE þ= 18132 þ PARM =þ /NG
+þTree siþze 1371þ
+ÿOCODþE size =þ 35
+ÿLþength =þ 62 worþds
+ÿ3592 uþnused woþrds of þworkspaþce(worksþpace siþze = 620þ0)
+ÿCOMPILþATION SþUCCESSFUþL
+ÿ	ENTERINGþ COMPILþED CODEþ NOW
+ÿFþ(1) =   þ  1
+ÿF(2) =þ     2þ
+ÿF(3) = þ    6
+ÿF(4) =  þ  24
+ÿFþ(5) =   þ120
+þREþADY
+ÿÿy
+ÿ	REþADY
+ÿRnÿoÿtÿiÿfÿyÿ ÿbÿjÿkÿ1ÿ ÿIÿ'ÿmÿ	 ÿlÿ
+oÿgÿgÿiÿ	nÿ-gÿ ÿoÿfÿfÿ% ÿ
+nÿoÿwÿ
+ÿREAþDY
+ÿ8lÿ
+oÿgÿoÿfÿfÿ
+ÿ,FþINISHED þ 9 FEB þ14.44
+ÿÿ0
+þ> ÿd
+>þ ÿ	
+þ> ÿ
+þ> ÿ	þ
+> ÿ	þ
+> ÿ!@ÿsÿ
+0ÿ1ÿ
+
+> ÿ-cÿ
+oÿnÿnÿeÿcÿtÿS ÿpÿdÿpÿ1ÿ1ÿ	lÿ
+ÿCoþnnectioþn establþished wiþth CLI þtask 6 iþn pdp11lþ
+ÿ<PDP> ÿÝ
+ÿPDPþ> ÿþ
+ÿPDPþ> ÿ@ÿsÿ0ÿ
+7ÿ
+> ÿ2pÿrÿoÿ	mÿpÿtÿ ÿ"ÿLÿ*SÿIÿ*4ÿ>ÿ	 ÿ"ÿþ
+ÿLSþI4> ÿ
+þLSI4> ÿ
+LþSI4> ÿšmÿaÿpÿ
+ÿ
+Laþrgest coþntiguouþs free aþrea: 321þ36 wordþs
+Totalþs: 6527þ8 words þavailabþle, 3189þ0 used, þ33388 fþree
+
+þLSI4þ> ÿW@ÿsÿ0ÿ1ÿ
+ÿPDPþ> ÿ
+ÿPDPþ> ÿmÿ
+aÿpÿ
+ÿ*þ
+ÿLargesþt contiþguous frþee areaþ: 6338 þwords
+þTotals: þ28508 wþords avaþilable,þ 21006 þused, 7þ502 freeþ
+
+ÿ
+ÿPDP> ÿÿßcÿrÿeÿaÿ	tÿ	eÿdÿiÿrÿ ÿ:ÿsÿeÿmÿ	iÿ
+nÿaÿrÿ
+ÿPDP>þ ÿ9
+ÿPDPþ> ÿ&sÿeÿtÿ ÿ	:ÿsÿeÿmÿ	iÿ
+nÿaÿ	rÿ
+ÿPDP> ÿceÿxÿ
+ÿ>Dirþectory "þ:seminaþr" is emþpty
+þPDPþ> ÿiÿnÿpÿuÿtÿ
+ ÿ
+tÿeÿxÿtÿ
+ÿ‰Tÿhÿiÿsÿ	 ÿiÿsÿ ÿ$sÿoÿmÿeÿ ÿtÿeÿxÿtÿJ ÿtÿ
+yÿpÿeÿ	dÿ ÿiÿnÿX ÿoÿnÿ ÿtÿhÿeÿ
+ ÿPÿ
+DÿPÿE-ÿ1ÿ	1ÿX
+ÿ/ÿ*ÿþ
+ÿPDP> ÿ¨tÿrÿaÿ"bÿnÿ	sÿ" ÿ
+ ÿ ÿnÿsÿmÿiÿtÿ ÿtÿ	eÿxÿtÿE ÿtÿoÿ ÿ
+lÿsÿ
+iÿ4ÿ ÿpaÿsÿ ÿ:ÿsÿeÿmÿiÿ
+nÿaÿrÿ;.ÿtÿeÿxÿtÿþ
+ÿ(Filingþ from PDþP11L toþ ":seminþar.textþ"
+ÿ†PDP> þReceptþion compþlete
+ÿÃ
+ÿPDPþ> ÿ
+ÿPDPþ> ÿ@ÿsÿ0ÿ7ÿ
+LSIþ4> ÿ
+LSI4þ> ÿ	
+LSI4þ> ÿƒtÿ%yÿ
+pÿeÿ ÿtÿeÿxÿtÿ
+ÿThis þis some þtext tyþped in oþn the PþDP-11
+LþSI4> ÿÎdÿ
+iÿsÿcÿiÿ	nÿfÿoÿ
+ÿDisc iþs DP0.0þ:
+Totalþ 31999 þdisc bloþcks.
+17þ160 freþe, 14839þ allocaþted.
+LSþI4> ÿ
+LSI4þ> ÿþ
+LSI4> ÿ!@ÿsÿ0ÿ	1ÿþ
+ÿPDPþ> ÿ
+ÿPDPþ> ÿ
+ÿPDPþ> ÿÿdÿiÿsÿcÿiÿnÿ
+fÿoÿ
+ÿ92 free þdisc blþocks
+ÿPDP> ÿˆ
+ÿPDPþ> ÿò@ÿsÿ0ÿ7ÿ
+LSI4þ> ÿ3
+þLSI4> ÿ!tÿrÿaÿnÿsÿmÿiÿtÿ ÿ0:ÿgÿ.ÿlÿiÿbÿhÿdÿrÿ, ÿtÿoÿ ÿ	pÿ
+dÿpÿ
+1ÿ1ÿlÿ ÿaÿsÿ
+ ÿ:ÿsÿeÿmÿiÿnÿaÿ	rÿ.ÿlÿiÿbÿhÿyÿdÿrÿ. ÿ ÿ ÿ=dÿrÿ
+ÿÿ-LSIþ4> ÿ~þ
+ÿ"@ÿsÿ0ÿ1ÿ
+ÿPDPþ> ÿkeÿxÿ
+ÿFDirectoþry :semþinar on þFriday 0þ9-Feb-7þ9
+ÿ þ libhdrþ        þ      1þ3  Blockþs
+ÿ þ text   þ       þ      21þ   Wordþs
+þPDP> ÿn@ÿsÿ0ÿ7ÿ
+þLSI4> ÿ(rÿeÿ	cÿoÿrÿdÿ ÿoÿfÿfÿ
+
+ÿA
+ÿA
+ÿA
+ÿA
+
+
+That was the last recording
+
+ÿA
+ÿA
+ÿA
+ÿA
+
+

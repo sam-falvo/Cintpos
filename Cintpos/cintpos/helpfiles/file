@@ -1,0 +1,165 @@
+*command
+Many TRIPOS commands manipulate files in one way or another - some of the
+more important are:
+    INPUT       - create a file with text given from the terminal
+    COPY        - move the contents of one file to another
+    RENAME      - change the name of a file
+    DELETE      - delete a file
+    EDIT        - alter the contents of a file
+    COMPARE     - compare two files for differences
+    PROTECT     - change the protection status of a file
+    EX          - give information about a file
+    T           - execute the commands in a file
+    C           - execute the commands in a file (inserting parameters)
+For information about similar commands for directories use HELP DIRECTORY
+COMMANDS.  For information about other editors use HELP EDITORS.  For
+information about other examine commands use HELP EXAMINE COMMANDS.
+For more information about any of the above commands use
+HELP <command> COMMAND.
+*server #H fileserver
+*service #H fileserver
+*protect #H protect
+*protection #H protect
+*format #H #HCH=+
+*structure #H #HCH=+
+*spec #H #HCH=+
+*specification #H #HCH=+
++spec
++specification
+The specification for the TRIPOS filing system is in
+SYS:INFO.SPEC.FILE-STRUCTURE
++* sys:info.spec.file-structure
+*space #H directory
+*owner #H directory
+*home #H directory
+*source #H directory
+*creation #I #HCH=+
+*create #I #HCH=+
+*make #I #HCH=+
+Files are created by the INPUT command, or by FINDOUTPUT in a program.
+Type INPUT COMMAND for information about the command and FINDOUTPUT for
+information about the BLIB procedure.  Type <CR> to exit HELP.
++input #H input
++command #H input
++findoutput #H findoutput
++program #H findoutput
++blib #H blib
++*
++
+*temporary
+*T:
+   The name T: is assigned to the directory to be used for temporary files
+(e.g. by editors, JOIN, APPEND, C, etc.).  The physical directory is different
+for each machine in the processor bank to avoid clashes.
+
+   T: is also useful for creating temporary files explicitly during a
+session e.g. BCPL myprog t:0 creates the program load module in file t:0.
+
+   **** WARNING ****
+
+   The files created in t: are not cleared up automatically, and will
+remain charged to you unless you clear them explicitly.  The program SCRATCH
+will do this.  It should normally be RUN AT THE END OF EVERY SESSION.
+
+   The advantage of this system is that, if your machine should crash or
+be lost for any reason, your temporary files still exist and can be retrieved.
+If necessary they can be accessed from a different machine.
+
+   In the processor bank fileserver filing system, T: is assigned to the
+directory MACHINES.<machine-name>.T on the pack containing the logged-on user's
+home directory.
+*joining
+*join
+*concat
+*concatenate
+*concatenation
+*append
+CONCATENATING FILES
+
+To append one file to another use the APPEND command (use HELP APPEND COMMAND
+for further information), to join several files together use the JOIN command
+(use HELP JOIN COMMAND), to link several TRIPOS binary files together use
+the LKED command if external symbols are involved (use HELP LKED COMMAND) and
+JOIN or APPEND otherwise (e.g. BCPL programs).  There is also a pseudo-device
+CONCAT: which allows a single input stream to be made from several files.
+See HELP CONCAT: for more information.
+*delete #H delete
+*deletion #H delete
+*size
+*bytes
+*date
+*time
+*examine
+*status
+For the size of a file or directory in bytes and its date and time of creation
+and its protection status use the EX command (e.g. EX <file>).
+This command will list all the files and sub directories of a directory.
+Use HELP EX COMMANDS for further information.
+*transfer
+*ring
+*bsp
+*cap
+*ibm
+*bbc
+*send
+*give
+*get
+*take
+*receive
+*pds
+*ttp
+Commands for transferring files are as follows:
+        GIVEFILE    -  send file to ring machine
+        TAKEFILE    -  take file from ring machine
+        FROMPHX     -  take file from Phoenix
+        CS          -  multi-option command for Phoenix transfers
+        TOBBC       -  send file to BBC microcomputer
+        FROMBBC     -  receive file from BBC microcomputer
+For further information about one of these commands use HELP COMMAND <command>,
+*title
+*filename
+*name
+FILE NAMES
+
+File titles may consist of any alphanumeric symbol or the character minus
+(-).  Each component of the name may be up to thirty characters in length.
+Cases of letters are equated.  If the file name begins with a colon (:) it
+refers to the file whith the following name looked up in the root directory.
+If it does not begin with a colon it is looked up in the currently set
+directory (use HELP SET COMMAND for information about how to set it).
+A file name preceeded by "<name of directory>." refers to the file with
+the following name looked up in the directory <name of directory> in the
+currently context (set directory).  Directory names are treated in the same
+way.
+*account #H accounting
+*accounting #H accounting
+*anon #H anon
+*anonymous #H anon
+*open
+Files which have been left open by accident, and so cannot be accessed,
+can be closed by reloading your machine.  This re-initialises the Filing
+Machine session, closing the files.  If you just drop the machine, then
+the FM session will time out after a few minutes and close the files.
+*directory #H directory
+*directories #H directory
+*dir #H directory
+** #I file
+For information about a particular aspect of files type any of the following:
+  COMMANDS          - commands available for manipulating files
+  PROTECTION
+  CREATION
+  CONCATENATION
+  DIRECTORY         - about directories of files (accepts further key words)
+  TEMPORARY         - handling of temporary files
+  STATUS            - information about a particular file
+  FORMAT            - the format of TRIPOS files
+  TRANSFER          - moving files to other machines
+  TITLES            - syntax of file titles
+  SERVER            - the Ring's file server
+  OWNER             - TRIPOS users with their own directories.
+  OPEN              - what you can do when files are left open (not a lot!)
+  ACCOUNTING        - how file use is accounted
+  ANONYMOUS         - for cheap anonymous temporary files
+Type <CR> to exit HELP
+
+

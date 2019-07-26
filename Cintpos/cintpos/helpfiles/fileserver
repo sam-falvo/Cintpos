@@ -1,0 +1,16 @@
+*rc #H rc
+*code #H rc
+*space #H accounting
+*+
+The File Server is a service on the RING which provides a general filing
+system service to other machines.  It is fully described in
+     "FILE SERVER EXTERNAL SPECIFICATIONS"  by Jeremy Dion
+                                         which is available in the lab.
+
+For information about file server space accounting use HELP ACCOUNTING.
+
+For information on a routine for finding which fileserver to talk to, given
+a fileserver PUID, see HELP CALLSEG FIND-FILESERVER or
+HELP SOURCELIB FIND-FILESERVER.
+
+

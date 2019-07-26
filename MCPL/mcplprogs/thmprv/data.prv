@@ -1,0 +1,31 @@
+
+// This is test data for thmprvr
+
+// Pelletier's problem 29
+
+tree
+
+goal
+
+(!x.P(x))&(!x.Q(x)), Z |- (@x.P(x)->R(x))&(@x.Q(x)->S(x))
+                       = (@x.@y.P(x)&Q(x)->R(x)&S(y)), Z
+
+
+tree
+
+step
+
+steps 1234
+
+run
+
+rungoal
+
+quit
+
+
+
+
+
+
+

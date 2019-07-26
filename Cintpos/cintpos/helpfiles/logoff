@@ -1,0 +1,24 @@
+*command
+**
+LOGOFF and FINISH command
+Form:           LOGOFF
+                FINISH
+Purpose:        To return the TRIPOS machine being used to the
+                Resource Manager.
+Author:         BJK
+Specification:
+        Closes RATS terminal streams connected to TRIPOS, clears the
+    FRIDGE of UID sets, stops polling the File Server and Resource
+    Manger to assure them of the existance of any open files and a
+    user for the machine respectively and tells the Resource Manager
+    that it may reallocate the machine.
+        Note: that the FINISH command is to be prefered - since it has
+    the same function on most of the systems in your likely environment.
+    The LOGOFF command is not available on TRIPOS implemented on 68000s.
+
+Examples:
+
+        LOGOFF
+        FINISH
+
+

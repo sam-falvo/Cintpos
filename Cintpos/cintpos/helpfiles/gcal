@@ -1,0 +1,105 @@
+*command ..
+*paginator ..
+*all ..
+*+ ..
+GCAL command
+Form:           GCAL "from/a,to,index/k,aside/k,for/k,library/k,fontlib/k,opt/k"
+Purpose:        Pagination
+Author:         Philip Hazel (Computing Service)
+Tripos version: MAJ
+
+Warning:
+
+  GCAL requires a global vector of at least 550.  If you are running on a
+non-standard Tripos system, you should check this (with the GLOBALS command)
+and increase if necessary.  GCAL is currently available on 68000 Tripos only.
+
+Specification:
+
+  The full specification of GCAL may be found in the series of files
+SPEC.GCAL.xxx on Phoenix.
+
+  The FROM parameter specifies the main input file.
+
+  The TO parameter specifies the main output file.  To it is written a
+"device independent" code called GCODE.  TO defaults to the current output
+stream (usually the terminal), so will almost always need to be specified.
+
+  The INDEX and ASIDE parameters specify output files for the 'index'
+and 'aside' documents respectively.  GCAL will give a warning message
+if they cannot be opened when required.
+
+  The FOR parameter specifies a library member to be logically prepended
+to the main input.  It allows the specification of the target device to
+be deferred until pagination time.
+
+*library ..
+*command ..
+*paginator ..
+*all ..
+*egcal #N ..
+*+ ..
+  The LIBRARY parameter specifies a directory or device name to be used
+for picking up library files with the .LIBRARY directive.  The default
+is SYS:GCAL.LIBRARY.
+*a4
+*a4cm
+*a4atl
+*canon
+*apple
+*laserwriter
+*laser
+*writer
+*egcal
+*library
+*command ..
+*paginator ..
+*all ..
+*+ ..
+
+  The library "a4cm" may be used to produce high quality output on the CANON.
+  The library "a4atl" may be used to produce high quality output on an
+  Apple LaserWriter.
+*command ..
+*paginator ..
+*all ..
+*+ ..
+
+  The OPT parameter is for specifying options to GCAL.  Most options are
+debugging aids.  OPT=S, which causes additional statistics to be printed,
+is the only one likely to be of interest to ordinary users.
+
+*font ..
+*fontlib ..
+*command
+*paginator
+*all ..
+*+
+  The FONTLIB parameter specifies a directory or device name to be used
+for picking up font definitions for the .BINDFONT directive.  The default
+is SYS:GCAL.FONTLIB.  See the full GCAL spec. on the IBM for further
+information.  MAJ has details of character sets etc. available on Tripos.
+*font
+*fontlib
+*all
+
+  Fonts are referred to in GCAL using the $fn flag, where n is a number.
+This is not mnemonic, so certain "standard" flags are defined for switching
+font.  Some of those available are:
+
+$rm   Roman - the "normal" font
+$it   Italic
+$bf   Bold
+$sl   Slanted (same as italic for many fonts)
+$mi
+$sy
+$tt   A "typewriter" font - useful for some "computer" type characters
+$ss   A symbol font
+$erm
+$crm
+
+**
+No help is available on the GCAL key you specified.  HELP GCAL gives info
+on the command, HELP GCAL ALL for all available info.
+
+

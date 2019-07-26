@@ -1,0 +1,27 @@
+*info #H pipeinfo
+**
+PIPE: Device
+
+   The pseudo-device PIPE: can be used to set up I/O streams between processes
+within TRIPOS.  If PIPE:name is opened for both input and output, then the
+two resulting streams are joined.  The streams may be opened in either order,
+and up to 10 pipes may exist simultaneously.
+   Pipes are managed by a pipe handler task, which is created when the first
+pipe is opened, and is unloaded by "dismount pipe:". The pipe handler may also
+be loaded using the command "mount pipe:".
+   The command PIPEINFO may be used to discover what pipes exist, their names
+and their states.
+
+Simple (but futile) example:
+
+RUN EX TO PIPE:1
+RUN TYPE PIPE:1
+
+More useful example:
+
+RUN CS INPUT PIPE:filetoibm .from.tripos ABC1 SECRET
+CS PACK file TO PIPE:filetoibm
+
+packs a directory into a pipe and sends the result to the IBM.
+
+

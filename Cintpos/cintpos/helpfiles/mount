@@ -1,0 +1,26 @@
+*all sys:info.spec.mount
+*command
+**
+Form:           MOUNT "DEV/A,MODE,FROM/K"
+Purpose:        To mount a device or pseudo-device.
+Author:         MFR
+Specification:
+   The file "sys:info.mount" is search for the device name and the information
+there used to control the mounting of the device.
+   Mode can be used for such purposes as write protection. From gives a
+file to be used instead of "sys:info.mount"
+   The command may also be callseg'ed, in which case its argument should be a
+string of the form "dev:". The default mode and mount files will be used, and
+no error messages will be written (though result2 will be set). Note that
+the global 'returncode' will be set, as stop(code) is used. The command will
+try to run itself in a new coroutine to prevent stack overflows, and will
+restore all globals (expect result2 and returncode).
+
+   For more information see HELP MOUNT ALL
+Example:        MOUNT DF0: READ
+                MOUNT DFS: UPDATE FROM SYS:MIKE.DFS-STUB.DFSINFO
+
+   Note that for floppy discs written before about 1981, it will be necessary
+to use 'mount df<n>: ver short' because of an incompatible disc format change.
+
+

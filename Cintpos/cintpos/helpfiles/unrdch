@@ -1,0 +1,17 @@
+*procedure
+**
+UNRDCH
+      To push a character back into the  currently  selected
+input   stream  so  that  the  next  rdch  will  yield  that
+character.
+      res := unrdch ()
+      The last character read is pushed back into  the  cur-
+rently  selected  input steam ( ie., the steam is backspaced
+by one character ). The routine returns a true result unless
+an  attempt is made to move past the buffer origin, in which
+case the result is false and unrdch has no effect  (  unless
+the stream is exhausted, in which case it is true anyway ).
+      The implementation of unrdch and rdch is such that  it
+is always possible to perform at least one unrdch.
+
+

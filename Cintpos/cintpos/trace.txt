@@ -1,0 +1,199 @@
+
+The following constants are defined:
+  _POSIX_THREADS
+  _POSIX_THREAD_PRIORITY_SCHEDULING
+Scheduling priorities
+  SCHED_FIFO  min=  1  max= 99
+  SCHED_RR    min=  1  max= 99
+  SCHED_OTHER min=  0  max=  0
+Interpreter thread policy is: OTHER
+Interpreter priority is: 0
+Device threads policy is: OTHER
+Device minpri=0  maxpri=0  priority=0
+main: clk thread created successfully
+
+   5.933:        1/1D  idle: entered #############
+   5.933:        2/1D  idle: waiting for interrupt
+   6.031:         /55  clk:  requesting interrupt
+   6.031:        3/1D  idle: interrupted
+   6.031:        0/CC  main: interrupt received from clk
+   6.031:    'A'  /C1  main: sending a character to tty
+   6.031:         /A1  tty:  received a command
+   6.031:        1/DD  main: interrupt received from tty
+   6.031:    'B'  /C1  main: sending a character to tty
+   6.031:    'A'  /A2  tty:  character written
+   6.031:         /A1  tty:  received a command
+   6.031:    'B'  /A2  tty:  character written
+   6.031:        1/DD  main: interrupt received from tty
+   6.031:    'C'  /C1  main: sending a character to tty
+   6.031:         /A1  tty:  received a command
+   6.031:    'C'  /A2  tty:  character written
+   6.031:        1/DD  main: interrupt received from tty
+   6.031:    'D'  /C1  main: sending a character to tty
+   6.031:         /A1  tty:  received a command
+   6.031:    'D'  /A2  tty:  character written
+   6.031:        1/DD  main: interrupt received from tty
+   6.052:        1/1D  idle: entered #############
+   6.052:        2/1D  idle: waiting for interrupt
+   6.131:         /55  clk:  requesting interrupt
+   6.131:        3/1D  idle: interrupted
+   6.131:        1/CC  main: interrupt received from clk
+   6.131:    'E'  /C1  main: sending a character to tty
+   6.131:         /A1  tty:  received a command
+   6.131:        1/DD  main: interrupt received from tty
+   6.131:    'F'  /C1  main: sending a character to tty
+   6.131:    'E'  /A2  tty:  character written
+   6.131:         /A1  tty:  received a command
+   6.131:    'F'  /A2  tty:  character written
+   6.131:        1/DD  main: interrupt received from tty
+   6.131:    'G'  /C1  main: sending a character to tty
+   6.131:         /A1  tty:  received a command
+   6.131:    'G'  /A2  tty:  character written
+   6.131:        1/DD  main: interrupt received from tty
+   6.131:    'H'  /C1  main: sending a character to tty
+   6.131:         /A1  tty:  received a command
+   6.131:    'H'  /A2  tty:  character written
+   6.131:        1/DD  main: interrupt received from tty
+   6.166:        1/1D  idle: entered #############
+   6.166:        2/1D  idle: waiting for interrupt
+   6.232:         /55  clk:  requesting interrupt
+   6.232:        3/1D  idle: interrupted
+   6.232:        2/CC  main: interrupt received from clk
+   6.232:    'I'  /C1  main: sending a character to tty
+   6.232:         /A1  tty:  received a command
+   6.232:        1/DD  main: interrupt received from tty
+   6.232:    'J'  /C1  main: sending a character to tty
+   6.232:    'I'  /A2  tty:  character written
+   6.232:         /A1  tty:  received a command
+   6.232:    'J'  /A2  tty:  character written
+   6.232:        1/DD  main: interrupt received from tty
+   6.232:    'K'  /C1  main: sending a character to tty
+   6.232:         /A1  tty:  received a command
+   6.232:    'K'  /A2  tty:  character written
+   6.232:        1/DD  main: interrupt received from tty
+   6.232:    'L'  /C1  main: sending a character to tty
+   6.232:         /A1  tty:  received a command
+   6.232:    'L'  /A2  tty:  character written
+   6.232:        1/DD  main: interrupt received from tty
+   6.293:        1/1D  idle: entered #############
+   6.293:        2/1D  idle: waiting for interrupt
+   6.333:         /55  clk:  requesting interrupt
+   6.333:        3/1D  idle: interrupted
+   6.333:        3/CC  main: interrupt received from clk
+   6.333:    'M'  /C1  main: sending a character to tty
+   6.333:         /A1  tty:  received a command
+   6.333:        1/DD  main: interrupt received from tty
+   6.333:    'N'  /C1  main: sending a character to tty
+   6.333:    'M'  /A2  tty:  character written
+   6.333:         /A1  tty:  received a command
+   6.333:    'N'  /A2  tty:  character written
+   6.333:        1/DD  main: interrupt received from tty
+   6.333:    'O'  /C1  main: sending a character to tty
+   6.333:         /A1  tty:  received a command
+   6.333:    'O'  /A2  tty:  character written
+   6.333:        1/DD  main: interrupt received from tty
+   6.333:    'P'  /C1  main: sending a character to tty
+   6.333:         /A1  tty:  received a command
+   6.333:    'P'  /A2  tty:  character written
+   6.333:        1/DD  main: interrupt received from tty
+   6.434:         /55  clk:  requesting interrupt
+   6.434:        4/CC  main: interrupt received from clk
+   6.434:    'Q'  /C1  main: sending a character to tty
+   6.434:         /A1  tty:  received a command
+   6.434:        1/DD  main: interrupt received from tty
+   6.434:    'R'  /C1  main: sending a character to tty
+   6.434:    'Q'  /A2  tty:  character written
+   6.434:         /A1  tty:  received a command
+   6.434:    'R'  /A2  tty:  character written
+   6.434:        1/DD  main: interrupt received from tty
+   6.434:    'S'  /C1  main: sending a character to tty
+   6.434:         /A1  tty:  received a command
+   6.434:    'S'  /A2  tty:  character written
+   6.434:        1/DD  main: interrupt received from tty
+   6.434:    'T'  /C1  main: sending a character to tty
+   6.434:         /A1  tty:  received a command
+   6.434:    'T'  /A2  tty:  character written
+   6.434:        1/DD  main: interrupt received from tty
+   6.450:        1/1D  idle: entered #############
+   6.450:        2/1D  idle: waiting for interrupt
+   6.534:         /55  clk:  requesting interrupt
+   6.534:        3/1D  idle: interrupted
+   6.534:        5/CC  main: interrupt received from clk
+   6.534:    'U'  /C1  main: sending a character to tty
+   6.534:         /A1  tty:  received a command
+   6.534:        1/DD  main: interrupt received from tty
+   6.534:    'V'  /C1  main: sending a character to tty
+   6.534:    'U'  /A2  tty:  character written
+   6.534:         /A1  tty:  received a command
+   6.534:    'V'  /A2  tty:  character written
+   6.534:        1/DD  main: interrupt received from tty
+   6.534:    'W'  /C1  main: sending a character to tty
+   6.534:         /A1  tty:  received a command
+   6.534:    'W'  /A2  tty:  character written
+   6.534:        1/DD  main: interrupt received from tty
+   6.534:    'X'  /C1  main: sending a character to tty
+   6.534:         /A1  tty:  received a command
+   6.534:    'X'  /A2  tty:  character written
+   6.534:        1/DD  main: interrupt received from tty
+   6.635:         /55  clk:  requesting interrupt
+   6.635:        6/CC  main: interrupt received from clk
+   6.635:    'Y'  /C1  main: sending a character to tty
+   6.635:         /A1  tty:  received a command
+   6.635:        1/DD  main: interrupt received from tty
+   6.635:    'Z'  /C1  main: sending a character to tty
+   6.635:    'Y'  /A2  tty:  character written
+   6.635:         /A1  tty:  received a command
+   6.635:    'Z'  /A2  tty:  character written
+   6.635:        1/DD  main: interrupt received from tty
+   6.635:    '/'  /C1  main: sending a character to tty
+   6.635:         /A1  tty:  received a command
+   6.635:    '/'  /A2  tty:  character written
+   6.635:        1/DD  main: interrupt received from tty
+   6.635:    'A'  /C1  main: sending a character to tty
+   6.635:         /A1  tty:  received a command
+   6.635:    'A'  /A2  tty:  character written
+   6.635:        1/DD  main: interrupt received from tty
+   6.736:         /55  clk:  requesting interrupt
+   6.736:        7/CC  main: interrupt received from clk
+   6.736:    'B'  /C1  main: sending a character to tty
+   6.736:         /A1  tty:  received a command
+   6.736:        1/DD  main: interrupt received from tty
+   6.736:    'C'  /C1  main: sending a character to tty
+   6.736:    'B'  /A2  tty:  character written
+   6.736:         /A1  tty:  received a command
+   6.736:    'C'  /A2  tty:  character written
+   6.736:        1/DD  main: interrupt received from tty
+   6.736:    'D'  /C1  main: sending a character to tty
+   6.736:         /A1  tty:  received a command
+   6.736:    'D'  /A2  tty:  character written
+   6.736:        1/DD  main: interrupt received from tty
+   6.736:    'E'  /C1  main: sending a character to tty
+   6.736:         /A1  tty:  received a command
+   6.736:    'E'  /A2  tty:  character written
+   6.736:        1/DD  main: interrupt received from tty
+   6.756:        1/1D  idle: entered #############
+   6.756:        2/1D  idle: waiting for interrupt
+   6.836:         /55  clk:  requesting interrupt
+   6.836:        3/1D  idle: interrupted
+   6.836:        8/CC  main: interrupt received from clk
+   6.836:    'F'  /C1  main: sending a character to tty
+   6.836:         /A1  tty:  received a command
+   6.836:        1/DD  main: interrupt received from tty
+   6.836:    'G'  /C1  main: sending a character to tty
+   6.836:    'F'  /A2  tty:  character written
+   6.836:         /A1  tty:  received a command
+   6.836:    'G'  /A2  tty:  character written
+   6.836:        1/DD  main: interrupt received from tty
+   6.836:    'H'  /C1  main: sending a character to tty
+   6.836:         /A1  tty:  received a command
+   6.836:    'H'  /A2  tty:  character written
+   6.836:        1/DD  main: interrupt received from tty
+   6.836:    'I'  /C1  main: sending a character to tty
+   6.836:         /A1  tty:  received a command
+   6.836:    'I'  /A2  tty:  character written
+   6.836:        1/DD  main: interrupt received from tty
+   6.937:         /55  clk:  requesting interrupt
+   6.937:        9/CC  main: interrupt received from clk
+   6.937:    'J'  /C1  main: sending a character to tty
+
+End of run

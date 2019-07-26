@@ -1,0 +1,47 @@
+*command
+**
+Form:           SCREED  "FROM/A,TO"
+Purpose:        Screen editing of text files.
+Author:         BJK
+Specification:
+   SCREED must be used from a cursor-addressable VDU.  It maintains
+a display of up to one screenfull of the file being edited, and the
+cursor may be moved about this image in order to insert or delete
+characters at any point.
+   If only a FROM file is specified, then editing takes place from
+this to a temporary file, which is renamed as the FROM file on
+winding up.  If a TO file is also given, then the temporary file is
+renamed with that name, and the source file is left unchanged.
+   Typing a printable character causes it to be inserted at the
+cursor position.  Commands are control characters.
+   SCREED Commands:
+   ctrl/B         Break - abandon current command
+   ctrl/C         Concatenate next line with current one,
+                  starting at cursor position
+   ctrl/D n       Move current line Down n lines
+   ctrl/E         Erase current line
+   ctrl/L string  Locate string
+   ctrl/Q         Quit - abandon whole edit session
+   ctrl/R         Rewind - copy rest of source to output
+                  and then make output the new source
+   ctrl/S         Split current line at cursor
+   ctrl/T n       Move To line n
+   ctrl/U n       Move current line Up n lines
+   ctrl/W         Windup - normal finish
+   ctrl/Y n       Move on bY n lines
+   HOME           Move cursor to top left corner
+   LINEFEED       = cursor down
+   RETURN         Create new line below current one
+   RUBOUT         Rub out character to left of cursor
+   TAB            Move cursor to next tab position
+                  Move cursor left one place
+                  Move cursor right one place
+                  Move cursor to start of current line, or
+                  to start of previous line
+                  Move cursor to end of current line,
+                  or end of next line.  If already at bottom
+                  screen, then read in a new line of source
+Example:        SCREED PROG
+                SCREED PROG TO NEWPROG
+
+

@@ -1,0 +1,12 @@
+*all sys:info.spec.sue
+*spec
+SUE spec is in SYS:INFO.SPEC.SUE
+*command
+**
+SUE COMMAND
+Form:           SUE  "FROM/A,TO/K,LINES/K"
+Purpose:        A screen editor written specifically for the input of data.
+Author:         TJK
+Specification:  Use HELP SUE ALL for a complete specification.
+
+

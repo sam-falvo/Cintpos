@@ -1,0 +1,23 @@
+*command
+**
+Form:           MONITOR delay=ticks,pri=1/k,mult=100/k
+Purpose:        Continuous monitoring of system activity.
+Author:         PB
+Specification:
+
+   Runs on cursor addressable VDUs only, currently Cifer 2632 and Newbury 7009.
+(See HELP SETTERM)
+   It draws a store map (similar to MAP PIC), and gives number of
+tasks, number of devices, and free store information.  Also listed
+are the currently loaded commands, with their task numbers.
+   Use CNTL/B to stop the command, CNTRL/E to redisplay the sreen.
+   The delay between sampling is the first argument, the second gives the
+priority of the task. This defaults to 1, which means that things are often
+missed, but at least it doesn't hog the cpu.
+   Each store line is arranged so that if possible, it is a multiple of mult.
+
+Example:        MONITOR
+                MONITOR pri=1001                // should show everything
+                MONITOR 2
+
+

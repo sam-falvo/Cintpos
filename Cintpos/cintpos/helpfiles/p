@@ -1,0 +1,133 @@
+*pack
+Form:           PACK  "FROM/A,TO/A,SWOP/S"
+Purpose:        To convert a file from characters to words, optionally
+                swapping the bytes.
+Author:         ARA
+Specification:
+  PACK copies a file, reading it with RDCH and writing with WRITEWORDS.  It
+is relevant to disc filing systems only.
+
+  SWOP causes the byte order within a word to be reversed during the copy
+(this will work only for systems with 16-bit words).
+*packserver
+The Packserver provides a ring service which, given a fileserver PUID, tells
+you which fileserver to talk to in order to access the object the PUID refers
+to.  Documentation is available in the Titan Room documentation drawer.
+
+A routine which yields a filserver address from a puid is available
+as a BCPL source library and in CALLSEGable form.  See
+HELP CALLSEG FIND-FILESERVER or HELP SOURCELIB FIND-FILESERVER for details.
+*paginator #H #HCH %
+%roff #H roff
+%gcal #H gcal
+%*
+The paginator program supported in Cambridge is called GCAL.
+See HELP GCAL for more information.
+%
+*pascal #H language
+*path #H #HCH %
+*pause
+A pause in the typing of output may be instigated by typing space.
+The output will pause at the end of a line.  The pause may be
+terminated using CTRL/X, @L or <CR>.
+    Alternatively BREAK can be pressed - entering the terminal
+concentrator on RING TRIPOSes : the output will be halted at a convenient
+point and a "Monitor> " prompt will appear.  Any control character will
+cause the prompt to be rubbed out and the output to continue.
+*route #H #HCH %
+%name #H file
+*pathname #H file
+*pdpasm #H asm
+*percent #H byte
+*pheonix
+This is pronounced feenicks and spelt phOEnix!
+*phoenix #H 3081
+*phx #H #HCH %
+%from #H fromphx
+%* #H 3081
+*pipe #H pipe-
+*Pipeinfo
+Form:           PIPEINFO
+Purpose:        To inspect pipes
+Author:         MFR
+Specification:
+   PIPEINFO alone reports on the states and names of existing pipes.
+
+   See HELP PIPES for more information on the PIPE: pseudo device
+*pkt #H packet
+*pktwait
+PKTWAIT
+      To wait for a packet to be sent to the task.
+      pkt := pktwait (taskid, packet)
+      The pktwait routine calls taskwait to wait for any
+packet to be sent to the task, and returns this packet 
+as its result.
+      The purpose of having this routine is to allow
+users to define a PKTWAIT suiting their own queueing requirements
+- e.g. one in which packets arriving before expected are held on an
+internal queue and in which PKTWAIT always returns the packet given as
+an argument. All system functions will pass through the modified
+pktwait - i.e. all BLIB routines call pktwait rather then taskwait.
+*play #H record
+*playback #H record
+*playfast #H record
+*playtime #H record
+*ponder
+PONDER
+
+This is a local polymorphically typed language, the implementation of which
+is unsettled.  See JF for details.
+*popd  #H Shell-Commands
+*postscript
+PostScript is a device independent printer code used by e.g. the Apple
+LaserWriter.  A program GC2PS exists to convert GCODE, the output code
+from GCAL, into PostScript.  See HELP on these for more info.
+*pound
+There is a pound-sign included in the Computer Modern italic character set
+accessible via GCODE to the Canon.  It corresponds to the $ character.
+Thus to access it go "$it ~~$ $f".
+*preload: #H preload
+*printing #H printer
+*printout #H print
+*priority #H task
+*priorities #H task
+*proc #H #HCH %
+*procedure #H #HCH %
+%putbyte #N ..
+%put2bytes #N ..
+%+ #I #HCH=+
+HELP knows about the procedures in BLIB, KLIB and MLIB.
+For a list of the procedures that it knows in either of these libraries
+type BLIB, KLIB or MLIB.  For information about the BCPL source library for
+users type SOURCE.  For information about a particular procedure use
+HELP PROCEDURE <name of the procedure>.  To exit HELP just type <CR>.
++klib #H klib
++mlib #H mlib
++blib #H blib
++source #H sourcelib
++
+*process
+*processes
+Processes under TRIPOS can be implemented as tasks or coroutines.
+See HELP TASKS or HELP COROUTINES for more information.
+*processor #H "info:*****NThis is a %K processor*N"
+*protection #H protect
+*ps.map
+The MAPNAME command can be used to look up entries in the PS.MAP service.
+
+Use T ALTER-MAP-DATA to update the PS.MAP service.
+*pushd #H Shell-Commands
+*putbyte #H byte
+*put2bytes
+PUT2BYTES
+
+  This is a function in MLIB for putting a 16-bit word at a
+specified offset (in 16-bit words) in a BCPL vector. It is the
+16-bit analogue of BYTEPUT.
+
+  PUT2BYTES(VECTOR, OFFSET, BYTEPAIR)
+*pw #H password
+*pwd   #H Shell-Commands
+*pxhand #H exception
+
+

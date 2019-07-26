@@ -1,0 +1,48 @@
+**
+BIGDISC
+
+   BIGDISC is a means by which Tripos users can get access to a
+large amount of temporary disc space. It is hoped that this will
+reduce the number of times the main disc fills up with large
+temporary files. At least 60 megabytes of space should normally be
+available for BIGDISC. Space used on BIGDISC is not subject to the
+accounting mechanisms used for the main filing system.
+
+   Users are given access to BIGDISC by setting up two assignments in
+their profile, associating 'BIGDISC:' with the root directory on
+the BIGDISC pack, and 'BD:' (a short name because this will be typed more
+often) with their private user directory on that pack.
+
+   The reason for making potential users ask for their profiles to be
+updated is not so that access is restricted to the chosen few, but rather
+to make sure that users of the BIGDISC facility are made aware of its
+limitations.
+
+   The limitations are roughly as follows:
+
+ - The BIGDISC pack is not archived.  If it becomes damaged by
+   hardware or software error, it is likely to be reinitialized rather than
+   mended.
+
+ - BIGDISC will be useless if it gets clogged up with old material. All
+   users will be given access to the whole of it, and will be encouraged to
+   keep it tidy by scratching files belonging to other users if necessary.
+   Old files are likely to be purged regularly anyway. Users should so
+   arrange their work that they never have the only copy of anything
+   valuable on BIGDISC.
+
+ - Since BIGDISC is on a different pack from the main filing system, it is
+   not possible to rename objects between directories on BIGDISC and
+   directories on the main pack.  Particular care should be taken when
+   editing big files on BIGDISC, since there is a danger of creating large
+   temporary files in 'T:' on the main pack. It may be appropriate to
+   reassign 'T:' to a directory on BIGDISC before starting such edits.
+
+ - The BIGDISC facility makes use of equipment which is at present not
+   required for other purposes. In the future, more pressing demands on
+   the fileserver equipment may mean that BIGDISC has to be withdrawn.
+
+ - The BIGDISC pack may be taken out of service if a disc drive fails, or
+   if fileserver equipment needs to be taken for other purposes.
+
+

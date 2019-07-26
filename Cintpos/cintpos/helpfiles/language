@@ -1,0 +1,57 @@
+*a68c #H algol68c
+*algol68c #H algol68c
+*basic #H basic
+*bcpl #H bcpl
+*clu
+CLU is an abstract object, strictly type checked language orginally written
+at MIT.  Local extensions include concurrent processes and synchronization
+using critical regions or monitors.
+
+Please send electronic mail to mayflower-request@cl for information about
+Mayflower or CLU.
+*lisp #H demolisp
+*modula #H modula2
+*modula2 #H modula2
+*compile
+*compiler
+*language
+*interpret
+*interpreter
+*+
+LANGUAGES on TRIPOS
+
+TRIPOS was written both for and in BCPL.  For the difficulties in implementing
+other languages you could refer to RDE's thesis "Language Implementation in
+a Portable Operating System".  None the less there have been several brave
+attempts.  Virtually none of them are officially supported:
+
+"supported" languages:
+
+       BCPL         -  use HELP BCPL (or HELP BCP for an alternative compiler)
+       ALGOL68C     -  use HELP A68C
+
+"semi-supported" languages:
+
+       LISP         -  use HELP DEMOLISP for a "toy" version, otherwise
+                       see ACN for details of a full system (on 1Mb machines)
+       MODULA       -  use HELP MODULA2
+       C            -  see DRM for details
+       CLU          -  see HELP CLU (no compiler for TRIPOS though)
+       PONDER       -  see JF for details (this is a local polymorphically
+                       typed language the implementation of which is unsettled)
+
+"extinct" languages:
+
+       PASCAL       -  Richard Evans (RDE) made a good compiler for this 
+                       once, but it has gone away, probably to Topexpress Ltd
+       FORTRAN      -  Topexpress has a compiler for this too
+       BASIC        -  Nigel Day (NGPD) provided a (not very good) 
+                       interpreter, but it's source has dissappeared
+                       (Use HELP BASIC)
+       ALGOL68RS    -  Melvin Anderson brought this up, but has left
+       FORTH        -  A student has written an interpreter for this
+
+There are a large number of assemblers for various machines that TRIPOS runs
+on and for various microprocessors - use HELP ASSEMBLERS for details.
+
+

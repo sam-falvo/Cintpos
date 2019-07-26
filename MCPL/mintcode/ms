@@ -1,0 +1,3 @@
+.k file/a,opt
+echo "compiling sysm/<file>.m to min/sysmin/<file>"
+mcpl sysm/<file>.m to min/sysmin/<file> <opt>

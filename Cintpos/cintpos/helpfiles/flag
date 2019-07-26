@@ -1,0 +1,39 @@
+*task
+TASK FLAGS
+    Each TRIPOS task has a word of flag bits which it can test and which
+any task may set. These are intended for simple signalling purposes
+between tasks. The kernel primitives SETFLAGS and TESTFLAGS (q.v.) are provided
+for indivisible setting and inspecting of the flags.
+
+    The low order flags have conventional meanings:
+
+  Flag 1 (#X0001): 'break' flag - instructs a program to finish, or abandon
+                   the current action (in an interactive program). Most
+                   commands respond to this flag.
+
+  Flag 2 (#X0002): 'CLI break' - this is inspected by CLIs between commands.
+                   If set, it will cause a command sequence to be abandoned
+                   cleanly between commands.
+
+  Flag 4 (#X0004): Used by a few programs. In particular:
+                   Stops the REPEAT command.
+                   Causes MONITOR to rewrite the screen.
+                   Stops the Ring Services Task.
+
+    Flags 1, 2, 4, and 8 can be set in the task to which terminal input
+is currently directed by typing control-B, control-C, control-D, and
+control-E respectively.  Use HELP BREAK HANDLING and HELP CONTROL CHARACTERS
+for more information.
+
+    The BREAK command can also be used to set these four flags.
+    They can also be set after a VTP break (see HELP VTP BREAK).
+*nameserver #H nameserver
+*+ #I flag
+Type one of the following to specify which kind of flags you
+want to know about:
+
+  NAMESERVER: flags in Ring Nameserver entries
+  TASK:       flags in TRIPOS tasks
+  <CR>:       to leave HELP
+
+

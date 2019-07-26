@@ -1,0 +1,17 @@
+*command
+**
+Form:           WAIT  ",SEC=SECS/S,MIN=MINS/S,UNTIL/K"
+Purpose:        To introduce a delay into a sequence of commands.
+Author:         ARA
+Specification:
+   The default waiting time is one second.
+   The parameter should be a number, specifying the number of
+seconds (or minutes if MINS is quoted) to wait.
+   UNTIL may be used to wait until a specific time of day, given in
+the format HH:MM.
+Example:        WAIT
+                WAIT 10
+                WAIT 5 MINS
+                WAIT UNTIL 21:30
+
+

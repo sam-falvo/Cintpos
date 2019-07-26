@@ -1,0 +1,17 @@
+**
+Blowing PROMs from Tripos.
+
+There is a prom blower attached to a BBC micro in the Balfour Room, together
+with driving software, for blowing 2732, 2732A, 2764 and 27128 type proms.
+To blow one of these, go "*EP." to activate the EPROMER program.  It will
+prompt for the necessary information.  DON'T FORGET to check the PROGRAM
+VOLTAGE!  *** AND *** read the instructions on the blower BEFORE plugging
+in your prom or switching any switches!!
+
+For the above procedure, the file must be first be transferred to the BBC.
+Type HELP TOBBC for information on transferring files from Tripos to the BBC.
+
+The Computing Service have a blower with a wider repertoire of prom types.
+Contact Microprocessor Support for more information.
+
+

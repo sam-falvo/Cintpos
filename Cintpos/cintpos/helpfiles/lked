@@ -1,0 +1,95 @@
+*spec
+*all
+LKED spec is in TRIPOS.PRINT.LKEDSPEC on Phoenix.
+*command
+**
+LKED command
+Form:           "FROM=ROOT,TO/K,WITH/K,VER/K,LIBRARY/K,*
+                *RESIDENT/K,MAP/K,XREF/K,WIDTH/K,ADDRINC/K"
+Purpose:        To link together TRIPOS binary files.
+Author:         RDE
+Specification:
+      LKED [[FROM | ROOT] files] [TO file] [WITH files]
+           [VER file] [LIBRARY files] [RESIDENT files]
+           [MAP file] [XREF file] [WIDTH n] [ADDRINC n]
+
+           In the above, 'file' means a single TRIPOS file
+      name, 'files' means zero or more file names, separated
+      by comma, plus or space, and 'n' is an integer.
+           Note that if file names are separated by spaces
+      in the command line, the parameter must be enclosed in
+      quotes, as in the example below.
+           In the cases where a list of files can be given,
+      the files are read in the order specified, as if they
+      had been concatenated.
+           The parameters have the following meanings:
+      FROM or ROOT: This specifies the object files to be
+                    used as the primary binary input.  The
+                    contents of these files are always copied
+                    to the load file, and form part of the
+                    overlay root.
+      TO:           This specifies the destination for the
+                    load file.  If this parameter is not
+                    given, the second pass is omitted.
+      WITH:         This specifies files containing LKED
+                    parameters.  Usually only one file will
+                    be used here, but, for completeness, a
+                    list of files can be given.  Note that
+                    parameters on the command line will
+                    override those in WITH files.  The syntax
+                    of these files is described fully in
+                    II.2 of the spec.
+      VER:          This specifies the destination of LKED
+                    messages.  If not specified, all messages
+                    are output to the initially selected
+                    stream.
+      LIBRARY:      This specifies the files to be scanned
+                    as the library.  Only hunks that contain
+                    definitions of symbols that have been
+                    referenced, but not previously defined,
+                    will be output.
+      RESIDENT:     This specifies the files used as the
+                    resident library.  These files are only
+                    scanned once, to find symbol definitions,
+                    and are not output to the load file.
+                    When the linked program is run, the
+                    resident library should have been loaded
+                    with the LIBRARY command.  (Appendix C).
+      MAP:          This specifies the destination of the
+                    link map.
+      XREF:         This specifies the destination of the
+                    cross reference output.
+      WIDTH:        This specifies the output width to be
+                    used when producing the link map and
+                    cross reference table.  This parameter is
+                    provided to enable output to be send to a
+                    printer or to a narrower terminal,
+                    without wasting paper in one case, or
+                    making the output unreadable in the
+                    other.
+      ADDRINC:      This specifies the address increment
+                    (1 for a word-addressed machine, 2 for a
+                    byte-addressed one) of the machine that
+                    will run the load file produced by LKED.
+                    The value, which must be 1 or 2, is only
+                    used when generating COMMON blocks.  Its
+                    default value is the addres increment of
+                    the machine running LKED.  Thus ADDRINC
+                    need only be quoted when cross-linking a
+                    program with COMMON blocks for a machine
+                    with a different address increment.
+
+        For a complete specification see TRIPOS.PRINT.LKEDSPEC on Phoenix.
+
+Examples:
+        The note-point library must be loaded before using LKED - use:
+        LIBRARY :L.NOTE-POINT
+
+        Examples of valid uses of LKED:
+
+      LKED a
+      LKED FROM "a b c d" TO bin.abcd ADDRINC 2
+      LKED ROOT a+b+c+d MAP map-file WIDTH 120
+      LKED a,b,c TO output LIBRARY :a68c.lib.mod,obj.newlib
+
+

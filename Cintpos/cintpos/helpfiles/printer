@@ -1,0 +1,47 @@
+*command #H print
+**
+PRINT DEVICES
+
+The devices currently available for hard copy output on TRIPOS are:
+
+                  LP:        - the Mond printer on S-Tripos,
+                               the Titan room printer otherwise
+                  MP:        - the Mond printer
+                  TP:        - the Titan room printer
+                  CP:        - the Canon laser printer as a line printer
+               CANON:        - interface to Canon for GCODE etc.
+
+via the spool service (use HELP SPOOLER):
+
+                 SLP:        - as LP:
+                 SMP:        - as MP:
+                 STP:        - as TP:
+                 SCP:        - as CP:
+              SCANON:        - as CANON:
+                SCBM:        - Canon printer in bitmap mode
+            SDIPRINT:        - Titan Room Diablo
+
+These devices can be used as stream names anywhere that a file title may
+be used.  When used as above a default banner is printed in most print
+programs.  The specifiable part of the banner can be given by following
+the colon of the device specification by the desired text. e.g.
+
+                     COPY file MP:mytitle
+
+If the chosen text contains embedded blanks it should be remembered that
+most commands use RDARGS which allows strings in any argument position, so
+quotes should be used:  e.g.
+
+                     INPUT "LP:my file title"
+
+If the printer stream cannot be opened, then the device will retry at
+intervals, and will output occasional messages if the reason for failure
+changes.  Two of the break flags are inspected:
+
+ Ctrl/B - ends the retry loop and makes the call of FINDOUTPUT fail.
+ Ctrl/E - produces a message giving the current reason for waiting.
+
+
+Use HELP PRINT COMMANDS for information about print commands.
+
+

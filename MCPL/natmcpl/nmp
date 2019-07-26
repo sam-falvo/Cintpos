@@ -1,0 +1,6 @@
+.k file/a
+echo "mcpl2mial <file>.m to MIAL"
+mcpl2mial <file>.m to MIAL
+echo "mial-386 MIAL to sysasm/<file>.s"
+mial-386 MIAL to sysasm/<file>.s
+

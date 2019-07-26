@@ -1,0 +1,38 @@
+*file
+The TRIPOS fault file is in SYS:INFO.FAULTS.  If it is updated then the
+BUILDFAULTTABLE command (q.v.) should be called to remake the internal table.
+*rc #H rc
+*faults #H rc
+*command
+Form:           FAULT  ",,,,,,,,,"
+Purpose:        To print the text strings corresponding to the
+                supplied fault code(s).
+Author:         PB, rewritten by MFR
+Specification:
+        The numbers are stored in the file SYS:INFO.FAULTS, but are looked up
+from a file SYS:INFO.FAULTS-TABLE. The command "buildfaulttable" (only on the
+68000 systems) is used to convert the former to the latter.  See HELP on this.
+Thus, after SYS:INFO.FAULTS has been updated, this command should be used.
+        Fault numbers may be quoted in decimal or hex (prefixed by "#X").
+        This command is identical to the WHY command, so that FAULT with no
+arguments will interpret the return code set by the last cli command.
+Example:        FAULT 182
+                FAULT 294 296 199
+                FAULT #XC004
+*procedure
+FAULT
+      To convert an error code to an explanatory message.
+
+      fault ( code )
+
+      The object code "sys:c.fault" is called using callseg (q.v.)  The
+explanatory message is written to the currently selected output stream.
+See HELP FAULT COMMAND for more information.
+** #I fault
+FAULT is the name of both a procedure and a command.
+For FAULT the procedure type PROCEDURE and for FAULT the command (and info
+on the files from which the fault information is derived) type COMMAND.
+For information about return codes type RC.
+Type <CR> to exit HELP.
+
+

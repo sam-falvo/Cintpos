@@ -1,0 +1,121 @@
+
+G  2:           stop  BLIB       
+G  3:            sys  syslib     
+G  4:        clihook  BLIB       
+G  5:         muldiv  BLIB       
+G  5:         muldiv  syslib     
+G  6:       changeco  syslib     
+G 15:          level  BLIB       
+G 16:       longjump  BLIB       
+G 17:       createco  BLIB       
+G 18:       deleteco  BLIB       
+G 19:         callco  BLIB       
+G 20:         cowait  BLIB       
+G 21:       resumeco  BLIB       
+G 22:         initco  BLIB       
+G 23:        startco  BLIB       
+G 24:         globin  BLIB       
+G 25:         getvec  BLIB       
+G 26:        rdargs2  BLIB       
+G 27:        freevec  BLIB       
+G 28:          abort  BLIB       
+G 29:       sysabort  DLIB       
+G 30:     packstring  BLIB       
+G 31:    unpac'tring  BLIB       
+G 32:        getword  BLIB       
+G 33:        putword  BLIB       
+G 34:         randno  BLIB       
+G 35:        setseed  BLIB       
+G 36:         sardch  BLIB       
+G 37:         sawrch  BLIB       
+G 38:           rdch  BLIB       
+G 39:        binrdch  BLIB       
+G 40:         unrdch  BLIB       
+G 41:           wrch  BLIB       
+G 42:        binwrch  BLIB       
+G 43:        deplete  BLIB       
+G 44:      readwords  BLIB       
+G 45:     writewords  BLIB       
+G 46:         initio  DLIB       
+G 47:      splitname  BLIB       
+G 48:      findinput  BLIB       
+G 49:     findoutput  BLIB       
+G 50:    findi'utput  BLIB       
+G 51:     findupdate  BLIB       
+G 52:     findstream  DLIB       
+G 53:    pathf'input  BLIB       
+G 54:    getre'paddr  DLIB       
+G 55:     settimeout  BLIB       
+G 56:    selectinput  BLIB       
+G 57:    selec'utput  BLIB       
+G 58:          input  BLIB       
+G 59:         output  BLIB       
+G 60:        endread  BLIB       
+G 61:       endwrite  BLIB       
+G 62:      endstream  BLIB       
+G 63:           note  DLIB       
+G 64:          point  DLIB       
+G 65:    rewin'tream  BLIB       
+G 66:    appen'tream  BLIB       
+G 67:     stepstream  BLIB       
+G 68:    setre'ength  BLIB       
+G 69:    recordpoint  BLIB       
+G 70:     recordnote  BLIB       
+G 71:     get_record  BLIB       
+G 72:     put_record  BLIB       
+G 76:     deletefile  BLIB       
+G 77:     renamefile  BLIB       
+G 78:        freeobj  BLIB       
+G 79:        copydir  BLIB       
+G 80:      locatedir  DLIB       
+G 83:          readn  BLIB       
+G 84:        newline  BLIB       
+G 85:         writed  BLIB       
+G 86:         writen  BLIB       
+G 87:       writehex  BLIB       
+G 88:       writeoct  BLIB       
+G 89:         writes  BLIB       
+G 90:         writet  BLIB       
+G 91:         writeu  BLIB       
+G 92:         writez  BLIB       
+G 93:    get_t'tblib  BLIB       
+G 94:         writef  BLIB       
+G 95:       sawritef  BLIB       
+G 96:      capitalch  BLIB       
+G 97:         compch  BLIB       
+G 98:     compstring  BLIB       
+G 99:     copystring  BLIB       
+G100:    strin'umber  BLIB       
+G101:       str2numb  BLIB       
+G102:         rdargs  BLIB       
+G103:         rditem  BLIB       
+G104:        findarg  BLIB       
+G105:        loadseg  BLIB       
+G106:      unloadseg  BLIB       
+G107:        callseg  BLIB       
+G108:      datstring  BLIB       
+G109:       datstamp  BLIB       
+G110:    dat_t'rings  BLIB       
+G111:    strin'o_dat  BLIB       
+G112:         setbit  BLIB       
+G113:        testbit  BLIB       
+G114:     copy_words  BLIB       
+G115:    clear_words  BLIB       
+G116:     copy_bytes  BLIB       
+G117:     setlogname  BLIB       
+G118:     getlogname  BLIB       
+G119:        intflag  BLIB       
+G120:        newpage  BLIB       
+G121:     instrcount  BLIB       
+G122:        setbulk  BLIB       
+G124:    setti'utact  BLIB       
+G126:       codewrch  BLIB       
+G128:          delay  DLIB       
+G129:     delayuntil  DLIB       
+G130:     findappend  BLIB       
+G162:        endtask  DLIB       
+G165:        sendpkt  DLIB       
+G169:      returnpkt  DLIB       
+G174:          fault  BLIB       
+G175:    set_p'_name  DLIB       
+G179:        peercom  DLIB       

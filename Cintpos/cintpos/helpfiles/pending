@@ -1,0 +1,140 @@
+**
+PENDING HELP
+
+HELP has failed to give any help for any of the following:
+
+Items which have been considered are marked on the right hand side with a
+"P" (help should be provided) or a "?" (help will not be provided).  Items
+that have disappeared from the list have either had help provided for them
+or have been dismissed.  Use HELP TROUBLE if you believe that there has been
+an unfair dismissal!
+
+Unfortunately, you may have a fairly long wait, because there is no longer
+a regular maintainer of the HELP system!  For a reasonable response, you
+should find someone to ask, and possibly also ask them to contribute some
+help info, via a tripos-manager.
+
+NOTE: Please be fair to HELP - you can give a whole sentence to look up -
+      don't be stingy with your words.  It increases both the chances that
+      HELP will find something for you and the chances that HELP maintainers
+      can work out what you actually wanted if it can't.  Also if you mean
+      HELP A B C don't put HELP ABC - HELP won't know what you mean.
+
+RDW on BLACK (CALYPSO.VDU/5) 26-Nov-85 - HELP plot              ?
+RDW on WHITE (CALYPSO.VDU/5) 07-Jan-86 - HELP load              ?
+TRK on BROWN (ENCELADUS.VDU/5) 05-Mar-86 - HELP demolist atoms 
+LRS10 on BLUE (DIONE.VDU/7) 15-Mar-86 - HELP vec 
+RW on GREY (CALYPSO.VDU/8) 19-Mar-86 - HELP command spellcheck 
+DJG on BROWN (ATLAS.VDU/7) 21-Mar-86 - HELP ASSEMLER 
+LRS10 on SILVER (DIONE.VDU/7) 24-Mar-86 - HELP disc usage 
+CM102 on HOTEL (CS/U11/13) 08-Apr-86 - HELP modula-2 
+ on BRAVO (TITAN.VDU/3) 12-Apr-86 - HELP mail-demon 
+ORN on BLUE (CALYPSO.VDU/7) 28-Apr-86 - HELP am76 
+ on BRAVO (ENCELADUS.VDU/8) 14-May-86 - HELP mail-demon 
+ORN on BLUE (ATLAS.VDU/6) 15-May-86 - HELP psout 
+DJG on VIOLET (ATLAS.VDU/7) 16-May-86 - HELP games 
+MAJ on BLACK (RHEA.VDU/2) 19-May-86 - HELP laserwriter 
+RSC on VIOLET (CALYPSO.VDU/7) 23-May-86 - HELP ringmap 
+PN on VIOLET (TITAN.VDU/7) 27-May-86 - HELP renamedir 
+LRS10 on GREY (TITAN.VDU/8) 30-May-86 - HELP 8086 assembler 
+CEB on DELTA (DIONE.VDU/5) 02-Jun-86 - HELP new al 
+NEW1 on BLUE (TELESTO.VDU/3) 06-Jun-86 - HELP mailaddress jmt10 
+JBDP on WHITE (ENCELADUS.VDU/8) 16-Jun-86 - HELP glob 
+MB on VIOLET (TITAN.VDU/8) 01-Jul-86 - HELP device bsd 
+CICC on SILVER (TITAN.VDU/7) 03-Jul-86 - HELP CXS FETCH 
+NEW1 on VIOLET (TELESTO.VDU/3) 03-Jul-86 - HELP remove 
+DLT on BLUE (CALYPSO.VDU/3) 03-Jul-86 - HELP modul 
+JDP on GOLD (TELESTO.VDU/4) 11-Jul-86 - HELP path4 
+DSS10 on BLACK (TELESTO.VDU/2) 11-Jul-86 - HELP sendpacket 
+RDW on RED (CALYPSO.VDU/2) 15-Jul-86 - HELP stterm 
+SMVH1 on BROWN (CS/U45/4) 18-Jul-86 - HELP a 
+AFS on BLUE (HYPERION.VDU/7) 21-Jul-86 - HELP start_ 
+DSS10 on BROWN (TELESTO.VDU/2) 27-Jul-86 - HELP smail 
+DSS10 on BLACK (TITAN.VDU/7) 29-Jul-86 - HELP vax 
+NRJB1 on BLACK (ATLAS.VDU/1) 31-Jul-86 - HELP sendfile 
+ORN on BLACK (ATLAS.VDU/6) 05-Aug-86 - HELP lookupword 
+ORN on BLACK (ATLAS.VDU/6) 05-Aug-86 - HELP newvec 
+SJRH on BLUE (TELESTO.VDU/2) 25-Aug-86 - HELP ctops 
+SJRH on VIOLET (TELESTO.VDU/2) 30-Aug-86 - HELP massage 
+RSC on SIRIUS (CALYPSO.VDU/7) 08-Sep-86 - HELP makeload 
+NEW1 on RED (TELESTO.VDU/7) 24-Sep-86 - HELP redirect 
+AFS on BLUE (HYPERION.VDU/7) 30-Sep-86 - HELP creatdir 
+SMVH1 on BLACK (TITAN.VDU/3) 09-Oct-86 - HELP t* 
+MAJ on VIOLET (RHEA.VDU/2) 15-Oct-86 - HELP new 
+DMC on RED (TITAN.VDU/2) 23-Oct-86 - HELP spool: 
+AGT on BLUE (CS/J000000001108) 28-Oct-86 - HELP kernel 
+DJG on RED (ATLAS.VDU/2) 29-Oct-86 - HELP wsinit 
+SMVH1 on BLACK (ENCELADUS.VDU/1) 30-Oct-86 - HELP typeahead 
+RSC on SIRIUS (CALYPSO.VDU/7) 17-Nov-86 - HELP coroutiunes 
+TDW on GOLD (ENCELADUS.VDU/4) 20-Nov-86 - HELP bc@ 
+TDW on BLUE (ENCELADUS.VDU/2) 21-Nov-86 - HELP initisl 
+TDW on BLUE (ENCELADUS.VDU/2) 21-Nov-86 - HELP initialization 
+SMVH1 on BLACK (CS/U50/4) 23-Nov-86 - HELP backtrace 
+AFS on WHITE (HYPERION.VDU/7) 24-Nov-86 - HELP eqv 
+TDW on RED (ENCELADUS.VDU/6) 25-Nov-86 - HELP forwarding-addresses 
+SMVH1 on BLACK (CS/U14/11) 26-Nov-86 - HELP comment 
+TDW on GREY (ENCELADUS.VDU/6) 28-Nov-86 - HELP ex4 
+JF on ALONZO (HYPERION.VDU/4) 06-Dec-86 - HELP spool: 
+TDW on WHITE (ENCELADUS.VDU/2) 08-Dec-86 - HELP spool: 
+TDW on GREY (ENCELADUS.VDU/1) 10-Dec-86 - HELP spool: 
+AFS on GREY (HYPERION.VDU/7) 17-Dec-86 - HELP locate 
+PB on WHITE (TELESTO.VDU/8) 23-Dec-86 - HELP bcpo options 
+TDW on VIOLET (ENCELADUS.VDU/8) 01-Jan-87 - HELP ticks 
+TDW on VIOLET (ENCELADUS.VDU/8) 01-Jan-87 - HELP OrbiDev 
+TDW on SILVER (ENCELADUS.VDU/8) 02-Jan-87 - HELP environment vector 
+TDW on BLUE (HYPERION.VDU/7) 05-Jan-87 - HELP dibyte 
+TDW on BLUE (HYPERION.VDU/7) 05-Jan-87 - HELP bytesperword 
+TDW on RED (ENCELADUS.VDU/6) 06-Jan-87 - HELP sysmap 
+TDW on RED (ENCELADUS.VDU/6) 06-Jan-87 - HELP handler 
+TDW on RED (ENCELADUS.VDU/6) 06-Jan-87 - HELP octet 
+TDW on VIOLET (ENCELADUS.VDU/1) 06-Jan-87 - HELP orbis 
+TDW on BLACK (TITAN.VDU/3) 08-Jan-87 - HELP manhdr 
+TDW on BLACK (TITAN.VDU/3) 08-Jan-87 - HELP dfsuhdr 
+TDW on BLACK (TITAN.VDU/3) 08-Jan-87 - HELP filehdr 
+TDW on WHITE (ENCELADUS.VDU/1) 13-Jan-87 - HELP procedure gbytes 
+CJA on RED (CS/J000000001122) 13-Jan-87 - HELP z80load 
+NEW1 on GREY (TELESTO.VDU/3) 14-Jan-87 - HELP cmp 
+TDW on SILVER (ENCELADUS.VDU/1) 15-Jan-87 - HELP l 
+TDW on VIOLET (ENCELADUS.VDU/4) 24-Jan-87 - HELP needs 
+DJG on WHITE (ATLAS.VDU/2) 26-Jan-87 - HELP basic block 
+KAC on GREY (ENCELADUS.VDU/1) 29-Jan-87 - HELP laserwriter 
+BRH on BLUE (ATLAS.VDU/6) 30-Jan-87 - HELP current 
+SMVH1 on VIOLET (ENCELADUS.VDU/6) 24-Feb-87 - HELP ug 
+MAYFLOWER on VIOLET (ENCELADUS.VDU/4) 07-Mar-87 - HELP pipehan 
+SMVH1 on BLUE (ENCELADUS.VDU/4) 12-Mar-87 - HELP timer task 
+CJA on VIOLET (CS/J000000001108) 13-Mar-87 - HELP accountng 
+SMVH1 on GREY (ENCELADUS.VDU/2) 24-Mar-87 - HELP keyboard buffer 
+SMVH1 on GREY (ENCELADUS.VDU/4) 25-Mar-87 - HELP pseudo system reset 
+DJG on GOLD (ATLAS.VDU/6) 27-Mar-87 - HELP mac 
+SMVH1 on RED (ENCELADUS.VDU/4) 01-Apr-87 - HELP cursor 
+ORN on GREY (TELESTO.VDU/4) 09-Apr-87 - HELP comparison 
+CAN on GREY (EPIMETHEUS.VDU/3) 13-Apr-87 - HELP dircopy 
+KAC on GREY (ENCELADUS.VDU/3) 04-May-87 - HELP laserwriter 
+RVDH on CRUSOE (EPIMETHEUS.VDU/1) 29-May-87 - HELP mai 
+AGT on VIOLET (CS/J000052500001) 12-Jun-87 - HELP rw 
+MDC on GREY (CS/J000000001108) 19-Jun-87 - HELP mailboxc 
+JBDP on WHITE (ENCELADUS.VDU/8) 29-Jun-87 - HELP spool: 
+GFMT on SILVER (ENCELADUS.VDU/3) 30-Jun-87 - HELP occam 
+DJG on GREY (TELESTO.VDU/2) 13-Jul-87 - HELP assempler 
+DJG on GOLD (EPIMETHEUS.VDU/5) 16-Jul-87 - HELP otherpacks 
+IML on BLUE (ATLAS.VDU/6) 12-Aug-87 - HELP terminas 
+RSC on CHRISTMAS (TELESTO.VDU/5) 18-Aug-87 - HELP readword 
+RSC on EASTER (TELESTO.VDU/5) 18-Aug-87 - HELP readword 
+HW on JULIET (ATLAS.VDU/5) 13-Oct-87 - HELP df-sysimage 
+HW on SILVER (TELESTO.VDU/3) 04-Nov-87 - HELP dircopy 
+HW on GEORGE (TELESTO.VDU/3) 02-Dec-87 - HELP disstribution 
+HW on BLUE (TELESTO.VDU/3) 31-Dec-87 - HELP typee 
+HW on BLUE (TELESTO.VDU/3) 31-Dec-87 - HELP object 
+HW on BLUE (TELESTO.VDU/3) 31-Dec-87 - HELP load 
+DJG on GREY (CALYPSO.VDU/8) 17-Jan-88 - HELP hextoascii 
+HME on WHITE (TITAN.VDU/3) 21-Jan-88 - HELP CR 
+BRH on BLUE (CALYPSO.VDU/8) 04-Feb-88 - HELP cv 
+NEW1 on BLUE (TELESTO.VDU/4) 29-Feb-88 - HELP passwrod 
+SPH on VIOLET (CALYPSO.VDU/3) 03-Mar-88 - HELP tak 
+DRM10 on TEMP3 (ATLAS.VDU/2) 07-Mar-88 - HELP satus 
+AS on POLARIS (PHOEBE.VDU/5) 07-Apr-88 - HELP command dump 
+CAN on BROWN (ATLAS.VDU/5) 04-May-88 - HELP assigne 
+RSC on SILVER (TELESTO.VDU/6) 30-May-88 - HELP readforward 
+SMVH1 on WHITE (CS/Q000008010080) 20-Dec-88 - HELP sourcew 
+
+

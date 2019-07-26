@@ -1,0 +1,24 @@
+*command #H logoff
+*procedure
+**
+STOP
+        This procedure is used to cease execution of a command or task
+    and pass back a return code.
+                      stop(rc)
+        General meanings of the return code are (given the manifests in
+    CLIHDR):
+                return.ok       -  success
+                return.soft     -  minor error: a warning
+                return.hard     -  normal error return
+                return.severe   -  severe error: stop processing
+        For more information about return codes use HELP RC.
+        If 'rc' is not zero (return.ok) then, in the case of a command
+    'result2' will be copied into the CLI so that it can be displayed
+    using the WHY command (use HELP WHY COMMAND for more info here).
+        If the return code returned is greater than or equal to
+    'cli.faillevel' then processing of command commands will be terminated:
+    see HELP FAILAT COMMAND for information as to how this limit can be
+    changed: its default value is 'return.hard'.
+        It is not compulsory to end a program using 'stop'.
+
+

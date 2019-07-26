@@ -1,0 +1,55 @@
+*puid #H puid
+*component ..
+PUID
+    A Permanent Unique IDentifier is assigned to any object that needs a
+name on the Ring.  A PUID has the same format as a TUID (see below) but
+it does not represent a particular active instance of an object.  It is
+a public name, and can often be looked up in the MAP service.
+
+*component ..
+*tuid
+TUID
+    A TUID ("Temporary Unique Identifer") is a 64-bit number the lowest
+48 bits of which are random, the highest 8 bits of which denote the
+Active Object Table which knows it and the remaining 8 bits denoting
+the service which produced the random number (the PUID generating service).
+    A TUID exists for the duration of a UID set's existance and is
+unguessable to all but those to whom it has been passed.  That it matches
+the rest of a UID set (the PUID and Authentity in particular) can be
+verified at its Active Object Table Service.  It acts as a kind of
+"capability" for the object named by the Authentity and PUID.
+*component ..
+
+*component ..
+*authentity
+*auty
+AUTHENTITY
+    The Authentity or "Authority Identity" of a UID SET is a PUID (use
+HELP PUID for more information) which identifies the creator of that
+UID set.  Only holders of a valid UID set for an authentity are allowed
+to create new UID sets in the Active Object Table.  An "authentity UID
+set" is a valid UID set in which the authentity is a special PUID
+conventionally denoted 'auth'.  Such UID sets can be obtained from the
+SOAP service upon proof of identity.
+*component ..
+
+*component
+*tpuid
+TPUID
+    A TPUID is a Unique IDentifier from a UID set with the same format
+as a TUID (use HELP TUID for this information).  It controls the existance
+of the UID set that it is uniquely associated with in the Active Object
+Table.  Using it UID sets can be 'refreshed'.  That is, they can have
+their timeouts altered to any new value (less than 2**24 seconds).  UID
+sets can be deleted by setting their timeout to zero seconds.  If no TPUID
+is possessed the UID set that it represents will be deleted after its
+current timout period.
+**
+A UIDSET is a collection of UIDs (64 bit numbers with a random part) which
+is used by the ring authentication system to identify and authenticate
+objects.  Try HELP AUTHENTICATION for information on this.  The UIDSET
+can have four component UIDs:  PUID, TUID, Authentity and TPUID.  
+See HELP UIDSET COMPONENTS for more information.  See HELP UIDEDIT on
+the program to manipulate the UIDSETs stored on a Tripos machine.
+
+

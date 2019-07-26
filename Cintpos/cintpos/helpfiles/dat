@@ -1,0 +1,85 @@
+*datstamp
+*stamp
+*vec
+*vector
+*array
+DATSTAMP
+
+  DATSTAMP is a procedure in BLIB for obtaining a self-consistent date
+and time stamp. It takes a 3 word vector as argument:
+
+  RESULT := DATSTAMP(DATVEC)
+
+  On exit: RESULT is set to DATVEC
+           DATVEC!0 contains the number of days since 1st Jan 1978
+           DATVEC!1 contains the number of minutes since midnight
+           DATVEC!2 contains the number of 'ticks' in the current minute
+*datstring
+*string
+DATSTRING
+      To obtain strings for the various parts of the date and
+time.
+      v := datstring(v)
+      A call of datstring with an argument vector of 15 words
+yeilds strings at the following locations in the vector:
+                v      -  Date       DD-MMM-YY
+                v+5    -  Time       HH:MM:SS
+                v+10   -  Weekday    (its full name)
+*dat-to-string ..
+*dat-to-strings
+DAT-TO-STRINGS is a CALLSEGable procedure which will convert a date and time
+held in binary form into string form.
+
+Use:    CALLSEG("SYS:L.DAT-TO-STRINGS", DATV, V)
+
+Returns V containing 3 strings representing the time and date given in DATV,
+where DATV!0 = days, DATV!1 = mins, DATV!2 = ticks (i.e. the format delivered
+by DATSTAMP).
+On return, V contains a the date in the form DD-MMM-YY, V+5 contains the time
+in the format HH:MM:SS, and V+10 contains the day of the week.
+Vector V should have an upperbound of 14.
+If the date is unset (days = 0) then the strings are all set to "<unset>".
+*dat-to-string
+
+Note the trailing 'S' on "dat-to-stringS"!
+*ringdat
+RINGDAT command
+Form:           RINGDAT  "quiet/s"
+Purpose:        To obtain the date from the Ring DAT service
+Author:         BJK
+Specification:  Prints date, time, and day of the week as received from the Ring
+                DAT service unless the 'quiet' switch is used.  Sets the system
+                clock to the date recived.
+                Use the DAT command to display the date and time without using
+                the Ring service.  (Use HELP DAT COMMAND for more information).
+Example:        RINGDAT
+*command
+DAT command
+Form:           DAT
+Purpose:        To print the date, time, and day of the week.
+Author:         PB (Paul Bond)
+Specification:  This command does not use RDARGS.
+
+                Uses DATSTRING (use HELP DATSTRING for info on the procedure)
+                to generate time and date info.
+
+                RINGDAT sets the date and time from the Ring (use HELP RINGDAT
+                COMMAND for further information).
+
+                The TRIPOS procedure which simply returns a numeral version of
+                the time is called DATSTAMP (use HELP DATSTAMP).
+                
+Example:        DAT
+** #I dat
+DAT means Date And Time.  Various procedures exist to deal with this.  Type
+one of the following for more info:
+
+     COMMAND         Simply prints out date and time
+     DATSTAMP        Proc to place a date stamp into a vector
+     DATSTRING       Proc to convert current DAT to strings
+     DAT-TO-STRINGS  Callseg module to convert an arbitrary date in a
+                     vector into strings
+     RINGDAT         Sets date and time from ring DAT service
+     <CR>            To exit from HELP
+
+

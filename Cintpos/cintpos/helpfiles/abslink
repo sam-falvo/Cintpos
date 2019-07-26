@@ -1,0 +1,32 @@
+*spec
+ABSLINK spec is in SYS:INFO.SPEC.ABSLINK
+*all sys:info.spec.abslink
+*command
+**
+Form:           ABSLINK   "FROM/A,TO/A,MAP/K,OPT/K"
+Purpose:        To biuld a new TRIPOS binary bootstrap.
+Author:         ARA
+Specification:
+         The TRIPOS absolute linker is used to build an
+      absolute object file representing the contents of the
+      store of a TRIPOS memory space, which can then be
+      loaded and started by the bootstrap loader, or run as
+      a mapped task.
+
+         The FROM argument should be the name of a file of
+      directives for the linker describing the object file
+      to be built, and the TO argument should be the name of
+      the required object file.
+
+         The MAP keyword may be used to obtain a map of the
+      system, in which case it should be followed by a
+      suitable filename for the mapping output.
+
+         The OPT keyword may be used to supply options;
+             Wn  sets the workspace size
+             F   specifies full map output
+             O   map values to be octal machine addresses
+             X   map values to be hex hacnine addresses
+      For more detailed information see HELP ABSLINK ALL.
+
+

@@ -1,0 +1,142 @@
+*abend
+Use the FAULT command to find the meaning of a fault number.
+*abort
+routine              ABORT(FAULTNUM, ARG)
+   and traps used by the Kernel.
+
+ABORT(FAULTNUM, ARG)
+   Abort the issuing task.
+Arguments:
+
+FAULTNUM
+   An integer indicating the reason for the abort. This should normally
+   be a fault code known to the FAULT procedure and command.
+ARG
+   May be used to pass additional information.
+
+Notes:
+
+  If DEBUG is running, it will print out an abort message containing the task
+number, the fault code, and ARG printed as a decimal number.  If it knows the
+meaning of the fault code, it will also print a text message.
+*access #H matrix
+*active #H #HCH %
+%object #H aot
+%
+*advice #H novice
+*algol #H algol68c
+*algol68 #H algol68c
+*a68 #H algol68c
+*a68c #H algol68c
+*a68makestack #H algol68c
+*a68stack #H algol68c
+*a68stack32 #H algol68c
+*alias
+*aliasing
+ALIAS Command
+Form:           ALIAS  "from/a,to=as/a,link/s"
+Purpose:        To give a physical file an additional name
+Author:         MFR
+Specification:
+     The alias command is used to alias objects in the filing system.
+     The command is essentially rename, except that the original entry is not
+removed. Under the FM-TRIPOS protection scheme, the alias will not be allowed
+if the access to the object which would result is greater than the original
+access.
+     In the fileserver filing system, aliases across disc packs are normally
+prohibited because the presence of such an alias does not guarantee that the
+object will remain in existence. LINK allows such a cross-pack link to be
+established, but its indiscriminate use is NOT RECOMMENDED. For most purposes,
+assignments created by profiles or the ASSIGN command are a much better way of
+giving short names or privileged access to objects on other packs.
+*allocate
+*allocation
+Machine allocation is done by the RESOURCE MANAGER and SESSION MANAGER
+machines (q.v.).
+*announce
+Form:           ANNOUNCE file,term/k
+Purpose:        Announce a change to the system
+Author:         PB
+
+Specification:
+               asks for a subject, keywords, and, unless file is specified, the
+body of the information.  The latter is terminated (from terminal or file) by a
+line consisting solely of term (default is '/*').
+               The subject is sent to TRIPOS as a message, and the text is
+added to the front of :HELP.NEW with the specified keywords, ALL and LAST.
+
+Example
+                ANNOUNCE spec.announce
+*anonymous #H anon
+*append #H #HCH %
+%command
+APPEND Command
+Form:           APPEND ",,,,,,,,,,TO/A/K,CHARS/S,WORDS/S"
+Purpose:        To append one or more files to the end of an existing file.
+Specification:
+
+The files given as unkeyed parameters are copied to the end of the TO file.
+(In fact the output is constructed as a temporary file which is renamed as
+the TO file, allowing a file to be appended to itself.)
+WORDS specifies that the copy should be done by READWORDS/WRITEWORDS, and
+CHARS that it should be done by RDCH/WRCH. The default is WORDS.
+
+APPEND is useful as a 'link editor' for straightforward BCPL programs (as
+is JOIN).
+
+Example:        APPEND OBJ.MYPROG2 OBJ.MC TO OBJ.MYPROG
+%* #H file
+*archive
+*archiving
+ARCHIVING
+
+There are two archiving systems for TRIPOS, one based on the Computing Service
+mainframe computer, and one based on the NOVA2 tape server.
+
+See the following documents:
+
+    A specification of the TRIPOS "CS" command      -   IDW   -   SRG Doc
+    The TRIPOS Tape Handler                         -   IDW   -   SRG Doc
+    TLS - A Tape Library System for Tripos          -   IDW   -   SRG Doc
+
+Try HELP CS
+    HELP TAPE
+    HELP TLS    for more information
+*arg #H rdargs
+*argument #H rdargs
+*assembly #H assembler
+*assemble #H assembler
+*assignment
+Assignments of logical names to directories and tasks can be manipulated by
+means of the ASSIGN command (see HELP ASSIGN COMMAND).
+
+A library of routines for operating on assignments is in :G.BCPL.ASSIGNLIB
+(see HELP SOURCELIB ASSIGNLIB).
+*auth #H #HCH %
+%auty
+%puid
+The AUTH PUID is the authentity which marks UID SETs which allow creation
+of other UID SETs in an Active Object Table.  Its value is:
+                    FF02 D01A 3CCB B900
+%* #H authentication
+*authbsp
+*authbsp:
+AUTHBSP: DEVICE
+
+The device AUTHBSP: is similar to BSP:, except it opens an authenticated
+byte stream rather than a simple one. Using "AUTHBSP:service" as a stream
+name will result in a byte stream being opened to the ring service whose
+name is "service". The main result from calling FINDINPUT or FINDOUTPUT on
+such a name will be a stream in the requested direction; RESULT2 will contain
+the other half of the stream pair.
+
+The authentication information in the BSP OPEN request consists of the PUID
+and TUID of the logged-on user, with authentity USERAUTH.
+*authentic #H authentication
+*all #H #HCH %
+%+ #H subject
+%
+*authentity #H uidset
+*auty #H uidset
+
+

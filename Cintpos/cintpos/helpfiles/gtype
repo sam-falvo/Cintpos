@@ -1,0 +1,281 @@
+*Devices
+GTYPE DEVICES
+
+The available devices are:
+
+ Canon          Output to the canon printer using bitmap (very slow)
+ Diablo         diablo output
+ TTy            continuous output as if to a teletype
+ Printer        Printer output. May be for proof reading, or clean.
+ Vdu            paged output, compacting  multiple  lines.
+ N7004          as VDU, but underlined output is backgrounded, and bold
+                output  flashes. Also N7, N4.
+ N7009          as N7004, but may select 7 page option. Also N9.
+ N7009A         as N7004, but selects 7 page option. Also N9A.
+ Cifer [n]      as VDU, but underlined output is underlined, and bold output is
+                in inverse video. n defaults to 2632
+ Sigma [n]      Sigma output with proportional spacing, bold and underlined
+                output. n may be 5670 or the default, 5680.
+ TEK            Tektronix output with proportional spacing and underlined output
+ Term           If the actual device type can be found by the OS concerned, and
+                there is support for that device, then that device is used,
+                otherwise a dumb terminal is assumed.
+ Versatec       Output to a versatec printer. May be sent to the canon.
+
+                For further info see HELP GTYPE DEVICE <device>
+*commands #N ..
+*font #N ..
+*fount #N ..
+*command
+*+
+GTYPE COMMAND
+
+Form:           GTYPE  "Gcode,to,din/k,4000=bytes/k,OPT/K,Go=g/s"
+Purpose:        Formats GCODE for a specified device
+Author:         PB
+Specification:
+        The GCODE file is formatted, and output to TO.  If TO is omitted, then a
+device dependant destination is presumed (E.g. PRINTER and DIABLO).
+        When GTYPE pauses, it waits for a line from DIN, which defaults to the
+terminal.
+
+        BYTES allows the amount of GCODE in store to be varied.
+
+        If no options are given, GO instructs GTYPE to proceed as if TERM;GO
+had been typed, i.e. produce terminal output.
+
+        For further info see HELP GTYPE on DEVICES, INTRODUCTION, GENERAL,
+or DEVICE <device>
+*INTRODUCTION
+Input may be GCODE version 2 or 3 or PLAIN text. Note that GTYPE output for
+devices like Diablos should NOT be sent to the diablo by using GTYPE, as escape
+sequences are not interpreted in plain mode.
+
+If the output file is omitted, the default destination depends on the device
+selected e.g. the printer, diablo or terminal.
+
+Most commands can be abbreviated, in which case the essential parts are in
+CAPITALS and the extra are lowercase. Thus 'QUiet' can be typed as 'qu', 'qui',
+'Quie' or 'QUIET', but not 'Q'.
+
+Commands are first read from the options, and then from the terminal.
+If the options start with 'QUiet' then messages are kept to a minimum.
+The options are not fully interpreted before the output streams are opened.
+If the program does pagewaiting, it will read the lines from DIN (which defaults
+to the cli input stream). If the first character typed while pagewaiting is 'Q'
+or 'W' gtype stops. If it is 'O' then GTYPE asks for more options.
+
+CTRL-B or BREAK B may be used to halt output, and read an option line.
+
+When a keyword is required, then any unambiguous leading substring is permitted.
+In the case of ambiguous strings the one shown below with fewest characters in
+CAPITALS is used. A keywords may be preceeded by 'NO' or '-' to negate it, and a
+number to indicate a repeat count. If the first item of the parameter string is
+QUiet then no message is output. The program asks for the device type, and then
+accepts commands. See HELP GTYPE DEVICES and HELP GTYPE GENERAL for details.
+*General
+*command
+*option
+GTYPE GENERAL
+
+After a device has been selected, various options may be
+selected. For device specific options see HELP GTYPE DEVICES
+
+ ABAndon        Stop  with  error  code,  do  not  despool output
+ ABBreviate T   Allow abbreviations.
+ Bell T         Ring a logical bell when pagewaiting. If the device output  is  the  same  as  the
+                system  output, then this is a bell, otherwise it is a
+                message 'Pausing  before page  n  ...' on the system output.
+                On a sigma, no bell is rung, but a question mark is output.
+                On a cifer 2632, no bell is rung, but the message 'Waiting'
+                appears on the status line. If running on a slow machine,
+                be careful to wait for this message to appear.
+ Finish         Terminate in normal manner
+ FIxedcharwidth Instructs the program that this device has a course grain
+                size for character widths. This makes all letters in a
+                'word' appear without gaps.
+ Go             start producing output
+ Help           give the available options
+ Margin n [C|I] The left offset. For most devices it may be negative which
+                removes leading spaces. Char implies n characters, Inches
+                implies n inches. 
+ Next           select the next page of the file.
+ Options F      as for PAuse, but ask for options each time.
+ PAGe n         set 'current page number' to n.  This command does not move
+                the  current location.
+ PAuse          pause for a line of input at each page. FALSE for TTY,
+                diablo and non-interactive devices. While pauseing 'W'  will
+                windup, and 'O' will allow options to be typed
+ Previous       select  the previous page if possible. See Rewind.
+ Rewind         Try to reopen the input file at the beginning.
+ RELative       Make vertical move relative. True for printer and terminals.
+ UPto           Produce output up to (but not including) page n.
+ Windup         As for Finish
+ ?              show some data on current state.
+*fount
+*font
+*canon
+GCODE can be sent directly to the Canon, via the devices canon: and scanon:,
+and is interpreted there.  There is a program GPAGE to allow the selection
+of only some pages of a GCODE file before sending it to the Canon - see
+HELP on this.  GTYPE may still be used if required:
+
+GTYPE DEVICE CANON
+
+ FOnt [n] name  Map font n [or all fonts] onto font name.  To produce correctly
+                spaced output for a particular font, put in the source the
+                command '.library "charwidth.<name>"' which defines the char
+                widths for the currently selected font.  Fonts are selected
+                within GCAL using the '.font <n>' directive or the '$f<n>'
+                flag.
+                
+                << The naming of fonts has not been sorted out yet. For details
+                   see PB
+                >>
+
+*diablo
+GTYPE DIABLO DEVICE
+
+ Adjust             Make centering alterations on some characters. The command
+                is of the form
+
+                   ADJUST <fnt> ( '<chars>' <shift> )
+
+                    where char may be any printable character,
+                the character "'" itself being entered  by
+                the pair "''". Shift is a unit of the form
+                x,  x/y or /y, representing the adjustment
+                across  and  down  the  page  (in   diablo
+                units).  An  omitted  adjustment keeps its
+                old value.  Shifts  may  be  separated  by
+                spaces, tabs or a comma, and the number of
+                them    should   equal   the   number   of
+                characters, or may be one  in  which  case
+                that shift is given to each character. The
+                characters affected are fonts fnt to fnt +
+                repeatcount-1.    NOADJUST    zeros    all
+                adjustments, and ADJUST with  no  argument
+                sets
+
+                         ('.''()*' -2,-2,-2,3,/1)
+
+                    Note that each font uses heap space.
+ BAckwardsff F  If  set,  at the end of each page on which
+                font 15 is selected, do not go  to  a  new
+                page,   but  return  to  the  top  of  the
+                previous page. This  allows  basic  multi-
+                columning,  but  will  be  replaced  by  a
+                neater method soon (?).
+ Bold 1 2 1     bold output appears overprinted c times at
+                each of a  positions,  each  of  which  is
+                offset by b from the previous.
+ Centre T       centres  each  character,  using  the last
+                value of  CWIDTH,  or  the  current  exact
+                space   width   if   no  CWIDTH  has  been
+                specified.
+ CWidth n       Centres each character in a field of width
+                n.
+ FOrceout       Send spooled output  to the diablo.
+ Oneway F       By   default   diablo   output  alternates
+                direction of printing to  reduce  carriage
+                movement.  This  command  makes  it output
+                forwards only. Useful for Diablos with bad
+                alignment
+ PLength n[I]   Page  length  in  device   units,   unless
+                followed by Inches
+ PRint          on  CAP and TRIPOS, the output may be sent
+                to the diablo by the program. If no output
+                file is given, then an anonymous  file  is
+                created  and  print is set TRUE, otherwise
+                it is FALSE.
+ Udrop T        Drop underlines to the level of the lowest
+                subscript.
+
+*PRINTER
+GTYPE PRINTER DEVICE
+
+ Bold 3             Number of prints, at least one, to be used
+                for bold output.
+ Comment 120    Column  in  which  the   actual   vertical
+                movement  is  shown.  Comment0 or -Comment
+                will omit comments.
+ Dots F         Print  lines  of  dots  to  indicate  page
+                boundaries. Overrides FF.
+ FF F           Throw  a  new  page  to  start  each page.
+                Overrides FF.
+ FOrmat F       by default all  the  details  of  vertical
+                displacements are shown in printer output,
+                so as to aid proof reading for more clever
+                devices.  When  Format  is  set,  no local
+                vertical shifts are done(see  Shift),  and
+                the  program  endeavours  to get page size
+                correct   by   merging   shall    vertical
+                movements into whole lines. Sets Formfeed.
+                See PLength.
+ Linelength 132 maximum number of characters before a line
+                break will occur.
+ PLength 61     Number   of  lines  per  page.  Needed  by
+                Format.
+ Shift T        This is a sub flag of Format, and  removes
+                all  local  shifts  within  a  line,  i.e.
+                ignores super  and  subscripts.  Unset  by
+                Format.
+
+*CIFER
+GTYPE CIFER DEVICE
+
+ Linelength 80  maximum number of characters before a line break will occur.
+ PLength 23     Number of lines on the screen.
+ UP T           Allow upwards movement.
+
+*N7004
+GTYPE N7004 DEVICE
+
+ Linelength 80  maximum number of characters before a line break will occur.
+ PLength 23     Number of lines on the screen.
+ UP T           Allow upwards movement. The terminal must allow edit command
+                remotely, i.e. have MAJ's patches.
+
+*N7009
+GTYPE N7009 DEVICE
+
+ Linelength 80  maximum number of characters before a line break will occur.
+ PLength 23     Number of lines on the screen.
+ UP T           Allow upwards movement. The terminal must allow edit command
+                remotely, i.e. have MAJ's patches.
+ Seven          use pages 2 to 6 in rotation for each new screenful of output.
+                Also 7.
+
+*SIGMA
+GTYPE SIGMA DEVICE
+
+ Bold 11 15 7   Set the colour of Normal, Bold and Comment charcters.
+                The numbers range from 0 to 15. Odd numbers will be the
+                grayscale (15 is white), and are usually reset on entry.
+                (see Keeppallet)
+ Colour T       The terminal is a 5680 rather than a 5670.
+ Keeppallet F   Do not reset the pallet  before  the  next page.
+ RESet F        Do a hardware reset.
+
+*TEK
+GTYPE TEK DEVICE
+
+ Bold F         Indicate bold by underlining.
+ Linelength     maximum number of characters before a line break will occur.
+ Underline T    Indicate underlining by underlining.
+*device
+GTYPE DEVICE
+
+There are no special options for the device you have given.
+HELP GTYPE DEVICES gives a list of the devices that GTYPE supports.
+*help
+**
+GTYPE HELP
+
+For the CLI command interface   HELP GTYPE COMMAND
+For a general introduction try  HELP GTYPE INTRODUCTION
+For general commands try        HELP GTYPE GENERAL
+For commands for a device try   HELP GTYPE DEVICE <device name>
+For supported devices try       HELP GTYPE DEVICES
+
+

@@ -1,0 +1,20 @@
+*command
+**
+RSTATUS command
+Form:           RSTATUS
+Purpose:        To list the status of all stations on the Ring
+Author:         BJK
+Specification:
+        This program to print out the names of all ring stations currently
+    switched on, and how they reacted to a basic block sent to them.
+        A basic block is sent to every station with address from 1 to 254,
+    and the name printed for those which produce transmission return
+    codes other than 'ignored'.
+        [Station 0 is the error logger; sending to it will cause it to
+    log false errors.  Station 255 should not exist, as no-one would be
+    able to select it exclusively for reception].
+
+Example:
+        RSTATUS
+
+

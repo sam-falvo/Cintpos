@@ -1,0 +1,40 @@
+*command
+**
+Form:           IF  "NOT/S,WARN/S,ERROR/S,FAIL/S,EQ/K,,EXISTS/K,MCTYPE/K*
+                    *SYSTYPE/K,MCNAME/K"
+Purpose:        To allow conditionals within command sequences.
+Author:         ARA
+Specification:
+   If one or more of the specified conditions is satisfied, then the
+rest of the command line (after ';') is obeyed;  otherwise it is
+skipped and the return code preserved.
+        NOT            reverses the result
+        WARN           satisfied if previous return code >= 5
+        ERROR              "      "     "       "     "  >= 10
+        FAIL               "      "     "       "     "  >= 20
+        EQ a b         satisfied if a and b are textually
+                       identical (disregarding case).
+        EXISTS file    satisfied if the file exists (i.e. can
+                       be opened for input).
+        MCTYPE string  satisfied if string matches the machine type
+                       string held in the rootnode info vector.
+                       (e.g. PDP11, NOVA, LSI4, 68000)
+        SYSTYPE string satisfied if string matches the system type string.
+                       (e.g. S-TRIPOS, FM-TRIPOS)
+        MCNAME string  satisfied if string matches the machine name.
+                       (e.g. ALPHA, GOLD)
+    Note that the FAILAT command must be used in order to ensure that
+conditions that would otherwise abort a command sequence can be tested
+using WARN and FAIL.  Use HELP FAILAT COMMAND and HELP COMMAND RC for further
+information.
+
+Examples:
+        IF EXISTS file; TYPE file
+        IF NOT WARN; SKIP no-warning-label
+        IF ERROR; QUIT 10
+        IF MCTYPE 68000; 68000-OBJ.MYPROG
+        IF NOT EQ <arg$val> val; ECHO "<arg$val> not equal to 'val'"
+             {this last example is typical of a line in a C command
+              sequence}
+
+

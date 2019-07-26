@@ -1,0 +1,9 @@
+*procedure
+**
+WRITEOCT
+      To write out a number in octal format.
+      writeoct ( n, w )
+      The speccation of this  routine  is  exactly  that  of
+writehex ( q.v. ), except that octal format is used.
+
+

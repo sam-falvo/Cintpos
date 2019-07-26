@@ -1,0 +1,3302 @@
+Ak G:232 DEF com/sial-686.b[70] Ak=
+Ak G:232 LG com/sial-686.b[1344] TEST Ak=1 THEN .. ELSE ..
+Ak G:232 LG com/sial-686.b[1397] Ak
+Ak G:232 LG com/sial-686.b[1411] Bk:=Ak
+Ak G:232 LG com/sial-686.b[1435] Bk:=Ak
+Ak G:232 LG com/sial-686.b[1441] Bk:=Ak
+Ak G:232 LG com/sial-686.b[1447] Bk:=Ak
+Ak G:232 LG com/sial-686.b[227] IF Areg+Ak+Amem=0 DO ..
+Ak G:232 LG com/sial-686.b[233] IF Ak DO ..
+Ak G:232 LG com/sial-686.b[365] Bk:=Ak
+Ak G:232 LG com/sial-686.b[470] IF Areg+Ak+Amem=0 DO ..
+Ak G:232 LG com/sial-686.b[483] IF Ak DO ..
+Ak G:232 LG com/sial-686.b[533] IF Areg+Ak+Amem=0 DO ..
+Ak G:232 LG com/sial-686.b[546] IF Ak DO ..
+Ak G:232 SG com/sial-686.b[1065] Ak:=0
+Ak G:232 SG com/sial-686.b[1075] Ak:=0
+Ak G:232 SG com/sial-686.b[1083] Ak:=0
+Ak G:232 SG com/sial-686.b[1090] Ak:=0
+Ak G:232 SG com/sial-686.b[1101] Ak:=0
+Ak G:232 SG com/sial-686.b[1113] Ak:=0
+Ak G:232 SG com/sial-686.b[1125] Ak:=0
+Ak G:232 SG com/sial-686.b[1133] Ak:=0
+Ak G:232 SG com/sial-686.b[1143] Ak:=0
+Ak G:232 SG com/sial-686.b[1154] Ak:=0
+Ak G:232 SG com/sial-686.b[1165] Ak:=0
+Ak G:232 SG com/sial-686.b[1173] Ak:=0
+Ak G:232 SG com/sial-686.b[1182] Ak:=0
+Ak G:232 SG com/sial-686.b[1291] Ak:=0
+Ak G:232 SG com/sial-686.b[1304] Ak:=0
+Ak G:232 SG com/sial-686.b[1313] Ak:=0
+Ak G:232 SG com/sial-686.b[1321] Ak:=0
+Ak G:232 SG com/sial-686.b[1329] Ak:=0
+Ak G:232 SG com/sial-686.b[1338] Ak:=0
+Ak G:232 SG com/sial-686.b[1352] Ak:=0
+Ak G:232 SG com/sial-686.b[1366] Ak:=0
+Ak G:232 SG com/sial-686.b[1398] Ak:=Bk
+Ak G:232 SG com/sial-686.b[1425] Ak:=Bk
+Ak G:232 SG com/sial-686.b[1436] Ak:=0
+Ak G:232 SG com/sial-686.b[1442] Ak:=0
+Ak G:232 SG com/sial-686.b[1448] Ak:=1
+Ak G:232 SG com/sial-686.b[1455] Ak:=0
+Ak G:232 SG com/sial-686.b[1466] Ak:=0
+Ak G:232 SG com/sial-686.b[1474] Ak:=0
+Ak G:232 SG com/sial-686.b[1495] Ak:=0
+Ak G:232 SG com/sial-686.b[1509] Ak:=0
+Ak G:232 SG com/sial-686.b[1523] Ak:=0
+Ak G:232 SG com/sial-686.b[1537] Ak:=0
+Ak G:232 SG com/sial-686.b[1546] Ak:=0
+Ak G:232 SG com/sial-686.b[1555] Ak:=0
+Ak G:232 SG com/sial-686.b[1564] Ak:=0
+Ak G:232 SG com/sial-686.b[1676] Ak:=0
+Ak G:232 SG com/sial-686.b[1683] Ak:=0
+Ak G:232 SG com/sial-686.b[1690] Ak:=0
+Ak G:232 SG com/sial-686.b[1696] Ak:=0
+Ak G:232 SG com/sial-686.b[1712] Ak:=0
+Ak G:232 SG com/sial-686.b[1719] Ak:=0
+Ak G:232 SG com/sial-686.b[1733] Ak:=0
+Ak G:232 SG com/sial-686.b[1746] Ak:=0
+Ak G:232 SG com/sial-686.b[1749] Ak:=0
+Ak G:232 SG com/sial-686.b[1757] Ak:=0
+Ak G:232 SG com/sial-686.b[1764] Ak:=0
+Ak G:232 SG com/sial-686.b[1770] Ak:=0
+Ak G:232 SG com/sial-686.b[1821] Ak:=0
+Ak G:232 SG com/sial-686.b[1871] Ak:=0
+Ak G:232 SG com/sial-686.b[1930] Ak:=0
+Ak G:232 SG com/sial-686.b[1980] Ak:=0
+Ak G:232 SG com/sial-686.b[2030] Ak:=0
+Ak G:232 SG com/sial-686.b[2036] Ak:=0
+Ak G:232 SG com/sial-686.b[2050] Ak:=0
+Ak G:232 SG com/sial-686.b[2077] Ak:=0
+Ak G:232 SG com/sial-686.b[2103] Ak:=0
+Ak G:232 SG com/sial-686.b[2129] Ak:=0
+Ak G:232 SG com/sial-686.b[2165] Ak:=0
+Ak G:232 SG com/sial-686.b[2186] Ak:=0
+Ak G:232 SG com/sial-686.b[2201] Ak:=0
+Ak G:232 SG com/sial-686.b[2217] Ak:=0
+Ak G:232 SG com/sial-686.b[2232] Ak:=0
+Ak G:232 SG com/sial-686.b[2247] Ak:=0
+Ak G:232 SG com/sial-686.b[2262] Ak:=0
+Ak G:232 SG com/sial-686.b[2277] Ak:=0
+Ak G:232 SG com/sial-686.b[2300] Ak:=0
+Ak G:232 SG com/sial-686.b[2322] Ak:=0
+Ak G:232 SG com/sial-686.b[2344] Ak:=0
+Ak G:232 SG com/sial-686.b[2366] Ak:=0
+Ak G:232 SG com/sial-686.b[2388] Ak:=0
+Ak G:232 SG com/sial-686.b[2406] Ak:=0
+Ak G:232 SG com/sial-686.b[2419] Ak:=0
+Ak G:232 SG com/sial-686.b[2432] Ak:=0
+Ak G:232 SG com/sial-686.b[2445] Ak:=0
+Ak G:232 SG com/sial-686.b[2458] Ak:=0
+Ak G:232 SG com/sial-686.b[2481] Ak:=0
+Ak G:232 SG com/sial-686.b[2673] Ak:=0
+Ak G:232 SG com/sial-686.b[284] Ak:=0
+Ak G:232 SG com/sial-686.b[372] Ak:=Bk
+Ak G:232 SG com/sial-686.b[802] Ak:=0
+Ak G:232 SG com/sial-686.b[807] Ak:=0
+Ak G:232 SG com/sial-686.b[812] Ak:=0
+Ak G:232 SG com/sial-686.b[824] Ak:=0
+Ak G:232 SG com/sial-686.b[837] Ak:=0
+Ak G:232 SG com/sial-686.b[850] Ak:=0
+Ak G:232 SG com/sial-686.b[862] Ak:=0
+Ak G:232 SG com/sial-686.b[868] Ak:=0
+Ak G:232 SG com/sial-686.b[873] Ak:=1
+Ak G:232 SG com/sial-686.b[878] Ak:=1
+Ak G:232 SG com/sial-686.b[933] Ak:=0
+Ak G:232 SG com/sial-686.b[940] Ak:=0
+Ak G:232 SG com/sial-686.b[950] Ak:=0
+Ak G:232 SG com/sial-686.b[960] Ak:=0
+Ak G:232 SG com/sial-686.b[968] Ak:=0
+Ak G:232 SG com/sial-686.b[976] Ak:=0
+Ak G:232 SG com/sial-686.b[983] Ak:=0
+Ak G:232 SG com/sial-686.b[991] Ak:=0
+Ak G:232 SG com/sial-686.b[998] Ak:=0
+Amem G:233 DEF com/sial-686.b[71] Amem=
+Amem G:233 LG com/sial-686.b[1397] Amem
+Amem G:233 LG com/sial-686.b[1411] Bmem:=Amem
+Amem G:233 LG com/sial-686.b[1435] Bmem:=Amem
+Amem G:233 LG com/sial-686.b[1441] Bmem:=Amem
+Amem G:233 LG com/sial-686.b[1447] Bmem:=Amem
+Amem G:233 LG com/sial-686.b[227] IF Areg+Ak+Amem=0 DO ..
+Amem G:233 LG com/sial-686.b[234] IF Amem=1 DO ..
+Amem G:233 LG com/sial-686.b[235] IF Amem=2 DO ..
+Amem G:233 LG com/sial-686.b[236] IF Amem=3 DO ..
+Amem G:233 LG com/sial-686.b[237] IF Amem=4 DO ..
+Amem G:233 LG com/sial-686.b[365] Bmem:=Amem
+Amem G:233 LG com/sial-686.b[470] IF Areg+Ak+Amem=0 DO ..
+Amem G:233 LG com/sial-686.b[501] wropmem("fstps",Amem,Aval)
+Amem G:233 LG com/sial-686.b[508] IF Amem DO ..
+Amem G:233 LG com/sial-686.b[511]
+    writef("# Cal'%n, %n)*n","movl",Amem,Aval,Areg)
+Amem G:233 LG com/sial-686.b[512] wropmemreg("movl",Amem,Aval,Areg)
+Amem G:233 LG com/sial-686.b[533] IF Areg+Ak+Amem=0 DO ..
+Amem G:233 LG com/sial-686.b[564] wropmem("fstps",Amem,Aval)
+Amem G:233 LG com/sial-686.b[571] IF Amem DO ..
+Amem G:233 LG com/sial-686.b[574] wropmemreg(" movl ",Amem,Aval,Areg)
+Amem G:233 LG com/sial-686.b[888] wropmem("fstps",Amem,Aval)
+Amem G:233 LG com/sial-686.b[894] wropregmem("movl",Areg,Amem,Aval)
+Amem G:233 LG com/sial-686.b[904] wropmem("fstps",Amem,Aval)
+Amem G:233 LG com/sial-686.b[910] wropregmem("movl",Areg,Amem,Aval)
+Amem G:233 LG com/sial-686.b[920] wropmem("fstps",Amem,Aval)
+Amem G:233 LG com/sial-686.b[926] wropregmem("movl",Areg,Amem,Aval)
+Amem G:233 SG com/sial-686.b[1006] Amem:=0
+Amem G:233 SG com/sial-686.b[1017] Amem:=0
+Amem G:233 SG com/sial-686.b[1026] Amem:=0
+Amem G:233 SG com/sial-686.b[1035] Amem:=0
+Amem G:233 SG com/sial-686.b[1044] Amem:=0
+Amem G:233 SG com/sial-686.b[1053] Amem:=0
+Amem G:233 SG com/sial-686.b[1065] Amem:=0
+Amem G:233 SG com/sial-686.b[1075] Amem:=0
+Amem G:233 SG com/sial-686.b[1083] Amem:=0
+Amem G:233 SG com/sial-686.b[1090] Amem:=0
+Amem G:233 SG com/sial-686.b[1101] Amem:=0
+Amem G:233 SG com/sial-686.b[1113] Amem:=0
+Amem G:233 SG com/sial-686.b[1125] Amem:=0
+Amem G:233 SG com/sial-686.b[1133] Amem:=0
+Amem G:233 SG com/sial-686.b[1143] Amem:=0
+Amem G:233 SG com/sial-686.b[1154] Amem:=0
+Amem G:233 SG com/sial-686.b[1165] Amem:=0
+Amem G:233 SG com/sial-686.b[1173] Amem:=0
+Amem G:233 SG com/sial-686.b[1182] Amem:=0
+Amem G:233 SG com/sial-686.b[1291] Amem:=0
+Amem G:233 SG com/sial-686.b[1304] Amem:=0
+Amem G:233 SG com/sial-686.b[1313] Amem:=0
+Amem G:233 SG com/sial-686.b[1321] Amem:=0
+Amem G:233 SG com/sial-686.b[1329] Amem:=0
+Amem G:233 SG com/sial-686.b[1338] Amem:=0
+Amem G:233 SG com/sial-686.b[1352] Amem:=0
+Amem G:233 SG com/sial-686.b[1366] Amem:=0
+Amem G:233 SG com/sial-686.b[1374] Amem:=0
+Amem G:233 SG com/sial-686.b[1383] Amem:=0
+Amem G:233 SG com/sial-686.b[1398] Amem:=Bmem
+Amem G:233 SG com/sial-686.b[1425] Amem:=Bmem
+Amem G:233 SG com/sial-686.b[1436] Amem:=1
+Amem G:233 SG com/sial-686.b[1442] Amem:=2
+Amem G:233 SG com/sial-686.b[1448] Amem:=0
+Amem G:233 SG com/sial-686.b[1455] Amem:=0
+Amem G:233 SG com/sial-686.b[1466] Amem:=0
+Amem G:233 SG com/sial-686.b[1474] Amem:=0
+Amem G:233 SG com/sial-686.b[1495] Amem:=0
+Amem G:233 SG com/sial-686.b[1509] Amem:=1
+Amem G:233 SG com/sial-686.b[1523] Amem:=2
+Amem G:233 SG com/sial-686.b[1537] Amem:=4
+Amem G:233 SG com/sial-686.b[1546] Amem:=1
+Amem G:233 SG com/sial-686.b[1555] Amem:=2
+Amem G:233 SG com/sial-686.b[1564] Amem:=4
+Amem G:233 SG com/sial-686.b[1676] Amem:=0
+Amem G:233 SG com/sial-686.b[1683] Amem:=0
+Amem G:233 SG com/sial-686.b[1690] Amem:=0
+Amem G:233 SG com/sial-686.b[1696] Amem:=0
+Amem G:233 SG com/sial-686.b[1712] Amem:=0
+Amem G:233 SG com/sial-686.b[1719] Amem:=0
+Amem G:233 SG com/sial-686.b[1733] Amem:=0
+Amem G:233 SG com/sial-686.b[1746] Amem:=0
+Amem G:233 SG com/sial-686.b[1749] Amem:=0
+Amem G:233 SG com/sial-686.b[1757] Amem:=0
+Amem G:233 SG com/sial-686.b[1764] Amem:=0
+Amem G:233 SG com/sial-686.b[1770] Amem:=0
+Amem G:233 SG com/sial-686.b[1821] Amem:=0
+Amem G:233 SG com/sial-686.b[1871] Amem:=0
+Amem G:233 SG com/sial-686.b[1930] Amem:=0
+Amem G:233 SG com/sial-686.b[1980] Amem:=0
+Amem G:233 SG com/sial-686.b[2030] Amem:=0
+Amem G:233 SG com/sial-686.b[2036] Amem:=0
+Amem G:233 SG com/sial-686.b[2050] Amem:=0
+Amem G:233 SG com/sial-686.b[2077] Amem:=0
+Amem G:233 SG com/sial-686.b[2103] Amem:=0
+Amem G:233 SG com/sial-686.b[2129] Amem:=0
+Amem G:233 SG com/sial-686.b[2165] Amem:=0
+Amem G:233 SG com/sial-686.b[2186] Amem:=0
+Amem G:233 SG com/sial-686.b[2201] Amem:=0
+Amem G:233 SG com/sial-686.b[2217] Amem:=0
+Amem G:233 SG com/sial-686.b[2232] Amem:=0
+Amem G:233 SG com/sial-686.b[2247] Amem:=0
+Amem G:233 SG com/sial-686.b[2262] Amem:=0
+Amem G:233 SG com/sial-686.b[2277] Amem:=0
+Amem G:233 SG com/sial-686.b[2300] Amem:=0
+Amem G:233 SG com/sial-686.b[2322] Amem:=0
+Amem G:233 SG com/sial-686.b[2344] Amem:=0
+Amem G:233 SG com/sial-686.b[2366] Amem:=0
+Amem G:233 SG com/sial-686.b[2388] Amem:=0
+Amem G:233 SG com/sial-686.b[2406] Amem:=0
+Amem G:233 SG com/sial-686.b[2419] Amem:=0
+Amem G:233 SG com/sial-686.b[2432] Amem:=0
+Amem G:233 SG com/sial-686.b[2445] Amem:=0
+Amem G:233 SG com/sial-686.b[2458] Amem:=0
+Amem G:233 SG com/sial-686.b[2481] Amem:=0
+Amem G:233 SG com/sial-686.b[2673] Amem:=1
+Amem G:233 SG com/sial-686.b[284] Amem:=0
+Amem G:233 SG com/sial-686.b[372] Amem:=Bmem
+Amem G:233 SG com/sial-686.b[388] Amem:=1
+Amem G:233 SG com/sial-686.b[500] Amem:=2
+Amem G:233 SG com/sial-686.b[563] Amem:=2
+Amem G:233 SG com/sial-686.b[802] Amem:=1
+Amem G:233 SG com/sial-686.b[807] Amem:=2
+Amem G:233 SG com/sial-686.b[812] Amem:=3
+Amem G:233 SG com/sial-686.b[824] Amem:=0
+Amem G:233 SG com/sial-686.b[837] Amem:=0
+Amem G:233 SG com/sial-686.b[850] Amem:=0
+Amem G:233 SG com/sial-686.b[862] Amem:=0
+Amem G:233 SG com/sial-686.b[868] Amem:=4
+Amem G:233 SG com/sial-686.b[873] Amem:=0
+Amem G:233 SG com/sial-686.b[878] Amem:=0
+Amem G:233 SG com/sial-686.b[887] Amem:=1
+Amem G:233 SG com/sial-686.b[893] Amem:=1
+Amem G:233 SG com/sial-686.b[902] Amem:=2
+Amem G:233 SG com/sial-686.b[919] Amem:=2
+Amem G:233 SG com/sial-686.b[925] Amem:=3
+Amem G:233 SG com/sial-686.b[933] Amem:=0
+Amem G:233 SG com/sial-686.b[940] Amem:=0
+Amem G:233 SG com/sial-686.b[950] Amem:=0
+Amem G:233 SG com/sial-686.b[960] Amem:=0
+Amem G:233 SG com/sial-686.b[968] Amem:=0
+Amem G:233 SG com/sial-686.b[976] Amem:=0
+Amem G:233 SG com/sial-686.b[983] Amem:=0
+Amem G:233 SG com/sial-686.b[991] Amem:=0
+Amem G:233 SG com/sial-686.b[998] Amem:=0
+Areg G:231 DEF com/sial-686.b[65] Areg=
+Areg G:231 LG com/sial-686.b[1397] Areg
+Areg G:231 LG com/sial-686.b[1404] IF Areg=1 DO ..
+Areg G:231 LG com/sial-686.b[1435] Breg:=Areg
+Areg G:231 LG com/sial-686.b[1441] Breg:=Areg
+Areg G:231 LG com/sial-686.b[1447] Breg:=Areg
+Areg G:231 LG com/sial-686.b[1745] wropmem("filds",Areg,Aval)
+Areg G:231 LG com/sial-686.b[227] IF Areg+Ak+Amem=0 DO ..
+Areg G:231 LG com/sial-686.b[228] IF Areg=1 DO ..
+Areg G:231 LG com/sial-686.b[229] IF Areg=2 DO ..
+Areg G:231 LG com/sial-686.b[230] IF Areg=3 DO ..
+Areg G:231 LG com/sial-686.b[231] IF Areg=4 DO ..
+Areg G:231 LG com/sial-686.b[232] IF Areg=5 DO ..
+Areg G:231 LG com/sial-686.b[381] TEST Areg=2 THEN .. ELSE ..
+Areg G:231 LG com/sial-686.b[401] TEST Areg=1 THEN .. ELSE ..
+Areg G:231 LG com/sial-686.b[412] IF Areg=2 DO ..
+Areg G:231 LG com/sial-686.b[437] IF Areg=1|Areg=2|Areg=4 DO ..
+Areg G:231 LG com/sial-686.b[466] IF Areg=1 DO ..
+Areg G:231 LG com/sial-686.b[470] IF Areg+Ak+Amem=0 DO ..
+Areg G:231 LG com/sial-686.b[476] IF Areg=2 DO ..
+Areg G:231 LG com/sial-686.b[485] wropKreg("movl",Aval,Areg)
+Areg G:231 LG com/sial-686.b[489] IF Areg=5 DO ..
+Areg G:231 LG com/sial-686.b[498] IF Areg=4 DO ..
+Areg G:231 LG com/sial-686.b[511]
+    writef("# Cal'%n, %n)*n","movl",Amem,Aval,Areg)
+Areg G:231 LG com/sial-686.b[512] wropmemreg("movl",Amem,Aval,Areg)
+Areg G:231 LG com/sial-686.b[529] IF Areg=1 DO ..
+Areg G:231 LG com/sial-686.b[533] IF Areg+Ak+Amem=0 DO ..
+Areg G:231 LG com/sial-686.b[539] IF Areg=2 DO ..
+Areg G:231 LG com/sial-686.b[548] wropKreg("movl",Aval,Areg)
+Areg G:231 LG com/sial-686.b[552] IF Areg=5 DO ..
+Areg G:231 LG com/sial-686.b[561] IF Areg=4 DO ..
+Areg G:231 LG com/sial-686.b[574] wropmemreg(" movl ",Amem,Aval,Areg)
+Areg G:231 LG com/sial-686.b[616] UNLESS Areg=1 DO ..
+Areg G:231 LG com/sial-686.b[628] IF Areg=2 DO ..
+Areg G:231 LG com/sial-686.b[678] UNLESS Areg=1 DO ..
+Areg G:231 LG com/sial-686.b[690] IF Areg=2 DO ..
+Areg G:231 LG com/sial-686.b[886] IF Areg=4 DO ..
+Areg G:231 LG com/sial-686.b[894] wropregmem("movl",Areg,Amem,Aval)
+Areg G:231 LG com/sial-686.b[903] IF Areg=4 DO ..
+Areg G:231 LG com/sial-686.b[910] wropregmem("movl",Areg,Amem,Aval)
+Areg G:231 LG com/sial-686.b[918] IF Areg=4 DO ..
+Areg G:231 LG com/sial-686.b[926] wropregmem("movl",Areg,Amem,Aval)
+Areg G:231 LG com/sial-686.b[932] wropmemreg("addl",1,pval,Areg)
+Areg G:231 LG com/sial-686.b[939] wropmemreg("addl",2,gval,Areg)
+Areg G:231 LG com/sial-686.b[947] wropreg("incl",Areg)
+Areg G:231 LG com/sial-686.b[948] wropreg("decl",Areg)
+Areg G:231 LG com/sial-686.b[949] wropKreg("addl",kval,Areg)
+Areg G:231 LG com/sial-686.b[957] wropreg("decl",Areg)
+Areg G:231 LG com/sial-686.b[958] wropreg("dinl",Areg)
+Areg G:231 LG com/sial-686.b[959] wropKreg("subl",kval,Areg)
+Areg G:231 SG com/sial-686.b[1065] Areg:=1
+Areg G:231 SG com/sial-686.b[1075] Areg:=1
+Areg G:231 SG com/sial-686.b[1352] Areg:=1
+Areg G:231 SG com/sial-686.b[1366] Areg:=1
+Areg G:231 SG com/sial-686.b[1398] Areg:=Breg
+Areg G:231 SG com/sial-686.b[1407] Areg:=1
+Areg G:231 SG com/sial-686.b[1416] Areg:=2
+Areg G:231 SG com/sial-686.b[1425] Areg:=Breg
+Areg G:231 SG com/sial-686.b[1436] Areg:=0
+Areg G:231 SG com/sial-686.b[1442] Areg:=0
+Areg G:231 SG com/sial-686.b[1448] Areg:=0
+Areg G:231 SG com/sial-686.b[1455] Areg:=0
+Areg G:231 SG com/sial-686.b[1466] Areg:=0
+Areg G:231 SG com/sial-686.b[1474] Areg:=0
+Areg G:231 SG com/sial-686.b[1495] Areg:=1
+Areg G:231 SG com/sial-686.b[1509] Areg:=1
+Areg G:231 SG com/sial-686.b[1523] Areg:=1
+Areg G:231 SG com/sial-686.b[1537] Areg:=1
+Areg G:231 SG com/sial-686.b[1546] Areg:=1
+Areg G:231 SG com/sial-686.b[1555] Areg:=1
+Areg G:231 SG com/sial-686.b[1564] Areg:=1
+Areg G:231 SG com/sial-686.b[1676] Areg:=0
+Areg G:231 SG com/sial-686.b[1683] Areg:=0
+Areg G:231 SG com/sial-686.b[1690] Areg:=0
+Areg G:231 SG com/sial-686.b[1696] Areg:=0
+Areg G:231 SG com/sial-686.b[1712] Areg:=0
+Areg G:231 SG com/sial-686.b[1719] Areg:=0
+Areg G:231 SG com/sial-686.b[1733] Areg:=1
+Areg G:231 SG com/sial-686.b[1746] Areg:=4
+Areg G:231 SG com/sial-686.b[1749] Areg:=4
+Areg G:231 SG com/sial-686.b[1757] Areg:=4
+Areg G:231 SG com/sial-686.b[1764] Areg:=4
+Areg G:231 SG com/sial-686.b[1770] Areg:=4
+Areg G:231 SG com/sial-686.b[1821] Areg:=4
+Areg G:231 SG com/sial-686.b[1871] Areg:=4
+Areg G:231 SG com/sial-686.b[1930] Areg:=4
+Areg G:231 SG com/sial-686.b[1980] Areg:=4
+Areg G:231 SG com/sial-686.b[2030] Areg:=4
+Areg G:231 SG com/sial-686.b[2036] Areg:=4
+Areg G:231 SG com/sial-686.b[2050] Areg:=4
+Areg G:231 SG com/sial-686.b[2077] Areg:=4
+Areg G:231 SG com/sial-686.b[2103] Areg:=4
+Areg G:231 SG com/sial-686.b[2129] Areg:=4
+Areg G:231 SG com/sial-686.b[2165] Areg:=4
+Areg G:231 SG com/sial-686.b[2186] Areg:=4
+Areg G:231 SG com/sial-686.b[2201] Areg:=4
+Areg G:231 SG com/sial-686.b[2217] Areg:=4
+Areg G:231 SG com/sial-686.b[2232] Areg:=4
+Areg G:231 SG com/sial-686.b[2247] Areg:=4
+Areg G:231 SG com/sial-686.b[2262] Areg:=4
+Areg G:231 SG com/sial-686.b[2277] Areg:=4
+Areg G:231 SG com/sial-686.b[2300] Areg:=4
+Areg G:231 SG com/sial-686.b[2322] Areg:=4
+Areg G:231 SG com/sial-686.b[2344] Areg:=4
+Areg G:231 SG com/sial-686.b[2366] Areg:=4
+Areg G:231 SG com/sial-686.b[2388] Areg:=4
+Areg G:231 SG com/sial-686.b[2406] Areg:=4
+Areg G:231 SG com/sial-686.b[2419] Areg:=4
+Areg G:231 SG com/sial-686.b[2432] Areg:=4
+Areg G:231 SG com/sial-686.b[2445] Areg:=4
+Areg G:231 SG com/sial-686.b[2458] Areg:=4
+Areg G:231 SG com/sial-686.b[2481] Areg:=4
+Areg G:231 SG com/sial-686.b[2673] Areg:=1
+Areg G:231 SG com/sial-686.b[284] Areg:=0
+Areg G:231 SG com/sial-686.b[384] Areg:=1
+Areg G:231 SG com/sial-686.b[404] Areg:=2
+Areg G:231 SG com/sial-686.b[412] Areg:=0
+Areg G:231 SG com/sial-686.b[472] Areg:=1
+Areg G:231 SG com/sial-686.b[479] Areg:=1
+Areg G:231 SG com/sial-686.b[484] Areg:=1
+Areg G:231 SG com/sial-686.b[493] Areg:=4
+Areg G:231 SG com/sial-686.b[502] Areg:=0
+Areg G:231 SG com/sial-686.b[510] Areg:=1
+Areg G:231 SG com/sial-686.b[535] Areg:=1
+Areg G:231 SG com/sial-686.b[542] Areg:=1
+Areg G:231 SG com/sial-686.b[547] Areg:=1
+Areg G:231 SG com/sial-686.b[556] Areg:=4
+Areg G:231 SG com/sial-686.b[565] Areg:=0
+Areg G:231 SG com/sial-686.b[573] Areg:=1
+Areg G:231 SG com/sial-686.b[619] Areg:=5
+Areg G:231 SG com/sial-686.b[629] Areg:=5
+Areg G:231 SG com/sial-686.b[681] Areg:=5
+Areg G:231 SG com/sial-686.b[691] Areg:=5
+Areg G:231 SG com/sial-686.b[802] Areg:=0
+Areg G:231 SG com/sial-686.b[807] Areg:=0
+Areg G:231 SG com/sial-686.b[812] Areg:=0
+Areg G:231 SG com/sial-686.b[824] Areg:=0
+Areg G:231 SG com/sial-686.b[837] Areg:=1
+Areg G:231 SG com/sial-686.b[850] Areg:=1
+Areg G:231 SG com/sial-686.b[862] Areg:=1
+Areg G:231 SG com/sial-686.b[868] Areg:=0
+Areg G:231 SG com/sial-686.b[873] Areg:=0
+Areg G:231 SG com/sial-686.b[878] Areg:=0
+Areg G:231 SG com/sial-686.b[889] Areg:=0
+Areg G:231 SG com/sial-686.b[905] Areg:=0
+Areg G:231 SG com/sial-686.b[921] Areg:=0
+Areg G:231 SG com/sial-686.b[968] Areg:=1
+Areg G:231 SG com/sial-686.b[976] Areg:=1
+Ass_dev M:4 DEF libhdr.h[684] Ass_dev=4
+Ass_dir M:2 DEF libhdr.h[682] Ass_dir=2
+Ass_link M:0 DEF libhdr.h[680] Ass_link=0
+Ass_name M:5 DEF libhdr.h[685] Ass_name=5
+Ass_task M:1 DEF libhdr.h[681] Ass_task=1
+Ass_type M:3 DEF libhdr.h[683] Ass_type=3
+Aval G:234 DEF com/sial-686.b[75] Aval=
+Aval G:234 LG com/sial-686.b[1345] TEST Aval THEN .. ELSE ..
+Aval G:234 LG com/sial-686.b[1346] writef(" movz'),%%ebx*n",Aval)
+Aval G:234 LG com/sial-686.b[1397] Aval
+Aval G:234 LG com/sial-686.b[1435] Bval:=Aval
+Aval G:234 LG com/sial-686.b[1441] Bval:=Aval
+Aval G:234 LG com/sial-686.b[1447] Bval:=Aval
+Aval G:234 LG com/sial-686.b[1745] wropmem("filds",Areg,Aval)
+Aval G:234 LG com/sial-686.b[233] writef("K%n",Aval)
+Aval G:234 LG com/sial-686.b[234] writef("P%n",Aval)
+Aval G:234 LG com/sial-686.b[235] writef("G%n",Aval)
+Aval G:234 LG com/sial-686.b[236] writef("L%n",Aval)
+Aval G:234 LG com/sial-686.b[237] writef("M%n",Aval)
+Aval G:234 LG com/sial-686.b[365] Bval:=Aval
+Aval G:234 LG com/sial-686.b[485] wropKreg("movl",Aval,Areg)
+Aval G:234 LG com/sial-686.b[501] wropmem("fstps",Amem,Aval)
+Aval G:234 LG com/sial-686.b[511]
+    writef("# Cal'%n, %n)*n","movl",Amem,Aval,Areg)
+Aval G:234 LG com/sial-686.b[512] wropmemreg("movl",Amem,Aval,Areg)
+Aval G:234 LG com/sial-686.b[548] wropKreg("movl",Aval,Areg)
+Aval G:234 LG com/sial-686.b[564] wropmem("fstps",Amem,Aval)
+Aval G:234 LG com/sial-686.b[574] wropmemreg(" movl ",Amem,Aval,Areg)
+Aval G:234 LG com/sial-686.b[888] wropmem("fstps",Amem,Aval)
+Aval G:234 LG com/sial-686.b[894] wropregmem("movl",Areg,Amem,Aval)
+Aval G:234 LG com/sial-686.b[904] wropmem("fstps",Amem,Aval)
+Aval G:234 LG com/sial-686.b[910] wropregmem("movl",Areg,Amem,Aval)
+Aval G:234 LG com/sial-686.b[920] wropmem("fstps",Amem,Aval)
+Aval G:234 LG com/sial-686.b[926] wropregmem("movl",Areg,Amem,Aval)
+Aval G:234 SG com/sial-686.b[1398] Aval:=Bval
+Aval G:234 SG com/sial-686.b[1425] Aval:=Bval
+Aval G:234 SG com/sial-686.b[1436] Aval:=pval
+Aval G:234 SG com/sial-686.b[1442] Aval:=gval
+Aval G:234 SG com/sial-686.b[1448] Aval:=kval
+Aval G:234 SG com/sial-686.b[1509] Aval:=pval
+Aval G:234 SG com/sial-686.b[1523] Aval:=gval
+Aval G:234 SG com/sial-686.b[1537] Aval:=lval
+Aval G:234 SG com/sial-686.b[1546] Aval:=pval
+Aval G:234 SG com/sial-686.b[1555] Aval:=gval
+Aval G:234 SG com/sial-686.b[1564] Aval:=lval
+Aval G:234 SG com/sial-686.b[2673] Aval:=3
+Aval G:234 SG com/sial-686.b[284] Aval:=0
+Aval G:234 SG com/sial-686.b[372] Aval:=Bval
+Aval G:234 SG com/sial-686.b[500] Aval:=11
+Aval G:234 SG com/sial-686.b[563] Aval:=11
+Aval G:234 SG com/sial-686.b[802] Aval:=pval
+Aval G:234 SG com/sial-686.b[807] Aval:=gval
+Aval G:234 SG com/sial-686.b[812] Aval:=lval
+Aval G:234 SG com/sial-686.b[868] Aval:=mval
+Aval G:234 SG com/sial-686.b[873] Aval:=kval
+Aval G:234 SG com/sial-686.b[878] Aval:=Op12
+Aval G:234 SG com/sial-686.b[887] Aval:=pval
+Aval G:234 SG com/sial-686.b[893] Aval:=pval
+Aval G:234 SG com/sial-686.b[902] Aval:=gval
+Aval G:234 SG com/sial-686.b[919] Aval:=gval
+Aval G:234 SG com/sial-686.b[925] Aval:=lval
+B2Wsh M:2 DEF libhdr.h[18] B2Wsh=1+32/32
+B2Wsh M:2 MAN libhdr.h[226] bytesperword=1<<B2Wsh
+Bk G:236 DEF com/sial-686.b[82] Bk=
+Bk G:236 LG com/sial-686.b[1358] TEST Bk=1 THEN .. ELSE ..
+Bk G:236 LG com/sial-686.b[1398] Ak:=Bk
+Bk G:236 LG com/sial-686.b[1425] Ak:=Bk
+Bk G:236 LG com/sial-686.b[1725] IF Breg=1&Bk+Bmem=0 DO ..
+Bk G:236 LG com/sial-686.b[214] IF Breg+Bk+Bmem=0 DO ..
+Bk G:236 LG com/sial-686.b[220] IF Bk DO ..
+Bk G:236 LG com/sial-686.b[372] Ak:=Bk
+Bk G:236 LG com/sial-686.b[379] IF Breg=1&Bk+Bmem=0 DO ..
+Bk G:236 LG com/sial-686.b[399] IF Breg=2&Bk+Bmem=0 DO ..
+Bk G:236 LG com/sial-686.b[595] IF Breg+Bk+Bmem=0 DO ..
+Bk G:236 LG com/sial-686.b[608] IF Bk DO ..
+Bk G:236 LG com/sial-686.b[657] IF Breg+Bk+Bmem=0 DO ..
+Bk G:236 LG com/sial-686.b[670] IF Bk DO ..
+Bk G:236 LG com/sial-686.b[816] IF Breg=1&Bk+Bmem=0 DO ..
+Bk G:236 LG com/sial-686.b[829] IF Breg=1&Bk+Bmem=0 DO ..
+Bk G:236 LG com/sial-686.b[842] IF Breg=1&Bk+Bmem=0 DO ..
+Bk G:236 LG com/sial-686.b[855] IF Breg=1&Bk+Bmem=0 DO ..
+Bk G:236 SG com/sial-686.b[1066] Bk:=0
+Bk G:236 SG com/sial-686.b[1076] Bk:=0
+Bk G:236 SG com/sial-686.b[1292] Bk:=0
+Bk G:236 SG com/sial-686.b[1305] Bk:=0
+Bk G:236 SG com/sial-686.b[1399] Bk:=k
+Bk G:236 SG com/sial-686.b[1411] Bk:=Ak
+Bk G:236 SG com/sial-686.b[1435] Bk:=Ak
+Bk G:236 SG com/sial-686.b[1441] Bk:=Ak
+Bk G:236 SG com/sial-686.b[1447] Bk:=Ak
+Bk G:236 SG com/sial-686.b[1456] Bk:=0
+Bk G:236 SG com/sial-686.b[1467] Bk:=0
+Bk G:236 SG com/sial-686.b[1475] Bk:=0
+Bk G:236 SG com/sial-686.b[1496] Bk:=0
+Bk G:236 SG com/sial-686.b[1677] Bk:=0
+Bk G:236 SG com/sial-686.b[1684] Bk:=0
+Bk G:236 SG com/sial-686.b[1691] Bk:=0
+Bk G:236 SG com/sial-686.b[1697] Bk:=0
+Bk G:236 SG com/sial-686.b[1713] Bk:=0
+Bk G:236 SG com/sial-686.b[1720] Bk:=0
+Bk G:236 SG com/sial-686.b[2674] Bk:=0
+Bk G:236 SG com/sial-686.b[285] Bk:=0
+Bk G:236 SG com/sial-686.b[365] Bk:=Ak
+Bmem G:237 DEF com/sial-686.b[83] Bmem=
+Bmem G:237 LG com/sial-686.b[1398] Amem:=Bmem
+Bmem G:237 LG com/sial-686.b[1425] Amem:=Bmem
+Bmem G:237 LG com/sial-686.b[1725] IF Breg=1&Bk+Bmem=0 DO ..
+Bmem G:237 LG com/sial-686.b[214] IF Breg+Bk+Bmem=0 DO ..
+Bmem G:237 LG com/sial-686.b[221] IF Bmem=1 DO ..
+Bmem G:237 LG com/sial-686.b[222] IF Bmem=2 DO ..
+Bmem G:237 LG com/sial-686.b[223] IF Bmem=3 DO ..
+Bmem G:237 LG com/sial-686.b[224] IF Bmem=4 DO ..
+Bmem G:237 LG com/sial-686.b[372] Amem:=Bmem
+Bmem G:237 LG com/sial-686.b[379] IF Breg=1&Bk+Bmem=0 DO ..
+Bmem G:237 LG com/sial-686.b[399] IF Breg=2&Bk+Bmem=0 DO ..
+Bmem G:237 LG com/sial-686.b[595] IF Breg+Bk+Bmem=0 DO ..
+Bmem G:237 LG com/sial-686.b[626] wropmem("fstps",Bmem,Bval)
+Bmem G:237 LG com/sial-686.b[633] IF Bmem DO ..
+Bmem G:237 LG com/sial-686.b[636] wropmemreg(" movl ",Bmem,Bval,Breg)
+Bmem G:237 LG com/sial-686.b[657] IF Breg+Bk+Bmem=0 DO ..
+Bmem G:237 LG com/sial-686.b[688] wropmem("fstps",Bmem,Bval)
+Bmem G:237 LG com/sial-686.b[695] IF Bmem DO ..
+Bmem G:237 LG com/sial-686.b[698] wropmemreg(" movl ",Bmem,Bval,Breg)
+Bmem G:237 LG com/sial-686.b[816] IF Breg=1&Bk+Bmem=0 DO ..
+Bmem G:237 LG com/sial-686.b[829] IF Breg=1&Bk+Bmem=0 DO ..
+Bmem G:237 LG com/sial-686.b[842] IF Breg=1&Bk+Bmem=0 DO ..
+Bmem G:237 LG com/sial-686.b[855] IF Breg=1&Bk+Bmem=0 DO ..
+Bmem G:237 LG com/sial-686.b[883] IF Bmem=1&Bval=pval DO ..
+Bmem G:237 LG com/sial-686.b[899] IF Bmem=2&Bval=gval DO ..
+Bmem G:237 LG com/sial-686.b[915] IF Bmem=3&Bval=lval DO ..
+Bmem G:237 SG com/sial-686.b[1007] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1018] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1027] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1036] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1045] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1054] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1066] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1076] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1292] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1305] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1375] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1384] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1399] Bmem:=mem
+Bmem G:237 SG com/sial-686.b[1411] Bmem:=Amem
+Bmem G:237 SG com/sial-686.b[1435] Bmem:=Amem
+Bmem G:237 SG com/sial-686.b[1441] Bmem:=Amem
+Bmem G:237 SG com/sial-686.b[1447] Bmem:=Amem
+Bmem G:237 SG com/sial-686.b[1456] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1467] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1475] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1496] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1510] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1524] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1538] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1547] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1556] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1565] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1677] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1684] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1691] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1697] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1713] Bmem:=0
+Bmem G:237 SG com/sial-686.b[1720] Bmem:=0
+Bmem G:237 SG com/sial-686.b[2674] Bmem:=0
+Bmem G:237 SG com/sial-686.b[285] Bmem:=0
+Bmem G:237 SG com/sial-686.b[365] Bmem:=Amem
+Bmem G:237 SG com/sial-686.b[408] Bmem:=1
+Bmem G:237 SG com/sial-686.b[625] Bmem:=2
+Bmem G:237 SG com/sial-686.b[687] Bmem:=2
+Breg G:235 DEF com/sial-686.b[77] Breg=
+Breg G:235 LG com/sial-686.b[1398] Areg:=Breg
+Breg G:235 LG com/sial-686.b[1405] TEST Breg=2 THEN .. ELSE ..
+Breg G:235 LG com/sial-686.b[1425] Areg:=Breg
+Breg G:235 LG com/sial-686.b[1725] IF Breg=1&Bk+Bmem=0 DO ..
+Breg G:235 LG com/sial-686.b[1742] IF Breg=4 DO ..
+Breg G:235 LG com/sial-686.b[214] IF Breg+Bk+Bmem=0 DO ..
+Breg G:235 LG com/sial-686.b[215] IF Breg=1 DO ..
+Breg G:235 LG com/sial-686.b[216] IF Breg=2 DO ..
+Breg G:235 LG com/sial-686.b[217] IF Breg=3 DO ..
+Breg G:235 LG com/sial-686.b[218] IF Breg=4 DO ..
+Breg G:235 LG com/sial-686.b[219] IF Breg=5 DO ..
+Breg G:235 LG com/sial-686.b[379] IF Breg=1&Bk+Bmem=0 DO ..
+Breg G:235 LG com/sial-686.b[392] IF Breg=1 DO ..
+Breg G:235 LG com/sial-686.b[399] IF Breg=2&Bk+Bmem=0 DO ..
+Breg G:235 LG com/sial-686.b[439] TEST Breg=1 THEN .. ELSE ..
+Breg G:235 LG com/sial-686.b[444] IF Breg=1|Breg=2|Breg=4 DO ..
+Breg G:235 LG com/sial-686.b[446] TEST Breg=1 THEN .. ELSE ..
+Breg G:235 LG com/sial-686.b[451] TEST Breg=1 THEN .. ELSE ..
+Breg G:235 LG com/sial-686.b[456] TEST Breg=1 THEN .. ELSE ..
+Breg G:235 LG com/sial-686.b[491] UNLESS Breg=1 DO ..
+Breg G:235 LG com/sial-686.b[503] IF Breg=5 DO ..
+Breg G:235 LG com/sial-686.b[554] UNLESS Breg=1 DO ..
+Breg G:235 LG com/sial-686.b[566] IF Breg=5 DO ..
+Breg G:235 LG com/sial-686.b[591] IF Breg=1 DO ..
+Breg G:235 LG com/sial-686.b[595] IF Breg+Bk+Bmem=0 DO ..
+Breg G:235 LG com/sial-686.b[601] IF Breg=2 DO ..
+Breg G:235 LG com/sial-686.b[610] wropKreg("movl",Bval,Breg)
+Breg G:235 LG com/sial-686.b[614] IF Breg=5 DO ..
+Breg G:235 LG com/sial-686.b[623] IF Breg=4 DO ..
+Breg G:235 LG com/sial-686.b[636] wropmemreg(" movl ",Bmem,Bval,Breg)
+Breg G:235 LG com/sial-686.b[653] IF Breg=1 DO ..
+Breg G:235 LG com/sial-686.b[657] IF Breg+Bk+Bmem=0 DO ..
+Breg G:235 LG com/sial-686.b[663] IF Breg=2 DO ..
+Breg G:235 LG com/sial-686.b[672] wropKreg("movl",Bval,Breg)
+Breg G:235 LG com/sial-686.b[676] IF Breg=5 DO ..
+Breg G:235 LG com/sial-686.b[685] IF Breg=4 DO ..
+Breg G:235 LG com/sial-686.b[698] wropmemreg(" movl ",Bmem,Bval,Breg)
+Breg G:235 LG com/sial-686.b[816] IF Breg=1&Bk+Bmem=0 DO ..
+Breg G:235 LG com/sial-686.b[829] IF Breg=1&Bk+Bmem=0 DO ..
+Breg G:235 LG com/sial-686.b[842] IF Breg=1&Bk+Bmem=0 DO ..
+Breg G:235 LG com/sial-686.b[855] IF Breg=1&Bk+Bmem=0 DO ..
+Breg G:235 LG com/sial-686.b[890] IF Breg=5 DO ..
+Breg G:235 LG com/sial-686.b[906] IF Breg=5 DO ..
+Breg G:235 LG com/sial-686.b[922] IF Breg=5 DO ..
+Breg G:235 SG com/sial-686.b[1066] Breg:=0
+Breg G:235 SG com/sial-686.b[1076] Breg:=0
+Breg G:235 SG com/sial-686.b[1292] Breg:=0
+Breg G:235 SG com/sial-686.b[1305] Breg:=0
+Breg G:235 SG com/sial-686.b[1399] Breg:=reg
+Breg G:235 SG com/sial-686.b[1411] Breg:=2
+Breg G:235 SG com/sial-686.b[1435] Breg:=Areg
+Breg G:235 SG com/sial-686.b[1441] Breg:=Areg
+Breg G:235 SG com/sial-686.b[1447] Breg:=Areg
+Breg G:235 SG com/sial-686.b[1456] Breg:=0
+Breg G:235 SG com/sial-686.b[1467] Breg:=0
+Breg G:235 SG com/sial-686.b[1475] Breg:=0
+Breg G:235 SG com/sial-686.b[1496] Breg:=2
+Breg G:235 SG com/sial-686.b[1677] Breg:=0
+Breg G:235 SG com/sial-686.b[1684] Breg:=0
+Breg G:235 SG com/sial-686.b[1691] Breg:=0
+Breg G:235 SG com/sial-686.b[1697] Breg:=0
+Breg G:235 SG com/sial-686.b[1713] Breg:=0
+Breg G:235 SG com/sial-686.b[1720] Breg:=0
+Breg G:235 SG com/sial-686.b[1728] Breg:=2
+Breg G:235 SG com/sial-686.b[2674] Breg:=0
+Breg G:235 SG com/sial-686.b[285] Breg:=0
+Breg G:235 SG com/sial-686.b[384] Breg:=2
+Breg G:235 SG com/sial-686.b[392] Breg:=0
+Breg G:235 SG com/sial-686.b[404] Breg:=1
+Breg G:235 SG com/sial-686.b[494] Breg:=5
+Breg G:235 SG com/sial-686.b[504] Breg:=4
+Breg G:235 SG com/sial-686.b[557] Breg:=5
+Breg G:235 SG com/sial-686.b[567] Breg:=4
+Breg G:235 SG com/sial-686.b[597] Breg:=1
+Breg G:235 SG com/sial-686.b[604] Breg:=1
+Breg G:235 SG com/sial-686.b[609] Breg:=1
+Breg G:235 SG com/sial-686.b[618] Breg:=4
+Breg G:235 SG com/sial-686.b[627] Breg:=0
+Breg G:235 SG com/sial-686.b[635] Breg:=1
+Breg G:235 SG com/sial-686.b[659] Breg:=1
+Breg G:235 SG com/sial-686.b[666] Breg:=1
+Breg G:235 SG com/sial-686.b[671] Breg:=1
+Breg G:235 SG com/sial-686.b[680] Breg:=4
+Breg G:235 SG com/sial-686.b[689] Breg:=0
+Breg G:235 SG com/sial-686.b[697] Breg:=1
+Breg G:235 SG com/sial-686.b[819] Breg:=2
+Breg G:235 SG com/sial-686.b[832] Breg:=2
+Breg G:235 SG com/sial-686.b[845] Breg:=2
+Breg G:235 SG com/sial-686.b[858] Breg:=2
+Breg G:235 SG com/sial-686.b[890] Breg:=4
+Breg G:235 SG com/sial-686.b[906] Breg:=4
+Breg G:235 SG com/sial-686.b[922] Breg:=4
+Bval G:238 DEF com/sial-686.b[87] Bval=
+Bval G:238 LG com/sial-686.b[1359] TEST Bval THEN .. ELSE ..
+Bval G:238 LG com/sial-686.b[1360] writef(" movz'),%%ebx*n",Bval)
+Bval G:238 LG com/sial-686.b[1398] Aval:=Bval
+Bval G:238 LG com/sial-686.b[1425] Aval:=Bval
+Bval G:238 LG com/sial-686.b[220] writef("K%n",Bval)
+Bval G:238 LG com/sial-686.b[221] writef("P%n",Bval)
+Bval G:238 LG com/sial-686.b[222] writef("G%n",Bval)
+Bval G:238 LG com/sial-686.b[223] writef("L%n",Bval)
+Bval G:238 LG com/sial-686.b[224] writef("M%n",Bval)
+Bval G:238 LG com/sial-686.b[372] Aval:=Bval
+Bval G:238 LG com/sial-686.b[610] wropKreg("movl",Bval,Breg)
+Bval G:238 LG com/sial-686.b[626] wropmem("fstps",Bmem,Bval)
+Bval G:238 LG com/sial-686.b[636] wropmemreg(" movl ",Bmem,Bval,Breg)
+Bval G:238 LG com/sial-686.b[672] wropKreg("movl",Bval,Breg)
+Bval G:238 LG com/sial-686.b[688] wropmem("fstps",Bmem,Bval)
+Bval G:238 LG com/sial-686.b[698] wropmemreg(" movl ",Bmem,Bval,Breg)
+Bval G:238 LG com/sial-686.b[883] IF Bmem=1&Bval=pval DO ..
+Bval G:238 LG com/sial-686.b[899] IF Bmem=2&Bval=gval DO ..
+Bval G:238 LG com/sial-686.b[915] IF Bmem=3&Bval=lval DO ..
+Bval G:238 SG com/sial-686.b[1399] Bval:=val
+Bval G:238 SG com/sial-686.b[1435] Bval:=Aval
+Bval G:238 SG com/sial-686.b[1441] Bval:=Aval
+Bval G:238 SG com/sial-686.b[1447] Bval:=Aval
+Bval G:238 SG com/sial-686.b[285] Bval:=0
+Bval G:238 SG com/sial-686.b[365] Bval:=Aval
+Bval G:238 SG com/sial-686.b[625] Bval:=11
+Bval G:238 SG com/sial-686.b[687] Bval:=11
+CloseObj M:1 DEF libhdr.h[275] CloseObj=1
+Dcb_arg M:4 DEF libhdr.h[625] Dcb_arg=4
+Dcb_cvp M:6 DEF libhdr.h[627] Dcb_cvp=6
+Dcb_devid M:1 DEF libhdr.h[622] Dcb_devid=1
+Dcb_flag M:9 DEF libhdr.h[633] Dcb_flag=9
+Dcb_intson M:7 DEF libhdr.h[631] Dcb_intson=7
+Dcb_irq M:8 DEF libhdr.h[632] Dcb_irq=8
+Dcb_op M:3 DEF libhdr.h[624] Dcb_op=3
+Dcb_threadp M:5 DEF libhdr.h[626] Dcb_threadp=5
+Dcb_type M:0 DEF libhdr.h[621] Dcb_type=0
+Dcb_upb M:15 DEF libhdr.h[642] Dcb_upb=
+Dcb_var0 M:10 DEF libhdr.h[637] Dcb_var0=10
+Dcb_var1 M:11 DEF libhdr.h[638] Dcb_var1=11
+Dcb_var2 M:12 DEF libhdr.h[639] Dcb_var2=12
+Dcb_var3 M:13 DEF libhdr.h[640] Dcb_var3=13
+Dcb_var4 M:14 DEF libhdr.h[641] Dcb_var4=14
+Dcb_wkq M:2 DEF libhdr.h[623] Dcb_wkq=2
+Devc_create M:1 DEF libhdr.h[652] Devc_create=1
+Devc_destroy M:2 DEF libhdr.h[653] Devc_destroy=2
+Devc_setintson M:5 DEF libhdr.h[656] Devc_setintson=5
+Devc_start M:3 DEF libhdr.h[654] Devc_start=3
+Devc_stop M:4 DEF libhdr.h[655] Devc_stop=4
+Devt_clk M:1 DEF libhdr.h[645] Devt_clk=1
+Devt_fileop M:4 DEF libhdr.h[648] Devt_fileop=4
+Devt_tcpdev M:5 DEF libhdr.h[649] Devt_tcpdev=5
+Devt_ttyin M:2 DEF libhdr.h[646] Devt_ttyin=2
+Devt_ttyout M:3 DEF libhdr.h[647] Devt_ttyout=3
+GB2312 M:-2 DEF libhdr.h[554] GB2312=-2
+InitObj M:0 DEF libhdr.h[274] InitObj=0
+ON64 M:0 DEF libhdr.h[20] ON64=32=64
+State_dead M:12 DEF libhdr.h[671] State_dead=12
+State_hold M:2 DEF libhdr.h[668] State_hold=2
+State_int M:8 DEF libhdr.h[670] State_int=8
+State_pkt M:1 DEF libhdr.h[667] State_pkt=1
+State_wait M:4 DEF libhdr.h[669] State_wait=4
+Sys_buttons M:56 DEF libhdr.h[436] Sys_buttons=56
+Sys_callc M:59 DEF libhdr.h[439] Sys_callc=59
+Sys_callnative M:53 DEF libhdr.h[433] Sys_callnative=53
+Sys_close M:16 DEF libhdr.h[399] Sys_close=16
+Sys_cputime M:30 DEF libhdr.h[412] Sys_cputime=30
+Sys_datstamp M:44 DEF libhdr.h[424] Sys_datstamp=44
+Sys_delay M:57 DEF libhdr.h[437] Sys_delay=57
+Sys_deletefile M:17 DEF libhdr.h[400] Sys_deletefile=17
+Sys_devcom M:43 DEF libhdr.h[423] Sys_devcom=43
+Sys_dumpmem M:52 DEF libhdr.h[432] Sys_dumpmem=52
+Sys_ext M:68 DEF libhdr.h[450] Sys_ext=68
+Sys_filemodtime M:31 DEF libhdr.h[413] Sys_filemodtime=31
+Sys_filesize M:46 DEF libhdr.h[426] Sys_filesize=46
+Sys_flt M:63 DEF libhdr.h[444] Sys_flt=63
+Sys_freevec M:22 DEF libhdr.h[405] Sys_freevec=22
+Sys_getpid M:51 DEF libhdr.h[431] Sys_getpid=51
+Sys_getprefix M:33 DEF libhdr.h[415] Sys_getprefix=33
+Sys_getsysval M:48 DEF libhdr.h[428] Sys_getsysval=48
+Sys_gettrval M:62 DEF libhdr.h[443] Sys_gettrval=62
+Sys_getvec M:21 DEF libhdr.h[404] Sys_getvec=21
+Sys_gl M:67 DEF libhdr.h[449] Sys_gl=67
+Sys_globin M:24 DEF libhdr.h[407] Sys_globin=24
+Sys_graphics M:34 DEF libhdr.h[416] Sys_graphics=34
+Sys_inc M:55 DEF libhdr.h[435] Sys_inc=55
+Sys_incdcount M:65 DEF libhdr.h[446] Sys_incdcount=65
+Sys_interpret M:7 DEF libhdr.h[391] Sys_interpret=7
+Sys_intflag M:28 DEF libhdr.h[410] Sys_intflag=28
+Sys_joy M:69 DEF libhdr.h[451] Sys_joy=69
+Sys_loadseg M:23 DEF libhdr.h[406] Sys_loadseg=23
+Sys_lockirq M:41 DEF libhdr.h[421] Sys_lockirq=41
+Sys_muldiv M:26 DEF libhdr.h[409] Sys_muldiv=26
+Sys_openappend M:19 DEF libhdr.h[402] Sys_openappend=19
+Sys_openread M:14 DEF libhdr.h[397] Sys_openread=14
+Sys_openreadwrite M:47 DEF libhdr.h[427] Sys_openreadwrite=47
+Sys_openwrite M:15 DEF libhdr.h[398] Sys_openwrite=15
+Sys_platform M:54 DEF libhdr.h[434] Sys_platform=54
+Sys_pollsardch M:64 DEF libhdr.h[445] Sys_pollsardch=64
+Sys_putsysval M:49 DEF libhdr.h[429] Sys_putsysval=49
+Sys_quit M:0 DEF libhdr.h[384] Sys_quit=0
+Sys_read M:12 DEF libhdr.h[395] Sys_read=12
+Sys_renamefile M:18 DEF libhdr.h[401] Sys_renamefile=18
+Sys_rti M:1 DEF libhdr.h[385] Sys_rti=1
+Sys_sardch M:10 DEF libhdr.h[393] Sys_sardch=10
+Sys_saveregs M:2 DEF libhdr.h[386] Sys_saveregs=2
+Sys_sawrch M:11 DEF libhdr.h[394] Sys_sawrch=11
+Sys_sdl M:66 DEF libhdr.h[448] Sys_sdl=66
+Sys_seek M:38 DEF libhdr.h[418] Sys_seek=38
+Sys_setcount M:-1 DEF libhdr.h[383] Sys_setcount=-1
+Sys_setprefix M:32 DEF libhdr.h[414] Sys_setprefix=32
+Sys_setraster M:29 DEF libhdr.h[411] Sys_setraster=29
+Sys_setst M:3 DEF libhdr.h[387] Sys_setst=3
+Sys_settrcount M:61 DEF libhdr.h[442] Sys_settrcount=61
+Sys_shellcom M:50 DEF libhdr.h[430] Sys_shellcom=50
+Sys_sound M:58 DEF libhdr.h[438] Sys_sound=58
+Sys_tally M:6 DEF libhdr.h[390] Sys_tally=6
+Sys_tell M:39 DEF libhdr.h[419] Sys_tell=39
+Sys_tracing M:4 DEF libhdr.h[388] Sys_tracing=4
+Sys_trpush M:60 DEF libhdr.h[441] Sys_trpush=60
+Sys_unloadseg M:25 DEF libhdr.h[408] Sys_unloadseg=25
+Sys_unlockirq M:42 DEF libhdr.h[422] Sys_unlockirq=42
+Sys_waitirq M:40 DEF libhdr.h[420] Sys_waitirq=40
+Sys_watch M:5 DEF libhdr.h[389] Sys_watch=5
+Sys_write M:13 DEF libhdr.h[396] Sys_write=13
+Task_cli M:1 DEF libhdr.h[659] Task_cli=1
+Task_consolehandler M:3 DEF libhdr.h[661] Task_consolehandler=3
+Task_debug M:2 DEF libhdr.h[660] Task_debug=2
+Task_filehandler M:4 DEF libhdr.h[662] Task_filehandler=4
+Task_mbxhandler M:5 DEF libhdr.h[663] Task_mbxhandler=5
+Task_tcphandler M:6 DEF libhdr.h[664] Task_tcphandler=6
+UTF8 M:-1 DEF libhdr.h[553] UTF8=-1
+abort G:28 DEF libhdr.h[57] abort=28
+appendstream G:66 DEF libhdr.h[95] appendstream=66
+asmout G:201 DEF com/sial-686.b[46] asmout=
+asmout G:201 LG com/sial-686.b[274] IF asmout=0 DO ..
+asmout G:201 LG com/sial-686.b[281] selectoutput(asmout)
+asmout G:201 LG com/sial-686.b[297] UNLESS asmout=stdout DO ..
+asmout G:201 LG com/sial-686.b[297] endstream(asmout)
+asmout G:201 SG com/sial-686.b[255] asmout:=0
+asmout G:201 SG com/sial-686.b[272] asmout:=findoutput(argv!1)
+binrdch G:39 DEF libhdr.h[68] binrdch=39
+binwrch G:42 DEF libhdr.h[71] binwrch=42
+bitsperbyte M:8 DEF libhdr.h[227] bitsperbyte=8
+bitsperbyte M:8 MAN libhdr.h[228] bitsperword=bitsperbyte*bytesperword
+bitsperword M:32 DEF libhdr.h[228] bitsperword=bitsperbyte*bytesperword
+bitsperword M:32 MAN libhdr.h[230] minint=1<<bitsperword-1
+bootregs M:11 DEF libhdr.h[454] bootregs=11
+bytesperword M:4 DEF libhdr.h[226] bytesperword=1<<B2Wsh
+bytesperword M:4 MAN com/sial-686.b[245] LET cv=VEC 256/bytesperword
+bytesperword M:4 MAN libhdr.h[228] bitsperword=bitsperbyte*bytesperword
+bytesperword M:4 MAN libhdr.h[229] mcaddrinc=bytesperword
+bytesperword M:4 MAN libhdr.h[505]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+bytesperword M:4 MAN libhdr.h[618]
+    tcb_upb=tcb_namebase+15/bytesperword+1
+callco G:19 DEF libhdr.h[48] callco=19
+callseg G:107 DEF libhdr.h[137] callseg=107
+capitalch G:96 DEF libhdr.h[126] capitalch=96
+changeco G:6 DEF libhdr.h[34] changeco=6
+changepri G:155 DEF libhdr.h[192] changepri=155
+charv G:229 DEF com/sial-686.b[62] charv=
+charv G:229 LG com/sial-686.b[1675] FOR i=0 TO charv%0 DO..
+charv G:229 LG com/sial-686.b[1675] sectname%i:=charv%i
+charv G:229 LG com/sial-686.b[2608] charv%0:=n
+charv G:229 LG com/sial-686.b[2609] charv%i:=rdc()
+charv G:229 LG com/sial-686.b[2617] writef(" C%n",charv%i)
+charv G:229 LG com/sial-686.b[2621] writef(" .byte %n*n",charv%i)
+charv G:229 LG com/sial-686.b[2652] writef(" C%n",charv%i)
+charv G:229 LG com/sial-686.b[2660] writef("*n# En' to: %s*n",charv)
+charv G:229 LG com/sial-686.b[2662] writef(" C%n",charv%i)
+charv G:229 SG com/sial-686.b[250] charv:=cv
+cis G:12 DEF libhdr.h[41] cis=12
+clear_words G:115 DEF libhdr.h[145] clear_words=115
+cli_commanddir G:136 DEF libhdr.h[169] cli_commanddir=136
+cli_commandfile G:143 DEF libhdr.h[176] cli_commandfile=143
+cli_commandname G:138 DEF libhdr.h[171] cli_commandname=138
+cli_currentinput G:142 DEF libhdr.h[175] cli_currentinput=142
+cli_currentoutput G:146 DEF libhdr.h[180] cli_currentoutput=146
+cli_data G:135 DEF libhdr.h[168] cli_data=135
+cli_defaultstack G:147 DEF libhdr.h[181] cli_defaultstack=147
+cli_faillevel G:139 DEF libhdr.h[172] cli_faillevel=139
+cli_init G:133 DEF libhdr.h[166] cli_init=133
+cli_initialfaillevel M:10 DEF libhdr.h[562]
+    cli_initialfaillevel=return_hard
+cli_initialstack M:50000 DEF libhdr.h[561] cli_initialstack=50000
+cli_module G:149 DEF libhdr.h[183] cli_module=149
+cli_module_gn M:149 DEF libhdr.h[560] cli_module_gn=149
+cli_preloadlist G:145 DEF libhdr.h[179] cli_preloadlist=145
+cli_prompt G:140 DEF libhdr.h[173] cli_prompt=140
+cli_result2 G:134 DEF libhdr.h[167] cli_result2=134
+cli_returncode G:137 DEF libhdr.h[170] cli_returncode=137
+cli_standardinput G:141 DEF libhdr.h[174] cli_standardinput=141
+cli_standardoutput G:148 DEF libhdr.h[182] cli_standardoutput=148
+cli_status G:144 DEF libhdr.h[178] cli_status=144
+cli_tallyflag G:132 DEF libhdr.h[165] cli_tallyflag=132
+clibit_comcom M:4 DEF libhdr.h[567] clibit_comcom=4
+clibit_endcli M:256 DEF libhdr.h[573] clibit_endcli=256
+clibit_eofdel M:2 DEF libhdr.h[566] clibit_eofdel=2
+clibit_maincli M:8 DEF libhdr.h[568] clibit_maincli=8
+clibit_mbxcli M:64 DEF libhdr.h[571] clibit_mbxcli=64
+clibit_newcli M:16 DEF libhdr.h[569] clibit_newcli=16
+clibit_noprompt M:1 DEF libhdr.h[565] clibit_noprompt=1
+clibit_runcli M:32 DEF libhdr.h[570] clibit_runcli=32
+clibit_tcpcli M:128 DEF libhdr.h[572] clibit_tcpcli=128
+clihook G:4 DEF libhdr.h[32] clihook=4
+cliregs M:21 DEF libhdr.h[455] cliregs=21
+co_c M:5 DEF libhdr.h[272] co_c=
+co_fn M:3 DEF libhdr.h[270] co_fn=
+co_list M:2 DEF libhdr.h[269] co_list=
+co_parent M:1 DEF libhdr.h[268] co_parent=
+co_pptr M:0 DEF libhdr.h[267] co_pptr=0
+co_size M:4 DEF libhdr.h[271] co_size=
+codewrch G:126 DEF libhdr.h[156] codewrch=126
+colist G:8 DEF libhdr.h[36] colist=8
+compch G:97 DEF libhdr.h[127] compch=97
+compstring G:98 DEF libhdr.h[128] compstring=98
+consoletask G:171 DEF libhdr.h[205] consoletask=171
+copy_bytes G:116 DEF libhdr.h[146] copy_bytes=116
+copy_words G:114 DEF libhdr.h[144] copy_words=114
+copydir G:79 DEF libhdr.h[108] copydir=79
+copyobj G:75 DEF libhdr.h[104] copyobj=75
+copystring G:99 DEF libhdr.h[129] copystring=99
+cos G:13 DEF libhdr.h[42] cos=13
+cowait G:20 DEF libhdr.h[49] cowait=20
+createco G:17 DEF libhdr.h[46] createco=17
+createdev G:172 DEF libhdr.h[206] createdev=172
+createdir G:82 DEF libhdr.h[111] createdir=82
+createtask G:153 DEF libhdr.h[190] createtask=153
+currco G:7 DEF libhdr.h[35] currco=7
+current_language G:190 DEF libhdr.h[217] current_language=190
+currentdir G:14 DEF libhdr.h[43] currentdir=14
+cvconst F:85 LF com/sial-686.b[1704] cvconst()
+cvconst F:85 RT com/sial-686.b[2625] LET cvconst()BE..
+cventry F:88 LF com/sial-686.b[1737] cventry()
+cventry F:88 RT com/sial-686.b[2656] LET cventry()BE..
+cvf G:221 DEF com/sial-686.b[58] cvf=
+cvf G:221 LG com/sial-686.b[1002] cvf("ST")
+cvf G:221 LG com/sial-686.b[1049] cvf("XST")
+cvf G:221 LG com/sial-686.b[1080] cvf("NEG")
+cvf G:221 LG com/sial-686.b[1087] cvf("NOT")
+cvf G:221 LG com/sial-686.b[1094] cvf("ABS")
+cvf G:221 LG com/sial-686.b[1106] cvf("XDIV")
+cvf G:221 LG com/sial-686.b[1118] cvf("XMOD")
+cvf G:221 LG com/sial-686.b[1129] cvf("XSUB")
+cvf G:221 LG com/sial-686.b[1137] cvf("MUL")
+cvf G:221 LG com/sial-686.b[1147] cvf("DIV")
+cvf G:221 LG com/sial-686.b[1158] cvf("MOD")
+cvf G:221 LG com/sial-686.b[1169] cvf("ADD")
+cvf G:221 LG com/sial-686.b[1177] cvf("SUB")
+cvf G:221 LG com/sial-686.b[1186] cvf("EQ")
+cvf G:221 LG com/sial-686.b[1195] cvf("NE")
+cvf G:221 LG com/sial-686.b[1204] cvf("LS")
+cvf G:221 LG com/sial-686.b[1213] cvf("GR")
+cvf G:221 LG com/sial-686.b[1222] cvf("LE")
+cvf G:221 LG com/sial-686.b[1231] cvf("GE")
+cvf G:221 LG com/sial-686.b[1240] cvf("EQ0")
+cvf G:221 LG com/sial-686.b[1248] cvf("NE0")
+cvf G:221 LG com/sial-686.b[1256] cvf("LS0")
+cvf G:221 LG com/sial-686.b[1261] cvf("GR0")
+cvf G:221 LG com/sial-686.b[1269] cvf("LE0")
+cvf G:221 LG com/sial-686.b[1277] cvf("GE0")
+cvf G:221 LG com/sial-686.b[1283] cvf("LSH")
+cvf G:221 LG com/sial-686.b[1296] cvf("RSH")
+cvf G:221 LG com/sial-686.b[1309] cvf("AND")
+cvf G:221 LG com/sial-686.b[1317] cvf("OR")
+cvf G:221 LG com/sial-686.b[1325] cvf("XOR")
+cvf G:221 LG com/sial-686.b[1333] cvf("EQV")
+cvf G:221 LG com/sial-686.b[1342] cvf("GBYT")
+cvf G:221 LG com/sial-686.b[1356] cvf("XGBYT")
+cvf G:221 LG com/sial-686.b[1370] cvf("PBYT")
+cvf G:221 LG com/sial-686.b[1379] cvf("XPBYT")
+cvf G:221 LG com/sial-686.b[1396] cvf("XCH")
+cvf G:221 LG com/sial-686.b[1403] cvf("ATB")
+cvf G:221 LG com/sial-686.b[1419] cvf("ATC")
+cvf G:221 LG com/sial-686.b[1424] cvf("BTA")
+cvf G:221 LG com/sial-686.b[1429] cvf("BTC")
+cvf G:221 LG com/sial-686.b[1460] cvf("RTN")
+cvf G:221 LG com/sial-686.b[1471] cvf("GOTO")
+cvf G:221 LG com/sial-686.b[1479] cvf("RES")
+cvf G:221 LG com/sial-686.b[1489] cvf("LDRES")
+cvf G:221 LG com/sial-686.b[1655] cvf("BRK")
+cvf G:221 LG com/sial-686.b[1659] cvf("NOP")
+cvf G:221 LG com/sial-686.b[1662] cvf("CHGCO")
+cvf G:221 LG com/sial-686.b[1666] cvf("MDIV")
+cvf G:221 LG com/sial-686.b[1670] cvf("SYS")
+cvf G:221 LG com/sial-686.b[1681] cvf("MODSTART")
+cvf G:221 LG com/sial-686.b[1688] cvf("MODEND")
+cvf G:221 LG com/sial-686.b[1740] cvf("FLOAT")
+cvf G:221 LG com/sial-686.b[1754] cvf("FIX")
+cvf G:221 LG com/sial-686.b[1762] cvf("FABS")
+cvf G:221 LG com/sial-686.b[1769] cvf("FMUL")
+cvf G:221 LG com/sial-686.b[1820] cvf("FDIV")
+cvf G:221 LG com/sial-686.b[1870] cvf("FXDIV")
+cvf G:221 LG com/sial-686.b[1920] cvf("FMOD")
+cvf G:221 LG com/sial-686.b[1924] cvf("XFMOD")
+cvf G:221 LG com/sial-686.b[1929] cvf("FADD")
+cvf G:221 LG com/sial-686.b[1979] cvf("FSUB")
+cvf G:221 LG com/sial-686.b[2029] cvf("FXSUB")
+cvf G:221 LG com/sial-686.b[2035] cvf("FNEG")
+cvf G:221 LG com/sial-686.b[2047] cvf("FEQ")
+cvf G:221 LG com/sial-686.b[2074] cvf("FNE")
+cvf G:221 LG com/sial-686.b[2100] cvf("FLS")
+cvf G:221 LG com/sial-686.b[2126] cvf("FGR")
+cvf G:221 LG com/sial-686.b[2152] cvf("FLE")
+cvf G:221 LG com/sial-686.b[2171] cvf("FGE")
+cvf G:221 LG com/sial-686.b[2192] cvf("FEQ0")
+cvf G:221 LG com/sial-686.b[2207] cvf("FNE0")
+cvf G:221 LG com/sial-686.b[2223] cvf("FLS0")
+cvf G:221 LG com/sial-686.b[2238] cvf("FGR0")
+cvf G:221 LG com/sial-686.b[2253] cvf("FLE0")
+cvf G:221 LG com/sial-686.b[2268] cvf("FGE0")
+cvf G:221 LG com/sial-686.b[980] cvf("RV")
+cvf G:221 RT com/sial-686.b[2499] LET cvf(s)BE..
+cvffkk F:79 LF com/sial-686.b[2490] cvffkk("SELST")
+cvffkk F:79 LF com/sial-686.b[2493] cvffkk("XSELST")
+cvffkk F:79 RT com/sial-686.b[2535] LET cvffkk(s)BE..
+cvfg G:223 DEF com/sial-686.b[58] cvfg=
+cvfg G:223 LG com/sial-686.b[1440] cvfg("ATBLG")
+cvfg G:223 LG com/sial-686.b[1551] cvfg("IG")
+cvfg G:223 LG com/sial-686.b[805] cvfg("LG")
+cvfg G:223 LG com/sial-686.b[828] cvfg("LLG")
+cvfg G:223 LG com/sial-686.b[898] cvfg("SG")
+cvfg G:223 LG com/sial-686.b[937] cvfg("AG")
+cvfg G:223 RT com/sial-686.b[2508] LET cvfg(s)BE..
+cvfk G:224 DEF com/sial-686.b[58] cvfk=
+cvfk G:224 LG com/sial-686.b[1022] cvfk("STK")
+cvfk G:224 LG com/sial-686.b[1446] cvfk("ATBL")
+cvfk G:224 LG com/sial-686.b[872] cvfk("L")
+cvfk G:224 LG com/sial-686.b[877] cvfk("LM")
+cvfk G:224 LG com/sial-686.b[944] cvfk("A")
+cvfk G:224 LG com/sial-686.b[954] cvfk("S")
+cvfk G:224 LG com/sial-686.b[995] cvfk("RVK")
+cvfk G:224 RT com/sial-686.b[2520] LET cvfk(s)BE..
+cvfkg F:71 LF com/sial-686.b[1040] cvfkg("SKG")
+cvfkg F:71 LF com/sial-686.b[1514] cvfkg("IKG")
+cvfkg F:71 LF com/sial-686.b[972] cvfkg("LKG")
+cvfkg F:71 RT com/sial-686.b[2511] LET cvfkg(s)BE..
+cvfkk F:78 LF com/sial-686.b[2487] cvfkk("SELLD")
+cvfkk F:78 RT com/sial-686.b[2533] LET cvfkk(s)BE..
+cvfkl F:72 LF com/sial-686.b[1528] cvfkl("IKL")
+cvfkl F:72 RT com/sial-686.b[2514] LET cvfkl(s)BE..
+cvfkp F:69 LF com/sial-686.b[1031] cvfkp("STKP")
+cvfkp F:69 LF com/sial-686.b[1500] cvfkp("IKP")
+cvfkp F:69 LF com/sial-686.b[964] cvfkp("LKP")
+cvfkp F:69 RT com/sial-686.b[2505] LET cvfkp(s)BE..
+cvfl G:226 DEF com/sial-686.b[58] cvfl=
+cvfl G:226 LG com/sial-686.b[1453] cvfl("J")
+cvfl G:226 LG com/sial-686.b[1560] cvfl("IL")
+cvfl G:226 LG com/sial-686.b[1569] cvfl("JEQ")
+cvfl G:226 LG com/sial-686.b[1576] cvfl("JNE")
+cvfl G:226 LG com/sial-686.b[1583] cvfl("JLS")
+cvfl G:226 LG com/sial-686.b[1590] cvfl("JGR")
+cvfl G:226 LG com/sial-686.b[1597] cvfl("JLE")
+cvfl G:226 LG com/sial-686.b[1604] cvfl("JGE")
+cvfl G:226 LG com/sial-686.b[1611] cvfl("JEQ0")
+cvfl G:226 LG com/sial-686.b[1617] cvfl("JNE0")
+cvfl G:226 LG com/sial-686.b[1623] cvfl("JLS0")
+cvfl G:226 LG com/sial-686.b[1629] cvfl("JGR0")
+cvfl G:226 LG com/sial-686.b[1635] cvfl("JLE0")
+cvfl G:226 LG com/sial-686.b[1641] cvfl("JGE0")
+cvfl G:226 LG com/sial-686.b[1717] cvfl("LAB")
+cvfl G:226 LG com/sial-686.b[2283] cvfl("JFEQ")
+cvfl G:226 LG com/sial-686.b[2306] cvfl("JFNE")
+cvfl G:226 LG com/sial-686.b[2328] cvfl("JFLS")
+cvfl G:226 LG com/sial-686.b[2350] cvfl("JFGR")
+cvfl G:226 LG com/sial-686.b[2372] cvfl("JFLE")
+cvfl G:226 LG com/sial-686.b[2394] cvfl("JFGE")
+cvfl G:226 LG com/sial-686.b[2412] cvfl("JFEQ0")
+cvfl G:226 LG com/sial-686.b[2425] cvfl("JFNE0")
+cvfl G:226 LG com/sial-686.b[2438] cvfl("JFLS0")
+cvfl G:226 LG com/sial-686.b[2451] cvfl("JFGR0")
+cvfl G:226 LG com/sial-686.b[2464] cvfl("JFLE0")
+cvfl G:226 LG com/sial-686.b[2474] cvfl("JFGE0")
+cvfl G:226 LG com/sial-686.b[810] cvfl("LL")
+cvfl G:226 LG com/sial-686.b[841] cvfl("LLL")
+cvfl G:226 LG com/sial-686.b[854] cvfl("LF")
+cvfl G:226 LG com/sial-686.b[914] cvfl("SL")
+cvfl G:226 RT com/sial-686.b[2526] LET cvfl(s)BE..
+cvfm F:77 LF com/sial-686.b[1647] cvfm("JGE0M")
+cvfm F:77 LF com/sial-686.b[1710] cvfm("MLAB")
+cvfm F:77 LF com/sial-686.b[1724] cvfm("LSTR")
+cvfm F:77 LF com/sial-686.b[866] cvfm("LW")
+cvfm F:77 RT com/sial-686.b[2529] LET cvfm(s)BE..
+cvfp G:222 DEF com/sial-686.b[58] cvfp=
+cvfp G:222 LG com/sial-686.b[1011] cvfp("STP")
+cvfp G:222 LG com/sial-686.b[1058] cvfp("K")
+cvfp G:222 LG com/sial-686.b[1434] cvfp("ATBLP")
+cvfp G:222 LG com/sial-686.b[1542] cvfp("IP")
+cvfp G:222 LG com/sial-686.b[800] cvfp("LP")
+cvfp G:222 LG com/sial-686.b[815] cvfp("LLP")
+cvfp G:222 LG com/sial-686.b[882] cvfp("SP")
+cvfp G:222 LG com/sial-686.b[930] cvfp("AP")
+cvfp G:222 LG com/sial-686.b[987] cvfp("RVP")
+cvfp G:222 RT com/sial-686.b[2502] LET cvfp(s)BE..
+cvfpg F:73 LF com/sial-686.b[1070] cvfpg("KPG")
+cvfpg F:73 RT com/sial-686.b[2517] LET cvfpg(s)BE..
+cvfs F:87 LF com/sial-686.b[1674] cvfs("SECTION")
+cvfs F:87 RT com/sial-686.b[2649] LET cvfs(s)BE..
+cvfw G:225 DEF com/sial-686.b[58] cvfw=
+cvfw G:225 RT com/sial-686.b[2523] LET cvfw(s)BE..
+cvglobal F:82 LF com/sial-686.b[1695] cvglobal()
+cvglobal F:82 RT com/sial-686.b[2585] LET cvglobal()BE..
+cvstatic F:86 LF com/sial-686.b[1707] cvstatic()
+cvstatic F:86 RT com/sial-686.b[2636] LET cvstatic()BE..
+cvstring F:84 LF com/sial-686.b[1701] cvstring()
+cvstring F:84 RT com/sial-686.b[2613] LET cvstring()BE..
+cvswb F:81 LF com/sial-686.b[1389] cvswb()
+cvswb F:81 RT com/sial-686.b[2567] LET cvswb()BE..
+cvswl F:80 LF com/sial-686.b[1393] cvswl()
+cvswl F:80 RT com/sial-686.b[2543] LET cvswl()BE..
+dat_to_strings G:110 DEF libhdr.h[140] dat_to_strings=110
+datstamp G:109 DEF libhdr.h[139] datstamp=109
+datstring G:108 DEF libhdr.h[138] datstring=108
+deadcode M:#xDEADC0DE DEF libhdr.h[250] deadcode=#xDEADC0DE
+delay G:128 DEF libhdr.h[158] delay=128
+delayuntil G:129 DEF libhdr.h[159] delayuntil=129
+deleteco G:18 DEF libhdr.h[47] deleteco=18
+deletedev G:173 DEF libhdr.h[207] deletedev=173
+deletefile G:76 DEF libhdr.h[105] deletefile=76
+deleteself G:125 DEF libhdr.h[155] deleteself=125
+deletetask G:154 DEF libhdr.h[191] deletetask=154
+deplete G:43 DEF libhdr.h[72] deplete=43
+endread G:60 DEF libhdr.h[89] endread=60
+endread G:60 LG com/sial-686.b[296] endread()
+endstream G:62 DEF libhdr.h[91] endstream=62
+endstream G:62 LG com/sial-686.b[297] endstream(asmout)
+endstreamch M:-1 DEF libhdr.h[233] endstreamch=-1
+endstreamch M:-1 MAN com/sial-686.b[315] IF ch=endstreamch DO ..
+endtask G:162 DEF libhdr.h[199] endtask=162
+endwrite G:61 DEF libhdr.h[90] endwrite=61
+entryword M:57311 DEF libhdr.h[252] entryword=57311
+errflag G:241 DEF com/sial-686.b[92] errflag=
+errflag G:241 LG com/sial-686.b[519] IF errflag DO ..
+errflag G:241 LG com/sial-686.b[581] IF errflag DO ..
+errflag G:241 LG com/sial-686.b[643] IF errflag DO ..
+errflag G:241 LG com/sial-686.b[705] IF errflag DO ..
+errflag G:241 LG com/sial-686.b[732] IF errflag DO ..
+errflag G:241 LG com/sial-686.b[742] IF errflag DO ..
+errflag G:241 SG com/sial-686.b[253] errflag:=FALSE
+errflag G:241 SG com/sial-686.b[491] errflag:=TRUE
+errflag G:241 SG com/sial-686.b[515] errflag:=TRUE
+errflag G:241 SG com/sial-686.b[520] errflag:=FALSE
+errflag G:241 SG com/sial-686.b[554] errflag:=TRUE
+errflag G:241 SG com/sial-686.b[577] errflag:=TRUE
+errflag G:241 SG com/sial-686.b[582] errflag:=FALSE
+errflag G:241 SG com/sial-686.b[616] errflag:=TRUE
+errflag G:241 SG com/sial-686.b[639] errflag:=TRUE
+errflag G:241 SG com/sial-686.b[644] errflag:=FALSE
+errflag G:241 SG com/sial-686.b[678] errflag:=TRUE
+errflag G:241 SG com/sial-686.b[701] errflag:=TRUE
+errflag G:241 SG com/sial-686.b[706] errflag:=FALSE
+errflag G:241 SG com/sial-686.b[733] errflag:=FALSE
+errflag G:241 SG com/sial-686.b[743] errflag:=FALSE
+errflag G:241 SG com/sial-686.b[766] errflag:=TRUE
+errflag G:241 SG com/sial-686.b[778] errflag:=TRUE
+error F:40 LF com/sial-686.b[318] error("Bad i'ound %c*n",letter,ch)
+error F:40 LF com/sial-686.b[796] error("# Bad'L op %n*n",op)
+error F:40 RT com/sial-686.b[352] LET error(mess,a,b,c)BE..
+f_1 M:1 DEF sial.h[9] f_1=1
+f_2 M:2 DEF sial.h[10] f_2=
+f_a M:18 DEF sial.h[31] f_a=
+f_a M:18 MAN com/sial-686.b[944] CASE f_a:.. 
+f_abs M:35 DEF sial.h[51] f_abs=
+f_abs M:35 MAN com/sial-686.b[1094] CASE f_abs:.. 
+f_add M:41 DEF sial.h[58] f_add=
+f_add M:41 MAN com/sial-686.b[1169] CASE f_add:.. 
+f_ag M:17 DEF sial.h[30] f_ag=
+f_ag M:17 MAN com/sial-686.b[937] CASE f_ag:.. 
+f_and M:58 DEF sial.h[78] f_and=
+f_and M:58 MAN com/sial-686.b[1309] CASE f_and:.. 
+f_ap M:16 DEF sial.h[29] f_ap=
+f_ap M:16 MAN com/sial-686.b[930] CASE f_ap:.. 
+f_atb M:69 DEF sial.h[92] f_atb=
+f_atb M:69 MAN com/sial-686.b[1403] CASE f_atb:.. 
+f_atbl M:75 DEF sial.h[98] f_atbl=
+f_atbl M:75 MAN com/sial-686.b[1446] CASE f_atbl:.. 
+f_atblg M:74 DEF sial.h[97] f_atblg=
+f_atblg M:74 MAN com/sial-686.b[1440] CASE f_atblg:.. 
+f_atblp M:73 DEF sial.h[96] f_atblp=
+f_atblp M:73 MAN com/sial-686.b[1434] CASE f_atblp:.. 
+f_atc M:70 DEF sial.h[93] f_atc=
+f_atc M:70 MAN com/sial-686.b[1419] CASE f_atc:.. 
+f_brk M:98 DEF sial.h[126] f_brk=
+f_brk M:98 MAN com/sial-686.b[1655] CASE f_brk:.. 
+f_bta M:71 DEF sial.h[94] f_bta=
+f_bta M:71 MAN com/sial-686.b[1424] CASE f_bta:.. 
+f_btc M:72 DEF sial.h[95] f_btc=
+f_btc M:72 MAN com/sial-686.b[1429] CASE f_btc:.. 
+f_chgco M:100 DEF sial.h[128] f_chgco=
+f_chgco M:100 MAN com/sial-686.b[1662] CASE f_chgco:.. 
+f_const M:108 DEF sial.h[137] f_const=
+f_const M:108 MAN com/sial-686.b[1704] CASE f_const:.. 
+f_div M:37 DEF sial.h[54] f_div=
+f_div M:37 MAN com/sial-686.b[1147] CASE f_div:.. 
+f_entry M:113 DEF sial.h[142] f_entry=
+f_entry M:113 MAN com/sial-686.b[1737] CASE f_entry:.. 
+f_eq M:44 DEF sial.h[62] f_eq=
+f_eq M:44 MAN com/sial-686.b[1186] CASE f_eq:.. 
+f_eq0 M:50 DEF sial.h[69] f_eq0=
+f_eq0 M:50 MAN com/sial-686.b[1240] CASE f_eq0:.. 
+f_eqv M:61 DEF sial.h[81] f_eqv=
+f_eqv M:61 MAN com/sial-686.b[1333] CASE f_eqv:.. 
+f_fabs M:116 DEF sial.h[146] f_fabs=
+f_fabs M:116 MAN com/sial-686.b[1762] CASE f_fabs:.. 
+f_fadd M:122 DEF sial.h[152] f_fadd=
+f_fadd M:122 MAN com/sial-686.b[1929] CASE f_fadd:.. 
+f_fdiv M:118 DEF sial.h[148] f_fdiv=
+f_fdiv M:118 MAN com/sial-686.b[1820] CASE f_fdiv:.. 
+f_feq M:126 DEF sial.h[157] f_feq=
+f_feq M:126 MAN com/sial-686.b[2047] CASE f_feq:.. 
+f_feq0 M:132 DEF sial.h[164] f_feq0=
+f_feq0 M:132 MAN com/sial-686.b[2192] CASE f_feq0:.. 
+f_fge M:131 DEF sial.h[162] f_fge=
+f_fge M:131 MAN com/sial-686.b[2171] CASE f_fge:.. 
+f_fge0 M:137 DEF sial.h[169] f_fge0=
+f_fge0 M:137 MAN com/sial-686.b[2268] CASE f_fge0:.. 
+f_fgr M:129 DEF sial.h[160] f_fgr=
+f_fgr M:129 MAN com/sial-686.b[2126] CASE f_fgr:.. 
+f_fgr0 M:135 DEF sial.h[167] f_fgr0=
+f_fgr0 M:135 MAN com/sial-686.b[2238] CASE f_fgr0:.. 
+f_fix M:115 DEF sial.h[145] f_fix=
+f_fix M:115 MAN com/sial-686.b[1754] CASE f_fix:.. 
+f_fle M:130 DEF sial.h[161] f_fle=
+f_fle M:130 MAN com/sial-686.b[2152] CASE f_fle:.. 
+f_fle0 M:136 DEF sial.h[168] f_fle0=
+f_fle0 M:136 MAN com/sial-686.b[2253] CASE f_fle0:.. 
+f_float M:114 DEF sial.h[144] f_float=
+f_float M:114 MAN com/sial-686.b[1740] CASE f_float:.. 
+f_fls M:128 DEF sial.h[159] f_fls=
+f_fls M:128 MAN com/sial-686.b[2100] CASE f_fls:.. 
+f_fls0 M:134 DEF sial.h[166] f_fls0=
+f_fls0 M:134 MAN com/sial-686.b[2223] CASE f_fls0:.. 
+f_fmod M:120 DEF sial.h[150] f_fmod=
+f_fmod M:120 MAN com/sial-686.b[1920] CASE f_fmod:.. 
+f_fmul M:117 DEF sial.h[147] f_fmul=
+f_fmul M:117 MAN com/sial-686.b[1769] CASE f_fmul:.. 
+f_fne M:127 DEF sial.h[158] f_fne=
+f_fne M:127 MAN com/sial-686.b[2074] CASE f_fne:.. 
+f_fne0 M:133 DEF sial.h[165] f_fne0=
+f_fne0 M:133 MAN com/sial-686.b[2207] CASE f_fne0:.. 
+f_fneg M:125 DEF sial.h[155] f_fneg=
+f_fneg M:125 MAN com/sial-686.b[2035] CASE f_fneg:.. 
+f_fsub M:123 DEF sial.h[153] f_fsub=
+f_fsub M:123 MAN com/sial-686.b[1979] CASE f_fsub:.. 
+f_fxdiv M:119 DEF sial.h[149] f_fxdiv=
+f_fxdiv M:119 MAN com/sial-686.b[1870] CASE f_fxdiv:.. 
+f_fxmod M:121 DEF sial.h[151] f_fxmod=
+f_fxmod M:121 MAN com/sial-686.b[1924] CASE f_fxmod:.. 
+f_fxsub M:124 DEF sial.h[154] f_fxsub=
+f_fxsub M:124 MAN com/sial-686.b[2029] CASE f_fxsub:.. 
+f_gbyt M:62 DEF sial.h[83] f_gbyt=
+f_gbyt M:62 MAN com/sial-686.b[1342] CASE f_gbyt:.. 
+f_ge M:49 DEF sial.h[67] f_ge=
+f_ge M:49 MAN com/sial-686.b[1231] CASE f_ge:.. 
+f_ge0 M:55 DEF sial.h[74] f_ge0=
+f_ge0 M:55 MAN com/sial-686.b[1277] CASE f_ge0:.. 
+f_global M:106 DEF sial.h[135] f_global=
+f_global M:106 MAN com/sial-686.b[1695] CASE f_global:.. 
+f_goto M:78 DEF sial.h[102] f_goto=
+f_goto M:78 MAN com/sial-686.b[1471] CASE f_goto:.. 
+f_gr M:47 DEF sial.h[65] f_gr=
+f_gr M:47 MAN com/sial-686.b[1213] CASE f_gr:.. 
+f_gr0 M:53 DEF sial.h[72] f_gr0=
+f_gr0 M:53 MAN com/sial-686.b[1261] CASE f_gr0:.. 
+f_ig M:83 DEF sial.h[108] f_ig=
+f_ig M:83 MAN com/sial-686.b[1551] CASE f_ig:.. 
+f_ikg M:80 DEF sial.h[105] f_ikg=
+f_ikg M:80 MAN com/sial-686.b[1514] CASE f_ikg:.. 
+f_ikl M:81 DEF sial.h[106] f_ikl=
+f_ikl M:81 MAN com/sial-686.b[1528] CASE f_ikl:.. 
+f_ikp M:79 DEF sial.h[104] f_ikp=
+f_ikp M:79 MAN com/sial-686.b[1500] CASE f_ikp:.. 
+f_il M:84 DEF sial.h[109] f_il=
+f_il M:84 MAN com/sial-686.b[1560] CASE f_il:.. 
+f_ip M:82 DEF sial.h[107] f_ip=
+f_ip M:82 MAN com/sial-686.b[1542] CASE f_ip:.. 
+f_j M:76 DEF sial.h[100] f_j=
+f_j M:76 MAN com/sial-686.b[1453] CASE f_j:.. 
+f_jeq M:85 DEF sial.h[111] f_jeq=
+f_jeq M:85 MAN com/sial-686.b[1569] CASE f_jeq:.. 
+f_jeq0 M:91 DEF sial.h[118] f_jeq0=
+f_jeq0 M:91 MAN com/sial-686.b[1611] CASE f_jeq0:.. 
+f_jfeq M:138 DEF sial.h[171] f_jfeq=
+f_jfeq M:138 MAN com/sial-686.b[2283] CASE f_jfeq:.. 
+f_jfeq0 M:144 DEF sial.h[178] f_jfeq0=
+f_jfeq0 M:144 MAN com/sial-686.b[2412] CASE f_jfeq0:.. 
+f_jfge M:143 DEF sial.h[176] f_jfge=
+f_jfge M:143 MAN com/sial-686.b[2394] CASE f_jfge:.. 
+f_jfge0 M:149 DEF sial.h[183] f_jfge0=
+f_jfge0 M:149 MAN com/sial-686.b[2474] CASE f_jfge0:.. 
+f_jfgr M:141 DEF sial.h[174] f_jfgr=
+f_jfgr M:141 MAN com/sial-686.b[2350] CASE f_jfgr:.. 
+f_jfgr0 M:147 DEF sial.h[181] f_jfgr0=
+f_jfgr0 M:147 MAN com/sial-686.b[2451] CASE f_jfgr0:.. 
+f_jfle M:142 DEF sial.h[175] f_jfle=
+f_jfle M:142 MAN com/sial-686.b[2372] CASE f_jfle:.. 
+f_jfle0 M:148 DEF sial.h[182] f_jfle0=
+f_jfle0 M:148 MAN com/sial-686.b[2464] CASE f_jfle0:.. 
+f_jfls M:140 DEF sial.h[173] f_jfls=
+f_jfls M:140 MAN com/sial-686.b[2328] CASE f_jfls:.. 
+f_jfls0 M:146 DEF sial.h[180] f_jfls0=
+f_jfls0 M:146 MAN com/sial-686.b[2438] CASE f_jfls0:.. 
+f_jfne M:139 DEF sial.h[172] f_jfne=
+f_jfne M:139 MAN com/sial-686.b[2306] CASE f_jfne:.. 
+f_jfne0 M:145 DEF sial.h[179] f_jfne0=
+f_jfne0 M:145 MAN com/sial-686.b[2425] CASE f_jfne0:.. 
+f_jge M:90 DEF sial.h[116] f_jge=
+f_jge M:90 MAN com/sial-686.b[1604] CASE f_jge:.. 
+f_jge0 M:96 DEF sial.h[123] f_jge0=
+f_jge0 M:96 MAN com/sial-686.b[1641] CASE f_jge0:.. 
+f_jge0m M:97 DEF sial.h[124] f_jge0m=
+f_jge0m M:97 MAN com/sial-686.b[1647] CASE f_jge0m:.. 
+f_jgr M:88 DEF sial.h[114] f_jgr=
+f_jgr M:88 MAN com/sial-686.b[1590] CASE f_jgr:.. 
+f_jgr0 M:94 DEF sial.h[121] f_jgr0=
+f_jgr0 M:94 MAN com/sial-686.b[1629] CASE f_jgr0:.. 
+f_jle M:89 DEF sial.h[115] f_jle=
+f_jle M:89 MAN com/sial-686.b[1597] CASE f_jle:.. 
+f_jle0 M:95 DEF sial.h[122] f_jle0=
+f_jle0 M:95 MAN com/sial-686.b[1635] CASE f_jle0:.. 
+f_jls M:87 DEF sial.h[113] f_jls=
+f_jls M:87 MAN com/sial-686.b[1583] CASE f_jls:.. 
+f_jls0 M:93 DEF sial.h[120] f_jls0=
+f_jls0 M:93 MAN com/sial-686.b[1623] CASE f_jls0:.. 
+f_jne M:86 DEF sial.h[112] f_jne=
+f_jne M:86 MAN com/sial-686.b[1576] CASE f_jne:.. 
+f_jne0 M:92 DEF sial.h[119] f_jne0=
+f_jne0 M:92 MAN com/sial-686.b[1617] CASE f_jne0:.. 
+f_k M:31 DEF sial.h[46] f_k=
+f_k M:31 MAN com/sial-686.b[1058] CASE f_k:.. 
+f_kpg M:32 DEF sial.h[47] f_kpg=
+f_kpg M:32 MAN com/sial-686.b[1070] CASE f_kpg:.. 
+f_l M:11 DEF sial.h[22] f_l=
+f_l M:11 MAN com/sial-686.b[872] CASE f_l:.. 
+f_lab M:111 DEF sial.h[140] f_lab=
+f_lab M:111 MAN com/sial-686.b[1717] CASE f_lab:.. 
+f_lab M:111 MAN com/sial-686.b[2664] TEST op=f_lab THEN .. ELSE ..
+f_ldres M:151 DEF sial.h[186] f_ldres=
+f_ldres M:151 MAN com/sial-686.b[1489] CASE f_ldres:.. 
+f_le M:48 DEF sial.h[66] f_le=
+f_le M:48 MAN com/sial-686.b[1222] CASE f_le:.. 
+f_le0 M:54 DEF sial.h[73] f_le0=
+f_le0 M:54 MAN com/sial-686.b[1269] CASE f_le0:.. 
+f_lf M:9 DEF sial.h[19] f_lf=
+f_lf M:9 MAN com/sial-686.b[854] CASE f_lf:.. 
+f_lg M:4 DEF sial.h[13] f_lg=
+f_lg M:4 MAN com/sial-686.b[805] CASE f_lg:.. 
+f_lkg M:21 DEF sial.h[35] f_lkg=
+f_lkg M:21 MAN com/sial-686.b[972] CASE f_lkg:.. 
+f_lkp M:20 DEF sial.h[34] f_lkp=
+f_lkp M:20 MAN com/sial-686.b[964] CASE f_lkp:.. 
+f_ll M:5 DEF sial.h[14] f_ll=
+f_ll M:5 MAN com/sial-686.b[810] CASE f_ll:.. 
+f_llg M:7 DEF sial.h[17] f_llg=
+f_llg M:7 MAN com/sial-686.b[828] CASE f_llg:.. 
+f_lll M:8 DEF sial.h[18] f_lll=
+f_lll M:8 MAN com/sial-686.b[841] CASE f_lll:.. 
+f_llp M:6 DEF sial.h[16] f_llp=
+f_llp M:6 MAN com/sial-686.b[815] CASE f_llp:.. 
+f_lm M:12 DEF sial.h[23] f_lm=
+f_lm M:12 MAN com/sial-686.b[877] CASE f_lm:.. 
+f_lp M:3 DEF sial.h[12] f_lp=
+f_lp M:3 MAN com/sial-686.b[800] CASE f_lp:.. 
+f_ls M:46 DEF sial.h[64] f_ls=
+f_ls M:46 MAN com/sial-686.b[1204] CASE f_ls:.. 
+f_ls0 M:52 DEF sial.h[71] f_ls0=
+f_ls0 M:52 MAN com/sial-686.b[1256] CASE f_ls0:.. 
+f_lsh M:56 DEF sial.h[76] f_lsh=
+f_lsh M:56 MAN com/sial-686.b[1283] CASE f_lsh:.. 
+f_lstr M:112 DEF sial.h[141] f_lstr=
+f_lstr M:112 MAN com/sial-686.b[1724] CASE f_lstr:.. 
+f_lw M:10 DEF sial.h[20] f_lw=
+f_lw M:10 MAN com/sial-686.b[866] CASE f_lw:.. 
+f_mdiv M:101 DEF sial.h[129] f_mdiv=
+f_mdiv M:101 MAN com/sial-686.b[1666] CASE f_mdiv:.. 
+f_mlab M:110 DEF sial.h[139] f_mlab=
+f_mlab M:110 MAN com/sial-686.b[1710] CASE f_mlab:.. 
+f_mod M:39 DEF sial.h[56] f_mod=
+f_mod M:39 MAN com/sial-686.b[1158] CASE f_mod:.. 
+f_modend M:105 DEF sial.h[134] f_modend=
+f_modend M:105 MAN com/sial-686.b[1688] CASE f_modend:.. 
+f_modstart M:104 DEF sial.h[133] f_modstart=
+f_modstart M:104 MAN com/sial-686.b[1681] CASE f_modstart:.. 
+f_mul M:36 DEF sial.h[53] f_mul=
+f_mul M:36 MAN com/sial-686.b[1137] CASE f_mul:.. 
+f_ne M:45 DEF sial.h[63] f_ne=
+f_ne M:45 MAN com/sial-686.b[1195] CASE f_ne:.. 
+f_ne0 M:51 DEF sial.h[70] f_ne0=
+f_ne0 M:51 MAN com/sial-686.b[1248] CASE f_ne0:.. 
+f_neg M:33 DEF sial.h[49] f_neg=
+f_neg M:33 MAN com/sial-686.b[1080] CASE f_neg:.. 
+f_nop M:99 DEF sial.h[127] f_nop=
+f_nop M:99 MAN com/sial-686.b[1659] CASE f_nop:.. 
+f_not M:34 DEF sial.h[50] f_not=
+f_not M:34 MAN com/sial-686.b[1087] CASE f_not:.. 
+f_or M:59 DEF sial.h[79] f_or=
+f_or M:59 MAN com/sial-686.b[1317] CASE f_or:.. 
+f_pbyt M:64 DEF sial.h[85] f_pbyt=
+f_pbyt M:64 MAN com/sial-686.b[1370] CASE f_pbyt:.. 
+f_res M:150 DEF sial.h[185] f_res=
+f_res M:150 MAN com/sial-686.b[1479] CASE f_res:.. 
+f_rsh M:57 DEF sial.h[77] f_rsh=
+f_rsh M:57 MAN com/sial-686.b[1296] CASE f_rsh:.. 
+f_rtn M:77 DEF sial.h[101] f_rtn=
+f_rtn M:77 MAN com/sial-686.b[1460] CASE f_rtn:.. 
+f_rv M:22 DEF sial.h[36] f_rv=
+f_rv M:22 MAN com/sial-686.b[980] CASE f_rv:.. 
+f_rvk M:24 DEF sial.h[38] f_rvk=
+f_rvk M:24 MAN com/sial-686.b[995] CASE f_rvk:.. 
+f_rvp M:23 DEF sial.h[37] f_rvp=
+f_rvp M:23 MAN com/sial-686.b[987] CASE f_rvp:.. 
+f_s M:19 DEF sial.h[32] f_s=
+f_s M:19 MAN com/sial-686.b[954] CASE f_s:.. 
+f_section M:103 DEF sial.h[132] f_section=
+f_section M:103 MAN com/sial-686.b[1674] CASE f_section:.. 
+f_selld M:152 DEF sial.h[188] f_selld=
+f_selld M:152 MAN com/sial-686.b[2487] CASE f_selld:.. 
+f_selst M:153 DEF sial.h[189] f_selst=
+f_selst M:153 MAN com/sial-686.b[2490] CASE f_selst:.. 
+f_sg M:14 DEF sial.h[26] f_sg=
+f_sg M:14 MAN com/sial-686.b[898] CASE f_sg:.. 
+f_skg M:29 DEF sial.h[43] f_skg=
+f_skg M:29 MAN com/sial-686.b[1040] CASE f_skg:.. 
+f_sl M:15 DEF sial.h[27] f_sl=
+f_sl M:15 MAN com/sial-686.b[914] CASE f_sl:.. 
+f_sp M:13 DEF sial.h[25] f_sp=
+f_sp M:13 MAN com/sial-686.b[882] CASE f_sp:.. 
+f_st M:25 DEF sial.h[39] f_st=
+f_st M:25 MAN com/sial-686.b[1002] CASE f_st:.. 
+f_static M:109 DEF sial.h[138] f_static=
+f_static M:109 MAN com/sial-686.b[1707] CASE f_static:.. 
+f_stk M:27 DEF sial.h[41] f_stk=
+f_stk M:27 MAN com/sial-686.b[1022] CASE f_stk:.. 
+f_stkp M:28 DEF sial.h[42] f_stkp=
+f_stkp M:28 MAN com/sial-686.b[1031] CASE f_stkp:.. 
+f_stp M:26 DEF sial.h[40] f_stp=
+f_stp M:26 MAN com/sial-686.b[1011] CASE f_stp:.. 
+f_string M:107 DEF sial.h[136] f_string=
+f_string M:107 MAN com/sial-686.b[1701] CASE f_string:.. 
+f_sub M:42 DEF sial.h[59] f_sub=
+f_sub M:42 MAN com/sial-686.b[1177] CASE f_sub:.. 
+f_swb M:66 DEF sial.h[88] f_swb=
+f_swb M:66 MAN com/sial-686.b[1389] CASE f_swb:.. 
+f_swl M:67 DEF sial.h[89] f_swl=
+f_swl M:67 MAN com/sial-686.b[1393] CASE f_swl:.. 
+f_sys M:102 DEF sial.h[130] f_sys=
+f_sys M:102 MAN com/sial-686.b[1670] CASE f_sys:.. 
+f_xch M:68 DEF sial.h[91] f_xch=
+f_xch M:68 MAN com/sial-686.b[1396] CASE f_xch:.. 
+f_xdiv M:38 DEF sial.h[55] f_xdiv=
+f_xdiv M:38 MAN com/sial-686.b[1106] CASE f_xdiv:.. 
+f_xgbyt M:63 DEF sial.h[84] f_xgbyt=
+f_xgbyt M:63 MAN com/sial-686.b[1356] CASE f_xgbyt:.. 
+f_xmod M:40 DEF sial.h[57] f_xmod=
+f_xmod M:40 MAN com/sial-686.b[1118] CASE f_xmod:.. 
+f_xor M:60 DEF sial.h[80] f_xor=
+f_xor M:60 MAN com/sial-686.b[1325] CASE f_xor:.. 
+f_xpbyt M:65 DEF sial.h[86] f_xpbyt=
+f_xpbyt M:65 MAN com/sial-686.b[1379] CASE f_xpbyt:.. 
+f_xselst M:154 DEF sial.h[190] f_xselst=
+f_xselst M:154 MAN com/sial-686.b[2493] CASE f_xselst:.. 
+f_xst M:30 DEF sial.h[44] f_xst=
+f_xst M:30 MAN com/sial-686.b[1049] CASE f_xst:.. 
+f_xsub M:43 DEF sial.h[60] f_xsub=
+f_xsub M:43 MAN com/sial-686.b[1129] CASE f_xsub:.. 
+fault G:174 DEF libhdr.h[208] fault=174
+findappend G:130 DEF libhdr.h[160] findappend=130
+findarg G:104 DEF libhdr.h[134] findarg=104
+findinoutput G:50 DEF libhdr.h[79] findinoutput=50
+findinput G:48 DEF libhdr.h[77] findinput=48
+findinput G:48 LG com/sial-686.b[267] sialin:=findinput(argv!0)
+findoutput G:49 DEF libhdr.h[78] findoutput=49
+findoutput G:49 LG com/sial-686.b[272] asmout:=findoutput(argv!1)
+findstream G:52 DEF libhdr.h[81] findstream=52
+findupdate G:51 DEF libhdr.h[80] findupdate=51
+fl_F2N M:42 DEF libhdr.h[548] fl_F2N=
+fl_N2F M:41 DEF libhdr.h[547] fl_N2F=
+fl_abs M:5 DEF libhdr.h[518] fl_abs=
+fl_acos M:20 DEF libhdr.h[523] fl_acos=20
+fl_add M:9 DEF libhdr.h[520] fl_add=
+fl_asin M:21 DEF libhdr.h[524] fl_asin=
+fl_atan M:22 DEF libhdr.h[525] fl_atan=
+fl_atan2 M:23 DEF libhdr.h[526] fl_atan2=
+fl_avail M:0 DEF libhdr.h[516] fl_avail=0
+fl_ceil M:38 DEF libhdr.h[541] fl_ceil=
+fl_cos M:24 DEF libhdr.h[527] fl_cos=
+fl_cosh M:27 DEF libhdr.h[530] fl_cosh=
+fl_div M:7 DEF libhdr.h[519] fl_div=
+fl_eq M:13 DEF libhdr.h[521] fl_eq=
+fl_exp M:30 DEF libhdr.h[533] fl_exp=
+fl_fix M:4 DEF libhdr.h[518] fl_fix=
+fl_float M:3 DEF libhdr.h[518] fl_float=
+fl_floor M:39 DEF libhdr.h[542] fl_floor=
+fl_frexp M:31 DEF libhdr.h[534] fl_frexp=
+fl_ge M:18 DEF libhdr.h[521] fl_ge=
+fl_gr M:16 DEF libhdr.h[521] fl_gr=
+fl_ldexp M:32 DEF libhdr.h[535] fl_ldexp=
+fl_le M:17 DEF libhdr.h[521] fl_le=
+fl_log M:33 DEF libhdr.h[536] fl_log=
+fl_log10 M:34 DEF libhdr.h[537] fl_log10=
+fl_ls M:15 DEF libhdr.h[521] fl_ls=
+fl_mk M:1 DEF libhdr.h[517] fl_mk=
+fl_mod M:8 DEF libhdr.h[519] fl_mod=
+fl_modf M:40 DEF libhdr.h[543] fl_modf=
+fl_mul M:6 DEF libhdr.h[519] fl_mul=
+fl_ne M:14 DEF libhdr.h[521] fl_ne=
+fl_neg M:12 DEF libhdr.h[520] fl_neg=
+fl_pos M:11 DEF libhdr.h[520] fl_pos=
+fl_pow M:36 DEF libhdr.h[539] fl_pow=36
+fl_radius2 M:43 DEF libhdr.h[549] fl_radius2=
+fl_radius3 M:44 DEF libhdr.h[550] fl_radius3=
+fl_sin M:25 DEF libhdr.h[528] fl_sin=
+fl_sinh M:28 DEF libhdr.h[531] fl_sinh=
+fl_sqrt M:37 DEF libhdr.h[540] fl_sqrt=
+fl_sub M:10 DEF libhdr.h[520] fl_sub=
+fl_tan M:26 DEF libhdr.h[529] fl_tan=
+fl_tanh M:29 DEF libhdr.h[532] fl_tanh=
+fl_unmk M:2 DEF libhdr.h[517] fl_unmk=
+flag_a M:1 DEF libhdr.h[673] flag_a=1<<0
+flag_b M:2 DEF libhdr.h[674] flag_b=1<<1
+flag_c M:4 DEF libhdr.h[675] flag_c=1<<2
+flag_d M:8 DEF libhdr.h[676] flag_d=1<<3
+flag_e M:16 DEF libhdr.h[677] flag_e=1<<4
+freeobj G:78 DEF libhdr.h[107] freeobj=78
+freevec G:27 DEF libhdr.h[56] freevec=27
+freex F:43 LF com/sial-686.b[468] freex()
+freex F:43 LF com/sial-686.b[531] freex()
+freex F:43 LF com/sial-686.b[593] freex()
+freex F:43 LF com/sial-686.b[655] freex()
+freex F:43 RT com/sial-686.b[376] LET freex()BE..
+freey F:44 RT com/sial-686.b[396] LET freey()BE..
+g_colist M:8 DEF libhdr.h[258] g_colist=8
+g_currco M:7 DEF libhdr.h[257] g_currco=7
+g_extbase M:950 DEF libhdr.h[691] g_extbase=950
+g_glbase M:450 DEF libhdr.h[690] g_glbase=450
+g_globsize M:0 DEF libhdr.h[255] g_globsize=0
+g_grfbase M:400 DEF libhdr.h[687] g_grfbase=400
+g_keyboard M:20 DEF libhdr.h[262] g_keyboard=20
+g_memsize M:14 DEF libhdr.h[261] g_memsize=14
+g_rootnode M:9 DEF libhdr.h[259] g_rootnode=9
+g_screen M:21 DEF libhdr.h[263] g_screen=21
+g_sdlbase M:450 DEF libhdr.h[689] g_sdlbase=450
+g_sndbase M:400 DEF libhdr.h[688] g_sndbase=400
+g_sys M:3 DEF libhdr.h[256] g_sys=3
+genK2r G:250 DEF com/sial-686.b[111] genK2r=
+genK2reg G:248 DEF com/sial-686.b[104] genK2reg=
+genK2x F:45 RT com/sial-686.b[416] LET genK2x(k)BE..
+get_record G:71 DEF libhdr.h[100] get_record=71
+get_text G:93 DEF libhdr.h[123] get_text=93
+get_textblib G:93 DEF libhdr.h[122] get_textblib=93
+getlogname G:118 DEF libhdr.h[148] getlogname=118
+getremipaddr G:54 DEF libhdr.h[83] getremipaddr=54
+getvec G:25 DEF libhdr.h[54] getvec=25
+getword G:32 DEF libhdr.h[61] getword=32
+globin G:24 DEF libhdr.h[53] globin=24
+globsize G:0 DEF libhdr.h[28] globsize=0
+globword M:#x8F8F0000 DEF libhdr.h[248] globword=#x8F8F0000
+gval G:215 DEF com/sial-686.b[55] gval=
+gval G:215 LG com/sial-686.b[1042] writef(" movl'),%%eax*n",4*gval)
+gval G:215 LG com/sial-686.b[1072] writef(" movl'),%%eax*n",4*gval)
+gval G:215 LG com/sial-686.b[1442] Aval:=gval
+gval G:215 LG com/sial-686.b[1516] writef(" movl'),%%ebx*n",4*gval)
+gval G:215 LG com/sial-686.b[1522] writef(" movl'(%%esi)*n",4*gval)
+gval G:215 LG com/sial-686.b[1523] Aval:=gval
+gval G:215 LG com/sial-686.b[1553] writef(" addl'),%%ebx*n",4*gval)
+gval G:215 LG com/sial-686.b[1554] writef(" movl'(%%esi)*n",4*gval)
+gval G:215 LG com/sial-686.b[1555] Aval:=gval
+gval G:215 LG com/sial-686.b[345] RESULTIS gval
+gval G:215 LG com/sial-686.b[807] Aval:=gval
+gval G:215 LG com/sial-686.b[835] writef(" leal'),%%ebx*n",4*gval)
+gval G:215 LG com/sial-686.b[899] IF Bmem=2&Bval=gval DO ..
+gval G:215 LG com/sial-686.b[902] Aval:=gval
+gval G:215 LG com/sial-686.b[919] Aval:=gval
+gval G:215 LG com/sial-686.b[939] wropmemreg("addl",2,gval,Areg)
+gval G:215 LG com/sial-686.b[974] writef(" movl'),%%eax*n",4*gval)
+gval G:215 SG com/sial-686.b[345] gval:=rdcode(71)
+hold G:158 DEF libhdr.h[195] hold=158
+id_appendscb M:132 DEF libhdr.h[466] id_appendscb=132
+id_inoutscb M:131 DEF libhdr.h[465] id_inoutscb=131
+id_inscb M:129 DEF libhdr.h[463] id_inscb=129
+id_outscb M:130 DEF libhdr.h[464] id_outscb=130
+initco G:22 DEF libhdr.h[51] initco=22
+initio G:46 DEF libhdr.h[75] initio=46
+input G:58 DEF libhdr.h[87] input=58
+instrcount G:121 DEF libhdr.h[151] instrcount=121
+intflag G:119 DEF libhdr.h[149] intflag=119
+isrregs M:41 DEF libhdr.h[461] isrregs=41
+klibregs M:21 DEF libhdr.h[456] klibregs=21
+kval G:216 DEF com/sial-686.b[55] kval=
+kval G:216 LG com/sial-686.b[1025] writef(" movl'%ebx,4)*n",4*kval)
+kval G:216 LG com/sial-686.b[1034] writef(" movl'%eax,4)*n",4*kval)
+kval G:216 LG com/sial-686.b[1043] writef(" movl'%eax,4)*n",4*kval)
+kval G:216 LG com/sial-686.b[1448] Aval:=kval
+kval G:216 LG com/sial-686.b[1503] TEST kval=1 THEN .. ELSE ..
+kval G:216 LG com/sial-686.b[1505] TEST kval=-1 THEN .. ELSE ..
+kval G:216 LG com/sial-686.b[1507] writef(" addl'n,%%ebx*n",kval)
+kval G:216 LG com/sial-686.b[1517] TEST kval=1 THEN .. ELSE ..
+kval G:216 LG com/sial-686.b[1519] TEST kval=-1 THEN .. ELSE ..
+kval G:216 LG com/sial-686.b[1521] writef(" addl'n,%%ebx*n",kval)
+kval G:216 LG com/sial-686.b[1531] TEST kval=1 THEN .. ELSE ..
+kval G:216 LG com/sial-686.b[1533] TEST kval=-1 THEN .. ELSE ..
+kval G:216 LG com/sial-686.b[1535] writef(" addl'n,%%ebx*n",kval)
+kval G:216 LG com/sial-686.b[346] RESULTIS kval
+kval G:216 LG com/sial-686.b[873] Aval:=kval
+kval G:216 LG com/sial-686.b[878] Aval:=Op12
+kval G:216 LG com/sial-686.b[946] IF kval=0 DO ..
+kval G:216 LG com/sial-686.b[947] IF kval=1 DO ..
+kval G:216 LG com/sial-686.b[948] IF kval=-1 DO ..
+kval G:216 LG com/sial-686.b[949] wropKreg("addl",kval,Areg)
+kval G:216 LG com/sial-686.b[956] IF kval=0 DO ..
+kval G:216 LG com/sial-686.b[957] IF kval=1 DO ..
+kval G:216 LG com/sial-686.b[958] IF kval=-1 DO ..
+kval G:216 LG com/sial-686.b[959] wropKreg("subl",kval,Areg)
+kval G:216 LG com/sial-686.b[967] writef(" movl'),%%ebx*n",4*kval)
+kval G:216 LG com/sial-686.b[975] writef(" movl'),%%ebx*n",4*kval)
+kval G:216 LG com/sial-686.b[997] writef(" movl'),%%ebx*n",4*kval)
+kval G:216 SG com/sial-686.b[346] kval:=rdcode(75)
+labnumber G:230 DEF com/sial-686.b[63] labnumber=
+labnumber G:230 LG com/sial-686.b[304] labnumber:=labnumber+1
+labnumber G:230 LG com/sial-686.b[305] RESULTIS labnumber
+labnumber G:230 SG com/sial-686.b[251] labnumber:=0
+labnumber G:230 SG com/sial-686.b[304] labnumber:=labnumber+1
+level G:15 DEF libhdr.h[44] level=15
+loadseg G:105 DEF libhdr.h[135] loadseg=105
+locatedir G:80 DEF libhdr.h[109] locatedir=80
+locateobj G:81 DEF libhdr.h[110] locateobj=81
+longjump G:16 DEF libhdr.h[45] longjump=16
+lval G:218 DEF com/sial-686.b[55] lval=
+lval G:218 LG com/sial-686.b[1454] writef(" jmp L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1530]
+    writef(" movl'n,%%ebx*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1536]
+    writef(" movl'x,L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1537] Aval:=lval
+lval G:218 LG com/sial-686.b[1562]
+    writef(" addl'n,%%ebx*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1563]
+    writef(" movl'x,L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1564] Aval:=lval
+lval G:218 LG com/sial-686.b[1573] writef(" je L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1580] writef(" jne L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1587] writef(" jl L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1594] writef(" jg L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1601] writef(" jle L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1608] writef(" jge L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1614] writef(" je L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1620] writef(" jne L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1626] writef(" jl L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1632] writef(" jg L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1638] writef(" jle L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1644] writef(" jge L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[1718] writef("*nL%c%n:*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2297] writef(" je L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2320] writef(" jne L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2342] writef(" jb L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2364] writef(" ja L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2386] writef(" jbe L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2404] writef(" jae L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2417] writef(" je L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2430] writef(" jne L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2443] writef(" ja L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2456] writef(" jb L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2469] writef(" jae L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2479] writef(" jbe L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[2560]
+    writef(" .long L%c%n*n",modletter,lval)
+lval G:218 LG com/sial-686.b[348] RESULTIS lval
+lval G:218 LG com/sial-686.b[812] Aval:=lval
+lval G:218 LG com/sial-686.b[848]
+    writef(" leal'n,%%ebx*n",modletter,lval)
+lval G:218 LG com/sial-686.b[861]
+    writef(" leal'n,%%ebx*n",modletter,lval)
+lval G:218 LG com/sial-686.b[915] IF Bmem=3&Bval=lval DO ..
+lval G:218 LG com/sial-686.b[925] Aval:=lval
+lval G:218 SG com/sial-686.b[348] lval:=rdcode(76)
+maxint M:#x7FFFFFFF DEF libhdr.h[231] maxint=minint-1
+mcaddrinc M:4 DEF libhdr.h[229] mcaddrinc=bytesperword
+memoryfree G:131 DEF libhdr.h[161] memoryfree=131
+minint M:#x80000000 DEF libhdr.h[230] minint=1<<bitsperword-1
+minint M:#x80000000 MAN libhdr.h[231] maxint=minint-1
+modletter G:228 DEF com/sial-686.b[61] modletter=
+modletter G:228 LG com/sial-686.b[1454]
+    writef(" jmp L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1530]
+    writef(" movl'n,%%ebx*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1536]
+    writef(" movl'x,L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1562]
+    writef(" addl'n,%%ebx*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1563]
+    writef(" movl'x,L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1573]
+    writef(" je L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1580]
+    writef(" jne L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1587]
+    writef(" jl L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1594]
+    writef(" jg L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1601]
+    writef(" jle L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1608]
+    writef(" jge L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1614]
+    writef(" je L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1620]
+    writef(" jne L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1626]
+    writef(" jl L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1632]
+    writef(" jg L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1638]
+    writef(" jle L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1644]
+    writef(" jge L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1650]
+    writef(" jge M%c%n*n",modletter,mval)
+modletter G:228 LG com/sial-686.b[1689] modletter:=modletter+1
+modletter G:228 LG com/sial-686.b[1711]
+    writef("M%c%n:*n",modletter,mval)
+modletter G:228 LG com/sial-686.b[1718]
+    writef("*nL%c%n:*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[1731]
+    writef(" leal'n,%%ebx*n",modletter,mval)
+modletter G:228 LG com/sial-686.b[2297]
+    writef(" je L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2320]
+    writef(" jne L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2342]
+    writef(" jb L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2364]
+    writef(" ja L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2386]
+    writef(" jbe L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2404]
+    writef(" jae L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2417]
+    writef(" je L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2430]
+    writef(" jne L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2443]
+    writef(" ja L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2456]
+    writef(" jb L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2469]
+    writef(" jae L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2479]
+    writef(" jbe L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2551]
+    writef(" jl L%c%n*n",modletter,l)
+modletter G:228 LG com/sial-686.b[2553]
+    writef(" jge L%c%n*n",modletter,l)
+modletter G:228 LG com/sial-686.b[2560]
+    writef(" .long L%c%n*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[2578]
+    writef(" je L%c%n*n",modletter,l)
+modletter G:228 LG com/sial-686.b[2580]
+    writef(" jmp L%c%n*n",modletter,l)
+modletter G:228 LG com/sial-686.b[2600]
+    writef(" movl'(%%eax)*n",modletter,n,4*g)
+modletter G:228 LG com/sial-686.b[2620] writef("M%c%n:*n",modletter,lab)
+modletter G:228 LG com/sial-686.b[2631] writef("M%c%n:*n",modletter,lab)
+modletter G:228 LG com/sial-686.b[2642] writef("L%c%n:*n",modletter,lab)
+modletter G:228 LG com/sial-686.b[2666] writef("L%c%n:*n",modletter,lab)
+modletter G:228 LG com/sial-686.b[785] writef("L%c%n",modletter,val)
+modletter G:228 LG com/sial-686.b[787] writef("M%c%n",modletter,val)
+modletter G:228 LG com/sial-686.b[848]
+    writef(" leal'n,%%ebx*n",modletter,lval)
+modletter G:228 LG com/sial-686.b[861]
+    writef(" leal'n,%%ebx*n",modletter,lval)
+modletter G:228 SG com/sial-686.b[1689] modletter:=modletter+1
+modletter G:228 SG com/sial-686.b[249] modletter:=65
+moveA2B F:41 RT com/sial-686.b[362] LET moveA2B()BE..
+moveA2anyreg F:47 LF com/sial-686.b[885] moveA2anyreg()
+moveA2anyreg F:47 LF com/sial-686.b[901] moveA2anyreg()
+moveA2anyreg F:47 LF com/sial-686.b[917] moveA2anyreg()
+moveA2anyreg F:47 RT com/sial-686.b[436] LET moveA2anyreg()BE..
+moveA2mem F:55 LF com/sial-686.b[1744] moveA2mem()
+moveA2mem F:55 LF com/sial-686.b[1827] moveA2mem()
+moveA2mem F:55 LF com/sial-686.b[1845] moveA2mem()
+moveA2mem F:55 LF com/sial-686.b[1864] moveA2mem()
+moveA2mem F:55 LF com/sial-686.b[1877] moveA2mem()
+moveA2mem F:55 LF com/sial-686.b[1895] moveA2mem()
+moveA2mem F:55 LF com/sial-686.b[1914] moveA2mem()
+moveA2mem F:55 LF com/sial-686.b[1936] moveA2mem()
+moveA2mem F:55 LF com/sial-686.b[1954] moveA2mem()
+moveA2mem F:55 LF com/sial-686.b[1973] moveA2mem()
+moveA2mem F:55 LF com/sial-686.b[1986] moveA2mem()
+moveA2mem F:55 LF com/sial-686.b[2004] moveA2mem()
+moveA2mem F:55 LF com/sial-686.b[2023] moveA2mem()
+moveA2mem F:55 RT com/sial-686.b[709] LET moveA2mem(mem,val)BE..
+moveA2x G:242 DEF com/sial-686.b[96] moveA2x=
+moveA2x G:242 LG com/sial-686.b[1004] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1013] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1024] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1032] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1041] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1051] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1060] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1071] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1081] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1088] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1095] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1108] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1120] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1131] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1139] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1149] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1160] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1171] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1179] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1188] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1197] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1206] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1215] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1224] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1233] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1241] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1249] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1257] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1262] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1270] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1278] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1285] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1298] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1311] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1319] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1327] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1335] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1349] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1357] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1372] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1381] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1420] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1462] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1472] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1485] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1501] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1515] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1529] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1543] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1552] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1561] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1571] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1578] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1585] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1592] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1599] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1606] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1612] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1618] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1624] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1630] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1636] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1642] moveA2x()
+moveA2x G:242 LG com/sial-686.b[1648] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2049] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2076] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2102] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2128] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2154] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2173] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2285] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2308] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2330] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2352] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2374] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2396] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2549] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2572] moveA2x()
+moveA2x G:242 LG com/sial-686.b[2588] moveA2x()
+moveA2x G:242 LG com/sial-686.b[439] moveA2x()
+moveA2x G:242 LG com/sial-686.b[446] moveA2x()
+moveA2x G:242 LG com/sial-686.b[451] moveA2x()
+moveA2x G:242 LG com/sial-686.b[456] moveA2x()
+moveA2x G:242 LG com/sial-686.b[965] moveA2x()
+moveA2x G:242 LG com/sial-686.b[973] moveA2x()
+moveA2x G:242 LG com/sial-686.b[981] moveA2x()
+moveA2x G:242 LG com/sial-686.b[988] moveA2x()
+moveA2x G:242 LG com/sial-686.b[996] moveA2x()
+moveA2x G:242 RT com/sial-686.b[460] LET moveA2x()BE..
+moveA2xy F:49 LF com/sial-686.b[931] moveA2xy()
+moveA2xy F:49 LF com/sial-686.b[938] moveA2xy()
+moveA2xy F:49 LF com/sial-686.b[945] moveA2xy()
+moveA2xy F:49 LF com/sial-686.b[955] moveA2xy()
+moveA2xy F:49 RT com/sial-686.b[450] LET moveA2xy()BE..
+moveA2y G:243 DEF com/sial-686.b[97] moveA2y=
+moveA2y G:243 LG com/sial-686.b[1415] moveA2y()
+moveA2y G:243 LG com/sial-686.b[440] moveA2y()
+moveA2y G:243 LG com/sial-686.b[447] moveA2y()
+moveA2y G:243 LG com/sial-686.b[452] moveA2y()
+moveA2y G:243 LG com/sial-686.b[457] moveA2y()
+moveA2y G:243 RT com/sial-686.b[523] LET moveA2y()BE..
+moveB2A F:42 RT com/sial-686.b[369] LET moveB2A()BE..
+moveB2anyreg F:48 LF com/sial-686.b[883] moveB2anyreg()
+moveB2anyreg F:48 LF com/sial-686.b[899] moveB2anyreg()
+moveB2anyreg F:48 LF com/sial-686.b[915] moveB2anyreg()
+moveB2anyreg F:48 RT com/sial-686.b[443] LET moveB2anyreg()BE..
+moveB2mem F:56 LF com/sial-686.b[1835] moveB2mem()
+moveB2mem F:56 LF com/sial-686.b[1855] moveB2mem()
+moveB2mem F:56 LF com/sial-686.b[1885] moveB2mem()
+moveB2mem F:56 LF com/sial-686.b[1905] moveB2mem()
+moveB2mem F:56 LF com/sial-686.b[1944] moveB2mem()
+moveB2mem F:56 LF com/sial-686.b[1964] moveB2mem()
+moveB2mem F:56 LF com/sial-686.b[2014] moveB2mem()
+moveB2mem F:56 RT com/sial-686.b[713] LET moveB2mem(mem,val)BE..
+moveB2x G:245 DEF com/sial-686.b[100] moveB2x=
+moveB2x G:245 RT com/sial-686.b[647] LET moveB2x()BE..
+moveB2xy F:50 RT com/sial-686.b[455] LET moveB2xy()BE..
+moveB2y G:246 DEF com/sial-686.b[101] moveB2y=
+moveB2y G:246 LG com/sial-686.b[1003] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1012] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1023] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1050] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1059] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1107] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1119] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1130] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1138] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1148] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1159] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1170] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1178] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1187] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1196] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1205] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1214] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1223] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1232] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1284] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1297] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1310] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1318] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1326] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1334] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1343] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1363] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1371] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1380] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1430] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1486] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1570] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1577] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1584] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1591] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1598] moveB2y()
+moveB2y G:246 LG com/sial-686.b[1605] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2048] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2075] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2101] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2127] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2153] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2172] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2284] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2307] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2329] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2351] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2373] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2395] moveB2y()
+moveB2y G:246 LG com/sial-686.b[2587] moveB2y()
+moveB2y G:246 RT com/sial-686.b[585] LET moveB2y()BE..
+moveK2y F:46 RT com/sial-686.b[427] LET moveK2y(k)BE..
+muldiv G:5 DEF libhdr.h[33] muldiv=5
+mval G:219 DEF com/sial-686.b[55] mval=
+mval G:219 LG com/sial-686.b[1650] writef(" jge M%c%n*n",modletter,mval)
+mval G:219 LG com/sial-686.b[1711] writef("M%c%n:*n",modletter,mval)
+mval G:219 LG com/sial-686.b[1731]
+    writef(" leal'n,%%ebx*n",modletter,mval)
+mval G:219 LG com/sial-686.b[349] RESULTIS mval
+mval G:219 LG com/sial-686.b[868] Aval:=mval
+mval G:219 SG com/sial-686.b[349] mval:=rdcode(77)
+newline G:84 DEF libhdr.h[113] newline=84
+newline G:84 LG com/sial-686.b[239] newline()
+newline G:84 LG com/sial-686.b[2653] newline()
+newline G:84 LG com/sial-686.b[2663] newline()
+newline G:84 LG com/sial-686.b[731] newline()
+newline G:84 LG com/sial-686.b[741] newline()
+newline G:84 LG com/sial-686.b[749] newline()
+newline G:84 LG com/sial-686.b[755] newline()
+newline G:84 LG com/sial-686.b[761] newline()
+newpage G:120 DEF libhdr.h[150] newpage=120
+nextfcode G:212 DEF com/sial-686.b[51] nextfcode=
+nextfcode G:212 LG com/sial-686.b[330] UNLESS nextfcode DO ..
+nextfcode G:212 LG com/sial-686.b[331] RESULTIS nextfcode
+nextfcode G:212 LG com/sial-686.b[335] TEST nextfcode THEN .. ELSE ..
+nextfcode G:212 LG com/sial-686.b[336] nextfcode
+nextfcode G:212 SG com/sial-686.b[288] nextfcode:=0
+nextfcode G:212 SG com/sial-686.b[330] nextfcode:=rdcode(70)
+nextfcode G:212 SG com/sial-686.b[337] nextfcode:=0
+nextlab F:29 FN com/sial-686.b[303] LET nextlab()=..
+nextlab F:29 LF com/sial-686.b[1096] nextlab()
+nextlab F:29 LF com/sial-686.b[2546] nextlab()
+note G:63 DEF libhdr.h[92] note=63
+notinuse M:-1 DEF libhdr.h[576] notinuse=-1
+output G:59 DEF libhdr.h[88] output=59
+output G:59 LG com/sial-686.b[256] stdout:=output()
+output G:59 LG com/sial-686.b[353] output()
+packstring G:30 DEF libhdr.h[59] packstring=30
+pathfindinput G:53 DEF libhdr.h[82] pathfindinput=53
+peekfcode G:213 DEF com/sial-686.b[52] peekfcode=
+peekfcode G:213 FN com/sial-686.b[329] LET peekfcode()=..
+peercom G:179 DEF libhdr.h[211] peercom=179
+pkt_a1 M:5 DEF libhdr.h[585] pkt_a1=5
+pkt_a2 M:6 DEF libhdr.h[586] pkt_a2=6
+pkt_a3 M:7 DEF libhdr.h[587] pkt_a3=7
+pkt_a4 M:8 DEF libhdr.h[588] pkt_a4=8
+pkt_a5 M:9 DEF libhdr.h[589] pkt_a5=9
+pkt_a6 M:10 DEF libhdr.h[590] pkt_a6=10
+pkt_arg1 M:5 DEF libhdr.h[585] pkt_arg1=5
+pkt_arg2 M:6 DEF libhdr.h[586] pkt_arg2=6
+pkt_arg3 M:7 DEF libhdr.h[587] pkt_arg3=7
+pkt_arg4 M:8 DEF libhdr.h[588] pkt_arg4=8
+pkt_arg5 M:9 DEF libhdr.h[589] pkt_arg5=9
+pkt_arg6 M:10 DEF libhdr.h[590] pkt_arg6=10
+pkt_devid M:1 DEF libhdr.h[581] pkt_devid=1
+pkt_devtaskid M:1 DEF libhdr.h[581] pkt_devtaskid=1
+pkt_id M:1 DEF libhdr.h[581] pkt_id=1
+pkt_link M:0 DEF libhdr.h[580] pkt_link=0
+pkt_op M:2 DEF libhdr.h[582] pkt_op=2
+pkt_r1 M:3 DEF libhdr.h[583] pkt_r1=3
+pkt_r2 M:4 DEF libhdr.h[584] pkt_r2=4
+pkt_res1 M:3 DEF libhdr.h[583] pkt_res1=3
+pkt_res2 M:4 DEF libhdr.h[584] pkt_res2=4
+pkt_taskid M:1 DEF libhdr.h[581] pkt_taskid=1
+pkt_type M:2 DEF libhdr.h[582] pkt_type=2
+point G:64 DEF libhdr.h[93] point=64
+pollingch M:-3 DEF libhdr.h[235] pollingch=-3
+popS2mem F:58 LF com/sial-686.b[1742] popS2mem(2,11)
+popS2mem F:58 RT com/sial-686.b[722] LET popS2mem(mem,val)BE..
+pops2mem G:249 DEF com/sial-686.b[106] pops2mem=
+prstate G:240 DEF com/sial-686.b[91] prstate=
+prstate G:240 LG com/sial-686.b[1008] prstate()
+prstate G:240 LG com/sial-686.b[1019] prstate()
+prstate G:240 LG com/sial-686.b[1028] prstate()
+prstate G:240 LG com/sial-686.b[1037] prstate()
+prstate G:240 LG com/sial-686.b[1046] prstate()
+prstate G:240 LG com/sial-686.b[1055] prstate()
+prstate G:240 LG com/sial-686.b[1067] prstate()
+prstate G:240 LG com/sial-686.b[1077] prstate()
+prstate G:240 LG com/sial-686.b[1084] prstate()
+prstate G:240 LG com/sial-686.b[1091] prstate()
+prstate G:240 LG com/sial-686.b[1102] prstate()
+prstate G:240 LG com/sial-686.b[1114] prstate()
+prstate G:240 LG com/sial-686.b[1126] prstate()
+prstate G:240 LG com/sial-686.b[1134] prstate()
+prstate G:240 LG com/sial-686.b[1144] prstate()
+prstate G:240 LG com/sial-686.b[1155] prstate()
+prstate G:240 LG com/sial-686.b[1166] prstate()
+prstate G:240 LG com/sial-686.b[1174] prstate()
+prstate G:240 LG com/sial-686.b[1183] prstate()
+prstate G:240 LG com/sial-686.b[1293] prstate()
+prstate G:240 LG com/sial-686.b[1306] prstate()
+prstate G:240 LG com/sial-686.b[1314] prstate()
+prstate G:240 LG com/sial-686.b[1322] prstate()
+prstate G:240 LG com/sial-686.b[1330] prstate()
+prstate G:240 LG com/sial-686.b[1339] prstate()
+prstate G:240 LG com/sial-686.b[1353] prstate()
+prstate G:240 LG com/sial-686.b[1367] prstate()
+prstate G:240 LG com/sial-686.b[1376] prstate()
+prstate G:240 LG com/sial-686.b[1385] prstate()
+prstate G:240 LG com/sial-686.b[1412] prstate()
+prstate G:240 LG com/sial-686.b[1426] prstate()
+prstate G:240 LG com/sial-686.b[1437] prstate()
+prstate G:240 LG com/sial-686.b[1443] prstate()
+prstate G:240 LG com/sial-686.b[1449] prstate()
+prstate G:240 LG com/sial-686.b[1450] prstate()
+prstate G:240 LG com/sial-686.b[1457] prstate()
+prstate G:240 LG com/sial-686.b[1468] prstate()
+prstate G:240 LG com/sial-686.b[1476] prstate()
+prstate G:240 LG com/sial-686.b[1497] prstate()
+prstate G:240 LG com/sial-686.b[1511] prstate()
+prstate G:240 LG com/sial-686.b[1525] prstate()
+prstate G:240 LG com/sial-686.b[1539] prstate()
+prstate G:240 LG com/sial-686.b[1548] prstate()
+prstate G:240 LG com/sial-686.b[1557] prstate()
+prstate G:240 LG com/sial-686.b[1566] prstate()
+prstate G:240 LG com/sial-686.b[1678] prstate()
+prstate G:240 LG com/sial-686.b[1685] prstate()
+prstate G:240 LG com/sial-686.b[1692] prstate()
+prstate G:240 LG com/sial-686.b[1698] prstate()
+prstate G:240 LG com/sial-686.b[1714] prstate()
+prstate G:240 LG com/sial-686.b[1721] prstate()
+prstate G:240 LG com/sial-686.b[1729] prstate()
+prstate G:240 LG com/sial-686.b[1734] prstate()
+prstate G:240 LG com/sial-686.b[1747] prstate()
+prstate G:240 LG com/sial-686.b[1750] prstate()
+prstate G:240 LG com/sial-686.b[1758] prstate()
+prstate G:240 LG com/sial-686.b[1765] prstate()
+prstate G:240 LG com/sial-686.b[1771] prstate()
+prstate G:240 LG com/sial-686.b[1822] prstate()
+prstate G:240 LG com/sial-686.b[1830] prstate()
+prstate G:240 LG com/sial-686.b[1838] prstate()
+prstate G:240 LG com/sial-686.b[1848] prstate()
+prstate G:240 LG com/sial-686.b[1858] prstate()
+prstate G:240 LG com/sial-686.b[1867] prstate()
+prstate G:240 LG com/sial-686.b[1872] prstate()
+prstate G:240 LG com/sial-686.b[1880] prstate()
+prstate G:240 LG com/sial-686.b[1888] prstate()
+prstate G:240 LG com/sial-686.b[1898] prstate()
+prstate G:240 LG com/sial-686.b[1908] prstate()
+prstate G:240 LG com/sial-686.b[1917] prstate()
+prstate G:240 LG com/sial-686.b[1931] prstate()
+prstate G:240 LG com/sial-686.b[1939] prstate()
+prstate G:240 LG com/sial-686.b[1947] prstate()
+prstate G:240 LG com/sial-686.b[1957] prstate()
+prstate G:240 LG com/sial-686.b[1967] prstate()
+prstate G:240 LG com/sial-686.b[1976] prstate()
+prstate G:240 LG com/sial-686.b[1981] prstate()
+prstate G:240 LG com/sial-686.b[1989] prstate()
+prstate G:240 LG com/sial-686.b[1997] prstate()
+prstate G:240 LG com/sial-686.b[2007] prstate()
+prstate G:240 LG com/sial-686.b[2017] prstate()
+prstate G:240 LG com/sial-686.b[2026] prstate()
+prstate G:240 LG com/sial-686.b[2031] prstate()
+prstate G:240 LG com/sial-686.b[2037] prstate()
+prstate G:240 LG com/sial-686.b[2044] prstate()
+prstate G:240 LG com/sial-686.b[2051] prstate()
+prstate G:240 LG com/sial-686.b[2071] prstate()
+prstate G:240 LG com/sial-686.b[2078] prstate()
+prstate G:240 LG com/sial-686.b[2097] prstate()
+prstate G:240 LG com/sial-686.b[2104] prstate()
+prstate G:240 LG com/sial-686.b[2123] prstate()
+prstate G:240 LG com/sial-686.b[2130] prstate()
+prstate G:240 LG com/sial-686.b[2149] prstate()
+prstate G:240 LG com/sial-686.b[2166] prstate()
+prstate G:240 LG com/sial-686.b[2168] prstate()
+prstate G:240 LG com/sial-686.b[2187] prstate()
+prstate G:240 LG com/sial-686.b[2189] prstate()
+prstate G:240 LG com/sial-686.b[2202] prstate()
+prstate G:240 LG com/sial-686.b[2204] prstate()
+prstate G:240 LG com/sial-686.b[2218] prstate()
+prstate G:240 LG com/sial-686.b[2220] prstate()
+prstate G:240 LG com/sial-686.b[2233] prstate()
+prstate G:240 LG com/sial-686.b[2235] prstate()
+prstate G:240 LG com/sial-686.b[2248] prstate()
+prstate G:240 LG com/sial-686.b[2250] prstate()
+prstate G:240 LG com/sial-686.b[2263] prstate()
+prstate G:240 LG com/sial-686.b[2265] prstate()
+prstate G:240 LG com/sial-686.b[2278] prstate()
+prstate G:240 LG com/sial-686.b[2280] prstate()
+prstate G:240 LG com/sial-686.b[2301] prstate()
+prstate G:240 LG com/sial-686.b[2303] prstate()
+prstate G:240 LG com/sial-686.b[2323] prstate()
+prstate G:240 LG com/sial-686.b[2325] prstate()
+prstate G:240 LG com/sial-686.b[2345] prstate()
+prstate G:240 LG com/sial-686.b[2347] prstate()
+prstate G:240 LG com/sial-686.b[2367] prstate()
+prstate G:240 LG com/sial-686.b[2369] prstate()
+prstate G:240 LG com/sial-686.b[2389] prstate()
+prstate G:240 LG com/sial-686.b[2391] prstate()
+prstate G:240 LG com/sial-686.b[2407] prstate()
+prstate G:240 LG com/sial-686.b[2409] prstate()
+prstate G:240 LG com/sial-686.b[2420] prstate()
+prstate G:240 LG com/sial-686.b[2422] prstate()
+prstate G:240 LG com/sial-686.b[2433] prstate()
+prstate G:240 LG com/sial-686.b[2435] prstate()
+prstate G:240 LG com/sial-686.b[2446] prstate()
+prstate G:240 LG com/sial-686.b[2448] prstate()
+prstate G:240 LG com/sial-686.b[2459] prstate()
+prstate G:240 LG com/sial-686.b[2461] prstate()
+prstate G:240 LG com/sial-686.b[2471] prstate()
+prstate G:240 LG com/sial-686.b[2482] prstate()
+prstate G:240 LG com/sial-686.b[2484] prstate()
+prstate G:240 LG com/sial-686.b[2499] prstate()
+prstate G:240 LG com/sial-686.b[2502] prstate()
+prstate G:240 LG com/sial-686.b[2505] prstate()
+prstate G:240 LG com/sial-686.b[2508] prstate()
+prstate G:240 LG com/sial-686.b[2511] prstate()
+prstate G:240 LG com/sial-686.b[2514] prstate()
+prstate G:240 LG com/sial-686.b[2517] prstate()
+prstate G:240 LG com/sial-686.b[2520] prstate()
+prstate G:240 LG com/sial-686.b[2523] prstate()
+prstate G:240 LG com/sial-686.b[2526] prstate()
+prstate G:240 LG com/sial-686.b[2529] prstate()
+prstate G:240 LG com/sial-686.b[2547] prstate()
+prstate G:240 LG com/sial-686.b[2564] prstate()
+prstate G:240 LG com/sial-686.b[2570] prstate()
+prstate G:240 LG com/sial-686.b[2582] prstate()
+prstate G:240 LG com/sial-686.b[2675] prstate()
+prstate G:240 LG com/sial-686.b[366] prstate()
+prstate G:240 LG com/sial-686.b[373] prstate()
+prstate G:240 LG com/sial-686.b[393] prstate()
+prstate G:240 LG com/sial-686.b[413] prstate()
+prstate G:240 LG com/sial-686.b[518] prstate()
+prstate G:240 LG com/sial-686.b[580] prstate()
+prstate G:240 LG com/sial-686.b[642] prstate()
+prstate G:240 LG com/sial-686.b[704] prstate()
+prstate G:240 LG com/sial-686.b[820] prstate()
+prstate G:240 LG com/sial-686.b[825] prstate()
+prstate G:240 LG com/sial-686.b[833] prstate()
+prstate G:240 LG com/sial-686.b[838] prstate()
+prstate G:240 LG com/sial-686.b[846] prstate()
+prstate G:240 LG com/sial-686.b[851] prstate()
+prstate G:240 LG com/sial-686.b[859] prstate()
+prstate G:240 LG com/sial-686.b[863] prstate()
+prstate G:240 LG com/sial-686.b[869] prstate()
+prstate G:240 LG com/sial-686.b[874] prstate()
+prstate G:240 LG com/sial-686.b[879] prstate()
+prstate G:240 LG com/sial-686.b[895] prstate()
+prstate G:240 LG com/sial-686.b[907] prstate()
+prstate G:240 LG com/sial-686.b[911] prstate()
+prstate G:240 LG com/sial-686.b[927] prstate()
+prstate G:240 LG com/sial-686.b[934] prstate()
+prstate G:240 LG com/sial-686.b[941] prstate()
+prstate G:240 LG com/sial-686.b[951] prstate()
+prstate G:240 LG com/sial-686.b[961] prstate()
+prstate G:240 LG com/sial-686.b[969] prstate()
+prstate G:240 LG com/sial-686.b[977] prstate()
+prstate G:240 LG com/sial-686.b[984] prstate()
+prstate G:240 LG com/sial-686.b[992] prstate()
+prstate G:240 LG com/sial-686.b[999] prstate()
+prstate G:240 RT com/sial-686.b[212] LET prstate()BE..
+pushA2s G:244 DEF com/sial-686.b[98] pushA2s=
+pushA2s G:244 LG com/sial-686.b[1755] pushA2s()
+pushA2s G:244 LG com/sial-686.b[1763] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2041] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2193] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2208] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2224] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2239] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2254] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2269] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2413] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2426] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2439] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2452] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2465] pushA2s()
+pushA2s G:244 LG com/sial-686.b[2475] pushA2s()
+pushB2s G:247 DEF com/sial-686.b[102] pushB2s=
+pushB2s G:247 LG com/sial-686.b[1862] pushB2s()
+pushB2s G:247 LG com/sial-686.b[1912] pushB2s()
+pushB2s G:247 LG com/sial-686.b[1971] pushB2s()
+pushB2s G:247 LG com/sial-686.b[2021] pushB2s()
+pushmem2S F:57 RT com/sial-686.b[718] LET pushmem2S(mem,val)BE..
+put_record G:72 DEF libhdr.h[101] put_record=72
+putword G:33 DEF libhdr.h[62] putword=33
+pval G:214 DEF com/sial-686.b[55] pval=
+pval G:214 LG com/sial-686.b[1014] writef(" movl'),%%eax*n",4*pval)
+pval G:214 LG com/sial-686.b[1033] writef(" movl'),%%eax*n",4*pval)
+pval G:214 LG com/sial-686.b[1063] writef(" leal'),%%edx*n",4*pval)
+pval G:214 LG com/sial-686.b[1073] writef(" leal'),%%edx*n",4*pval)
+pval G:214 LG com/sial-686.b[1436] Aval:=pval
+pval G:214 LG com/sial-686.b[1502] writef(" movl'),%%ebx*n",4*pval)
+pval G:214 LG com/sial-686.b[1508] writef(" movl'(%%ebp)*n",4*pval)
+pval G:214 LG com/sial-686.b[1509] Aval:=pval
+pval G:214 LG com/sial-686.b[1544] writef(" addl'),%%ebx*n",4*pval)
+pval G:214 LG com/sial-686.b[1545] writef(" movl'(%%ebp)*n",4*pval)
+pval G:214 LG com/sial-686.b[1546] Aval:=pval
+pval G:214 LG com/sial-686.b[344] RESULTIS pval
+pval G:214 LG com/sial-686.b[802] Aval:=pval
+pval G:214 LG com/sial-686.b[822] writef(" leal'),%%ebx*n",4*pval)
+pval G:214 LG com/sial-686.b[883] IF Bmem=1&Bval=pval DO ..
+pval G:214 LG com/sial-686.b[887] Aval:=pval
+pval G:214 LG com/sial-686.b[893] Aval:=pval
+pval G:214 LG com/sial-686.b[932] wropmemreg("addl",1,pval,Areg)
+pval G:214 LG com/sial-686.b[966] writef(" movl'),%%eax*n",4*pval)
+pval G:214 LG com/sial-686.b[989] writef(" addl'),%%ebx*n",4*pval)
+pval G:214 SG com/sial-686.b[344] pval:=rdcode(80)
+qpkt G:161 DEF libhdr.h[198] qpkt=161
+randno G:34 DEF libhdr.h[63] randno=34
+randseed G:127 DEF libhdr.h[157] randseed=127
+rdargs G:102 DEF libhdr.h[132] rdargs=102
+rdargs G:102 LG com/sial-686.b[257]
+    IF rdargs("FROM,TO/K,-t/s",argv,20)=0 DO ..
+rdargs2 G:26 DEF libhdr.h[55] rdargs2=26
+rdc G:210 DEF com/sial-686.b[48] rdc=
+rdc G:210 FN com/sial-686.b[350] LET rdc()=..
+rdc G:210 LG com/sial-686.b[2609] charv%i:=rdc()
+rdch G:38 DEF libhdr.h[67] rdch=38
+rdch G:38 LG com/sial-686.b[313] ch:=rdch()
+rdch G:38 LG com/sial-686.b[320] ch:=rdch()
+rdch G:38 LG com/sial-686.b[322] ch:=rdch()
+rdch G:38 LG com/sial-686.b[324] ch:=rdch()
+rdchars F:83 FN com/sial-686.b[2606] LET rdchars()=..
+rdchars F:83 LF com/sial-686.b[2615] rdchars()
+rdchars F:83 LF com/sial-686.b[2650] rdchars()
+rdchars F:83 LF com/sial-686.b[2657] rdchars()
+rdcode G:211 DEF com/sial-686.b[49] rdcode=
+rdcode G:211 FN com/sial-686.b[308] LET rdcode(letter)=..
+rdcode G:211 LG com/sial-686.b[330] nextfcode:=rdcode(70)
+rdcode G:211 LG com/sial-686.b[340] RESULTIS rdcode(70)
+rdcode G:211 LG com/sial-686.b[344] pval:=rdcode(80)
+rdcode G:211 LG com/sial-686.b[345] gval:=rdcode(71)
+rdcode G:211 LG com/sial-686.b[346] kval:=rdcode(75)
+rdcode G:211 LG com/sial-686.b[347] wval:=rdcode(87)
+rdcode G:211 LG com/sial-686.b[348] lval:=rdcode(76)
+rdcode G:211 LG com/sial-686.b[349] mval:=rdcode(77)
+rdcode G:211 LG com/sial-686.b[350] rdcode(67)
+rdf G:204 DEF com/sial-686.b[48] rdf=
+rdf G:204 FN com/sial-686.b[334] LET rdf()=..
+rdf G:204 LG com/sial-686.b[2658] rdf()
+rdf G:204 LG com/sial-686.b[792] rdf()
+rdg G:206 DEF com/sial-686.b[48] rdg=
+rdg G:206 FN com/sial-686.b[345] LET rdg()=..
+rdg G:206 LG com/sial-686.b[2509] writef("# %t7 G%n*n",s,rdg())
+rdg G:206 LG com/sial-686.b[2512]
+    writef("# %t7 K%n G%n*n",s,rdk(),rdg())
+rdg G:206 LG com/sial-686.b[2518]
+    writef("# %t7 P%n G%n*n",s,rdp(),rdg())
+rdg G:206 LG com/sial-686.b[2597] rdg()
+rdg G:206 LG com/sial-686.b[2602] writef("# G%n*n",rdg())
+rditem G:103 DEF libhdr.h[133] rditem=103
+rdk G:207 DEF com/sial-686.b[48] rdk=
+rdk G:207 FN com/sial-686.b[346] LET rdk()=..
+rdk G:207 LG com/sial-686.b[2506]
+    writef("# %t7 K%n P%n*n",s,rdk(),rdp())
+rdk G:207 LG com/sial-686.b[2512]
+    writef("# %t7 K%n G%n*n",s,rdk(),rdg())
+rdk G:207 LG com/sial-686.b[2515]
+    writef("# %t7 K%n L%n*n",s,rdk(),rdl())
+rdk G:207 LG com/sial-686.b[2521] writef("# %t7 K%n*n",s,rdk())
+rdk G:207 LG com/sial-686.b[2533] writef("%t7 K%n K%n",s,rdk(),rdk())
+rdk G:207 LG com/sial-686.b[2536] rdk()
+rdk G:207 LG com/sial-686.b[2537] rdk()
+rdk G:207 LG com/sial-686.b[2538] rdk()
+rdk G:207 LG com/sial-686.b[2544] rdk()
+rdk G:207 LG com/sial-686.b[2568] rdk()
+rdk G:207 LG com/sial-686.b[2574] rdk()
+rdk G:207 LG com/sial-686.b[2586] rdk()
+rdk G:207 LG com/sial-686.b[2607] rdk()
+rdk G:207 LG com/sial-686.b[2638] rdk()
+rdl G:209 DEF com/sial-686.b[48] rdl=
+rdl G:209 FN com/sial-686.b[348] LET rdl()=..
+rdl G:209 LG com/sial-686.b[2515]
+    writef("# %t7 K%n L%n*n",s,rdk(),rdl())
+rdl G:209 LG com/sial-686.b[2527] writef("# %t7 L%n*n",s,rdl())
+rdl G:209 LG com/sial-686.b[2545] rdl()
+rdl G:209 LG com/sial-686.b[2559] writef("# L%n*n",rdl())
+rdl G:209 LG com/sial-686.b[2569] rdl()
+rdl G:209 LG com/sial-686.b[2575] rdl()
+rdl G:209 LG com/sial-686.b[2598] rdl()
+rdl G:209 LG com/sial-686.b[2637] rdl()
+rdl G:209 LG com/sial-686.b[2659] rdl()
+rdm F:38 FN com/sial-686.b[349] LET rdm()=..
+rdm F:38 LF com/sial-686.b[2530] writef("# %t7 M%n*n",s,rdm())
+rdm F:38 LF com/sial-686.b[2614] rdm()
+rdm F:38 LF com/sial-686.b[2626] rdm()
+rdp G:205 DEF com/sial-686.b[48] rdp=
+rdp G:205 FN com/sial-686.b[344] LET rdp()=..
+rdp G:205 LG com/sial-686.b[2503] writef("# %t7 P%n*n",s,rdp())
+rdp G:205 LG com/sial-686.b[2506]
+    writef("# %t7 K%n P%n*n",s,rdk(),rdp())
+rdp G:205 LG com/sial-686.b[2518]
+    writef("# %t7 P%n G%n*n",s,rdp(),rdg())
+rdw G:208 DEF com/sial-686.b[48] rdw=
+rdw G:208 FN com/sial-686.b[347] LET rdw()=..
+rdw G:208 LG com/sial-686.b[2524] writef("# %t7 W%n*n",s,rdw())
+rdw G:208 LG com/sial-686.b[2627] rdw()
+rdw G:208 LG com/sial-686.b[2643] writef("# W%n*n",rdw())
+readflt G:74 DEF libhdr.h[103] readflt=74
+readn G:83 DEF libhdr.h[112] readn=83
+readwords G:44 DEF libhdr.h[73] readwords=44
+recordnote G:70 DEF libhdr.h[99] recordnote=70
+recordpoint G:69 DEF libhdr.h[98] recordpoint=69
+release G:159 DEF libhdr.h[196] release=159
+renamefile G:77 DEF libhdr.h[106] renamefile=77
+result2 G:10 DEF libhdr.h[38] result2=10
+resumeco G:21 DEF libhdr.h[50] resumeco=21
+ret F:127 LAB com/sial-686.b[517] ret:prstate()
+ret F:127 LF com/sial-686.b[473] GOTO ret
+ret F:127 LF com/sial-686.b[480] GOTO ret
+ret F:127 LF com/sial-686.b[486] GOTO ret
+ret F:127 LF com/sial-686.b[495] GOTO ret
+ret F:127 LF com/sial-686.b[505] GOTO ret
+ret F:138 LAB com/sial-686.b[579] ret:prstate()
+ret F:138 LF com/sial-686.b[536] GOTO ret
+ret F:138 LF com/sial-686.b[543] GOTO ret
+ret F:138 LF com/sial-686.b[549] GOTO ret
+ret F:138 LF com/sial-686.b[558] GOTO ret
+ret F:138 LF com/sial-686.b[568] GOTO ret
+ret F:149 LAB com/sial-686.b[641] ret:prstate()
+ret F:149 LF com/sial-686.b[598] GOTO ret
+ret F:149 LF com/sial-686.b[605] GOTO ret
+ret F:149 LF com/sial-686.b[611] GOTO ret
+ret F:149 LF com/sial-686.b[620] GOTO ret
+ret F:149 LF com/sial-686.b[630] GOTO ret
+ret F:160 LAB com/sial-686.b[703] ret:prstate()
+ret F:160 LF com/sial-686.b[660] GOTO ret
+ret F:160 LF com/sial-686.b[667] GOTO ret
+ret F:160 LF com/sial-686.b[673] GOTO ret
+ret F:160 LF com/sial-686.b[682] GOTO ret
+ret F:160 LF com/sial-686.b[692] GOTO ret
+return_hard M:10 DEF libhdr.h[557] return_hard=10
+return_hard M:10 MAN libhdr.h[562] cli_initialfaillevel=return_hard
+return_ok M:0 DEF libhdr.h[559] return_ok=0
+return_severe M:20 DEF libhdr.h[556] return_severe=20
+return_soft M:5 DEF libhdr.h[558] return_soft=5
+returnpkt G:169 DEF libhdr.h[203] returnpkt=169
+rewindstream G:65 DEF libhdr.h[94] rewindstream=65
+rootnode G:9 DEF libhdr.h[37] rootnode=9
+rootnodeaddr M:100 DEF libhdr.h[279] rootnodeaddr=100
+rtn_abortcode M:27 DEF libhdr.h[315] rtn_abortcode=
+rtn_adjclock M:33 DEF libhdr.h[333] rtn_adjclock=
+rtn_blib M:19 DEF libhdr.h[304] rtn_blib=
+rtn_blklist M:4 DEF libhdr.h[286] rtn_blklist=
+rtn_boot M:17 DEF libhdr.h[302] rtn_boot=
+rtn_boottrace M:39 DEF libhdr.h[348] rtn_boottrace=
+rtn_bptaddr M:9 DEF libhdr.h[293] rtn_bptaddr=
+rtn_bptinstr M:10 DEF libhdr.h[294] rtn_bptinstr=
+rtn_clkintson M:6 DEF libhdr.h[289] rtn_clkintson=
+rtn_clwkq M:12 DEF libhdr.h[297] rtn_clwkq=
+rtn_context M:28 DEF libhdr.h[316] rtn_context=
+rtn_crntask M:3 DEF libhdr.h[285] rtn_crntask=
+rtn_days M:40 DEF libhdr.h[351] rtn_days=
+rtn_dbgvars M:11 DEF libhdr.h[295] rtn_dbgvars=
+rtn_dcountv M:34 DEF libhdr.h[335] rtn_dcountv=
+rtn_devtab M:1 DEF libhdr.h[283] rtn_devtab=
+rtn_dumpflag M:25 DEF libhdr.h[312] rtn_dumpflag=
+rtn_envlist M:26 DEF libhdr.h[313] rtn_envlist=
+rtn_hdrsvar M:37 DEF libhdr.h[344] rtn_hdrsvar=
+rtn_icount M:48 DEF libhdr.h[364] rtn_icount=
+rtn_idletcb M:32 DEF libhdr.h[332] rtn_idletcb=
+rtn_info M:15 DEF libhdr.h[300] rtn_info=
+rtn_insadebug M:8 DEF libhdr.h[291] rtn_insadebug=
+rtn_intflag M:24 DEF libhdr.h[311] rtn_intflag=
+rtn_joyaxis0 M:54 DEF libhdr.h[372] rtn_joyaxis0=
+rtn_joyaxis1 M:55 DEF libhdr.h[373] rtn_joyaxis1=
+rtn_joyaxis2 M:56 DEF libhdr.h[374] rtn_joyaxis2=
+rtn_joyaxis3 M:57 DEF libhdr.h[375] rtn_joyaxis3=
+rtn_joyaxis4 M:58 DEF libhdr.h[376] rtn_joyaxis4=
+rtn_joyaxis5 M:59 DEF libhdr.h[377] rtn_joyaxis5=
+rtn_joyaxis6 M:60 DEF libhdr.h[378] rtn_joyaxis6=
+rtn_joyaxiscount M:51 DEF libhdr.h[369] rtn_joyaxiscount=
+rtn_joybuttoncount M:50 DEF libhdr.h[368] rtn_joybuttoncount=
+rtn_joybuttons M:53 DEF libhdr.h[371] rtn_joybuttons=
+rtn_joycurrbuttons M:52 DEF libhdr.h[370] rtn_joycurrbuttons=
+rtn_joystickfd M:49 DEF libhdr.h[367] rtn_joystickfd=
+rtn_keyboard M:20 DEF libhdr.h[305] rtn_keyboard=
+rtn_klib M:18 DEF libhdr.h[303] rtn_klib=
+rtn_lastch M:7 DEF libhdr.h[290] rtn_lastch=
+rtn_lastg M:30 DEF libhdr.h[325] rtn_lastg=
+rtn_lastp M:29 DEF libhdr.h[324] rtn_lastp=
+rtn_lastst M:31 DEF libhdr.h[326] rtn_lastst=
+rtn_mc0 M:43 DEF libhdr.h[356] rtn_mc0=
+rtn_mc1 M:44 DEF libhdr.h[358] rtn_mc1=
+rtn_mc2 M:45 DEF libhdr.h[359] rtn_mc2=
+rtn_mc3 M:46 DEF libhdr.h[360] rtn_mc3=
+rtn_membase M:13 DEF libhdr.h[298] rtn_membase=
+rtn_memsize M:14 DEF libhdr.h[299] rtn_memsize=
+rtn_mins M:41 DEF libhdr.h[353] rtn_mins=rtn_msecs
+rtn_msecs M:41 DEF libhdr.h[352] rtn_msecs=
+rtn_msecs M:41 MAN libhdr.h[353] rtn_mins=rtn_msecs
+rtn_pathvar M:36 DEF libhdr.h[342] rtn_pathvar=
+rtn_rootvar M:35 DEF libhdr.h[340] rtn_rootvar=
+rtn_screen M:21 DEF libhdr.h[306] rtn_screen=
+rtn_scriptsvar M:38 DEF libhdr.h[346] rtn_scriptsvar=
+rtn_sys M:16 DEF libhdr.h[301] rtn_sys=
+rtn_system M:47 DEF libhdr.h[362] rtn_system=
+rtn_tallyv M:5 DEF libhdr.h[287] rtn_tallyv=
+rtn_tasktab M:0 DEF libhdr.h[282] rtn_tasktab=0
+rtn_tcblist M:2 DEF libhdr.h[284] rtn_tcblist=
+rtn_ticks M:42 DEF libhdr.h[354] rtn_ticks=
+rtn_upb M:80 DEF libhdr.h[380] rtn_upb=80
+rtn_vecstatsv M:22 DEF libhdr.h[308] rtn_vecstatsv=
+rtn_vecstatsvupb M:23 DEF libhdr.h[309] rtn_vecstatsvupb=
+sardch G:36 DEF libhdr.h[65] sardch=36
+saveregs M:31 DEF libhdr.h[457] saveregs=31
+sawrch G:37 DEF libhdr.h[66] sawrch=37
+sawritef G:95 DEF libhdr.h[125] sawritef=95
+scan G:220 DEF com/sial-686.b[57] scan=
+scan G:220 LG com/sial-686.b[294] scan()
+scan G:220 RT com/sial-686.b[791] LET scan()BE..
+scb_blength M:14 DEF libhdr.h[491] scb_blength=
+scb_block M:9 DEF libhdr.h[486] scb_block=
+scb_buf M:3 DEF libhdr.h[480] scb_buf=
+scb_bufend M:11 DEF libhdr.h[488] scb_bufend=
+scb_encoding M:19 DEF libhdr.h[501] scb_encoding=
+scb_end M:5 DEF libhdr.h[482] scb_end=
+scb_endfn M:8 DEF libhdr.h[485] scb_endfn=
+scb_fd M:16 DEF libhdr.h[493] scb_fd=
+scb_id M:0 DEF libhdr.h[477] scb_id=0
+scb_lblock M:12 DEF libhdr.h[489] scb_lblock=
+scb_ldata M:13 DEF libhdr.h[490] scb_ldata=
+scb_maxnamelen M:31 DEF libhdr.h[475] scb_maxnamelen=31
+scb_maxnamelen M:31 MAN libhdr.h[505]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_name M:20 DEF libhdr.h[503] scb_name=
+scb_name M:20 MAN libhdr.h[505]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_nameeend M:27 DEF libhdr.h[505]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_pos M:4 DEF libhdr.h[481] scb_pos=
+scb_rdfn M:6 DEF libhdr.h[483] scb_rdfn=
+scb_reclen M:15 DEF libhdr.h[492] scb_reclen=
+scb_size M:28 DEF libhdr.h[508] scb_size=
+scb_size M:28 MAN libhdr.h[509] scb_upb=scb_size-1
+scb_task M:2 DEF libhdr.h[479] scb_task=
+scb_timeout M:17 DEF libhdr.h[494] scb_timeout=
+scb_timeoutact M:18 DEF libhdr.h[497] scb_timeoutact=
+scb_type M:1 DEF libhdr.h[478] scb_type=
+scb_upb M:27 DEF libhdr.h[509] scb_upb=scb_size-1
+scb_wrfn M:7 DEF libhdr.h[484] scb_wrfn=
+scb_write M:10 DEF libhdr.h[487] scb_write=
+scbt_console M:-1 DEF libhdr.h[471] scbt_console=-1
+scbt_file M:1 DEF libhdr.h[469] scbt_file=1
+scbt_mbx M:-2 DEF libhdr.h[472] scbt_mbx=-2
+scbt_net M:2 DEF libhdr.h[468] scbt_net=2
+scbt_ram M:0 DEF libhdr.h[470] scbt_ram=0
+scbt_tcp M:-3 DEF libhdr.h[473] scbt_tcp=-3
+sectname G:227 DEF com/sial-686.b[60] sectname=
+sectname G:227 LG com/sial-686.b[1675] sectname%i:=charv%i
+sectname G:227 LG com/sial-686.b[1682] sectname%0:=0
+sectname G:227 LG com/sial-686.b[248] sectname%0:=0
+sectname G:227 LG com/sial-686.b[2590] IF sectname%0=0 DO ..
+sectname G:227 LG com/sial-686.b[2590] sectname%i:="prog"%i
+sectname G:227 LG com/sial-686.b[2591] writef(".globl %s*n",sectname)
+sectname G:227 LG com/sial-686.b[2592] writef(".globl _%s*n",sectname)
+sectname G:227 LG com/sial-686.b[2593] writef("%s:*n",sectname)
+sectname G:227 LG com/sial-686.b[2594] writef("_%s:*n",sectname)
+sectname G:227 SG com/sial-686.b[247] sectname:=v
+sectword M:64991 DEF libhdr.h[251] sectword=64991
+selectinput G:56 DEF libhdr.h[85] selectinput=56
+selectinput G:56 LG com/sial-686.b[280] selectinput(sialin)
+selectoutput G:57 DEF libhdr.h[86] selectoutput=57
+selectoutput G:57 LG com/sial-686.b[281] selectoutput(asmout)
+selectoutput G:57 LG com/sial-686.b[298] selectoutput(stdout)
+selectoutput G:57 LG com/sial-686.b[355] selectoutput(stdout)
+selectoutput G:57 LG com/sial-686.b[357] selectoutput(out)
+sendpkt G:165 DEF libhdr.h[201] sendpkt=165
+set_process_name G:175 DEF libhdr.h[209] set_process_name=175
+setbit G:112 DEF libhdr.h[142] setbit=112
+setbulk G:122 DEF libhdr.h[152] setbulk=122
+setflags G:156 DEF libhdr.h[193] setflags=156
+setlogname G:117 DEF libhdr.h[147] setlogname=117
+setrecordlength G:68 DEF libhdr.h[97] setrecordlength=68
+setseed G:35 DEF libhdr.h[64] setseed=35
+settimeout G:55 DEF libhdr.h[84] settimeout=55
+settimeoutact G:124 DEF libhdr.h[154] settimeoutact=124
+setvec G:181 DEF libhdr.h[214] setvec=181
+sf_add M:10 DEF sial.h[205] sf_add=
+sf_add M:10 MAN com/sial-686.b[2691] CASE sf_add:.. 
+sf_div M:8 DEF sial.h[203] sf_div=
+sf_div M:8 MAN com/sial-686.b[2689] CASE sf_div:.. 
+sf_eqv M:16 DEF sial.h[211] sf_eqv=
+sf_eqv M:16 MAN com/sial-686.b[2697] CASE sf_eqv:.. 
+sf_fadd M:5 DEF sial.h[200] sf_fadd=
+sf_fadd M:5 MAN com/sial-686.b[2686] CASE sf_fadd:.. 
+sf_fdiv M:3 DEF sial.h[198] sf_fdiv=
+sf_fdiv M:3 MAN com/sial-686.b[2684] CASE sf_fdiv:.. 
+sf_fmod M:4 DEF sial.h[199] sf_fmod=
+sf_fmod M:4 MAN com/sial-686.b[2685] CASE sf_fmod:.. 
+sf_fmul M:2 DEF sial.h[197] sf_fmul=
+sf_fmul M:2 MAN com/sial-686.b[2683] CASE sf_fmul:.. 
+sf_fsub M:6 DEF sial.h[201] sf_fsub=
+sf_fsub M:6 MAN com/sial-686.b[2687] CASE sf_fsub:.. 
+sf_logand M:14 DEF sial.h[209] sf_logand=
+sf_logand M:14 MAN com/sial-686.b[2695] CASE sf_logand:.. 
+sf_logor M:15 DEF sial.h[210] sf_logor=
+sf_logor M:15 MAN com/sial-686.b[2696] CASE sf_logor:.. 
+sf_lshift M:12 DEF sial.h[207] sf_lshift=
+sf_lshift M:12 MAN com/sial-686.b[2693] CASE sf_lshift:.. 
+sf_mod M:9 DEF sial.h[204] sf_mod=
+sf_mod M:9 MAN com/sial-686.b[2690] CASE sf_mod:.. 
+sf_mul M:7 DEF sial.h[202] sf_mul=
+sf_mul M:7 MAN com/sial-686.b[2688] CASE sf_mul:.. 
+sf_none M:0 DEF sial.h[195] sf_none=0
+sf_rshift M:13 DEF sial.h[208] sf_rshift=
+sf_rshift M:13 MAN com/sial-686.b[2694] CASE sf_rshift:.. 
+sf_sub M:11 DEF sial.h[206] sf_sub=
+sf_sub M:11 MAN com/sial-686.b[2692] CASE sf_sub:.. 
+sf_vecap M:1 DEF sial.h[196] sf_vecap=
+sf_vecap M:1 MAN com/sial-686.b[2682] CASE sf_vecap:.. 
+sf_xor M:17 DEF sial.h[212] sf_xor=
+sf_xor M:17 MAN com/sial-686.b[2698] CASE sf_xor:.. 
+sfname F:89 FN com/sial-686.b[2678] LET sfname(sfop)=..
+sfname F:89 LF com/sial-686.b[2539] sfname(f)
+sialin G:200 DEF com/sial-686.b[45] sialin=ug
+sialin G:200 LG com/sial-686.b[268] IF sialin=0 DO ..
+sialin G:200 LG com/sial-686.b[280] selectinput(sialin)
+sialin G:200 SG com/sial-686.b[267] sialin:=findinput(argv!0)
+splitname G:47 DEF libhdr.h[76] splitname=47
+srchwk G:150 DEF libhdr.h[187] srchwk=150
+stackfree G:123 DEF libhdr.h[153] stackfree=123
+stackword M:#xABCD1234 DEF libhdr.h[249] stackword=#xABCD1234
+start G:1 DEF libhdr.h[29] start=1
+start G:1 FN com/sial-686.b[242] LET start()=..
+startco G:23 DEF libhdr.h[52] startco=23
+stdin G:202 DEF com/sial-686.b[46] stdin=
+stdout G:203 DEF com/sial-686.b[46] stdout=
+stdout G:203 LG com/sial-686.b[297] UNLESS asmout=stdout DO ..
+stdout G:203 LG com/sial-686.b[298] selectoutput(stdout)
+stdout G:203 LG com/sial-686.b[354] UNLESS out=stdout DO ..
+stdout G:203 LG com/sial-686.b[355] selectoutput(stdout)
+stdout G:203 SG com/sial-686.b[256] stdout:=output()
+stepstream G:67 DEF libhdr.h[96] stepstream=67
+stop G:2 DEF libhdr.h[30] stop=2
+str2numb G:101 DEF libhdr.h[131] str2numb=101
+string_to_dat G:111 DEF libhdr.h[141] string_to_dat=111
+string_to_number G:100 DEF libhdr.h[130] string_to_number=100
+sys G:3 DEF libhdr.h[31] sys=3
+sysabort G:29 DEF libhdr.h[58] sysabort=29
+t_bhunk M:3000 DEF libhdr.h[245] t_bhunk=3000
+t_bhunk64 M:4000 DEF libhdr.h[246] t_bhunk64=4000
+t_end M:1002 DEF libhdr.h[241] t_end=1002
+t_end64 M:2002 DEF libhdr.h[244] t_end64=2002
+t_hunk M:1000 DEF libhdr.h[239] t_hunk=1000
+t_hunk64 M:2000 DEF libhdr.h[242] t_hunk64=2000
+t_reloc M:1001 DEF libhdr.h[240] t_reloc=1001
+t_reloc64 M:2001 DEF libhdr.h[243] t_reloc64=2001
+taskid G:152 DEF libhdr.h[189] taskid=152
+taskwait G:160 DEF libhdr.h[197] taskwait=160
+tcb G:151 DEF libhdr.h[188] tcb=151
+tcb_a M:11 DEF libhdr.h[607] tcb_a=tcb_regs
+tcb_active M:10 DEF libhdr.h[604] tcb_active=10
+tcb_b M:12 DEF libhdr.h[608] tcb_b=12
+tcb_c M:13 DEF libhdr.h[609] tcb_c=13
+tcb_count M:18 DEF libhdr.h[614] tcb_count=18
+tcb_flags M:5 DEF libhdr.h[599] tcb_flags=5
+tcb_g M:15 DEF libhdr.h[611] tcb_g=15
+tcb_gbase M:8 DEF libhdr.h[602] tcb_gbase=8
+tcb_link M:0 DEF libhdr.h[594] tcb_link=0
+tcb_namebase M:19 DEF libhdr.h[616] tcb_namebase=19
+tcb_namebase M:19 MAN libhdr.h[618]
+    tcb_upb=tcb_namebase+15/bytesperword+1
+tcb_p M:14 DEF libhdr.h[610] tcb_p=14
+tcb_pc M:17 DEF libhdr.h[613] tcb_pc=17
+tcb_pri M:2 DEF libhdr.h[596] tcb_pri=2
+tcb_regs M:11 DEF libhdr.h[606] tcb_regs=11
+tcb_regs M:11 MAN libhdr.h[607] tcb_a=tcb_regs
+tcb_sbase M:9 DEF libhdr.h[603] tcb_sbase=9
+tcb_seglist M:7 DEF libhdr.h[601] tcb_seglist=7
+tcb_st M:16 DEF libhdr.h[612] tcb_st=16
+tcb_state M:4 DEF libhdr.h[598] tcb_state=4
+tcb_stsiz M:6 DEF libhdr.h[600] tcb_stsiz=6
+tcb_taskid M:1 DEF libhdr.h[595] tcb_taskid=1
+tcb_upb M:23 DEF libhdr.h[618] tcb_upb=tcb_namebase+15/bytesperword+1
+tcb_wkq M:3 DEF libhdr.h[597] tcb_wkq=3
+tempval G:11 DEF libhdr.h[39] tempval=11
+testbit G:113 DEF libhdr.h[143] testbit=113
+testflags G:157 DEF libhdr.h[194] testflags=157
+tg M:190 DEF libhdr.h[223] tg=190
+timeoutch M:-2 DEF libhdr.h[234] timeoutch=-2
+trace F:1 LF com/sial-686.b[364] trace("# moveA2B*n")
+trace F:1 LF com/sial-686.b[371] trace("# moveB2A*n")
+trace F:1 LF com/sial-686.b[377] trace("# freex*n")
+trace F:1 LF com/sial-686.b[397] trace("# freey*n")
+trace F:1 LF com/sial-686.b[418] trace("# moveK2x(%n)*n",k)
+trace F:1 LF com/sial-686.b[429] trace("# moveK2y(%n)*n",k)
+trace F:1 LF com/sial-686.b[464] trace("# moveA2x*n")
+trace F:1 LF com/sial-686.b[527] trace("# mov'emented*n")
+trace F:1 LF com/sial-686.b[589] trace("# mov'et done*n")
+trace F:1 LF com/sial-686.b[651] trace("# moveB2x*n")
+trace F:1 RT com/sial-686.b[209] LET trace(str,a,b,c)BE..
+tracing G:239 DEF com/sial-686.b[89] tracing=
+tracing G:239 LG com/sial-686.b[209] IF tracing DO ..
+tracing G:239 LG com/sial-686.b[212] IF tracing DO ..
+tracing G:239 SG com/sial-686.b[263] tracing:=argv!2
+tracing G:239 SG com/sial-686.b[265] tracing:=TRUE
+ug M:200 DEF libhdr.h[224] ug=200
+ug M:200 MAN com/sial-686.b[45] sialin=ug
+unhold G:159 DEF libhdr.h[196] unhold=159
+unloadseg G:106 DEF libhdr.h[136] unloadseg=106
+unpackstring G:31 DEF libhdr.h[60] unpackstring=31
+unrdch G:40 DEF libhdr.h[69] unrdch=40
+wrch G:41 DEF libhdr.h[70] wrch=41
+wrch G:41 LG com/sial-686.b[214] wrch(63)
+wrch G:41 LG com/sial-686.b[215] wrch(120)
+wrch G:41 LG com/sial-686.b[216] wrch(121)
+wrch G:41 LG com/sial-686.b[217] wrch(122)
+wrch G:41 LG com/sial-686.b[227] wrch(63)
+wrch G:41 LG com/sial-686.b[228] wrch(120)
+wrch G:41 LG com/sial-686.b[229] wrch(121)
+wrch G:41 LG com/sial-686.b[230] wrch(122)
+wrch G:41 LG com/sial-686.b[729] wrch(44)
+wrch G:41 LG com/sial-686.b[739] wrch(44)
+writed G:85 DEF libhdr.h[114] writed=85
+writee G:180 DEF libhdr.h[213] writee=180
+writef G:94 DEF libhdr.h[124] writef=94
+writef G:94 LG com/sial-686.b[1005] writef(" movl'%ebx,4)*n")
+writef G:94 LG com/sial-686.b[1014] writef(" movl'),%%eax*n",4*pval)
+writef G:94 LG com/sial-686.b[1015] writef(" addl'x,%%eax*n")
+writef G:94 LG com/sial-686.b[1016] writef(" movl'%eax,4)*n")
+writef G:94 LG com/sial-686.b[1025] writef(" movl'%ebx,4)*n",4*kval)
+writef G:94 LG com/sial-686.b[1033] writef(" movl'),%%eax*n",4*pval)
+writef G:94 LG com/sial-686.b[1034] writef(" movl'%eax,4)*n",4*kval)
+writef G:94 LG com/sial-686.b[1042] writef(" movl'),%%eax*n",4*gval)
+writef G:94 LG com/sial-686.b[1043] writef(" movl'%eax,4)*n",4*kval)
+writef G:94 LG com/sial-686.b[1052] writef(" movl'%ecx,4)*n")
+writef G:94 LG com/sial-686.b[1061] writef(" movl'x,%%eax*n")
+writef G:94 LG com/sial-686.b[1062] writef(" movl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1063] writef(" leal'),%%edx*n",4*pval)
+writef G:94 LG com/sial-686.b[1064] writef(" call **%%eax*n")
+writef G:94 LG com/sial-686.b[1072] writef(" movl'),%%eax*n",4*gval)
+writef G:94 LG com/sial-686.b[1073] writef(" leal'),%%edx*n",4*pval)
+writef G:94 LG com/sial-686.b[1074] writef(" call **%%eax*n")
+writef G:94 LG com/sial-686.b[1082] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[1089] writef(" notl %%ebx*n")
+writef G:94 LG com/sial-686.b[1097] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1098] writef(" jge L%n*n",l)
+writef G:94 LG com/sial-686.b[1099] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[1100] writef("L%n:*n",l)
+writef G:94 LG com/sial-686.b[1109] writef(" movl'x,%%eax*n")
+writef G:94 LG com/sial-686.b[1110] writef(" cdq*n")
+writef G:94 LG com/sial-686.b[1111] writef(" idiv %%ecx*n")
+writef G:94 LG com/sial-686.b[1112] writef(" movl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1115] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[1121] writef(" movl'x,%%eax*n")
+writef G:94 LG com/sial-686.b[1122] writef(" cdq*n")
+writef G:94 LG com/sial-686.b[1123] writef(" idiv %%ecx*n")
+writef G:94 LG com/sial-686.b[1124] writef(" movl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1132] writef(" subl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1140] writef(" movl'x,%%eax*n")
+writef G:94 LG com/sial-686.b[1141] writef(" imul %%ebx*n")
+writef G:94 LG com/sial-686.b[1142] writef(" movl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1150] writef(" movl'x,%%eax*n")
+writef G:94 LG com/sial-686.b[1151] writef(" cdq*n")
+writef G:94 LG com/sial-686.b[1152] writef(" idiv %%ebx*n")
+writef G:94 LG com/sial-686.b[1153] writef(" movl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1161] writef(" movl'x,%%eax*n")
+writef G:94 LG com/sial-686.b[1162] writef(" cdq*n")
+writef G:94 LG com/sial-686.b[1163] writef(" idiv %%ebx*n")
+writef G:94 LG com/sial-686.b[1164] writef(" movl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1172] writef(" addl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1180] writef(" subl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1181] writef(" negl %%ebx")
+writef G:94 LG com/sial-686.b[1189] writef(" cmpl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1190] writef(" seteb %%bl*n")
+writef G:94 LG com/sial-686.b[1191] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[1192] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[1198] writef(" cmpl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1199] writef(" setneb %%bl*n")
+writef G:94 LG com/sial-686.b[1200] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[1201] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[1207] writef(" cmpl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1208] writef(" setlb %%bl*n")
+writef G:94 LG com/sial-686.b[1209] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[1210] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[1216] writef(" cmpl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1217] writef(" setgb %%bl*n")
+writef G:94 LG com/sial-686.b[1218] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[1219] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[1225] writef(" cmpl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1226] writef(" setleb %%bl*n")
+writef G:94 LG com/sial-686.b[1227] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[1228] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[1234] writef(" cmpl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1235] writef(" setgeb %%bl*n")
+writef G:94 LG com/sial-686.b[1236] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[1237] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[1242] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1243] writef(" seteb %%bl*n")
+writef G:94 LG com/sial-686.b[1244] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[1245] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[1250] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1251] writef(" setneb %%bl*n")
+writef G:94 LG com/sial-686.b[1252] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[1253] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[1258] writef(" sarl'1,%%ebx*n")
+writef G:94 LG com/sial-686.b[1263] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1264] writef(" setgb %%bl*n")
+writef G:94 LG com/sial-686.b[1265] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[1266] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[1271] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1272] writef(" setleb %%bl*n")
+writef G:94 LG com/sial-686.b[1273] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[1274] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[1279] writef(" sarl'1,%%ebx*n")
+writef G:94 LG com/sial-686.b[1280] writef(" notl %%ebx*n")
+writef G:94 LG com/sial-686.b[1286] writef(" xchg'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1287] writef(" cmpl'2,%%ecx*n")
+writef G:94 LG com/sial-686.b[1288] writef(" sbbl'x,%%eax*n")
+writef G:94 LG com/sial-686.b[1289] writef(" andl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1290] writef(" sall'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[1299] writef(" xchg'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1300] writef(" cmpl'2,%%ecx*n")
+writef G:94 LG com/sial-686.b[1301] writef(" sbbl'x,%%eax*n")
+writef G:94 LG com/sial-686.b[1302] writef(" andl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1303] writef(" shrl'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[1312] writef(" andl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1320] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1328] writef(" xorl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1336] writef(" xorl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1337] writef(" notl %%ebx*n")
+writef G:94 LG com/sial-686.b[1346] writef(" movz'),%%ebx*n",Aval)
+writef G:94 LG com/sial-686.b[1347] writef(" movz'),%%ebx*n")
+writef G:94 LG com/sial-686.b[1350] writef(" movz'),%%ebx*n")
+writef G:94 LG com/sial-686.b[1360] writef(" movz'),%%ebx*n",Bval)
+writef G:94 LG com/sial-686.b[1361] writef(" movz'),%%ebx*n")
+writef G:94 LG com/sial-686.b[1364] writef(" movz'),%%ebx*n")
+writef G:94 LG com/sial-686.b[1373] writef(" movb'%ecx,4)*n")
+writef G:94 LG com/sial-686.b[1382] writef(" movb'%ebx,4)*n")
+writef G:94 LG com/sial-686.b[1406] writef(" xchg'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1409] writef(" movl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1421] writef(" movl'x,%%edx*n")
+writef G:94 LG com/sial-686.b[1431] writef(" movl'x,%%edx*n")
+writef G:94 LG com/sial-686.b[1454]
+    writef(" jmp L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1463] writef(" movl'),%%eax*n")
+writef G:94 LG com/sial-686.b[1464] writef(" movl'),%%ebp*n")
+writef G:94 LG com/sial-686.b[1465] writef(" jmp **%%eax*n")
+writef G:94 LG com/sial-686.b[1473] writef(" jmp **%%ebx*n")
+writef G:94 LG com/sial-686.b[1502] writef(" movl'),%%ebx*n",4*pval)
+writef G:94 LG com/sial-686.b[1504] writef(" incl %%ebx*n")
+writef G:94 LG com/sial-686.b[1506] writef(" decl %%ebx*n")
+writef G:94 LG com/sial-686.b[1507] writef(" addl'n,%%ebx*n",kval)
+writef G:94 LG com/sial-686.b[1508] writef(" movl'(%%ebp)*n",4*pval)
+writef G:94 LG com/sial-686.b[1516] writef(" movl'),%%ebx*n",4*gval)
+writef G:94 LG com/sial-686.b[1518] writef(" incl %%ebx*n")
+writef G:94 LG com/sial-686.b[1520] writef(" decl %%ebx*n")
+writef G:94 LG com/sial-686.b[1521] writef(" addl'n,%%ebx*n",kval)
+writef G:94 LG com/sial-686.b[1522] writef(" movl'(%%esi)*n",4*gval)
+writef G:94 LG com/sial-686.b[1530]
+    writef(" movl'n,%%ebx*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1532] writef(" incl %%ebx*n")
+writef G:94 LG com/sial-686.b[1534] writef(" decl %%ebx*n")
+writef G:94 LG com/sial-686.b[1535] writef(" addl'n,%%ebx*n",kval)
+writef G:94 LG com/sial-686.b[1536]
+    writef(" movl'x,L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1544] writef(" addl'),%%ebx*n",4*pval)
+writef G:94 LG com/sial-686.b[1545] writef(" movl'(%%ebp)*n",4*pval)
+writef G:94 LG com/sial-686.b[1553] writef(" addl'),%%ebx*n",4*gval)
+writef G:94 LG com/sial-686.b[1554] writef(" movl'(%%esi)*n",4*gval)
+writef G:94 LG com/sial-686.b[1562]
+    writef(" addl'n,%%ebx*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1563]
+    writef(" movl'x,L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1572] writef(" cmpl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1573] writef(" je L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1579] writef(" cmpl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1580]
+    writef(" jne L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1586] writef(" cmpl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1587] writef(" jl L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1593] writef(" cmpl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1594] writef(" jg L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1600] writef(" cmpl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1601]
+    writef(" jle L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1607] writef(" cmpl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1608]
+    writef(" jge L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1613] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1614] writef(" je L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1619] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1620]
+    writef(" jne L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1625] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1626] writef(" jl L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1631] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1632] writef(" jg L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1637] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1638]
+    writef(" jle L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1643] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1644]
+    writef(" jge L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1649] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[1650]
+    writef(" jge M%c%n*n",modletter,mval)
+writef G:94 LG com/sial-686.b[1656] writef("*n# BR'emented*n")
+writef G:94 LG com/sial-686.b[1663] writef("*n# CH'emented*n")
+writef G:94 LG com/sial-686.b[1667] writef("*n# MD'emented*n")
+writef G:94 LG com/sial-686.b[1671] writef("*n# SY'emented*n")
+writef G:94 LG com/sial-686.b[1711] writef("M%c%n:*n",modletter,mval)
+writef G:94 LG com/sial-686.b[1718] writef("*nL%c%n:*n",modletter,lval)
+writef G:94 LG com/sial-686.b[1727] writef(" movl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[1731]
+    writef(" leal'n,%%ebx*n",modletter,mval)
+writef G:94 LG com/sial-686.b[1732] writef(" shrl'2,%%ebx*n")
+writef G:94 LG com/sial-686.b[1748] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[1751] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[1756] writef(" fist'(%%esi)*n")
+writef G:94 LG com/sial-686.b[1759] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[1766] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[1772] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[1823] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[1873] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[1921] writef("*n# FM'emented*n")
+writef G:94 LG com/sial-686.b[1925] writef("*n# FX'emented*n")
+writef G:94 LG com/sial-686.b[1932] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[1982] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2032] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2038] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2042] writef(" fchs*n")
+writef G:94 LG com/sial-686.b[2052] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2058] writef(" pushl %%ebx*n")
+writef G:94 LG com/sial-686.b[2059] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2060] writef(" pushl %%ecx*n")
+writef G:94 LG com/sial-686.b[2061] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2062] writef(" addl'8,%%esp*n")
+writef G:94 LG com/sial-686.b[2063] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2064] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2066] writef(" seteb %%bl*n")
+writef G:94 LG com/sial-686.b[2067] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[2068] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[2079] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2085] writef(" pushl %%ebx*n")
+writef G:94 LG com/sial-686.b[2086] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2087] writef(" pushl %%ecx*n")
+writef G:94 LG com/sial-686.b[2088] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2089] writef(" addl'8,%%esp*n")
+writef G:94 LG com/sial-686.b[2090] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2091] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2093] writef(" setneb %%bl*n")
+writef G:94 LG com/sial-686.b[2094] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[2095] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[2105] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[210] writef(str,a,b,c)
+writef G:94 LG com/sial-686.b[2111] writef(" pushl %%ebx*n")
+writef G:94 LG com/sial-686.b[2112] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2113] writef(" pushl %%ecx*n")
+writef G:94 LG com/sial-686.b[2114] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2115] writef(" addl'8,%%esp*n")
+writef G:94 LG com/sial-686.b[2116] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2117] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2119] writef(" setb %%bl*n")
+writef G:94 LG com/sial-686.b[2120] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[2121] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[2131] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2137] writef(" pushl %%ebx*n")
+writef G:94 LG com/sial-686.b[2138] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2139] writef(" pushl %%ecx*n")
+writef G:94 LG com/sial-686.b[213] writef("#    '      B=")
+writef G:94 LG com/sial-686.b[2140] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2141] writef(" addl'8,%%esp*n")
+writef G:94 LG com/sial-686.b[2142] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2143] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2145] writef(" seta %%bl*n")
+writef G:94 LG com/sial-686.b[2146] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[2147] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[2155] writef(" pushl %%ecx*n")
+writef G:94 LG com/sial-686.b[2156] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2157] writef(" pushl %%ebx*n")
+writef G:94 LG com/sial-686.b[2158] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2159] writef(" addl'8,%%esp*n")
+writef G:94 LG com/sial-686.b[2160] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2161] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2162] writef(" setae %%bl*n")
+writef G:94 LG com/sial-686.b[2163] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[2164] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[2167] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2174] writef(" pushl %%ebx*n")
+writef G:94 LG com/sial-686.b[2175] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2176] writef(" pushl %%ecx*n")
+writef G:94 LG com/sial-686.b[2177] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2178] writef(" addl'8,%%esp*n")
+writef G:94 LG com/sial-686.b[2179] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2180] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2182] writef(" setae %%bl*n")
+writef G:94 LG com/sial-686.b[2183] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[2184] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[2188] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[218] writef("st[0]*n")
+writef G:94 LG com/sial-686.b[2194] writef(" fldz*n")
+writef G:94 LG com/sial-686.b[2195] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2196] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2197] writef(" seteb %%bl*n")
+writef G:94 LG com/sial-686.b[2198] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[2199] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[219] writef("st[1]*n")
+writef G:94 LG com/sial-686.b[2203] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2209] writef(" fldz*n")
+writef G:94 LG com/sial-686.b[220] writef("K%n",Bval)
+writef G:94 LG com/sial-686.b[2210] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2211] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2212] writef(" setneb %%bl*n")
+writef G:94 LG com/sial-686.b[2213] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[2214] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[2219] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[221] writef("P%n",Bval)
+writef G:94 LG com/sial-686.b[2225] writef(" fldz*n")
+writef G:94 LG com/sial-686.b[2226] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2227] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2228] writef(" setab %%bl*n")
+writef G:94 LG com/sial-686.b[2229] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[222] writef("G%n",Bval)
+writef G:94 LG com/sial-686.b[2230] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[2234] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[223] writef("L%n",Bval)
+writef G:94 LG com/sial-686.b[2240] writef(" fldz*n")
+writef G:94 LG com/sial-686.b[2241] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2242] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2243] writef(" setbb %%bl*n")
+writef G:94 LG com/sial-686.b[2244] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[2245] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[2249] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[224] writef("M%n",Bval)
+writef G:94 LG com/sial-686.b[2255] writef(" fldz*n")
+writef G:94 LG com/sial-686.b[2256] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2257] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2258] writef(" setaeb %%bl*n")
+writef G:94 LG com/sial-686.b[2259] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[2260] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[2264] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[226] writef("    A=")
+writef G:94 LG com/sial-686.b[2270] writef(" fldz*n")
+writef G:94 LG com/sial-686.b[2271] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2272] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2273] writef(" setbeb %%bl*n")
+writef G:94 LG com/sial-686.b[2274] writef(" movz'l,%%ebx*n")
+writef G:94 LG com/sial-686.b[2275] writef(" negl %%ebx*n")
+writef G:94 LG com/sial-686.b[2279] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2289] writef(" pushl %%ebx*n")
+writef G:94 LG com/sial-686.b[2290] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2291] writef(" pushl %%ecx*n")
+writef G:94 LG com/sial-686.b[2292] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2293] writef(" addl'8,%%esp*n")
+writef G:94 LG com/sial-686.b[2294] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2295] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2297] writef(" je L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2302] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2312] writef(" pushl %%ebx*n")
+writef G:94 LG com/sial-686.b[2313] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2314] writef(" pushl %%ecx*n")
+writef G:94 LG com/sial-686.b[2315] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2316] writef(" addl'8,%%esp*n")
+writef G:94 LG com/sial-686.b[2317] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2318] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[231] writef("st[0]*n")
+writef G:94 LG com/sial-686.b[2320]
+    writef(" jne L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2324] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[232] writef("st[1]*n")
+writef G:94 LG com/sial-686.b[2334] writef(" pushl %%ebx*n")
+writef G:94 LG com/sial-686.b[2335] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2336] writef(" pushl %%ecx*n")
+writef G:94 LG com/sial-686.b[2337] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2338] writef(" addl'8,%%esp*n")
+writef G:94 LG com/sial-686.b[2339] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[233] writef("K%n",Aval)
+writef G:94 LG com/sial-686.b[2340] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2342] writef(" jb L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2346] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[234] writef("P%n",Aval)
+writef G:94 LG com/sial-686.b[2356] writef(" pushl %%ebx*n")
+writef G:94 LG com/sial-686.b[2357] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2358] writef(" pushl %%ecx*n")
+writef G:94 LG com/sial-686.b[2359] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[235] writef("G%n",Aval)
+writef G:94 LG com/sial-686.b[2360] writef(" addl'8,%%esp*n")
+writef G:94 LG com/sial-686.b[2361] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2362] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2364] writef(" ja L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2368] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[236] writef("L%n",Aval)
+writef G:94 LG com/sial-686.b[2378] writef(" pushl %%ebx*n")
+writef G:94 LG com/sial-686.b[2379] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[237] writef("M%n",Aval)
+writef G:94 LG com/sial-686.b[2380] writef(" pushl %%ecx*n")
+writef G:94 LG com/sial-686.b[2381] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2382] writef(" addl'8,%%esp*n")
+writef G:94 LG com/sial-686.b[2383] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2384] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2386]
+    writef(" jbe L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2390] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2397] writef(" pushl %%ecx*n")
+writef G:94 LG com/sial-686.b[2398] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2399] writef(" pushl %%ebx*n")
+writef G:94 LG com/sial-686.b[2400] writef(" flds'(%%esi)*n")
+writef G:94 LG com/sial-686.b[2401] writef(" addl'8,%%esp*n")
+writef G:94 LG com/sial-686.b[2402] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2403] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2404]
+    writef(" jae L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2408] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2414] writef(" fldz*n")
+writef G:94 LG com/sial-686.b[2415] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2416] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2417] writef(" je L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2421] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2427] writef(" fldz*n")
+writef G:94 LG com/sial-686.b[2428] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2429] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2430]
+    writef(" jne L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2434] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2440] writef(" fldz*n")
+writef G:94 LG com/sial-686.b[2441] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2442] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2443] writef(" ja L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2447] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2453] writef(" fldz*n")
+writef G:94 LG com/sial-686.b[2454] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2455] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2456] writef(" jb L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2460] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2466] writef(" fldz*n")
+writef G:94 LG com/sial-686.b[2467] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2468] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2469]
+    writef(" jae L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2476] writef(" fldz*n")
+writef G:94 LG com/sial-686.b[2477] writef(" fuco'1),%%st*n")
+writef G:94 LG com/sial-686.b[2478] writef(" fstp %%st*n")
+writef G:94 LG com/sial-686.b[2479]
+    writef(" jbe L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2483] writef("# UNCHECKED*n")
+writef G:94 LG com/sial-686.b[2488] writef("*n# SE'emented*n")
+writef G:94 LG com/sial-686.b[2491] writef("*n# SE'emented*n")
+writef G:94 LG com/sial-686.b[2494] writef("*n# XS'emented*n")
+writef G:94 LG com/sial-686.b[2500] writef("# %s*n",s)
+writef G:94 LG com/sial-686.b[2503] writef("# %t7 P%n*n",s,rdp())
+writef G:94 LG com/sial-686.b[2506]
+    writef("# %t7 K%n P%n*n",s,rdk(),rdp())
+writef G:94 LG com/sial-686.b[2509] writef("# %t7 G%n*n",s,rdg())
+writef G:94 LG com/sial-686.b[2512]
+    writef("# %t7 K%n G%n*n",s,rdk(),rdg())
+writef G:94 LG com/sial-686.b[2515]
+    writef("# %t7 K%n L%n*n",s,rdk(),rdl())
+writef G:94 LG com/sial-686.b[2518]
+    writef("# %t7 P%n G%n*n",s,rdp(),rdg())
+writef G:94 LG com/sial-686.b[2521] writef("# %t7 K%n*n",s,rdk())
+writef G:94 LG com/sial-686.b[2524] writef("# %t7 W%n*n",s,rdw())
+writef G:94 LG com/sial-686.b[2527] writef("# %t7 L%n*n",s,rdl())
+writef G:94 LG com/sial-686.b[2530] writef("# %t7 M%n*n",s,rdm())
+writef G:94 LG com/sial-686.b[2533] writef("%t7 K%n K%n",s,rdk(),rdk())
+writef G:94 LG com/sial-686.b[2540] writef("%t7 %s K%n K%n",s,fs,len,sh)
+writef G:94 LG com/sial-686.b[2548] writef("# SWL K%n L%n*n",n,l)
+writef G:94 LG com/sial-686.b[2550] writef(" orl 'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[2551] writef(" jl L%c%n*n",modletter,l)
+writef G:94 LG com/sial-686.b[2552] writef(" cmpl'n,%%ebx*n",n)
+writef G:94 LG com/sial-686.b[2553] writef(" jge L%c%n*n",modletter,l)
+writef G:94 LG com/sial-686.b[2554] writef(" jmp '%ebx,4)*n",lab)
+writef G:94 LG com/sial-686.b[2555] writef(" .data*n")
+writef G:94 LG com/sial-686.b[2556] writef(" .align 4*n")
+writef G:94 LG com/sial-686.b[2557] writef("L%n:*n",lab)
+writef G:94 LG com/sial-686.b[2559] writef("# L%n*n",rdl())
+writef G:94 LG com/sial-686.b[2560]
+    writef(" .long L%c%n*n",modletter,lval)
+writef G:94 LG com/sial-686.b[2562] writef(" .text*n")
+writef G:94 LG com/sial-686.b[2571] writef("# SWB K%n L%n*n",n,l)
+writef G:94 LG com/sial-686.b[2576] writef("# K%n L%n*n",k,l)
+writef G:94 LG com/sial-686.b[2577] writef(" cmpl'n,%%ebx*n",k)
+writef G:94 LG com/sial-686.b[2578] writef(" je L%c%n*n",modletter,l)
+writef G:94 LG com/sial-686.b[2580] writef(" jmp L%c%n*n",modletter,l)
+writef G:94 LG com/sial-686.b[2589] writef("# GLOBAL K%n*n",n)
+writef G:94 LG com/sial-686.b[2591] writef(".globl %s*n",sectname)
+writef G:94 LG com/sial-686.b[2592] writef(".globl _%s*n",sectname)
+writef G:94 LG com/sial-686.b[2593] writef("%s:*n",sectname)
+writef G:94 LG com/sial-686.b[2594] writef("_%s:*n",sectname)
+writef G:94 LG com/sial-686.b[2595] writef(" movl'),%%eax*n")
+writef G:94 LG com/sial-686.b[2599] writef("# G%n L%n*n",g,n)
+writef G:94 LG com/sial-686.b[2600]
+    writef(" movl'(%%eax)*n",modletter,n,4*g)
+writef G:94 LG com/sial-686.b[2602] writef("# G%n*n",rdg())
+writef G:94 LG com/sial-686.b[2603] writef(" ret*n")
+writef G:94 LG com/sial-686.b[2616] writef("# STR' M%n K%n",lab,n)
+writef G:94 LG com/sial-686.b[2617] writef(" C%n",charv%i)
+writef G:94 LG com/sial-686.b[2618] writef("*n.data*n")
+writef G:94 LG com/sial-686.b[2619] writef(" .align 4*n")
+writef G:94 LG com/sial-686.b[2620] writef("M%c%n:*n",modletter,lab)
+writef G:94 LG com/sial-686.b[2621] writef(" .byte %n*n",charv%i)
+writef G:94 LG com/sial-686.b[2622] writef(" .text*n")
+writef G:94 LG com/sial-686.b[2628] writef("# CON'M%n W%n*n",lab,w)
+writef G:94 LG com/sial-686.b[2629] writef(".data*n")
+writef G:94 LG com/sial-686.b[2630] writef(" .align 4*n")
+writef G:94 LG com/sial-686.b[2631] writef("M%c%n:*n",modletter,lab)
+writef G:94 LG com/sial-686.b[2632] writef(" .long %n*n",w)
+writef G:94 LG com/sial-686.b[2633] writef(" .text*n")
+writef G:94 LG com/sial-686.b[2639] writef("# STA'L%n K%n*n",lab,n)
+writef G:94 LG com/sial-686.b[2640] writef(".data*n")
+writef G:94 LG com/sial-686.b[2641] writef(" .align 4*n")
+writef G:94 LG com/sial-686.b[2642] writef("L%c%n:*n",modletter,lab)
+writef G:94 LG com/sial-686.b[2643] writef("# W%n*n",rdw())
+writef G:94 LG com/sial-686.b[2644] writef(" .long %n*n",wval)
+writef G:94 LG com/sial-686.b[2646] writef(" .text*n")
+writef G:94 LG com/sial-686.b[2651] writef("# %t7 K%n",s,n)
+writef G:94 LG com/sial-686.b[2652] writef(" C%n",charv%i)
+writef G:94 LG com/sial-686.b[2660] writef("*n# En' to: %s*n",charv)
+writef G:94 LG com/sial-686.b[2661] writef("# %t7 K%n","ENTRY",n)
+writef G:94 LG com/sial-686.b[2662] writef(" C%n",charv%i)
+writef G:94 LG com/sial-686.b[2664] writef("# LAB     L%n*n",lab)
+writef G:94 LG com/sial-686.b[2665] writef("# cve'F%n L%n*n",op,lab)
+writef G:94 LG com/sial-686.b[2666] writef("L%c%n:*n",modletter,lab)
+writef G:94 LG com/sial-686.b[2667] writef(" movl'(%%edx)*n")
+writef G:94 LG com/sial-686.b[2668] writef(" movl'x,%%ebp*n")
+writef G:94 LG com/sial-686.b[2669] writef(" popl %%edx*n")
+writef G:94 LG com/sial-686.b[2670] writef(" movl'(%%ebp)*n")
+writef G:94 LG com/sial-686.b[2671] writef(" movl'(%%ebp)*n")
+writef G:94 LG com/sial-686.b[2672] writef(" movl'(%%ebp)*n")
+writef G:94 LG com/sial-686.b[269] writef("Troub'file %s*n",argv!0)
+writef G:94 LG com/sial-686.b[275] writef("Troub'file %s*n",argv!1)
+writef G:94 LG com/sial-686.b[290] writef("# Cod'al-686*n*n")
+writef G:94 LG com/sial-686.b[291] writef(".text*n*n")
+writef G:94 LG com/sial-686.b[292] writef(".align 16*n")
+writef G:94 LG com/sial-686.b[299] writef("Conve'omplete*n")
+writef G:94 LG com/sial-686.b[356] writef(mess,a,b,c)
+writef G:94 LG com/sial-686.b[359] writef(mess,a,b,c)
+writef G:94 LG com/sial-686.b[383] writef(" xchg'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[387] writef(" movl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[403] writef(" xchg'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[407] writef(" movl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[421] writef(" movl'n,%%ebx*n",k)
+writef G:94 LG com/sial-686.b[422] writef(" xorl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[424] writef(" movl'n,%%ebx*n",k)
+writef G:94 LG com/sial-686.b[432] writef(" movl'n,%%ecx*n",k)
+writef G:94 LG com/sial-686.b[433] writef(" xorl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[478] writef(" movl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[492] writef(" fxch'1],%%st*n")
+writef G:94 LG com/sial-686.b[511]
+    writef("# Cal'%n, %n)*n","movl",Amem,Aval,Areg)
+writef G:94 LG com/sial-686.b[519] writef("# SYS'moveA2x*n")
+writef G:94 LG com/sial-686.b[541] writef(" movl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[555] writef(" fxch'1],%%st*n")
+writef G:94 LG com/sial-686.b[581] writef("# SYS'moveA2x*n")
+writef G:94 LG com/sial-686.b[603] writef(" movl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[617] writef(" fxch'1],%%st*n")
+writef G:94 LG com/sial-686.b[643] writef("# SYS'moveB2x*n")
+writef G:94 LG com/sial-686.b[665] writef(" movl'x,%%ebx*n")
+writef G:94 LG com/sial-686.b[679] writef(" fxch'1],%%st*n")
+writef G:94 LG com/sial-686.b[705] writef("# SYS'moveB2x*n")
+writef G:94 LG com/sial-686.b[710] writef("# SYS'emented*n")
+writef G:94 LG com/sial-686.b[714] writef("# SYS'emented*n")
+writef G:94 LG com/sial-686.b[719] writef("# SYS'emented*n")
+writef G:94 LG com/sial-686.b[723] writef("# SYS'emented*n")
+writef G:94 LG com/sial-686.b[727] writef(" %s ",opstr)
+writef G:94 LG com/sial-686.b[732] writef("# SYSERROR:*n")
+writef G:94 LG com/sial-686.b[737] writef(" %s ",opstr)
+writef G:94 LG com/sial-686.b[742] writef("# SYSERROR:*n")
+writef G:94 LG com/sial-686.b[747] writef(" %s $%n,",opstr,k)
+writef G:94 LG com/sial-686.b[753] writef(" %s ",opstr)
+writef G:94 LG com/sial-686.b[759] writef(" %s ",opstr)
+writef G:94 LG com/sial-686.b[777] writef("LA1")
+writef G:94 LG com/sial-686.b[781] writef("%n(%%ebp)",4*val)
+writef G:94 LG com/sial-686.b[783] writef("%n(%%esi)",4*val)
+writef G:94 LG com/sial-686.b[785] writef("L%c%n",modletter,val)
+writef G:94 LG com/sial-686.b[787] writef("M%c%n",modletter,val)
+writef G:94 LG com/sial-686.b[793] writef("# scan: op=%n*n",op)
+writef G:94 LG com/sial-686.b[818] writef(" movl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[822] writef(" leal'),%%ebx*n",4*pval)
+writef G:94 LG com/sial-686.b[823] writef(" shrl'2,%%ebx*n")
+writef G:94 LG com/sial-686.b[831] writef(" movl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[835] writef(" leal'),%%ebx*n",4*gval)
+writef G:94 LG com/sial-686.b[836] writef(" shrl'2,%%ebx*n")
+writef G:94 LG com/sial-686.b[844] writef(" movl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[848]
+    writef(" leal'n,%%ebx*n",modletter,lval)
+writef G:94 LG com/sial-686.b[849] writef(" shrl'2,%%ebx*n")
+writef G:94 LG com/sial-686.b[857] writef(" movl'x,%%ecx*n")
+writef G:94 LG com/sial-686.b[861]
+    writef(" leal'n,%%ebx*n",modletter,lval)
+writef G:94 LG com/sial-686.b[966] writef(" movl'),%%eax*n",4*pval)
+writef G:94 LG com/sial-686.b[967] writef(" movl'),%%ebx*n",4*kval)
+writef G:94 LG com/sial-686.b[974] writef(" movl'),%%eax*n",4*gval)
+writef G:94 LG com/sial-686.b[975] writef(" movl'),%%ebx*n",4*kval)
+writef G:94 LG com/sial-686.b[982] writef(" movl'),%%ebx*n")
+writef G:94 LG com/sial-686.b[989] writef(" addl'),%%ebx*n",4*pval)
+writef G:94 LG com/sial-686.b[990] writef(" movl'),%%ebx*n")
+writef G:94 LG com/sial-686.b[997] writef(" movl'),%%ebx*n",4*kval)
+writeflt G:73 DEF libhdr.h[102] writeflt=73
+writehex G:87 DEF libhdr.h[116] writehex=87
+writen G:86 DEF libhdr.h[115] writen=86
+writeoct G:88 DEF libhdr.h[117] writeoct=88
+writes G:89 DEF libhdr.h[118] writes=89
+writes G:89 LG com/sial-686.b[258] writes("Bad a'ial-686*n")
+writes G:89 LG com/sial-686.b[765] writes("%eax")
+writes G:89 LG com/sial-686.b[769] writes("%ebx")
+writes G:89 LG com/sial-686.b[770] writes("%ecx")
+writes G:89 LG com/sial-686.b[771] writes("%edx")
+writes G:89 LG com/sial-686.b[772] writes("%st")
+writes G:89 LG com/sial-686.b[773] writes("%st[1]")
+writet G:90 DEF libhdr.h[119] writet=90
+writeu G:91 DEF libhdr.h[120] writeu=91
+writewords G:45 DEF libhdr.h[74] writewords=45
+writez G:92 DEF libhdr.h[121] writez=92
+wrmem F:65 LF com/sial-686.b[728] wrmem(mem,val)
+wrmem F:65 LF com/sial-686.b[740] wrmem(mem,val)
+wrmem F:65 LF com/sial-686.b[754] wrmem(mem,val)
+wrmem F:65 RT com/sial-686.b[776] LET wrmem(mem,val)BE..
+wropKreg F:61 LF com/sial-686.b[485] wropKreg("movl",Aval,Areg)
+wropKreg F:61 LF com/sial-686.b[548] wropKreg("movl",Aval,Areg)
+wropKreg F:61 LF com/sial-686.b[610] wropKreg("movl",Bval,Breg)
+wropKreg F:61 LF com/sial-686.b[672] wropKreg("movl",Bval,Breg)
+wropKreg F:61 LF com/sial-686.b[949] wropKreg("addl",kval,Areg)
+wropKreg F:61 LF com/sial-686.b[959] wropKreg("subl",kval,Areg)
+wropKreg F:61 RT com/sial-686.b[746] LET wropKreg(opstr,k,reg)BE..
+wropmem F:62 LF com/sial-686.b[1745] wropmem("filds",Areg,Aval)
+wropmem F:62 LF com/sial-686.b[1828] wropmem("fdivs")
+wropmem F:62 LF com/sial-686.b[1836] wropmem("fdivrs")
+wropmem F:62 LF com/sial-686.b[1843] wropmem("flds")
+wropmem F:62 LF com/sial-686.b[1846] wropmem("fdivs")
+wropmem F:62 LF com/sial-686.b[1853] wropmem("flds")
+wropmem F:62 LF com/sial-686.b[1856] wropmem("fdivrs")
+wropmem F:62 LF com/sial-686.b[1865] wropmem("fdivs")
+wropmem F:62 LF com/sial-686.b[1878] wropmem("fdivrs")
+wropmem F:62 LF com/sial-686.b[1886] wropmem("fdivs")
+wropmem F:62 LF com/sial-686.b[1893] wropmem("flds")
+wropmem F:62 LF com/sial-686.b[1896] wropmem("fdivrs")
+wropmem F:62 LF com/sial-686.b[1903] wropmem("flds")
+wropmem F:62 LF com/sial-686.b[1906] wropmem("fdivs")
+wropmem F:62 LF com/sial-686.b[1915] wropmem("fdivrs")
+wropmem F:62 LF com/sial-686.b[1937] wropmem("fadds")
+wropmem F:62 LF com/sial-686.b[1945] wropmem("fadds")
+wropmem F:62 LF com/sial-686.b[1952] wropmem("flds")
+wropmem F:62 LF com/sial-686.b[1955] wropmem("fadds")
+wropmem F:62 LF com/sial-686.b[1962] wropmem("flds")
+wropmem F:62 LF com/sial-686.b[1965] wropmem("fadds")
+wropmem F:62 LF com/sial-686.b[1974] wropmem("fadds")
+wropmem F:62 LF com/sial-686.b[1987] wropmem("fsubs")
+wropmem F:62 LF com/sial-686.b[2002] wropmem("flds")
+wropmem F:62 LF com/sial-686.b[2005] wropmem("fsubs")
+wropmem F:62 LF com/sial-686.b[2012] wropmem("flds")
+wropmem F:62 LF com/sial-686.b[2015] wropmem("fsubrs")
+wropmem F:62 LF com/sial-686.b[2024] wropmem("fsubs")
+wropmem F:62 LF com/sial-686.b[501] wropmem("fstps",Amem,Aval)
+wropmem F:62 LF com/sial-686.b[564] wropmem("fstps",Amem,Aval)
+wropmem F:62 LF com/sial-686.b[626] wropmem("fstps",Bmem,Bval)
+wropmem F:62 LF com/sial-686.b[688] wropmem("fstps",Bmem,Bval)
+wropmem F:62 LF com/sial-686.b[888] wropmem("fstps",Amem,Aval)
+wropmem F:62 LF com/sial-686.b[904] wropmem("fstps",Amem,Aval)
+wropmem F:62 LF com/sial-686.b[920] wropmem("fstps",Amem,Aval)
+wropmem F:62 RT com/sial-686.b[752] LET wropmem(opstr,mem,val)BE..
+wropmemreg F:59 LF com/sial-686.b[512] wropmemreg("movl",Amem,Aval,Areg)
+wropmemreg F:59 LF com/sial-686.b[574]
+    wropmemreg(" movl ",Amem,Aval,Areg)
+wropmemreg F:59 LF com/sial-686.b[636]
+    wropmemreg(" movl ",Bmem,Bval,Breg)
+wropmemreg F:59 LF com/sial-686.b[698]
+    wropmemreg(" movl ",Bmem,Bval,Breg)
+wropmemreg F:59 LF com/sial-686.b[932] wropmemreg("addl",1,pval,Areg)
+wropmemreg F:59 LF com/sial-686.b[939] wropmemreg("addl",2,gval,Areg)
+wropmemreg F:59 RT com/sial-686.b[726]
+    LET wropmemreg(opstr,mem,val,reg)BE..
+wropreg F:63 LF com/sial-686.b[947] wropreg("incl",Areg)
+wropreg F:63 LF com/sial-686.b[948] wropreg("decl",Areg)
+wropreg F:63 LF com/sial-686.b[957] wropreg("decl",Areg)
+wropreg F:63 LF com/sial-686.b[958] wropreg("dinl",Areg)
+wropreg F:63 RT com/sial-686.b[758] LET wropreg(opstr,reg)BE..
+wropregmem F:60 LF com/sial-686.b[894] wropregmem("movl",Areg,Amem,Aval)
+wropregmem F:60 LF com/sial-686.b[910] wropregmem("movl",Areg,Amem,Aval)
+wropregmem F:60 LF com/sial-686.b[926] wropregmem("movl",Areg,Amem,Aval)
+wropregmem F:60 RT com/sial-686.b[736]
+    LET wropregmem(opstr,reg,mem,val)BE..
+wrreg F:64 LF com/sial-686.b[730] wrreg(reg)
+wrreg F:64 LF com/sial-686.b[738] wrreg(reg)
+wrreg F:64 LF com/sial-686.b[748] wrreg(reg)
+wrreg F:64 LF com/sial-686.b[760] wrreg(reg)
+wrreg F:64 RT com/sial-686.b[764] LET wrreg(reg)BE..
+wval G:217 DEF com/sial-686.b[55] wval=
+wval G:217 LG com/sial-686.b[2644] writef(" .long %n*n",wval)
+wval G:217 LG com/sial-686.b[347] RESULTIS wval
+wval G:217 SG com/sial-686.b[347] wval:=rdcode(87)

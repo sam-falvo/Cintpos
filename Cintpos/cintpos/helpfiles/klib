@@ -1,0 +1,28 @@
+*spec
+KLIB spec is in SYS:INFO.SPEC.KERNPRIM
+*all sys:info.spec.kernprim
+*procedure #H procedure
+*proc #H procedure
+**
+KLIB is a resident library containing TRIPOS specific procedures.
+KLIB procedures are the following:
+            ABORT(code, arg)
+result   := CHANGEPRI(taskid, newpriority)
+devid    := CREATEDEV(dcb)
+taskid   := CREATETASK(segmentlist, stacksize, priority)
+dcb      := DELETEDEV(devid)
+result   := DELETETASK(taskid)
+resultid := DQPKT(id, packet)
+            FREEVEC(vector)
+vector   := GETVEC(upperbound)
+result   := GLOBIN(segment)
+result   := HOLD(taskid)
+result   := QPKT(packet)
+result   := RELEASE(taskid)
+result   := SETFLAGS(taskid, mask)
+packet   := TASKWAIT()
+result   := TESTFLAGS(mask)
+Each of these procedures can be looked up using HELP PROCEDURE <PROC>.
+For a full specification of KLIB use HELP KLIB ALL.
+
+

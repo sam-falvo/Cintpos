@@ -1,0 +1,14 @@
+*procedure
+**
+WRCH
+      To write a character to the currently selected  output
+steam.
+      wrch ( ch )
+      The  character  is  written  to the currently selected
+output stream.
+      If  the  output  steam is interactive then writing the
+characters '*N' ( newline ), '*P' ( newpage ), '*C'  (  car-
+riage return ), or '*E' ( empty buffer ) will cause the out-
+put buffer to be flushed and output.
+
+

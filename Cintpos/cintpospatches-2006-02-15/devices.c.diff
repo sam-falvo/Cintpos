@@ -1,0 +1,679 @@
+*** devices.c.orig	2006-02-11 11:20:36.000000000 -0500
+--- devices.c	2006-02-11 11:20:36.000000000 -0500
+***************
+*** 91,100 ****
+  extern INT32 *W;
+  extern int irq;
+  
+- extern char *inbuf;        // For prepended standard input
+- extern int inbufp;         // Index into inbuf
+- extern int reattach_stdin; // If =1 switch to stdin after inbuf is empty
+- 
+  extern pthread_mutex_t irq_mutex;
+  extern pthread_cond_t irq_cv;
+  
+--- 91,96 ----
+***************
+*** 107,112 ****
+--- 103,126 ----
+  INT32 irqfifov[1024]; /* This holds a fifo of dcb pointers */
+  INT32 irqfifop=0, irqfifoq=0; /* fifo queue from p to q-1  */
+  
++ // Acquire lock on the interrupt mutex, ensuring that any outstanding
++ // interrupt has been serviced before proceeding.
++ static inline void acquire_irq_lock() {
++   for (;;) {
++     if (irq == 0) { // no unserviced interrupt, try to acquire lock
++       pthread_mutex_lock(&irq_mutex);
++       if (irq == 0) return; // locked and irq clear, OK to proceed
++       else pthread_mutex_unlock(&irq_mutex);
++     }
++     // printf("(wait for irq clear)\n"); fflush (stdout);
++     usleep(1); // retry after shortest possible delay
++   }
++ }
++ 
++ // Release lock on the interrupt mutex.
++ static inline void release_irq_lock() {
++   pthread_mutex_unlock(&irq_mutex);
++ }
+  
+  INT32 initdevices() {
+    // Initialise the fifo to contain no device interrupt requests.
+***************
+*** 156,168 ****
+    // Put com and arg into the dcb (safely) - since its device thread
+    // may be running
+  
+!   pthread_mutex_lock(&irq_mutex);
+    devtype = dp[Dcb_type];
+    devid   = dp[Dcb_devid];
+    dp[Dcb_op]   = com;
+    dp[Dcb_arg]  = arg;
+    //dp[Dcb_irq]  = 0;
+!   pthread_mutex_unlock(&irq_mutex);
+  
+  
+    // Perform a command: create, destroy, start, stop or setintson
+--- 170,182 ----
+    // Put com and arg into the dcb (safely) - since its device thread
+    // may be running
+  
+!   acquire_irq_lock();
+    devtype = dp[Dcb_type];
+    devid   = dp[Dcb_devid];
+    dp[Dcb_op]   = com;
+    dp[Dcb_arg]  = arg;
+    //dp[Dcb_irq]  = 0;
+!   release_irq_lock();
+  
+  
+    // Perform a command: create, destroy, start, stop or setintson
+***************
+*** 196,205 ****
+  	pthread_cond_init(cvp, NULL);
+          // Put pointers to the Pthread and condition variable (safely)
+          // into the DCB
+!         pthread_mutex_lock(&irq_mutex);
+          dp[Dcb_threadp] = (INT32)threadp;
+          dp[Dcb_cvp]     = (INT32)cvp;
+!         pthread_mutex_unlock(&irq_mutex);
+  
+          /// Change to using default thread attributes -- MR 18/1/06
+          ///pthread_attr_init(&custom_sched_attr);
+--- 210,219 ----
+  	pthread_cond_init(cvp, NULL);
+          // Put pointers to the Pthread and condition variable (safely)
+          // into the DCB
+!         acquire_irq_lock();
+          dp[Dcb_threadp] = (INT32)threadp;
+          dp[Dcb_cvp]     = (INT32)cvp;
+!         release_irq_lock();
+  
+          /// Change to using default thread attributes -- MR 18/1/06
+          ///pthread_attr_init(&custom_sched_attr);
+***************
+*** 272,285 ****
+  
+      case Devc_destroy:
+          //printf("devcommand: Devc_destroy called\n");
+!         pthread_mutex_lock(&irq_mutex);
+          //printf("devcommand: Devc_destroy sending signal to thread devid=%d\n",
+          //        dp[Dcb_devid]);
+          // Wakeup the device thread just in case it was waiting on its
+          // condition variable.
+          pthread_cond_signal((pthread_cond_t *)dp[Dcb_cvp]);
+          // When the thread runs it will commit suicide
+!         pthread_mutex_unlock(&irq_mutex);
+  
+          while(dp[Dcb_devid]) {
+            //printf("devices: wait for device %d thread to die\n", devid);
+--- 286,299 ----
+  
+      case Devc_destroy:
+          //printf("devcommand: Devc_destroy called\n");
+!         acquire_irq_lock();
+          //printf("devcommand: Devc_destroy sending signal to thread devid=%d\n",
+          //        dp[Dcb_devid]);
+          // Wakeup the device thread just in case it was waiting on its
+          // condition variable.
+          pthread_cond_signal((pthread_cond_t *)dp[Dcb_cvp]);
+          // When the thread runs it will commit suicide
+!         release_irq_lock();
+  
+          while(dp[Dcb_devid]) {
+            //printf("devices: wait for device %d thread to die\n", devid);
+***************
+*** 304,330 ****
+        { 
+          //if(devid==-2)
+          //  printf("devcommand: case Devc_start: wakeup, devid=%d\n", devid);
+!         pthread_mutex_lock(&irq_mutex);
+          pthread_cond_signal((pthread_cond_t *) dp[Dcb_cvp]);
+!         pthread_mutex_unlock(&irq_mutex);
+          return 1;
+        }
+  
+      case Devc_stop:
+  	printf("devcommand: Devc_stop not implemented yet\n");
+!         pthread_mutex_lock(&irq_mutex);
+          pthread_cond_signal((pthread_cond_t *) dp[Dcb_cvp]);
+!         pthread_mutex_unlock(&irq_mutex);
+          return 1;
+  
+      case Devc_setintson:
+  	printf("devcommand: Devc_setintson not implemented yet\n");
+!         pthread_mutex_lock(&irq_mutex);
+          dp[Dcb_intson] = arg;
+          if (arg) {
+            pthread_cond_signal((pthread_cond_t *) dp[Dcb_cvp]);
+  	}
+!         pthread_mutex_unlock(&irq_mutex);
+          return 1;
+    }
+  
+--- 318,344 ----
+        { 
+          //if(devid==-2)
+          //  printf("devcommand: case Devc_start: wakeup, devid=%d\n", devid);
+!         acquire_irq_lock();
+          pthread_cond_signal((pthread_cond_t *) dp[Dcb_cvp]);
+!         release_irq_lock();
+          return 1;
+        }
+  
+      case Devc_stop:
+  	printf("devcommand: Devc_stop not implemented yet\n");
+!         acquire_irq_lock();
+          pthread_cond_signal((pthread_cond_t *) dp[Dcb_cvp]);
+!         release_irq_lock();
+          return 1;
+  
+      case Devc_setintson:
+  	printf("devcommand: Devc_setintson not implemented yet\n");
+!         acquire_irq_lock();
+          dp[Dcb_intson] = arg;
+          if (arg) {
+            pthread_cond_signal((pthread_cond_t *) dp[Dcb_cvp]);
+  	}
+!         release_irq_lock();
+          return 1;
+    }
+  
+***************
+*** 352,358 ****
+      //if(++count%100 == 0) printf("\nclkcode: count=%d\n", count);
+  
+      //printf("dev %d thread trying to lock irq_mutex\n", devid);
+!     pthread_mutex_lock(&irq_mutex);
+      //printf("dev %d thread got irq_mutex\n", devid);
+      //printf("clkcode: dcb op = %d\n", dp[Dcb_op]);
+      if(dp[Dcb_op]==Devc_destroy) break;
+--- 366,372 ----
+      //if(++count%100 == 0) printf("\nclkcode: count=%d\n", count);
+  
+      //printf("dev %d thread trying to lock irq_mutex\n", devid);
+!     acquire_irq_lock();
+      //printf("dev %d thread got irq_mutex\n", devid);
+      //printf("clkcode: dcb op = %d\n", dp[Dcb_op]);
+      if(dp[Dcb_op]==Devc_destroy) break;
+***************
+*** 380,386 ****
+  
+      //printf("clkcode: dcb op2 = %d\n", dp[Dcb_op]);
+      if(dp[Dcb_op]==Devc_destroy) break;
+!     pthread_mutex_unlock(&irq_mutex);
+      //printf("dev %d thread unlocked irq_mutex\n", devid);
+  
+      while((tb.millitm+1000-msecs)%1000 < 20) // 20 msec ticks
+--- 394,400 ----
+  
+      //printf("clkcode: dcb op2 = %d\n", dp[Dcb_op]);
+      if(dp[Dcb_op]==Devc_destroy) break;
+!     release_irq_lock();
+      //printf("dev %d thread unlocked irq_mutex\n", devid);
+  
+      while((tb.millitm+1000-msecs)%1000 < 20) // 20 msec ticks
+***************
+*** 399,405 ****
+      dp[Dcb_var4] = (INT32)tb.dstflag;
+    }
+  
+!   pthread_mutex_unlock(&irq_mutex);
+    //printf("dev %d thread unlocked irq_mutex\n", devid);
+    //printf("dev %d thread committing suicide\n", devid);
+    return 0;
+--- 413,419 ----
+      dp[Dcb_var4] = (INT32)tb.dstflag;
+    }
+  
+!   release_irq_lock();
+    //printf("dev %d thread unlocked irq_mutex\n", devid);
+    //printf("dev %d thread committing suicide\n", devid);
+    return 0;
+***************
+*** 423,447 ****
+    while(1) {
+      // irq_mutex is unlocked
+      if (W[rootnode+Rtn_lastch]=-3) {
+!       if (inbuf) { // Feature added -- MR 18/01/06
+!         // Get next char from inbuf, get EOF if exhaused.
+!         ch = inbuf[inbufp];
+!         if (ch) {
+!           inbufp++;
+!         } else {
+!           if (reattach_stdin) {
+!             free(inbuf);
+!             inbuf = 0;
+!             ch = Readch();   // Read a character from stdin
+!           } else {
+!             ch = -1;  // EOF
+!           }
+!         }
+!         //printf("ttyincode: prepended ch=%d\n", ch);
+!       } else {
+!         //printf("ttyincode: calling Readch()\n");
+!         ch = Readch();   // Read a character from stdin
+!       }
+      }
+  
+      //printf("ttyincode: dcb op1 = %d\n", dp[Dcb_op]);
+--- 437,443 ----
+    while(1) {
+      // irq_mutex is unlocked
+      if (W[rootnode+Rtn_lastch]=-3) {
+!       ch = read_buf_ch(); // Feature added -- MR 18/01/06
+      }
+  
+      //printf("ttyincode: dcb op1 = %d\n", dp[Dcb_op]);
+***************
+*** 450,456 ****
+      //if(ch<0) exit(0);
+  
+      //printf("dev %d thread trying to lock irq_mutex\n", devid);
+!     pthread_mutex_lock(&irq_mutex);
+      //printf("dev %d thread got irq_mutex\n", devid);
+  
+      W[rootnode+Rtn_lastch] = ch; // For sadebug polling input
+--- 446,452 ----
+      //if(ch<0) exit(0);
+  
+      //printf("dev %d thread trying to lock irq_mutex\n", devid);
+!     acquire_irq_lock();
+      //printf("dev %d thread got irq_mutex\n", devid);
+  
+      W[rootnode+Rtn_lastch] = ch; // For sadebug polling input
+***************
+*** 487,493 ****
+  
+  	//printf("dev %d thread sending signal irq_cv\n", devid);
+  	// Wakeup the IDLE task since it may be suspended in a
+! 	// call of pthread_cond_wait(...) -- this is neccesary especially
+          // if clock interrupts are disabled.
+  	pthread_cond_signal(&irq_cv);
+  	break;
+--- 483,489 ----
+  
+  	//printf("dev %d thread sending signal irq_cv\n", devid);
+  	// Wakeup the IDLE task since it may be suspended in a
+! 	// call of pthread_cond_wait(...) -- this is necessary especially
+          // if clock interrupts are disabled.
+  	pthread_cond_signal(&irq_cv);
+  	break;
+***************
+*** 496,502 ****
+        // Sleep for 5 msec if the character has not been accepted
+        // by sadebug or given to a packet.
+  
+!       pthread_mutex_unlock(&irq_mutex);
+        //printf("dev %d thread unlocked irq_mutex\n", devid);
+        //printf("ttyincode: sleeping for 5 msecs, because\n");
+        // printf("ttyincode: lastch=%d, intson=%d wkq=%d insadebug=%d\n",
+--- 492,498 ----
+        // Sleep for 5 msec if the character has not been accepted
+        // by sadebug or given to a packet.
+  
+!       release_irq_lock();
+        //printf("dev %d thread unlocked irq_mutex\n", devid);
+        //printf("ttyincode: sleeping for 5 msecs, because\n");
+        // printf("ttyincode: lastch=%d, intson=%d wkq=%d insadebug=%d\n",
+***************
+*** 509,515 ****
+        usleep(5000);
+        //printf("ttyincode: done sleeping for 5000 usecs\n");
+        //printf("dev %d thread trying to lock irq_mutex\n", devid);
+!       pthread_mutex_lock(&irq_mutex);
+        //printf("dev %d thread got irq_mutex\n", devid);
+      }
+  
+--- 505,511 ----
+        usleep(5000);
+        //printf("ttyincode: done sleeping for 5000 usecs\n");
+        //printf("dev %d thread trying to lock irq_mutex\n", devid);
+!       acquire_irq_lock();
+        //printf("dev %d thread got irq_mutex\n", devid);
+      }
+  
+***************
+*** 522,532 ****
+      //printf("ttyincode: dcb op2 = %d\n", dp[Dcb_op]);
+      if(dp[Dcb_op]==Devc_destroy) break;
+  
+!     pthread_mutex_unlock(&irq_mutex);
+      //printf("dev %d thread unlocked irq_mutex\n", devid);
+    }
+  
+!   pthread_mutex_unlock(&irq_mutex);
+    //printf("dev %d thread unlocked irq_mutex\n", devid);
+    //printf("dev %d thread commiting suicide\n", devid);
+    return 0;
+--- 518,528 ----
+      //printf("ttyincode: dcb op2 = %d\n", dp[Dcb_op]);
+      if(dp[Dcb_op]==Devc_destroy) break;
+  
+!     release_irq_lock();
+      //printf("dev %d thread unlocked irq_mutex\n", devid);
+    }
+  
+!   release_irq_lock();
+    //printf("dev %d thread unlocked irq_mutex\n", devid);
+    //printf("dev %d thread commiting suicide\n", devid);
+    return 0;
+***************
+*** 545,558 ****
+  
+    while(1) {
+      //printf("dev %d thread trying to lock irq_mutex\n", devid);
+!     pthread_mutex_lock(&irq_mutex);
+      //printf("dev %d thread got irq_mutex\n", devid);
+      //printf("ttyoutcode: dcb op1 = %d\n", dp[Dcb_op]);
+      if(dp[Dcb_op]==Devc_destroy) break;
+  
+      pkt = dp[Dcb_wkq];
+      if (pkt) ch = W[pkt+Pkt_arg1];
+!     pthread_mutex_unlock(&irq_mutex);
+      //printf("dev %d thread unlocked irq_mutex\n", devid);
+  
+      if(ch>=0) {
+--- 541,554 ----
+  
+    while(1) {
+      //printf("dev %d thread trying to lock irq_mutex\n", devid);
+!     acquire_irq_lock();
+      //printf("dev %d thread got irq_mutex\n", devid);
+      //printf("ttyoutcode: dcb op1 = %d\n", dp[Dcb_op]);
+      if(dp[Dcb_op]==Devc_destroy) break;
+  
+      pkt = dp[Dcb_wkq];
+      if (pkt) ch = W[pkt+Pkt_arg1];
+!     release_irq_lock();
+      //printf("dev %d thread unlocked irq_mutex\n", devid);
+  
+      if(ch>=0) {
+***************
+*** 565,571 ****
+  
+      //printf("Dev %d operation done\n", devid);
+  
+!     pthread_mutex_lock(&irq_mutex);
+      //printf("dev %d thread got irq_mutex\n", devid);
+      //printf("ttyoutcode: dcb op1 = %d\n", dp[Dcb_op]);
+      if(dp[Dcb_op]==Devc_destroy) break;
+--- 561,567 ----
+  
+      //printf("Dev %d operation done\n", devid);
+  
+!     acquire_irq_lock();
+      //printf("dev %d thread got irq_mutex\n", devid);
+      //printf("ttyoutcode: dcb op1 = %d\n", dp[Dcb_op]);
+      if(dp[Dcb_op]==Devc_destroy) break;
+***************
+*** 588,597 ****
+      pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
+      //printf("ttyoutcode: dcb op2 = %d\n", dp[Dcb_op]);
+      if(dp[Dcb_op]==Devc_destroy) break;
+!     pthread_mutex_unlock(&irq_mutex);
+    }
+  
+!   pthread_mutex_unlock(&irq_mutex);
+    //printf("dev %d thread unlocked irq_mutex\n", devid);
+    //printf("dev %d thread commiting suicide\n", devid);
+    pthread_exit(0);
+--- 584,593 ----
+      pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
+      //printf("ttyoutcode: dcb op2 = %d\n", dp[Dcb_op]);
+      if(dp[Dcb_op]==Devc_destroy) break;
+!     release_irq_lock();
+    }
+  
+!   release_irq_lock();
+    //printf("dev %d thread unlocked irq_mutex\n", devid);
+    //printf("dev %d thread commiting suicide\n", devid);
+    pthread_exit(0);
+***************
+*** 617,623 ****
+    // (4) waiting for the next command.
+  
+    while(1) {
+!     pthread_mutex_lock(&irq_mutex);
+      op = dp[Dcb_op];                 // Get the devcommand op
+      dp[Dcb_op] = 0;
+  
+--- 613,619 ----
+    // (4) waiting for the next command.
+  
+    while(1) {
+!     acquire_irq_lock();
+      op = dp[Dcb_op];                 // Get the devcommand op
+      dp[Dcb_op] = 0;
+  
+***************
+*** 638,644 ****
+  
+            if (pkt==0) break; // No pkt in the wkq -- nothing to do
+  
+!           pthread_mutex_unlock(&irq_mutex);
+  
+            // Process the packet
+            rtnpkt = 1;   // Whatever happens the packet will be returned.
+--- 634,640 ----
+  
+            if (pkt==0) break; // No pkt in the wkq -- nothing to do
+  
+!           release_irq_lock();
+  
+            // Process the packet
+            rtnpkt = 1;   // Whatever happens the packet will be returned.
+***************
+*** 668,674 ****
+                  break;
+  	  }
+  
+!           pthread_mutex_lock(&irq_mutex);
+  
+            if(rtnpkt && dp[Dcb_intson]) {
+              // Return the packet to the client task by putting
+--- 664,670 ----
+                  break;
+  	  }
+  
+!           acquire_irq_lock();
+  
+            if(rtnpkt && dp[Dcb_intson]) {
+              // Return the packet to the client task by putting
+***************
+*** 695,716 ****
+  	} // End of case Devc_start
+      } // End of switch on Dcb_op
+  
+!     pthread_mutex_unlock(&irq_mutex);
+  
+      // Wait on the DCB's cv until next device command arrives
+!     pthread_mutex_lock(&irq_mutex);
+      while(dp[Dcb_op]==0)
+      { //printf("fileopdev %d thread waiting for cv\n", dp[Dcb_devid]);
+        pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
+        //printf("fileopdev %d thread woken up\n", devid);
+      }
+!     pthread_mutex_unlock(&irq_mutex);
+      //printf("fileopdev %d thread received command\n", devid, dp[Dcb_op]);
+  
+    } // End of device command loop
+  
+  done:
+!   pthread_mutex_unlock(&irq_mutex);
+    //printf("fileopdev %d thread unlocked irq_mutex\n", devid);
+    printf("fileopdev %d thread committing suicide\n", devid);
+    return 0;
+--- 691,712 ----
+  	} // End of case Devc_start
+      } // End of switch on Dcb_op
+  
+!     release_irq_lock();
+  
+      // Wait on the DCB's cv until next device command arrives
+!     acquire_irq_lock();
+      while(dp[Dcb_op]==0)
+      { //printf("fileopdev %d thread waiting for cv\n", dp[Dcb_devid]);
+        pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
+        //printf("fileopdev %d thread woken up\n", devid);
+      }
+!     release_irq_lock();
+      //printf("fileopdev %d thread received command\n", devid, dp[Dcb_op]);
+  
+    } // End of device command loop
+  
+  done:
+!   release_irq_lock();
+    //printf("fileopdev %d thread unlocked irq_mutex\n", devid);
+    printf("fileopdev %d thread committing suicide\n", devid);
+    return 0;
+***************
+*** 819,831 ****
+    //         into the fifo queue, and
+    // (4) waiting for the next command.
+  
+!   pthread_mutex_lock(&irq_mutex);
+    // The only ways to unlock the irq mutex are:
+    // (1) Execute a destroy command
+    // (2) Start processing a packet operation
+    // (3) Wait in pthread_cond_wait for another devcom command.
+    while(1) {
+!     //pthread_mutex_lock(&irq_mutex);
+      op    = dp[Dcb_op];      // Get the devcommand op
+      arg   = dp[Dcb_arg];     // Get the devcommand arg
+      dp[Dcb_op]  = 0;
+--- 815,827 ----
+    //         into the fifo queue, and
+    // (4) waiting for the next command.
+  
+!   acquire_irq_lock();
+    // The only ways to unlock the irq mutex are:
+    // (1) Execute a destroy command
+    // (2) Start processing a packet operation
+    // (3) Wait in pthread_cond_wait for another devcom command.
+    while(1) {
+!     //acquire_irq_lock();
+      op    = dp[Dcb_op];      // Get the devcommand op
+      arg   = dp[Dcb_arg];     // Get the devcommand arg
+      dp[Dcb_op]  = 0;
+***************
+*** 834,840 ****
+      if(devid != dp[Dcb_devid]) {
+  printf("tcpdevcode: bad DCB=%d devid=%d/%d op=%d arg=%d\n",
+          dcb, devid, dp[Dcb_devid], op, arg);
+!       pthread_mutex_unlock(&irq_mutex);
+        return 0;
+      }
+  
+--- 830,836 ----
+      if(devid != dp[Dcb_devid]) {
+  printf("tcpdevcode: bad DCB=%d devid=%d/%d op=%d arg=%d\n",
+          dcb, devid, dp[Dcb_devid], op, arg);
+!       release_irq_lock();
+        return 0;
+      }
+  
+***************
+*** 857,863 ****
+  //printf("tcpdev: op=destroy\n");
+  //printf("tcpdevcode: destroying devid=%d op=%d arg=%d\n", devid, op, arg);
+  	                 dp[Dcb_devid] = 0;  // Mark as destroyed
+!                          pthread_mutex_unlock(&irq_mutex);
+  //printf("dev %d thread unlocked irq_mutex\n", devid);
+  //printf("devices: devid=%d thread committing suicide\n", devid);
+  
+--- 853,859 ----
+  //printf("tcpdev: op=destroy\n");
+  //printf("tcpdevcode: destroying devid=%d op=%d arg=%d\n", devid, op, arg);
+  	                 dp[Dcb_devid] = 0;  // Mark as destroyed
+!                          release_irq_lock();
+  //printf("dev %d thread unlocked irq_mutex\n", devid);
+  //printf("devices: devid=%d thread committing suicide\n", devid);
+  
+***************
+*** 886,892 ****
+  
+            // This thread can run in parallel with the interpreter
+            // so unlock the irq mutex.
+!           pthread_mutex_unlock(&irq_mutex);
+  
+            switch(p[Pkt_type]) {
+  	    default: printf("tcpdev: Unknown pkt type %d in Devc_start dev %d\n",
+--- 882,888 ----
+  
+            // This thread can run in parallel with the interpreter
+            // so unlock the irq mutex.
+!           release_irq_lock();
+  
+            switch(p[Pkt_type]) {
+  	    default: printf("tcpdev: Unknown pkt type %d in Devc_start dev %d\n",
+***************
+*** 1369,1375 ****
+                }
+  	  }
+  
+!           pthread_mutex_lock(&irq_mutex);
+  
+            if(rtnpkt && dp[Dcb_intson]) {
+              // Return the packet to the client task by putting
+--- 1365,1371 ----
+                }
+  	  }
+  
+!           acquire_irq_lock();
+  
+            if(rtnpkt && dp[Dcb_intson]) {
+              // Return the packet to the client task by putting
+***************
+*** 1397,1412 ****
+  	} // End of case Devc_start
+      } // End of switch on Dcb_op
+  
+!     ////pthread_mutex_unlock(&irq_mutex);
+  
+      // Wait on the DCB's cv until next device command arrives
+!     ////pthread_mutex_lock(&irq_mutex);
+      while(dp[Dcb_op]==0)
+      { //printf("tcpdev %d thread waiting for cv\n", devid);
+        pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
+        //printf("tcbdev %d thread woken up, op=%d\n", devid, dp[Dcb_op]);
+      }
+!     ////pthread_mutex_unlock(&irq_mutex);
+      // irq has been set to 1 and the interrupting devices id places in
+      // the fifo. When the interpreter thread is next able to service an
+      // interrupt it will cause the function intrtn (defined in BOOT.b) to
+--- 1393,1408 ----
+  	} // End of case Devc_start
+      } // End of switch on Dcb_op
+  
+!     ////release_irq_lock();
+  
+      // Wait on the DCB's cv until next device command arrives
+!     ////acquire_irq_lock();
+      while(dp[Dcb_op]==0)
+      { //printf("tcpdev %d thread waiting for cv\n", devid);
+        pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
+        //printf("tcbdev %d thread woken up, op=%d\n", devid, dp[Dcb_op]);
+      }
+!     ////release_irq_lock();
+      // irq has been set to 1 and the interrupting devices id places in
+      // the fifo. When the interpreter thread is next able to service an
+      // interrupt it will cause the function intrtn (defined in BOOT.b) to
+***************
+*** 1419,1425 ****
+  
+  //done:   This point is never reached
+  printf("devices: ERROR: label done reached\n");
+!   pthread_mutex_unlock(&irq_mutex);
+    //printf("dev %d thread unlocked irq_mutex\n", devid);
+    //printf("devices: devid=%d thread committing suicide\n", devid);
+  
+--- 1415,1421 ----
+  
+  //done:   This point is never reached
+  printf("devices: ERROR: label done reached\n");
+!   release_irq_lock();
+    //printf("dev %d thread unlocked irq_mutex\n", devid);
+    //printf("devices: devid=%d thread committing suicide\n", devid);
+  

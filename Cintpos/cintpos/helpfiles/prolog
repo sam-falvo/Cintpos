@@ -1,0 +1,57 @@
+**
+UNSW Prolog - written by Claue Sammut (UNSW).
+
+There is a PROLOG system available on 68000s only. It is invoked by
+the command:
+
+prolog  file1 file2 ...
+
+file1, file2, etc. contain Prolog programs to be loaded before the user is
+asked to type a command. The -s option may also be specified to set the
+Prolog stack size. For example:
+
+prolog -s3000 file1
+
+would set the stack size to 3000 units (default is 1000).
+
+
+There are a number of differences to the Prolog described in
+Clocksin and Mellish.
+
+commands are of the form
+                command!
+        e.g.    load file! to read a program from a file.
+
+commands:
+        trace procedure; trace [procedure, procedure,  ..]
+        untrace procedure; untrace [procedure, ..]
+        listing :for a list of all clauses
+
+statements are of the form
+                statement.
+        e.g.    green(peas).
+
+questions are of the form
+                question?
+        e.g.    green(Z)?       gives all solutions ( does not wait).
+
+operators differences
+        /=  for \=
+        no \==
+
+comments        "% comment to end of line".
+
+To exit, type '@Q' or 'halt!'.
+
+Also available on the vaxes as ~drm/bin/unswprolog.
+
+For more information see DRM.
+
+KNOWN BUGS
+----------
+The PROLOG system is inclined to cause an 'invalid stream' abort (187) on exit.
+It is safe to continue from this abort by selecting the DEBUG task (with
+control-S 02), typing 'C' to continue the aborted task, and selecting the
+CLI again (e.g. control-S 01).
+
+

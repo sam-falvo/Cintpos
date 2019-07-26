@@ -1,0 +1,55 @@
+*8080 #H z80
+*6809 #H z80
+*6502 #H z80
+*8x300 #H z80
+*9900 #H z80
+*z80 #H z80
+*chex #H z80
+*68000   #H  ASM68
+*LSI4
+*pdp11
+*pdp
+*pdp/11
+*nova
+*ga
+*automation
+LSI4 ASM command
+Form:           ASM  "PROG=FROM/A,CODE=TO,VER/K,LIST/S,HDR/K"
+Purpose:        To invoke the assembler for the machine being used.
+Authors:        RDE BJK
+Specification:
+   FROM is the source file.
+   TO is the file for the object module.  If this is omitted then no
+code is produced.
+   VER is the file for messages.  By default, these go to the
+current output stream.
+   LIST turns on the assembly listing switch at the start of the
+source.  (It may be turned off again by directives in the source).
+If LIST is absent, only lines containing errors are listed.
+   HDR specifies a header file to be textually inserted before the
+source file.
+   Assemblers for machines other than the host have similar
+specifications, but have names indicating which machine they are
+for: e.g. NOVASM, PDPASM, GASM.
+    NOTE: the ZASM command is now recommended for use on the LSI4.
+Example:        ASM ABC
+                ASM ABC ABC-OBJ
+                ASM ABC TO ABC-OBJ VER LP: LIST
+
+N.B.  LSI4 ASM will only run on an LSI4 processor.
+*command #N ..
+*opt #N ..
+*+ #N ..
+** #H @
+
+*COMMAND  #I   ASM
+*+        #I   ASM
+**        #I   ASM
+ASM is the name of the assembler for the processor on which the TRIPOS
+operating system is running.  Type one of the following for help on
+one of the TRIPOS assemblers, or <RETURN> to leave help.
+
+    LSI4        Assembler for the Computer Automation LSI/4 computer
+    68000       Assembler for the Motorola MC68000 computer
+
+

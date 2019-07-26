@@ -1,0 +1,1164 @@
+*standard
+*documentation
+SOURCELIB STANDARDS
+
+    The code inserted into :G.BCPL should ALWAYS be accompanied by an
+entry in :HELP.SOURCELIB (see HELP HELP FILES).  Use HELP SOFTWARE STANDARDS
+for requirements on the code itself.
+    In brief, there should be a short description of each procedure provided
+in any file placed in :G.BCPL under that file's heading (in :HELP.SOURCELIB).
+If a file contains only a single procedure their names should be identical.
+With each new entry a new keyword should be put with the rest at the end of
+:HELP.SOURCELIB
+*authpuid
+*auth
+*PUID
+*TUID
+*UID
+*authentication ..
+RC := AUTHPUID(PUID, TUID, AUTH)
+
+Yields TRUE or FALSE depending upon whether the TUID pointed at can be
+verified under the AUTHentity pointed at for the PUID pointed at.
+If AUTH is 0, then USER is used.
+
+This uses the AOT-1 service, and needs ring SSP code, so the headers
+ringhdr, BCPL.ringhdr, BCPL.ring and BCPL.ringssp are all needed.
+
+*append
+scb := APPEND(filename)
+
+If filename exists, it is opened such that the next character written is just
+after the previous end of file
+*assignlib
+The header BCPL.ASSIGNLIB contains routines for manipulating assignments of
+logical names to filing system directories and tasks. It requires the
+following headers:
+
+GET "LIBHDR"
+GET "IOHDR"
+GET "FILEHDR"
+GET "MANHDR"
+
+In each routine, NAME is a string giving the assigned name without a trailing
+colon.
+
+MAKE.TASK.ASSIGNMENT(NAME, TASK)
+ An assignment is made for task number TASK. The result is TRUE iff it succeeds.
+
+MAKE.DIR.ASSIGNMENT(NAME, DIRNAME)
+ An assignment is made for directory DIRNAME. The result is TRUE iff it succeeds
+
+MAKE.ASSIGNMENT(NAME, TASK, LOCK)
+ This is a common routine used by the above two. It makes an assignment with
+the given TASK number and filing system LOCK. Result is TRUE iff it succeeds.
+
+DELETE.ASSIGNMENT(NAME)
+ Deletes an assignment. Result is TRUE if it previously existed, FALSE if
+it didn't.
+*bsp
+*bsplib
+BSPLIB
+
+The header BCPL.BSPLIB contains stream handling routines for those functions
+peculiar to ring byte streams.  For simple use of byte streams, the normal
+stream routines in BLIB are sufficient.  Each routine is described in the
+comment at its head: see the file SYS:G.BCPL.BSPLIB
+
+Note that if CR82 type OPEN blocks are to be used (as should be the case
+for new applications) the the library CR82LIB should be used instead of
+BSPLIB.  See HELP CR82LIB for information on this.
+*convert
+*converttoesc
+*convertfromesc
+OK := CONVERT(TO|FROM)ESC ( STRING, DEST.STRING, LENGTH )
+
+STRING is copied to DEST.STRING, converting to/from BCPL style escapes.
+These are *B, *C, *E, *N, *P and *ooo, where ooo is the octal representation
+of any character less than space.
+If the result is too long, or an invalid escape sequence is found,
+it yields FALSE
+*copy
+copy(in.stream, out.stream, vector, size)
+
+Copies the open in.stream to the open out.stream, and closes both. Uses
+read/writewords buffering in buffer, but works for character files as well.
+ONLY WORKS FOR FILESERVER DISCS
+*cr82
+*cr82lib
+CR82LIB
+
+This is a source library which provides CR82 format connection handling
+(i.e. including Yellow Book connect/accept/disconnect messages).  It is
+an improved version of TSBSPLIB, but also includes the functions of
+BSPLIB.  Note that parameters have been changed for routines replacing
+those in TSBSPLIB.  The TSPARM library may be used for decoding Transport
+Service messages; it must be included for use by CR82LIB anyway.
+
+Extra functions (apart from those in BSPLIB, q.v.) are:
+
+  BSP.READ.BSP.PARMS      Decodes BSP header for incoming connections
+  BSP.OPENACK             Positive reply to incoming connection
+  BSP.NACK                Refusal of incoming connection
+  BSP.MAKE.TS.CONNECTION  Make an outgoing connection
+
+Other headers and libraries required are:
+
+  RINGHDR
+  IOHDR
+  UIDHDR
+  BCPL.SSPLIB
+  BCPL.TSPARM
+*authentication ..
+
+*authentication ..
+*enteruidset
+fridge.uidset := ENTERUIDSET(uidset, for.usertag)
+
+Enters the UID set with the user tag FOR.USERTAG into the FRIDGE.
+Fails (and returns zero) if no memory can be found for the new fridge
+element necessary.  Otherwise it returns a pointer to the new UIDSET inserted
+into the FRIDGE.
+
+Since the first UIDSET for a particular console task is taken to be
+that of the user KILLFRIDGE (use HELP SOURCELIB KILLFRIDGE) must be
+executed first if the UIDSET is a new user's.
+*findbspdata
+ringword.offset := FINDBSPDATA (open.block, size)
+
+ *** NOTE - superseded by CR82LIB for new applications
+
+This routine is found in the header BCPL.FINDBSPDATA.
+The routine scans down the message part of the BSP open and returns the ringword
+(dibyte) offset of the first location past the message part. If there is no
+other data, this will be size+1. A ringword offset of 0 means that something is
+wrong with the open block and an error code will be in RESULT2.
+See also FINDBSPUIDSET.
+
+*findbspuidset
+uidset := FINDBSPUIDSET (open.block, size)
+
+ *** NOTE - superseded by CR82LIB for new applications
+
+This routine is found in the header BCPL.FINDBSPUIDSET.
+The message part of the BSP open block is scanned for a message with type 64.
+If this is found a vector is GETVECed and its PUID, TUID and AUTY set up to
+contain those in the AUTHBSP Open. The TPUID, link and usertag are set to 0
+and the UIDset returned. If uidset = 0 then either the BSP open block contained
+no UIDsets, or there was some error (reason in RESULT2).
+The format of the Open block is assumed to be that defined in AUTHBSP (3) by CGG
+(Ring Documentation - in documentation folder).
+See also FINDBSPDATA
+
+*findstring
+scb := FINDSTRING(string)
+
+Either returns zero(Getvec failed) or a stream that will yield the characters
+of the parameter.  The string is copied, and obeys the convention that the
+buffer may be freeveced and replaced.  ENDWRITE frees the space.
+
+*findstringin
+scb := FINDSTRINGIN(string)
+
+Either returns zero or a stream that will yield the characters of the
+parameter followed by endstreamchs. ENDWRITE() is necessary as usual.
+Small, but does not copy the string.
+
+*findstringout
+scb := FINDSTRINGOUT(string.vector, size.in.words)
+
+Either returns zero or a stream that will insert characters into the
+given vector so as to form a string.  Overflow characters are discarded.
+
+*findterminaltype
+pointer := FINDTERMINALTYPE()
+
+Pointer is either zero (no terminal set) or a pointer to a terminal descriptor
+block. RESULT2 will hold the terminal type as a number (see :g.TERMHDR).
+
+*authentication ..
+
+*authentication ..
+*finduidset
+uidset := FINDUIDSET(puid, auty, tag)
+
+Searches the FRIDGE for the first UIDSET with PUID puid and AUTY auty
+with the user tag TAG (the CONSOLE task by default).
+Returns 0 if it cannot be found and the address of the base of the UIDSET
+if it can.
+
+NEEDS the headers "RINGHDR" and "BCPL.RINGHDR"
+
+*find.fileserver
+*find-fileserver
+FIND.FILESERVER
+
+   The routine 'find.fileserver' takes a fileserver PUID as argument
+and gives back the ring service address of the fileserver to be used
+to access that PUID).  The routine may be included in a program from
+the source library "bcpl.find-fileserver", or may be CALLSEGed from
+"sys:l.find-fileserver".
+
+   The source library requires "ringhdr" and "bcpl.ssplib" to be
+included in addition to "bcpl.find-fileserver".  It provides the
+routine
+
+     find.fileserver (puid, nsvec)
+
+   The first argument is a vector containing a PUID packed as eight
+contiguous bytes.  The second argument is a vector of upper bound
+'nsv.upb'.  The result is TRUE is the call succeeded, and FALSE
+otherwise.  If the result is TRUE, the vector 'nsvec' will have been
+filled in with the result of a nameserver lookup on the fileserver to
+use for the given PUID, and 'result2' will be set to the logical pack
+number returned by the packserver.  If the result is FALSE, then a
+code giving the reason for the failure will be left in 'result2' - this
+may be a Tripos or ring return code.
+
+   Alternatively, if late binding of the routine is preferred, it may
+be called by
+
+     ok := callseg ("sys:l.find-fileserver", puid, nsvec)
+
+   The arguments and results are the same as for the direct call.
+*forceout
+FORCEOUT()
+
+Causes terminal output to be flushed.
+*fork
+*forkseg
+GET "bcpl.forkseg" defines a routine which allows simple "forking" of
+asynchronous tasks in Tripos.  It may be used as follows:
+
+     taskid := forkseg(filename, pri, max.pri, stack, arg1, arg2)
+
+This routine loads the given FILENAME as a code segment, creates a task from
+it copying the first two items on the caller's seglist (the resident
+libraries), and activates it passing the given arguments.  The stack size
+of the new task is STACK, and its priority is set to PRI unless this
+value is already in use in which case it is incremented up to MAX.PRI.
+
+The result will be a task id on success, or zero on failure with a
+reason code in RESULT2.
+
+The loaded segment will be activated with an initialisation packet
+containing the given arguments in PKT.ARG1 and PKT.ARG2.  This packet
+should be returned as soon as possible.  The RES2 field of the returned
+packet will appear as RESULT2 on success.  Note that the new task will
+not have terminal streams, so must set them up if required.
+*get-hex
+*gethex
+*get.hex
+ok := GETHEX(string, vect, vect.size)
+
+    This procedure writes the value represented in the string
+'string' as a hexadecimal number into the vector 'vect' which
+is 'vect.size' words long.
+    Returns TRUE unless either the hexadecimal value is too great
+to fit into 'vect' or there are non-hexadecimal characters in
+'string'.
+    Available using GET "BCPL.gethex".
+*isterminal
+bool := ISTERMINAL(scb)
+
+Yields true if scb is to a terminal (actually scb!scb.type<0)
+*authentication ..
+
+*authentication ..
+*killfridge
+KILLFRIDGE(for.usertag)
+
+Deletes and removes all UIDSETs in the fridge belonging to the the
+user tag given at its argument.
+Needs the headers:
+
+GET "ringhdr"
+GET "BCPL.ringhdr"
+GET "BCPL.ring"
+GET "BCPL.ringssp"
+GET "BCPL.writeerror"
+GET "BCPL.refresh"
+GET "BCPL.delete"
+*map
+string := MAP(code, source.domain, destination.domain, name, result, size)
+
+Uses the "MAP" Ring service to map string names from one 'domain' to
+another:
+    code           Entry reason - should be 0
+    source         A string naming the source domain
+    target         A string naming the target name
+    name           A string: the name to be looked up
+    vect           A vector in which to place the returned string
+    n              The size of the vector in words
+Needs the following headers:
+    GET "ringhdr"
+    GET "BCPL.ringhdr"
+    GET "BCPL.ring"
+    GET "BCPL.ringssp"
+Use HELP SOURCE LIBRARY RING and HELP SOURCE LIBRARY RINGSSP for more
+information.
+
+*mapname
+*ps.map
+string :=  MAPNAME(source, target, name, vect, n)
+
+Uses the "PS.MAP" Ring service to map string names from one 'domain' to
+another:
+    source         A string naming the source domain
+    target         A string naming the target name
+    name           A string: the name to be looked up
+    vect           A vector in which to place the returned string
+    n              The size of the vector in words
+Needs the following headers:
+    GET "ringhdr"
+    GET "BCPL.ringhdr"
+    GET "BCPL.ring"
+    GET "BCPL.ringssp"
+Use HELP SOURCE LIBRARY RING and HELP SOURCE LIBRARY RINGSSP for more
+information.
+
+*readtermvec
+vec := readtermvec()
+
+Yields the descriptor vector for the terminal used by CONSOLETASK, or ZERO
+if it cannot be found.  In the latter case, RESULT2 is set non-zero.
+
+Requires the header "TERMHDR" (from :G.TERMHDR) in which the manifests
+describing the vector can be found.
+*objinfo #H objinfo
+*readstring
+len := READSTRING (vector, terminator)
+
+reads characters into vector until '*N', ENDSTREAMCH or terminator are found.
+The length is returned (N.b. vector%0 is length REM 256)
+
+*authentication ..
+
+*authentication ..
+*searchfridge
+*search-fridge
+*search.fridge
+uidset := SEARCHFRIDGE (uidset.name, default.auty.name, tag)
+
+    Returns a pointer to the first UIDset in the fridge with the AUTY and
+PUID specified, mnemonically, in UIDSET.NAME.  If SYNFIND errors occur when
+mapping between mnemonics and PUIDs or if the PUIDs do not specify a UIDset
+in the fridge with the given tag zero is returned and a relevent return code
+is placed in RESULT2.  The syntax for the string UIDSET.NAME is either
+"<AUTY>\<PUID>" or just "<PUID>" - the latter format is only allowed if
+DEFAULT.AUTY.NAME is not zero, in which case it is used to find the AUTY
+to use in the search.
+
+Needs the following headers:
+
+GET "RINGHDR"
+GET "BCPL.GETHEX"
+GET "BCPL.FINDUIDSET"
+GET "BCPL.SYNFIND"
+
+*settermvec
+OK := settermvec(v)
+
+Yields a boolean indicating whether it managed to reset the terminal info block
+to v.
+*sortlist
+SORTLIST(first.elem.ptr, last.elem.link, null.elem, link.field, compare)
+
+  Sort a single linked list using a quicksort type algorithm.
+
+  The list presented is assumed to be single linked, the link field
+being at the offset given by parameter 'link.field'.  The value of
+a null reference should be passed as parameter 'null.elem'.
+
+  Parameter 'first.elem.ptr' is a location containing a pointer to the
+first element of the list to be sorted, and where the first element of
+the resulting sorted list will be written.  The parameter 'last.elem.link'
+will be copied into the link field of the last element of the sorted list.
+
+  The list is sorted using a user supplied comparison routine.
+
+  The comparison routine should accept two list elements as arguments.
+Sorting is such that for any two adjacent elements En and En+1 in
+the final list:
+                 compare(En, En+1) <= 0
+
+  For any two elements where compare(Em, En) = 0, their order in the
+final list will be the same as in the original list.
+
+  WARNING.    This routine uses the quicksort algorithm so
+              will be poor for an already-sorted list, although
+              it will not do more than LOG n recursive calls.
+
+*ssp
+*nameserver
+*ssplib
+SSPLIB
+
+The header BCPL.SSPLIB contains routines for performing ring SSP calls
+and Name Server lookups. They are:-
+
+res  := SSP(service.name, tx.buffer, tx.dibytes, rx.buffer, rx.dibytes,
+            nsvec, func, station, port)
+
+res  := LOOKUP.NAME(name, nsvec)
+
+len  := WRITE.MACHINE.NAME(station.number)
+
+See the comments in the source of each routine (in the file SYS:G.BCPL.SSPLIB)
+for full details.
+*string.to.number
+*stringtonumber
+*string-to-number
+*str.to.num
+*string.to.num
+bool := STRING.TO.NUMBER(string)
+
+This procedure is available using GET "string-to-number".
+
+It converts a string to a decimal number.  The absolute value of the number
+may not be greater than MAXINT.  Returns TRUE if STRING represents a valid
+number, and FALSE otherwise.  The number read is left in RESULT2.
+*tsbsp
+*tsbsplib
+TSBSPLIB
+
+This library has been superseded by CR82LIB and TSPARM:  see the HELP
+SOURCELIB entries for these.
+
+The routines provided in CR82LIB have somewhat different parameters from
+the corresponding TSBSPLIB routines, in particular buffers containing
+messages require descriptor vectors.  The descriptor format is given in
+the TSPARM library description.
+
+The headers required are different:  the TSPARM library is required,
+however CR82LIB includes the routines from BSPLIB, so BSPLIB should not
+be included.
+*tsparm
+*tsparmlib
+TSPARM
+
+   This library is designed to allow the bashing of parameters of messages
+packed into buffers in the Yellow Book Transport Service format.  See TSBSP
+for routines to transmit these messages after construction.
+
+   Routines provided are:
+
+    TS.PARM.READ    read a given parameter out into a separate buffer
+    TS.PARM.PREFIX  add a prefix to a specified parameter
+    TS.PARM.SUFFIX  add a suffix to a specified parameter
+    TS.PARM.FIND    find the position of a given parameter in message buffer
+    TS.PARM.CREATE  creates specified message with empty arguments
+    TS.PARM.N.ARGS  returns number of arguments of given message type
+
+   In all cases the buffer containing the complete message is represented
+by a descriptor with the following fields:
+
+    TS.PARM.BUFDESC.BUFFER    the buffer
+    TS.PARM.BUFDESC.START     offset of first message byte
+    TS.PARM.BUFDESC.LASTUSED  offset of last message byte
+    TS.PARM.BUFDESC.UPB       last available offset in buffer
+    TS.PARM.BUFDESC.ORDER     TRUE -> byteget, FALSE -> getbyte
+
+   All offsets within the buffer are specified in bytes.  The ORDER
+parameter allows either byte ordering within the message buffer.  The
+individual parameter values extracted from or to be inserted into the
+main message are held as BCPL strings in % order.
+
+   Manifests are provided for message types, buffer fields and error codes.
+These are also available as a separate header, TSPARMHDR, for use with
+multi-section programs.  The header need not be included in the section
+which GETs the body of the library.
+
+   Description of routines.
+   -----------------------
+
+bool := ts.parm.read(bufdesc, msg.type, arg.no, res.buf, res.upb)
+
+  Reads the specified argument number of the given message type into the
+result buffer, if there is room.  Otherwise the result is truncated and the
+TOOBIG return code given.  If the required argument did not exist then it
+will be created as a null string.  This may also give rise to a TOOBIG code
+if the message buffer fills up.   These cases can be distinguished by the
+length of the result string.  If the required message does not exist
+then RES.BUF is set to a null string and NOTFOUND returned.  The code is
+in RESULT2 on failure.
+
+
+bool := ts.parm.prefix(bufdesc, msg.type, arg.no, prefix)
+
+  Checks that the given prefix will fit into the message buffer and, if
+so, inserts it before the rest of the specified argument.  If the resulting
+argument will not fit into the first fragment of the parameter then a new
+fragment is used for the prefix.  If the specified argument does not exist
+then it is created as a null value first.  The LASTUSED field of the buffer
+descriptor is updated appropriately.  The code is in RESULT2 on failure.
+
+
+bool := ts.parm.suffix(bufdesc, msg.type, arg.no, suffix)
+
+  Same as prefix function except it adds a suffix!
+
+
+offset := ts.parm.find(bufdesc, msg.type, arg.no)
+
+  Search the given message for the required message argument returning as
+result the byte offset in the buffer where it is found.  On success RESULT2
+is zero, on failure it contains an error code.  If the code NOTFOUND is
+given then the result points one beyond the last byte of the message, ie.
+the correct place to insert a further message.
+  If ARG.NO is set to MAXINT then the search is made for the message typee
+header rather than one of the arguments.
+  If the last message in the buffer has omitted trailing arguments then
+they are filled in, therefore this procedure can give a TOOBIG return
+code and may alter LASTUSED.
+
+
+bool := ts.parm.create(bufdesc, msg.type)
+
+  Creates a message with empty arguments at the end of the message buffer.
+If the message already exists then a format error is returned.  The error
+code is in RESULT2 on failure.
+
+
+n.args := ts.parm.n.args(msg.type)
+
+  Checks that the given message type is known, and returns the number of
+arguments it expects.  If the type is not known then -1 is returned, and
+RESULT2 set to BADPARM.
+*u-svc-nm
+*u.svc.nm
+*service-name
+*universe-service-name
+bool := U.SVC.NM(result.string, given.string, prefix.string)
+
+    This procedure produces a prefixed string in RESULT.STRING, which must
+have its first byte set to its maximum length on entry.  For example, if
+the prefix was CODEID and the given.string was RAL*LAO-TZU the result string
+would becomd RAL*CODEID-LAO-TZU, similarly RATS and CAP become RATS-CAP.
+If there is not enough space for the result string in RESULT.STRING then
+FALSE is returned.
+*authentication ..
+
+*authentication ..
+*uidtostring
+*uid-to-string
+*uid.to.string
+*puid-to-string
+*puid.to.string
+*puid-string
+*uid-string
+string := UIDTOSTRING(uid)
+
+    This procedure is obtained by using GET "BCPL.uid-to-string" it
+returns a 16 character string representing the 64-bit UID given as its
+argument in hexadecimal.
+*authentication ..
+
+*authentication ..
+*useruidset
+uidset := USERUIDSET(for.usertag)
+
+Yields the UIDSET for the user with the user tag FOR.USERTAG.
+Returns zero if there is no such user.
+Needs GET "ringhdr" for the manifest RI.UIDSETLIST.
+*authentication ..
+
+*authentication ..
+*uid
+addr := UID()
+
+Yields the address of the UID set chain (or Zero if none).
+Also described are the manifests PUID.offset, TUID.offset, TPUID.offset,
+AUTHY.offset and nextUID.offset.
+*validpointer
+*VALID
+*POINTER
+*DEFINED
+*ISDEFINED
+*UNDEFINED
+bool := VALIDPOINTER(global.addr)
+
+Returns true if the (Global) variable pointed to by global.addr is a valid
+pointer.  This is machine dependent, but will yield TRUE for any result of
+GETVEC, FINDINPUT etc. (including 0), any global that has not been defined,
+or the value of uninitialized store (not used).
+*writeddp
+WRITEDDP(msword, lsword, width)
+
+   Write out the double length signed integer in (msword.lsword) in
+the given field width if possible, in WRITED style.
+
+   The number to be printed out may be negative, but its absolute value
+should not occupy more than bitsperword+12 bits (28 on a 16 bit machine).
+If it will not fit "too big" or "too -ve" is printed.
+
+   The routine works by splitting the number such that the lower word
+is the whole number REM 10000, and the upper word is DIV 10000.  It
+may then be printed straightforwardly with two writed calls.  The
+upper word must remain positive, hence the restriction of the
+original number to <= 28 bits which limits the final msw value
+to 26843 on a 16 bit machine.
+*writetableword
+*writetable
+*writeword
+WRITETABLEWORD( word )
+
+   This procedure writes out a word (n) in a format suitable for
+inserting into BCPL TABLEs.  The format being an expression involving
+characters if characters are found in either byte of the expression.
+Zero leading bytes are suppressed and zero itself is represented in
+decimal.  This procedure is portable to machines with values of
+'bytesperword' other than two.
+*wto
+*findwto
+scb := FINDWTO(wto.name, line.prefix)
+
+Returns an output stream characters to which accumulate and generate
+WTOs to the named service.  Each WTO is preceded by the given prefix.
+
+Needs the following headers:
+    GET "iohdr"
+    GET "ringhdr"
+    GET "BCPL.ringhdr"
+    GET "BCPL.ring"
+    GET "BCPL.ringssp"
+Use HELP SOURCE LIBRARY RING and HELP SOURCE LIBRARY RINGSSP for more
+information.
+*synfind
+*varsynfind
+synonym := SYNFIND(name, domain.direction, default)
+synonym := VARSYNFIND(name, domain.direction, default, mapping.dir)
+
+Synfind uses the information in the ring map service to map from one domain
+to another.  'name' and 'synonym' are members of their respective domains and
+may either be strings or PUIDS.  'default' is the same domain as 'synonym'.
+
+    name              -  the name in the source domain (PUID or string)
+    domain.direction  -  one of from.info.domain, from.name.domain,
+                         to.info.domain, to.dir.domain, to.name.domain
+                         (all of which are manifests inherited with the text).
+    default           -  the value returned for 'synonym' if no synonym is
+                         found.
+
+If the ring map service is not available then a local table found from the
+directory SYS:USERS is used.
+
+The 'name' returned does not need its own memory specified.  Each mapping
+will be cached as it is used (so that subsequent calls to the same mapping
+are much faster):  these caches are freed by the call SYNFIND(0) (note
+that names must be copied from the cache before this call if they are to
+be used afterwards).  SYNFIND(0) may be the first call of SYNFIND.
+
+Varsynfind is the same as synfind, except that the directory from which
+the mapping files are taken is specified using 'mapping.dir'.  Thus
+
+          synfind(a,b,c) = varsynfind(a,b,c, "SYS:Users")
+
+VARSYNFIND(0) has a similar effect to SYNFIND(0) for ALL the 'mapping.dir's
+that have been specified.
+
+*rsxlib ..
+RSX Ring Library Implementation
+===============================
+
+*fs
+*fileserver
+FILE SERVER BASE LIBRARY (FS)
+
+    This is obtained by using GET "BCPL.fs" - it provides procedures which
+the file server accessing procedures use.  It uses the RSX ring library
+primatives.
+
+tag := FS.NEWTAG()
+
+    Returns a new unique 16 bit tag for inclusion in Fileserver SSP requests.
+
+ADD.32(n1, n2)
+
+    Adds the 32 bit number represented in two sixteen bit words pointed to
+by N2 to the number represented in N1.
+
+FS.EXPLAIN(rc)
+
+    Prints out an explanation of the fileserver return code RC.
+
+*fssspwrite
+*fssspread
+rc := FSSSPWRITE(fs, uid, file.start, vect, start.byte, bytes.in.length)
+rc := FSSSPREAD(fs, uid, file.start, vect, start.byte, bytes.in.length)
+  fs         : the File Server service descriptor (see :G.BCPL.ringhdr)
+  uid        : A PUID or TUID for a file server file
+               I.E. a vector of di-bytes containing sucessive 16 bit
+               parts of the UID - most significant in offset 0
+  file.start : a pointer to a two word vector containing the 32 bit
+               start offset in the file - most significant in !0
+  vect       : the base of a vector of bytes of which !BYTES.IN.LENGTH bytes
+               are to be written to UID starting at byte !START.BYTE
+
+      These procedures call 'fs' with function 17 (SSP write) or 16 (SSP
+  read), if its function code is unset, to read or write the data in the
+  byte vector VECT (starting at the START.BYTE'th byte) to/from the file
+  given by UID.  It starts at the 32 bit file address given in the vector
+  FILE.START which has two words - each holding 16 bits of the current file
+  position.
+
+      If the transfer was sucessful the size of the write will be
+  decremented from !BYTES.IN.LENGTH and added to FILE.START.
+  (!BYTES.IN.LENGTH should be <= 512).
+
+      NOTE: if contiguous writes to a file are to be achieved
+  !BYTES.IN.LENGTH must always be a multiple of two!  If not an extra
+  rubbish byte will be written at the end of the transfer and
+  !BYTES.IN.LENGTH will be decremented to -1 instead of zero.  (Normally
+  !BYTES.IN.LENGTH can be used to find the length of the transfer still to
+  go).
+
+      In the event of a calling error a message will be printed and
+  'result2' will contain a non-zero return code from the system.  A return
+  code from the global ring set or from the service is returned.
+
+ Needs the headers:
+
+ GET "libhdr"
+ GET "ringhdr"
+ GET "BCPL.ringhdr"
+ GET "BCPL.ring"
+ GET "BCPL.ringssp"
+ GET "BCPL.writeerror"  -- optional
+ GET "BCPL.fs"
+*rsxlib ..
+*ringhdr-noglobs
+*ringhdr
+RINGHDR
+
+The header obtained using GET "BCPL.ringhdr" defines manifests and globals
+used for the other ring software in the source library - for RING, RINGSSP
+and RINGSRV in particular.  A similar header is provided using
+GET "BCPL.ringhdr-noglobs" but no globals are defined (STATIC's are used
+for essential information) - this is for use in single section programs which
+do not wish to define any globals (e.g. to be CALLSEGed).
+
+*rsxlib ..
+*ring
+RING
+
+The file obtained using GET "BCPL.ring" provides a basic level of support
+for Ring use.  Where possible the environment is identical to the RSX library
+of the same name.  The following procedures are provided.
+
+rc := DR.INITIALISE()
+        - sets up variables and workspace for use with RING, RINGSSP and
+          RINGSRV procedures.  This procedure must be called before using
+          these functions. Returns a system return code which must be zero
+          if the Ring is to be used.
+
+DR.BYTEPUT(vector, byte.number, character)
+        - like PUTBYTE but puts bytes in machine independent order
+
+byte := DR.BYTEGET(vector, byte)
+        - like GETBYTE but gets bytes in machine independent order
+
+DR.RETURNPORT(port)
+        - gives back port allocated by DR.GETPORT
+
+new.port := DR.GETPORT()
+
+rc.type := DR.RCTYPE(dummy.arg)
+                - returns  0 for OK
+                          -1 for tripos error
+                          +1 for ring error
+                  uses the globals RESULT2 and DR.RESULT2 and ignores
+                  its arguments.  This procedure should only be used,
+                  therefore when these two globals are still valid.
+
+DR.RINGERROR(ring.rc)
+                - uses the "WHY" Ring service to generate an error message.
+
+DR.WRITERINGERROR(dummy.arg)
+                - inspects the rc.type then prints either the relevent TRIPOS
+                  fault message or uses DR.RINGERROR.  The same constraints
+                  are present as are in DR.RCTYPE.
+
+DR.TERMINATE()
+                - reclaims resources used by DR.INITIALISE()
+
+    These procedures are described in "RINGLIB - Interface software for
+the Cambridge Ring" in the documentation manual.
+
+Needs the following headers:
+    GET "ringhdr"
+    GET "BCPL.ringhdr"
+
+*rsxlib ..
+*ringssp
+RINGSSP
+
+The following routines are provided for using SSPs on the
+Ring.  They are, where possible, identical to those available on RSX.
+
+tripos.rc := DR.SSP(service, args, results, timout, retries)
+                - sends an SSP to the service represented by 'service'
+                  with the arguments given in the vector 'args' (args!0
+                  gives the size of the vector).  Any results returned
+                  will be stored in 'results' which is a vector of size
+                  results!0 - after the call results!0 will contain the
+                  number of words of result returned.  'timeout' gives
+                  the maximum amount of time, in seconds, to elapse
+                  before the SSP is regarded to have failed and 'retries'
+                  gives the number of times that a failed SSP is to be
+                  retried.  The ring return code, if failed, is available
+                  in the global DR.RESULT2
+
+service := DR.LOOKUP(name, service.vector)
+                - returns either zero or the representation of the service
+                  with the name 'name' made in the vector 'service.vector'
+                  (which must be at least SV.UPB words).
+
+    These procedures are described in "RINGLIB - Interface software for
+the Cambridge Ring" in the documentation manual.
+
+Needs the following headers:
+    GET "ringhdr"
+    GET "BCPL.ringhdr"
+    GET "BCPL.ring"
+
+*rsxlib
+*ringsrv
+RINGSRV
+
+The following routines are provided for ring services provided on TRIPOS to
+use.  They are, where possible, identical to those available on RSX.
+
+tripos.rc := DR.GETSERVICEREQ(type, args, from.service)
+                - gets the arguments from an SSP call into the vector
+                  'args' which contains args!0 words.  Checks that the
+                  service provided is the correct 'type' (i.e. SSP).
+                  Assembles details of the calling service into the vector
+                  'from.service' which will then represent a service in
+                  the standard way.  This vector must be at least SVSIZE
+                  words.  args!0 conatins the number of argument words
+                  received on exit.
+
+tripos.rc := DR.ACKSERVICEREQ(service, rc, results)
+                - replies to the service 'service' with the return code
+                  'rc' and the results 'results'.  The number of words
+                  of results given is given by results!0.
+
+    These procedures are described in "RINGLIB - Interface software for
+the Cambridge Ring" in the documentation manual.
+
+Needs the following headers:
+    GET "ringhdr"
+    GET "BCPL.ringhdr"
+    GET "BCPL.ring"
+
+*writerror
+*writeerror
+WRITEERROR(entry.name, rc, service)
+
+    This procedure is called by many ring procedures for using various
+ring entries in :G.BCPL.  It is called in the event of a system return
+code being passed back from DR.SSP:  The 'entry.name' is a string giving
+the name of the entry that is being called (which will be the same as
+the name of the calling procedure) - 'rc' is the system return code that
+DR.SSP gave and 'service' is a service vector as given to DR.SSP.
+    It can either be written explicitly to do some particular job or
+the default version can be used which simply prints an error message
+denoted by 'rc' (making the assumptions that the contents of 'result2'
+and 'dr.result2' are up to date) maintaining both 'result2' and 'dr.result2'.
+
+The following headers are necessary:
+    GET "ringhdr"
+    GET "BCPL.ringhdr"
+    GET "BCPL.ring"
+
+*authentication ..
+*newpuid ..
+RC := NEWPUID(SERVICE, PUID)
+
+newpuid    : the NEWPUID service descriptor (see :G.BCPL.ringhdr)
+puid       : a four word vector into which to recieve a new PUID
+    This procedure calls 'service' (the NEWPUID service) to generate and
+return a new PUID.
+
+*authentication ..
+*aot ..
+AOT service procedures:
+=======================
+
+*authentication ..
+*aot ..
+*gettuid ..
+RC := GETTUID(AOT, UIDSET, AUTHENTITY, TIMEOUT)
+
+aot        : the AOT service descriptor (see :G.BCPL.ringhdr)
+uidset     : a UID set (containing a TUID TPUID PUID and AUTY)
+authentity : a UID set for an authenticator
+timeout    : number of seconds before athenticator object invalidation
+    This procedure calls 'aot' to make 'uidset' valid (it contains only
+a PUID) for a period of 'timeout' seconds.  The authority for this operation
+is provided by 'authentity'.
+
+*authentication ..
+*aot ..
+*verify ..
+RC := VERIFY(AOT, UIDSET)
+
+aot        : the AOT service descriptor (see :G.BCPL.ringhdr)
+uidset     : a UID set (containing a TUID TPUID PUID and AUTY)
+    This procedure calls 'aot' to test if 'uidset' is valid (it contains
+at least a PUID TUID and an AUTY).
+
+*authentication ..
+*aot ..
+*identify ..
+RC := IDENTIFY(AOT, UIDSET)
+
+aot        : the AOT service descriptor (see :G.BCPL.ringhdr)
+uidset     : a UID set (containing a TUID TPUID PUID and AUTY)
+    This procedure checks that all the components of the UID set 'uidset'
+(including the TPUID) are in the same tuple in the AOT 'aot'.
+
+*authentication ..
+*aot ..
+*refresh ..
+*delete ..
+RC := REFRESH(AOT, UIDSET, TIMEOUT)
+
+RC := DELETE(AOT, UIDSET)
+
+aot        : the AOT service descriptor (see :G.BCPL.ringhdr)
+uidset     : a UID set (containing a TUID TPUID PUID and AUTY)
+timeout    : two word vector giving the number of seconds before
+             athenticator object invalidation
+    This procedure calls 'aot' to make the time in which 'uidset' is valid
+a period of 'timeout' seconds.  Delete simply calls Refresh with a timeout
+of 0 seconds.
+
+*authentication ..
+*aot ..
+*enhance ..
+RC := ENHANCE(AOT, UIDSET, PRIV.PUID, AUTHENTITY, TIMEOUT)
+
+aot        : the AOT service descriptor (see :G.BCPL.ringhdr)
+uidset     : a UID set (containing a TUID TPUID PUID and AUTY)
+authentity : a UID set for an authenticator
+timeout    : number of seconds before athenticator object invalidation
+priv.puid  : an unique identifier for (the name of) a privilege
+    This procedure calls 'aot' to make 'uidset' a valid 'priv.puid'
+for a period of 'timeout' seconds.  The authority for this operation
+is provided by 'authentity'.
+
+*authentication ..
+*userauth ..
+*sysauth ..
+USERAUTH and SYSAUTH procedures:
+================================
+
+*authentication ..
+*userauth ..
+*sysauth ..
+*check ..
+RC := CHECK(USERAUTH, PUID, PW)
+
+userauth   : the USERAUTH service descriptor (see :G.BCPL.ringhdr)
+puid       : an unique identifier (a name)
+pw         : a string representing a password
+    This procedure calls 'userauth' to check that 'puid's password is 'pw'
+
+*authentication ..
+*userauth ..
+*sysauth ..
+*pwchange ..
+RC := PWCHANGE(USERAUTH, PUID, OLDPW, NEWPW)
+
+userauth   : the USERAUTH service descriptor (see :G.BCPL.ringhdr)
+puid       : an unique identifier (a name)
+oldpw      : a string representing the current password
+newpw      : a string representing the password to be changed to
+    This procedure calls 'userauth' to check that 'puid's password is
+'oldpw' and, if so, changes 'puid's password to 'newpw'.
+
+*authentication ..
+*userauth ..
+*sysauth ..
+*sysuserpw ..
+RC := SYSUSERPW(USERAUTH, PUID, PW, PWPRIV)
+
+userauth   : the USERAUTH service descriptor (see :G.BCPL.ringhdr)
+puid       : an unique identifier (a name)
+pw         : a string representing the current password
+pwpriv     : a UIDSET for the PRIVILEGE 'pwpriv'
+    This procedure calls 'userauth' to set 'puid's password to 'pw'.
+If the does not exist he will be created with that password otherwise his
+password will be set to 'pw'.
+    The authority necessary for this entry is provided by the possession
+of a TUID for the PRIVILEGE PWPRIV.
+
+*authentication ..
+*privman ..
+*soap ..
+PRIVMAN and SOAP procedures:
+============================
+
+*authentication ..
+*privman ..
+*soap ..
+*grant ..
+RC := GRANT(PRIVMAN, UIDSET, PRIV.PUID, TIMEOUT)
+
+privman    : the PRIVMAN service descriptor (see :G.BCPL.ringhdr)
+uidset     : a UID set (containing a TUID TPUID PUID and AUTY)
+timeout    : number of seconds before athenticator object invalidation
+priv.puid  : an unique identifier for (the name of) a privilege
+    This procedure calls 'privman' to make 'uidset' a valid 'priv.puid'
+for a period of 'timeout' seconds.  The authority for this operation
+is provided by 'privman' checking that the user is allowed the requested
+privilege.
+
+*authentication ..
+*privman ..
+*soap ..
+*allowed ..
+RC := ALLOWED(PRIVMAN, UIDSET, PRIV.PUID)
+
+privman    : the PRIVMAN service descriptor (see :G.BCPL.ringhdr)
+uidset     : a UID set (containing a TUID TPUID PUID and AUTY)
+priv.puid  : an unique identifier for (the name of) a privilege
+    This procedure calls 'privman' to check that 'uidset' can be made a valid
+'priv.puid' by 'privman'.
+
+*authentication
+*aot
+*privman
+*soap
+*userauth
+*sysauth
+*newpuid
+*gettuid
+*verify
+*identify
+*refresh
+*delete
+*enhance
+*check
+*pwchange
+*sysuserpw
+*grant
+*allowed
+    In the event of a calling error WRITEERROR will be called and 'result2'
+will contain a non-zero return code from the system.  A return code from the
+global ring set or from the service is returned.  The procedure WRITEERROR
+can be written explilcity or the default version, which prints an error
+message to the terminal, can be used.  Use HELP SOURCELIB WRITEERROR for
+more information.
+
+The following headers are necessary:
+    GET "ringhdr"
+    GET "BCPL.ringhdr"
+    GET "BCPL.ring"
+    GET "BCPL.ringssp"
+    GET "BCPL.writeerror"   --  optional
+
+*xlookup
+SUCCESS := XLOOKUP (station.name, flag.byte, port.no, func.no, nsvec)
+
+   Performs a nameserver Xlookup on station name (string), with the protocol
+flag byte, port number and function number as given. NSVEC should be a VEC 3
+and will contain the result of the Xlookup. The format of the result is the
+same as given by LOOKUP.NAME in SSPLIB (see HELP SOURCELIB SSPLIB).
+   In the event of a failure, SUCCESS will be FALSE and an error code will be
+in result2.
+*revtrace
+*reverse
+*trace
+NAME := REVTRACE(MACHINE.ID, REPLY.PORT)
+
+Returns a pointer to a string giving the name of the station reached
+by the route whose first hop is given by MACHINE.ID and REPLY.PORT.
+If there was an error in communication or in the SSP to REVTRACE the
+string returned will have zero length.
+** #I sourcelib #full
+SYS:G.BCPL contains various BCPL source routines donated by users.
+Each of these routines must be documented in SYS:HELP.sourcelib when
+entered.  Any particular procedure can be included in a BCPL compilation
+using the directive GET "BCPL.<procedure>". Those marked 'R' make use of
+RSX-like ring routines, and need a call of 'DR.initialise', and headers
+ringhdr, BCPL.ringhdr, BCPL.ring and BCPL.ringssp
+
+If you want to know how to go about contributing to :G.BCPL please use
+HELP SOURCELIB STANDARDS.
+
+Type one (or more) of the following:
+    APPEND               - gives append output stream
+    ASSIGNLIB            - routines for assignments to directories & tasks
+    AUTHPUID            R- Authenticate a TUID/PUID pair
+    BSPLIB               - routines associated with ring byte streams
+    CONVERTFROMESC       - converts a string from BCPL escaped string
+    CONVERTTOESC         - converts a string to BCPL escaped string
+    COPY                 - performs a fast F/S file copy for character files
+    ENTERUIDSET         R- inserts a new UIDSET into the FRIDGE
+    FINDBSPDATA          - finds location of user data in BSP-Open
+    FINDBSPUIDSET        - finds uidset in BSP-Open (useful for AUTHBSP)
+    FINDSTRING           - gives input stream from string
+    FINDSTRINGIN         - gives input stream from string (small & simple)
+    FINDSTRINGOUT        - gives output stream to string
+    FINDTERMINALTYPE     - gives terminal descriptor
+    FINDWTO             R- gives output stream generating WTOs
+    FIND.FILESERVER      - find which fileserver to use for a given PUID
+    FORCEOUT             - flushes output buffer
+    FORKSEG              - create a task from a given code file
+    GETHEX               - extracts a (long) hex number from a string
+    ISTERMINAL           - tests for interactive stream
+    KILLFRIDGE          R- deletes and removes user's UIDSETS from FRIDGE
+    MAP                 R- uses "MAP" ring service
+    MAPNAME             R- uses "PS.MAP" ring service
+    OBJINFO              - extract information about a file or similar object
+    READSTRING           - reads string until terminator
+    READTERMVEC          - Gets information about the terminal in use
+    REVTRACE             - Do a nameserver "reverse trace" lookup
+    RSXLIB               - full details of RSX ring library support
+    SEARCHFRIDGE         - returns fridge UIDset given UIDset name as string
+    SETTERMVEC           - Sets information about the terminal in use
+    SORTLIST             - quicksorts a single-linked list
+    SSPLIB               - routines for ring SSP calls & name lookup
+    STRING.TO.NUMBER     - converts a string into a decimal number
+    SYNFIND              - TRIPOS mapping between PUIDs and Strings
+    TSPARM               - for manipulating Transport Service messages
+    UIDTOSTRING          - converts a 64-bit UID into 16 character hex string
+    USERUIDSET           - returns user's UIDSET (or zero)
+    U.SVC.NM             - creates prefixed Universe service name
+    VALIDPOINTER         - Yields true if its arg points to a valid pointer
+    VARSYNFIND           - SYNFIND with a specifiable mappings directory
+    WRITEDDP             - prints double length numbers in WRITED style
+    WRITETABLEWORD       - writes out a word as a BCPL expression
+    XLOOKUP              - performa a namesever Xlookup
+    RINGHDR              - RSX ring library header
+    RING                 - RSX base ring library equivalent
+    RINGSSP              - RSX SSP ring library equivalent
+    RINGSRV              - RSX SSP service library equivalent
+    WRITEERROR          R- writes out a ring error
+    NEWPUID             R- fetches a new PUID from the NEWPUID service
+    AOT                 R- AOT service procedures
+    GETTUID             R- generates a new UID set from the AOT service
+    VERIFY              R- checks a UID set at the AOT service
+    IDENTIFY            R- checks a UID set (including TPUID) at AOT service
+    REFRESH             R- maintains a UID set in the AOT service
+    DELETE              R- removes a UID set from the AOT service
+    ENHANCE             R- gives a UID set an additional AUTY in AOT service
+    USERAUTH            R- USERAUTH service procedures
+    SYSAUTH             R- SYSAUTH service procedures
+    CHECK               R- checks a password at USERAUTH or SYSAUTH service
+    PWCHANGE            R- changes a password at USERAUTH or SYSAUTH service
+    SYSUSERPW           R- creates a new user of USERAUTH or SYSAUTH service
+    PRIVMAN             R- PRIVMAN service procedures
+    SOAP                R- SOAP service procedures
+    GRANT               R- enhances a new object from PRIVMAN or SOAP service
+    ALLOWED             R- checks object from PRIVMAN or SOAP service allowed
+    FS                  R- base library for Fileserver operations
+    FSSSPWRITE          R- SSP write to the Fileserver
+    FSSSPREAD           R- SSP read from the Fileserver
+    or <CR> to exit HELP.
+*
+
+

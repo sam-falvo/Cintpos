@@ -1,0 +1,247 @@
+*CALLSEG
+RSEND may be called on a CALLSEG in :L.RSEND
+The aguments are (mode, vector).
+
+Mode should be 2 for a vector of the form
+        "To", file, "Subject", "immediate data", "cc", "bcc", "replyto", bits
+Any omitted item should be Zero.  [File may either be a string or a PUID]
+If a file is given IT MUST NOT BE CHANGED as it PUID is passed over, NOT its
+contents!!
+*Rsend
+*send
+Form:           RSEND   User=users=initials/a,FROM/k,TERM/k,ABOUT/k,immed/k,*
+                        *CC/k,BCC/k
+Purpose:        To send people mail via the ring
+Authors:        PB
+
+Specification:
+               Mail is sent to all the people mentioned in the user lists USER,
+        CC and BCC, the only difference being whether or where the names appear
+        in the mail header.     A user list is a set of initials seperated by
+        commas.
+
+                If a file is given as FROM then the PUID of that file is passed
+        to the mail system for delivery to the recipients.      The file is
+        logically immuteable, i.e. cannot be changed.   This will be enforced
+        by the mailserver when the fileserver supports such files.
+        Note that the FROM argument must be a FILE, not NIL: etc..
+        Immed specifies the immediate data that is to form the file. This cannot
+        be used with FROM (or TERM as TERM implies FROM or 'read input stream').
+        Note that the ammount of data that can be entered in this manner is
+        limited, as the whole SSP block must be less than 256 ring words.
+        Otherwise the current input stream is read until a line of just the
+        string TERM is found (default of '/*') or a pseudo endofstream (@Q),
+        and the result put into a workfile, which is passed to the mailserver.
+        If the input stream is immediately closed, then no file is created.
+
+                The ABOUT argument is passed over as the SUBJECT of the mail.
+        Note that if it is to include spaces, it must be in quotes (".. ..").
+
+                The MAP service is called to check that each user exists.
+
+                See HELP RING MAIL for an introduction.
+
+                See HELP CALLSEG RSEND for a version for simple CALLSEGing.
+
+Examples:       rsend kgh about "New mail HELP" cc cgg,bjk
+                What do you think of the new documentation
+                @Q
+*Rmessage
+*message
+RMESSAGE command
+
+ *******************************************************************************
+ ******************** No longer supported -- Use MAIL or RMAIL *****************
+ *******************************************************************************
+
+Form:           RMessage        User=users=initials,to,opt/K
+Purpose:        To receive mail via the ring
+Authors:        PB
+
+Specification:
+                This command is an attempt to have a compatible interface with
+        the standard TRIPOS message system, and as such utilises few of the
+        capabilities of the system.
+
+                USER is a user list, which is carefully checked to ensure that
+        only the current user is actually mentioned, as you cannot look at other
+        people's mail.
+
+                TO is an output file for the Mail
+
+                OPT is a string of SINGLE characters indicating what is to be
+        done.  I'm afraid I don't really understand the way they work, but I
+        have tried to emulate it:
+
+                D       Delete  all mail
+                E       Extract all mail (=RD)
+                I       Init    = Quiet
+                M       ????    Edit messages
+                R       Read    all mail
+                Q       Quiet   Do nothing if there is no mail
+                T       Test    for NEW mail only - do not read it
+                S       Summarize all the mail
+
+        The default is R is USER is specified, otherwise E.
+        SR gives a close approximation to MESSAGEs R.
+        Note that Q implies T !!
+
+                The preferred command is RMAIL
+
+                See HELP RINGMAIL for an introduction.
+*RMAIL
+RMAIL command
+Form:           RMAIL   to/K,Read/s,Delete/s,Summarize=s/s,Test/s,Quiet/s,*
+                        *interactive=i/s,All/s,TRIPOS/s,NEW/s
+Purpose:        To receive mail via the ring
+Author:         PB
+
+Specification:
+                TO is an output file for the Mail
+
+                The switches are
+
+         /      Read            all mail        \       Any
+        <       Delete          all mail         >      combination
+         \      Summarize       all the mail    /       allowed
+                All             Look at ALL mail, even that marked for deletion
+                Interactive     Prompt the user for each mail item
+                Test            Only test whether there is (new) mail
+                Quiet           Do nothing if there is no mail
+                Tripos          Look at TRIPOS's mail
+                New             Look only at new (actually unread) mail
+
+                QUIET   can be used with any other combination.
+                ALL and INTERACTIVE can be used with anything but TEST
+                TEST    can ONLY be used with QUIET, READ and/or NEW.
+                        TEST alone means        'Test for new mail'
+                        TEST READ  means        'Test for any mail'
+
+                READ            means type all messages in full
+                SUMMARIZE       means type the header in brief format
+                READ SUMMARIZE  means type the header in brief, the text in full
+
+                INTERACTIVE     prints the header of the current message, and
+                                expects an operation. Use ? to find the options.
+
+                No option at all maps into INTERACTIVE.
+
+                If non-interactive deletes are performed, then a copy is sent to
+                the file t:mail.
+
+                An init-sequence may include RMAIL READ NEW QUIET
+
+                See HELP RINGMAIL for an introduction to the mail system.
+*MAIL #H #HCH +
++ALL :info.spec.mail
++help
+Help may be obtained while running the MAIL program by typing the two characters
+ESC and ?.  This will tell you what keys are allowed in the current mode.
+
+For help on an individual command, use the HELP command while running mail.
+HELP gives the common commands, and HELP ALL tells you what HELP knows about.
++command
+HELP on individual mail commands may be obtained by typing 'HELP <command>' when
+running the MAIL program.
++*
+MAIL command
+Form:           MAIL            ** RDARGS NOT USED **
+Purpose:        To send and receive mail via the ring
+Authors:        PB
+
+Specification:
+                This is a user interface to the RING MAIL SYSTEM.
+
+                Use HELP from within the command for details.
++
+*NEW.MAIL
+*TEST.MAIL
+TEST.MAIL
+=========
+
+This is the vehicle for testing new ideas, and users are advised to try it.
+This documentation may be out of date.  The most recent changes are available
+by typing HELP NEW, HELP TESTING and HELP FULLSCREEN while in TEST.MAIL.
+
+Current differences from MAIL are:
+
+                It runs throughout in single character mode.  This overcomes a
+                terminal concentrator bug whereby a single output record may be
+                interupted by input.  It also allows proper use of the cursor
+                keys - in particular, when a command is expected, the UP & DOWN
+                keys may be used to select a new current message. This only
+                works at the start of a command line - once it has started
+                reading a command, only data characters or RETURN may be entered
+
+                The terminal concentrators escape sequences are not supported -
+                the operations supported are
+                        'delete char to left of cursor'         DEL
+                        'delete current line'                   CAN = CTRL/X
+
+
+SEND/REPLY      allow 'full screen' input.  This is NOT intended to be an editor
+                All it allows is simple corrections to spelling mistakes.
+                See HELP FULLSCREEN within TEST.MAIL.
+
+                REPLY takes note of the REPLY TO field of the header
+
+                Also more flexible file handling. Keyword FILE passes the PUID
+                of that file, FROM or STREAM copies the stream, and switch
+                NONE tells the program not to use the current input.
+                The user is prompted for source if no keyword is given.
+
+headers:        The header for each message now indicates whether it has been
+                TYPEd. On cifer2632s, if an item HAS been typed, then the date,
+                time, sender and size of files are half intensity. On other
+                terminals, the letter 'n' appears before the time if it has NOT
+                been typed.
+
+Selection:      The first untyped message is selected, if there is one.
+                Otherwise message 0.
+                The cursor keys also allow selection.
+*receive
+*recieve
+*collect
+*find
+*read
+RECEIVING RING MAIL
+    Two commands are available for receiving Ring Mail - one which is designed
+to be similar to the MESSAGE command (use HELP MESSAGE COMMAND) called
+RMESSAGE (use HELP RMESSAGE COMMAND) and the recommended command which is
+called RMAIL (use HELP RMAIL COMMAND).  There is also the MAIL command.
+*system
+*SYSDESC
+To use the mailserver TRIPOS system, get a Session Manager stream, and ask for
+                SYSDESC MAILSERVER
+This will prompt you for your Userid and password, and then await commands.
+HELP will tell you what you can do.
+
+See HELP RINGMAIL for an introduction.
+*ringmail
+*command
+**
+        The Ring message system currently has Two Tripos interfaces.
+        One has been contorted to look like the current message system,
+        (See HELP RING SEND     &       HELP RING MESSAGE, HELP RING RMAIL)
+        the other runs in its own TRIPOS image, with a SYSDESC of MAILSERVER,
+        Or as a command
+        (See HELP RINGMAIL SYSTEM       &       HELP MAIL)
+
+        It uses the ring service MAIL to maintain USER MAIL DIRECTORIES.
+        The MAIL service will accept a fileserver puid and a list of user puids,
+        and mail the file to the users. It authenticates the sender.
+        It also gives an authenticated user the file server puid of his user
+        mail directory which contains all the mail for that user.
+        The mail files themselves are (logically) immuteable, but the user's
+        mail directory is a normal file -- if you damage yours, then the MAIL
+        service is likely to discard your old one and make a new one.
+
+        The hard work is done by demons that are started by the MAIL service
+        when it has received a new mail item, or feels that there is a lot of
+        dead mail.      Note that this means that while all the machines are in
+        use, mail cannot be posted to the recipients.
+
+
+        More details from PB (or distribution list POSTMEN)
+
+

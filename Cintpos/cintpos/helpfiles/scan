@@ -1,0 +1,24 @@
+*syntax sys:info.spec.scan
+*command
+**
+Form:           SCAN  "FILE/a,STOP,)/s,FROM=START=(,TO/k,NOLN,*
+                      *W=WIDTH/k,P=PAGELENGTH/k,LN/s,BYTE/k"
+Purpose:        To scan through a file
+Author:         PB
+Specification:
+   SCAN types selected lines of the file.  To type lines n to m, format may be:
+   m   OR   (n m)   OR   ( n m )   OR   m n
+   n defaults to 1 and m to maxint.
+   BYTE gives the number of bytes to skip (using POINT for speed),
+   Unless NOLN is specified, line numbers are added.
+   The program types <PAGELENGTH> of text and then waits for input, unless a TO
+     file (other than *) is specified.  (pagelength is set by SETTERM).
+     Q, W or @Q stop the typing; L makes it continuous.
+     <number> causes <number> lines to be printed before the next halt.
+   Ctrl/B will cause it to stop at the next convenient point.
+   ESC will cause it to pagewait.
+   For more information on command line syntax see HELP SCAN SYNTAX.
+
+Example:        SCAN A ( 100 150 )
+
+

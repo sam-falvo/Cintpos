@@ -1,0 +1,30 @@
+*date #H date
+*device #H assign
+*flag #H setflags
+*password #H password
+*pw #H password
+*time #H time
+*uid #H uidset
+*command
+**
+SET command
+Form:           SET  "DIR,COMDIR/K"
+Purpose:        To set a working directory and default command
+                directory.
+Author:         ARA (Modified by CGG)
+Specification:
+       SET alone causes the user's home directory to become the current
+    working directory.
+       DIR specifies a new working directory (i.e. one in which
+    unqualified filenames are looked up).
+       COMDIR specifies a default command directory (i.e. one in which
+    commands should be sought when they are not found in the working
+    directory).  The initial command directory is SYS:C.
+
+    See also HELP REX SET for information on the REX SET Command.
+
+Example:        SET
+                SET :BRIAN
+                SET DF1:T COMDIR DF1:C
+
+

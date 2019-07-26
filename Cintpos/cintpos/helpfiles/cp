@@ -1,0 +1,39 @@
+*cp
+CP COMMAND
+
+Form:           CP FROM/A,TO/A,CHARS/S,DATE/S
+Purpose:        To copy one file to another
+Author:         RSC
+Specification:
+
+        Similar to TRIPOS copy program expect that -
+
+        *)  It uses readwords and writewords as default to copy the files and
+        so is faster than copy.
+
+        *)  If the file specified in the TO option is a directory then cp will
+        copy the source file into the directory with a file name which is the
+        same as the source.
+
+        *)  If the DATE option is specified then the destination file will be
+        postfixed with the creation or last modified date of the source file.
+        The date is in the form DD-MMM where DD is the numeric date and MMM is
+        the name of the month ie. jan, feb etc.
+
+Examples:
+
+        cp file to file2        does the obvious if file2 is a file
+
+        cp file to dir          copies file to dir.file
+
+        cp file to file2 date   copies file to file-DD-MMM
+        
+        cp file to dir date     copies file to dir.file-DD-MMM
+
+Bugs:
+        This program cannot be used with bsp: or anything else which does not
+        support readwords and writewords so check before using it for copies
+        other than from disc to disc unless the CHARS option is specified.
+
+
+

@@ -1,0 +1,98 @@
+# This is an NMAKE file to compile the BCPL Cintcode System for Windows
+# using the Microsoft Visual Studio tools (on my laptop solestreet).
+
+# Modified by Martin Richards 30 September 2010
+
+# This makefile is invoked from BCPL\cintcode by:
+#      nmake /f os\windows\MakefileVC
+
+# It assumes that the Visual Studio environment
+# variables have already been set (using eg VC8env.bat).
+
+CC=cl -DforWIN32 -DSOUND -D_CRT_SECURE_NO_DEPRECATE
+
+run:    bcplready
+        .\cintsys.exe
+
+bcplready:	cintsys.exe rastsys.exe LITENDER allcompiled
+	echo touch >bcplready
+
+allcompiled:
+	.\cintsys.exe -c c compall
+	echo touch >allcompiled
+
+sysc/INT.h:	sysc/mkint-h.c
+	$(CC) -o mkint-h.exe sysc/mkint-h.c
+	mkint-h >sysc/INT.h
+	del /q mkint-h.exe
+
+cintsys : cintsys.exe
+
+cintsys.exe : obj\cintsys.obj obj\kblib.obj obj\cinterp.obj \
+	  obj\fasterp.obj obj\nrastlib.obj
+        link /MAP -out:cintsys.exe obj\cintsys.obj obj\kblib.obj \
+	  obj\cinterp.obj obj\fasterp.obj obj\nrastlib.obj winmm.lib
+
+rastsys.exe : obj\cintsys.obj obj\kblib.obj obj\rasterp.obj \
+	  obj\rastlib.obj
+        link /MAP -out:rastsys.exe obj\cintsys.obj obj\kblib.obj \
+	  obj\cinterp.obj obj\rastlib.obj obj\rasterp.obj winmm.lib
+
+obj\cintsys.obj:       sysc\cintsys.c sysc\cintsys.h sysc/INT.h sysc\soundfn.c
+        $(CC) /Foobj\cintsys.obj -c  sysc\cintsys.c
+
+obj\kblib.obj:	sysc\kblib.c sysc\cintsys.h sysc/INT.h
+	$(CC) /Foobj\kblib.obj -c sysc\kblib.c
+
+obj\cinterp.obj:	sysc\cinterp.c sysc\cintsys.h sysc/INT.h
+	$(CC) /Foobj\cinterp.obj -c sysc\cinterp.c
+
+obj\fasterp.obj:        sysc\cinterp.c sysc\cintsys.h sysc/INT.h
+        $(CC) -DFASTyes /Foobj\fasterp.obj -c sysc\cinterp.c
+
+obj\rasterp.obj:	sysc\rasterp.c sysc\cintsys.h sysc/INT.h
+	$(CC) -DFASTyes /Foobj\rasterp.obj -c sysc\rasterp.c
+
+obj\nrastlib.obj:	sysc\nrastlib.c sysc\cintsys.h sysc/INT.h
+	$(CC) /Foobj\nrastlib.obj -c sysc\nrastlib.c
+
+obj\rastlib.obj:	sysc\rastlib.c sysc\cintsys.h sysc/INT.h
+	$(CC) /Foobj\rastlib.obj -c sysc\rastlib.c
+
+LITENDER:
+	copy ENDERLIT\SYSLIB cin\syscin
+	copy ENDERLIT\BOOT cin\syscin
+	copy ENDERLIT\BLIB cin\syscin
+	copy ENDERLIT\DLIB cin\syscin
+	copy ENDERLIT\CLI cin\syscin
+	copy ENDERLIT\bcpl cin
+	copy ENDERLIT\c cin
+	copy ENDERLIT\echo cin
+	copy ENDERLIT\logout cin
+	copy ENDERLIT\bcb .
+	copy ENDERLIT\bcl .
+	copy ENDERLIT\bsb .
+	copy ENDERLIT\bsl .
+        echo touch >LITENDER
+
+xref:	allcompiled rawxref
+	cintsys -c sortxref rawxref to xrefdata
+	cintsys -c sortxref rawxref to xreffns fns
+	del rawxref
+
+rawxref:
+	cintsys -c c compall xref >rawxref
+
+clean:
+	echo > LITENDER
+        echo > cintsys.exe
+        echo > rastsys.exe
+        echo > allcompiled
+        echo > bcplready
+	del /q LITENDER
+	del /q obj\*
+	del /q cin
+        del /q cintsys.exe rastsys.exe
+        del /q allcompiled bcplready
+
+

@@ -1,0 +1,26 @@
+*procedure
+INPUT
+      To determine the currently selected input stream.
+      stream := input ()
+      The input routine yields the identifier  of  the  cur-
+rently  selected input stream ( originally yielded by a call
+of findinput ( q.v. ) and selected by selectinput (  q.v.  )).
+If there is no current stream then the result is zero.
+*command
+INPUT command
+Form:           INPUT  "TO/A,TERM/K"
+Purpose:        To input text files.
+Authors:        MR RDE ARA
+Specification:
+   Console input is copied to the file until end of stream (@Q) or a
+line consisting of just the terminator string is typed.
+   The default terminator string is "/*".  TERM may be used to
+change it.
+Example:        INPUT PROG
+                INPUT X TERM ????
+** #I input
+INPUT is both the name of a BLIB procedure and of a TRIPOS command.
+For the procedure type PROCEDURE and for the command type COMMAND.
+Type <CR> to exit HELP.
+
+

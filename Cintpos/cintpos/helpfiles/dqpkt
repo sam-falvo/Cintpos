@@ -1,0 +1,41 @@
+*procedure
+**
+RESULTID := DQPKT(ID, PACKET)
+   Remove a packet from  a  given  work  queue  or  the
+issuing task's work queue.
+Arguments:
+
+ID
+   The id. of a task or device whose work queue will be
+searched first for the packet.
+PACKET
+   The sought packet.
+Normal return:
+
+RESULTID\=0
+   The  id.  of the task or device whose work queue was
+found to contain the sought packet.
+Error return:
+
+RESULTID=0, possible errors are:
+
+   RESULT2=101, Invalid id.
+   RESULT2=109, Packet not found.
+Side effects:
+
+   The packet will have been dequeued.
+   PACKET!0 will be set to NOTINUSE.
+   PACKET!1 will be set to ID if the packet  was  found
+on  a  work  queue other than that of the issuing task.
+Otherwise, it will be left unaltered.
+Related routines:
+
+   QPKT
+   TASKWAIT
+Notes:
+
+   Packets may always be dequeued from devices.
+   Dequeueing a device packet may involve  an  implicit
+device reset.
+
+

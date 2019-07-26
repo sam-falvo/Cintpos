@@ -1,0 +1,75 @@
+*commands #H terminal
+*escape #H terminal
+*stream #H terminal
+*select
+*selection
+*switch
+*change
+*control
+*ctrl
+*@s
+*@t
+TASK SELECTION
+     <CTRL>S which reflects "@S" can be used to select an alternative
+TRIPOS task to which to interact.  It must be followed by two decimal
+digits which specify the number of the task to be selected.
+
+     For example:
+
+        <CTRL>S02  (which reflects "@S02") gives the debugging task
+     (task number 2) the console.  Any output from the task will go
+     to the console (as always) and any input typed will go to this
+     task.
+
+    <CTRL>T which reflects "@T" performs a similar function except
+that only the selected task will be able to output to the terminal
+output from other tasks will be held.
+*command
+Form:           CONSOLE  "WIDTH/K,BELL/K,TAB/K,TRAN/K,HEX/K,*
+                         *RUBOUT/K,IDENTIFY=ID/K"
+Purpose:        To set console characteristics in the console
+                handler that the current CLI is using.
+Author:         RDE
+
+    NOTE: this command is effective only when a directly connected terminal
+is in use.  It is not useful when no terminal task is being used, i.e. when
+connected via the TERMINAL CONCENTRATOR.  Try HELP TERMINAL CONCENTRATOR
+COMMANDS for further information in this case.
+
+Specification:
+
+     WIDTH           The console width: must be a valid positive integer.
+     BELL            A single character which will be used to signal
+                     error conditions.
+     TAB             Values ON or OFF.  When ON, tab characters (HT) are
+                     expanded to spaces by the console handler.
+                     Otherwise, they are untouched.
+     TRAN            Values ON or OFF.  When ON, unprintable characters
+                     are translated to ? or @Xnn on output, and the
+                     console width is checked.  When OFF, all characters
+                     are passed through unchanged, and the width is not
+                     checked.  HEX             Only useful when TRAN is
+                     on.  Has values ON or OFF.  This option specifies
+                     whether ? (OFF) or @Xnn (ON) should be produced for
+                     unprintable characters.
+     RUBOUT          Has values VDU or VERIFY, and controls the displayed
+                     effect of the rubout key and @L.
+     IDENTIFY or ID  Values ON or OFF.  If ON, a number identifying the
+                     issuing task is prefixed to every line of output.
+
+    If no parameters are given, the current state of all the options
+is printed as well as the console handler task number.
+
+Example:        CONSOLE
+                CONSOLE TRAN OFF IDENTIFY
+** #I console
+Try one of the following for info, or <CR> to exit HELP:
+
+   COMMAND       - the CONSOLE command (use only on direct attached terminals)
+   COMMANDS      - available control commands
+   STREAMS       - how to access the terminal from a program
+   ESCAPE        - escape combinations for local control
+   SELECTION     - how to switch the keyboard stream to different tasks
+
+
+

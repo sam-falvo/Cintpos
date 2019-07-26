@@ -1,0 +1,49 @@
+**
+PACKETS
+
+Under TRIPOS, all communication between tasks, device drivers, and the timer,
+is performed by sending packets.  A packet is a vector of at least two words.
+The first two words are used by the system; any further words are available
+for data.  The conventional format is as follows:-
+
+        -->+-----------+
+           |   LINK   -+--> To next packet on work queue
+           |-----------|
+           | DEVTASKID |    Identifies destination or sender
+           |-----------|
+           |   TYPE    |    Packet type or action
+           |-----------|
+           |   RES1    |    First result
+           |-----------|
+           |   RES2    |    Second result
+           |-----------|
+           |   ARG1    |    First argument
+           |-----------|
+           |   ARG2    |    Second argument
+           |-----------|
+           |   ARG3    |    Third argument
+           |   etc.    |
+           |           |
+
+
+
+The LINK field is used when the packet is on a work queue.  It points to the
+first packet to arrive after the current one, or contains zero if this one is
+on the end of the queue.  Whenever a packet is not queued, the link should
+contain the value of the manifest constant NOTINUSE.
+
+Before QPKT is called to send a packet, the DEVTASKID field should be set to
+indicate the destination.  Values less than or equal to -2 indicate devices,
+-1 means the clock, and values greater than zero refer to tasks.  The value
+zero is invalid.  As QPKT sends the packet, it overwrites this field with the
+identity of the sender.  In practice, packets are nearly always returned to
+their senders, so it is useful to have this field altered automatically.
+
+By convention, the third word is used to specify the type or requested action
+of the packet.  The two result fields are in general not looked at by the
+receiver of the packet, but are used to return results or error codes.  The
+number and format of the arguments are entirely up to the users of the packet.
+The arguments and type field should not be overwritten by the receiver, so
+that the packet can reused without modification by the sender.
+
+

@@ -1,0 +1,11 @@
+MODSTART
+
+//Entry to: start
+ENTRY   K5 C115 C116 C97 C114 C116
+LAB     L1
+L       K0
+RTN
+GLOBAL K1
+G1 L1
+G1
+MODEND

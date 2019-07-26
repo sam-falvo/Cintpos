@@ -1,0 +1,221 @@
+// This file holds the specification of a model used by gltst.b
+// It models a coloured cube somewhat modified to look like a
+// missile with ailerons, elevator and rudder.
+
+// .mdl files are normally created by program but this one
+// is hand written.
+
+// Implemented by Martin Richards (c) June 2014
+
+// Modified 2 May 2018
+
+// OpenGL uses the right hand convention so for world coordinates.
+
+// With your right hand, point north with your first finger, point west
+// with your second finger and point upwards with your thumb. These
+// correspond to the directions of the first, second and third components
+// of a right handed coordinate system.
+ 
+// So our coordinate systems use the same convention.
+
+
+// Real world coordinates
+
+// n is towards the north
+// w is towards the west
+// h is upwards
+
+// Screen coordinates
+
+// x to the right
+// y upwards
+// z orthogonal to x and y towards the viewer, so
+//   negative z is into the screen.
+
+// The model is at the origin in real world coordinates
+// with the direction of thrust pointing north
+// direction of the left wing pointing west
+// and the direction of lift being up.
+
+// Vertices are represented by 8 values
+//        n w l  r g b  k d
+
+//    k = 0   fixed surface
+//    k = 1   rudder         d is the distance from the rudder hinge
+//    k = 2   elevator       d is the distance from the elevator hinge
+//    k = 3   left aileron   d is the distance from the aileron hinge
+//    k = 4   right aileron  d is the distance from the aileron hinge
+//    k = 5   a point on the ground, d=0
+
+
+// Syntax
+
+// vs n        Set the size of the vertex vector.
+// is n        Set the size of the index vector.
+// ds n        Allocate the display items vector. n is the number of
+//             display items required.
+// rgb r g b   Set the current colour.
+// kd  k d     Set current k and d.
+// v   x y z   Specify a vertex with coords xyz with current rgb and kd
+// n           Set another index vector element
+// d m n offset  A display item. mode is the mode to use eg 5 for triangles,
+//               n is the number of index values to use and offset is
+//               the starting position in the index vector.
+
+// z           End of file
+
+
+// Start of the model. The dimensions are in feet.
+
+vs 384 // 48*8  48 vertices with 8 attributes each
+
+kd  0.0 0.0
+
+rgb 1.0 1.0 0.0  // yellow
+
+v +10.000 +5.000 -5.000  //  0  front left  bottom 
+v +10.000 -5.000 -5.000  //  1  front right bottom
+v -10.000 -5.000 -5.000  //  2  back  right bottom
+v -10.000 +5.000 -5.000  //  3  back  left  bottom
+
+rgb 0.0 1.0 0.0  // green
+
+v +10.000 -5.000 -5.000  //  4  front right bottom
+v +10.000 -5.000 +5.000  //  5  front right top
+v -10.000 -5.000 +5.000  //  6  back  right top
+v -10.000 -5.000 -5.000  //  7  back  right bottom
+
+rgb 0.2 0.4 1.0  // light blue
+
+v +10.000 -5.000 +5.000  //  8  front right top
+v +10.000 +5.000 +5.000  //  9  front left  top
+v -10.000 +5.000 +5.000  // 10  back  left  top
+v -10.000 -5.000 +5.000  // 11  back  right top
+
+rgb 1.0 0.0 0.0  // red
+
+v +10.000 +5.000 -5.000  // 12  front left  bottom
+v -10.000 +5.000 -5.000  // 13  back  left  bottom
+v -10.000 +5.000 +5.000  // 14  back  left  top
+v +10.000 +5.000 +5.000  // 15  front left  top
+
+// Rudder
+
+rgb 0.0 0.0 0.0  // black
+
+v -10.000  0.000 -5.000  // 16  back  middle bottom
+v -10.000  0.000  5.000  // 17  back  middle top
+kd 1.0 2.5
+v -12.500  0.000  5.000  // 18  end   middle top
+v -12.500  0.000 -5.000  // 19  end   middle bottom
+kd 0.0 0.0
+
+// Elevator
+
+rgb 1.0 1.0 1.0  // white
+
+v -10.000 +5.000  0.000  // 20  back  left  middle
+v -10.000 -5.000  0.000  // 21  back  right middle
+kd 2.0 3.0
+v -13.000 -5.000  0.000  // 22  end   right middle
+v -13.000 +5.000  0.000  // 23  end   left  middle
+kd 0.0 0.0
+
+// Left Aileron
+
+rgb 0.3 0.3 0.3  // gray
+
+v +10.000 +5.000  0.000  // 24  back  left  middle
+v +10.000 +9.000  0.000  // 25  back  fleft middle
+kd 3.0 2.5
+v  +7.500 +9.000  0.000  // 26  end   fleft middle
+v  +7.500 +5.000  0.000  // 27  end   left  middle
+kd 0.0 0.0
+
+// Right Aileron
+
+rgb 0.3 0.3 0.3  // gray
+
+v +10.000 -5.000  0.000  // 28  back  right  middle
+v +10.000 -9.000  0.000  // 29  back  right  middle
+kd 4.0 2.5
+v  +7.500 -9.000  0.000  // 30  end   right  middle
+v  +7.500 -5.000  0.000  // 31  end   right  middle
+kd 0.0 0.0
+
+// nose top
+
+rgb 0.3 0.3 0.8  // blue gray
+
+v  10.000  5.000  5.000  // 32  front left   top
+v  10.000 -5.000  5.000  // 33  front right  top
+v  40.000 -2.500  2.500  // 34  nose  right  top
+v  40.000  2.500  2.500  // 35  nose  left   top
+
+// nose left
+
+rgb 0.8 0.3 0.3  // red gray
+
+v  10.000  5.000  5.000  // 36  front left   top
+v  10.000  5.000 -5.000  // 37  front left   bottom
+v  40.000  2.500 -2.500  // 38  nose  left   bottom
+v  40.000  2.500  2.500  // 39  nose  left   top
+
+// nose right
+
+rgb 0.3 0.8 0.3  // green gray
+
+v  10.000 -5.000  5.000  // 40  front right  top
+v  10.000 -5.000 -5.000  // 41  front right  bottom
+v  40.000 -2.500 -2.500  // 42  nose  right  low
+v  40.000 -2.500  2.500  // 43  nose  right  high
+
+// nose bottom
+
+rgb 0.3 0.8 0.8  // yellow gray
+
+v  10.000  5.000 -5.000  // 44  front left   bottom
+v  10.000 -5.000 -5.000  // 45  front right  bottom
+v  40.000 -2.500 -2.500  // 46  nose  right  low
+v  40.000  2.500 -2.500  // 47  nose  left   low
+
+// We will draw the to missile using a triangle strip for its
+// main body followed by triangles for th control surfaces.
+// Note that some of the triangles in the triangle strip are null.
+     
+is 63   // Number of 16--bit unsigned integers in the index array.
+
+// Triangle strips at 0
+   0  3  1  2         //  0   yellow base
+   2
+   7  4  6  5         //  5   green right side
+   5
+   8 11  9 10         // 10   blue top
+  10
+  14 15 13 12         // 15   red left
+  12
+  44 45 47 46         // 20   yellow gray nose bottom
+  42
+  42 43 41 40         // 25   green gray nose right
+  40
+  33 34 32 35         // 30   blue gray nose top
+  35
+  39 38 36 37         // 35   red gray nose left
+
+// Triangles starting at index position 39
+  16 17 18   16 18 19 // 39 Black rudder
+  20 21 22   20 22 23 // 45 white elevator
+  24 25 26   24 26 27 // 51 gray left aileron
+  28 29 30   28 30 31 // 57 gray right aileron
+                      // 63
+
+// The entire image could have been drawn using one display item
+// specifying a single triangle strip, but, as a demonstration, we use
+// two display items are used here. The first is a triangle strip and
+// the second just specifies indevidual triangles.
+
+ds 2       // The number of display items.
+d 6 39  0  // The missile body as a triangle strip.
+d 5 24 39  // The control surfaces as triangles.
+
+z          // End of mdl data.

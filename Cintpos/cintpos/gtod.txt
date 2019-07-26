@@ -1,0 +1,110 @@
+GETTIMEOFDAY(2)		   Linux Programmer's Manual	       GETTIMEOFDAY(2)
+
+
+
+NAME
+       gettimeofday, settimeofday - get / set time
+
+SYNOPSIS
+       #include <sys/time.h>
+
+       int gettimeofday(struct timeval *tv, struct timezone *tz);
+       int settimeofday(const struct timeval *tv , const struct timezone *tz);
+
+DESCRIPTION
+       The functions gettimeofday and settimeofday can get and set the time as
+       well  as a timezone.  The tv argument is a timeval struct, as specified
+       in /usr/include/sys/time.h:
+
+       struct timeval {
+	       long tv_sec;	   /* seconds */
+	       long tv_usec;  /* microseconds */
+       };
+
+       and gives the number of seconds and microseconds since the  Epoch  (see
+       time(2)).  The tz argument is a timezone :
+
+       struct timezone {
+	       int  tz_minuteswest; /* minutes W of Greenwich */
+	       int  tz_dsttime;	    /* type of dst correction */
+       };
+
+       The  use	 of  the timezone struct is obsolete; the tz_dsttime field has
+       never been used under Linux - it has not been and will not be supported
+       by  libc or glibc.  Each and every occurrence of this field in the ker-
+       nel source (other than the declaration) is a bug. Thus,	the  following
+       is purely of historic interest.
+
+       The  field  tz_dsttime  contains	 a symbolic constant (values are given
+       below) that indicates in which part of the year Daylight Saving Time is
+       in  force.  (Note:  its value is constant throughout the year - it does
+       not indicate that DST is in force, it just selects an algorithm.)   The
+       daylight saving time algorithms defined are as follows :
+
+	DST_NONE     /* not on dst */
+	DST_USA	     /* USA style dst */
+	DST_AUST     /* Australian style dst */
+	DST_WET	     /* Western European dst */
+	DST_MET	     /* Middle European dst */
+	DST_EET	     /* Eastern European dst */
+	DST_CAN	     /* Canada */
+	DST_GB	     /* Great Britain and Eire */
+	DST_RUM	     /* Rumania */
+	DST_TUR	     /* Turkey */
+	DST_AUSTALT  /* Australian style with shift in 1986 */
+
+       Of  course  it turned out that the period in which Daylight Saving Time
+       is in force cannot be given by a simple	algorithm,  one	 per  country;
+       indeed, this period is determined by unpredictable political decisions.
+       So this method of representing time zones  has  been  abandoned.	 Under
+       Linux, in a call to settimeofday the tz_dsttime field should be zero.
+
+       Under Linux there is some peculiar `warp clock' semantics associated to
+       the settimeofday system call if on the very first call (after  booting)
+       that  has  a  non-NULL  tz  argument,  the  tv argument is NULL and the
+       tz_minuteswest field is nonzero. In such a case it is assumed that  the
+       CMOS  clock is on local time, and that it has to be incremented by this
+       amount to get UTC system time.  No doubt it is a bad idea to  use  this
+       feature.
+
+       The following macros are defined to operate on a struct timeval :
+       #define	     timerisset(tvp)\
+	       ((tvp)->tv_sec || (tvp)->tv_usec)
+       #define	     timercmp(tvp, uvp, cmp)\
+	       ((tvp)->tv_sec cmp (uvp)->tv_sec ||\
+	       (tvp)->tv_sec == (uvp)->tv_sec &&\
+	       (tvp)->tv_usec cmp (uvp)->tv_usec)
+       #define	     timerclear(tvp)\
+	       ((tvp)->tv_sec = (tvp)->tv_usec = 0)
+
+       If  either  tv or tz is null, the corresponding structure is not set or
+       returned.
+
+       Only the super user may use settimeofday.
+
+RETURN VALUE
+       gettimeofday and settimeofday return 0 for success, or -1  for  failure
+       (in which case errno is set appropriately).
+
+ERRORS
+       EPERM  settimeofday is called by someone other than the superuser.
+
+       EINVAL Timezone (or something else) is invalid.
+
+       EFAULT One of tv or tz pointed outside your accessible address space.
+
+NOTE
+       The  prototype  for settimeofday and the defines for timercmp, timeris-
+       set, timerclear, timeradd, timersub are (since glibc2.2.2) only	avail-
+       able  if	 _BSD_SOURCE  is defined (either explicitly, or implicitly, by
+       not defining _POSIX_SOURCE or compiling with the -ansi flag).
+
+CONFORMING TO
+       SVr4, BSD 4.3
+
+SEE ALSO
+       date(1), adjtimex(2), time(2), ctime(3), ftime(3)
+
+
+
+Linux 2.0.32			  1997-12-10		       GETTIMEOFDAY(2)

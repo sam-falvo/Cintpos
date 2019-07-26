@@ -1,0 +1,27 @@
+.model demo
+.inputs a b c
+.outputs res carry
+
+.gate nor1 a=a O=a-
+.gate nor1 a=b O=b-
+.gate nor1 a=c O=c-
+
+.gate nor2 a=a- b=b- O=ab
+.gate nor2 a=b- b=c- O=bc
+.gate nor2 a=c- b=a- O=ca
+
+.gate nor1 a=ab O=ab-
+.gate nor1 a=bc O=bc-
+.gate nor1 a=ca O=ca-
+
+.gate nor2 a=ab- b=c O=x
+.gate nor2 a=bc- b=a O=y
+.gate nor2 a=ca- b=b O=z
+
+.gate nor3 a=x b=y c=z O=res-
+.gate nor1 a=res- O=res
+
+.gate nor3 a=ab b=bc c=ca O=carry-
+.gate nor1 a=carry- O=carry
+.end
+

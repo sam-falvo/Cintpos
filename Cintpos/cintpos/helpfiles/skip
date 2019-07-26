@@ -1,0 +1,16 @@
+*command
+**
+Form:           SKIP  "LABEL"
+Purpose:        To perform a jump in a command sequence.
+Author:         CGG
+Specification:
+   SKIP is used in conjunction with LAB (try HELP LAB COMMAND).
+   It can be used either with or without a label; without one, it
+finds the first unnamed LAB command.  LAB must be the first item on
+a line of the file.
+   SKIP will only jump forwards in the command sequence.
+   Labels are not local to command files.
+Example:        SKIP
+                SKIP ERRORLAB
+
+

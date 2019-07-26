@@ -1,0 +1,42 @@
+**
+               File transfer between TRIPOS and BBC micros
+               -------------------------------------------
+
+Files can be transferred between TRIPOS and a BBC micro running the PHX
+terminal emulator. The relevant commands are FROMBBC and TOBBC.
+
+  FROMBBC "TO/A/K,HEX/S" - transfers from BBC to TRIPOS
+  TOBBC   "FROM/A,HEX/S" - transfers from TRIPOS to BBC
+
+To use these:-
+
+  1) Log in to TRIPOS via a Beeb running PHX.
+  2) Make sure PHX has 'Auto Mode' off (Shift-F7).
+  3) Press 'Get File' (Shift F3) or 'Send File' (Shift F2).
+     You will be prompted first for a command line to send to TRIPOS: use
+     FROMBBC with 'Send File' and TOBBC with 'Get File'.
+     Secondly, you will be prompted for the BBC filename.
+
+The above works for normal text files. To send binary files, you put PHX
+into 'Hex Mode' (Shift F6), and quote the HEX switch to the TRIPOS
+command.
+
+Points to note
+--------------
+
+To send files from the BBC, you must use a UDN connection.
+Getting files to the BBC works through a terminal concentrator as long
+as no lines are longer than 80 characters. Long lines can be got from the
+UDN by typing @DK at it (though this is an unadvertised facility which
+may go away!).
+
+There is a problem associated with sending files containing the '@' character
+from a BBC machine (but not with receiving them). The PHX program only does
+doubling of @s before transmission in 'auto mode'. Therefore to send a file
+containing @s to TRIPOS, you must either go via Phoenix, or edit the file
+before transmission to double all @s.
+
+The file MICROLIB.BBCMICRO.TERMINAL on Phoenix contains more information
+on the PHX program.
+
+

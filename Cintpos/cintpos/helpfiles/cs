@@ -1,0 +1,373 @@
+*ALL ..
+*SUBMIT
+CS SUBMIT
+
+Form:        CS SUBMIT "/A,,,,,,,,,,USER/K,PW/K,JD/K"
+Author:      IDW
+
+   The function of CS SUBMIT is to submit a job for execution on the 3081.
+Up to ten unkeyed parameters  on the command line  are treated as  file
+names, and concatenated together to form the job.  If the keywords USER
+and PW are quoted, then CS SUBMIT  will generate a JOB card, and a  job
+description can be given by means of the JD keyword.  This is  intended
+for small  applications where an  uncomplicated  job  description  is
+required, and hence the rest of the job input is assumed to be PHOENIX.  If
+the USER and PW parameters are omitted, then CS SUBMIT assumes that the
+first file in the list contains a JOB card  and job description, and no
+attempt is made to check its validity. Note that any job submitted to the
+3081 goes through a virtual card reader, and so must not have any lines
+longer than 80 characters.
+
+Example:    CS SUBMIT ibm-commands USER idw2 PW splurge
+
+*ALL ..
+*INPUT
+CS INPUT
+
+Form:        CS INPUT "FROM/A,TO/A,USER,PW,JD/K,DOPT/K"
+Author:      IDW
+
+    The function  of CS INPUT  is to  transfer a file  in readable  form
+between TRIPOS and the 3081. The file is translated from ASCII to EBCDIC
+by the DERAIL program with the "F" option used. This means that, although
+carriage control characters will be  handled properly, tabs will remain
+un-expanded, and the circumflex character will remain untranslated. The
+file will be in  a suitable form  for editing and printing, and can  be
+retrieved by use of the CS FETCH command. The default output file format
+is /VBA. DOPT can be used to give options to the DERAIL program.
+
+Example:     CS INPUT tripos-file TO idw2.ibmfile USER idw2 PW splurge
+
+*ALL ..
+*BININPUT
+CS BININPUT
+
+Form:        CS BININPUT "FROM/A,TO/A,USER/A,PW/A,JD/K"
+Author:      IDW
+
+   The function of CS BININPUT is to transfer a file from TRIPOS to the
+3081, without performing character translation.  The file is stored on the
+3081 in fixed block format, with the data untranslated. The format of
+the file is suitable  for translation by the  DERAIL program, and so  a
+readable form can easily be produced. Since no character translation is
+done, this format can preserve the original file exactly, and hence  is
+appropriate for archive purposes.  The file can be retrieved by use  of
+the CS BINFETCH command.
+
+Example:     CS BININPUT tripos-file TO idw2.ibmfile USER idw2 PW splurge
+
+*ALL ..
+*FETCH
+CS FETCH
+
+Form:        CS FETCH "FROM/A,USER,PW,JD/K"
+Author:      IDW
+
+   The function of CS FETCH is to transfer a 3081 file stored in EBCDIC,
+as produced by the CS INPUT or PRINT commands, to TRIPOS. The character
+translation is done by the STREAM utility.  Note that if CS PRINT  were
+used initially, then any  tab characters will  have been lost, and  any
+circumflex characters will be translated into the ASCII character "SUB".
+This command can be used to fetch any printable 3081 file. It should be
+noted that GCODE does not come within this category.
+
+CS FETCH does only the first part of the job of fetching a file: it causes
+the file to be sent as virtual punched cards to an RJE service on the ring.
+In order to complete the transfer, you will need to use the commands
+CS EXAMINE and CS COLLECT (q.v.).
+
+Example:     CS FETCH idw2.ibmfile USER idw2 PW splurge
+
+*ALL ..
+*BINFETCH
+CS BINFETCH
+
+Form:        CS BINFETCH "FROM/A,USER,PW,JD/K"
+Author:      IDW
+
+   The function of CS BINFETCH is to transfer  a file from the 3081  to
+TRIPOS without performing any character translation.  This is  intended
+for use with the CS BININPUT command, and the result of using BINFETCH to
+fetch anything other  than raw ASCII  is undefined.  Again, it must  be
+stressed that unprintable  ASCII is  not supported, and  an attempt  to
+retrieve unprintable characters by this method will not work.
+
+CS BINFETCH does only the first part of the job of fetching a file: it causes
+the file to be sent as virtual punched cards to an RJE service on the ring.
+In order to complete the transfer, you will need to use the commands
+CS EXAMINE and CS COLLECT (q.v.).
+
+
+Example:     CS BINFETCH idw2.ibmfile USER idw2 PW splurge
+
+*ALL ..
+*PRINT
+CS PRINT
+
+Form:        CS PRINT "FROM/A,USER,PW,TO/K,JD/K,POPT/K,DOPT/K"
+Author:      IDW
+
+   The function of CS  PRINT is to  PRINT a file  on one of  the 3081's
+printers.  The file is  translated from ASCII to  EBCDIC by the  DERAIL
+program with the "P" option set, and then processed by the PRINT program.
+This means  that  tabs  within  the  file  will  be expanded,  and  the
+unprintable  circumflex  character  will  be  mapped  onto  the  EBCDIC
+"up arrow", intended for  the  printers at  ROUTE CENTRAL.   If the  TO
+keyword is omitted, then the file is sent directly to the printer, with
+the default ROUTE of "CENTRAL". If the TO parameter is quoted, then this
+is assumed to refer to a file, and the print output from the job is sent to
+the file.  The keyword  POPT can be used  to specify parameters to  the
+PRINT program. By default, no parameters are specified, and so the output
+will be  multi-columned, with no  page headings  or line numbers.   Job
+description parameters can be specified by using the JD keyword. DOPT can
+be used to give options to the DERAIL program.
+
+Example:     CS PRINT tripos-file USER idw2 PW splurge
+
+*ALL ..
+*LIST
+CS LIST
+
+Form:        CS LIST "FROM/A,USER,PW,TO/K,JD/K,POPT/K,DOPT/K"
+Author:      IDW
+
+   The function of  CS LIST  is to LIST  a file  on one  of the  3081's
+printers.  This command is  exactly analagous to the  CS PRINT command,
+except that LIST is used rather than PRINT, and the default options  to
+LIST cause line numbers, page headings, and page numbers.  See HELP CS PRINT
+for more information.
+
+Example:     CS LIST tripos-file USER idw2 PW splurge
+
+*ALL ..
+*PLOT
+CS PLOT
+
+Form:        CS PLOT "FROM/A,USER,PW,TO/K,JD/K,DOPT/K"
+Author:      IDW
+
+   The function of CS PLOT is to plot a file on one of the 3081's plotters.
+If TO is given, then the plot stream is sent to that file, rather than to
+the plotter directly.  The file to be plotted must be compatible with
+ISVIEW, and should normally be output from the wirewrap compiler.
+
+Example:     CS PLOT plot-file USER idw2 PW splurge
+
+*ALL ..
+*CANONPLOT
+CS CANONPLOT
+
+Form:        CS CANONPLOT "FROM/A,USER,PW,TO/K,JD/K,DOPT/K"
+Author:      IDW
+
+   The function of CS CANONPLOT is to plot a file on the CANON LBP-10 laser
+beam printer.  If TO is given, then the plot stream is sent to that file,
+rather than to the CANON directly.  The file to be plotted must be compatible
+with ISVIEW, and should normally be output from the wirewrap compiler.
+Note that the job submitted runs ISVIEW, PLOTCONV, VTRAN and VERSATECOUT,
+and hence may be heavy on resource units.  You have been warned!
+
+Example:     CS CANONPLOT plot-file USER idw2 PW splurge
+
+*ALL ..
+*STATUS
+CS STATUS
+
+Form:        CS STATUS "JOBNAME"
+Author:      IDW
+
+   The function of CS STATUS is to print out the status of a 3081 job or
+user.  The argument should normally  be a 3081  user identifier or  job
+number, and if omitted, the userid for the current user is used.
+
+Example:     CS STATUS idw2
+
+*ALL ..
+*EXAMINE
+CS EXAMINE
+
+Form:        CS EXAMINE
+Author:      IDW
+
+   The function of CS EXAMINE is to inspect the CL#TITAN PUNCH spool,
+held on CAP, to find the output of a job submitted by CS FETCH or BINFETCH.
+A list of jobs on the spool is printed out, with the user
+identifiers and  titles  of  the  individual  jobs.   This  command  is
+essential, as the CS COLLECT command requires the SPOOL entry number in
+order to retrieve the job. CS EXAMINE is implemented as a TAKEFILE from
+CAP, and hence is rather heavy on CAP resources. Please use this command
+sparingly.
+
+Example:     CS EXAMINE
+
+*ALL ..
+*COLLECT
+CS COLLECT
+
+Form:        CS COLLECT "SPOOLENTRY/A,TO/A/K"
+Author:      IDW
+
+   The function of CS COLLECT is to  transfer a job from the  CL#TITAN
+PUNCH spool on CAP to the TRIPOS filing system. The keyword ENTRY refers
+to the SPOOL ENTRY number, which should have been determined using the CS
+EXAMINE command.  The  jobs on  the SPOOL  queue are  not protected  by
+password, so please be careful only to collect jobs belonging to you, and
+respect  the  privacy  of   others.   If  the  transfer  is   completed
+successfully, then the item will be deleted from the spool queue. If the
+output has not been collected in what is deemed a reasonable time, it may
+also evaporate, so you have been warned!
+
+Example:     CS COLLECT 123 TO tripos-file
+
+*ALL ..
+*PACK
+CS PACK
+
+Form:        CS PACK "DIR/A,TO/A,INDEX/K,QUIET/S"
+Author:      IDW
+
+   The function of CS PACK is  to take a TRIPOS directory  or file, and
+produce an IEBUPDTE format sequential file, suitable for archiving.  If
+CS PACK is given a directory, it will archive all files in that directory,
+and if sub-directories are found, they will be archived  as well.  This
+means that CS PACK should not be given a directory which contains a loop
+in the filing system!
+
+   CS PACK uses the comment  field of the IEBUPDTE records to hold  the
+TRIPOS directory and file information, so that if the file is restored in
+its unmodified form, then whole directory structure  can be re-created.
+Any file  found in  the  directory search  which  contains  unprintable
+characters or overlong records is ignored, the rejection criteria being
+the same as for CS INPUT.
+
+   As the  files are  put  in the  archive file,  a MEMBER  NAME  field
+corresponding to the  TRIPOS file name is  generated out of  the file's
+sequence number, and is of the form TFxxxx, where "xxxx" is the sequence
+number.  An extra  member, called INDEX is  generated, and this  member
+contains all the information about  the files in that archive, such  as
+their sequence numbers, file names and creation dates.  A copy of this
+index is written to the file given by INDEX, or "T:CS-PACK-INDEX" if
+this is omitted.
+
+   As the files are archived, a message is printed at the console, giving
+the sequence number and file name of the file currently being processed.
+This can be inhibited by use of the QUIET switch.
+
+   The file is in a suitable format for the use of either "CS INPUT" or
+"CS BININPUT", and when transferred  to the 3081, can  be processed  by
+FILEPDS to form a partitioned dataset.  Note that if this happens, then
+the original TRIPOS file  names are lost  from the comment  fields, and
+hence, if the whole  PDS is restored, the  filenames must be  recreated
+manually from the Index.
+
+Example:     CS PACK :idw TO packed-file
+
+*ALL      ..
+*UNPACK
+CS UNPACK
+
+Form:        CS UNPACK "FROM/A,TO/A/K,QUIET/S"
+Author:      IDW
+
+   The function of CS UNPACK is to reverse the effect of a CS PACK. The
+source file is one in IEBUPDTE format, and the destination is a file or
+directory, whichever is  appropriate, into  which the  source  will  be
+unpacked. If the destination does not exist, then it will be created to
+be of the correct type. If the archive file is in the same state as  it
+was when produced by PACK, then the sub-directory structure will be re-
+created exactly.   The output  from CS  UNPACK  can be  merged  with  a
+directory structure which already exists, but if a type clash occurs, then
+the operation will be  aborted.  If the archive file is  a general one,
+produced by filepds, then CS UNPACK will create files corresponding  to
+the 3081  PDS member names  of the  files.  Normally, as the  unpacking
+proceeds, the program  will  print out  information of  which  file  is
+currently being unpacked, and which sub-directories  are being created.
+This can be inhibited by means of the QUIET switch.
+
+Example:     CS UNPACK packed-file TO :idw.directory
+
+*ALL ..
+*MAIL
+CS MAIL
+
+Form:        CS MAIL "USER,PW,JD/K"
+Author:      IDW
+
+    The function of CS MAIL is to take messages sent to the user's Phoenix
+mailbox, extract them, and send them to his Tripos mailbox.  Since the
+Phoenix message system does not support JNT style mail, fields such as
+"From:" and "Subject:" are invented by CS MAIL, and hence not particularly
+meaningful.
+
+Example:      CS MAIL
+
+*ALL ..
+*PASSWORD
+CS PASSWORD
+
+Form:        CS PASSWORD "PW"
+Author:      IDW
+
+    The function of CS PASSWORD is to set up the user's default CS password
+so that he need not quote it each time he runs a CS job.  The password given
+is stored encrypted in the file "HOME:CS-Password", and given the access
+matrix "/DARW///", meaning that other users cannot touch it.  If the password
+is not given on the command line, then it is prompted for.  Typing [RETURN]
+to the prompt causes the CS-Password file to be deleted.
+
+Example:     CS PASSWORD secret
+
+*JD
+*ALL
+The JD parameter found in many of the CS functions allows the user to change
+the characteristics of the job submitted to the computing service.  The
+JD parameters are all of the form:
+
+    keyword=value
+
+and hence the whole JD string must be enclosed within quotes.  The keywords
+are:
+
+        CLASS         COND          COPIES      DECK800
+        DECK9         DISC          DLM         DRIVE
+        JOBID         LOCK          MAXRATE     MSGCLASS
+        MSGLEVEL      NOTIFY        PAGE        POST          
+        PRINTLIMIT    PRINTROUTE    PROJECT     PUNCHLIMIT    
+        PUNCHROUTE    REGION        RESTART     TAPE800
+        TAPE9         TITLE         TIME        TURNROUND
+
+Examples:
+
+        JD "CLASS=B  RESTART=N  TIME=(,20)"
+        JD "JOBID=X  PROJECT=1234  COPIES=5"
+
+*COMMAND   #I   CS
+*+         #I   CS
+TRIPOS CS command
+
+Form:           CS <function> <arguments>
+Purpose:        Communication with the Computing Service
+Author:         IDW
+
+    The first item on the command line is treated as a function name,
+and control is passed to the sub-program corresponding to that function.
+Many CS commands require CS user identifiers and passwords.  A default
+userif can be set up by adding the user's CS name to the Ring Map Service,
+and a default password can be set up using CS PASSWORD.
+
+Possible CS functions are:
+
+    SUBMIT   PRINT       LIST     INPUT     BININPUT   FETCH   BINFETCH
+    PLOT     CANONPLOT   STATUS   EXAMINE   COLLECT    PACK    UNPACK
+    MAIL     PASSWORD
+
+Type one of the function names for help on that function, JD for help
+on possible Job Description parameters, ALL for all CS information or
+<RETURN> to leave help.
+
+**
+What you typed is not a valid CS function.  Try HELP CS <command> for help on
+a specific CS command, or HELP CS COMMAND for more general information.
+*
+
+

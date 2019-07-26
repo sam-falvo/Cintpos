@@ -1,0 +1,9 @@
+#!/home/mr/distribution/Cintpos/cintpos/bin/cintpos -s
+
+hello
+echo "*nRunning bench100*n"
+
+dat
+bench100
+dat
+fail 100

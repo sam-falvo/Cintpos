@@ -1,0 +1,75 @@
+*halt #H logoff
+*hardcopy #H print
+*hasp #H 370
+*header #H directory
+*heap #H memory
+*here:
+HERE: streams
+
+The stream name "HERE:x" allows the use of instream files for input.
+The file ends with a line containing just the single character specified after
+HERE: (i.e. 'x' stands for any single character).
+
+Example:  HERE: is usually used in command sequence files:
+
+TLS TLSDICT.ABC999 WITH HERE:!
+ARCHIVE BCPL
+ARCHIVE SPEC
+EX
+!
+*hex #H #HCH %
+%output
+%intel #H chex
+%mostek #H chex
+%cambridge #H chex
+%print #H typehex
+%dump #H typehex
+%type #H typehex
+%show #H typehex
+%list #H typehex
+%+
+The contents of a file can be printed in hexadecimal by using the command
+TYPEHEX (q.v.).
+
+Use HELP CAMBRIDGE HEX for information about Mostek Hex / Intel Hex etc.
+assemblers and linkers.
+%
+*hexprint #H typehex
+*history #H Shell-Commands
+*hold #H #HCH %
+%command
+Form            HOLD  "Task/a"
+Purpose:        To hold a given task.
+Specification:  Holds the numbered task preventing further execution.
+Example:        HOLD 8
+%procedure
+HOLD   Place a task into a held state.
+
+Example:   result := hold(taskid)
+
+Argument:  TASKID  The id. of the task to be placed into a held state.
+
+Normal return:  RESULT/=0  The specified task has been placed into a held
+                           state, having been formerly not held.
+
+
+Error return:   RESULT=0, with:
+
+                   RESULT2=110, Task already held (not really an error!)
+                   RESULT2=101, Invalid id.
+Side effects:
+
+   May cause a change of current task.
+
+Related routine:  RELEASE
+
+Note:   A task may hold itself.
+%*
+HOLD is the name both of a KLIB procedure and of a TRIPOS command.
+Type HELP HOLD PROCEDURE for information about the procedure and
+HELP HOLD COMMAND for information about the command.
+%
+*home #H directory
+*home: #H directory
+
+

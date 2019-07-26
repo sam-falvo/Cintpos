@@ -1,0 +1,31 @@
+*procedure
+*parameters
+*format
+*syntax
+*results
+*+
+CALLSEG
+
+  A procedure for calling a subroutine from a file:
+
+  RESULT := CALLSEG(FILENAME, ARG1, ARG2, ARG3, ARG4)
+
+  FILENAME is the name of a file containing a compiled program which defines
+global 1 (START).  The code is loaded from this file, the globals defined
+therein initialized, and START(ARG1, ARG2, ARG3, ARG4) called.  On return
+from START, the code is unloaded, and the result and RESULT2 passed back
+from CALLSEG.
+
+  Some commands in SYS:C can be CALLSEGed.  More information is available
+on some of these commands - try HELP COMMAND <command> CALLSEG.
+
+  In order to write a program which may be activated as a CALLSEGed module,
+a command from a CLI, or a loaded task, it is necessary to test the value
+of the argument passed to START.  This will be zero for a command, a packet
+(i.e. an address) for a task, and the value passed as ARG1 when CALLSEGed.
+It is therefore necessary to select a particular distinctive value for this
+argument when activating the routine by CALLSEG.  There is no standard
+value for this, but 1 and -1 are commonly used.
+*find-fileserver #H sourcelib
+
+

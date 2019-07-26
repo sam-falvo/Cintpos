@@ -1,0 +1,471 @@
+This is file MCPL/mintcode/doc/tree
+
+*****************************  Lexical Tokens   ***********************
+
+numb        123   #377   #xFF    #b_101_111  'a'  'EDIT'
+sbra        [          for patterns and initialised vectors
+sket        ]
+lparen      (          for enclosing expression - has a result
+rparen      )
+cbra        {          for enclosing commands - no result
+cket        }
+plusass     +:=
+plus        +
+inc1        ++
+inc4        +++
+comma       ,
+semicolon   ;
+lv          @
+bitand      &
+andass      &:=
+bitor       |
+orass       |:=
+rarrow      =>
+eq          =
+indw        !          word subscripting
+mult        *
+multass     *:=
+div         /
+divass      /:=
+            //         comment until newline
+            /*         comment until */
+ls          <
+le          <=
+lsh         <<
+lshass      <<:=
+gr          >
+ge          >=
+rsh         >>
+rshass      >>:=
+cond        ->
+subass      -:=
+sub         -
+dec1        --
+dec4        ---
+colon       :
+ass         :=
+query       ?
+indb        %          byte subscripting
+ne          ~=
+bitnot      ~
+dots        ..         range in a pattern
+mthap       #          method application
+vid         abc   x    etc
+cid         Abc   X    ETC
+string      "hello"   "hi\nthere"    (zero terminated)
+eof         <end of file>
+module      MODULE
+get         GET
+fun         FUN         (start of a function definition)
+external    EXTERNAL
+static      STATIC
+manifest    MANIFEST
+true        TRUE
+false       FALSE
+table       TABLE
+vec         VEC
+cvec        CVEC
+abs         ABS
+not         NOT
+and         AND
+or          OR
+let         LET
+be          BE
+goto        GOTO
+raise       RAISE
+test        TEST
+then        THEN
+else        ELSE
+if          IF
+unless      UNLESS
+do          DO
+while       WHILE
+until       UNTIL
+repeatwhile REPEATWHILE
+repeat      REPEAT
+repeatuntil REPEATUNTIL
+for         FOR
+to          TO
+by          BY
+valof       VALOF
+match       MATCH
+every       EVERY
+handle      HANDLE
+result      RESULT
+exit        EXIT
+return      RETURN
+break       BREAK
+loop        LOOP
+mod         MOD
+xor         XOR
+modass      MOD:=
+xorass      XOR:=
+allass      ALL:=
+
+
+**********************   Operator Precedence *************************
+
+15L Names, Literals,  ?, TRUE, FALSE, (E), [E,..,E]
+    E(...), E # (...)
+
+14  TABLE [K,..,K], VEC K, CVEC K, VALOF C
+
+13  ++  +++  --  ---                         Postfixed
+
+12  ++  +++  --  ---  ~  +  -  ABS           Prefixed
+
+11L !  %                                     Dyadic
+
+10  !  %  @                                  Prefixed
+
+9L  <<  >>
+8L  *  /  MOD  &
+7L  XOR
+6L  +  -  |
+
+5   =  ~=  <=  >=  <  >                      Extended Relations
+
+4   NOT                                      Truth value operators
+3L  AND
+2L  OR
+
+1R  -> ,                                     Conditional expression
+
+**************************   Parse Tree   ****************************
+
+Cid    -> [cid, -, <bytes>]
+
+Vid    -> [vid, -, <bytes>]
+
+Str    -> [string, <len>, <bytes>]  "hello\n"
+
+E      -> [true]                      TRUE
+       |  [false]                     FALSE
+       |  [query]                     ?
+       |  Vid                         x          init
+       |  Cid                         Abc        Mult
+       |  Str                         "hello\n"
+       |  [numb, <val>]               123   #377  #x_FF #b_101  'A'
+       |  [valof, C]                  VALOF C
+       |  [every, Elist, Fndef, ln]   EVERY Elist Fndef
+       |  [match, Elist, Fndef, ln]   MATCH Elist Fndef
+       |  [table, Elist]              TABLE [ SK ,..., SK ]
+       |  [ltable, Elist, -]          [ E ,.., E ]
+       |  [vec, K, -]                 VEC K
+       |  [cvec, K, -]                CVEC K
+       |  [call, E, Elist, ln]        E E  or E ( E ,.., E )
+       |  [call, E, 0, ln]            E ()
+       |  [inc1a, E]                  E ++
+       |  [inc4a, E]                  E +++
+       |  [dec1a, E]                  E --
+       |  [dec4a, E]                  E ---
+       |  [inc1b, E]                  ++ E
+       |  [inc4b, E]                  +++ E
+       |  [dec1b, E]                  -- E
+       |  [dec4b, E]                  --- E
+       |  [neg, E]                    - E
+       |  [bitnot, E]                 ~ E
+       |  [abs, E]                    ABS E
+       |  [lv, E]                     @ E
+       |  [indb, E, E]                E % E
+       |  [indb0, E]                  % E  (= E%0)
+       |  [indw, E, E]                E ! E
+       |  [indw0, E]                  ! E  (= E!0)
+       |  [lsh, E, E]                 E << E
+       |  [rsh, E, E]                 E >> E
+       |  [bitand, E, E]              E & E
+       |  [mult, E, E]                E * E
+       |  [div, E, E]                 E / E
+       |  [mod, E, E]                 E MOD E
+       |  [xor, E, E]                 E XOR E
+       |  [bitor, E, E]               E | E
+       |  [plus, E, E]                E + E
+       |  [sub, E, E]                 E - E
+       |  [rel, E, Rel]               E relop E relop ... E
+       |  [not, E]                    NOT E
+       |  [and, E, E]                 E AND E
+       |  [or, E, E]                  E OR E
+       |  [cond, E, E, E]             E -> E, E
+
+Rlist  -> 0
+       |  [eq, E, Rlist]
+       |  [ne, E, Rlist]
+       |  [le, E, Rlist]
+       |  [ge, E, Rlist]
+       |  [ls, E, Rlist]
+       |  [gr, E, Rlist]
+
+K      -> [true]                      TRUE
+       |  [false]                     FALSE
+       |  [query]                     ?
+       |  Cid                         Abc      Mult
+       |  [numb, <val>]               123      #377      #x_FF    #b_101
+       |  [neg, K]                    - E
+       |  [bitnot, K]                 ~ E
+       |  [abs, K]                    ABS E
+       |  [lsh, K, K]                 E << E
+       |  [rsh, K, K]                 E >> E
+       |  [bitand, K, K]              E & E
+       |  [mod, K, K]                 E MOD E
+       |  [mult, K, K]                E * E
+       |  [div, K, K]                 E / E
+       |  [xor, K, K]                 E XOR E
+       |  [bitor, K, K]               E | E
+       |  [plus, K, K]                E + E
+       |  [sub, K, K]                 E - E
+       |  [rel, RKlist]               K relop K relop ... K
+       |  [not, K]                    NOT E
+       |  [and, K, K]                 E AND E
+       |  [or, K, K]                  E OR E
+       |  [cond, K, K, K]             E -> E, E
+
+RKlist -> 0
+       |  [eq, E, RKlist]
+       |  [ne, E, RKlist]
+       |  [le, E, RKlist]
+       |  [ge, E, RKlist]
+       |  [ls, E, RKlist]
+       |  [gr, E, RKlist]
+
+SK     -> K
+       |  Str
+       |  [table, SKlist]
+       |  [ltable, SKlist, -]
+       |  [vec, K]
+       |  [cvec, K]
+
+P      -> 0
+       |  Cid                         Abc
+       |  Vid                         x
+       |  [numb, <val>]               1234
+       |  [query]                     ?
+       |  [true]                      TRUE
+       |  [false]                     FALSE
+       |  [dots,K,K]                  K .. K  where K is
+                                      numb, cid, true, false or char
+       |  [por,K,[por,K,..]]          K | K | ...
+                                      where the Ks contain only 
+                                      numb, cid, true, false, char and dots
+       |  [ptr, Plist]                [ Plist ]
+       |  [peq, E]                    = E
+       |  [pne, E]                    ~= E
+       |  [ple, E]                    <= E
+       |  [pge, E]                    >= E
+       |  [pls, E]                    < E
+       |  [pgr, E]                    > E
+       |  [pass, E]                   := E
+       |  [plshass, E]                <<:= E
+       |  [prshass, E]                >>:= E
+       |  [pandass, E]                &:= E
+       |  [pmultass, E]               *:= E
+       |  [pdivass, E]                /:= E
+       |  [pmodass, E]                MOD:= E
+       |  [pxorass, E]                XOR:= E
+       |  [porass, E]                 |:= E
+       |  [pplusass, E]               +:= E
+       |  [psubass, E]                -:= E
+       |  [pand, P, P]                P P ... P
+
+Plist  -> P                           P
+       |  [comma, P, Plist]           P ,.., P
+
+C      -> E                           E
+       |  [seq, C, C]                 C ; C
+       |  [scope, C]                  { C }
+       |  [repeat, C, ln]             C REPEAT
+       |  [repeatwhile, C, E, ln]     C REPEATWHILE E
+       |  [repeatuntil, C, E, ln]     C REPEATUNTIL E
+       |  [handle, C, Fndef, ln]      C HANDLE Fndef
+       |  [let, Slist, ln]            LET x=1, y=VEC 10, z="abc"
+       |  [raise, Elist, ln]          RAISE E  or  RAISE ( E ,.., E )
+       |  [goto, Elist, ln]           GOTO E  or  GOTO ( E ,.., E )
+       |  [test, E, C, C, ln]         TEST E THEN C ELSE C
+       |  [if, E, C, ln]              IF E DO C
+       |  [unless, E, C, ln]          UNLESS E DO C
+       |  [while, E, C, ln]           WHILE E DO C
+       |  [until, E, C, ln]           UNTIL E DO C
+       |  [for, Vid, E, E, 0, C, ln]  FOR i = E TO E DO C
+       |  [for, Vid, E, E, K, C, ln]  FOR i = E TO E BY K DO C
+       |  [result, 0, ln]             RESULT
+       |  [result, E, ln]             RESULT E
+       |  [exit, 0, ln]               EXIT    (current match construct)
+       |  [exit, E, ln]               EXIT E
+       |  [return, 0, ln]             RETURN
+       |  [return, E, ln]             RETURN E
+       |  [loop, ln]                  LOOP
+       |  [break, ln]                 BREAK
+       |  [ass, Elist, Elist, ln]     E,..,E := E,..,E
+       |  [allass, Elist, E, ln]      E,..,E ALL:= E
+       |  [lshass, Elist, Elist, ln]  E,..,E <<:= E,..,E
+       |  [rshass, Elist, Elist, ln]  E,..,E >>:= E,..,E
+       |  [andass, Elist, Elist, ln]  E,..,E &:= E,..,E
+       |  [multass, Elist, Elist, ln] E,..,E *:= E,..,E
+       |  [divass, Elist, Elist, ln]  E,..,E /:= E,..,E
+       |  [modass, Elist, Elist, ln]  E,..,E MOD:= E,..,E
+       |  [xorass, Elist, Elist, ln]  E,..,E XOR:= E,..,E
+       |  [orass, Elist, Elist, ln]   E,..,E |:= E,..,E
+       |  [plusass, Elist, Elist, ln] E,..,E +:= E,..,E
+       |  [subass, Elist, Elist, ln]  E,..,E -:= E,..,E
+
+Fndef  -> 0
+       |  [funpat, Plist, Clist, Fndef, ln] : P ,.., P => Clist
+                                            ...
+                                            : P ,.., P => Clist
+
+Prog   -> [module, Vid, Body, ln]
+       |  Body
+
+Body   -> [manifest, Mlist, Body, ln]   MANIFEST A=1, B, C=123
+       |  [static,   Slist, Body, ln]   STATIC A=1, B, C=[123,"Hi"]
+       |  [external, Xlist, Body, ln]   EXTERNAL Vid/Vid,..,
+       |  [fun, Vid, Fndef, Body, -, ln]
+
+Mlist  -> 0
+       |  [mdef, Cid, 0, Mlist]
+       |  [mdef, Cid, K, Mlist]
+
+Slist  -> 0
+       |  [sdef, Vid, 0, Slist]
+       |  [sdef, Vid, SK, Slist]
+
+Xlist  -> 0
+       |  [xdef, Vid, 0, Xlist]
+       |  [xdef, Vid, Vid, Xlist]
+
+Elist  -> E
+       |  [comma, E, Elist]
+
+SKlist -> SK
+       |  [comma, SK, Elist]
+
+Vlist  -> Vid
+       |  [comma, Vid, Vlist]
+
+
+**************************   MCODE Operators  ****************************
+---  Variables  ---
+
+LP n     LLP n     SP n
+LL lab   LLL lab   SL lab
+
+LPATH n i       p!s := p!n!i; s:=s+1
+LLPATH n i      p!s := @ p!n!i; s:=s+1
+SPATH n i       s:=s-1; p!n!i := p!s
+
+---  Constants  ---
+
+LN n
+LF lab
+LX n C1 .. Cn     Can only load the address of an external ref
+
+QUERY
+TRUE  FALSE
+
+---  Data  ---
+
+DLAB lab
+DW n
+DL lab
+DB n
+VEC n        n id the upper bound
+
+---  Expressions  ---
+
+INC1A INC4A INC1B INC4B
+DEC1A DEC4A DEC1B DEC4B
+
+NEG
+BITNOT
+ABS
+INDB0
+INDB
+INDW0
+INDW
+LSH
+RSH
+BITAND
+MULT
+DIV
+MOD
+XOR
+BITOR
+PLUS
+SUB
+EQ NE LE GE LS GR
+
+---  extended relation conditional jumps  ---
+JXEQ Ln      TEST p!(s-2) = p!(s-1)
+             THEN { p!(s-2) := p!(s-1); s-- }
+             ELSE { p!(s-2) := FALSE; s--; JUMP Ln }
+
+JXNE Ln  similar to above
+JXLE Ln
+JXGE Ln
+JXLS Ln
+JXGR Ln
+
+STRES
+LDRES
+
+JUMP lab
+JT lab
+JF lab
+LAB lab
+TORF lab     used in the compilation of AND and OR
+    It is equivalent to:
+       TRUE 
+       JUMP Ln
+       LAB lab
+       FALSE
+       LAB Ln
+
+CFUN lab n C1 ... Cn m T1 ... Tm
+             // Entry point to a C callable external function
+             // T1 .. Tm are the function type letters.
+FUN lab n C1 ... Cn
+             // save return link and set ssp to 3
+ARGS n         ssp +:= n  // there are n args at this place
+STACK n    ssp := n
+
+RETURN       // return from function or routine
+CALL k
+CALLX k n T1 ... Tn     Ti are the argument type letters
+                            s for string, n for integer
+ENDFUN
+PATERR
+
+STW          !(P!(s-2)) := P!(s-1); s := s-2
+STB          %(P!(s-2)) := P!(s-1); s := s-2
+LVINDW       P!(s-2) := @ P!(s-2) ! P!(s-1); s:=s-1
+DUP          P!s := P!(s-1); s++
+
+HANDLE Ln    P!s, P!(s+1), P!(s+2), H := H, Ln, P, @P!s
+             s +:= 3  // leave room for exception triplet
+             
+UNHANDLE     H := !H
+
+HANDLER k    H!2, H!3, H!4 := A1, A2, A3
+             s := H+5
+             H := H!0
+
+RAISE k      A1, A2, A3 := P!k, P!(k+1), P!(k+2)
+             P := H!2
+             GOTO H!1
+             s := k
+
+GOTO Ln k    A1, A2, ... := P!k, P!(k+1), ...
+             PC := Ln
+
+MODULE n C1 ,.., Cn
+
+
+Mintcode instructions
+
+LVIND      a := a + 4*b
+INDW       a := a!b
+INDB       a := a%b
+INDB0      a := a%0
+
+STB        b%0 := a
+
+

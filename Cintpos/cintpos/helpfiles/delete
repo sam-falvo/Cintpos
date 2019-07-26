@@ -1,0 +1,48 @@
+*device
+*dev
+A procedure for deleting Tripos devices is called DELETEDEV.  See HELP on
+this for more information.
+*deletedev #H deletedev
+*help #H help
+*message #H message
+*mail #H mail
+*object #H deleteobj
+*obj #H deleteobj
+*task #H task
+*uid #H uidedit
+*user #H user
+*command
+*file
+Form:           DELETE  ",,,,,,,,,,,VERIFY/S"
+Purpose:        To delete up to ten files or directories.
+Authors:        PB ARA
+Specification:
+   DELETE will attempt to delete each file or directory specified.
+   This is will only be able to do if the user has 'D' access to the given
+file or directory.  At creation files have 'D' protection status (and so can
+be deleted) but directories do not.  Use the ALTER command to change the
+protection status of a file or directory which does not already have 'D'
+status.  If a directory is deleted then so are all of its files and  sub-
+directories.
+   For information about ALTER type HELP ALTER COMMAND.
+   In order just to delete the contents of a directory use the SCRATCH
+command (see HELP SCRATCH COMMAND).
+
+Example:        DELETE OLD-FILE
+                DELETE ALPHA BETA GAMMA
+
+                ALTER My-Whole-Directory /D///
+                DELETE My-Whole-Directory
+** #I delete
+Type one of the following for more information:
+
+   COMMAND      For the command to delete files
+   MAIL         For manipulating mail items
+   OBJECT       For the internal proc for deletion of filing system objects
+   TASK         For deleting Tripos tasks
+   DELETEDEV    For deleting Tripos devices
+   USER         For removing user authentication etc.
+   UIDSET       For manipulating UIDset data
+   <CR>         To exit HELP
+
+

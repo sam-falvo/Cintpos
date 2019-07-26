@@ -1,0 +1,28 @@
+**
+INIT-SEQUENCE
+    This is the name of the file in a user's home directory which is executed
+as a T command when the user logs on.  Typical commands to include in an
+init-sequence file are the following:
+            STACK 1000              - to set the default size of a user's stack
+                                      to a higher than normal value
+            PROMPT <prompt>         - to give the user his own prompt
+            MESSAGE tripos, OPT SQ  - to print a summary of his own and
+                                      system  messages recieved
+            NEWCLI                  - to create a second 'emergency' CLI
+    There are various ways in which this command sequence can be executed:
+either explicitly using the T or C commands or implicitly using the INIT, USER
+or START commands.
+    For further information use:
+        HELP T COMMAND         HELP INIT COMMAND        HELP START COMMAND
+        HELP USER COMMAND      HELP C COMMAND           HELP NEWCLI COMMAND
+        HELP STACK COMMAND     HELP MESSAGE COMMAND     HELP PROMPT COMMAND
+        HELP HOME DIRECTORY    HELP COMMAND SEQUENCE
+
+    The file to initialise a new CLI when using the X break on the terminal
+concentrator is SYS:S.NEWCLI-INITIAL-COMMANDS.  (Use HELP VIRTUAL TERMINAL
+BREAK for more information).
+    The file used to initialise a TRIPOS machine upon startup is
+SYS:S.INITIAL-COMMANDS for multi-users versions and
+SYS:S.STARTUP-COMMANDS for single user versions (the norm).
+
+

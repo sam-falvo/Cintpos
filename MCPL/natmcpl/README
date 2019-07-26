@@ -1,0 +1,32 @@
+
+This directory contains an MCPL Native System for 386/486/Pentium
+based machines (a version for the DEC Alpha will be added later).
+It will be similar to the native mode system for BCPL. Installing
+MCPL will automatically install bothe the Mintcode interpretive
+version of MCPL and the native code version.
+
+This directory (MCPL/natmcpl) contains a prototype version of a MCPL
+system compiled into native assembly language, currently for Intel
+386/486/Pentium based machines running under Linux. It uses a very
+simple codegenerator (cvmial386) that translates the MCPL internal
+assembly language (MIAL) into Gnu assembler for the 386. It should be
+possible to modify BCPL/cintcode/com/mial-386.b for other
+architectures in 2-4 man-days.
+
+The file MCPL/natmcpl/sysasm/LINUX/syslib.s will also need to be
+rewritten, but it is only about 150 lines long. It can probably done
+with only one day's work.
+
+You should fully install the BCPL Cintcode system before installing
+MCPL, since the MCPL compiler is currently written in BCPL.
+
+Once MCPL is correctly installed, you should be able to compile the
+system and run various demonstration programs in MCPL/mcplprogs/ by
+executing make.
+
+Note that this version of MCPL is still under (slow) development.
+
+
+Martin Richards                      http://www.cl.cam.ac.ul/users/mr/
+16 Oct 2007                          mr@cl.cam.ac.uk
+ 

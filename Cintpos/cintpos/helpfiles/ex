@@ -1,0 +1,61 @@
+*commands #I #HCH=+ #FULL
+There are two main EXamine commands on TRIPOS.  The usual one is EX which
+types the status of each file or directory in a given directory. IEX examines
+a directory interactively. The EXALL command has been withdrawn; the "all"
+option to EX should be used (see HELP EX).
+   For information about IEX type IEX and for EX type EX. Type <CR> to leave
+HELP.
++iex #H iex
++interactive #H iex
++ex #H ex
++normal #H ex
+*pattern #H pattern
+*p #H pattern
+*interactive #H ex
+*command
+**
+EX command
+Form:           EX  "object=dir,quick=q/s,dates/s,nodates/s,keys/s,since/k,*
+                    *upto/k,to/k,p=pat/k,s/k,slots/k,all/s,who/s,for/k,raw/s"
+
+Purpose:        To examine a directory or tree of directories
+Authors:        MFR
+
+Specification:
+   EX     <dir> examines a directory, sending output to the current output
+                stream.
+
+   TO    <file> can be used to specify an output file.
+   KEYS         prints the disc key of the object. For fileserver based systems,
+                this will be all or part of the (file) PUID.
+   DATES        causes all dates to be printed in the form DD-MMM-YY.
+   NODATES      suppresses date, time and size information.
+   SINCE <date> prints only files last updated on or after <date>.
+                <date> can be in the form DD-MMM-YY or a dayname in the last
+                week (e.g. MONDAY) or TODAY or YESTERDAY.
+   UPTO  <date> prints only files last updated on or before <date>.
+   P      <pat> searches for files whose name matches the pattern <pat>.
+   S      <str> searches for filenames containing substring <str>.
+   QUICK        prints a limited amount of information if this is quicker.
+   SLOTS        for fileserver based systems, this gives the directory slot
+                number for the entry.
+   ALL          if ALL is specified then all sub-directories are also examined.
+                This should preferably used with TO and the output sent to
+                the lineprinter, since it is rather confusing at the terminal.
+   WHO          if WHO is quoted then the initials of the creator of a file or
+                directory will be given. WHO cannot be used with QUICK.
+   FOR  <ulist> <ulist> should be a list of user's initials, separated by commas
+                (eg., FOR=BJK,MFR,CGG). If given then only objects for those
+                users will be listed.
+   RAW          Produce raw format output -- not for reading by people.
+
+   For information about the pattern used with the P keyword use HELP PATTERN.
+   For information about the access matrices (e.g. /DAURW/ARW/RW/R) used
+in the Filing Machine version of the filing system use HELP ACCESS MATRIX.
+   In order to examine a directory interactively use the IEX command (use
+HELP COMMAND IEX for further information).
+
+Example:        EX
+                EX :COM.BCPL S DISC
+
+

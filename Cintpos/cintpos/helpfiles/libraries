@@ -1,0 +1,49 @@
+*bcpl #H blib
+*blib #H blib
+*kernel #H klib
+*klib #H klib
+*lked #H lked
+*machine #H mlib
+*mlib #H mlib
+*source #H sourcelib
+*user #H sourcelib
+*library #H #HCH %
+*command #H #HCH %
+%command
+Form:           LIBRARY  "FROM,OVERRIDE/S,CANCEL/K,TABLE/K"
+Purpose:        To load a library of procedures and append it to the
+                BLIB segment chain, thus allowing standard globals
+                to be redefined.
+Author:         RDE
+Specification:
+   FROM gives the file containing the library to be loaded.
+   OVERRIDE allows loading of a library with the same (section) name
+as an existing one, without CANCELling the old one.
+   CANCEL specifies a section name, and causes the section of that
+name to be unloaded.  Note that a new library will be loaded before
+a CANCEL is done, so that it is possible to replace a library with
+one of the same name in one command.
+   TABLE has three possible arguments: NEW, ADD and DELETE.  It
+controls the table of resident libraries used by the linkage editor.
+NEW causes creation of a new table.  ADD causes the specified
+library to be added to the table, and DELETE causes it to be
+removed.
+Example:        LIBRARY LIB
+                LIBRARY LIB CANCEL LIB
+                LIBRARY LIB OVERRIDE LIBRARY CANCEL LOADER
+%* #H #HCH *
+** #I libraries
+There are three resident libraries available on TRIPOS: a kernel library
+KLIB, a machine code library MLIB and a BCPL library BLIB.  In order to
+make a library of your own resident the LIBRARY command can be used.
+Type one of the following:
+        KLIB            -  Info about kernel library
+        MLIB            -  Info about machine code library
+        BLIB            -  Info about BCPL library
+        COMMAND         -  Info on the LIBRARY command
+        LKED            - Info on linking and the linkage editor
+                          (which supports libraries in a more general sense)
+        USER            - Info on the BCPL source library donated by users
+Type <CR> to exit HELP.
+
+

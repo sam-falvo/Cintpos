@@ -1,0 +1,8 @@
+*command
+**
+Form:           STRETCH  "FROM/A,TO/A"
+Purpose:        To restore a compressed file made by SQUASH (q.v.).
+Author:         MFR
+Example:        STRETCH SQUASHED-A TO A
+
+

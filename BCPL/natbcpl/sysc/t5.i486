@@ -1,0 +1,715 @@
+	.file	"t5.c"
+	.text
+	.p2align 4,,15
+	.globl	freleq
+	.type	freleq, @function
+freleq:
+.LFB22:
+	.cfi_startproc
+	flds	8(%esp)
+	flds	4(%esp)
+	fucompp
+	fnstsw	%ax
+	andb	$69, %ah
+	cmpb	$64, %ah
+	sete	%al
+	andl	$255, %eax
+	ret
+	.cfi_endproc
+.LFE22:
+	.size	freleq, .-freleq
+	.p2align 4,,15
+	.globl	frelne
+	.type	frelne, @function
+frelne:
+.LFB23:
+	.cfi_startproc
+	flds	8(%esp)
+	flds	4(%esp)
+	fucompp
+	fnstsw	%ax
+	andb	$69, %ah
+	xorb	$64, %ah
+	setne	%al
+	andl	$255, %eax
+	ret
+	.cfi_endproc
+.LFE23:
+	.size	frelne, .-frelne
+	.p2align 4,,15
+	.globl	frells
+	.type	frells, @function
+frells:
+.LFB24:
+	.cfi_startproc
+	flds	8(%esp)
+	flds	4(%esp)
+	fxch	%st(1)
+	fucompp
+	fnstsw	%ax
+	testb	$69, %ah
+	sete	%al
+	andl	$255, %eax
+	ret
+	.cfi_endproc
+.LFE24:
+	.size	frells, .-frells
+	.p2align 4,,15
+	.globl	frelgr
+	.type	frelgr, @function
+frelgr:
+.LFB25:
+	.cfi_startproc
+	flds	8(%esp)
+	flds	4(%esp)
+	fucompp
+	fnstsw	%ax
+	testb	$69, %ah
+	sete	%al
+	andl	$255, %eax
+	ret
+	.cfi_endproc
+.LFE25:
+	.size	frelgr, .-frelgr
+	.p2align 4,,15
+	.globl	frelle
+	.type	frelle, @function
+frelle:
+.LFB26:
+	.cfi_startproc
+	flds	8(%esp)
+	flds	4(%esp)
+	fxch	%st(1)
+	fucompp
+	fnstsw	%ax
+	testb	$5, %ah
+	sete	%al
+	andl	$255, %eax
+	ret
+	.cfi_endproc
+.LFE26:
+	.size	frelle, .-frelle
+	.p2align 4,,15
+	.globl	frelge
+	.type	frelge, @function
+frelge:
+.LFB27:
+	.cfi_startproc
+	flds	8(%esp)
+	flds	4(%esp)
+	fucompp
+	fnstsw	%ax
+	testb	$5, %ah
+	sete	%al
+	andl	$255, %eax
+	ret
+	.cfi_endproc
+.LFE27:
+	.size	frelge, .-frelge
+	.p2align 4,,15
+	.globl	freleq0
+	.type	freleq0, @function
+freleq0:
+.LFB28:
+	.cfi_startproc
+	fldz
+	flds	4(%esp)
+	fucompp
+	fnstsw	%ax
+	andb	$69, %ah
+	cmpb	$64, %ah
+	sete	%al
+	andl	$255, %eax
+	ret
+	.cfi_endproc
+.LFE28:
+	.size	freleq0, .-freleq0
+	.p2align 4,,15
+	.globl	frelne0
+	.type	frelne0, @function
+frelne0:
+.LFB29:
+	.cfi_startproc
+	fldz
+	flds	4(%esp)
+	fucompp
+	fnstsw	%ax
+	andb	$69, %ah
+	xorb	$64, %ah
+	setne	%al
+	andl	$255, %eax
+	ret
+	.cfi_endproc
+.LFE29:
+	.size	frelne0, .-frelne0
+	.p2align 4,,15
+	.globl	frells0
+	.type	frells0, @function
+frells0:
+.LFB30:
+	.cfi_startproc
+	fldz
+	flds	4(%esp)
+	fxch	%st(1)
+	fucompp
+	fnstsw	%ax
+	testb	$69, %ah
+	sete	%al
+	andl	$255, %eax
+	ret
+	.cfi_endproc
+.LFE30:
+	.size	frells0, .-frells0
+	.p2align 4,,15
+	.globl	frelgr0
+	.type	frelgr0, @function
+frelgr0:
+.LFB31:
+	.cfi_startproc
+	fldz
+	flds	4(%esp)
+	fucompp
+	fnstsw	%ax
+	testb	$69, %ah
+	sete	%al
+	andl	$255, %eax
+	ret
+	.cfi_endproc
+.LFE31:
+	.size	frelgr0, .-frelgr0
+	.p2align 4,,15
+	.globl	frelle0
+	.type	frelle0, @function
+frelle0:
+.LFB32:
+	.cfi_startproc
+	fldz
+	flds	4(%esp)
+	fxch	%st(1)
+	fucompp
+	fnstsw	%ax
+	testb	$5, %ah
+	sete	%al
+	andl	$255, %eax
+	ret
+	.cfi_endproc
+.LFE32:
+	.size	frelle0, .-frelle0
+	.p2align 4,,15
+	.globl	frelge0
+	.type	frelge0, @function
+frelge0:
+.LFB33:
+	.cfi_startproc
+	fldz
+	flds	4(%esp)
+	fucompp
+	fnstsw	%ax
+	testb	$5, %ah
+	sete	%al
+	andl	$255, %eax
+	ret
+	.cfi_endproc
+.LFE33:
+	.size	frelge0, .-frelge0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.LC2:
+	.string	"true"
+	.text
+	.p2align 4,,15
+	.globl	fjmpeq
+	.type	fjmpeq, @function
+fjmpeq:
+.LFB34:
+	.cfi_startproc
+	flds	8(%esp)
+	flds	4(%esp)
+	fucompp
+	fnstsw	%ax
+	andb	$69, %ah
+	xorb	$64, %ah
+	je	.L16
+	ret
+	.p2align 4,,15
+.L16:
+	movl	$.LC2, 4(%esp)
+	jmp	puts
+	.cfi_endproc
+.LFE34:
+	.size	fjmpeq, .-fjmpeq
+	.p2align 4,,15
+	.globl	fjmpne
+	.type	fjmpne, @function
+fjmpne:
+.LFB35:
+	.cfi_startproc
+	flds	8(%esp)
+	flds	4(%esp)
+	fucompp
+	fnstsw	%ax
+	andb	$69, %ah
+	cmpb	$64, %ah
+	jne	.L19
+	ret
+	.p2align 4,,15
+.L19:
+	movl	$.LC2, 4(%esp)
+	jmp	puts
+	.cfi_endproc
+.LFE35:
+	.size	fjmpne, .-fjmpne
+	.p2align 4,,15
+	.globl	fjmpls
+	.type	fjmpls, @function
+fjmpls:
+.LFB36:
+	.cfi_startproc
+	flds	8(%esp)
+	flds	4(%esp)
+	fxch	%st(1)
+	fucompp
+	fnstsw	%ax
+	testb	$69, %ah
+	je	.L25
+	ret
+	.p2align 4,,15
+.L25:
+	movl	$.LC2, 4(%esp)
+	jmp	puts
+	.cfi_endproc
+.LFE36:
+	.size	fjmpls, .-fjmpls
+	.p2align 4,,15
+	.globl	fjmpgr
+	.type	fjmpgr, @function
+fjmpgr:
+.LFB37:
+	.cfi_startproc
+	flds	8(%esp)
+	flds	4(%esp)
+	fucompp
+	fnstsw	%ax
+	testb	$69, %ah
+	je	.L31
+	ret
+	.p2align 4,,15
+.L31:
+	movl	$.LC2, 4(%esp)
+	jmp	puts
+	.cfi_endproc
+.LFE37:
+	.size	fjmpgr, .-fjmpgr
+	.p2align 4,,15
+	.globl	fjmple
+	.type	fjmple, @function
+fjmple:
+.LFB38:
+	.cfi_startproc
+	flds	8(%esp)
+	flds	4(%esp)
+	fxch	%st(1)
+	fucompp
+	fnstsw	%ax
+	testb	$5, %ah
+	je	.L37
+	ret
+	.p2align 4,,15
+.L37:
+	movl	$.LC2, 4(%esp)
+	jmp	puts
+	.cfi_endproc
+.LFE38:
+	.size	fjmple, .-fjmple
+	.p2align 4,,15
+	.globl	fjmpge
+	.type	fjmpge, @function
+fjmpge:
+.LFB39:
+	.cfi_startproc
+	flds	8(%esp)
+	flds	4(%esp)
+	fucompp
+	fnstsw	%ax
+	testb	$5, %ah
+	je	.L43
+	ret
+	.p2align 4,,15
+.L43:
+	movl	$.LC2, 4(%esp)
+	jmp	puts
+	.cfi_endproc
+.LFE39:
+	.size	fjmpge, .-fjmpge
+	.section	.rodata.str1.1
+.LC3:
+	.string	"%5.1f == 0.0 is "
+.LC4:
+	.string	"false"
+	.text
+	.p2align 4,,15
+	.globl	fjmpeq0
+	.type	fjmpeq0, @function
+fjmpeq0:
+.LFB40:
+	.cfi_startproc
+	subl	$44, %esp
+	.cfi_def_cfa_offset 48
+	flds	48(%esp)
+	fstl	8(%esp)
+	movl	$.LC3, 4(%esp)
+	movl	$1, (%esp)
+	fstps	16(%esp)
+	call	__printf_chk
+	fldz
+	flds	16(%esp)
+	fucompp
+	fnstsw	%ax
+	andb	$69, %ah
+	xorb	$64, %ah
+	je	.L46
+	movl	$.LC4, 48(%esp)
+	addl	$44, %esp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 4
+	jmp	puts
+	.p2align 4,,15
+.L46:
+	.cfi_restore_state
+	movl	$.LC2, 48(%esp)
+	addl	$44, %esp
+	.cfi_def_cfa_offset 4
+	jmp	puts
+	.cfi_endproc
+.LFE40:
+	.size	fjmpeq0, .-fjmpeq0
+	.section	.rodata.str1.1
+.LC5:
+	.string	"%5.1f != 0.0 is "
+	.text
+	.p2align 4,,15
+	.globl	fjmpne0
+	.type	fjmpne0, @function
+fjmpne0:
+.LFB41:
+	.cfi_startproc
+	subl	$44, %esp
+	.cfi_def_cfa_offset 48
+	flds	48(%esp)
+	fstl	8(%esp)
+	movl	$.LC5, 4(%esp)
+	movl	$1, (%esp)
+	fstps	16(%esp)
+	call	__printf_chk
+	fldz
+	flds	16(%esp)
+	fucompp
+	fnstsw	%ax
+	andb	$69, %ah
+	cmpb	$64, %ah
+	jne	.L49
+	movl	$.LC4, 48(%esp)
+	addl	$44, %esp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 4
+	jmp	puts
+	.p2align 4,,15
+.L49:
+	.cfi_restore_state
+	movl	$.LC2, 48(%esp)
+	addl	$44, %esp
+	.cfi_def_cfa_offset 4
+	jmp	puts
+	.cfi_endproc
+.LFE41:
+	.size	fjmpne0, .-fjmpne0
+	.section	.rodata.str1.1
+.LC6:
+	.string	"%5.1f <  0.0 is "
+	.text
+	.p2align 4,,15
+	.globl	fjmpls0
+	.type	fjmpls0, @function
+fjmpls0:
+.LFB42:
+	.cfi_startproc
+	subl	$44, %esp
+	.cfi_def_cfa_offset 48
+	flds	48(%esp)
+	fstl	8(%esp)
+	movl	$.LC6, 4(%esp)
+	movl	$1, (%esp)
+	fstps	16(%esp)
+	call	__printf_chk
+	fldz
+	flds	16(%esp)
+	fxch	%st(1)
+	fucompp
+	fnstsw	%ax
+	testb	$69, %ah
+	je	.L55
+	movl	$.LC4, 48(%esp)
+	addl	$44, %esp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 4
+	jmp	puts
+	.p2align 4,,15
+.L55:
+	.cfi_restore_state
+	movl	$.LC2, 48(%esp)
+	addl	$44, %esp
+	.cfi_def_cfa_offset 4
+	jmp	puts
+	.cfi_endproc
+.LFE42:
+	.size	fjmpls0, .-fjmpls0
+	.section	.rodata.str1.1
+.LC7:
+	.string	"%5.1f >  0.0 is "
+	.text
+	.p2align 4,,15
+	.globl	fjmpgr0
+	.type	fjmpgr0, @function
+fjmpgr0:
+.LFB43:
+	.cfi_startproc
+	subl	$44, %esp
+	.cfi_def_cfa_offset 48
+	flds	48(%esp)
+	fstl	8(%esp)
+	movl	$.LC7, 4(%esp)
+	movl	$1, (%esp)
+	fstps	16(%esp)
+	call	__printf_chk
+	fldz
+	flds	16(%esp)
+	fucompp
+	fnstsw	%ax
+	testb	$69, %ah
+	je	.L61
+	movl	$.LC4, 48(%esp)
+	addl	$44, %esp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 4
+	jmp	puts
+	.p2align 4,,15
+.L61:
+	.cfi_restore_state
+	movl	$.LC2, 48(%esp)
+	addl	$44, %esp
+	.cfi_def_cfa_offset 4
+	jmp	puts
+	.cfi_endproc
+.LFE43:
+	.size	fjmpgr0, .-fjmpgr0
+	.section	.rodata.str1.1
+.LC8:
+	.string	"%5.1f <= 0.0 is "
+	.text
+	.p2align 4,,15
+	.globl	fjmple0
+	.type	fjmple0, @function
+fjmple0:
+.LFB44:
+	.cfi_startproc
+	subl	$44, %esp
+	.cfi_def_cfa_offset 48
+	flds	48(%esp)
+	fstl	8(%esp)
+	movl	$.LC8, 4(%esp)
+	movl	$1, (%esp)
+	fstps	16(%esp)
+	call	__printf_chk
+	fldz
+	flds	16(%esp)
+	fxch	%st(1)
+	fucompp
+	fnstsw	%ax
+	testb	$5, %ah
+	je	.L67
+	movl	$.LC4, 48(%esp)
+	addl	$44, %esp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 4
+	jmp	puts
+	.p2align 4,,15
+.L67:
+	.cfi_restore_state
+	movl	$.LC2, 48(%esp)
+	addl	$44, %esp
+	.cfi_def_cfa_offset 4
+	jmp	puts
+	.cfi_endproc
+.LFE44:
+	.size	fjmple0, .-fjmple0
+	.section	.rodata.str1.1
+.LC9:
+	.string	"%5.1f >= 0.0 is "
+	.text
+	.p2align 4,,15
+	.globl	fjmpge0
+	.type	fjmpge0, @function
+fjmpge0:
+.LFB45:
+	.cfi_startproc
+	subl	$44, %esp
+	.cfi_def_cfa_offset 48
+	flds	48(%esp)
+	fstl	8(%esp)
+	movl	$.LC9, 4(%esp)
+	movl	$1, (%esp)
+	fstps	16(%esp)
+	call	__printf_chk
+	fldz
+	flds	16(%esp)
+	fucompp
+	fnstsw	%ax
+	testb	$5, %ah
+	je	.L73
+	movl	$.LC4, 48(%esp)
+	addl	$44, %esp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 4
+	jmp	puts
+	.p2align 4,,15
+.L73:
+	.cfi_restore_state
+	movl	$.LC2, 48(%esp)
+	addl	$44, %esp
+	.cfi_def_cfa_offset 4
+	jmp	puts
+	.cfi_endproc
+.LFE45:
+	.size	fjmpge0, .-fjmpge0
+	.section	.rodata.str1.4,"aMS",@progbits,1
+	.align 4
+.LC10:
+	.string	"-1.2==0.7 => %d  0.7==0.7 => %d  1.2==0.7 => %d\n"
+	.align 4
+.LC11:
+	.string	"-1.2!=0.7 => %d  0.7!=0.7 => %d  1.2!=0.7 => %d\n"
+	.align 4
+.LC12:
+	.string	"-1.2< 0.7 => %d  0.7< 0.7 => %d  1.2< 0.7 => %d\n"
+	.align 4
+.LC13:
+	.string	"-1.2> 0.7 => %d  0.7> 0.7 => %d  1.2> 0.7 => %d\n"
+	.align 4
+.LC14:
+	.string	"-1.2<=0.7 => %d  0.7<=0.7 => %d  1.2<=0.7 => %d\n"
+	.align 4
+.LC15:
+	.string	"-1.2>=0.7 => %d  0.7>=0.7 => %d  1.2>=0.7 => %d\n"
+	.section	.text.startup,"ax",@progbits
+	.p2align 4,,15
+	.globl	main
+	.type	main, @function
+main:
+.LFB46:
+	.cfi_startproc
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	pushl	%edi
+	pushl	%esi
+	pushl	%ebx
+	andl	$-16, %esp
+	subl	$32, %esp
+	movl	$0, 16(%esp)
+	movl	$1, 12(%esp)
+	movl	$0, 8(%esp)
+	movl	$.LC10, 4(%esp)
+	movl	$1, (%esp)
+	.cfi_offset 3, -20
+	.cfi_offset 6, -16
+	.cfi_offset 7, -12
+	call	__printf_chk
+	movl	$1, 16(%esp)
+	movl	$0, 12(%esp)
+	movl	$1, 8(%esp)
+	movl	$.LC11, 4(%esp)
+	movl	$1, (%esp)
+	call	__printf_chk
+	movl	$0, 16(%esp)
+	movl	$0, 12(%esp)
+	movl	$1, 8(%esp)
+	movl	$.LC12, 4(%esp)
+	movl	$1, (%esp)
+	call	__printf_chk
+	movl	$1, 16(%esp)
+	movl	$0, 12(%esp)
+	movl	$0, 8(%esp)
+	movl	$.LC13, 4(%esp)
+	movl	$1, (%esp)
+	call	__printf_chk
+	movl	$0, 16(%esp)
+	movl	$1, 12(%esp)
+	movl	$1, 8(%esp)
+	movl	$.LC14, 4(%esp)
+	movl	$1, (%esp)
+	call	__printf_chk
+	movl	$1, 16(%esp)
+	movl	$1, 12(%esp)
+	movl	$0, 8(%esp)
+	movl	$.LC15, 4(%esp)
+	movl	$1, (%esp)
+	call	__printf_chk
+	movl	$10, (%esp)
+	call	putchar
+	movl	$0xbf99999a, %edi
+	movl	%edi, (%esp)
+	call	fjmpeq0
+	xorl	%esi, %esi
+	movl	%esi, (%esp)
+	call	fjmpeq0
+	movl	$0x3f99999a, %ebx
+	movl	%ebx, (%esp)
+	call	fjmpeq0
+	movl	%edi, (%esp)
+	call	fjmpne0
+	movl	%esi, (%esp)
+	call	fjmpne0
+	movl	%ebx, (%esp)
+	call	fjmpne0
+	movl	%edi, (%esp)
+	call	fjmpls0
+	movl	%esi, (%esp)
+	call	fjmpls0
+	movl	%ebx, (%esp)
+	call	fjmpls0
+	movl	%edi, (%esp)
+	call	fjmpgr0
+	movl	%esi, (%esp)
+	call	fjmpgr0
+	movl	%ebx, (%esp)
+	call	fjmpgr0
+	movl	%edi, (%esp)
+	call	fjmple0
+	movl	%esi, (%esp)
+	call	fjmple0
+	movl	%ebx, (%esp)
+	call	fjmple0
+	movl	%edi, (%esp)
+	call	fjmpge0
+	movl	%esi, (%esp)
+	call	fjmpge0
+	movl	%ebx, (%esp)
+	call	fjmpge0
+	xorl	%eax, %eax
+	leal	-12(%ebp), %esp
+	popl	%ebx
+	.cfi_restore 3
+	popl	%esi
+	.cfi_restore 6
+	popl	%edi
+	.cfi_restore 7
+	popl	%ebp
+	.cfi_def_cfa 4, 4
+	.cfi_restore 5
+	ret
+	.cfi_endproc
+.LFE46:
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3"
+	.section	.note.GNU-stack,"",@progbits

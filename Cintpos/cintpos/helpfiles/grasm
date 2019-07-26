@@ -1,0 +1,85 @@
+*dis #N
+*disassemble #N
+*disassembler #N
+*load #N
+*loader #N
+*boot #N
+*compile #N
+*compiler #N
+*link #H clink
+*clink #H clink
+*linker #H clink
+*linking #H clink
+*debug #H z80deb
+*debugging #H z80deb
+*debuging #H z80deb
+*debuger #H z80deb
+*debugger #H z80deb
+*macro ..
+MACRO ASSEMBLERS
+    Test versions of some of the assemblers are currently available for
+inspection.  These are for the 8080 and Z80.  The Z80 assembler currently
+requires the command GLOBALS 400 to be executed before it can be loaded.
+    These commands can be found in:
+
+          NEW.6809
+          NEW.z80
+          NEW.6502
+          8080
+          9900
+
+    More assemblers may become available in time.
+    A preliminary specification of the macro processing features can be
+found in the CAP file .CGG.MACRO
+
+*macro
+*6502
+*6809
+*8x300
+*9995
+*9900
+*8080
+*assembler
+*assemble
+*command
+Z80, 6502, 6809, 8X300, 8080, 9900 commands
+Form:           Z80    "Prog=From/a,To=Hex,List,Opt/k"
+                6502   "Prog=From/a,To=Hex,List,Opt/k"
+                6809   "Prog=From/a,To=Hex,List,Opt/k"
+                9900   "Prog=From/a,To=Hex,List,Opt/k"
+                8080   "Prog=From/a,To=Hex,List,Opt/k"
+                8X300  "Prog=From/a,To=Hex,List,Opt/k"
+Purpose:        To cross assemble into Cambridge Hex
+Author:         CGG
+Specification:
+        Assembles the assembly code in the file given by the first
+    key word.  If 'To' is given Cambridge Hex is generated and sent
+    to that file.  A listing (just the errors by default) will be
+    sent to the file given by the 'List' key word or to the terminal
+    if this key word is ommitted.
+        Note that the 9900 assembler can be used to assemble code for the 9995.
+        Options:
+                S<n>    - set symbol table store size to <n> default 3000
+                L<n>    - set assembler listing level to <n> default 0 if
+                          L not given, or 1 if <n> not given.  Essentially
+                          <n> levels of GET files will be listed - unless
+                          any LIST directives are used in the assembler.
+                W<n>    - set width of listing to <n> default 80
+                P       - include page headings and page throws in the
+                          listing.
+                C       - make listing concise: do not generate error
+                          pointers.  (for listing errors to slow terminals).
+        For detailed information about these assemblers see the documentation
+    on CAP:  roff  .ring.spec.Z80*3  .ring.spec.6809*3   .ring.spec.6502*3
+        For information about linking the output from these assemblers use
+    HELP CLINK.
+        GET file commands will use files named in SYS:RING.Z80, SYS:RING.6809,
+    SYS:RING.6502, SYS:RING.8X300  etc.  if files cannot be found in the
+    current environment.
+        These assemblers are also available, with similar interfaces on the
+    IBM, CAP and on RSX.
+        For information about how to use the rings microprocessor developement
+    system in general see "Microprocessor Use On The Ring" in the documentation
+    folder.
+   
+

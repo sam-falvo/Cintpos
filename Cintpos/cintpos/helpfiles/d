@@ -1,0 +1,139 @@
+*daemon #H task
+*datstamp #H dat
+*datstring #H dat
+*dat-to-string #H dat
+*day #H #HCH %
+%message #H banner
+%*
+Use the DAT command to find the date and time.  HELP DAT COMMAND for info.
+Try HELP DAT for info on procedures to manipulate date and time data.
+%
+*dead #H task
+*debugging #H debug
+*debugger #H debug
+*debug68
+DEBUG68 provides a friendly environment for running small 68000 machine code
+programs.  Documentation can be found in the file IDW2.SPEC.DEBUG68 on Phoenix.
+*delay
+DELAY
+     To cause a task to be delayed for a given time.
+     res := delay ( ticks )
+     A packet is sent  to  the  timer  with  the  specified number of ticks.
+     The result is the value of the pkt.res1 field of the packet when it returns
+from the timer, and the result2 global will be set to the pkt.res2 value.
+*deleteco #H coroutine
+*deletedev
+DELETEDEV   Procedure to delete a device.
+
+        DCB := DELETEDEV(DEVID)
+
+Argument:  DEVID   The id. of the device to be deleted.
+
+Normal return:  DCB\=0
+                  The specified device has been successfully deleted.
+
+Error return:   RESULT=0
+                  Possible errors are:
+                    RESULT2=101, Invalid id.
+                    RESULT2=107, Work queue not empty.
+Side effect:
+   The device entry will be  removed  from  the  device table.
+
+Related routine:   CREATEDEV
+
+Notes:
+   The device work queue must be empty.
+   The DCB is not FREEVEC'ed.
+*deletefile
+*deleteobj
+*file
+*obj
+*object
+DELETEOBJ
+
+  A procedure in BLIB for deleting a filing system file or directory:
+  (also called DELETEFILE on some implementations)
+
+  RESULT := DELETEOBJ(NAME)
+
+  NAME is a string giving the name of the object to be deleted.
+
+  RESULT \= 0 indicates that deletion was successful
+  RESULT = 0  means that deletion failed. Error code in RESULT2.
+*deletetask #H task
+*demon #H task
+*deplete
+DEPLETE Procedure
+
+DEPLETE is an internal BLIB routine called by WRCH when it has a buffer of
+characters to write out.
+*derail
+DERAIL is program which runs under Phoenix to convert ASCII files to EBCDIC.
+Some file transfer commands (e.g. CS INPUT) invoke DERAIL at the Phoenix
+end.
+
+See RSX.SPEC:DERAIL on Phoenix for details.
+*devicetask
+DEVICETASK procedure
+
+TASKID  := DEVICETASK(NAME)
+
+Find the handler task for a given stream device.
+
+NAME should be a string of the form "device:" or "device:pathname".
+The name is looked up in the system assignments list.
+
+TASKID is set to the id of the handler task for "device:", or to zero if
+the name is not known. RESULT2 is set to point to the directory lock if
+"device:" is an assignment to a directory rather than a whole device, otherwise
+it is set to zero.
+
+The ASSIGN command may be used to set up logical assigned names for tasks and
+directories, and to see what assigned names currently exist.
+*df-disccopy #H disc
+*df-disced #H disc
+*directories #H directory
+*dir #H directory
+*dir:
+There is no device DIR:.  Perhaps you want the EX: device, which produces
+a readable stream similar to the output of EXAMINE.  See HELP on this.
+*disassemble #H assembler
+*disassembler #H assembler
+*disassembly #H assembler
+*disccopy #H disc
+*disced #H disc
+*discinfo #H disc
+*disk #H disc
+*dismount
+Form:           DISMOUNT "DEV/A,FROM/K"
+Purpose:        To dismount a device or pseudo-device.
+Author:         MFR
+Specification:
+   An attempt will be made to dismount the given device. See HELP MOUNT
+for more information about the parameters.
+   For a full description of the mount system try HELP MOUNT ALL
+Example:        DISMOUNT MT1:
+*distribution #H #HCH %
+%list #H triposmail
+%*
+There is no general help on distribution, even though distributed computing
+is what a lot of us are here for!  If you're just after MAIL distribution list
+handling, try HELP MAIL LIST.
+%
+*dle
+DLE stands for Data Link Escape (character Control-P), which is used to
+give control commands to a termal connection.  For example:
+
+    CTRL-P E                Switches off reflection
+    CTRL-P T                Causes transmission of any buffered characters
+    CTRL-P <control char>   Causes <control char> to pass through uninterpreted
+
+So, to send Control-S to a Tripos session from the UDN, type:
+
+    CTRL-P CTRL-S CTRL-P T
+*dns
+DNS was a "dynamic nameserver" service in which names could be registered,
+looked up, deleted etc.  It is described in M. Yudkin's thesis.  The service
+has now been withdrawn.
+
+

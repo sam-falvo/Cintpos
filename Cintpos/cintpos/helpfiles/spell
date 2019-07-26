@@ -1,0 +1,173 @@
+*command
+Form:           SPELL "FROM=DOC/A,TO/K,WORDLIST=IGNORE=DICT/K,MINDICT/K,
+                        CONTEXT/K,CONTEXTOUT/K,STATS/S,NODEFAULTDICT/S,OPT/K"
+Purpose:        Produce a list of interesting words in a document
+Author:         NJO
+Source:         :com.bcpl.spell
+Specification:
+
+   This program is given a document and lists of words to be ignored
+and produces a list of all non-ignorable words in the document, together
+with the line numbers on which they occur.  If the source document is a
+multiple file (see below) then line numbers are of the form "<file>.<line>"
+where <file> is the file number (starting from 1).
+
+   By default the output word list is in alphabetical order.  It is arranged
+that numbers are in numerical order and that words which differ only in
+the case of letters, or included non-alphanumeric characters, are adjacent
+in the list.  Alternatively the output can be sorted into order of line number
+of first occurrence, to aid editing.
+
+   The definition of a "word" is a group of letters and digits containing
+at least one letter and surrounded by layout characters.  Punctuation
+characters are stripped from the beginning or end of a word but treated as
+normal characters if in the middle.  Unknown characters (e.g. control
+characters) produce a single warning message, and are thereafter treated
+as layout characters.
+
+   Layout characters are      "*S*T*N*C*P".
+   Punctuation characters are "!"'()[]{}_;:,.?<>".
+
+   Case of letters is matched exactly except that a word in a dictionary whose
+first letter is lower case will match a word in a document whose first letter
+is lower or upper case.  In lower-case mode (OPT L, see below) all input
+including dictionaries is lower-cased.
+
+   The source document is read and word occurrence information built up in
+store.  The main dictionary is read in after the source document and used to
+eliminate known words.  A further word list, CONTEXT, may be given.  When a
+word in CONTEXT is found the context of the surrounding text is sent to the
+CONTEXTTOUT stream.  If it is omitted then the context information is written
+to the main output (TO).  A further dictionary, MINDICT, is read before the
+source document.  It should be a small list of common words, and avoids the
+storing of occurrence information for these words.  It is mainly useful for
+store saving on small machines, so would not normally be set on the 68000
+version.  All of these parameters are optional.
+
+   A file list may be given for any of these parameters as well as the
+main document DOC.  This is indicated by a '!' before the file name, which
+will then be opened, and each line taken as a source filename, and the
+result concatenated.  The file list may be terminated by end-of-file
+or by "/*".  If an indirection file is given as * (i.e. !*) then prompts
+will be given for the input files.
+
+   By default a dictionary of "ordinary" words is included as the DICT
+file, and concatenated with those specified by the user.  Scanning of this
+dictionary may be inhibited by setting the switch parameter NODEFAULTDICT.
+Dictionaries may be found in the directory :INFO.DICTIONARIES, the
+default being MAIN.  The dictionary LAB contains words specific to
+computing or to our particular lab.
+
+   Dictionaries consist simply of lists of words, with exactly the same
+definition as in the source text.  To ease editing the main dictionary is kept
+in alphabetical order, but this is not necessary.  Also, the longer the line
+length the faster the dictionary will be read, so the main dictionary uses a
+length of 132.  When a dictionary has been prepared it may be sorted using
+SPELL itself, using the dictionary mode output (OPT D).
+
+   The main dictionary has rather a conservative policy on word inclusion.  It
+is intended to omit all "subject specific" technical words (subject specific
+dictionaries may be concatenated in), all words with alternative spellings
+in (English) English and words with embedded punctuation ( - ' etc.).  Many
+genuine words are still omitted, as the dictionary has been prepared mostly
+from the SPELL output from documents scanned previously.  American English is
+not supported - a separate primary dictionary is the only way to do this.
+
+   Various options may be specified using the OPT parameter.  Multiple
+options may (but need not) be separated by spaces or semicolons.
+
+   L     Causes all input (including dictionaries) to be mapped into
+         lower-case before processing.
+   D<n>  Causes the output wordlist to be printed in "dictionary" format
+         i.e. without occurrence information, and packed onto lines.  The
+         optional argument <n> specifies the output width, defaulting to 132.
+         Zero may be specified to get one word per line.
+   C     Forces word count information to be printed.  (Only useful together
+         with the D option, which otherwise omits this information.)
+   N     Orders the output list in line-number order, rather than alphabetical.
+   I     Reverses the test for inclusion in the output list:  prints those
+         words which are in the dictionary rather than those that aren't.
+   S     Prints internal statistical information.
+
+   Typing CTRL/E at the program will usually elicit information as to what
+it is doing at the moment.  File numbers in these and other messages are
+such that the first file is "file 1" except for the default DICT which
+appears as DICT file 0.
+
+Examples:
+          spell mydoc
+          spell mydoc opt d80cl
+          spell mydoc dict mydict
+          spell mywords to newdict opt ld
+          spell mydoc dict !*
+          DICT file 1> mydict
+          DICT file 2> :info.dictionaries.lab
+          DICT file 3> /*
+*chkl ..
+CHKL Command
+Form:           CHKL  "FROM/A,TO,OPT/K"
+Purpose:        To count the number of lines and characters in a
+                text file, and indicate the lengths of the longest
+                and shortest lines.
+Authors:        DSC BJK
+Specification:
+   TO specifies an output file.
+   OPT gives the options string.  Each option is a single letter;
+some have integer arguments.
+   Options:
+  B   Brief mode (default)
+  Ln  Indicate which lines are shoter than lower limit n.
+  N   Ignore blank lines.
+  P   Print lines which are outside the specified
+      size range. (opposite of 'B')
+  T   Trim trailing spaces on input.
+  Un  Indicate which lines are longer than n
+  Wn  Set maximum length of output lines
+
+Example:        CHKL PROG
+                CHKL PROG TO LP: OPT U72P
+*chkw ..
+CHKW Command
+Form:           CHKW  "FROM/A,TO/k,TRIM/s,NOEXPAND/s"
+Purpose:        To count the number of lines, words and characters
+                in a text file, and indicate the lengths of the
+                longest and shortest lines.
+Authors:        DSC BJK AJW
+Specification:
+   FROM specifies the file to be looked at.
+   TO specifies an output file;  the keyword is mandatory.
+   NOEXPAND suppresses the default expansion of tabs into spaces for
+       line-length counting and trailing space removal.
+   TRIM indicates that trailing spaces (and tabs) are to be trimmed off.
+Example:        CHKW PROG
+                CHKW PROG TO LP: TRIM NOEXPAND
+*chkl ..
+*chkw ..
+
+Note:
+
+*count ..
+*line ..
+*chkl
+*chkw
+Three programs exist which will count lines in a document:  CHKL produces
+simple counts and has options for more detailed analysis.  CHKW is similar
+but will count "words" as well.  The SPELL command will also count words in
+a document, in a way slightly more appropriate for pure text work.
+*count
+*line
+
+See individual HELP on each of these.
+**
+SPELLING
+
+Try HELP COMMAND SPELL for information on a spelling check program.
+
+If you have found a spelling error in some HELP information you may
+correct it.  The file that you found the error in may be SYS:HELP.<keyword>.
+Try the #TRACE parameter to HELP in order to find exactly which file is being
+printed if there is some doubt.  Your corrected version should not be sent to
+:HELP but be kept in your own file space.  Send a message to the tripos manager
+in order to effect installation.
+
+

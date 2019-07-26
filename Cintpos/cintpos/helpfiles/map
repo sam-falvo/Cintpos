@@ -1,0 +1,107 @@
+*sourcelib #H sourcelib
+*command ..
+*code ..
+*pic ..
+*mapstore ..
+MAP COMMAND
+
+Form:     MAP  "BLOCKS/S,NAMES/S,CODE/S,MAPSTORE/S,TO/K,PIC/S"
+Purpose:  To print information about store allocation
+
+Specification:
+*command ..
+   MAP alone indicates the total amount of store in the store chain, the
+size of the largest contiguous free chunk and the total amounts allocated
+and free.
+
+   BLOCKS gives the size and address of every block.
+
+   NAMES gives the total space taken up by routine and section names.
+*command ..
+*code
+
+   CODE gives the name, address and length of each loaded code section.
+*command ..
+*mapstore
+
+   MAPSTORE gives the  name and address of every routine, and prints any
+profile counts found in the code.
+*command ..
+
+   TO can be used to specify an output file.
+*command ..
+*pic
+
+   PIC gives  the allocation  map as a  picture. Each  character printed
+represents a small number of words of store (the exact number depends on
+the total memory size). '.' means they are free, '@' that they are completely
+allocated, and 'a' that they are partially allocated.
+*command
+
+Examples: MAP
+          MAP PIC
+*idmap
+Form:           IDMAP  "BLOCKS/S,NAMES/S,CODE/S,MAPSTORE/S,TO/K,PIC/S"
+Purpose:        To provide information about store allocation.
+Author:         BJK
+
+Specification:
+
+   Similar to MAP, except that the BLOCKS option is the default, and
+IDVEC is invoked to try to identify each allocated block.
+
+Example:        IDMAP
+*service ..
+The MAPNAME command can be used to access the Ring Map Service.
+
+*mapname
+*service
+*name
+MAPNAME command
+
+Form:           MAPNAME user,to,from
+Purpose:        Map between names
+Author:         PB
+
+Specification:
+
+   A program to call the service MAP to convert a name from one domain to
+another.  The domains are PUID, PNAME, WORLD, INITIALS, CAP, RSX, 370,
+LOCATION, TERMTYPE, TERMINFO and INTERFACE.
+
+   There is also a library routine to do this from a program.  See
+HELP SOURCELIB MAPNAME for more information.
+
+   Terminfo is a set of strings seperated by commas, each consisting of
+a number followed by letters indicating the value concerned.  Thus
+"19200b,32d,80l" means a 19k2 baud line with a screen that is 32 lines
+deep, and 80 characters long.
+
+   Interface describes the ring interface for a particular machine.
+
+   The FROM domain may also be ANY which looks in all domains.  WARNING:
+this MAY be ambiguous!
+
+USER    defaults to the PUID of the current user.
+TO      defaults to world
+FROM    defaults to ANY (unless no USER is given)
+
+Examples
+
+        MAPNAME
+        MAPNAME pb
+        MAPNAME pb puid
+** ..
+The following mapping programs exist:
+
+   MAP     gives info about your machine's store - type COMMAND for more info
+   IDMAP   gives more detailed info than MAP - type IDMAP for more info
+   MAPNAME does mappings between naming domains - type MAPNAME for more info
+
+There are also user-callable routines MAP and MAPNAME in SOURCELIB.  Type
+SOURCELIB MAP or MAPNAME for more info.
+
+or type <CR> to exit HELP
+** #I map
+
+

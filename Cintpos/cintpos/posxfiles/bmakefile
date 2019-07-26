@@ -1,0 +1,7 @@
+% Convert cintpos.xc file to cintpos.xc1 files on VMS
+
+all
+<<
+echo "Converting cintpos.xc"; shellcom "conv/fdl=bin cintpos.xc cintpos.xc1"
+>>
+

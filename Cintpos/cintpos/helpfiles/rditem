@@ -1,0 +1,23 @@
+*procedure
+**
+RDITEM
+      To read an item from the input stream.
+      res := rditem ( vec, size )
+      An item is read from the input stream (  normally  the
+command  line  ) and placed in the vector 'vec' as a string.
+Unused bytes in the vector are set to zeroes.
+      The  result is -2 if an equal symbol is encountered, 0
+for the '*N', '*E', and endstreamch characters, 1 if an  un-
+quoted  string  is found, 2 if a quoted string occurs, or -1
+in the event of an error ( the item is too big for the  vec-
+tor; 'size' should be the size of 'vec' in words ).
+      All strings, quoted  or  unquoted,  are  teminated  by
+'*N', '*E', and endstreamch characters. Unquoted strings are
+also terminated by ';', '=', and space.
+      Examples :
+      DP0: INIT :L.FH-INIT-X
+      vec <- "DP0:"
+      "BSP:PRINT/ TEST " ; SET
+      vec <- "BSP:PRINT/ TEST "
+
+

@@ -1,0 +1,6 @@
+GET "libhdr"
+
+LET start() = VALOF
+{ writef("BITSPERBCPLWORD=%n*n", BITSPERBCPLWORD)
+  RESULTIS 0
+}

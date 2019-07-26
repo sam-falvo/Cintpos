@@ -1,0 +1,26 @@
+*command
+**
+PROTECT command
+Form:           PROTECT   "NAME/A,ACCESS"
+Purpose:        To change the protection status of a file or directory.
+Author:         BJK
+Specification:
+        This command enables the protection status of a file or directory to
+    be altered.  The protection system provided at the moment is very simple
+    and is only intended to allow a user to protect himself from his own
+    mistakes.  The modes of access covered are read, write, and delete.
+    NAME is the name of the file or directory.  ACCESS takes a string consisting
+    of the letters R,W, and D indicating which modes of access are to be
+    allowed.  (R = read access,  W = write access,  D = delete access).
+        Files are created with access RWD, directories with RW.
+
+        Use HELP ACCESS MATRIX for information about the access matrices
+    that are used on the filing system provided by the filing machine.
+    The relevent command for use with that filing system is the ALTER
+    command (use HELP ALTER COMMAND for further details).
+
+Example:
+        PROTECT MYFILE RW
+        PROTECT olddir D
+
+

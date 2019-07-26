@@ -1,0 +1,77 @@
+*procedure
+RDARGS
+        To read in a list of arguments from a command line.
+        rc :=  rdargs( arg.string, v, v.size )
+        The input is read upto the next ';' or to the end of the line.
+The line read in is then decoded according to the rdargs string 'arg.string'
+(use HELP RDARGS STRING to find the format of this string).  The vector 'v' of
+size 'v.size' words is used to store strings corresponding to each argument
+definition in 'arg.string'.  v must, therefore, be large enough to hold
+the maximum  number of such strings.  This is roughly equivalent to
+allowing room for the longest argument line to be decoded.  If there are
+N consecutive argument definitions in 'arg.string' then the first N
+locations of 'v' (v!0 ... v!(n-1)) will contain pointers to the strings given
+for the corresponding argument definition.  These will be zero if no argument
+was given for that definition.
+        The return from rdargs ('rc') is zero if either the command line
+did not match the rdargs string or there was insufficient room in 'v' to
+contain the strings required for the answer.  If the result is not zero the
+call has succeeded.
+*string
+*syntax
+*command
+RDARGS STRING
+
+The majority of commands use the library procedure RDARGS to read
+their arguments.  For these commands, the control string given to
+RDARGS is given in the "Form:" section of the HELP description.  The
+string consists of a series of keywords, possibly qualified, and
+separated by commas.  Each keyword takes a single argument,
+delimited either by spaces or double quotes (").  Within the argument
+string standard BCPL escapes apply (*" for quote, *N for new line
+etc.).  The argument is separated from the keyword by spaces or an
+equals sign (=).
+
+   Keyword qualifiers come after the keyword, and have the following
+meanings:
+
+   /A  This argument must be given (but the
+       keyword is optional)
+
+   /K  If the argument to this keyword is given,
+       then the keyword must be quoted.
+
+   /S  The keyword is a switch; it takes no argument.
+
+   These qualifiers may be used in combination: e.g. KEY/A/K means
+that both keyword and argument are compulsory.  If a keyword is
+unqualified, then both argument and keyword are optional.
+
+   Synonyms for a keyword may be included using equals signs; any
+qualifier applies to all the names for the keyword.
+
+   For example, the form of a command ABC could be given as:
+
+   ABC  "FROM=SOURCE/A,TO,OPT/K,QUIET/S"
+
+   The command has a compulsory argument which may be positional, or
+keyed by FROM or SOURCE.  It has an optional argument which may be
+positional or keyed by TO.  It has another optional argument OPT,
+which must be keyed if it is included, and a switch QUIET.
+
+   Thus possible ways of using the command ABC would be as follows:
+
+   ABC filea
+
+   ABC filea fileb OPT X
+
+   ABC TO "LP: ABC of filea" FROM filea
+
+   ABC filea QUIET OPT = "printer*Ntitle=*"filea*""
+** #I rdargs
+COMMAND ARGUMENTS
+
+For information about the RDARGS string type STRING, for information about
+the procedure RDARGS type PROCEDURE, to exit HELP type <CR>.
+
+

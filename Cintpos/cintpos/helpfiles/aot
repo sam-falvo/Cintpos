@@ -1,0 +1,67 @@
+*procedure
+AOT PROCEDURES
+    There are a number of files in which procedures to call different AOT
+entries have been written - they are available in :G.BCPL and rely upon
+the RSX ring library (also in :G.BCPL).
+    Use HELP SOURCELIB AOT for a full list.
+*error #N ..
+*rc #N ..
+*entry #N ..
+*entries #N ..
+*spec #N ..
+** ..
+ACTIVE OBJECT TABLE SERVICE
+     This is a Ring service whose address is given by the nameserver
+in response to the string "AOT-1".  It is a service which holds and
+maintains UID sets (use HELP UID SET for more information).
+
+*all ..
+*entry
+*entries
+AOT ENTRIES are the following:
+
+   entry     entry no.         give                        get
+
+  gettuid       1       PUID,auth,AUTY,timeout         TUID,TPUID
+  verify        2       TUID,PUID,AUTY                 <nothing>
+  identify      3       TUID,TPUID,PUID,AUTY           <nothing>
+  refresh       4       TUID,TPUID,PUID,AUTY,timeout   <nothing>
+  enhance       5       TUID,PUID,auth,AUTY,timeout    <nothing>
+
+*all ..
+*rc
+*error
+AOT RCS
+    Each entry returns a 16-bit SSP return code.  These return codes
+are either specific to AOT or from the global set.  (Use HELP RING RCS
+for their interpretation).
+
+    General RCs:
+        E004   -   internal error (e.g. full)
+        C00B   -   unexpected size of request block
+        C040   -   bad entry number
+        A004   -   temporarily not available (during a file server
+                   interaction)
+
+    AOT specific RCs:
+        DFD0  -  invalid UID set
+        DFD1  -  bad TUID (bad format or does not exist)
+        DFD2  -  illegal PUID given
+        DFD3  -  bad TPUID
+        DFD5  -  illegal timeout specified
+        DFD6  -  authorization failed (bad AUTY UID set)
+        DFD9  -  bad size of request block
+        FFDA  -  internal error, tables full
+
+*all
+*spec ..
+** ..
+    AOT Service documentation is available in the documentation folder
+under "The Active Obect Table Service".
+**
+    Use HELP AOT ENTRIES for information about the entries to the
+Active Object Table, HELP AOT RCS for a list of return codes given,
+or HELP AOT ALL for full information.
+* all
+
+

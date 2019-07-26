@@ -1,0 +1,26 @@
+*command
+**
+RPROD command
+Form:           RPROD  "MC/A,PORT,CLOSE/S,BOOT/S,RESET/S,*
+                       *REPLUG/S,TOMC/K,TOPORT/K,RXBS/K,TXBS/K"
+Purpose:        To send a single basic block to a specified Ring station
+Author:         BJK
+Specification:
+        A single block is sent to the given station, and a message
+printed saying whether or not the transmission worked.
+
+PORT specifies the port number on which the block is to be sent;
+port 0 is used by default.
+
+The remaining parameters control the contents of the block sent
+and are intended as an aid for debugging BSP software. CLOSE
+causes the block to be a BSP close block. Similarly, RESET sends
+a BSP reset. REPLUG, TOMC, TOPORT, RXBS, TXBS generate a BSP replug
+block with the specified arguments.
+
+Example:
+        RPROD ANCILLA
+        RPROD ALPHA 987
+        RPROD MICK 777 CLOSE
+
+

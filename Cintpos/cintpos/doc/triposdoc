@@ -1,0 +1,5420 @@
+ 
+
+                                         TRIPOS Commands                                         _______________
+
+
+ 
+                  Each command is described on a separate page, giving the format
+               of its arguments, its purpose, author(s), specification and examples
+               of use.  If the source is not in the standard directory, or the
+               source is in more than one file, then the filename(s) is/are given.
+               Most command sources are in SYS:COM.BCPL.<command> and command
+               sequences in SYS:S.<command-sequence>.
+
+                  The majority of commands use the library procedure RDARGS to read
+               their arguments.  For these commands, the control string given to
+               RDARGS is given in the "form" section of the description.  The
+               string consists of a series of keywords, possibly qualified, and
+               separated by commas.  Each keyword takes a single argument,
+               delimited either by spaces or double quotes (").  The argument is
+               separated from the keyword by spaces or an equals sign (=).
+
+                  Keyword qualifiers come after the keyword, and have the following
+               meanings:
+
+                  /A  This argument must be given (but the
+                      keyword is optional)
+
+                  /K  If the argument to this keyword is given,
+                      then the keyword must be quoted.
+
+                  /S  The keyword is a switch; it takes no argument.
+
+                  These qualifiers may be used in combination: e.g. KEY/A/K means
+               that both keyword and argument are compulsory.  If a keyword is
+               unqualified, then both argument and keyword are optional.
+
+                  Synonyms for a keyword may be included using equals signs; any
+               qualifier applies to all the names for the keyword.
+
+                  For example, the form of a command ABC could be given as:
+
+                  ABC  "FROM=SOURCE/A,TO,OPT/K,QUIET/S"
+
+                  The command has a compulsory argument which may be positional, or
+               keyed by FROM or SOURCE.  It has an optional argument which may be
+               positional or keyed by TO.  It has another optional argument OPT,
+               which must be keyed if it is included, and a switch QUIET.
+
+                  Thus possible ways of using the command ABC would be as follows:
+
+                  ABC FILEA
+
+                  ABC FILEA FILEB OPT X
+
+                  ABC SOURCE FILEA TO=FILEB QUIET
+
+
+  
+
+                                                                              ALARM
+
+
+ 
+               Form:           ALARM  "TIME=AT/A,MESSAGE"
+
+
+ 
+               Purpose:        To write bells to the console at the specified time
+                               of day, optionally followed by a message.
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Source:         :com.bcpl.alarm
+
+
+ 
+               Specification:
+
+
+                  Use RUN ALARM HH:MM:SS <message>.
+               The minutes and seconds may be omitted from the time.  If the
+               message contains spaces, it must be enclosed in double quotes.
+                   At the specified time, 50 bells, the time and the message (if
+               any) are written to the console.
+
+
+ 
+               Example:        RUN ALARM 11:00 "Coffee time!"
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                             APPEND
+
+
+ 
+               Form:           APPEND  ",,,,,,,,,,TO/K/A,WORDS/S,CHARS/S"
+
+
+ 
+               Purpose:        To add one or more files to the end of an existing
+                               file, using a temporary file and RENAME.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  APPEND will concatenate up to 10 files into a temporary file
+               which it then renames as the TO file.  Copying is done in words if
+               WORDS is specified, and in characters if CHARS is specified.  WORDS
+               is the default.
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                                ASM
+
+
+ 
+               Form:           ASM  "PROG=FROM/A,CODE=TO,VER/K,LIST/S,HDR/K"
+
+
+ 
+               Purpose:        To invoke the assembler for the machine being used.
+
+
+ 
+               Authors:        RDE BJK
+
+
+ 
+               Specification:
+
+
+                  FROM is the source file.
+
+                  TO is the file for the object module.  If this is omitted then no
+               code is produced.
+
+                  VER is the file for messages.  By default, these go to the
+               current output stream.
+
+                  LIST turns on the assembly listing switch at the start of the
+               source.  (It may be turned off again by directives in the source).
+               If LIST is absent, only lines containing errors are listed.
+
+                  HDR specifies a header file to be textually inserted before the
+               source file.
+
+                  Assemblers for machines other than the host have similar
+               specifications, but have names indicating which machine they are
+               for: e.g. NOVASM, PDPASM, GASM.
+
+
+ 
+               Example:        ASM ABC
+
+
+                               ASM ABC ABC-OBJ
+
+
+                               ASM ABC TO ABC-OBJ VER LP: LIST
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                               BCPL
+
+
+ 
+               Form:           BCPL  "FROM,TO,OCODE/K,CHARCODE/K,VER/K,OPT/K"
+
+
+ 
+               Purpose:        To compile a BCPL program
+
+
+ 
+               Authors:        MR ARA
+
+
+ 
+               Source:         :com.bcpl.bcpl
+                               :com.bcpl.bcpl-args
+                               :com.bcpl.bcpl-syn
+                               :com.bcpl.bcpl-trn
+                               :com.bcpl.bcpl-err
+                               :com.bcpl.bcpl-cg
+
+
+ 
+               Specification:
+
+
+                  If FROM is specified, then the front end is called to generate
+               intermediate code.  If TO is specified, then the code generator is
+               called to translate the intermediate code into object code.  If
+               OCODE is specified, then the given file is used for the intermediate
+               code, otherwise a temporary file is used and is deleted at the end
+               of the compilation.
+
+                  CHARCODE may be used to specify a character translation file for
+               bootstrapping.  The format is 128 three-digit octal integers,
+               separated by tab, space, or newline.
+
+                  VER specifies an output stream for messages.
+
+                  OPT specifies options.  Each option starts with a letter, and
+               some have integer arguments.  A slash (/) indicates the end of front
+               end options, and subsequent ones are passed to the code generator.
+
+                  Front end options:
+
+                T   print AE tree         default: FALSE
+                Sn  set savespace size                 2
+                Ln  set tree space                 10000
+
+
+ 
+
+
+  
+
+                Dn  set declaration space           1800
+
+                  Code Generator options:
+
+                C   include stack checking code    FALSE
+                L   list object module             FALSE
+                N   no names in code               FALSE
+                O   alternative object module format FALSE
+                P   profile counts                 FALSE
+                K   call counts                    FALSE
+                R   restricted instruction set     FALSE
+                Wn  set workspace size              5000
+                X   ( spare flags for machine)     FALSE
+                Y   ( dependent options      )     FALSE
+                An  ( Spare numbers          )         0
+                Bn  (                        )         0
+
+
+ 
+               Example:        BCPL PROG-SOURCE TO PROG
+
+
+                               BCPL OCODE PROG-OCODE TO PROG
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                           BCPLXREF
+
+
+ 
+               Form:           BCPLXREF  "FROM/A,TO,OPT/K"
+
+
+ 
+               Purpose:        To produce a cross reference listing of identifiers
+                               in a BCPL source program.
+
+
+ 
+               Authors:        MR JJG BJK
+
+
+ 
+               Source:         :com.bcpl.bcplxref
+
+
+ 
+               Specification:
+
+
+                  TO can be used to specify an output file.  By default, output
+               goes to the current output stream.  The OPT parameter gives a
+               pattern that selects which identifiers to cross reference.  The only
+               special character in the pattern is * which will match any string
+               of zero or more characters.
+
+
+ 
+               Example:        BCPLXREF PROG TO :T.0
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                              BREAK
+
+
+ 
+               Form:           BREAK  "TASK/A,B/S,C/S,D/S,E/S,ALL/S"
+
+
+ 
+               Purpose:        To set break flags in the given task.
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Source:         :com.bcpl.break
+
+
+ 
+               Specification:
+
+
+                  Sets the specified break flags in the task.  B -> ctrl/B flag, c
+               -> ctrl/C flag, etc.  ALL sets all the ctrl/B to ctrl/E flags.  By
+               default, only the ctrl/B flag is set.
+
+
+ 
+               Example:        BREAK 7
+
+
+                               BREAK 5 C
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                                  C
+
+
+ 
+               Form:           C command-file args
+
+
+ 
+               Purpose:        To execute a file of commands with argument
+                               substitution.
+
+
+ 
+               Author:         RDE
+
+
+ 
+               Source:         :com.bcpl.c
+
+
+ 
+               Specification:
+
+
+                  The command-file contains commands that are executed by the
+               Command Language Interpreter.  Any line starting with a dot ('.')
+               is a directive to the C processor.  The directives are as follows:
+
+                .KEY)  RDARGS format string
+                .K  )
+                       This specifies the format of the arguments
+                .DOT   ch                    Change dot character to ch
+                .BRA   ch                    Change bra character to ch
+                .KET   ch                    Change ket character to ch
+                .DOL   )
+                .DOLLAR)  ch                 Change default-char to ch
+                .DEF      keyword value      Give default value to parameter
+                .<space>                     Comment line
+                .<newline>                   Blank comment line
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                             CASECH
+
+
+ 
+               Form:           CASECH  "FROM/A,TO/A,DICT/K,U/S,L/S,A/S"
+
+
+ 
+               Purpose:        To alter the letter case of identifiers in a BCPL
+                               source.
+
+
+ 
+               Authors:        JJG BJK
+
+
+ 
+               Source:         :com.bcpl.casech
+
+
+ 
+               Specification:
+
+
+                  The FROM file is copied to the TO file, with the specified
+               changes made to the cases of identifiers.  BCPL reserved words are
+               forced to upper case.
+
+                 U = force all identifiers to upper case (default)
+                 L = force all identifiers to lower case
+                 A = force all letters to upper case
+
+                  A dictionary of mixed case 'spellings' can be supplied with the
+               DICT keyword.  The dictionary file can be a BCPL source.
+
+
+ 
+               Example:        CASECH PROG TO LCPROG L
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                          CHANGEPRI
+
+
+ 
+               Form:           CHANGEPRI  "TASK=PRIORITY/A,PRI"
+
+
+ 
+               Purpose:        To change the priority of a task.
+
+
+ 
+               Author:         MR
+
+
+ 
+               Source:         :com.bcpl.changepri
+
+
+ 
+               Specification:
+
+
+                  If two parameters are given, the first specifies the task number
+               and the second the priority.  If only one parameter is given, the
+               priority of the current task is changed.  The parameters must be
+               unsigned integers.
+
+
+ 
+               Example:        CHANGEPRI 600
+
+                               CHANGEPRI 1 20
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                               CHKL
+
+
+ 
+               Form:           CHKL  "FROM/A,TO,OPT/K"
+
+
+ 
+               Purpose:        To count the number of lines and characters in a
+                               text file, and indicate the lengths of the longest
+                               and shortest lines.
+
+
+ 
+               Authors:        DSC BJK
+
+
+ 
+               Specification:
+
+
+                  TO specifies an output file.
+
+                  OPT gives the options string.  Each option is a single letter;
+               some have integer arguments.
+
+                  Options:
+
+                 B   Brief mode (default)
+                 Ln  Indicate which lines are shoter than lower limit n.
+                 N   Ignore blank lines.
+                 P   Print lines which are outside the specified
+                     size range. (opposite of 'B')
+                 T   Trim trailing spaces on input.
+                 Un  Indicate which lines are longer than n
+                 Wn  Set maximum length of output lines
+
+
+ 
+               Example:        CHKL PROG
+
+
+                               CHKL PROG TO LP: OPT U72P
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                               CLI2
+
+
+ 
+               Form:           RUN CLI2
+
+
+ 
+               Purpose:        To create a Command Language Interpreter and console
+                               handler connected to the second console.
+
+
+ 
+               Author:         RDE BJK
+
+
+ 
+               Specification:
+
+
+                  Any commands on the rest of the line will be executed before the
+               new CLI starts reading from the second console.
+
+
+ 
+               Example:        RUN CLI2
+
+                               RUN CLI2; INIT :BRIAN; EX
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                            CONSOLE
+
+
+ 
+               Form:           CONSOLE  "WIDTH/K,BELL/K,TAB/K,TRAN/K,HEX/K,*
+                                        *RUBOUT/K,IDENTIFY=ID/K"
+
+
+ 
+               Purpose:        To set console characteristics in the console
+                               handler that the current CLI is using.
+
+
+ 
+               Author:         RDE
+
+
+ 
+               Specification:
+
+
+               WIDTH           The console width: must be a valid positive integer.
+
+               BELL            A single character which will be used to signal
+                               error conditions.
+
+               TAB             Values ON or OFF.  When ON, tab characters (HT) are
+                               expanded to spaces by the console handler.
+                               Otherwise, they are untouched.
+
+               TRAN            Values ON or OFF.  When ON, unprintable characters
+                               are translated to ? or @Xnn on output, and the
+                               console width is checked.  When OFF, all characters
+                               are passed through unchanged, and the width is not
+                               checked.  HEX             Only useful when TRAN is
+                               on.  Has values ON or OFF.  This option specifies
+                               whether ? (OFF) or @Xnn (ON) should be produced for
+                               unprintable characters.
+
+               RUBOUT          Has values VDU or VERIFY, and controls the displayed
+                               effect of the rubout key and @L.
+
+               IDENTIFY or ID  Values ON or OFF.  If ON, a number identifying the
+                               issuing task is prefixed to every line of output.
+
+
+                  If no parameters are given, the current state of all the options
+               is printed as well as the console handler task number.
+
+
+ 
+               Example:        CONSOLE
+
+
+ 
+
+
+  
+
+                               CONSOLE TRAN OFF IDENTIFY
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                               COPY
+
+
+ 
+               Form:           COPY  "FROM/A,TO/A,WORDS/S,CHARS/S"
+
+
+ 
+               Purpose:        To copy a file from one place to another.
+
+
+ 
+               Authors:        RDE ARA
+
+
+ 
+               Specification:
+
+
+                  WORDS specifies that the copy should be done by
+               READWORDS/WRITEWORDS, and CHARS that it should be done by RDCH/WRCH.
+               The default is WORDS if both files are on disc, CHARS otherwise.
+
+
+ 
+               Example:        COPY FILE1 FILE2
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                                CPU
+
+
+ 
+               Form:           CPU
+
+
+ 
+               Purpose:        To display CPU utilisation (actually bus
+                               utilisation) on the display lights.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Specification:
+
+
+                  (LSI4 version)
+                  The bus utilisation will be shown on the display lights in the
+               low order three digits as a percentage.  The high order digit cycles
+               0,1,....,E,F continuously to indicate that the CPU command is
+               running.
+
+                  (PDP11 version)
+                  The bus utilisation will be displayed as a line of light on the
+               display lights.  All 16 lights on indicates 100% utilisation.
+
+                  To remove the CPU command, BREAK (q.v.) the task with priority
+               maxint-1 (32766).
+
+
+ 
+               Example:        CPU
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                          CREATEDIR
+
+
+ 
+               Form:           CREATEDIR  "/A"
+
+
+ 
+               Purpose:        To create a directory.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Specification:
+
+
+                  The directory with the given name is created.
+
+
+ 
+               Example:        CREATEDIR BCPL
+
+
+                               CREATEDIR DF1:T
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                                 DA
+
+
+ 
+               Form:           DA  "FROM/A,TO/K"
+
+
+ 
+               Purpose:        To disassemble an LSI4 program generated by the BCPL
+                               compiler.
+
+
+ 
+               Authors:        MR RDE
+
+
+ 
+               Specification:
+
+
+                  The FROM file must contain a program in hex form as generated by
+               the /O option of the BCPL compiler.  DA outputs the corresponding
+               disassembly to the TO stream, or to the current output stream if TO
+               is absent.
+
+
+ 
+               Example:        BCPL ABC-S TO T OPT /O
+                               DA T
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                                DAT
+
+
+ 
+               Form:           DAT
+
+
+ 
+               Purpose:        To print the date, time, and day of the week.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Example:        DAT
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                               DATE
+
+
+ 
+               Form:           DATE  "IS"
+
+
+ 
+               Purpose:        To print or set the system date.
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Specification:
+
+
+                  DATE with no parameter prints the currently set system date.
+
+
+               DATE <date> sets it.  <date> must have the form DD-MMM-YY
+
+
+ 
+               Example:        DATE
+
+
+                               DATE 23-Jan-80
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                              DEBUG
+
+
+ 
+               Form:           DEBUG
+
+
+ 
+               Purpose:        To load DEBUG as a command.  (Useful when resident
+                               DEBUG is not accessible - e.g. from a second
+                               console, or when logged-in from a remote machine).
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  See separate document describing DEBUG commands.
+
+
+ 
+               Example:        DEBUG
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                             DELETE
+
+
+ 
+               Form:           DELETE  ",,,,,,,,,,"
+
+
+ 
+               Purpose:        To delete up to ten files.
+
+
+ 
+               Authors:        PB ARA
+
+
+ 
+               Specification:
+
+
+                  DELETE will attempt to delete each file specified.
+
+
+ 
+               Example:        DELETE OLD-FILE
+
+
+                               DELETE ALPHA BETA GAMMA
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                        DF-DISCCOPY
+
+
+ 
+               Form:           DF-DISCCOPY  "FROM/A,TO/A/K,CHECKBLOCKS=CHKBLKS/S"
+
+
+ 
+               Purpose:        To physically copy a floppy disc.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Specification:
+
+
+                  Similar to DISCCOPY, but for floppy discs.  The entire disc is
+               copied.
+
+                  CHECKBLOCKS causes a read-after-write check to be performed on
+               each block.
+
+
+ 
+               Example:        DF-DISCCOPY DF0: TO DF1:
+
+
+                               DF-DISCCOPY DF0: TO DF2: CHECKBLOCKS
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                          DF-DISCED
+
+
+ 
+               Form:           DF-DISCED
+
+
+ 
+               Purpose:        Disc editor for TRIPOS floppy discs.
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Specification:
+
+
+                  Commands are the same as for DISCED (q.v.).
+
+
+ 
+               Example:        DF-DISCED
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                           DISCCOPY
+
+
+ 
+               Form:           DISCCOPY  "FROM/A,TO/K"
+
+
+ 
+               Purpose:        To copy logical disc packs or bootstrap areas
+                               (physical copy).
+
+
+ 
+               Authors:        BJK PB
+
+
+ 
+               Specification:
+
+
+                  Use DISCCOPY <disc-area> TO <disc-area>
+
+                  <disc-area> specifies either a logical disc of the form
+               DP<unit>-<disc number>:  (e.g. DP1-3: is unit 1, logical disc 3) OR
+               a bootstrap area of the form DP<unit>-BOOT: .
+
+                  An area may not be copied to itself, nor may areas of different
+               type be copied.
+
+
+ 
+               Example:        DISCCOPY DP0-0: TO DP1-1:
+
+
+                               DISCCOPY DP0-BOOT: TO DP1-BOOT:
+
+
+                               DISCCOPY DK0: TO DK1:  ?system with RK05 discs?
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                             DISCED
+
+
+ 
+               Form:           DISCED
+
+
+ 
+               Purpose:        To examine and patch disc blocks.
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Specification:
+
+
+                  Commands available:
+
+               B n         Set logical block number base to n
+               C n         Print n characters from current offset
+               D n         Select disc drive n
+               G ?n?       Get block n from disc (default: current
+                           block number)
+               H name      Calculate hash value of name
+               I           Print block information
+               K           Check block checksum (& correct if wrong)
+               L ?lwb upb? Locate words which match Value under Mask
+                           (lwb & upb restrict the search)
+               M n         Set Mask (for L & N commands) to n
+               N ?lwb upb? Locate words which do not match Value
+                           under Mask
+               P n         Put block in store to block n on disc
+                           (default: current block number)
+               R           Print block number of Root Block
+               Q           Quit (do not write to disc)
+               S char      Set printing Style:
+                           char = C -> characters
+                                  S -> string
+                                  O -> octal
+                                  X -> hex
+                                  D -> decimal
+               T lwb upb   Type range of offsets in block
+               U n         Set Unit (i.e. device) number to n
+               V n         Set Value for L & N commands
+               W           Windup (=PQ)
+               X           Invert write protect state
+               Y n         Set cYlinder base to n
+               Z           Zero all words of buffer
+
+
+ 
+
+
+  
+
+               number      Set current word offset in block
+               =           Print values set in program
+               / ?n?       Print word at current offset
+                           ?or update value to n?
+               'chars'     Put chars at current offset
+               "chars"     Put string at current offset
+
+                   Numbers can start with # or #X to indicate octal or hex.
+               Strings can include BCPL string escapes (*N etc.).
+
+                   The current block is that from the last G or P command.  It is
+               the offset from the logical block number base.
+
+
+ 
+               Example:        DISCED
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                           DISCINFO
+
+
+ 
+               Form:           DISCINFO  "DEVICE"
+
+
+ 
+               Purpose:        To produce information on the identity, size and
+                               usage of a disc.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Specification:
+
+
+                  By default, the information refers to the disc which contains the
+               currently set directory.
+
+                  DEVICE can be used to specify a different disc, which must be
+               MOUNTed for updating.
+
+
+ 
+               Example:        DISCINFO
+
+
+                               DISCINFO DP1:
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                           DISMOUNT
+
+
+ 
+               Form:           DISMOUNT  "DEVICE/A"
+
+
+ 
+               Purpose:        To dismount a disc device.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Specification:
+
+
+                  The specified device is dismounted.  There must be no files open
+               or directories SET on the device for dismounting to be permitted.
+
+
+ 
+               Example:        DISMOUNT  DF1:
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                               ECHO
+
+
+ 
+               Form:           ECHO ""
+
+
+ 
+               Purpose:        To output its argument to the currently selected
+                               output stream.
+
+
+ 
+               Author:         MR
+
+
+ 
+               Source:         :com.bcpl.echo
+
+
+ 
+               Specification:
+
+
+                  The single argument is written to the current output stream.
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                               EDIT
+
+
+ 
+               Form:           EDIT  "FROM/A,TO,WITH/K,VER/K,OPT/K"
+
+
+ 
+               Purpose:        To edit text files.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  If TO is specified, EDIT reads from file FROM to file TO until a
+               rewind occurs, when FROM becomes TO and TO becomes unset.  If TO is
+               not specified, then FROM is edited to a temporary file and FROM is
+               renamed :T.EDIT-BACKUP, and the output is renamed as FROM when the
+               editor is wound up.  Commands are read from the current input
+               stream, or WITH if it is present.
+
+                  OPT specifies options: Pn sets the maximum number of previous
+               lines to n;  Wn sets the maximum line width.  Default is P20W120.
+
+                  Commands:
+
+               A/s/t/        After string s insert string t
+               B/s/t/        Before string s insert string t
+               C  file       obey Commands from file
+               CC/x/         set Carriage Control to *x (x = N,C,E, or P)
+               CC/?/         print Carriage Control for current line
+               CF  file      Close File
+               CL            Concatenate next Line to current one
+               Dn  (m)       Delete line(s) n (to m)
+               DF/s/         Delete up to line starting with s
+               DL/s/         Delete up to line containing s
+               DT/s/         Delete characters To s in current line
+               DG/s/         Delete Global exchange for s
+               DG//          Delete all Global exchanges
+               E/s/t/        Exchange s by t
+               F/s/          Find line beginning with s
+               G/s/t/        Globally exchange s by t
+               Hn            Halt at line n
+               In  (file)    Insert before line n (from file)
+               L/s/          Locate line containing s
+               Mn            Move to line n
+               N             Move to next line
+               O  file       send Output to file
+               P             move to Previous line
+
+
+  
+
+               PA/s/         Point After s in current line
+               PB/s/         Point Before s in current line
+               Q             Quit (abandon whole edit session)
+               Rn (m) (file) Replace line(s) n (to m) (by file)
+               S file        read Source from file
+               SA/s/         Split current line After s
+               SB/s/         Split current line Before s
+               Tn            Type n lines
+               TLn           Type n lines with Line numbers
+               TP            Type buffer of Previous lines
+               TN            Type Next <P> lines (option P)
+               TR+/-         Set/Unset stripping of trailing spaces
+               U+/-          Set/Unset uppercasing before string matching
+               V+/-          turn Verification on/off
+               W             Windup (normal finish to edit session)
+               Z/s/          set terminator for I & R (default Z)
+               *             rewind
+               +n            move on n lines
+               -n            delete n lines
+               0            move back n lines (* = as far as possible)
+               =n            renumber current line n
+               ?             verify current line
+               !             verify indicating case or hex value
+               '             repeat last explicit A,B,E,DL,DF,DT,PA,PB,
+                             SA,SB,L or F command
+               "             equivalent to N'
+               &             repeat last L,F,DL or DF command
+               |             ignore rest of command line
+               >             step character pointer
+               <             reset character pointer
+               _             convert character to space
+               #             delete character
+               $             force character to lower case
+               %             force character to upper case
+               :             move character pointer to end of line
+
+                  EDIT is described in more detail in a separate document.
+
+
+ 
+               Example:        EDIT PROG
+
+
+                               EDIT PROG TO NEWPROG
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                             ENDCLI
+
+
+ 
+               Form:           ENDCLI
+
+
+ 
+               Purpose:        To end an interactive CLI task.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  ENDCLI is allowed only as an interactive command.
+
+
+ 
+               Example:        ENDCLI
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                            ENLARGE
+
+
+ 
+               Form:           ENLARGE "/A,TO"
+
+
+ 
+               Purpose:        To print a string in large letters.
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Source:         :com.bcpl.enlarge
+
+
+ 
+               Specification:
+
+
+                  The first argument is the string to be enlarged.  It will be
+               truncated to 8 characters if it is longer.  The TO parameter
+               specifies an output file.
+                   The program may also be CALLSEGed: callseg(:c.enlarge, string)
+
+
+ 
+               Example:        ENLARGE HELLO!
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                                 EX
+
+
+ 
+               Form:           EX  "DIR,P=PAT/K,DISCKEYS/S,DATES/S,*
+                                   *NODATES/S,TO/K,S/K,SINCE/K,UPTO/K"
+
+
+ 
+               Purpose:        To examine a directory
+
+
+ 
+               Authors:        PB BJK
+
+
+ 
+               Specification:
+
+
+                  EX <dir> examines a directory, sending output to the current
+               output stream.
+
+                  TO can be used to specify an output file.
+
+                  DISCKEYS prints the block number of each file header or
+               directory.
+
+                  DATES causes all dates to be printed in the form DD-MMM-YY.
+
+                  NODATES suppresses date, time and size information.
+
+                  SINCE <date> prints only files last updated on or after <date>.
+               <date> can be in the form DD-MMM-YY or a dayname in the last week
+               (e.g. MONDAY) or TODAY or YESTERDAY.
+
+                  UPTO <date> prints only files last updated on or before <date>.
+
+                  P <pat> searches for files whose name matches <pat>.
+
+                  S <str> searches for filenames containing substring <str>.
+
+
+ 
+               Example:        EX
+
+
+                               EX :COM.BCPL S DISC
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                             FAILAT
+
+
+ 
+               Form:           FAILAT  "RCLIM/A"
+
+
+ 
+               Purpose:        To set the return code level at which a command
+                               sequence will fail.
+
+
+ 
+               Author:         CGG
+
+
+ 
+               Specification:
+
+
+                  The argument should be a positive number.  The fail level will be
+               reset to cli.initialfaillevel (currently 10) on exit from the
+               command sequence.
+
+
+ 
+               Example:        FAILAT 25
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                              FAULT
+
+
+ 
+               Form:           FAULT  ",,,,,,,,,"
+
+
+ 
+               Purpose:        To print the text strings corresponding to the
+                               supplied fault codes.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Specification:
+
+
+                  The numbers are looked up in the file SYS:info.faults.
+
+
+ 
+
+               Example:        FAULT 182
+
+
+                               FAULT 294 296 199
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                            GLOBALS
+
+
+ 
+               Form:           GLOBALS  <number>
+
+
+ 
+               Purpose:        To print or change the number of globals available
+                               to a CLI task.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  If no number is specified, then the current size of the CLI
+               global vector is printed.  Otherwise, the CLI task is recreated with
+               the specified number of globals (minimum 200).
+
+
+ 
+               Example:        GLOBALS
+
+
+                               GLOBALS 450
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                              IDMAP
+
+
+ 
+               Form:           IDMAP  "BLOCKS/S,NAMES/S,CODE/S,MAPSTORE/S*
+                                      *TO/K,PIC/S"
+
+
+ 
+               Purpose:        To provide information about store allocation.
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Specification:
+
+
+                  Similar to MAP, except that the BLOCKS option is the default, and
+               IDVEC is invoked to try to identify each allocated block.
+
+
+ 
+               Example:        IDMAP
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                              IDVEC
+
+
+ 
+               Form:           IDVEC  "ADDRESS/A"
+
+
+ 
+               Purpose:        To try to identify the vector at the given address.
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Specification:
+
+
+                  The given address is rounded up to make it odd if necessary, as
+               all vectors delivered by GETVEC have odd addresses.
+
+                  The program may be invoked from another program by using CALLSEG.
+
+
+                e.g.  callseg("sys:c.idvec", unidentified.vector)
+
+
+ 
+               Example:        IDVEC 10445
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                                IEX
+
+
+ 
+               Form:           IEX  "DIR,P=PAT/K,DISCKEYS/S,DATES/S,NODATES/S*
+                                        *TO/K,S/K,SINCE/K,UPTO/K,I/S,TITLES/S"
+
+
+ 
+               Purpose:        To examine a directory interactively
+
+
+ 
+               Authors:        PB BJK PBr
+
+
+ 
+               Specification:
+
+
+                  As for EX, except:
+
+                  It will examine a single file
+
+                  If TITLES is quoted, only the file titles are typed.
+
+                  Switch I causes it to be interactive (unless TO is quoted).  It
+               then prompts after each file, and at the end types the usage.
+               Responses to the prompt are:
+
+                 <cr>       Go on to next entry
+                 ?          Help - type list of options
+                 "x" (-)    set S option to x
+                 'x' (-)    set P option to x
+                 *          Return to beginning of this directory
+                 DEL (-)    Add (remove) this file to (from) the
+                            list of those to be deleted
+                 E          Examine this directory
+                 F (-)      Type full file information
+                 K (-)      Type the key of each entry
+                 L          List - cease interaction
+                 P          Move to Previous entry (may upset totals)
+                 Q          Quit - do not examine rest of this directory
+                 TYPE       SCAN (q.v.) current file
+                            TYPE TO LP: - print current file
+                 T (-)      Only show file titles
+                 W          Windup - exit to top level
+
+                  (-) indicates that the option may be turned off by putting a
+               minus after it.  For strings it means "only examine if the match
+               fails".
+
+
+ 
+
+
+  
+
+               Example:        IEX I
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                                 IF
+
+
+ 
+               Form:           IF  "NOT/S,WARN/S,ERROR/S,FAIL/S,EQ/K,EXISTS/K"
+
+
+ 
+               Purpose:        To allow conditionals within command sequences.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  If one or more of the specified conditions is satisfied, then the
+               rest of the command line (after ';') is obeyed;  otherwise it is
+               skipped and the return code preserved.
+
+                 NOT        reverses the result
+                 WARN       satisfied if previous return code >= 5
+                 ERROR          "      "     "       "     "  >= 10
+                 FAIL           "      "     "       "     "  >= 20
+                 EQ a b     satisfied if a and b are textually
+                            identical (disregarding case).
+                 EXISTS file satisfied if the file exists (i.e. can
+                             be opened for input).
+
+
+ 
+               Example:        IF EXISTS FILE; TYPE FILE
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                               INIT
+
+
+ 
+               Form:           INIT  "USER"
+
+
+ 
+               Purpose:        To set a current directory and obey its
+                               initialisation sequence.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Source:         If DIR is specified then it is set, and if it
+                               contains an initialisation sequence (i.e. the file
+                               DIR.init-sequence) then that is obeyed.
+
+                                  If no DIR is specified, then a prompt is issued
+                               for one.
+
+                                  INIT does not use the standard C command
+                               mechanism and does not write to the disc.  As a
+                               consequence, if INIT is used in a command file, any
+                               subsequent commands in that file are ignored.
+
+
+ 
+               Example:        INIT :ADRIAN
+
+
+                               If the initial commands file contains:
+
+                                 TYPE :INFO.MESSAGE-OF-THE-DAY
+                                 INIT
+
+                               then when it is obeyed, it will prompt the user:
+
+                                 User:
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                  INITIALISE-FLOPPY
+
+
+ 
+               Form:           C INITIALISE-FLOPPY  "NAME/A,DRIVE/A/K"
+
+
+ 
+               Purpose:        To initialise a floppy disc to contain an empty
+                               filing system.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Source:         :s.initialise-floppy
+
+
+ 
+               Specification:
+
+
+                  Mount floppy in drive <x>, then type:
+
+                C INITIALISE-FLOPPY NAME Paul-A DRIVE <x>
+
+
+ 
+               Example:        C INITIALISE-FLOPPY NAME Paul-B DRIVE 0
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                              INPUT
+
+
+ 
+               Form:           INPUT  "TO/A,TERM/K"
+
+
+ 
+               Purpose:        To input text files.
+
+
+ 
+               Authors:        MR RDE ARA
+
+
+ 
+               Specification:
+
+
+                  Console input is copied to the file until end of stream (@Q) or a
+               line consisting of just the terminator string is typed.
+
+                  The default terminator string is "/*".  TERM may be used to
+               change it.
+
+
+ 
+               Example:        INPUT PROG
+
+
+                               INPUT X TERM ????
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                               JOIN
+
+
+ 
+               Form:           JOIN  ",,,,,,,,,,AS/A/K,CHARS/S"
+
+
+ 
+               Purpose:        To concatenate zero or more files to form a new
+                               file.
+
+
+ 
+               Authors:        ARA MR BJK
+
+
+ 
+               Specification:
+
+
+                  The specified files are copied in order into a temporary file
+               which is then renamed as the AS file.  By default, copying is in
+               words mode.  CHARS may be used to select character mode.
+
+
+ 
+               Example:        JOIN A B C AS D
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                                LAB
+
+
+ 
+               Form:           LAB <text>
+
+
+ 
+               Purpose:        To implement labels in command sequence files.
+
+
+ 
+               Author:         CGG
+
+
+ 
+               Specification:
+
+
+                  Ignores any parameters it is given.
+
+
+ 
+               Example:        LAB
+
+
+                               LAB GRAYJUMPHERE
+
+
+                               LAB What a silly way to do a comment!
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                            LIBRARY
+
+
+ 
+               Form:           LIBRARY  "FROM,OVERRIDE/S,CANCEL/K,TABLE/K"
+
+
+ 
+               Purpose:        To load a library of procedures and append it to the
+                               BLIB segment chain, thus allowing standard globals
+                               to be redefined.
+
+
+ 
+               Author:         RDE
+
+
+ 
+               Specification:
+
+
+                  FROM gives the file containing the library to be loaded.
+
+                  OVERRIDE allows loading of a library with the same (section) name
+               as an existing one, without CANCELling the old one.
+
+                  CANCEL specifies a section name, and causes the section of that
+               name to be unloaded.  Note that a new library will be loaded before
+               a CANCEL is done, so that it is possible to replace a library with
+               one of the same name in one command.
+
+                  TABLE has three possible arguments: NEW, ADD and DELETE.  It
+               controls the table of resident libraries used by the linkage editor.
+               NEW causes creation of a new table.  ADD causes the specified
+               library to be added to the table, and DELETE causes it to be
+               removed.
+
+
+ 
+               Example:        LIBRARY LIB
+
+
+                               LIBRARY LIB CANCEL LIB
+
+
+                               LIBRARY LIB OVERRIDE LIBRARY CANCEL LOADER
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                                MAP
+
+
+ 
+               Form:           MAP  "BLOCKS/S,NAMES/S,CODE/S,MAPSTORE/S*
+                                    *TO/K,PIC/S"
+
+
+ 
+               Purpose:        To print information about store allocation
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Specification:
+
+
+                  MAP alone indicates the total amount of store in the store chain,
+               the size of the largest contiguous free chunk and the total amounts
+               allocated and free.
+
+                  BLOCKS gives the size and address of every block.
+
+                  NAMES gives the total space taken up by routine and section
+               names.
+
+                  CODE gives the name, address and length of each loaded code
+               section.
+
+                  MAPSTORE gives the name and address of every routine, and prints
+               any profile counts found in the code.
+
+                  TO can be used to specify an output file.
+
+                  PIC gives the allocation map as a picture.  Each character
+               printed represents 64 words of store.  '.' means it is free, '@'
+               that it is completely allocated, and 'a' that it is partially
+               allocated.
+
+
+ 
+               Example:        MAP
+
+
+                               MAP PIC
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                            MEMWAIT
+
+
+ 
+               Form:           MEMWAIT  "MEM/A"
+
+
+ 
+               Purpose:        To hold up execution of a command sequence until at
+                               least <MEM> words of memory are likely to be
+                               available.
+
+
+ 
+               Author:         CGG
+
+
+ 
+               Specification:
+
+
+                  Ctrl/B break abandons the wait.
+
+
+ 
+               Example:        MEMWAIT 12000
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                            MESSAGE
+
+
+ 
+               Form:           MESSAGE  "USER,TO,OPT/K"
+
+
+ 
+               Purpose:        To receive any messages sent to a given directory.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  Receives messages in the set directory, or in the one specified
+               by USER.
+
+                  Options:
+
+                 D delete
+                 E extract (= read then delete)
+                 R read
+                 I init (types "** Message for ..." if a messsage exists)
+                 T test (types "** Message ..." or "** No message")
+
+                 Default option is R if USER specified, E otherwise.
+
+                  Directory :SYS.LOG holds the system log message file.
+
+                  Messages are deleted by renaming them :T.MESSAGE, so may be
+               recovered.
+
+
+ 
+               Example:        MESSAGE
+
+
+                               MESSAGE OPT R
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                            MONITOR
+
+
+ 
+               Form:           MONITOR
+
+
+ 
+               Purpose:        Continuous monitoring of system activity.
+
+
+ 
+               Author:         MFR
+
+
+ 
+               Specification:
+
+
+                  Runs on cursor addressable VDUs only.  Use CONSOLE TRAN OFF
+               first.
+
+                  It draws a store map (similar to MAP PIC), and gives number of
+               tasks, number of devices, and free store information.  Also listed
+               are the currently loaded commands, with their task numbers.
+
+                  Use CNTL/B to stop the command.
+
+
+ 
+               Example:        MONITOR
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                              MOUNT
+
+
+ 
+               Form:           MOUNT  ",READ/S,VERSION/K,CACHESLOTS/K"
+
+
+ 
+               Purpose:        To mount an auxiliary disc.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Specification:
+
+
+                  The first parameter specifies the logical disc to be mounted.
+
+                  READ causes the disc to be mounted for reading only - i.e. no
+               restart task is initiated for the new disc.
+
+                  CACHESLOTS controls the number of disc block slots in the cache
+               for the new disc (default 10).
+
+
+ 
+               Example:        MOUNT DF0:
+
+
+                               MOUNT DP0-1: READ
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                             NEWCLI
+
+
+ 
+               Form:           NEWCLI
+
+
+ 
+               Purpose:        To create a new interactive CLI task.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  The new CLI task has the same set directory and prompt string as
+               the one in which NEWCLI is executed.  It announces its task number
+               as it starts up.
+
+
+ 
+               Example:        NEWCLI
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                             NEWSYS
+
+
+ 
+               Form:           C NEWSYS  "LOAD/S"
+
+
+ 
+               Purpose:        To link a new TRIPOS system and possibly load it.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Source:         :s.newsys
+
+
+ 
+               Specification:
+
+
+                  The system described in the file sys:sys.obj.system is linked
+               into the file file sys:sys.obj.tripos.
+
+                  If LOAD is specified then SYSLOAD is executed to load the new
+               system.
+
+
+ 
+               Example:        C SYSLOAD
+
+
+                               C SYSLOAD LOAD
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                           PLAYBACK
+
+
+ 
+               Form:           PLAYBACK  "FROM/A,WAIT/S,NOTIME/S"
+
+
+ 
+               Purpose:        To play back a recording made by RECORD (q.v.).
+
+
+ 
+               Author:         RDE
+
+
+ 
+               Specification:
+
+
+                  FROM specifies the recording file.
+
+                  WAIT indicates that playback should start in "discontinuous" mode
+               (see "SPACE" below).
+
+                  NOTIME specifies that playback should start in "fast" mode (see
+               'f' and 's' below).
+
+                  During the playback, various characters can be used to control
+               the program:
+
+                  space    Force out the next character, and go into
+                           "discontinuous" mode:
+                           i.e. only output the next character when
+                           space or cr or esc is used.
+
+                  <cr>     Resume continuous mode
+
+                  <esc>    Resume continuous mode, but stop at end of line
+
+                  F        Enter "fast" mode, in which the timing information
+                           is ignored
+
+                  S        Resume "slow" mode
+
+                  Q        Quit
+
+
+ 
+               Example:        PLAYBACK RECORDING
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                           PLAYFAST
+
+
+ 
+               Form:           PLAYFAST  "FROM/A,TO/K"
+
+
+ 
+               Purpose:        To remove timing information from a file produced
+                               by RECORD (q.v.).
+
+
+ 
+               Author:         MR
+
+
+ 
+               Specification:
+
+
+                  It copies a recording file from FROM to TO, removing all timing
+               information and carriage returns.
+
+
+ 
+               Example:        PLATFAST RECORD-FILE TO LP:
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                           PLAYTIME
+
+
+ 
+               Form:           PLAYTIME  "FROM/A"
+
+
+ 
+               Purpose:        To calculate the time it would take to play back a
+                               file made by RECORD.
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Example:        PLAYTIME RECORDING
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                              PRINT
+
+
+ 
+               Form:           PRINT  "FROM/A,TO,TITLE/K,OPT/K"
+
+
+ 
+               Purpose:        To print a file with optional line numbers and multi
+                               columning.
+
+
+ 
+               Authors:        ARA BJK
+
+
+ 
+               Specification:
+
+
+                  TO defaults to LP:
+
+                  Options:
+
+                  T    Truncate lines that are too long for
+                       their column.
+                  F    Take FROM filename as title if no
+                       TITLE specified.
+                  N    include line Numbers
+                  C n  Print in n columns (default 1)
+                  P n  Set page length to n
+                  W n  Set line width to n
+                  P    Turn off paging
+
+                  Titles are printed only if requested and the number of lines is
+               sufficient.  Tabs are expanded.  Carriage controls *n, *c, *e, *p
+               are handled.  Overprinting is possible if the printer allows it.
+
+
+ 
+               Example:        PRINT PROG OPT N
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                             PROMPT
+
+
+ 
+               Form:           PROMPT  "PROMPT"
+
+
+ 
+               Purpose:        To change the prompt in the current CLI.
+
+
+ 
+               Author:         RDE
+
+
+ 
+               Specification:
+
+
+                  If no parameter is given, then the prompt is reset to the
+               standard string ("> ").
+
+                  Otherwise, the prompt is set to the supplied string.  The CLI
+               uses WRITEF to output the prompt, with arguments task id, hours, and
+               minutes (of time of day), so the string may usefully contain WRITEF
+               substitution sequences.
+
+
+ 
+               Example:        PROMPT
+
+
+                               PROMPT "%n> "
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                               QUIT
+
+
+ 
+               Form:           QUIT  "RC"
+
+
+ 
+               Purpose:        To exit from a command sequence with a given return
+                               code.
+
+
+ 
+               Author:         CGG
+
+
+ 
+               Specification:
+
+
+                  QUIT reads through the command file to ENDSTREAMCH, and then does
+               STOP(RC).
+
+                  The default return code is zero.
+
+
+ 
+               Example:        QUIT
+
+
+                               QUIT 20
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                             RECORD
+
+
+ 
+               Form:           RECORD  "TO,OFF/S,NOTIME/S"
+
+
+ 
+               Purpose:        To record a console session with timing information.
+                               The session can be played back by using the PLAYBACK
+                               command.
+
+
+ 
+               Author:         RDE
+
+
+ 
+               Source:         :com.bcpl.record
+                               :com.bcpl.record-task
+
+
+ 
+               Specification:
+
+
+                  The RECORD command creates a task which acts as the console
+               output device.  It causes the console handler to send all its output
+               via this task, which sends it to the TO file as well as to the
+               console.  The file contains special characters representing timing
+               information.  The character #XFE indicates a delay of one clock
+               tick, and the pair '#XFF n' represents a delay of n ticks (0 <= n
+               <= 255).
+
+                  The OFF switch is used to finish a recording session.
+
+                  NOTIME causes the timing information to be omitted from the file.
+
+
+ 
+               Example:        RECORD RECORDING
+
+
+                               RECORD OFF
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                            REFLECT
+
+
+ 
+               Form:           REFLECT  command-file args
+
+
+ 
+               Purpose:        To type out a command sequence file after
+                               substituting the arguments.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Example:        REFLECT COMSEQ ABC DEF
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                             RENAME
+
+
+ 
+               Form:           RENAME  "FROM/A,TO=AS/A"
+
+
+ 
+               Purpose:        To rename a file.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Specification:
+
+
+                  The FROM file is renamed with the TO name.  FROM and TO must be
+               filenames on the same disc.
+
+
+ 
+               Example:        RENAME ABC AS DEF
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                             REPEAT
+
+
+ 
+               Form:           command1; command2; . . . . ; REPEAT
+
+
+ 
+               Purpose:        To cause a line of commands to be repeatedly
+                               executed.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Specification:
+
+
+                  The action of REPEAT is to 'unread' the command line it occurs
+               in, and then return control to the CLI.  Thus the commands before
+               REPEAT on the line will be repeatedly performed.
+
+                  REPEAT does nothing if the ctrl/D break flag is set.
+
+
+ 
+               Example:        STATUS; WAIT 5; REPEAT
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                             RSWAIT
+
+
+ 
+               Form:           RSWAIT  "DEVICE,QUIET/S"
+
+
+ 
+               Purpose:        To wait until file handler restart has finished for
+                               DEVICE (e.g. to hold up an init-sequence which
+                               creates files).
+
+
+ 
+               Authors:        RDE BJK PB
+
+
+ 
+               Specification:
+
+
+                  Default device is SYS:
+
+                  Ctrl/B break will cause RSWAIT to abandon its wait.
+
+                  QUIET suppresses the warning message which is otherwise issued.
+
+
+ 
+               Example:        RSWAIT
+
+
+                               RSWAIT DF1:
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                                RUN
+
+
+ 
+               Form:           RUN  command; command .....
+
+
+ 
+               Purpose:        To execute commands in background tasks.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  RUN creates a non-interactive Command Language Interpreter (CLI)
+               task at low priority and gives it the rest of the command line as
+               input.  The background CLI will execute the commands and then delete
+               itself.
+
+
+ 
+               Example:        RUN BCPL A TO B
+
+
+                               RUN  PRINT A; DELETE A; ECHO "Printing finished"
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                               SCAN
+
+
+ 
+               Form:           SCAN  "FILE/A,STOP,)/S,FROM=START=(,TO/K,NOLN,*
+                                     *W=WIDTH/K,P=PAGELENGTH/K"
+
+
+ 
+               Purpose:        To scan through a file
+
+
+ 
+               Author:         PBr
+
+
+ 
+               Specification:
+
+
+                  SCAN types selected lines of the file.  To type lines n to m,
+               possible formats are:
+
+                  m
+                  (n m)
+                  ( n m )
+                  m n
+
+                  n defaults to 1 and m to maxint.
+
+                  Unless NOLN is specified, line numbers are added.
+
+                  The program types <PAGELENGTH> of text and then waits for input,
+               unless a TO file is specified.  Q, W or @Q stop the typing.  L makes
+               it continuous.  <number> causes <number> lines to be printed before
+               the next halt.
+
+                  Ctrl/B will cause it to stop at the next convenient point.
+
+
+ 
+               Example:        SCAN A ( 100 150 )
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                             SCREED
+
+
+ 
+               Form:           SCREED  "FROM/A,TO"
+
+
+ 
+               Purpose:        Screen editing of text files.
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Specification:
+
+
+                  SCREED must be used from a cursor-addressable VDU.  It maintains
+               a display of up to one screenfull of the file being edited, and the
+               cursor may be moved about this image in order to insert or delete
+               characters at any point.
+
+                  If only a FROM file is specified, then editing takes place from
+               this to a temporary file, which is renamed as the FROM file on
+               winding up.  If a TO file is also given, then the temporary file is
+               renamed with that name, and the source file is left unchanged.
+
+                  Typing a printable character causes it to be inserted at the
+               cursor position.  Commands are control characters.
+
+                  SCREED Commands:
+
+                  ctrl/B         Break - abandon current command
+                  ctrl/C         Concatenate next line with current one,
+                                 starting at cursor position
+                  ctrl/D n       Move current line Down n lines
+                  ctrl/E         Erase current line
+                  ctrl/L string  Locate string
+                  ctrl/Q         Quit - abandon whole edit session
+                  ctrl/R         Rewind - copy rest of source to output
+                                 and then make output the new source
+                  ctrl/S         Split current line at cursor
+                  ctrl/T n       Move To line n
+                  ctrl/U n       Move current line Up n lines
+                  ctrl/W         Windup - normal finish
+                  ctrl/Y n       Move on bY n lines
+                  HOME           Move cursor to top left corner
+                  LINEFEED       = cursor down
+                  RETURN         Create new line below current one
+                  RUBOUT         Rub out character to left of cursor
+                  TAB            Move cursor to next tab position
+
+
+  
+
+                                 Move cursor left one place
+                                 Move cursor right one place
+                                 Move cursor to start of current line, or
+                                 to start of previous line
+                                 Move cursor to end of current line,
+                                 or end of next line.  If already at bottom
+                                 screen, then read in a new line of source
+
+
+ 
+               Example:        SCREED PROG
+
+
+                               SCREED PROG TO NEWPROG
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                               SEND
+
+
+ 
+               Form:           SEND  "USER/A,FROM,TERM/K"
+
+
+ 
+               Purpose:        To send a message to the specified user's directory.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  The message is inserted at the beginning of the file
+               "message-text" in the specified directory.  "message-work" in that
+               directory is used as workspace.
+
+                  If FROM is specified then the message is read from that file,
+               otherwise from the command input stream.
+
+                  The message is read up to a line consisting exactly of the
+               terminator specified by TERM.  Default TERM is "/*" if FROM is
+               absent, or unset if FROM is present.
+
+
+ 
+               Example:        MESSAGE ADRIAN FROM MESS
+
+
+                               MESSAGE ABCD
+                               line 1
+                               line 2
+                                 .
+                                 .
+                               /*
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                                SET
+
+
+ 
+               Form:           SET  "DIR,COMDIR/K"
+
+
+ 
+               Purpose:        To set a working directory and default command
+                               directory.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  SET alone causes the root directory to become the current working
+               directory.
+
+                  DIR specifies a new working directory (i.e. one in which
+               unqualified filenames are looked up).
+
+                  COMDIR specifies a default command directory (i.e. one in which
+               commands should be sought when they are not found in the working
+               directory).  The initial command directory is SYS:C.
+
+
+ 
+               Example:        SET
+
+
+                               SET :BRIAN
+
+
+                               SET DF1:T COMDIR DF1:C
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                               SKIP
+
+
+ 
+               Form:           SKIP  "LABEL"
+
+
+ 
+               Purpose:        To perform a jump in a command sequence.
+
+
+ 
+               Author:         CGG
+
+
+ 
+               Specification:
+
+
+                  SKIP is used in conjunction with LAB (q.v.).
+
+                  It can be used either with or without a label; without one, it
+               finds the first unnamed LAB command.  LAB must be the first item on
+               a line of the file.
+
+                  SKIP will only jump forwards in the command sequence.
+
+                  Labels are not local to command files.
+
+
+ 
+               Example:        SKIP
+
+
+                               SKIP ERRORLAB
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                              SPOOL
+
+
+ 
+               Form:           SPOOL  "TO"
+
+
+ 
+               Purpose:        To divert output from commands to a file.
+
+
+ 
+               Author:         RDE
+
+
+ 
+               Specification:
+
+
+                  SPOOL <file> changes the standard command output stream to be to
+               the given file.
+
+                  SPOOL with no argument closes the file and redirects command
+               output to the console.
+
+
+ 
+               Example:        SPOOL :T.0
+
+
+                               SPOOL
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                             SQUASH
+
+
+ 
+               Form:           SQUASH  "FROM/A,TO/A"
+
+
+ 
+               Purpose:        To produce compressed copies of files for archive
+                               purposes, thus saving disc space.
+
+
+ 
+               Author:         MFR
+
+
+ 
+               Specification:
+
+
+                  The file must be a text file.  Repeated characters in the input
+               file are replaced by a pair of bytes:  a flag/count character and
+               the character to be repeated.
+
+                  Typical reductions in size are 10% - 50%
+
+
+ 
+               Example:        SQUASH A TO SQUASHED-A
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                              STACK
+
+
+ 
+               Form:           STACK  "SIZE"
+
+
+ 
+               Purpose:        To print or set the stack size for commands.
+
+
+ 
+               Author:         RDE
+
+
+ 
+               Specification:
+
+
+                  STACK alone writes out the currently set stack size.
+
+                  STACK n sets the stack size for running further commands to n
+               words.
+
+
+ 
+               Example:        STACK
+
+
+                               STACK 1000
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                             STATUS
+
+
+ 
+               Form:           STATUS  "TASK,FULL/S,SEGS/S,TCB/S,CLI=ALL/S"
+
+
+ 
+               Purpose:        To print information about the tasks currently in
+                               existence.
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Specification:
+
+
+                  STATUS alone lists the numbers of the tasks, indicating whether
+               each is waiting, suspended, running, interrupted, held and/or
+               broken, and whether its work queue is empty.
+
+                  TASK specifies a task number: only information about that task is
+               produced.  Otherwise information is printed about all tasks.
+
+                  FULL = SEGS + TCB + CLI
+
+                  SEGS prints the names of the BCPL sections on each task's segment
+               list.
+
+                  TCB prints information about the priority, stacksize, and global
+               vector size of each task.
+
+                  CLI identifies Command Language Interpreter tasks, and prints the
+               section name(s) of the currently loaded command (if any).
+
+
+ 
+               Example:        STATUS
+
+
+                               STATUS 4 FULL
+
+
+                               STATUS CLI
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                            STRETCH
+
+
+ 
+               Form:           STRETCH  "FROM/A,TO/A"
+
+
+ 
+               Purpose:        To restore a compressed file made by SQUASH (q.v.).
+
+
+ 
+               Author:         MFR
+
+
+ 
+               Example:        STRETCH SQUASHED-A TO A
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                           SYSIMAGE
+
+
+ 
+               Form:           SYSIMAGE  "FROM/A,UNIT/K,PRIMARY/S,SECONDARY/S"
+
+
+ 
+               Purpose:        To write a core image bootstrap to the bootstrap
+                               area of a disc.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Specification:
+
+
+                  The FROM file should be an absolute object module of a TRIPOS
+               system produced by SYSLINK (q.v.).
+
+                  UNIT specifies the disc drive number.
+
+                  PRIMARY and SECONDARY control which of the two bootstrap areas is
+               used.
+
+
+ 
+               Example:        SYSIMAGE TRIPOS UNIT 0 PRIMARY
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                            SYSLINK
+
+
+ 
+               Form:           SYSLINK  "FROM/A,TO/A,MAP/K,OPT/K"
+
+
+ 
+               Purpose:        To create an absolute object module of a TRIPOS
+                               system suitable for SYSLOADing or SYSIMAGEing.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  See separate document describing SYSLINK.
+
+
+ 
+               Example:        SYSLINK SYSTEM TO TRIPOS MAP *
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                            SYSLOAD
+
+
+ 
+               Form:           SYSLOAD  "FROM/A"
+
+
+ 
+               Purpose:        To load a TRIPOS system without rewriting the
+                               bootstrap area of the disc.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Specification:
+
+
+                  The FROM file should be one produced by SYSLINK (q.v.).
+
+                  The current system is overwritten in store by the new one, which
+               is then entered.
+
+
+ 
+               Example:        SYSLOAD TRIPOS
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                                  T
+
+
+ 
+               Form:           T  "FILE/A"
+
+
+ 
+               Purpose:        To switch the command input stream to the given
+                               file.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  T behaves rather like the C command, but does not need to write
+               to disc, and does not do parameter substitution.  Therefore it can
+               be used to execute command files during file handler restart.
+
+
+ 
+               Example:        T ABC
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                               TALK
+
+
+ 
+               Form:           TALK  "TMES,"
+
+
+ 
+               Purpose:        To send a message to another console.
+
+
+ 
+               Author:         RDE
+
+
+ 
+               Specification:
+
+
+                  The command will print a message of the form:
+
+                  From Tn: <message>
+
+               on a console (n is the taskid of the issuing CLI).
+
+                  There are two ways of using the command:
+
+               i)  With two parameters:
+
+                  e.g. TALK 3 "Twas brillig and the slithy toves"
+
+                  In this case, the first parameter must be the task number of a
+               console handler, and identifies the console which is to receive the
+               message.
+
+               ii) With one parameter:
+
+                  e.g. TALK "And shun the frumious bandersnatch"
+
+                  In this case, the first console handler found that is not the one
+               used by the current CLI receives the message.
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                           TASKWAIT
+
+
+ 
+               Form:           TASKWAIT "TASK/A,ECHO/K"
+
+
+ 
+               Purpose:        To wait for a given task to complete.
+
+
+ 
+               Author:         MFR
+
+                                  TASK is the task identifier of a task. Taskwait
+                               wakes up every so often to see if the task has
+                               dissappeared ; when it does so any message
+                               associated with ECHO will be output, and TASKWAIT
+                               will then finish.
+
+
+ 
+               Example:        TASKWAIT 5 ECHO "RESTART COMPLETE"
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                               TIME
+
+
+ 
+               Form:           TIME  "IS"
+
+
+ 
+               Purpose:        To print or set the system time.
+
+
+ 
+               Author:         BJK
+
+
+ 
+               Specification:
+
+
+                  TIME with no argument prints the current system time.
+
+                  If an argument is given, the system time is set to the specified
+               value.  The format of the argument may be HH:MM:SS or HH:MM or HH.
+
+
+ 
+               Example:        TIME
+
+
+                               TIME 10:35
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                               TYPE
+
+
+ 
+               Form:           TYPE  "FROM/A,TO,OPT/K"
+
+
+ 
+               Purpose:        To type a text file.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  TO specifies an output file; by default, output is to the current
+               output stream.
+
+                  OPT N causes line numbers to be included in the output.
+
+                  Tabs are expanded.
+
+
+ 
+               Example:        TYPE :T.0 OPT N
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+                                                                          7.10.1980 
+
+                                                                            TYPEHEX
+
+
+ 
+               Form:           TYPEHEX  "FROM/A,TO/K"
+
+
+ 
+               Purpose:        To type a file out as hexadecimal numbers.
+
+
+ 
+               Author:         MR
+
+
+ 
+               Specification:
+
+
+                  TYPEHEX outputs four hex digits for each word of the file, laid
+               out 16 per line.
+
+
+ 
+               Example:        TYPEHEX OBJ
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                                                               WAIT
+
+
+ 
+               Form:           WAIT  ",SEC=SECS/S,MIN=MINS/S,UNTIL/K"
+
+
+ 
+               Purpose:        To introduce a delay into a sequence of commands.
+
+
+ 
+               Author:         ARA
+
+
+ 
+               Specification:
+
+
+                  The default waiting time is one second.
+
+                  The parameter should be a number, specifying the number of
+               seconds (or minutes if MINS is quoted) to wait.
+
+                  UNTIL may be used to wait until a specific time of day, given in
+               the format HH:MM.
+
+
+ 
+               Example:        WAIT
+
+
+                               WAIT 10
+
+
+                               WAIT 5 MINS
+
+
+                               WAIT UNTIL 21:30
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+                                                                          7.10.1980 
+
+                                                                                WHY
+
+
+ 
+               Form:           WHY  "TYPE <CR> TO KNOW ..."
+
+
+ 
+               Purpose:        To explain why the previous command failed.
+
+
+ 
+               Author:         PB
+
+
+ 
+               Specification:
+
+
+                  The fault message corresponding to the value returned in RESULT2
+               by the previous command will be printed.
+
+
+ 
+               Example:        WHY
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 
+
+                                   Appendix 1: Command Authors                                   ___________________________
+
+
+ 
+               ARA   Adrian Aylward
+               PB    Paul Bond
+               PBr   Piete Brooks
+               DSC   Dale Strickland-Clark
+               NGPD  Nigel Day
+               RDE   Richard Evans
+               CGG   Gray Girling
+               JJG   Jon Gibbons
+               BJK   Brian Knight
+               NMM   Nick Maclaren
+               MFR   Mike Richardson
+               MR    Martin Richards
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+                                                                          7.10.1980 

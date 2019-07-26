@@ -1,0 +1,6 @@
+** #T
+echo "Please type in your suggestion or what it is that you have been*
+unable to find HELP about.  Type your message, followed by @Q."
+send Tripos-Manager subject "HELP TROUBLE" file *
+
+

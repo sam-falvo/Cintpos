@@ -1,0 +1,113 @@
+*flag
+A flag word is associated with each task, and is held at TCB.FLAGS in the TCB.
+The least significant four bits of this word are used as attention flags
+which may be polled by the task.  These flags may be set and tested using the
+KLIB procedures SETFLAGS and TESTFLAGS, see HELP PROCEDURE SETFLAGS or
+TESTFLAGS.  They may also be set by control characters to a CLI, see HELP
+BREAK HANDLING, or by the BREAK command, see HELP BREAK COMMAND.
+
+The #X01, #X02, #X04 and #X08 bits are known as B, C, D and E break flags
+respectively.
+* ***
+* ***-
+* stars
+* prompt
+* virtual
+* vtp
+VIRTUAL TERMINAL BREAK
+     The virtual terminal handler responds "***-" to a virtual
+terminal protocol BREAK.  (<BREAK> B on the terminal concentrator).
+The expected response is a single letter, being one of:
+
+       B, C, D or E:  set the corresponding break flag in the currently
+                      selected task.  (Equivalent to CTRL/B -> E at any
+                      other time when not in single character mode).
+       N:             do nothing: ignore the break
+       X:             create, select and initialise a new CLI
+       L:             set line mode
+       S:             set single character mode
+       other:         causes a bell and a new "***-" prompt
+
+     The L and S responses provide a way into DEBUG etc. from programs which
+run in single character mode.
+
+     Use HELP TERMINAL CONCENTRATOR for the other commands that can be
+given to the terminal concentrator.
+*concentrator #H terminal
+*command
+Form:           BREAK  "TASK/A,B/S,C/S,D/S,E/S,ALL/S"
+Purpose:        To set break flags in the given task.
+Author:         BJK
+Source:         :com.bcpl.break
+Specification:
+
+   Sets the specified break flag bits in the flag word of the given task.
+The switches B, C, D and E correspond in effect to typing CTRL/B .. CTRL/E
+to the task.  See HELP BREAK HANDLING for information on the effects.
+
+   If no switch is given then a B-break is generated.  If the ALL switch
+is given then all four flags are set.
+
+Examples:       BREAK 7
+                BREAK 5 C
+                BREAK 1 ALL
+*handling
+*program
+*task
+*ctrl
+*control
+*a
+*b
+*c
+*d
+BREAK HANDLING
+
+    If you are on a terminal concentrator and you want to know about how
+the <BREAK> B command is used use HELP VTP BREAK.
+
+    There is no asynchronous break on TRIPOS  - breaks must be polled for
+by programs and commands that expect them.  This is a consequence of each
+program having to clear up its own workspace (use HELP MISC STANDARDS for
+more information).
+
+    Each task has a number of flags associated with it in a flag word.  By
+typing CTRL-B, CTRL-C, CTRL-D or CTRL-E bit #X01, #X02, #X04 or #X08 will
+be set in this word.  See HELP BREAK FLAG for more information.
+
+    There are no enforced rules for the use of these flags, but conventionally
+they are used as follows:
+
+        BREAK B   -  should interrupt (and stop) the current command
+        BREAK C   -  should halt the current command sequence at the end of
+                     the next command (and should not therefore be tested in
+                     a program - otherwise the flag will be automatically
+                     unset for the command sequence processing program)
+        BREAK D   -  used for any special purpose that a program needs.
+                     (In particular it is used to terminate the REPEAT
+                     command - use HELP REPEAT COMMAND).
+        BREAK E   -  used for any special purpose that a program needs.
+                     A less firmly established convention is to use this
+                     flag to cause the output of partial results or to display
+                     the current state the program.
+
+    If you are using a directly attached console CTRL-A will cause a console
+interrupt and stand alone debug will be entered - with all tasks held.
+
+    The BREAK command can be used to set the break flags in different
+tasks - use HELP BREAK COMMAND for more information.
+
+    See HELP CONTROL CHARS for details of how to send Control B etc. to the
+terminal handler when your terminal is not directly connected to the computer
+(e.g. via a Terminal Concentrator or the UDN).
+** #I break
+BREAKS
+
+Type one of the following:
+      VTP          -  the use of a terminal concentrator <BREAK> B command
+      COMMAND      -  the BREAK command
+      HANDLING     -  how to use TRIPOS BREAKs (CTRL-B, C, D, & E)
+      CONCENTRATOR -  the use of the terminal concentrator (which is entered
+                      using the <BREAK> key
+       <CR>         -  to exit HELP
+
+

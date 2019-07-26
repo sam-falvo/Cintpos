@@ -1,0 +1,46 @@
+*dir #H directory
+*directories #H directory
+*directory #H directory
+*library #H library
+*users #H #HCH +
++current #T
++logged  #T
++working #T
+who
+quit
++
+*current #H #HCH %
+*is      #H #HCH %
+%*       #C sys:l.help-user ..
+Ignored line
+%+
+
+%*
+
+Unknown current user
+%
+*command #H user-command
+*first #H novice
+*novice #H novice
+*+ #I user
+All information about Tripos users is held on the ring map service Mercator.
+Use the MAPNAME command to find interrogate entries in the map service
+database.
+
+For information about users type one of the following:
+    a USER'S NAME or PUID     -  information about the user
+    COMMAND                   -  the USER command
+    CURRENT                   -  to find the current user
+    NOVICE                    -  if you are a new user
+
+To exit HELP type [RETURN]
+
+** #C sys:l.help-user ..
+Ignored line!!
+*+
+
+**
+
+User(s) not found
+
+

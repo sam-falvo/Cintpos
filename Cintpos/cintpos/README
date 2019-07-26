@@ -1,0 +1,17 @@
+
+Cintpos is a simple portable operating system implemented
+in BCPL using the Cintcode abstract machine.
+
+It is freely available for educational and private use.
+
+For more information about Cintpos and how to install it
+read the file cintpos/doc/README.
+
+
+Martin Richards
+mr@cl.cam.ac.uk 
+http://www.cl.cam.ac.uk/users/mr
+15 Oct 2002
+
+
+

@@ -1,0 +1,20 @@
+**
+FSEDIT command
+Form:           :SYS.FSFH.LSI4-OBJ.FSEDIT
+             or :SYS.FSFH.68000-OBJ.FSEDIT
+Purpose:        To give an interactive interface to fileserver commands
+Authors:        BJK
+Specification:
+   The program has the concept of a current index and a current file: the
+appropriate PUID is chosen when a fileserver operation is performed.
+
+   Commands exists for doing most fileserver operations, and there are also
+a few specifically oriented towards the TRIPOS filing system.  The program
+is somewhat self-explanatory: RDARGS is used at all levels, so
+typing '?' will produce a list of expected arguments.
+
+   This program is obviously potentially very dangerous, so use with
+great care!
+
+
+

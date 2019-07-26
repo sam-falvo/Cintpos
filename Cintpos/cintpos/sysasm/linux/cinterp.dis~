@@ -1,0 +1,4244 @@
+	.file	"cinterp.c"
+	.version	"01.01"
+gcc2_compiled.:
+.globl ticks
+.data
+	.align 4
+	.type	 ticks,@object
+	.size	 ticks,4
+ticks:
+	.long	0
+.globl watchaddr
+	.align 4
+	.type	 watchaddr,@object
+	.size	 watchaddr,4
+watchaddr:
+	.long	0
+.globl watchval
+	.align 4
+	.type	 watchval,@object
+	.size	 watchval,4
+watchval:
+	.long	0
+.text
+	.align 4
+.globl interpret
+	.type	 interpret,@function
+interpret:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%ebx
+	subl	$100, %esp
+	movl	12(%ebp), %eax
+	movl	%eax, -40(%ebp)
+	movl	8(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	movl	8(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	4(%ecx,%eax,4), %eax
+	movl	%eax, -48(%ebp)
+	movl	8(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	8(%ebx,%eax,4), %eax
+	movl	%eax, -8(%ebp)
+	movl	8(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	12(%edx,%eax,4), %eax
+	sarl	$2, %eax
+	movl	%eax, -52(%ebp)
+	movl	8(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	16(%ecx,%eax,4), %eax
+	sarl	$2, %eax
+	movl	%eax, -56(%ebp)
+	movl	8(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	20(%ebx,%eax,4), %eax
+	movl	%eax, -60(%ebp)
+	movl	8(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	24(%edx,%eax,4), %eax
+	movl	%eax, -64(%ebp)
+	movl	8(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	28(%ecx,%eax,4), %eax
+	movl	%eax, -68(%ebp)
+	imull	$4, -52(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	addl	%eax, %ebx
+	movl	%ebx, -72(%ebp)
+	imull	$4, -56(%ebp), %eax
+	movl	-40(%ebp), %edx
+	addl	%eax, %edx
+	movl	%edx, -76(%ebp)
+	imull	$4, -56(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	addl	%eax, %ecx
+	movl	%ecx, -80(%ebp)
+	addl	$1024, -80(%ebp)
+.L7:
+	cmpl	$0, watchaddr
+	je	.L8
+	movl	watchaddr, %eax
+	movl	(%eax), %eax
+	cmpl	watchval, %eax
+	je	.L8
+	movl	watchaddr, %eax
+	movl	(%eax), %eax
+	movl	%eax, watchval
+	movl	watchaddr, %eax
+	subl	-40(%ebp), %eax
+	movl	%eax, %eax
+	sarl	$2, %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 4(%ebx)
+	movl	watchval, %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 8(%edx)
+	movl	$11, -12(%ebp)
+	jmp	.L9
+	.p2align 2
+.L8:
+	cmpl	$0, irq
+	je	.L10
+	cmpl	$0, -60(%ebp)
+	jne	.L10
+	movl	$0, -24(%ebp)
+	subl	$12, %esp
+	pushl	$irq_mutex
+	call	pthread_mutex_lock
+	addl	$16, %esp
+	movl	$0, irq
+	movl	irqfifop, %eax
+	cmpl	irqfifoq, %eax
+	je	.L11
+	movl	irqfifop, %eax
+	movl	%eax, %eax
+	leal	0(,%eax,4), %edx
+	movl	$irqfifov, %eax
+	movl	(%edx,%eax), %eax
+	movl	%eax, -28(%ebp)
+	incl	irqfifop
+	andl	$1023, irqfifop
+	movl	-44(%ebp), %ebx
+	movl	-40(%ebp), %ecx
+	movl	%ebx, 84(%ecx)
+	movl	-48(%ebp), %edx
+	movl	-40(%ebp), %eax
+	movl	%edx, 88(%eax)
+	movl	-8(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 92(%ecx)
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 96(%ebx)
+	movl	-56(%ebp), %eax
+	sall	$2, %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 100(%edx)
+	movl	-60(%ebp), %ebx
+	movl	-40(%ebp), %ecx
+	movl	%ebx, 104(%ecx)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 108(%edx)
+	movl	-68(%ebp), %ebx
+	movl	-40(%ebp), %ecx
+	movl	%ebx, 112(%ecx)
+	movl	-28(%ebp), %eax
+	movl	%eax, -44(%ebp)
+	movl	$0, -48(%ebp)
+	movl	$0, -8(%ebp)
+	movl	-40(%ebp), %edx
+	movl	136(%edx), %eax
+	sarl	$2, %eax
+	movl	%eax, -52(%ebp)
+	movl	-40(%ebp), %ecx
+	movl	140(%ecx), %eax
+	sarl	$2, %eax
+	movl	%eax, -56(%ebp)
+	movl	$3, -60(%ebp)
+	movl	-40(%ebp), %eax
+	movl	148(%eax), %eax
+	movl	%eax, -64(%ebp)
+	imull	$4, -52(%ebp), %eax
+	movl	-40(%ebp), %edx
+	addl	%eax, %edx
+	movl	%edx, -72(%ebp)
+	imull	$4, -56(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	addl	%eax, %ecx
+	movl	%ecx, -76(%ebp)
+	imull	$4, -56(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	addl	%eax, %ebx
+	movl	%ebx, -80(%ebp)
+	addl	$1024, -80(%ebp)
+	movl	-44(%ebp), %edx
+	movl	-72(%ebp), %eax
+	movl	%edx, 12(%eax)
+	subl	$12, %esp
+	pushl	$irq_mutex
+	call	pthread_mutex_unlock
+	addl	$16, %esp
+	jmp	.L7
+	.p2align 2
+.L11:
+	subl	$12, %esp
+	pushl	$irq_mutex
+	call	pthread_mutex_unlock
+	addl	$16, %esp
+.L10:
+	cmpl	$0, -68(%ebp)
+	js	.L12
+	decl	-68(%ebp)
+	cmpl	$-1, -68(%ebp)
+	jne	.L12
+	movl	$3, -12(%ebp)
+
+	jmp	.L9
+	.p2align 2
+.L12:
+	cmpl	$0, tracing
+	je	.L14
+	pushl	-48(%ebp)
+	pushl	-44(%ebp)
+	pushl	-52(%ebp)
+	pushl	-64(%ebp)
+	call	trace
+	addl	$16, %esp
+.L14:
+	movl	-64(%ebp), %ecx
+	cmpl	tallylim, %ecx
+	jge	.L15
+	cmpl	$0, -64(%ebp)
+	jle	.L15
+	imull	$4, -64(%ebp), %edx
+	movl	tallyv, %eax
+	incl	(%eax,%edx)
+.L15:
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movzbl	(%eax,%ebx), %eax
+	movl	%eax, -88(%ebp)
+	incl	-64(%ebp)
+	cmpl	$255, -88(%ebp)
+	ja	.L19
+	movl	-88(%ebp), %edx
+	movl	.L389(,%edx,4), %eax
+	jmp	*%eax
+	.p2align 2
+		.section	.rodata
+	.align 16
+	.align 4
+.L389:
+	.long .L19
+	.long .L19
+	.long .L38
+	.long .L209
+	.long .L208
+	.long .L207
+	.long .L206
+	.long .L205
+	.long .L204
+	.long .L203
+	.long .L202
+	.long .L200
+	.long .L165
+	.long .L164
+	.long .L162
+	.long .L158
+	.long .L157
+	.long .L156
+	.long .L155
+	.long .L154
+	.long .L153
+	.long .L152
+	.long .L151
+	.long .L150
+	.long .L149
+	.long .L148
+	.long .L147
+	.long .L28
+	.long .L217
+	.long .L219
+	.long .L222
+	.long .L224
+	.long .L211
+	.long .L213
+	.long .L215
+	.long .L198
+	.long .L197
+	.long .L196
+	.long .L195
+	.long .L194
+	.long .L193
+	.long .L192
+	.long .L191
+	.long .L189
+	.long .L363
+	.long .L353
+	.long .L355
+	.long .L357
+	.long .L134
+	.long .L137
+	.long .L140
+	.long .L283
+	.long .L20
+	.long .L21
+	.long .L23
+	.long .L36
+	.long .L144
+	.long .L143
+	.long .L142
+	.long .L141
+	.long .L226
+	.long .L228
+	.long .L230
+	.long .L232
+	.long .L112
+	.long .L113
+	.long .L114
+	.long .L187
+	.long .L186
+	.long .L185
+	.long .L184
+	.long .L183
+	.long .L182
+	.long .L181
+	.long .L180
+	.long .L178
+	.long .L361
+	.long .L347
+	.long .L349
+	.long .L351
+	.long .L133
+	.long .L136
+	.long .L139
+	.long .L282
+	.long .L25
+	.long .L26
+	.long .L29
+	.long .L31
+	.long .L34
+	.long .L35
+	.long .L146
+	.long .L145
+	.long .L234
+	.long .L236
+	.long .L238
+	.long .L240
+	.long .L159
+	.long .L160
+	.long .L161
+	.long .L175
+	.long .L174
+	.long .L173
+	.long .L172
+	.long .L171
+	.long .L170
+	.long .L169
+	.long .L168
+	.long .L166
+	.long .L359
+	.long .L341
+	.long .L343
+	.long .L345
+	.long .L132
+	.long .L135
+	.long .L138
+	.long .L281
+	.long .L51
+	.long .L49
+	.long .L47
+	.long .L45
+	.long .L43
+	.long .L41
+	.long .L39
+	.long .L64
+	.long .L242
+	.long .L244
+	.long .L246
+	.long .L248
+	.long .L109
+	.long .L110
+	.long .L111
+	.long .L108
+	.long .L107
+	.long .L106
+	.long .L105
+	.long .L104
+	.long .L103
+	.long .L102
+	.long .L101
+	.long .L100
+	.long .L99
+	.long .L98
+	.long .L97
+	.long .L96
+	.long .L95
+	.long .L83
+	.long .L75
+	.long .L81
+	.long .L59
+	.long .L57
+	.long .L55
+	.long .L53
+	.long .L369
+	.long .L367
+	.long .L365
+	.long .L37
+	.long .L250
+	.long .L252
+	.long .L254
+	.long .L256
+	.long .L129
+	.long .L130
+	.long .L131
+	.long .L128
+	.long .L127
+	.long .L126
+	.long .L125
+	.long .L124
+	.long .L123
+	.long .L122
+	.long .L121
+	.long .L120
+	.long .L119
+	.long .L118
+	.long .L117
+	.long .L116
+	.long .L115
+	.long .L298
+	.long .L297
+	.long .L296
+	.long .L295
+	.long .L74
+	.long .L65
+	.long .L67
+	.long .L71
+	.long .L73
+	.long .L266
+	.long .L267
+	.long .L258
+	.long .L260
+	.long .L262
+	.long .L264
+	.long .L278
+	.long .L279
+	.long .L280
+	.long .L277
+	.long .L276
+	.long .L275
+	.long .L274
+	.long .L273
+	.long .L272
+	.long .L271
+	.long .L270
+	.long .L269
+	.long .L268
+	.long .L69
+	.long .L163
+	.long .L72
+	.long .L7
+	.long .L288
+	.long .L287
+	.long .L286
+	.long .L285
+	.long .L284
+	.long .L387
+	.long .L385
+	.long .L383
+	.long .L381
+	.long .L379
+	.long .L373
+	.long .L371
+	.long .L377
+	.long .L375
+	.long .L19
+	.long .L290
+	.long .L291
+	.long .L292
+	.long .L317
+	.long .L315
+	.long .L313
+	.long .L311
+	.long .L309
+	.long .L307
+	.long .L305
+	.long .L303
+	.long .L301
+	.long .L299
+	.long .L293
+	.long .L294
+	.long .L63
+	.long .L61
+	.long .L27
+	.long .L33
+	.long .L325
+	.long .L323
+	.long .L321
+	.long .L319
+	.long .L331
+	.long .L329
+	.long .L327
+	.long .L335
+	.long .L333
+	.long .L339
+	.long .L337
+	.long .L19
+	.long .L19
+.text
+	.p2align 2
+.L19:
+	movl	$1, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L20:
+	movl	-44(%ebp), %ecx
+	imull	-48(%ebp), %ecx
+	movl	%ecx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L21:
+	cmpl	$0, -44(%ebp)
+	jne	.L22
+	movl	$5, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L22:
+	movl	-48(%ebp), %eax
+	cltd
+	idivl	-44(%ebp)
+	movl	%eax, -92(%ebp)
+	movl	-92(%ebp), %edx
+	movl	%edx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L23:
+	cmpl	$0, -44(%ebp)
+	jne	.L24
+	movl	$5, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L24:
+	movl	-48(%ebp), %eax
+	cltd
+	idivl	-44(%ebp)
+	movl	%edx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L25:
+	movl	-48(%ebp), %edx
+	addl	%edx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L26:
+	movl	-48(%ebp), %ecx
+	subl	-44(%ebp), %ecx
+	movl	%ecx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L27:
+	negl	-44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L28:
+	movl	$0, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L29:
+	cmpl	$31, -44(%ebp)
+	jle	.L30
+	movl	$0, -48(%ebp)
+.L30:
+	movl	-48(%ebp), %ebx
+	movb	-44(%ebp), %cl
+	sall	%cl, %ebx
+	movl	%ebx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L31:
+	cmpl	$31, -44(%ebp)
+	jle	.L32
+	movl	$0, -48(%ebp)
+.L32:
+	movl	-48(%ebp), %ebx
+	movb	-44(%ebp), %cl
+	shrl	%cl, %ebx
+	movl	%ebx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L33:
+	notl	-44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L34:
+	movl	-48(%ebp), %eax
+	andl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L35:
+	movl	-48(%ebp), %edx
+	orl	%edx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L36:
+	movl	-48(%ebp), %ecx
+	xorl	%ecx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L37:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L38:
+	movl	$2, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L39:
+	movl	-44(%ebp), %eax
+	addl	$6, %eax
+	cmpl	memupb, %eax
+	jbe	.L40
+	movl	-44(%ebp), %eax
+	addl	$6, %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L40:
+	movl	-44(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	24(%edx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L41:
+	movl	-44(%ebp), %eax
+	addl	$5, %eax
+	cmpl	memupb, %eax
+	jbe	.L42
+	movl	-44(%ebp), %eax
+	addl	$5, %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L42:
+	movl	-44(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	20(%edx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L43:
+	movl	-44(%ebp), %eax
+	addl	$4, %eax
+	cmpl	memupb, %eax
+	jbe	.L44
+	movl	-44(%ebp), %eax
+	addl	$4, %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L44:
+	movl	-44(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	16(%edx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L45:
+	movl	-44(%ebp), %eax
+	addl	$3, %eax
+	cmpl	memupb, %eax
+	jbe	.L46
+	movl	-44(%ebp), %eax
+	addl	$3, %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L46:
+	movl	-44(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	12(%edx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L47:
+	movl	-44(%ebp), %eax
+	addl	$2, %eax
+	cmpl	memupb, %eax
+	jbe	.L48
+	movl	-44(%ebp), %eax
+	addl	$2, %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L48:
+	movl	-44(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	8(%edx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L49:
+	movl	-44(%ebp), %eax
+	incl	%eax
+	cmpl	memupb, %eax
+	jbe	.L50
+	movl	-44(%ebp), %eax
+	incl	%eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L50:
+	movl	-44(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	4(%edx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L51:
+	movl	-44(%ebp), %ecx
+	cmpl	memupb, %ecx
+	jbe	.L52
+	movl	-44(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L52:
+	movl	-44(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L53:
+	movl	-44(%ebp), %eax
+	addl	$3, %eax
+	cmpl	memupb, %eax
+	jbe	.L54
+	movl	-44(%ebp), %eax
+	addl	$3, %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L54:
+	movl	-48(%ebp), %edx
+	movl	-44(%ebp), %ebx
+	movl	-40(%ebp), %eax
+	movl	%edx, 12(%eax,%ebx,4)
+	jmp	.L7
+	.p2align 2
+.L55:
+	movl	-44(%ebp), %eax
+	addl	$2, %eax
+	cmpl	memupb, %eax
+	jbe	.L56
+	movl	-44(%ebp), %eax
+	addl	$2, %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L56:
+	movl	-48(%ebp), %edx
+	movl	-44(%ebp), %ebx
+	movl	-40(%ebp), %eax
+	movl	%edx, 8(%eax,%ebx,4)
+	jmp	.L7
+	.p2align 2
+.L57:
+	movl	-44(%ebp), %eax
+	incl	%eax
+	cmpl	memupb, %eax
+	jbe	.L58
+	movl	-44(%ebp), %eax
+	incl	%eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L58:
+	movl	-48(%ebp), %edx
+	movl	-44(%ebp), %ebx
+	movl	-40(%ebp), %eax
+	movl	%edx, 4(%eax,%ebx,4)
+	jmp	.L7
+	.p2align 2
+.L59:
+	movl	-44(%ebp), %ecx
+	cmpl	memupb, %ecx
+	jbe	.L60
+	movl	-44(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L60:
+	movl	-48(%ebp), %ebx
+	movl	-44(%ebp), %edx
+	movl	-40(%ebp), %ecx
+	movl	%ebx, (%ecx,%edx,4)
+	jmp	.L7
+	.p2align 2
+.L61:
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	cmpl	memupb, %eax
+	jbe	.L62
+	movl	-72(%ebp), %ecx
+	movl	16(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L62:
+	movl	-76(%ebp), %eax
+	movl	28(%eax), %edx
+	movl	-72(%ebp), %ecx
+	movl	(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, (%ebx,%edx,4)
+	movl	-72(%ebp), %eax
+	movl	4(%eax), %eax
+	movl	%eax, -64(%ebp)
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	movl	-76(%ebp), %ecx
+	movl	%eax, 28(%ecx)
+	movl	-72(%ebp), %ebx
+	movl	16(%ebx), %eax
+	movl	-40(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	sarl	$2, %eax
+	movl	%eax, -52(%ebp)
+	imull	$4, -52(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	addl	%eax, %ecx
+	movl	%ecx, -72(%ebp)
+	jmp	.L7
+	.p2align 2
+.L63:
+	subl	$4, %esp
+	movl	-72(%ebp), %ebx
+	pushl	20(%ebx)
+	movl	-72(%ebp), %eax
+	pushl	16(%eax)
+	movl	-72(%ebp), %edx
+	pushl	12(%edx)
+	call	muldiv
+	addl	$16, %esp
+	movl	%eax, -44(%ebp)
+	movl	result2, %eax
+	movl	-76(%ebp), %ecx
+	movl	%eax, 40(%ecx)
+.L64:
+	movl	-72(%ebp), %eax
+	movl	4(%eax), %eax
+	movl	%eax, -64(%ebp)
+	movl	-52(%ebp), %edx
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%edx,4), %eax
+	sarl	$2, %eax
+	movl	%eax, -52(%ebp)
+	imull	$4, -52(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	addl	%eax, %ebx
+	movl	%ebx, -72(%ebp)
+	jmp	.L7
+	.p2align 2
+.L65:
+	movl	-48(%ebp), %eax
+	sall	$2, %eax
+	addl	-44(%ebp), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	shrl	$2, %eax
+	cmpl	memupb, %eax
+	jbe	.L66
+	movl	-20(%ebp), %eax
+	sarl	$2, %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L66:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movzbl	(%eax,%ecx), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L67:
+	movl	-48(%ebp), %eax
+	sall	$2, %eax
+	addl	-44(%ebp), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	shrl	$2, %eax
+	cmpl	memupb, %eax
+	jbe	.L68
+	movl	-20(%ebp), %eax
+	sarl	$2, %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L68:
+	movl	-20(%ebp), %edx
+	movb	-8(%ebp), %al
+	movl	-40(%ebp), %ecx
+	movb	%al, (%edx,%ecx)
+	jmp	.L7
+	.p2align 2
+.L69:
+	movl	-44(%ebp), %eax
+	sall	$2, %eax
+	addl	-48(%ebp), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	shrl	$2, %eax
+	cmpl	memupb, %eax
+	jbe	.L70
+	movl	-20(%ebp), %eax
+	sarl	$2, %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L70:
+	movl	-20(%ebp), %edx
+	movb	-8(%ebp), %al
+	movl	-40(%ebp), %ecx
+	movb	%al, (%edx,%ecx)
+	jmp	.L7
+	.p2align 2
+.L71:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -8(%ebp)
+	jmp	.L7
+	.p2align 2
+.L72:
+	movl	-48(%ebp), %eax
+	movl	%eax, -8(%ebp)
+	jmp	.L7
+	.p2align 2
+.L73:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	jmp	.L7
+	.p2align 2
+.L74:
+	movl	-48(%ebp), %ecx
+	xorl	%ecx, -44(%ebp)
+	movl	-44(%ebp), %ebx
+	xorl	%ebx, -48(%ebp)
+	movl	-48(%ebp), %eax
+	xorl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L75:
+	movl	$1, -36(%ebp)
+	movl	-64(%ebp), %eax
+	incl	%eax
+	sarl	$1, %eax
+	movl	%eax, -24(%ebp)
+	movl	-24(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzwl	(%edx,%eax,2), %eax
+	movl	%eax, -28(%ebp)
+	.p2align 2
+.L76:
+	movl	-36(%ebp), %eax
+	cmpl	-28(%ebp), %eax
+	jle	.L78
+	jmp	.L77
+	.p2align 2
+.L78:
+	movl	-36(%ebp), %edx
+	leal	-36(%ebp), %eax
+	addl	%edx, (%eax)
+	movl	-36(%ebp), %eax
+	addl	-24(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movzwl	(%ecx,%eax,2), %eax
+	movl	%eax, -32(%ebp)
+	movl	-44(%ebp), %ebx
+	cmpl	-32(%ebp), %ebx
+	jne	.L79
+	movl	-36(%ebp), %edx
+	leal	-24(%ebp), %eax
+	addl	%edx, (%eax)
+	jmp	.L77
+	.p2align 2
+.L79:
+	movl	-44(%ebp), %eax
+	cmpl	-32(%ebp), %eax
+	jge	.L76
+	leal	-36(%ebp), %eax
+	incl	(%eax)
+	jmp	.L76
+	.p2align 2
+.L77:
+	leal	-24(%ebp), %eax
+	incl	(%eax)
+	movl	-24(%ebp), %eax
+	sall	$1, %eax
+	movl	%eax, -64(%ebp)
+	movl	-24(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movswl	(%edx,%eax,2),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L81:
+	movl	-64(%ebp), %eax
+	incl	%eax
+	sarl	$1, %eax
+	movl	%eax, -32(%ebp)
+	movl	-32(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movzwl	(%ecx,%eax,2), %eax
+	movl	%eax, -36(%ebp)
+	leal	-32(%ebp), %eax
+	incl	(%eax)
+	cmpl	$0, -44(%ebp)
+	js	.L82
+	movl	-44(%ebp), %ebx
+	cmpl	-36(%ebp), %ebx
+	jge	.L82
+	movl	-44(%ebp), %eax
+	addl	-32(%ebp), %eax
+	incl	%eax
+	movl	%eax, -32(%ebp)
+.L82:
+	movl	-32(%ebp), %eax
+	sall	$1, %eax
+	movl	%eax, -64(%ebp)
+	movl	-32(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movswl	(%edx,%eax,2),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L83:
+	movl	-44(%ebp), %ecx
+	incl	%ecx
+	movl	%ecx, -84(%ebp)
+	cmpl	$6, -84(%ebp)
+	ja	.L85
+	movl	-84(%ebp), %ebx
+	movl	.L94(,%ebx,4), %eax
+	jmp	*%eax
+	.p2align 2
+		.section	.rodata
+	.align 16
+	.align 4
+.L94:
+	.long .L86
+	.long .L87
+	.long .L88
+	.long .L90
+	.long .L91
+	.long .L92
+	.long .L93
+.text
+	.p2align 2
+.L85:
+	subl	$8, %esp
+	pushl	-56(%ebp)
+	pushl	-52(%ebp)
+	call	dosys
+	addl	$16, %esp
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L86:
+	movl	-68(%ebp), %eax
+	movl	%eax, -44(%ebp)
+	movl	-72(%ebp), %eax
+	movl	16(%eax), %eax
+	movl	%eax, -68(%ebp)
+	movl	$-1, -12(%ebp)
+	jmp	.L9
+	.p2align 2
+.L87:
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	movl	%eax, -12(%ebp)
+	jmp	.L9
+	.p2align 2
+.L88:
+	movl	-72(%ebp), %ecx
+	movl	16(%ecx), %eax
+	movl	%eax, -36(%ebp)
+	movl	-36(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	movl	-36(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	4(%edx,%eax,4), %eax
+	movl	%eax, -48(%ebp)
+	movl	-36(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	8(%ecx,%eax,4), %eax
+	movl	%eax, -8(%ebp)
+	movl	-36(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	12(%ebx,%eax,4), %eax
+	sarl	$2, %eax
+	movl	%eax, -52(%ebp)
+	movl	-36(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	16(%edx,%eax,4), %eax
+	sarl	$2, %eax
+	movl	%eax, -56(%ebp)
+	movl	-36(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	20(%ecx,%eax,4), %eax
+	movl	%eax, -60(%ebp)
+	movl	-36(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	24(%ebx,%eax,4), %eax
+	movl	%eax, -64(%ebp)
+	imull	$4, -52(%ebp), %eax
+	movl	-40(%ebp), %edx
+	addl	%eax, %edx
+	movl	%edx, -72(%ebp)
+	imull	$4, -56(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	addl	%eax, %ecx
+	movl	%ecx, -76(%ebp)
+	imull	$4, -56(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	addl	%eax, %ebx
+	movl	%ebx, -80(%ebp)
+	addl	$1024, -80(%ebp)
+	movl	irqfifop, %eax
+	cmpl	irqfifoq, %eax
+	je	.L7
+	movl	$1, irq
+	jmp	.L7
+	.p2align 2
+.L90:
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	movl	%eax, -36(%ebp)
+	movl	-36(%ebp), %eax
+	movl	-44(%ebp), %ebx
+	movl	-40(%ebp), %ecx
+	movl	%ebx, (%ecx,%eax,4)
+	movl	-36(%ebp), %eax
+	movl	-48(%ebp), %ecx
+	movl	-40(%ebp), %edx
+	movl	%ecx, 4(%edx,%eax,4)
+	movl	-36(%ebp), %edx
+	movl	-8(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 8(%ebx,%edx,4)
+	movl	-36(%ebp), %edx
+	movl	-72(%ebp), %ecx
+	movl	(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx,%edx,4)
+	movl	-36(%ebp), %edx
+	movl	-56(%ebp), %eax
+	sall	$2, %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 16(%ecx,%edx,4)
+	movl	-36(%ebp), %eax
+	movl	-60(%ebp), %edx
+	movl	-40(%ebp), %ebx
+	movl	%edx, 20(%ebx,%eax,4)
+	movl	-36(%ebp), %eax
+	movl	-64(%ebp), %ecx
+	movl	-40(%ebp), %ebx
+	movl	%ecx, 24(%ebx,%eax,4)
+	movl	-36(%ebp), %eax
+	movl	-68(%ebp), %ecx
+	movl	-40(%ebp), %edx
+	movl	%ecx, 28(%edx,%eax,4)
+	jmp	.L7
+	.p2align 2
+.L91:
+	movl	-72(%ebp), %eax
+	movl	16(%eax), %eax
+	movl	%eax, -60(%ebp)
+	jmp	.L7
+	.p2align 2
+.L92:
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	movl	%eax, tracing
+	jmp	.L7
+	.p2align 2
+.L93:
+	movl	-72(%ebp), %ecx
+	movl	16(%ecx), %eax
+	movl	%eax, %eax
+	sall	$2, %eax
+	addl	-40(%ebp), %eax
+	movl	%eax, watchaddr
+	movl	watchaddr, %eax
+	movl	(%eax), %eax
+	movl	%eax, watchval
+	jmp	.L7
+	.p2align 2
+.L95:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	64(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L96:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	60(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L97:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	56(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L98:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	52(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L99:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	48(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L100:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	44(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L101:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	40(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L102:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	36(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L103:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	32(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L104:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	28(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L105:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	24(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L106:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	20(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L107:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	16(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L108:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-72(%ebp), %eax
+	movl	12(%eax), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L109:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movzbl	(%eax,%ecx), %eax
+	movl	-72(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L110:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-72(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L111:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	3(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	2(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-72(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	addl	$4, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L112:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	-52(%ebp), %ecx
+	addl	%eax, %ecx
+	movl	%ecx, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L113:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-52(%ebp), %ebx
+	addl	%eax, %ebx
+	movl	%ebx, -44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L114:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	3(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	2(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-52(%ebp), %ebx
+	addl	%eax, %ebx
+	movl	%ebx, -44(%ebp)
+	addl	$4, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L115:
+	movl	-44(%ebp), %edx
+	movl	-72(%ebp), %eax
+	movl	%edx, 64(%eax)
+	jmp	.L7
+	.p2align 2
+.L116:
+	movl	-44(%ebp), %ebx
+	movl	-72(%ebp), %ecx
+	movl	%ebx, 60(%ecx)
+	jmp	.L7
+	.p2align 2
+.L117:
+	movl	-44(%ebp), %edx
+	movl	-72(%ebp), %eax
+	movl	%edx, 56(%eax)
+	jmp	.L7
+	.p2align 2
+.L118:
+	movl	-44(%ebp), %ebx
+	movl	-72(%ebp), %ecx
+	movl	%ebx, 52(%ecx)
+	jmp	.L7
+	.p2align 2
+.L119:
+	movl	-44(%ebp), %edx
+	movl	-72(%ebp), %eax
+	movl	%edx, 48(%eax)
+	jmp	.L7
+	.p2align 2
+.L120:
+	movl	-44(%ebp), %ebx
+	movl	-72(%ebp), %ecx
+	movl	%ebx, 44(%ecx)
+	jmp	.L7
+	.p2align 2
+.L121:
+	movl	-44(%ebp), %edx
+	movl	-72(%ebp), %eax
+	movl	%edx, 40(%eax)
+	jmp	.L7
+	.p2align 2
+.L122:
+	movl	-44(%ebp), %ebx
+	movl	-72(%ebp), %ecx
+	movl	%ebx, 36(%ecx)
+	jmp	.L7
+	.p2align 2
+.L123:
+	movl	-44(%ebp), %edx
+	movl	-72(%ebp), %eax
+	movl	%edx, 32(%eax)
+	jmp	.L7
+	.p2align 2
+.L124:
+	movl	-44(%ebp), %ebx
+	movl	-72(%ebp), %ecx
+	movl	%ebx, 28(%ecx)
+	jmp	.L7
+	.p2align 2
+.L125:
+	movl	-44(%ebp), %edx
+	movl	-72(%ebp), %eax
+	movl	%edx, 24(%eax)
+	jmp	.L7
+	.p2align 2
+.L126:
+	movl	-44(%ebp), %ebx
+	movl	-72(%ebp), %ecx
+	movl	%ebx, 20(%ecx)
+	jmp	.L7
+	.p2align 2
+.L127:
+	movl	-44(%ebp), %edx
+	movl	-72(%ebp), %eax
+	movl	%edx, 16(%eax)
+	jmp	.L7
+	.p2align 2
+.L128:
+	movl	-44(%ebp), %ebx
+	movl	-72(%ebp), %ecx
+	movl	%ebx, 12(%ecx)
+	jmp	.L7
+	.p2align 2
+.L129:
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	-44(%ebp), %ebx
+	movl	-72(%ebp), %ecx
+	movl	%ebx, (%ecx,%eax,4)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L130:
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-44(%ebp), %edx
+	movl	-72(%ebp), %ebx
+	movl	%edx, (%ebx,%eax,4)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L131:
+	movl	-40(%ebp), %ecx
+	movl	-64(%ebp), %ebx
+	movzbl	3(%ebx,%ecx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ecx
+	movl	-64(%ebp), %ebx
+	movzbl	2(%ebx,%ecx), %eax
+	orl	%edx, %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ecx
+	movl	-64(%ebp), %ebx
+	movzbl	1(%ebx,%ecx), %eax
+	orl	%edx, %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ecx
+	movl	-64(%ebp), %ebx
+	movzbl	(%ebx,%ecx), %eax
+	orl	%edx, %eax
+	movl	-44(%ebp), %ecx
+	movl	-72(%ebp), %edx
+	movl	%ecx, (%edx,%eax,4)
+	addl	$4, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L132:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-76(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L133:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	-80(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L134:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	-76(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L135:
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %edx
+	movzbl	1(%edx,%ebx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ecx
+	movl	-64(%ebp), %ebx
+	movzbl	(%ebx,%ecx), %eax
+	orl	%edx, %eax
+	movl	-44(%ebp), %ecx
+	movl	-76(%ebp), %edx
+	movl	%ecx, (%edx,%eax,4)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L136:
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movzbl	(%eax,%ebx), %eax
+	movl	-44(%ebp), %ecx
+	movl	-80(%ebp), %edx
+	movl	%ecx, (%edx,%eax,4)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L137:
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movzbl	(%eax,%ebx), %eax
+	movl	-44(%ebp), %ecx
+	movl	-76(%ebp), %edx
+	movl	%ecx, (%edx,%eax,4)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L138:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-56(%ebp), %ebx
+	addl	%eax, %ebx
+	movl	%ebx, -44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L139:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	-56(%ebp), %ecx
+	addl	%eax, %ecx
+	movl	%ecx, -44(%ebp)
+	addl	$256, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L140:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	-56(%ebp), %ecx
+	addl	%eax, %ecx
+	movl	%ecx, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L141:
+	movl	-64(%ebp), %edx
+	sarl	$1, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	leal	(%eax,%edx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	leal	(%eax,%eax), %edx
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movswl	(%ebx,%eax,2),%eax
+	leal	(%eax,%edx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	-20(%ebp), %eax
+	sarl	$2, %eax
+	movl	-40(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L142:
+	movl	-44(%ebp), %ecx
+	movl	%ecx, -48(%ebp)
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %edx
+	movsbl	(%edx,%ebx),%eax
+	addl	-64(%ebp), %eax
+	sarl	$2, %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L143:
+	movl	-64(%ebp), %edx
+	sarl	$1, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	leal	(%eax,%edx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	leal	(%eax,%eax), %edx
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movswl	(%ebx,%eax,2),%eax
+	leal	(%eax,%edx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	sarl	$2, %eax
+	movl	-44(%ebp), %ecx
+	movl	-40(%ebp), %edx
+	movl	%ecx, (%edx,%eax,4)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L144:
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %edx
+	movsbl	(%edx,%ebx),%eax
+	addl	-64(%ebp), %eax
+	sarl	$2, %eax
+	movl	-44(%ebp), %ebx
+	movl	-40(%ebp), %ecx
+	movl	%ebx, (%ecx,%eax,4)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L145:
+	movl	-64(%ebp), %edx
+	sarl	$1, %edx
+	movl	-40(%ebp), %ecx
+	movl	-64(%ebp), %ebx
+	movzbl	(%ebx,%ecx), %eax
+	leal	(%eax,%edx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	leal	(%eax,%eax), %edx
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movswl	(%ecx,%eax,2),%eax
+	leal	(%eax,%edx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-20(%ebp), %eax
+	sarl	$2, %eax
+	movl	%eax, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L146:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	movl	-64(%ebp), %ebx
+	addl	%eax, %ebx
+	movl	%ebx, -44(%ebp)
+	sarl	$2, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L147:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	$10, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L148:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	$9, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L149:
+	movl	-44(%ebp), %ecx
+	movl	%ecx, -48(%ebp)
+	movl	$8, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L150:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	$7, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L151:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	$6, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L152:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	$5, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L153:
+	movl	-44(%ebp), %ecx
+	movl	%ecx, -48(%ebp)
+	movl	$4, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L154:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	$3, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L155:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	$2, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L156:
+	movl	-44(%ebp), %edx
+	movl	%edx, -48(%ebp)
+	movl	$1, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L157:
+	movl	-44(%ebp), %ecx
+	movl	%ecx, -48(%ebp)
+	movl	$0, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L158:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	$-1, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L159:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	%eax, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L160:
+	movl	-44(%ebp), %ecx
+	movl	%ecx, -48(%ebp)
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %eax
+	movzbl	1(%eax,%ebx), %ebx
+	movl	%ebx, -44(%ebp)
+	sall	$8, -44(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%edx), %eax
+	orl	%eax, -44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L161:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-40(%ebp), %eax
+	movl	-64(%ebp), %edx
+	movzbl	3(%edx,%eax), %eax
+	movl	%eax, -44(%ebp)
+	sall	$8, -44(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	2(%ecx,%edx), %eax
+	orl	%eax, -44(%ebp)
+	sall	$8, -44(%ebp)
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %edx
+	movzbl	1(%edx,%ebx), %eax
+	orl	%eax, -44(%ebp)
+	sall	$8, -44(%ebp)
+	movl	-40(%ebp), %ecx
+	movl	-64(%ebp), %ebx
+	movzbl	(%ebx,%ecx), %eax
+	orl	%eax, -44(%ebp)
+	addl	$4, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L162:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	%eax, -44(%ebp)
+	negl	-44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L163:
+	movl	-44(%ebp), %ecx
+	movl	%ecx, -48(%ebp)
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %eax
+	movzbl	1(%eax,%ebx), %ebx
+	movl	%ebx, -44(%ebp)
+	sall	$8, -44(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%edx), %eax
+	orl	%eax, -44(%ebp)
+	negl	-44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L164:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-64(%ebp), %eax
+	sarl	$1, %eax
+	movl	%eax, -44(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%edx), %eax
+	addl	%eax, -44(%ebp)
+	movl	-44(%ebp), %edx
+	sall	$1, %edx
+	movl	-44(%ebp), %ebx
+	movl	-40(%ebp), %ecx
+	movswl	(%ecx,%ebx,2),%eax
+	addl	%eax, %edx
+	movl	%edx, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L165:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	movl	-64(%ebp), %ebx
+	addl	%eax, %ebx
+	movl	%ebx, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L166:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 44(%edx)
+	addl	$11, -52(%ebp)
+	jmp	.L167
+	.p2align 2
+.L168:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 40(%ecx)
+	addl	$10, -52(%ebp)
+	jmp	.L167
+	.p2align 2
+.L169:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 36(%ebx)
+	addl	$9, -52(%ebp)
+	jmp	.L167
+	.p2align 2
+.L170:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 32(%edx)
+	addl	$8, -52(%ebp)
+	jmp	.L167
+	.p2align 2
+.L171:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 28(%ecx)
+	addl	$7, -52(%ebp)
+	jmp	.L167
+	.p2align 2
+.L172:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 24(%ebx)
+	addl	$6, -52(%ebp)
+	jmp	.L167
+	.p2align 2
+.L173:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 20(%edx)
+	addl	$5, -52(%ebp)
+	jmp	.L167
+	.p2align 2
+.L174:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 16(%ecx)
+	addl	$4, -52(%ebp)
+	jmp	.L167
+	.p2align 2
+.L175:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	addl	$3, -52(%ebp)
+.L167:
+	imull	$4, -52(%ebp), %eax
+	movl	-40(%ebp), %edx
+	addl	%eax, %edx
+	movl	%edx, -72(%ebp)
+	movl	-64(%ebp), %eax
+	addl	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 4(%ecx)
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %edx
+	movzbl	1(%edx,%ebx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ecx
+	movl	-64(%ebp), %ebx
+	movzbl	(%ebx,%ecx), %eax
+	orl	%edx, %eax
+	movl	-76(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	movl	%eax, -64(%ebp)
+	movl	-64(%ebp), %ecx
+	movl	-72(%ebp), %ebx
+	movl	%ecx, 8(%ebx)
+	movl	-44(%ebp), %edx
+	movl	-72(%ebp), %eax
+	movl	%edx, 12(%eax)
+	cmpl	$0, -64(%ebp)
+	js	.L177
+	jmp	.L7
+	.p2align 2
+.L178:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 44(%ecx)
+	addl	$11, -52(%ebp)
+	jmp	.L179
+	.p2align 2
+.L180:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 40(%ebx)
+	addl	$10, -52(%ebp)
+	jmp	.L179
+	.p2align 2
+.L181:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 36(%edx)
+	addl	$9, -52(%ebp)
+	jmp	.L179
+	.p2align 2
+.L182:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 32(%ecx)
+	addl	$8, -52(%ebp)
+	jmp	.L179
+	.p2align 2
+.L183:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 28(%ebx)
+	addl	$7, -52(%ebp)
+	jmp	.L179
+	.p2align 2
+.L184:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 24(%edx)
+	addl	$6, -52(%ebp)
+	jmp	.L179
+	.p2align 2
+.L185:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 20(%ecx)
+	addl	$5, -52(%ebp)
+	jmp	.L179
+	.p2align 2
+.L186:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 16(%ebx)
+	addl	$4, -52(%ebp)
+	jmp	.L179
+	.p2align 2
+.L187:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 12(%edx)
+	addl	$3, -52(%ebp)
+.L179:
+	imull	$4, -52(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	addl	%eax, %ecx
+	movl	%ecx, -72(%ebp)
+	movl	-64(%ebp), %eax
+	incl	%eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 4(%ebx)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%edx), %eax
+	movl	-80(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	movl	%eax, -64(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 8(%edx)
+	movl	-44(%ebp), %ebx
+	movl	-72(%ebp), %ecx
+	movl	%ebx, 12(%ecx)
+	cmpl	$0, -64(%ebp)
+	js	.L177
+	jmp	.L7
+	.p2align 2
+.L189:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 44(%edx)
+	addl	$11, -52(%ebp)
+	jmp	.L190
+	.p2align 2
+.L191:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 40(%ecx)
+	addl	$10, -52(%ebp)
+	jmp	.L190
+	.p2align 2
+.L192:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 36(%ebx)
+	addl	$9, -52(%ebp)
+	jmp	.L190
+	.p2align 2
+.L193:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 32(%edx)
+	addl	$8, -52(%ebp)
+	jmp	.L190
+	.p2align 2
+.L194:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 28(%ecx)
+	addl	$7, -52(%ebp)
+	jmp	.L190
+	.p2align 2
+.L195:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 24(%ebx)
+	addl	$6, -52(%ebp)
+	jmp	.L190
+	.p2align 2
+.L196:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 20(%edx)
+	addl	$5, -52(%ebp)
+	jmp	.L190
+	.p2align 2
+.L197:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 16(%ecx)
+	addl	$4, -52(%ebp)
+	jmp	.L190
+	.p2align 2
+.L198:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	addl	$3, -52(%ebp)
+.L190:
+	imull	$4, -52(%ebp), %eax
+	movl	-40(%ebp), %edx
+	addl	%eax, %edx
+	movl	%edx, -72(%ebp)
+	movl	-64(%ebp), %eax
+	incl	%eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 4(%ecx)
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %edx
+	movzbl	(%edx,%ebx), %eax
+	movl	-76(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -64(%ebp)
+	movl	-64(%ebp), %ebx
+	movl	-72(%ebp), %eax
+	movl	%ebx, 8(%eax)
+	movl	-44(%ebp), %ecx
+	movl	-72(%ebp), %edx
+	movl	%ecx, 12(%edx)
+	cmpl	$0, -64(%ebp)
+	js	.L177
+	jmp	.L7
+	.p2align 2
+.L200:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 44(%ebx)
+	addl	$11, -52(%ebp)
+	jmp	.L201
+	.p2align 2
+.L202:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 40(%edx)
+	addl	$10, -52(%ebp)
+	jmp	.L201
+	.p2align 2
+.L203:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 36(%ecx)
+	addl	$9, -52(%ebp)
+	jmp	.L201
+	.p2align 2
+.L204:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 32(%ebx)
+	addl	$8, -52(%ebp)
+	jmp	.L201
+	.p2align 2
+.L205:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 28(%edx)
+	addl	$7, -52(%ebp)
+	jmp	.L201
+	.p2align 2
+.L206:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 24(%ecx)
+	addl	$6, -52(%ebp)
+	jmp	.L201
+	.p2align 2
+.L207:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 20(%ebx)
+	addl	$5, -52(%ebp)
+	jmp	.L201
+	.p2align 2
+.L208:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 16(%edx)
+	addl	$4, -52(%ebp)
+	jmp	.L201
+	.p2align 2
+.L209:
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	addl	$3, -52(%ebp)
+.L201:
+	imull	$4, -52(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	addl	%eax, %ebx
+	movl	%ebx, -72(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 4(%edx)
+	movl	-44(%ebp), %ecx
+	movl	%ecx, -64(%ebp)
+	movl	-64(%ebp), %ebx
+	movl	-72(%ebp), %eax
+	movl	%ebx, 8(%eax)
+	movl	-48(%ebp), %edx
+	movl	%edx, -44(%ebp)
+	movl	-48(%ebp), %ebx
+	movl	-72(%ebp), %ecx
+	movl	%ebx, 12(%ecx)
+	cmpl	$0, -64(%ebp)
+	js	.L177
+	jmp	.L7
+	.p2align 2
+.L211:
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%edx), %eax
+	movl	%eax, -16(%ebp)
+	movl	-16(%ebp), %edx
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, (%ebx,%edx,4)
+	movl	-16(%ebp), %eax
+	addl	%eax, -52(%ebp)
+	imull	$4, -52(%ebp), %eax
+	movl	-40(%ebp), %edx
+	addl	%eax, %edx
+	movl	%edx, -72(%ebp)
+	movl	-64(%ebp), %eax
+	incl	%eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 4(%ecx)
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -64(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 8(%edx)
+	movl	-48(%ebp), %ecx
+	movl	%ecx, -44(%ebp)
+	movl	-48(%ebp), %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	cmpl	$0, -64(%ebp)
+	js	.L177
+	jmp	.L7
+	.p2align 2
+.L213:
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	%eax, -16(%ebp)
+	movl	-16(%ebp), %edx
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, (%ebx,%edx,4)
+	movl	-16(%ebp), %eax
+	addl	%eax, -52(%ebp)
+	imull	$4, -52(%ebp), %eax
+	movl	-40(%ebp), %edx
+	addl	%eax, %edx
+	movl	%edx, -72(%ebp)
+	movl	-64(%ebp), %eax
+	addl	$2, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 4(%ecx)
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -64(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 8(%edx)
+	movl	-48(%ebp), %ecx
+	movl	%ecx, -44(%ebp)
+	movl	-48(%ebp), %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	cmpl	$0, -64(%ebp)
+	js	.L177
+	jmp	.L7
+	.p2align 2
+.L215:
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	3(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	2(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	%eax, -16(%ebp)
+	movl	-16(%ebp), %edx
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, (%ebx,%edx,4)
+	movl	-16(%ebp), %eax
+	addl	%eax, -52(%ebp)
+	imull	$4, -52(%ebp), %eax
+	movl	-40(%ebp), %edx
+	addl	%eax, %edx
+	movl	%edx, -72(%ebp)
+	movl	-64(%ebp), %eax
+	addl	$4, %eax
+	movl	-72(%ebp), %ecx
+	movl	%eax, 4(%ecx)
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -64(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-72(%ebp), %edx
+	movl	%eax, 8(%edx)
+	movl	-48(%ebp), %ecx
+	movl	%ecx, -44(%ebp)
+	movl	-48(%ebp), %eax
+	movl	-72(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	cmpl	$0, -64(%ebp)
+	js	.L177
+	jmp	.L7
+	.p2align 2
+.L217:
+	movl	-44(%ebp), %edx
+	cmpl	%edx, -48(%ebp)
+	jne	.L218
+	movl	-40(%ebp), %ecx
+	movl	-64(%ebp), %ebx
+	movsbl	(%ebx,%ecx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L218:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L219:
+	movl	-44(%ebp), %eax
+	cmpl	%eax, -48(%ebp)
+	jne	.L220
+	jmp	.L267
+	.p2align 2
+.L220:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L222:
+	cmpl	$0, -44(%ebp)
+	jne	.L223
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L223:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L224:
+	cmpl	$0, -44(%ebp)
+	jne	.L225
+	jmp	.L267
+	.p2align 2
+.L225:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L226:
+	movl	-44(%ebp), %ebx
+	cmpl	%ebx, -48(%ebp)
+	je	.L227
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L227:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L228:
+	movl	-44(%ebp), %ebx
+	cmpl	%ebx, -48(%ebp)
+	je	.L229
+	jmp	.L267
+	.p2align 2
+.L229:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L230:
+	cmpl	$0, -44(%ebp)
+	je	.L231
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L231:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L232:
+	cmpl	$0, -44(%ebp)
+	je	.L233
+	jmp	.L267
+	.p2align 2
+.L233:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L234:
+	movl	-44(%ebp), %ebx
+	cmpl	%ebx, -48(%ebp)
+	jge	.L235
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L235:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L236:
+	movl	-44(%ebp), %ebx
+	cmpl	%ebx, -48(%ebp)
+	jge	.L237
+	jmp	.L267
+	.p2align 2
+.L237:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L238:
+	cmpl	$0, -44(%ebp)
+	jns	.L239
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L239:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L240:
+	cmpl	$0, -44(%ebp)
+	jns	.L241
+	jmp	.L267
+	.p2align 2
+.L241:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L242:
+	movl	-44(%ebp), %ebx
+	cmpl	%ebx, -48(%ebp)
+	jle	.L243
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L243:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L244:
+	movl	-44(%ebp), %ebx
+	cmpl	%ebx, -48(%ebp)
+	jle	.L245
+	jmp	.L267
+	.p2align 2
+.L245:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L246:
+	cmpl	$0, -44(%ebp)
+	jle	.L247
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L247:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L248:
+	cmpl	$0, -44(%ebp)
+	jle	.L249
+	jmp	.L267
+	.p2align 2
+.L249:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L250:
+	movl	-44(%ebp), %ebx
+	cmpl	%ebx, -48(%ebp)
+	jg	.L251
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L251:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L252:
+	movl	-44(%ebp), %ebx
+	cmpl	%ebx, -48(%ebp)
+	jg	.L253
+	jmp	.L267
+	.p2align 2
+.L253:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L254:
+	cmpl	$0, -44(%ebp)
+	jg	.L255
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L255:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L256:
+	cmpl	$0, -44(%ebp)
+	jg	.L257
+	jmp	.L267
+	.p2align 2
+.L257:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L258:
+	movl	-44(%ebp), %ebx
+	cmpl	%ebx, -48(%ebp)
+	jl	.L259
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L259:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L260:
+	movl	-44(%ebp), %ebx
+	cmpl	%ebx, -48(%ebp)
+	jl	.L261
+	jmp	.L267
+	.p2align 2
+.L261:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L262:
+	cmpl	$0, -44(%ebp)
+	js	.L263
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movsbl	(%ecx,%edx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L263:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L264:
+	cmpl	$0, -44(%ebp)
+	js	.L265
+	jmp	.L267
+	.p2align 2
+.L265:
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L266:
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %edx
+	movsbl	(%edx,%ebx),%eax
+	addl	%eax, -64(%ebp)
+	jmp	.L7
+.L221:
+	.p2align 2
+.L267:
+	movl	-64(%ebp), %edx
+	sarl	$1, %edx
+	movl	-40(%ebp), %ecx
+	movl	-64(%ebp), %ebx
+	movzbl	(%ebx,%ecx), %eax
+	addl	%eax, %edx
+	movl	%edx, -64(%ebp)
+	movl	-64(%ebp), %edx
+	sall	$1, %edx
+	movl	-64(%ebp), %ecx
+	movl	-40(%ebp), %ebx
+	movswl	(%ebx,%ecx,2),%eax
+	addl	%eax, %edx
+	movl	%edx, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L268:
+	movl	-72(%ebp), %eax
+	movl	48(%eax), %eax
+	addl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L269:
+	movl	-72(%ebp), %edx
+	movl	44(%edx), %edx
+	addl	%edx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L270:
+	movl	-72(%ebp), %ecx
+	movl	40(%ecx), %ecx
+	addl	%ecx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L271:
+	movl	-72(%ebp), %ebx
+	movl	36(%ebx), %ebx
+	addl	%ebx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L272:
+	movl	-72(%ebp), %eax
+	movl	32(%eax), %eax
+	addl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L273:
+	movl	-72(%ebp), %edx
+	movl	28(%edx), %edx
+	addl	%edx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L274:
+	movl	-72(%ebp), %ecx
+	movl	24(%ecx), %ecx
+	addl	%ecx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L275:
+	movl	-72(%ebp), %ebx
+	movl	20(%ebx), %ebx
+	addl	%ebx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L276:
+	movl	-72(%ebp), %eax
+	movl	16(%eax), %eax
+	addl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L277:
+	movl	-72(%ebp), %edx
+	movl	12(%edx), %edx
+	addl	%edx, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L278:
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movzbl	(%eax,%ecx), %eax
+	movl	-72(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	addl	%eax, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L279:
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-72(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	addl	%eax, -44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L280:
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	3(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	2(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-72(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	addl	%eax, -44(%ebp)
+	addl	$4, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L281:
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-76(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	addl	%eax, -44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L282:
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	-80(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	addl	%eax, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L283:
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movzbl	(%eax,%ebx), %eax
+	movl	-76(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	addl	%eax, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L284:
+	addl	$5, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L285:
+	addl	$4, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L286:
+	addl	$3, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L287:
+	addl	$2, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L288:
+	incl	-44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L290:
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movzbl	(%eax,%ecx), %eax
+	addl	%eax, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L291:
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %edx
+	movzbl	1(%edx,%ebx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ecx
+	movl	-64(%ebp), %ebx
+	movzbl	(%ebx,%ecx), %eax
+	orl	%edx, %eax
+	addl	%eax, -44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L292:
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	3(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	2(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	addl	%eax, -44(%ebp)
+	addl	$4, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L293:
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movzbl	(%eax,%ebx), %eax
+	subl	%eax, -44(%ebp)
+	incl	-64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L294:
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	subl	%eax, -44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L295:
+	subl	$4, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L296:
+	subl	$3, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L297:
+	subl	$2, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L298:
+	decl	-44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L299:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	48(%edx), %eax
+	cmpl	memupb, %eax
+	jbe	.L300
+	movl	-72(%ebp), %ecx
+	movl	48(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L300:
+	movl	-72(%ebp), %edx
+	movl	48(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L301:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	44(%edx), %eax
+	cmpl	memupb, %eax
+	jbe	.L302
+	movl	-72(%ebp), %ecx
+	movl	44(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L302:
+	movl	-72(%ebp), %edx
+	movl	44(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L303:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	40(%edx), %eax
+	cmpl	memupb, %eax
+	jbe	.L304
+	movl	-72(%ebp), %ecx
+	movl	40(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L304:
+	movl	-72(%ebp), %edx
+	movl	40(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L305:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	36(%edx), %eax
+	cmpl	memupb, %eax
+	jbe	.L306
+	movl	-72(%ebp), %ecx
+	movl	36(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L306:
+	movl	-72(%ebp), %edx
+	movl	36(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L307:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	32(%edx), %eax
+	cmpl	memupb, %eax
+	jbe	.L308
+	movl	-72(%ebp), %ecx
+	movl	32(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L308:
+	movl	-72(%ebp), %edx
+	movl	32(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L309:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	28(%edx), %eax
+	cmpl	memupb, %eax
+	jbe	.L310
+	movl	-72(%ebp), %ecx
+	movl	28(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L310:
+	movl	-72(%ebp), %edx
+	movl	28(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L311:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	24(%edx), %eax
+	cmpl	memupb, %eax
+	jbe	.L312
+	movl	-72(%ebp), %ecx
+	movl	24(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L312:
+	movl	-72(%ebp), %edx
+	movl	24(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L313:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	20(%edx), %eax
+	cmpl	memupb, %eax
+	jbe	.L314
+	movl	-72(%ebp), %ecx
+	movl	20(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L314:
+	movl	-72(%ebp), %edx
+	movl	20(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L315:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	cmpl	memupb, %eax
+	jbe	.L316
+	movl	-72(%ebp), %ecx
+	movl	16(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L316:
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L317:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	12(%edx), %eax
+	cmpl	memupb, %eax
+	jbe	.L318
+	movl	-72(%ebp), %ecx
+	movl	12(%ecx), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L318:
+	movl	-72(%ebp), %edx
+	movl	12(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L319:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	24(%edx), %eax
+	incl	%eax
+	cmpl	memupb, %eax
+	jbe	.L320
+	movl	-72(%ebp), %ecx
+	movl	24(%ecx), %eax
+	incl	%eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L320:
+	movl	-72(%ebp), %edx
+	movl	24(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	4(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L321:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	20(%edx), %eax
+	incl	%eax
+	cmpl	memupb, %eax
+	jbe	.L322
+	movl	-72(%ebp), %ecx
+	movl	20(%ecx), %eax
+	incl	%eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L322:
+	movl	-72(%ebp), %edx
+	movl	20(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	4(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L323:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	incl	%eax
+	cmpl	memupb, %eax
+	jbe	.L324
+	movl	-72(%ebp), %ecx
+	movl	16(%ecx), %eax
+	incl	%eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L324:
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	4(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L325:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	12(%edx), %eax
+	incl	%eax
+	cmpl	memupb, %eax
+	jbe	.L326
+	movl	-72(%ebp), %ecx
+	movl	12(%ecx), %eax
+	incl	%eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L326:
+	movl	-72(%ebp), %edx
+	movl	12(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	4(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L327:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	20(%edx), %eax
+	addl	$2, %eax
+	cmpl	memupb, %eax
+	jbe	.L328
+	movl	-72(%ebp), %ecx
+	movl	20(%ecx), %eax
+	addl	$2, %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L328:
+	movl	-72(%ebp), %edx
+	movl	20(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	8(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L329:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	addl	$2, %eax
+	cmpl	memupb, %eax
+	jbe	.L330
+	movl	-72(%ebp), %ecx
+	movl	16(%ecx), %eax
+	addl	$2, %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L330:
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	8(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L331:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	12(%edx), %eax
+	addl	$2, %eax
+	cmpl	memupb, %eax
+	jbe	.L332
+	movl	-72(%ebp), %ecx
+	movl	12(%ecx), %eax
+	addl	$2, %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L332:
+	movl	-72(%ebp), %edx
+	movl	12(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	8(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L333:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	addl	$3, %eax
+	cmpl	memupb, %eax
+	jbe	.L334
+	movl	-72(%ebp), %ecx
+	movl	16(%ecx), %eax
+	addl	$3, %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L334:
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	12(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L335:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	12(%edx), %eax
+	addl	$3, %eax
+	cmpl	memupb, %eax
+	jbe	.L336
+	movl	-72(%ebp), %ecx
+	movl	12(%ecx), %eax
+	addl	$3, %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L336:
+	movl	-72(%ebp), %edx
+	movl	12(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	12(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L337:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	addl	$4, %eax
+	cmpl	memupb, %eax
+	jbe	.L338
+	movl	-72(%ebp), %ecx
+	movl	16(%ecx), %eax
+	addl	$4, %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L338:
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	16(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L339:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-72(%ebp), %edx
+	movl	12(%edx), %eax
+	addl	$4, %eax
+	cmpl	memupb, %eax
+	jbe	.L340
+	movl	-72(%ebp), %ecx
+	movl	12(%ecx), %eax
+	addl	$4, %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L340:
+	movl	-72(%ebp), %edx
+	movl	12(%edx), %eax
+	movl	-40(%ebp), %ecx
+	movl	16(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L341:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-76(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L342
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L342:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L343:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-76(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	incl	%eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L344
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L344:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L345:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-76(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	addl	$2, %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L346
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L346:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L347:
+	movl	-44(%ebp), %ebx
+	movl	%ebx, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	-80(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -20(%ebp)
+	incl	-64(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L348
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	subl	$2, -64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L348:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L349:
+	movl	-44(%ebp), %ecx
+	movl	%ecx, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movzbl	(%eax,%ebx), %eax
+	movl	-80(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	incl	%eax
+	movl	%eax, -20(%ebp)
+	incl	-64(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L350
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	subl	$2, -64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L350:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L351:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	-80(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	addl	$2, %eax
+	movl	%eax, -20(%ebp)
+	incl	-64(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L352
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	subl	$2, -64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L352:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L353:
+	movl	-44(%ebp), %ecx
+	movl	%ecx, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movzbl	(%eax,%ebx), %eax
+	movl	-76(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	movl	%eax, -20(%ebp)
+	incl	-64(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L354
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	subl	$2, -64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L354:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L355:
+	movl	-44(%ebp), %eax
+	movl	%eax, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	-76(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	incl	%eax
+	movl	%eax, -20(%ebp)
+	incl	-64(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L356
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	subl	$2, -64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L356:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L357:
+	movl	-44(%ebp), %ecx
+	movl	%ecx, -48(%ebp)
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movzbl	(%eax,%ebx), %eax
+	movl	-76(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	addl	$2, %eax
+	movl	%eax, -20(%ebp)
+	incl	-64(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L358
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	subl	$2, -64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L358:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L359:
+	movl	-40(%ebp), %edx
+	movl	-64(%ebp), %ecx
+	movzbl	1(%ecx,%edx), %eax
+	movl	%eax, %edx
+	sall	$8, %edx
+	movl	-40(%ebp), %ebx
+	movl	-64(%ebp), %ecx
+	movzbl	(%ecx,%ebx), %eax
+	orl	%edx, %eax
+	movl	-76(%ebp), %ebx
+	movl	(%ebx,%eax,4), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L360
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L360:
+	movl	-20(%ebp), %eax
+	movl	-44(%ebp), %ebx
+	movl	-40(%ebp), %ecx
+	movl	%ebx, (%ecx,%eax,4)
+	addl	$2, -64(%ebp)
+	jmp	.L7
+	.p2align 2
+.L361:
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movzbl	(%eax,%edx), %eax
+	movl	-80(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -20(%ebp)
+	incl	-64(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L362
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	subl	$2, -64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L362:
+	movl	-20(%ebp), %eax
+	movl	-44(%ebp), %ecx
+	movl	-40(%ebp), %edx
+	movl	%ecx, (%edx,%eax,4)
+	jmp	.L7
+	.p2align 2
+.L363:
+	movl	-64(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movzbl	(%eax,%ebx), %eax
+	movl	-76(%ebp), %edx
+	movl	(%edx,%eax,4), %eax
+	movl	%eax, -20(%ebp)
+	incl	-64(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L364
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	subl	$2, -64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L364:
+	movl	-20(%ebp), %eax
+	movl	-44(%ebp), %edx
+	movl	-40(%ebp), %ebx
+	movl	%edx, (%ebx,%eax,4)
+	jmp	.L7
+	.p2align 2
+.L365:
+	movl	-44(%ebp), %eax
+	movl	-72(%ebp), %ecx
+	addl	20(%ecx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L366
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L366:
+	movl	-20(%ebp), %eax
+	movl	-48(%ebp), %ecx
+	movl	-40(%ebp), %edx
+	movl	%ecx, (%edx,%eax,4)
+	jmp	.L7
+	.p2align 2
+.L367:
+	movl	-44(%ebp), %eax
+	movl	-72(%ebp), %ebx
+	addl	16(%ebx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L368
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L368:
+	movl	-20(%ebp), %eax
+	movl	-48(%ebp), %ebx
+	movl	-40(%ebp), %ecx
+	movl	%ebx, (%ecx,%eax,4)
+	jmp	.L7
+	.p2align 2
+.L369:
+	movl	-44(%ebp), %eax
+	movl	-72(%ebp), %edx
+	addl	12(%edx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L370
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L370:
+	movl	-20(%ebp), %eax
+	movl	-48(%ebp), %edx
+	movl	-40(%ebp), %ebx
+	movl	%edx, (%ebx,%eax,4)
+	jmp	.L7
+	.p2align 2
+.L371:
+	movl	-72(%ebp), %ecx
+	movl	16(%ecx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L372
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L372:
+	movl	-20(%ebp), %eax
+	movl	-44(%ebp), %ecx
+	movl	-40(%ebp), %edx
+	movl	%ecx, (%edx,%eax,4)
+	jmp	.L7
+	.p2align 2
+.L373:
+	movl	-72(%ebp), %ebx
+	movl	12(%ebx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L374
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L374:
+	movl	-20(%ebp), %eax
+	movl	-44(%ebp), %ebx
+	movl	-40(%ebp), %ecx
+	movl	%ebx, (%ecx,%eax,4)
+	jmp	.L7
+	.p2align 2
+.L375:
+	movl	-72(%ebp), %edx
+	movl	16(%edx), %eax
+	incl	%eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L376
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 12(%ecx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L376:
+	movl	-20(%ebp), %eax
+	movl	-44(%ebp), %edx
+	movl	-40(%ebp), %ebx
+	movl	%edx, (%ebx,%eax,4)
+	jmp	.L7
+	.p2align 2
+.L377:
+	movl	-72(%ebp), %ecx
+	movl	12(%ecx), %eax
+	incl	%eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L378
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L378:
+	movl	-20(%ebp), %eax
+	movl	-44(%ebp), %ecx
+	movl	-40(%ebp), %edx
+	movl	%ecx, (%edx,%eax,4)
+	jmp	.L7
+	.p2align 2
+.L379:
+	movl	-44(%ebp), %eax
+	movl	-72(%ebp), %ebx
+	addl	28(%ebx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L380
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L380:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L381:
+	movl	-44(%ebp), %eax
+	movl	-72(%ebp), %ebx
+	addl	24(%ebx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L382
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L382:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L383:
+	movl	-44(%ebp), %eax
+	movl	-72(%ebp), %ebx
+	addl	20(%ebx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L384
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L384:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L385:
+	movl	-44(%ebp), %eax
+	movl	-72(%ebp), %ebx
+	addl	16(%ebx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L386
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L386:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L387:
+	movl	-44(%ebp), %eax
+	movl	-72(%ebp), %ebx
+	addl	12(%ebx), %eax
+	movl	%eax, -20(%ebp)
+	movl	-20(%ebp), %eax
+	cmpl	memupb, %eax
+	jbe	.L388
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %edx
+	movl	%eax, 12(%edx)
+	movl	$12, -12(%ebp)
+	decl	-64(%ebp)
+	jmp	.L9
+	.p2align 2
+.L388:
+	movl	-20(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	(%ecx,%eax,4), %eax
+	movl	%eax, -44(%ebp)
+	jmp	.L7
+	.p2align 2
+.L177:
+	movl	$4, -12(%ebp)
+.L9:
+	movl	$0, tracing
+	movl	8(%ebp), %eax
+	movl	-44(%ebp), %edx
+	movl	-40(%ebp), %ebx
+	movl	%edx, (%ebx,%eax,4)
+	movl	8(%ebp), %eax
+	movl	-48(%ebp), %ebx
+	movl	-40(%ebp), %ecx
+	movl	%ebx, 4(%ecx,%eax,4)
+	movl	8(%ebp), %edx
+	movl	-8(%ebp), %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 8(%ecx,%edx,4)
+	movl	8(%ebp), %edx
+	movl	-52(%ebp), %eax
+	sall	$2, %eax
+	movl	-40(%ebp), %ebx
+	movl	%eax, 12(%ebx,%edx,4)
+	movl	8(%ebp), %edx
+	movl	-56(%ebp), %eax
+	sall	$2, %eax
+	movl	-40(%ebp), %ecx
+	movl	%eax, 16(%ecx,%edx,4)
+	movl	8(%ebp), %eax
+	movl	-60(%ebp), %edx
+	movl	-40(%ebp), %ebx
+	movl	%edx, 20(%ebx,%eax,4)
+	movl	8(%ebp), %eax
+	movl	-64(%ebp), %ecx
+	movl	-40(%ebp), %ebx
+	movl	%ecx, 24(%ebx,%eax,4)
+	movl	8(%ebp), %eax
+	movl	-68(%ebp), %ecx
+	movl	-40(%ebp), %edx
+	movl	%ecx, 28(%edx,%eax,4)
+	movl	-12(%ebp), %eax
+	movl	%eax, %eax
+	movl	-4(%ebp), %ebx
+	leave
+	ret
+.Lfe1:
+	.size	 interpret,.Lfe1-interpret
+	.ident	"GCC: (GNU) 2.96 20000731 (Red Hat Linux 7.1 2.96-98)"

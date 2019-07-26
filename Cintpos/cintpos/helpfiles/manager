@@ -1,0 +1,38 @@
+*aot #H aot
+*aotman #H aot
+*csm
+*sm
+*session
+SESSION MANAGER
+
+  The Session Manager is the machine on the ring which controls
+sessions on machines in the Processor Bank.  It provides a console
+interface to the Resource Manager, and connects terminal streams
+to newly loaded machines.  (See HELP RESOURCE MANAGER also).
+
+  It has its own HELP command.  Use C SM from the terminal concentrator
+or STAR SM from TRIPOS to contact it.
+*resman
+*rm
+*resource
+RESOURCE MANAGER
+
+  The Resource Manager is the ring machine responsible for allocating
+and loading (via the Ancilla) machines in the Processor Bank.  Most of
+its functions can be called via the Session Manager 
+(use HELP SESSION MANAGER).  Its interface is fully documented in
+"Resource Manager RPC Interface" by DHC in the documentation folder.
+*tripos
+TRIPOS MANAGER
+
+The current TRIPOS Manager is Ian Wilson  (IDW)
+** #I manager
+Type one of the following to indicate which manager you want to know about:
+
+AOT:         Active Object Table Manager
+RESOURCE:    Resource Manager
+SESSION:     Session Manager
+TRIPOS:      TRIPOS Manager
+<CR>:        to leave HELP
+
+

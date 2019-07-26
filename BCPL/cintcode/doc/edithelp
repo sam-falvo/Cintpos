@@ -1,0 +1,80 @@
+Form:           EDIT  "FROM/A,TO,WITH/K,VER/K,OPT/K"
+Purpose:        To edit text files.
+Author:         ARA
+Specification:
+   If TO is specified, EDIT reads from file FROM to file TO until a
+rewind occurs, when FROM becomes TO and TO becomes unset.  If TO is
+not specified, then FROM is edited to a temporary file and FROM is
+renamed T:EDIT-BACKUP, and the output is renamed as FROM when the
+editor is wound up.  Commands are read from the current input
+stream, or WITH if it is present.
+   OPT specifies options: Pn sets the maximum number of previous
+lines to n;  Wn sets the maximum line width.  Default is P20W120.
+   For help with edit commands see HELP EDIT COMMANDS.
+   For information about other editors available use HELP EDITORS.
+   For more information about edit do HELP EDIT ALL.
+Example:        EDIT PROG
+                EDIT PROG TO NEWPROG
+
+EDIT commands:
+
+A/s/t/        After string s insert string t
+B/s/t/        Before string s insert string t
+C  file       obey Commands from file
+CC/x/         set Carriage Control to *x (x = N,C,E, or P)
+CC/?/         print Carriage Control for current line
+CF  file      Close File
+CL            Concatenate next Line to current one
+Dn  (m)       Delete line(s) n (to m)
+DF/s/         Delete up to line starting with s
+DL/s/         Delete up to line containing s
+DT/s/         Delete characters To s in current line
+DG/s/         Delete Global exchange for s
+DG//          Delete all Global exchanges
+E/s/t/        Exchange s by t
+F/s/          Find line beginning with s
+G/s/t/        Globally exchange s by t
+Hn            Halt at line n
+In  (file)    Insert before line n (from file)
+L/s/          Locate line containing s
+Mn            Move to line n
+N             Move to next line
+O  file       send Output to file
+P             move to Previous line
+PA/s/         Point After s in current line
+PB/s/         Point Before s in current line
+Q             Quit (abandon whole edit session)
+Rn (m) (file) Replace line(s) n (to m) (by file)
+S file        read Source from file
+SA/s/         Split current line After s
+SB/s/         Split current line Before s
+Tn            Type n lines
+TLn           Type n lines with Line numbers
+TP            Type buffer of Previous lines
+TN            Type Next <P> lines (option P)
+TR+/-         Set/Unset stripping of trailing spaces
+U+/-          Set/Unset uppercasing before string matching
+V+/-          turn Verification on/off
+W             Windup (normal finish to edit session)
+Z/s/          set terminator for I & R (default Z)
+*             rewind
++n            move on n lines
+-n            delete n lines
+0            move back n lines (* = as far as possible)
+=n            renumber current line n
+?             verify current line
+!             verify indicating case or hex value
+'             repeat last explicit A,B,E,DL,DF,DT,PA,PB,
+              SA,SB,L or F command
+"             equivalent to N'
+&             repeat last L,F,DL or DF command
+|             ignore rest of command line
+>             step character pointer
+<             reset character pointer
+_             convert character to space
+#             delete character
+$             force character to lower case
+%             force character to upper case
+:             move character pointer to end of line
+
+

@@ -1,0 +1,28 @@
+*procedure
+**
+WRITEWORDS
+        To write a vector to the currently selected output.
+
+        WRITEWORDS(VECTOR, N)
+
+        Writes N words to OUTPUT() from the vector VECTOR.  Note that this
+procedure cannot be used with WRCH since WRCH does its own buffering.
+
+Arguments:
+
+VECTOR:    A vector containing the words to be written in VECTOR!0 to
+           VECTOR!(n-1)
+N:         The number of words to be written.
+
+Return:
+
+        The specified number of words has been written to the file.
+
+Abort condition:
+
+        A task abort will occur if the stream does not support word
+INPUT/OUTPUT.  Extremely serious errors detected during writing may also
+result in an abort.
+
+
+

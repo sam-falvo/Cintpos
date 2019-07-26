@@ -1,0 +1,86 @@
+*warning #H #HCH +
++minute
+5 MINUTE WARNING
+
+The message "*** 5 Minute Warning" appears 5 minutes before TRIPOS loggs off
+a remote terminal user.  It will only appear if nothing has been written
+to the terminal screen for about 25 minutes.  To prevent the session being
+discarded something should be typed at the console to cause some reflection.
++
+*weather
+For a weather forecast, see Ceefax page 152, or dial Cambridge 8092.
+*why
+Form:           WHY  ",,,,,,,,,"
+Purpose:        To explain why the previous command failed.
+Author:         PB, rewritten by MFR
+Specification:
+   The fault message corresponding to the value returned in RESULT2
+by the previous command will be printed.
+   This command is identical to the FAULT command (q.v.).
+Example:        WHY
+*wiget #H #HCH %
+*widget #H #HCH %
+%command
+%+
+WIDGET COMMAND
+
+There is currently no WIDGET command on TRIPOS.  "HELP COMMAND WIDGET" is
+only used as an EXAMPLE help for an hypothetical command in the user guide.
+
+Try something else, and don't be so pedantic.
+%
+*window
+*window:
+There is a Tripos window handler which enables processes to use WS windows.
+To load the window handler, use:
+
+    mount window: from sys:idw.ws-process.window-mount
+
+Once mounted, process windows can be opened from within WS by editing the
+file "*" (i.e. the terminal).  Since the control characters which Tripos
+uses for breaks, task selection etc. are swallowed by WS, the following
+are provided to bridge this gap:
+
+    b, c, d, e        Break B, C, D and E
+    f                 @F (flush input)
+    s<n>              @S<n>  (select task <n>)
+    t<n>              @T<n>  (select task <n>, exclusive output)
+
+First, type the command into the buffer, and then use ^K* to transmit the
+line to the window handler.
+*worcestar #H ws
+*word #H #HCH %
+*wordcount #H #HCH %
+%count
+%wordcount
+The SPELL command will print out the number of words in a document.  The
+CHKW command will also produce such a count (usually different)!
+%mode
+Tripos filing systems which use a local disc distinguish between files written
+using WRCH (character files) and those written using WRITEWORDS (word files).
+Character files should be read using RDCH, and word files should be read using
+READWORDS.  As a result, programs such as JOIN, COPY and APPEND have keywords
+CHARS and WORDS to control the way in which data is copied.
+
+The fileserver-based filing system does not make any distinction between
+character and word files.
+%size
+Word size is 32 bits on 68000 machines and 16 bits on LSI4s.  Programs should
+if at all possible be written in a word size independent way using manifests
+such as bytesperword (q.v).
+%star #H ws
+%*
+HELP knows about WORD COUNT, SIZE and MODE.
+%
+*wordstar #H ws 
+*writetolog
+You can open a stream which will write lines to the ring log terminal by
+using the procedure FINDWTO with service name WTO-LOG. See
+HELP SOURCELIB FINDWTO for more information.
+*writevec #H writewords
+*wwp
+WWP is a program for producing wiring schedules from circuit descriptions, for
+subsequent use on the pointing machine.  The Titan Room documentation
+folder contains information on the WWP program.
+
+

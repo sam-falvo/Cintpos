@@ -1,0 +1,19 @@
+*command
+**
+Form:           TAB "from/a,to/a,untab/s,full/s"
+Purpose:        convert between spaces and tabs
+Author:         PB
+Specification:
+
+   TAB will convert all (leading) spaces and tabs either into tabs followed by
+any spaces that may be needed, or to all spaces. Unless full is specified, only
+tabs and spaces at the start of a line are processed.
+   It gives out a message to the initial output stream if there are more or less
+characters in the output than the input
+
+Examples:
+
+                TAB filea fileb full            reduce the file size
+                TAB fileb filea untab full      expand it back
+
+

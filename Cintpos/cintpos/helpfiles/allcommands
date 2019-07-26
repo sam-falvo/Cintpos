@@ -1,0 +1,52 @@
+**
+The following is a list of all the commands in the standard commands
+directory on 26-Mar-81.  For information about any particular command
+use HELP COMMAND <COMMAND>.  Note that not all commands are documented,
+also note that the set of commands available may have changed since the
+above date.
+
+A68MAKESTACK        A68STACK            ABSLINK             ADDNAME
+ADVENTURE           ALARM               APPEND              ASM
+ASSIGN              BASIC               BCPL                BCPLFORM
+BCPLXREF            BREAK               BSINFO              C
+CASECH              CHANGEPRI           CHKL                CLI2
+CLINK               COMPARE             CONNECT             CONSOLE
+COPY                CPU                 CREATEDIR           DA
+DAT                 DATAREG             DATE                DEBUG
+DELETE              DELNAME             DF-DISCCOPY         DF-DISCED
+DF-SYSIMAGE         DISASM              DISCCOPY            DISCINFO
+DISCONNECT          DISMOUNT            DP-DISCED           ECHO
+EDIT                ENDCLI              ENLARGE             EX
+EXALL               FAILAT              FANTASY             FAULT
+FINISH              FPRINT              FROM370             FSDK-DISCED
+GASM                GIVEFILE            GLOBALS             HEAP
+HELP                HOLD                IDMAP               IDVEC
+IEX                 IF                  INIT                INITIALISE-DISC
+INPUT               JOIN                KILL                LAB
+LIBRARY             LISTNAMES           LKED                LOADRINGHAND
+LOADRINGSERV        LOADSSE             LOCALPRINT          LOGOFF
+LOGON               LOOKUP              MAKEBOOT            MAKEDEFS
+MAKEWORLD           MAP                 MEMWAIT             MESSAGE
+MONITOR             MOUNT               MYNAME              NEWCLI
+NOVASM              OBSERVE             P                   PACK
+PASCAL              PASTACK             PDPASM              PDPDISASM
+PHX                 PIPEINFO            PLAYBACK            PLAYFAST
+PLAYTIME            PREPROC             PRINT               PRINTOCODE
+PRIV                PROMPT              PROTECT             QUIT
+READHEX             REFLECT             RELEASE             RENAME
+REPEAT              RHINFO              RINGDAT             RINGLOAD
+RINGPRINT           RPROD               RSTATUS
+RSWAIT              RUN                 SCAN                SCREED
+SEND                SET                 SETNAMES            SIMPLE-EXALL
+SKIP                SPOOL               SQUASH              SSE
+STACK               STAR                START               STATUS
+STATUS370           STRETCH             SUBMIT370           SUE
+SYSIMAGE            SYSLINK             T                   TAKEFILE
+TALK                TASKWAIT            TEXT                TIME
+TO370               TOGA                TYP                 TYPE
+TYPEHEX             UIDEDIT             UNDOWORLD           UNPACK
+USER                WAIT                WHY                 WTO
+Z80                 ZASM                ZED                 6502
+6809
+
+

@@ -1,0 +1,13 @@
+cintpos/cin/syscin/blib
+cintpos/cin/syscin/boot
+cintpos/cin/syscin/cli
+cintpos/cin/syscin/cli_init
+cintpos/cin/syscin/cohand
+cintpos/cin/syscin/debug
+cintpos/cin/syscin/dlib
+cintpos/cin/syscin/fh0
+cintpos/cin/syscin/idle
+cintpos/cin/syscin/klib
+cintpos/cin/syscin/mbxhand
+cintpos/cin/syscin/syslib
+cintpos/cin/syscin/tcphand

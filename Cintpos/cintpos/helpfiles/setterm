@@ -1,0 +1,27 @@
+*command
+**
+SETTERM command
+Form:           SETTERM "type,width/k,depth/k,ring/s,clear/s,verify/s"
+Purpose:        To set, clear or display the terminal type.
+Author:         MAJ
+Specification:
+
+        The first argument is the terminal type to be set, but if the RING
+    switch is given the program will attempt to find the terminal type from
+    the ring MAP service, and only use the first argument if that fails.
+        The WIDTH and DEPTH argument give overriding values for terminal
+    width and depth (normally these default to appropriate values for the
+    terminal type).
+        The CLEAR switch causes the terminal type information to be cleared
+    before further processing of the arguments. The VERIFY switch causes
+    the state to be verified after processing.
+        If no arguments are given, a list of valid terminal types is given and
+    the current state is verified.
+
+        Use HELP <command name> COMMAND TERMINAL to find the terminal types
+    that any particular command can use (if HELP knows).
+        (Uses Global 157 of consolehandler to point to a vector containing
+    the terminal type as a number and as a string, and the width and depth.
+    See :G.termhdr for more details).
+
+

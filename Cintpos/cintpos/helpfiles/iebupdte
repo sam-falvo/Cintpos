@@ -1,0 +1,27 @@
+*spec
+                 ****** Use CS PACK ******
+(IEBUPDTE spec is in SYS:INFO.SPEC.IEBUPDTE)
+*commands sys:info.spec.iebupdte
+*command
+**
+Form:       "DIR,P=PAT/K,DISCKEYS/S,DATES/S,NODATES/S,TO/K*
+            *S/K,SINCE/K,UPTO/K,I/S,TITLES/S,IBM/S,/S"
+Purpose:    Creates an IEBUPDTE format file from a file or a
+            directory.
+Author:     PB
+
+                 ****** Use CS PACK ******
+
+Specification:
+     If P is quoted, any file matching pattern is examined.
+     If Disckeys is quoted, the disckeys are also included.
+     If Dates is quoted, then the date will not be changed to 'Today' etc..
+     If Nodates is quoted, then the dates will be omitted.
+     If TO is quoted the output is send to file.
+     If S is quoted, any file including substring is examined.
+     If SINCE and/or UPTO are quoted, only the relavent file are examined.
+     If Titles is quoted, only the filetitles are given.
+     If I is quoted, the examine is interactive.
+     See HELP IEBUPDTE COMMANDS for replies to '?'.
+
+

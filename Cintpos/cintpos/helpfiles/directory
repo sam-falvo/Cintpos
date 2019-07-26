@@ -1,0 +1,161 @@
+*protection #H protect
+*protect #H protect
+*status #H file
+*examine #H file
+*size #H file
+*date #H file
+*time #H file
+*format #H file
+*name
+DIRECTORY NAME CONVENTIONS
+Within a directory for a particular project or software component, the
+subdirectories are conventionally arranged as follows:
+
+  BCPL           BCPL sources
+  ASM            Assembler sources
+  LSI4-OBJ       Compiled code for LSI4s
+  68000-OBJ      Compiled code for 68000s
+
+  OLD.BCPL etc.  Backup versions of sources and object modules
+
+  NEW.BCPL etc.  Versions to be released in the near future
+
+  TEST.BCPL etc. Experimental new versions which may never be released
+*title #H file
+*header
+*heading
+BCPL headers are in the directory SYS:G
+*source #H #HCH=+
++procedure #H sourcelib
++user #H sourcelib
++*
+SOURCES ON TRIPOS
+
+The BCPL sources of TRIPOS commands are in SYS:COM.BCPL and, for commands
+which rely upon the RING, in SYS:COM.RING.BCPL.  BCPL sources of system
+code (BLIB &c) are in SYS:SYS.BCPL.  BCPL sources which only suit the
+distribution version of TRIPOS (e.g. without the lab's ring environment)
+are in the directories of SYS:SYS.DISTRIBUTION (for example
+SYS:SYS.DISTRIBUTION.COM.BCPL).
+
+User written procedures are kept in SYS:G.BCPL : use HELP SOURCE LIBRARY.
+For the location of other sources use HELP SYSTEM DIRECTORIES.
++
+*user
+*space
+*owner
+*home
+*home:
+HOME DIRECTORY
+
+TRIPOS users may have a directory associated with them which will be set
+when they log on.  HELP USER <name> will type the name of <name>s associated
+directory if he has one.  These directories are normally in the root
+directory and usually are named after the user.  If a user's directory
+contains a file INIT-SEQUENCE it is executed as a T command when the user
+has logged on.  Use HELP INIT-SEQUENCE for more information.
+
+The user's home directory is normally available as the assigned name HOME:
+so that it can be easily accessed even when other directories are set.
+TYPE HOME:INIT-SEQUENCE, for example, will always display the current user's
+INIT-SEQUENCE no matter what directory is currently set.  Use
+HELP ASSIGN COMMAND for further details of directory assignment.
+
+When a user first logs on his current directory is set to his home directory
+(use HELP CURRENT DIRECTORY for further information).
+*set
+*current
+CURRENT DIRECTORY
+
+    Each TRIPOS task has a current, or set, directory.  It is in this
+directory that file names which do not contain a colon (:) are looked
+up.  This directory can be set using the SET command.  Other commands
+which can set the current directory are:
+        SET        - set users home directory
+        INIT       - sets a directory & executes an init sequence
+        START      - loggs new user on & sets directory
+        START INIT - ditto + executes INIT-SEQUENCE
+   The SET and INIT commands will take the users home directory as
+default if no argument is specified.
+   For information about these use HELP COMMAND <command>
+*delete #H delete
+*deletion #H delete
+*creation
+*create
+*make
+Directories are created by the CREATEDIR command, or by the CREATEDIR
+procedure in a program.  Use HELP CREATEDIR for more information.
+*:
+*root
+ROOT DIRECTORY
+
+The root directory is called ":".  It is the directory in which
+file name's begining with a colon are looked up.  User's directories are
+normally found here.  Directories relevent to the use of the system are
+available from "SYS:".
+
+Use HELP SYSTEM DIRECTORIES for information about other system directories.
+Use HELP HOME DIRECTORIES for information about a user's private directory.
+*system #H #HCH +
+*standard #H #HCH +
++spec
+The file SYS:INFO.directories holds a description of system directories.
++* sys:info.directories
+*special sys:info.directories
+*binary
+*command
+DIRECTORY COMMANDS
+
+Some of the more important TRIPOS commands which manipulate directories are
+as follows:
+    CREATEDIR   - create a new directory
+    RENAME      - change the name of a directory
+    DELETE      - delete a directory
+    PROTECT     - change the protection status of a file or directory
+    EX          - give information about all the files and directories
+                  in a directory
+    EXALL       - give information about all the files in a directory
+                  and the files in any sub directories
+For more information about any of these commands use HELP <command> COMMAND.
+For information about other examine commands use HELP EXAMINE COMMANDS.
+
+COMMAND DIRECTORY
+
+The directory from which commands are looked up is normally :C by
+default, but this can be changed using SET COMDIR (use HELP COMMAND SET
+for more information).
+*:h
+DIRECTORY :H
+
+This directory is used to hold handler tasks for particular real or pseudo
+devices.  The name refers to a different physical directory for each machine
+type, so that compiled code for the correct machine is obtained.
+A call of FINDINPUT or FINDOUTPUT on a name of the form XYZ:qwerty
+will first look in the assignments list to see if XYZ: is an existing
+assigned name.  If this fails, then an attempt will be made to load code
+from the file :H.XYZ and run it as a task to handle the stream.
+
+Examples of device handlers which live in :H are LP:, BSP: and PIPE:.
+*:l
+DIRECTORY :L
+
+This directory is used to hold code which is dynamically loaded by the
+system or commands.  In particular, it is used for released modules
+designed to be used via the library routine CALLSEG.
+
+The name :L refers to a different physical directory for each type of machine,
+so that the appropriate compiled code is obtained.
+** #I directory
+For information about a particular aspect of directories type any of the
+following:
+  COMMANDS          - commands available for manipulating files
+  PROTECTION
+  CREATION
+  EXAMINE           - information about the files in a particular directory
+  FORMAT            - the format of TRIPOS files and directories
+  SYSTEM            - a list of system directories
+  TITLES            - syntax of file titles
+  OWNER             - TRIPOS users with their own directories.
+Type <CR> to exit HELP
+
+

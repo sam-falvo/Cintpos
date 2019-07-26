@@ -1,0 +1,4763 @@
+MODSTART
+SECTION K9 C120 C99 C109 C112 C108 C116 C101 C115 C116
+
+//Entry to: wrd
+ENTRY   K3 C119 C114 C100
+LAB     L5
+L       K32
+ATBLG   G210
+JNE     L7
+LP      P3
+SP      P8
+LSTR    M9001
+KPG     P4 G94
+RTN
+LAB     L7
+LP      P3
+SP      P8
+LSTR    M9002
+KPG     P4 G94
+RTN
+STATIC  L1 K1 W10
+STATIC  L2 K1 W11
+STATIC  L3 K1 W12
+STATIC  L4 K1 W0
+STRING  M9001 K5 C37 C49 C50 C105 C32
+STRING  M9002 K5 C37 C50 C49 C105 C32
+
+//Entry to: wrx
+ENTRY   K3 C119 C114 C120
+LAB     L8
+L       K32
+ATBLG   G210
+JNE     L10
+LP      P3
+SP      P8
+LSTR    M9003
+KPG     P4 G94
+RTN
+LAB     L10
+LP      P3
+SP      P8
+LSTR    M9004
+KPG     P4 G94
+RTN
+STRING  M9003 K4 C37 C56 C120 C32
+STRING  M9004 K10 C32 C32 C32 C32 C32 C37 C49 C54 C120 C32
+
+//Entry to: t
+ENTRY   K1 C116
+LAB     L11
+IKG     K1 G206
+LG      G203
+SP      P9
+LSTR    M9005
+KPG     P5 G94
+LM      K10000000
+ATBLP   P3
+JGE     L13
+ATBL    K10000000
+JGE     L13
+BTA
+ATB
+LF      L5
+K       P5
+J       L14
+LAB     L13
+LP      P3
+ATB
+LF      L8
+K       P5
+LAB     L14
+LP      P4
+ATBLP   P3
+JNE     L15
+LSTR    M9006
+KPG     P5 G89
+J       L16
+LAB     L15
+LSTR    M9007
+KPG     P5 G94
+LM      K10000000
+ATBLP   P3
+JGE     L17
+ATBL    K10000000
+JGE     L17
+LP      P4
+ATB
+LF      L5
+K       P5
+J       L18
+LAB     L17
+LP      P4
+ATB
+LF      L8
+K       P5
+LAB     L18
+KPG     P5 G84
+IKG     K1 G204
+LG      G216
+JEQ0    L19
+L       K1000
+KPG     P5 G28
+LAB     L19
+LAB     L16
+IKG     K1 G203
+LP      P4
+RTN
+STRING  M9005 K4 C37 C105 C52 C32
+STRING  M9006 K3 C79 C75 C10
+STRING  M9007 K21 C70 C65 C73 C76 C69 C68 C32 C32 C73 C116 C32 C115 C104 C111 C117 C108 C100 C32 C98 C101 C32
+
+//Entry to: tf
+ENTRY   K2 C116 C102
+LAB     L20
+IKG     K1 G206
+LG      G203
+SP      P9
+LP      P3
+SP      P10
+LSTR    M9008
+KPG     P5 G94
+LP      P4
+ATBLP   P3
+JFNE    L22
+LSTR    M9009
+KPG     P5 G89
+J       L23
+LAB     L22
+LP      P4
+SP      P9
+LSTR    M9010
+KPG     P5 G94
+IKG     K1 G204
+LG      G216
+JEQ0    L24
+L       K1000
+KPG     P5 G28
+LAB     L24
+LAB     L23
+IKG     K1 G203
+LP      P4
+RTN
+STRING  M9008 K11 C37 C105 C52 C32 C37 C50 C49 C46 C53 C102 C32
+STRING  M9009 K3 C79 C75 C10
+STRING  M9010 K28 C70 C65 C73 C76 C69 C68 C32 C32 C73 C116 C32 C115 C104 C111 C117 C108 C100 C32 C98 C101 C32 C37 C50 C49 C46 C53 C102 C10
+
+//Entry to: t1
+ENTRY   K2 C116 C49
+LAB     L25
+AP      P4
+AP      P5
+AP      P6
+AP      P7
+AP      P8
+ATB
+LP      P9
+SP      P14
+XCH
+KPG     P10 G208
+RTN
+
+//Entry to: start
+ENTRY   K5 C115 C116 C97 C114 C116
+LAB     L27
+L       K65
+SP      P4
+LLP     P7
+SP      P5
+LLP     P208
+SP      P6
+L       K0
+SP      P409
+SP      P410
+LLP     P412
+SP      P411
+SP      P467
+L       K50
+SP      P468
+LSTR    M9011
+KPG     P463 G102
+JNE0    L34
+LSTR    M9012
+KPG     P463 G89
+L       K0
+RTN
+LAB     L34
+LKP     K0 P411
+JEQ0    L35
+SP      P409
+LAB     L35
+LKP     K1 P411
+SG      G216
+KPG     P463 G59
+SG      G213
+SP      P410
+LP      P409
+JEQ0    L36
+KPG     P463 G49
+SP      P410
+JNE0    L37
+LP      P409
+SP      P467
+LSTR    M9013
+KPG     P463 G94
+L       K0
+RTN
+LAB     L37
+LP      P410
+KPG     P463 G57
+LAB     L36
+L       K1
+SG      G210
+SG      G211
+SG      G212
+ATB
+LSH
+JEQ0    L39
+LAB     L38
+IKG     K1 G210
+LG      G211
+ATBL    K1
+LSH
+SG      G211
+LG      G212
+ATBL    K1
+LSH
+ATBL    K1
+OR
+SG      G212
+LG      G211
+ATBL    K1
+LSH
+JNE0    L38
+LAB     L39
+LSTR    M9014
+KPG     P463 G89
+LLP     P4
+ATBL    K0
+GBYT
+ATBL    K65
+JNE     L40
+LSTR    M9015
+KPG     P463 G89
+J       L41
+LAB     L40
+LSTR    M9016
+KPG     P463 G89
+LAB     L41
+LSTR    M9017
+KPG     P463 G89
+LG      G210
+SP      P467
+LSTR    M9018
+KPG     P463 G94
+L       K1
+SP      P467
+L       K2
+SP      P468
+LP      P5
+SP      P469
+LP      P6
+SP      P470
+L       K0
+ATB
+LF      L28
+K       P463
+LG      G213
+ATBLP   P410
+JEQ     L42
+KPG     P463 G62
+LAB     L42
+LG      G213
+KPG     P463 G57
+LSTR    M9019
+KPG     P463 G94
+L       K0
+RTN
+STRING  M9011 K11 C84 C79 C47 C75 C44 C72 C65 C82 C68 C47 C83
+STRING  M9012 K23 C66 C97 C100 C32 C97 C114 C103 C115 C32 C102 C111 C114 C32 C120 C99 C109 C112 C108 C116 C101 C115 C116 C10
+STRING  M9013 K31 C67 C97 C110 C110 C111 C116 C32 C111 C112 C101 C110 C32 C102 C105 C108 C101 C32 C37 C115 C32 C102 C111 C114 C32 C111 C117 C116 C112 C117 C116 C10
+STRING  M9014 K23 C10 C67 C109 C112 C108 C116 C101 C115 C116 C32 C114 C117 C110 C110 C105 C110 C103 C32 C111 C110 C32 C97 C32
+STRING  M9015 K6 C108 C105 C116 C116 C108 C101
+STRING  M9016 K3 C98 C105 C103
+STRING  M9017 K15 C32 C101 C110 C100 C101 C114 C32 C109 C97 C99 C104 C105 C110 C101 C10
+STRING  M9018 K32 C84 C104 C101 C32 C66 C67 C80 C76 C32 C119 C111 C114 C100 C32 C105 C115 C32 C37 C110 C32 C98 C105 C116 C115 C32 C108 C111 C110 C103 C10 C10 C10
+STRING  M9019 K26 C10 C82 C101 C116 C117 C114 C110 C105 C110 C103 C32 C102 C114 C111 C109 C32 C120 C99 C109 C112 C108 C116 C101 C115 C116 C10
+
+//Entry to: tester
+ENTRY   K6 C116 C101 C115 C116 C101 C114
+LAB     L28
+L       K0
+SP      P8
+L       K1
+SP      P9
+L       K2
+SP      P10
+L       K3
+SP      P11
+L       K4
+SP      P12
+L       K5
+SP      P13
+L       K6
+SP      P14
+L       K7
+SP      P15
+L       K8
+SP      P16
+L       K9
+SP      P17
+L       K1021
+SP      P18
+LSTR    M9020
+KPG     P19 G89
+L       K100
+SG      G200
+L       K101
+SG      G401
+L       K102
+SG      G602
+L       K0
+SG      G203
+SG      G206
+SG      G204
+LP      P6
+SG      G205
+LP      P7
+SL      L4
+L       K0
+SP      P19
+LAB     L44
+L       K1000
+AP      P19
+ATB
+LG      G205
+AP      P19
+ST
+L       K10000
+AP      P19
+ATB
+LL      L4
+AP      P19
+ST
+IKP     K1 P19
+ATBL    K200
+JLE     L44
+L       K0
+SG      G207
+L       K1
+SG      G203
+LL      L2
+ATB
+LL      L1
+ADD
+ATB
+LL      L3
+ADD
+ATB
+L       K33
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+AG      G401
+AG      G602
+ATB
+L       K303
+SP      P23
+XCH
+KPG     P19 G208
+LP      P3
+AP      P4
+AP      P5
+ATB
+L       K3
+SP      P23
+XCH
+KPG     P19 G208
+L       K44
+SP      P23
+KPG     P19 G208
+LP      P3
+EQ0
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+LP      P4
+EQ0
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LLP     P4
+RVP     P3
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LLL     L2
+RVP     P3
+ATB
+L       K11
+SP      P23
+XCH
+KPG     P19 G208
+LLG     G401
+RVP     P3
+ATB
+L       K101
+SP      P23
+XCH
+KPG     P19 G208
+L       K5
+SP      P3
+L       K15
+SL      L1
+L       K105
+SG      G200
+L       K5
+SP      P23
+LP      P3
+KPG     P19 G208
+L       K15
+SP      P23
+LL      L1
+KPG     P19 G208
+L       K105
+SP      P23
+LG      G200
+KPG     P19 G208
+L       K1234
+ATBLG   G205
+STK     K1
+L       K5678
+ATBLG   G205
+STK     K2
+L       K1234
+SP      P23
+LKG     K1 G205
+KPG     P19 G208
+LG      G205
+RVP     P5
+ATB
+L       K5678
+SP      P23
+XCH
+KPG     P19 G208
+LL      L1
+ATBLP   P3
+MUL
+ATB
+L       K75
+SP      P23
+XCH
+KPG     P19 G208
+LP      P3
+ATBL    K1
+MUL
+SP      P22
+LP      P4
+ATBL    K2
+MUL
+AP      P22
+SP      P22
+LP      P5
+ATBL    K3
+MUL
+AP      P22
+SP      P22
+L       K4
+ATBLG   G200
+MUL
+AP      P22
+ATB
+L       K433
+SP      P23
+XCH
+KPG     P19 G208
+LL      L1
+ATBLP   P3
+MUL
+SP      P22
+LP      P3
+MUL
+AP      P22
+ATB
+L       K150
+SP      P23
+XCH
+KPG     P19 G208
+LL      L1
+ATB
+SUB
+A       K2
+ATBL    K100
+XDIV
+ATB
+L       K50
+SP      P23
+XCH
+KPG     P19 G208
+LL      L1
+ATBLP   P3
+DIV
+ATB
+L       K3
+SP      P23
+XCH
+KPG     P19 G208
+LP      P3
+NEG
+ATB
+LL      L1
+XDIV
+ATB
+LM      K3
+SP      P23
+XCH
+KPG     P19 G208
+LL      L1
+NEG
+ATBLP   P3
+DIV
+ATB
+LM      K3
+SP      P23
+XCH
+KPG     P19 G208
+LL      L1
+NEG
+SP      P22
+LP      P3
+NEG
+ATBLP   P22
+XDIV
+ATB
+L       K3
+SP      P23
+XCH
+KPG     P19 G208
+LL      L1
+ATB
+ADD
+XDIV
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LP      P3
+ATB
+LL      L1
+MUL
+SP      P22
+LL      L1
+MUL
+ATBLP   P22
+XDIV
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LL      L2
+ATB
+LL      L1
+ADD
+SP      P22
+LP      P3
+AP      P4
+ATBLP   P22
+MUL
+ATBL    K123
+MUL
+ATBL    K738
+DIV
+ATB
+L       K26
+SP      P23
+XCH
+KPG     P19 G208
+LP      P15
+ATBL    K2
+MOD
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K100
+MOD
+ATB
+L       K5
+SP      P23
+XCH
+KPG     P19 G208
+LL      L1
+ATBLP   P3
+MOD
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+NEG
+ATB
+LM      K105
+SP      P23
+XCH
+KPG     P19 G208
+L       K105
+SG      G200
+ATB
+EQ
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+L       K105
+ATBLG   G200
+NE
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+LS
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+GE
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+GR
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+LE
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+L       K104
+SG      G200
+ATBL    K105
+EQ
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+L       K105
+ATBLG   G200
+NE
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+LS
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+GE
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+GR
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+LE
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+L       K0
+SG      G200
+EQ0
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+NE0
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+LS0
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+GE0
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+GR0
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+LE0
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+L       K1
+SG      G200
+EQ0
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+NE0
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+LS0
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+GE0
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+GR0
+ATB
+LM      K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+LE0
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+L       K60
+SG      G203
+LP      P18
+ATBL    K3
+LSH
+ATB
+L       K8168
+SP      P23
+XCH
+KPG     P19 G208
+LP      P18
+ATBL    K3
+RSH
+ATB
+L       K127
+SP      P23
+XCH
+KPG     P19 G208
+L       K1
+AP      P5
+ATBLP   P18
+XCH
+LSH
+ATB
+L       K8168
+SP      P23
+XCH
+KPG     P19 G208
+L       K1
+AP      P5
+ATBLP   P18
+XCH
+RSH
+ATB
+L       K127
+SP      P23
+XCH
+KPG     P19 G208
+L       K12
+SP      P19
+L       K10
+SP      P20
+LM      K1
+SP      P21
+L       K0
+SP      P22
+L       K70
+SG      G203
+L       K10
+ATBLP   P19
+AND
+ATB
+L       K8
+SP      P27
+XCH
+KPG     P23 G208
+L       K10
+ATBLP   P19
+OR
+ATB
+L       K14
+SP      P27
+XCH
+KPG     P23 G208
+L       K10
+ATBLP   P19
+EQV
+ATBL    K31
+AND
+ATB
+L       K25
+SP      P27
+XCH
+KPG     P23 G208
+L       K10
+ATBLP   P19
+XOR
+ATB
+L       K6
+SP      P27
+XCH
+KPG     P23 G208
+LP      P21
+NOT
+ATB
+LP      P22
+SP      P27
+XCH
+KPG     P23 G208
+LP      P22
+NOT
+ATB
+LP      P21
+SP      P27
+XCH
+KPG     P23 G208
+LP      P20
+NEG
+ATBLP   P19
+EQV
+NOT
+SP      P26
+LP      P20
+NEG
+ATBLP   P19
+XOR
+SP      P27
+LP      P26
+KPG     P23 G208
+L       K80
+SG      G203
+L       K105
+SG      G200
+NEG
+ATB
+LM      K105
+SP      P23
+XCH
+KPG     P19 G208
+L       K1000
+SP      P23
+LKG     K0 G205
+KPG     P19 G208
+L       K1000
+SP      P23
+LKG     K0 G205
+KPG     P19 G208
+L       K1234
+SP      P23
+LKG     K1 G205
+KPG     P19 G208
+LKG     K0 G205
+S       K998
+AG      G205
+RV
+ATB
+L       K5678
+SP      P23
+XCH
+KPG     P19 G208
+L       K90
+SG      G203
+LL      L4
+RV
+ATB
+L       K10000
+SP      P23
+XCH
+KPG     P19 G208
+LL      L4
+RV
+ATB
+L       K10000
+SP      P23
+XCH
+KPG     P19 G208
+LL      L4
+RV
+ATB
+L       K10000
+SP      P23
+XCH
+KPG     P19 G208
+LL      L4
+RVK     K1
+ATB
+L       K10001
+SP      P23
+XCH
+KPG     P19 G208
+LL      L4
+RVK     K1
+ATB
+L       K10001
+SP      P23
+XCH
+KPG     P19 G208
+LL      L4
+RVK     K200
+ATB
+L       K10200
+SP      P23
+XCH
+KPG     P19 G208
+LM      K1
+SL      L1
+L       K0
+SL      L2
+LL      L1
+JEQ0    L45
+L       K16
+SP      P3
+LAB     L45
+L       K16
+SP      P23
+LP      P3
+KPG     P19 G208
+L       K16
+SP      P3
+LL      L2
+JEQ0    L46
+L       K15
+SP      P3
+LAB     L46
+L       K16
+SP      P23
+LP      P3
+KPG     P19 G208
+L       K15
+SP      P3
+LLP     P20
+SP      P19
+LF      L43
+SL      L1
+GOTO
+LAB     L47
+LSTR    M9021
+KPG     P41 G89
+IKG     K1 G204
+LAB     L43
+L       K11
+RES
+LAB     L48
+LDRES
+SL      L1
+L       K11
+SP      P23
+LL      L1
+KPG     P19 G208
+L       K100
+SG      G203
+LLP     P20
+SP      P19
+LM      K1
+STKP    K0 P19
+LM      K2
+STKP    K1 P19
+LLP     P23
+SP      P22
+L       K0
+SP      P34
+LAB     L49
+LP      P34
+NEG
+ATB
+LP      P34
+AP      P22
+ST
+IKP     K1 P34
+ATBL    K10
+JLE     L49
+LM      K5
+SP      P38
+LKP     K5 P22
+KPG     P34 G208
+LM      K2
+SP      P26
+LKP     K1 P19
+KPG     P22 G208
+L       K105
+SP      P28
+LG      G200
+KPG     P24 G208
+SP      P24
+L       K11
+SP      P29
+LL      L1
+KPG     P25 G208
+SP      P25
+L       K15
+SP      P23
+LP      P3
+KPG     P19 G208
+AP      P3
+S       K15
+SP      P3
+L       K15
+SP      P23
+LP      P3
+KPG     P19 G208
+IKP     K1 P3
+L       K16
+SP      P23
+LP      P3
+KPG     P19 G208
+IKP     K-1 P3
+L       K15
+SP      P23
+LP      P3
+KPG     P19 G208
+IKP     K7 P3
+L       K22
+SP      P23
+LP      P3
+KPG     P19 G208
+IKP     K-22 P3
+L       K0
+SP      P23
+LP      P3
+KPG     P19 G208
+IKP     K15 P3
+L       K15
+SP      P23
+LP      P3
+KPG     P19 G208
+LG      G200
+IP      P3
+L       K120
+SP      P23
+LP      P3
+KPG     P19 G208
+L       K1
+SP      P3
+L       K130
+SG      G203
+L       K105
+SG      G200
+ATB
+JNE     L51
+L       K1
+RES
+J       L50
+LAB     L51
+L       K2
+RES
+LAB     L50
+LDRES
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+L       K105
+ATBLG   G200
+JEQ     L53
+L       K1
+RES
+J       L52
+LAB     L53
+L       K2
+RES
+LAB     L52
+LDRES
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+JGE     L55
+L       K1
+RES
+J       L54
+LAB     L55
+L       K2
+RES
+LAB     L54
+LDRES
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+JLS     L57
+L       K1
+RES
+J       L56
+LAB     L57
+L       K2
+RES
+LAB     L56
+LDRES
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+JLE     L59
+L       K1
+RES
+J       L58
+LAB     L59
+L       K2
+RES
+LAB     L58
+LDRES
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+JGR     L61
+L       K1
+RES
+J       L60
+LAB     L61
+L       K2
+RES
+LAB     L60
+LDRES
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+L       K104
+SG      G200
+ATBL    K105
+JNE     L63
+L       K1
+RES
+J       L62
+LAB     L63
+L       K2
+RES
+LAB     L62
+LDRES
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+L       K105
+ATBLG   G200
+JEQ     L65
+L       K1
+RES
+J       L64
+LAB     L65
+L       K2
+RES
+LAB     L64
+LDRES
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+JGE     L67
+L       K1
+RES
+J       L66
+LAB     L67
+L       K2
+RES
+LAB     L66
+LDRES
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+JLS     L69
+L       K1
+RES
+J       L68
+LAB     L69
+L       K2
+RES
+LAB     L68
+LDRES
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+JLE     L71
+L       K1
+RES
+J       L70
+LAB     L71
+L       K2
+RES
+LAB     L70
+LDRES
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+JGR     L73
+L       K1
+RES
+J       L72
+LAB     L73
+L       K2
+RES
+LAB     L72
+LDRES
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+L       K0
+SG      G200
+JNE0    L75
+L       K1
+RES
+J       L74
+LAB     L75
+L       K2
+RES
+LAB     L74
+LDRES
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+JEQ0    L77
+L       K1
+RES
+J       L76
+LAB     L77
+L       K2
+RES
+LAB     L76
+LDRES
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+JGE0    L79
+L       K1
+RES
+J       L78
+LAB     L79
+L       K2
+RES
+LAB     L78
+LDRES
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+JLS0    L81
+L       K1
+RES
+J       L80
+LAB     L81
+L       K2
+RES
+LAB     L80
+LDRES
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+JLE0    L83
+L       K1
+RES
+J       L82
+LAB     L83
+L       K2
+RES
+LAB     L82
+LDRES
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+JGR0    L85
+L       K1
+RES
+J       L84
+LAB     L85
+L       K2
+RES
+LAB     L84
+LDRES
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+L       K1
+SG      G200
+JNE0    L87
+RES
+J       L86
+LAB     L87
+L       K2
+RES
+LAB     L86
+LDRES
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+JEQ0    L89
+L       K1
+RES
+J       L88
+LAB     L89
+L       K2
+RES
+LAB     L88
+LDRES
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+JGE0    L91
+L       K1
+RES
+J       L90
+LAB     L91
+L       K2
+RES
+LAB     L90
+LDRES
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+JLS0    L93
+L       K1
+RES
+J       L92
+LAB     L93
+L       K2
+RES
+LAB     L92
+LDRES
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+JLE0    L95
+L       K1
+RES
+J       L94
+LAB     L95
+L       K2
+RES
+LAB     L94
+LDRES
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+JGR0    L97
+L       K1
+RES
+J       L96
+LAB     L97
+L       K2
+RES
+LAB     L96
+LDRES
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+L       K200
+SG      G203
+L       K0
+SP      P19
+SP      P20
+SP      P21
+SP      P22
+SP      P23
+SP      P24
+LM      K200
+SP      P25
+LAB     L98
+L       K7
+SP      P26
+LP      P25
+RES
+J       L99
+LAB     L101
+IKP     K1000 P19
+J       L100
+LAB     L102
+LP      P25
+IP      P20
+J       L100
+LAB     L103
+IKP     K1 P19
+LAB     L104
+IKP     K1 P19
+LAB     L105
+IKP     K1 P19
+LAB     L106
+IKP     K1 P19
+LAB     L107
+IKP     K1 P19
+LAB     L108
+IKP     K1 P19
+LAB     L109
+IKP     K1 P19
+LAB     L110
+IKP     K1 P19
+LAB     L111
+IKP     K1 P19
+LAB     L112
+IKP     K1 P19
+LAB     L113
+IKP     K1 P19
+LAB     L114
+IKP     K1 P19
+LAB     L115
+IKP     K1 P19
+LAB     L116
+IKP     K1 P19
+LAB     L117
+IKP     K1 P19
+LAB     L118
+IKP     K1 P19
+LAB     L119
+IKP     K1 P19
+LAB     L120
+IKP     K1 P19
+LAB     L121
+IKP     K1 P19
+LAB     L122
+IKP     K1 P19
+LAB     L123
+IKP     K1 P19
+LAB     L124
+IKP     K1 P19
+LAB     L125
+IKP     K1 P19
+LAB     L126
+IKP     K1 P19
+LAB     L127
+IKP     K1 P19
+LAB     L128
+IKP     K1 P19
+LAB     L129
+IKP     K1 P19
+LAB     L130
+IKP     K1 P19
+LAB     L131
+IKP     K1 P19
+LAB     L132
+IKP     K1 P19
+LAB     L133
+IKP     K1 P19
+LAB     L134
+IKP     K1 P19
+J       L100
+LAB     L99
+LDRES
+A       K1000
+SWB K33 L101
+K1041 L124
+K1088 L118
+K902 L120
+K1095 L116
+K1074 L129
+K1008 L110
+K820 L105
+K1100 L113
+K1091 L125
+K1081 L130
+K1071 L127
+K1012 L122
+K1000 L107
+K838 L134
+K800 L103
+K1199 L115
+K1099 L119
+K1092 L126
+K1090 L114
+K1082 L131
+K1076 L117
+K1073 L128
+K1061 L132
+K1013 L123
+K1011 L121
+K1007 L109
+K995 L106
+K855 L108
+K829 L133
+K810 L104
+K0 L102
+K1200 L111
+K1190 L112
+LAB     L100
+L       K10000
+AP      P25
+RES
+J       L135
+LAB     L137
+IKP     K1000 P21
+J       L136
+LAB     L138
+IKP     K1 P21
+LAB     L139
+IKP     K1 P21
+LAB     L140
+IKP     K1 P21
+LAB     L141
+IKP     K1 P21
+LAB     L142
+IKP     K1 P21
+LAB     L143
+IKP     K1 P21
+LAB     L144
+IKP     K1 P21
+LAB     L145
+IKP     K1 P21
+LAB     L146
+IKP     K1 P21
+LAB     L147
+IKP     K1 P21
+LAB     L148
+IKP     K1 P21
+LAB     L149
+IKP     K1 P21
+LAB     L150
+IKP     K1 P21
+LAB     L151
+IKP     K1 P21
+LAB     L152
+IKP     K1 P21
+LAB     L153
+IKP     K1 P21
+J       L136
+LAB     L135
+LDRES
+S       K10010
+SWL K20 L137
+L148
+L149
+L150
+L151
+L152
+L153
+L137
+L137
+L137
+L137
+L138
+L139
+L140
+L141
+L142
+L143
+L144
+L145
+L146
+L147
+LAB     L136
+L       K100
+ATBLP   P25
+MUL
+RES
+J       L154
+LAB     L156
+IKP     K1000 P23
+J       L155
+LAB     L157
+LP      P25
+IP      P24
+J       L155
+LAB     L158
+IKP     K1 P23
+LAB     L159
+IKP     K1 P23
+LAB     L160
+IKP     K1 P23
+LAB     L161
+IKP     K1 P23
+LAB     L162
+IKP     K1 P23
+LAB     L163
+IKP     K1 P23
+LAB     L164
+IKP     K1 P23
+LAB     L165
+IKP     K1 P23
+LAB     L166
+IKP     K1 P23
+LAB     L167
+IKP     K1 P23
+LAB     L168
+IKP     K1 P23
+LAB     L169
+IKP     K1 P23
+LAB     L170
+IKP     K1 P23
+LAB     L171
+IKP     K1 P23
+LAB     L172
+IKP     K1 P23
+LAB     L173
+IKP     K1 P23
+LAB     L174
+IKP     K1 P23
+LAB     L175
+IKP     K1 P23
+LAB     L176
+IKP     K1 P23
+LAB     L177
+IKP     K1 P23
+LAB     L178
+IKP     K1 P23
+LAB     L179
+IKP     K1 P23
+LAB     L180
+IKP     K1 P23
+LAB     L181
+IKP     K1 P23
+LAB     L182
+IKP     K1 P23
+LAB     L183
+IKP     K1 P23
+LAB     L184
+IKP     K1 P23
+LAB     L185
+IKP     K1 P23
+LAB     L186
+IKP     K1 P23
+LAB     L187
+IKP     K1 P23
+LAB     L188
+IKP     K1 P23
+LAB     L189
+IKP     K1 P23
+J       L155
+LAB     L154
+LDRES
+ATB
+LM      K20000
+RES
+JGE     L9022
+LM      K100000
+JEQ     L157
+J       L156
+LAB     L9022
+LDRES
+XCH
+A       K20000
+SWB K32 L156
+K26100 L187
+K29000 L169
+K19500 L161
+K29900 L174
+K27600 L172
+K21100 L176
+K2900 L188
+K39000 L167
+K29200 L181
+K28200 L186
+K27300 L183
+K21300 L178
+K20700 L164
+K5500 L163
+K1000 L159
+K39900 L170
+K30000 L168
+K29500 L171
+K29100 L180
+K28800 L173
+K28100 L185
+K27400 L184
+K27100 L182
+K24100 L179
+K21200 L177
+K20800 L165
+K20000 L162
+K10200 L175
+K3800 L189
+K2000 L160
+K0 L158
+K40000 L166
+LAB     L155
+IKP     K1 P25
+ATBL    K200
+JLE     L98
+L       K0
+SP      P29
+LP      P20
+KPG     P25 G208
+L       K0
+SP      P29
+LP      P22
+KPG     P25 G208
+L       K0
+SP      P29
+LP      P24
+KPG     P25 G208
+L       K369528
+SP      P29
+LP      P19
+KPG     P25 G208
+L       K385136
+SP      P29
+LP      P21
+KPG     P25 G208
+L       K369528
+SP      P29
+LP      P23
+KPG     P25 G208
+L       K250
+SG      G203
+L       K2
+SP      P23
+L       K3
+SP      P24
+L       K4
+SP      P25
+L       K5
+SP      P26
+L       K6
+SP      P27
+L       K21
+SP      P28
+L       K1
+ATB
+LF      L25
+K       P19
+L       K1
+SP      P26
+KPG     P22 G208
+SP      P22
+L       K2
+SP      P27
+KPG     P23 G208
+SP      P23
+L       K3
+SP      P28
+KPG     P24 G208
+SP      P24
+L       K4
+SP      P29
+KPG     P25 G208
+SP      P25
+L       K5
+SP      P30
+KPG     P26 G208
+SP      P26
+L       K6
+SP      P31
+KPG     P27 G208
+SP      P27
+L       K21
+SP      P32
+KPG     P28 G208
+SP      P28
+LP      P22
+ATB
+LF      L25
+K       P19
+L       K1
+RES
+LAB     L190
+LDRES
+SP      P22
+L       K2
+RES
+LAB     L191
+LDRES
+SP      P23
+L       K3
+RES
+LAB     L192
+LDRES
+SP      P24
+L       K4
+RES
+LAB     L193
+LDRES
+SP      P25
+L       K5
+RES
+LAB     L194
+LDRES
+SP      P26
+L       K6
+RES
+LAB     L195
+LDRES
+SP      P27
+L       K21
+SP      P28
+LP      P22
+ATB
+LF      L25
+K       P19
+L       K1
+RES
+LAB     L196
+LDRES
+SP      P22
+L       K2
+SP      P27
+KPG     P23 G208
+SP      P23
+L       K3
+RES
+LAB     L197
+LDRES
+SP      P24
+L       K4
+SP      P29
+KPG     P25 G208
+SP      P25
+L       K5
+RES
+LAB     L198
+LDRES
+SP      P26
+L       K6
+SP      P31
+KPG     P27 G208
+SP      P27
+L       K21
+SP      P28
+LP      P22
+ATB
+LF      L25
+K       P19
+L       K2
+SP      P27
+KPG     P23 G208
+SP      P23
+L       K1
+SP      P22
+L       K3
+RES
+LAB     L199
+LDRES
+SP      P24
+L       K5
+SP      P30
+KPG     P26 G208
+SP      P26
+L       K4
+SP      P25
+L       K6
+RES
+LAB     L200
+LDRES
+SP      P27
+L       K21
+SP      P28
+LP      P22
+ATB
+LF      L25
+K       P19
+LL      L4
+RV
+SP      P25
+LL      L4
+RV
+SP      P26
+LL      L4
+RVK     K200
+SP      P27
+LKG     K0 G205
+SP      P23
+LKG     K200 G205
+SP      P24
+L       K33400
+SP      P28
+LKG     K0 G205
+ATB
+LF      L25
+K       P19
+LP      P3
+AP      P3
+ATBLP   P3
+DIV
+ATB
+LF      L25
+ADD
+S       K2
+SP      P29
+L       K1
+SP      P23
+SP      P24
+SP      P25
+SP      P26
+SP      P27
+L       K6
+SP      P28
+L       K1
+ATB
+LP      P29
+K       P19
+L       K300
+SG      G203
+L       K105
+SG      G200
+A       K5
+A       K6
+ATB
+L       K116
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+A       K2
+A       K3
+A       K6
+ATB
+L       K116
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+A       K11
+ATB
+L       K116
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+S       K104
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+L       K2
+AP      P3
+SP      P22
+L       K2
+AP      P3
+ATBLP   P22
+JNE     L202
+L       K99
+RES
+J       L201
+LAB     L202
+L       K98
+RES
+LAB     L201
+LDRES
+ATB
+L       K99
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+A       K1
+ATBLG   G200
+JLE     L204
+L       K21
+RES
+J       L203
+LAB     L204
+L       K22
+RES
+LAB     L203
+LDRES
+ATB
+L       K21
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+A       K1
+ATBLG   G200
+JGE     L206
+L       K31
+RES
+J       L205
+LAB     L206
+L       K32
+RES
+LAB     L205
+LDRES
+ATB
+L       K32
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+JGR     L208
+L       K41
+RES
+J       L207
+LAB     L208
+L       K42
+RES
+LAB     L207
+LDRES
+ATB
+L       K41
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+ATBL    K105
+JLS     L210
+L       K51
+RES
+J       L209
+LAB     L210
+L       K52
+RES
+LAB     L209
+LDRES
+ATB
+L       K51
+SP      P23
+XCH
+KPG     P19 G208
+L       K400
+SG      G203
+L       K0
+SP      P3
+L       K1
+SP      P4
+L       K2
+SP      P5
+L       K0
+SP      P23
+LP      P3
+KPG     P19 G208
+L       K1
+SP      P23
+LP      P4
+KPG     P19 G208
+L       K2
+SP      P23
+LP      P5
+KPG     P19 G208
+L       K101
+SG      G200
+L       K102
+SG      G401
+L       K103
+SG      G602
+L       K11
+SL      L1
+L       K12
+SL      L2
+L       K13
+SL      L3
+L       K1
+AP      P3
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G200
+A       K1
+ATB
+L       K102
+SP      P23
+XCH
+KPG     P19 G208
+LL      L1
+A       K1
+ATB
+L       K12
+SP      P23
+XCH
+KPG     P19 G208
+LLL     L1
+ATBL    K2
+MUL
+ATBL    K2
+DIV
+AG      G200
+S       K101
+RV
+ATB
+L       K11
+SP      P23
+XCH
+KPG     P19 G208
+LLG     G200
+SL      L1
+RV
+ATB
+L       K101
+SP      P23
+XCH
+KPG     P19 G208
+LLG     G401
+SL      L2
+LLL     L2
+SL      L1
+RV
+RV
+ATB
+L       K102
+SP      P23
+XCH
+KPG     P19 G208
+LL      L4
+A       K1
+ATB
+LL      L4
+ST
+LLG     G602
+ATB
+LL      L4
+STK     K1
+LP      P4
+ATBLP   P5
+MUL
+SP      P22
+LL      L4
+RV
+RV
+RV
+AP      P22
+S       K2
+ATB
+L       K103
+SP      P23
+XCH
+KPG     P19 G208
+LP      P4
+ATBLP   P5
+MUL
+SP      P22
+LL      L4
+RVK     K1
+RV
+AP      P22
+S       K2
+ATB
+L       K103
+SP      P23
+XCH
+KPG     P19 G208
+L       K123
+SP      P26
+KPG     P22 G208
+SP      P22
+L       K123
+SP      P27
+KPG     P23 G208
+SP      P23
+LP      P22
+KPG     P19 G208
+L       K500
+SG      G203
+L       K100
+SP      P3
+ATB
+MUL
+ATB
+L       K10000
+SP      P23
+XCH
+KPG     P19 G208
+LP      P3
+ATBLP   P3
+MUL
+MUL
+ATB
+L       K1000000
+SP      P23
+XCH
+KPG     P19 G208
+LP      P3
+ATBLP   P3
+MUL
+A       K10000
+ATB
+L       K20000
+SP      P23
+XCH
+KPG     P19 G208
+LP      P3
+ATBLP   P3
+MUL
+A       K1000000
+ATB
+L       K1010000
+SP      P23
+XCH
+KPG     P19 G208
+LP      P3
+ATBLP   P3
+MUL
+S       K10000
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LP      P3
+ATBLP   P3
+MUL
+S       K1000000
+ATB
+LM      K990000
+SP      P23
+XCH
+KPG     P19 G208
+L       K600
+SG      G203
+L       K104
+SP      P23
+L       K105
+SP      P24
+L       K106
+SP      P25
+L       K107
+SP      P26
+L       K108
+SP      P27
+L       K109
+SP      P28
+L       K110
+SP      P29
+L       K111
+SP      P30
+L       K112
+SP      P31
+L       K113
+SP      P32
+L       K114
+SP      P33
+L       K115
+SP      P34
+L       K116
+SP      P35
+L       K117
+SP      P36
+L       K103
+ATB
+LF      L32
+K       P19
+L       K700
+SG      G203
+L       K1
+SL      L1
+LG      G211
+SL      L2
+LG      G212
+SL      L3
+L       K1
+SP      P23
+LL      L1
+KPG     P19 G208
+LL      L1
+ATBL    K1
+LSH
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LL      L1
+ATBL    K2
+LSH
+ATB
+L       K4
+SP      P23
+XCH
+KPG     P19 G208
+LG      G211
+SP      P23
+SP      P24
+LSTR    M9023
+KPG     P19 G94
+LG      G210
+S       K1
+ATB
+LL      L1
+XCH
+LSH
+ATB
+LG      G211
+SP      P23
+XCH
+KPG     P19 G208
+LL      L1
+ATBLG   G210
+LSH
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LG      G210
+A       K1
+ATB
+LL      L1
+XCH
+LSH
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+L       K1
+SP      P23
+LL      L1
+KPG     P19 G208
+LG      G210
+S       K1
+ATB
+LL      L2
+XCH
+RSH
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LG      G210
+S       K1
+ATB
+LL      L3
+XCH
+RSH
+ATB
+L       K1
+SP      P23
+XCH
+KPG     P19 G208
+LL      L2
+ATBLG   G210
+RSH
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+LL      L3
+ATBLG   G210
+RSH
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+L       K800
+SG      G203
+L       K20
+SL      L1
+LM      K30
+SL      L2
+L       K0
+SL      L3
+LL      L1
+ABS
+ATB
+L       K20
+SP      P23
+XCH
+KPG     P19 G208
+LL      L2
+ABS
+ATB
+L       K30
+SP      P23
+XCH
+KPG     P19 G208
+LL      L3
+ABS
+ATB
+L       K0
+SP      P23
+XCH
+KPG     P19 G208
+L       K1001
+SKG     K0 G205
+SP      P23
+LKG     K0 G205
+KPG     P19 G208
+L       K1002
+ATBLG   G205
+STK     K1
+BTA
+SP      P23
+LKG     K1 G205
+KPG     P19 G208
+L       K1003
+ATBLG   G205
+STK     K2
+BTA
+SP      P23
+LKG     K2 G205
+KPG     P19 G208
+L       K1004
+ATBLG   G205
+STK     K3
+BTA
+SP      P23
+LKG     K3 G205
+KPG     P19 G208
+LG      G205
+A       K4
+ATBL    K1005
+XST
+SP      P23
+LKG     K4 G205
+KPG     P19 G208
+L       K2001
+ATB
+LL      L4
+ST
+LL      L4
+RV
+ATB
+L       K2001
+SP      P23
+XCH
+KPG     P19 G208
+L       K2002
+ATB
+LL      L4
+STK     K1
+LL      L4
+RVK     K1
+ATB
+L       K2002
+SP      P23
+XCH
+KPG     P19 G208
+L       K2003
+ATB
+LL      L4
+STK     K2
+LL      L4
+RVK     K2
+ATB
+L       K2003
+SP      P23
+XCH
+KPG     P19 G208
+L       K2004
+ATB
+LL      L4
+STK     K3
+LL      L4
+RVK     K3
+ATB
+L       K2004
+SP      P23
+XCH
+KPG     P19 G208
+LL      L4
+A       K4
+ATBL    K2005
+XST
+LL      L4
+RVK     K4
+ATB
+L       K2005
+SP      P23
+XCH
+KPG     P19 G208
+L       K21
+ATC
+LL      L4
+ATBL    K0
+PBYT
+ATB
+LL      L4
+XGBYT
+ATB
+L       K21
+SP      P23
+XCH
+KPG     P19 G208
+L       K22
+ATC
+LL      L4
+ATBL    K1
+PBYT
+ATB
+LL      L4
+XGBYT
+ATB
+L       K22
+SP      P23
+XCH
+KPG     P19 G208
+L       K23
+ATC
+LL      L4
+ATBL    K2
+PBYT
+ATB
+LL      L4
+XGBYT
+ATB
+L       K23
+SP      P23
+XCH
+KPG     P19 G208
+L       K3
+ATC
+ATB
+LL      L4
+XPBYT
+LL      L4
+XGBYT
+ATB
+L       K3
+SP      P23
+XCH
+KPG     P19 G208
+L       K10
+SL      L1
+ATBL    K5
+LSH
+SL      L2
+LL      L1
+ATC
+LL      L4
+ATBL    K4
+PBYT
+ATB
+LL      L4
+XGBYT
+ATB
+L       K10
+SP      P23
+XCH
+KPG     P19 G208
+L       K100
+SL      L1
+L       K101
+SL      L2
+L       K300
+SG      G401
+IKL     K1 L1
+L       K101
+SP      P23
+LL      L1
+KPG     P19 G208
+LL      L2
+IL      L1
+L       K202
+SP      P23
+LL      L1
+KPG     P19 G208
+LL      L2
+IG      G401
+L       K401
+SP      P23
+LG      G401
+KPG     P19 G208
+L       K8
+SG      G401
+L       K3
+SL      L2
+ATBLG   G401
+XMOD
+SL      L1
+L       K2
+SP      P23
+LL      L1
+KPG     P19 G208
+L       K20
+SG      G401
+L       K12
+SL      L2
+ATBLG   G401
+XSUB
+SL      L1
+L       K8
+SP      P23
+LL      L1
+KPG     P19 G208
+L       K850
+SG      G203
+L       K4660
+SP      P23
+KPG     P19 G208
+LSTR    M9024
+ATBL    K0
+GBYT
+ATB
+L       K3
+SP      P23
+XCH
+KPG     P19 G208
+LSTR    M9025
+ATBL    K1
+GBYT
+ATB
+L       K225
+SP      P23
+XCH
+KPG     P19 G208
+LSTR    M9026
+ATBL    K2
+GBYT
+ATB
+L       K136
+SP      P23
+XCH
+KPG     P19 G208
+LSTR    M9027
+ATBL    K3
+GBYT
+ATB
+L       K180
+SP      P23
+XCH
+KPG     P19 G208
+LW      M9029
+SP      P23
+LW      M9028
+KPG     P19 G208
+LSTR    M9030
+ATBL    K0
+GBYT
+ATB
+L       K6
+SP      P23
+XCH
+KPG     P19 G208
+LSTR    M9031
+ATBL    K1
+GBYT
+ATB
+L       K252
+SP      P23
+XCH
+KPG     P19 G208
+LSTR    M9032
+ATBL    K2
+GBYT
+ATB
+L       K146
+SP      P23
+XCH
+KPG     P19 G208
+LSTR    M9033
+ATBL    K3
+GBYT
+ATB
+L       K141
+SP      P23
+XCH
+KPG     P19 G208
+LSTR    M9034
+ATBL    K4
+GBYT
+ATB
+L       K133
+SP      P23
+XCH
+KPG     P19 G208
+LSTR    M9035
+ATBL    K5
+GBYT
+ATB
+L       K153
+SP      P23
+XCH
+KPG     P19 G208
+LSTR    M9036
+ATBL    K6
+GBYT
+ATB
+L       K184
+SP      P23
+XCH
+KPG     P19 G208
+L       K4566
+SP      P23
+KPG     P19 G208
+LSTR    M9037
+ATBL    K0
+GBYT
+ATB
+L       K2
+SP      P23
+XCH
+KPG     P19 G208
+LSTR    M9038
+ATBL    K1
+GBYT
+ATB
+L       K226
+SP      P23
+XCH
+KPG     P19 G208
+LSTR    M9039
+ATBL    K2
+GBYT
+ATB
+L       K205
+SP      P23
+XCH
+KPG     P19 G208
+L       K1000
+SG      G203
+LF      L29
+K       P19
+L       K2000
+SG      G203
+LF      L30
+K       P19
+L       K3000
+SG      G203
+LF      L31
+K       P19
+L       K4000
+SG      G203
+SP      P23
+LSTR    M9040
+KPG     P19 G94
+L       K0
+SP      P19
+LAB     L211
+L       K0
+SP      P20
+SP      P21
+SP      P22
+SP      P23
+L       K1
+SP      P24
+LP      P19
+SP      P25
+ATBLP   P24
+JLS     L213
+LAB     L212
+L       K1
+ATB
+LLP     P20
+SELST   ADD K0 K0
+LP      P24
+AND
+JNE     L214
+L       K10
+ATB
+LLP     P20
+SELST   ADD K0 K0
+ATBL    K100
+XSELST  ADD K0 K0
+LAB     L214
+IKP     K1 P24
+ATBLP   P25
+JLE     L212
+LAB     L213
+LP      P19
+SP      P23
+JLE0    L216
+LAB     L215
+L       K1
+ATB
+LLP     P21
+SELST   ADD K0 K0
+LLP     P23
+SELST   SUB K0 K0
+LP      P23
+JGR0    L215
+LAB     L216
+LP      P19
+SP      P23
+LAB     L217
+L       K1
+ATB
+LLP     P22
+SELST   ADD K0 K0
+LLP     P23
+SELST   SUB K0 K0
+LP      P23
+JGR0    L217
+LP      P19
+ATBL    K2
+DIV
+SP      P28
+L       K1
+AP      P19
+ATBL    K2
+DIV
+ATBL    K111
+MUL
+AP      P28
+SP      P28
+LP      P20
+KPG     P24 G208
+LP      P19
+SP      P28
+LP      P21
+KPG     P24 G208
+LP      P22
+SP      P27
+LP      P19
+JNE0    L219
+L       K1
+RES
+J       L218
+LAB     L219
+LP      P19
+RES
+LAB     L218
+LDRES
+SP      P28
+LP      P27
+KPG     P24 G208
+IKP     K1 P19
+ATBL    K5
+JLE     L211
+LG      G206
+SP      P23
+LG      G204
+SP      P24
+SP      P25
+LSTR    M9041
+KPG     P19 G94
+RTN
+CONST   M9028 W305419896
+CONST   M9029 W305419896
+STRING  M9020 K18 C10 C67 C103 C116 C101 C115 C116 C101 C114 C32 C101 C110 C116 C101 C114 C101 C100 C10
+STRING  M9021 K11 C71 C79 C84 C79 C32 C69 C82 C82 C79 C82 C10
+STRING  M9023 K13 C109 C115 C98 C61 C37 C110 C32 C61 C37 C49 C54 C120 C10
+STRING  M9024 K3 C225 C136 C180
+STRING  M9025 K3 C225 C136 C180
+STRING  M9026 K3 C225 C136 C180
+STRING  M9027 K3 C225 C136 C180
+STRING  M9030 K6 C252 C146 C141 C133 C153 C184
+STRING  M9031 K6 C252 C146 C141 C133 C153 C184
+STRING  M9032 K6 C252 C146 C141 C133 C153 C184
+STRING  M9033 K6 C252 C146 C141 C133 C153 C184
+STRING  M9034 K6 C252 C146 C141 C133 C153 C184
+STRING  M9035 K6 C252 C146 C141 C133 C153 C184
+STRING  M9036 K6 C252 C146 C141 C133 C153 C184
+STRING  M9037 K2 C226 C205
+STRING  M9038 K2 C226 C205
+STRING  M9039 K2 C226 C205
+STRING  M9040 K15 C37 C105 C52 C32 C84 C101 C115 C116 C105 C110 C103 C32 C60 C62 C10
+STRING  M9041 K35 C10 C37 C110 C32 C84 C69 C83 C84 C83 C32 C67 C79 C77 C80 C76 C69 C84 C69 C68 C44 C32 C37 C110 C32 C70 C65 C73 C76 C85 C82 C69 C37 C112 C83 C10
+
+//Entry to: testslct
+ENTRY   K8 C116 C101 C115 C116 C115 C108 C99 C116
+LAB     L29
+LW      M9042
+SP      P3
+LW      M9043
+SP      P4
+LP      P3
+SP      P5
+LP      P4
+SP      P6
+LLP     P5
+SP      P7
+LW      M9044
+SP      P12
+LKP     K0 P7
+KPG     P8 G208
+LW      M9045
+SP      P12
+LKP     K1 P7
+KPG     P8 G208
+LP      P7
+SELLD   K0 K4
+ATB
+LW      M9046
+SP      P12
+XCH
+KPG     P8 G208
+L       K1
+AP      P7
+SELLD   K8 K4
+ATB
+L       K169
+SP      P12
+XCH
+KPG     P8 G208
+LP      P7
+SELLD   K8 K0
+ATB
+L       K120
+SP      P12
+XCH
+KPG     P8 G208
+LP      P3
+SP      P5
+LP      P4
+SP      P6
+LW      M9047
+STKP    K0 P7
+LW      M9048
+SP      P12
+LP      P5
+KPG     P8 G208
+LP      P3
+SP      P5
+LP      P4
+SP      P6
+LW      M9049
+STKP    K1 P7
+LW      M9050
+SP      P12
+LP      P6
+KPG     P8 G208
+LP      P3
+SP      P5
+LP      P4
+SP      P6
+L       K32
+ATBLG   G210
+JNE     L220
+LW      M9051
+ATBLP   P7
+SELST   NULL K0 K4
+LW      M9052
+SP      P12
+LP      P5
+KPG     P8 G208
+J       L221
+LAB     L220
+LW      M9053
+ATBLP   P7
+SELST   NULL K0 K4
+LW      M9054
+SP      P12
+LP      P5
+KPG     P8 G208
+LAB     L221
+LP      P3
+SP      P5
+LP      P4
+SP      P6
+L       K1
+AP      P7
+ATB
+LW      M9055
+XSELST  NULL K8 K4
+LW      M9056
+SP      P12
+LP      P6
+KPG     P8 G208
+LP      P3
+SP      P5
+LP      P4
+SP      P6
+LW      M9057
+ATBLP   P7
+SELST   NULL K8 K0
+LW      M9058
+SP      P12
+LP      P5
+KPG     P8 G208
+LP      P7
+SP      P5
+ATBL    K1
+XSELST  VECAP K0 K0
+LP      P4
+SP      P12
+LP      P5
+KPG     P8 G208
+LP      P3
+SP      P5
+LP      P7
+SP      P6
+A       K1
+ATBL    K0
+XSELST  VECAP K0 K0
+LP      P3
+SP      P12
+LP      P6
+KPG     P8 G208
+LW      M9059
+SP      P4
+SP      P6
+L       K1
+AP      P7
+ATBL    K2
+XSELST  MUL K8 K4
+LW      M9060
+SP      P12
+LP      P6
+KPG     P8 G208
+LP      P4
+SP      P6
+L       K1
+AP      P7
+ATBL    K2
+XSELST  DIV K8 K4
+LW      M9061
+SP      P12
+LP      P6
+KPG     P8 G208
+LP      P4
+SP      P6
+L       K1
+AP      P7
+ATBL    K64
+XSELST  MOD K8 K4
+LW      M9062
+SP      P12
+LP      P6
+KPG     P8 G208
+LP      P4
+SP      P6
+L       K1
+AP      P7
+ATBL    K21
+XSELST  ADD K8 K4
+LW      M9063
+SP      P12
+LP      P6
+KPG     P8 G208
+LP      P4
+SP      P6
+L       K1
+AP      P7
+ATBL    K13
+XSELST  SUB K8 K4
+LW      M9064
+SP      P12
+LP      P6
+KPG     P8 G208
+LP      P4
+SP      P6
+L       K1
+AP      P7
+ATBL    K1
+XSELST  LSHIFT K8 K4
+LW      M9065
+SP      P12
+LP      P6
+KPG     P8 G208
+LP      P4
+SP      P6
+L       K1
+AP      P7
+ATBL    K1
+XSELST  RSHIFT K8 K4
+LW      M9066
+SP      P12
+LP      P6
+KPG     P8 G208
+LP      P4
+SP      P6
+L       K1
+AP      P7
+ATBL    K199
+XSELST  LOGAND K8 K4
+LW      M9067
+SP      P12
+LP      P6
+KPG     P8 G208
+LP      P4
+SP      P6
+L       K1
+AP      P7
+ATBL    K97
+XSELST  LOGOR K8 K4
+LW      M9068
+SP      P12
+LP      P6
+KPG     P8 G208
+LP      P4
+SP      P6
+L       K1
+AP      P7
+ATBL    K198
+XSELST  EQV K8 K4
+LW      M9069
+SP      P12
+LP      P6
+KPG     P8 G208
+LP      P4
+SP      P6
+L       K1
+AP      P7
+ATBL    K198
+XSELST  XOR K8 K4
+LW      M9070
+SP      P12
+LP      P6
+KPG     P8 G208
+RTN
+CONST   M9042 W305419896
+CONST   M9043 W-19088744
+CONST   M9044 W305419896
+CONST   M9045 W-19088744
+CONST   M9046 W19088743
+CONST   M9047 W558065031
+CONST   M9048 W558065031
+CONST   M9049 W-271733879
+CONST   M9050 W-271733879
+CONST   M9051 W-271733879
+CONST   M9052 W-52774760
+CONST   M9053 W-271733879
+CONST   M9054 W-52774760
+CONST   M9055 W-1450744509
+CONST   M9056 W-19090376
+CONST   M9057 W-878082203
+CONST   M9058 W305419877
+CONST   M9059 W305421258
+CONST   M9060 W305420170
+CONST   M9061 W305419754
+CONST   M9062 W305419210
+CONST   M9063 W305421594
+CONST   M9064 W305421050
+CONST   M9065 W305420170
+CONST   M9066 W305419754
+CONST   M9067 W305420362
+CONST   M9068 W305422298
+CONST   M9069 W305420378
+CONST   M9070 W305420202
+
+//Entry to: testopassign
+ENTRY   K12 C116 C101 C115 C116 C111 C112 C97 C115 C115 C105 C103 C110
+LAB     L30
+LLP     P4
+SP      P3
+L       K0
+SP      P15
+LAB     L222
+L       K0
+ATBLP   P15
+STP     P3
+IKP     K1 P15
+ATBL    K10
+JLE     L222
+LG      G203
+SP      P19
+LSTR    M9071
+KPG     P15 G94
+LP      P3
+STKP    K1 P3
+L       K1000
+ATBL    K5
+STP     P3
+L       K1
+AP      P3
+ATBL    K5
+XSELST  VECAP K0 K0
+L       K1000
+SP      P19
+LKP     K1 P3
+KPG     P15 G208
+LM      K5
+SP      P15
+LAB     L223
+LM      K5
+SP      P16
+LAB     L224
+L       K1000
+ATBLP   P15
+MUL
+FLOAT
+SP      P19
+LP      P16
+MUL
+FLOAT
+SP      P20
+L       K123455
+AP      P15
+ATC
+LP      P3
+ATBL    K6
+PBYT
+LG      G203
+SP      P25
+LP      P20
+SP      P26
+LP      P19
+SP      P27
+LSTR    M9072
+KPG     P21 G94
+LP      P19
+SP      P17
+LP      P20
+ATB
+LLP     P17
+SELST   FMUL K0 K0
+LP      P20
+ATBLP   P19
+FMUL
+SP      P25
+LP      P17
+ATB
+LF      L20
+K       P21
+LP      P16
+JEQ0    L225
+LP      P19
+SP      P17
+LP      P20
+ATB
+LLP     P17
+SELST   FDIV K0 K0
+LP      P19
+ATBLP   P20
+FDIV
+SP      P25
+LP      P17
+ATB
+LF      L20
+K       P21
+LP      P19
+SP      P17
+LP      P20
+ATB
+LLP     P17
+SELST   FMOD K0 K0
+LP      P19
+ATBLP   P20
+FMOD
+SP      P25
+LP      P17
+ATB
+LF      L20
+K       P21
+LAB     L225
+LP      P19
+SP      P17
+LP      P20
+ATB
+LLP     P17
+SELST   FADD K0 K0
+LP      P20
+ATBLP   P19
+FADD
+SP      P25
+LP      P17
+ATB
+LF      L20
+K       P21
+LP      P19
+SP      P17
+LP      P20
+ATB
+LLP     P17
+SELST   FSUB K0 K0
+LP      P19
+ATBLP   P20
+FSUB
+SP      P25
+LP      P17
+ATB
+LF      L20
+K       P21
+LG      G203
+SP      P25
+LP      P16
+SP      P26
+LP      P15
+SP      P27
+LSTR    M9073
+KPG     P21 G94
+LP      P15
+SP      P17
+LP      P16
+ATB
+LLP     P17
+SELST   MUL K0 K0
+LP      P16
+ATBLP   P15
+MUL
+SP      P25
+LP      P17
+KPG     P21 G208
+LP      P16
+JEQ0    L226
+LP      P15
+SP      P17
+LP      P16
+ATB
+LLP     P17
+SELST   DIV K0 K0
+LP      P15
+ATBLP   P16
+DIV
+SP      P25
+LP      P17
+KPG     P21 G208
+LP      P15
+SP      P17
+LP      P16
+ATB
+LLP     P17
+SELST   MOD K0 K0
+LP      P15
+ATBLP   P16
+MOD
+SP      P25
+LP      P17
+KPG     P21 G208
+LAB     L226
+LP      P15
+SP      P17
+LP      P16
+ATB
+LLP     P17
+SELST   ADD K0 K0
+LP      P15
+AP      P16
+SP      P25
+LP      P17
+KPG     P21 G208
+LP      P15
+SP      P17
+LP      P16
+ATB
+LLP     P17
+SELST   SUB K0 K0
+LP      P15
+ATBLP   P16
+SUB
+SP      P25
+LP      P17
+KPG     P21 G208
+LP      P15
+SP      P17
+LP      P16
+ATB
+LLP     P17
+SELST   LSHIFT K0 K0
+LP      P15
+ATBLP   P16
+LSH
+SP      P25
+LP      P17
+KPG     P21 G208
+LP      P15
+SP      P17
+LP      P16
+ATB
+LLP     P17
+SELST   RSHIFT K0 K0
+LP      P15
+ATBLP   P16
+RSH
+SP      P25
+LP      P17
+KPG     P21 G208
+LP      P15
+SP      P17
+LP      P16
+ATB
+LLP     P17
+SELST   LOGAND K0 K0
+LP      P16
+ATBLP   P15
+AND
+SP      P25
+LP      P17
+KPG     P21 G208
+LP      P15
+SP      P17
+LP      P16
+ATB
+LLP     P17
+SELST   LOGOR K0 K0
+LP      P16
+ATBLP   P15
+OR
+SP      P25
+LP      P17
+KPG     P21 G208
+LP      P15
+SP      P17
+LP      P16
+ATB
+LLP     P17
+SELST   EQV K0 K0
+LP      P16
+ATBLP   P15
+EQV
+SP      P25
+LP      P17
+KPG     P21 G208
+LP      P15
+SP      P17
+LP      P16
+ATB
+LLP     P17
+SELST   XOR K0 K0
+LP      P16
+ATBLP   P15
+XOR
+SP      P25
+LP      P17
+KPG     P21 G208
+LG      G203
+SP      P25
+LP      P16
+SP      P26
+LP      P15
+SP      P27
+LSTR    M9074
+KPG     P21 G94
+LP      P15
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+ATBLP   P16
+MUL
+ATC
+LP      P3
+ATBL    K6
+PBYT
+LP      P3
+ATBL    K5
+GBYT
+ATBLP   P16
+MUL
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+SP      P24
+LP      P3
+ATBL    K6
+GBYT
+SP      P25
+LP      P24
+KPG     P21 G208
+LP      P16
+JEQ0    L227
+LP      P15
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+ATBLP   P16
+DIV
+ATC
+LP      P3
+ATBL    K6
+PBYT
+LP      P3
+ATBL    K5
+GBYT
+ATBLP   P16
+DIV
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+SP      P24
+LP      P3
+ATBL    K6
+GBYT
+SP      P25
+LP      P24
+KPG     P21 G208
+LP      P15
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+ATBLP   P16
+MOD
+ATC
+LP      P3
+ATBL    K6
+PBYT
+LP      P3
+ATBL    K5
+GBYT
+ATBLP   P16
+MOD
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+SP      P24
+LP      P3
+ATBL    K6
+GBYT
+SP      P25
+LP      P24
+KPG     P21 G208
+LAB     L227
+LP      P15
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+AP      P16
+ATC
+LP      P3
+ATBL    K6
+PBYT
+LP      P3
+ATBL    K5
+GBYT
+AP      P16
+ATC
+L       K5
+PBYT
+ATBLP   P3
+XGBYT
+SP      P24
+LP      P3
+ATBL    K6
+GBYT
+SP      P25
+LP      P24
+KPG     P21 G208
+LP      P15
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+ATBLP   P16
+SUB
+ATC
+LP      P3
+ATBL    K6
+PBYT
+LP      P3
+ATBL    K5
+GBYT
+ATBLP   P16
+SUB
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+SP      P24
+LP      P3
+ATBL    K6
+GBYT
+SP      P25
+LP      P24
+KPG     P21 G208
+LP      P15
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+ATBLP   P16
+LSH
+ATC
+LP      P3
+ATBL    K6
+PBYT
+LP      P3
+ATBL    K5
+GBYT
+ATBLP   P16
+LSH
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+SP      P24
+LP      P3
+ATBL    K6
+GBYT
+SP      P25
+LP      P24
+KPG     P21 G208
+LP      P15
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+ATBLP   P16
+RSH
+ATC
+LP      P3
+ATBL    K6
+PBYT
+LP      P3
+ATBL    K5
+GBYT
+ATBLP   P16
+RSH
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+SP      P24
+LP      P3
+ATBL    K6
+GBYT
+SP      P25
+LP      P24
+KPG     P21 G208
+LP      P15
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+ATBLP   P16
+AND
+ATC
+LP      P3
+ATBL    K6
+PBYT
+LP      P3
+ATBL    K5
+GBYT
+ATBLP   P16
+AND
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+SP      P24
+LP      P3
+ATBL    K6
+GBYT
+SP      P25
+LP      P24
+KPG     P21 G208
+LP      P15
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+ATBLP   P16
+OR
+ATC
+LP      P3
+ATBL    K6
+PBYT
+LP      P3
+ATBL    K5
+GBYT
+ATBLP   P16
+OR
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+SP      P24
+LP      P3
+ATBL    K6
+GBYT
+SP      P25
+LP      P24
+KPG     P21 G208
+LP      P15
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+ATBLP   P16
+EQV
+ATC
+LP      P3
+ATBL    K6
+PBYT
+LP      P3
+ATBL    K5
+GBYT
+ATBLP   P16
+EQV
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+SP      P24
+LP      P3
+ATBL    K6
+GBYT
+SP      P25
+LP      P24
+KPG     P21 G208
+LP      P15
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+ATBLP   P16
+XOR
+ATC
+LP      P3
+ATBL    K6
+PBYT
+LP      P3
+ATBL    K5
+GBYT
+ATBLP   P16
+XOR
+ATC
+LP      P3
+ATBL    K5
+PBYT
+ATBLP   P3
+XGBYT
+SP      P24
+LP      P3
+ATBL    K6
+GBYT
+SP      P25
+LP      P24
+KPG     P21 G208
+IKP     K1 P16
+ATBL    K5
+JLE     L224
+IKP     K1 P15
+ATBL    K5
+JLE     L223
+RTN
+STRING  M9071 K16 C37 C105 C52 C32 C84 C101 C115 C116 C105 C110 C103 C32 C33 C58 C61 C10
+STRING  M9072 K39 C37 C105 C52 C32 C84 C101 C115 C116 C105 C110 C103 C32 C120 C32 C35 C111 C112 C58 C61 C32 C37 C56 C46 C50 C102 C32 C119 C105 C116 C104 C32 C120 C61 C37 C56 C46 C50 C102 C10
+STRING  M9073 K32 C37 C105 C52 C32 C84 C101 C115 C116 C105 C110 C103 C32 C120 C32 C111 C112 C58 C61 C32 C37 C110 C32 C119 C105 C116 C104 C32 C120 C61 C37 C110 C10
+STRING  M9074 K37 C37 C105 C52 C32 C84 C101 C115 C116 C105 C110 C103 C32 C118 C37 C37 C53 C32 C111 C112 C58 C61 C32 C37 C110 C32 C119 C105 C116 C104 C32 C118 C37 C53 C61 C37 C110 C10
+
+//Entry to: testflt
+ENTRY   K7 C116 C101 C115 C116 C102 C108 C116
+LAB     L31
+L       K0
+SP      P3
+SP      P4
+LG      G203
+SP      P9
+LSTR    M9075
+KPG     P5 G94
+LM      K123456
+SP      P9
+KPG     P5 G208
+LW      M9077
+SP      P9
+LW      M9076
+ATB
+LF      L20
+K       P5
+L       K123456
+SP      P9
+KPG     P5 G208
+LW      M9079
+SP      P9
+LW      M9078
+ATB
+LF      L20
+K       P5
+LW      M9081
+SP      P9
+LW      M9080
+ATB
+LF      L20
+K       P5
+LW      M9083
+SP      P9
+LW      M9082
+ATB
+LF      L20
+K       P5
+LW      M9085
+SP      P9
+LW      M9084
+ATB
+LF      L20
+K       P5
+LW      M9087
+SP      P9
+LW      M9086
+ATB
+LF      L20
+K       P5
+L       K0
+SP      P9
+L       K63
+KPG     P5 G3
+ATBL    K-1
+JEQ     L228
+LSTR    M9088
+KPG     P5 G89
+LAB     L228
+L       K1
+SP      P12
+L       K12345
+SP      P13
+LM      K1
+SP      P14
+L       K63
+KPG     P8 G3
+ATB
+LW      M9089
+SP      P9
+XCH
+ATB
+LF      L20
+K       P5
+L       K2
+SP      P9
+LW      M9090
+SP      P10
+L       K63
+KPG     P5 G3
+SP      P3
+LG      G10
+SP      P4
+L       K12345
+SP      P9
+LP      P3
+KPG     P5 G208
+LM      K1
+SP      P9
+LP      P4
+KPG     P5 G208
+L       K2
+SP      P9
+LW      M9091
+SP      P10
+L       K63
+KPG     P5 G3
+SP      P3
+LG      G10
+SP      P4
+LM      K12345
+SP      P9
+LP      P3
+KPG     P5 G208
+LM      K1
+SP      P9
+LP      P4
+KPG     P5 G208
+L       K3
+SP      P9
+L       K123456
+SP      P10
+L       K63
+KPG     P5 G3
+SP      P3
+LW      M9092
+SP      P9
+LP      P3
+ATB
+LF      L20
+K       P5
+L       K4
+SP      P9
+LW      M9093
+SP      P10
+L       K63
+KPG     P5 G3
+SP      P3
+L       K12346
+SP      P9
+LP      P3
+KPG     P5 G208
+L       K5
+SP      P9
+LW      M9094
+SP      P10
+L       K63
+KPG     P5 G3
+SP      P3
+LW      M9095
+SP      P9
+LP      P3
+ATB
+LF      L20
+K       P5
+L       K5
+SP      P9
+LW      M9096
+SP      P10
+L       K63
+KPG     P5 G3
+SP      P3
+LW      M9097
+SP      P9
+LP      P3
+ATB
+LF      L20
+K       P5
+L       K6
+SP      P9
+LW      M9098
+SP      P10
+LW      M9099
+SP      P11
+L       K63
+KPG     P5 G3
+SP      P3
+LW      M9100
+SP      P9
+LP      P3
+ATB
+LF      L20
+K       P5
+L       K7
+SP      P9
+LW      M9101
+SP      P10
+LW      M9102
+SP      P11
+L       K63
+KPG     P5 G3
+SP      P3
+LW      M9103
+SP      P9
+LP      P3
+ATB
+LF      L20
+K       P5
+L       K9
+SP      P9
+LW      M9104
+SP      P10
+LW      M9105
+SP      P11
+L       K63
+KPG     P5 G3
+SP      P3
+LW      M9106
+SP      P9
+LP      P3
+ATB
+LF      L20
+K       P5
+L       K10
+SP      P9
+LW      M9107
+SP      P10
+LW      M9108
+SP      P11
+L       K63
+KPG     P5 G3
+SP      P3
+LW      M9109
+SP      P9
+LP      P3
+ATB
+LF      L20
+K       P5
+L       K11
+SP      P9
+LW      M9110
+SP      P10
+L       K63
+KPG     P5 G3
+SP      P3
+LW      M9111
+SP      P9
+LP      P3
+ATB
+LF      L20
+K       P5
+L       K12
+SP      P9
+LW      M9112
+SP      P10
+L       K63
+KPG     P5 G3
+SP      P3
+LW      M9113
+SP      P9
+LP      P3
+ATB
+LF      L20
+K       P5
+LM      K2
+SP      P5
+LAB     L229
+LM      K2
+SP      P6
+LAB     L230
+LP      P5
+FLOAT
+SP      P3
+LP      P6
+FLOAT
+SP      P4
+LG      G203
+SP      P11
+LP      P3
+SP      P12
+LP      P4
+SP      P13
+LSTR    M9114
+KPG     P7 G94
+L       K13
+SP      P14
+LP      P3
+SP      P15
+LP      P4
+SP      P16
+L       K63
+KPG     P10 G3
+SP      P10
+LP      P4
+ATBLP   P3
+FEQ
+SP      P11
+LP      P10
+KPG     P7 G208
+L       K14
+SP      P14
+LP      P3
+SP      P15
+LP      P4
+SP      P16
+L       K63
+KPG     P10 G3
+SP      P10
+LP      P4
+ATBLP   P3
+FNE
+SP      P11
+LP      P10
+KPG     P7 G208
+L       K15
+SP      P14
+LP      P3
+SP      P15
+LP      P4
+SP      P16
+L       K63
+KPG     P10 G3
+SP      P10
+LP      P3
+ATBLP   P4
+FLS
+SP      P11
+LP      P10
+KPG     P7 G208
+L       K16
+SP      P14
+LP      P3
+SP      P15
+LP      P4
+SP      P16
+L       K63
+KPG     P10 G3
+SP      P10
+LP      P3
+ATBLP   P4
+FGR
+SP      P11
+LP      P10
+KPG     P7 G208
+L       K17
+SP      P14
+LP      P3
+SP      P15
+LP      P4
+SP      P16
+L       K63
+KPG     P10 G3
+SP      P10
+LP      P3
+ATBLP   P4
+FLE
+SP      P11
+LP      P10
+KPG     P7 G208
+L       K18
+SP      P14
+LP      P3
+SP      P15
+LP      P4
+SP      P16
+L       K63
+KPG     P10 G3
+SP      P10
+LP      P3
+ATBLP   P4
+FGE
+SP      P11
+LP      P10
+KPG     P7 G208
+IKP     K1 P6
+ATBL    K2
+JLE     L230
+IKP     K1 P5
+ATBL    K2
+JLE     L229
+L       K3200
+SG      G203
+SP      P9
+LSTR    M9115
+KPG     P5 G94
+L       K20
+SP      P12
+LW      M9116
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9117
+FMUL
+FIX
+ATB
+L       K1047198
+SP      P9
+XCH
+KPG     P5 G208
+L       K21
+SP      P12
+LW      M9118
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9119
+FMUL
+FIX
+ATB
+L       K523599
+SP      P9
+XCH
+KPG     P5 G208
+L       K22
+SP      P12
+LW      M9120
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9121
+FMUL
+FIX
+ATB
+L       K463648
+SP      P9
+XCH
+KPG     P5 G208
+L       K23
+SP      P12
+LW      M9122
+SP      P13
+LW      M9123
+SP      P14
+L       K63
+KPG     P8 G3
+ATB
+LW      M9124
+FMUL
+FIX
+ATB
+L       K896055
+SP      P9
+XCH
+KPG     P5 G208
+L       K24
+SP      P12
+LW      M9125
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9126
+FMUL
+FIX
+ATB
+L       K877583
+SP      P9
+XCH
+KPG     P5 G208
+L       K25
+SP      P12
+LW      M9127
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9128
+FMUL
+FIX
+ATB
+L       K479426
+SP      P9
+XCH
+KPG     P5 G208
+L       K26
+SP      P12
+LW      M9129
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9130
+FMUL
+FIX
+ATBL    K1
+RSH
+ATB
+L       K273151
+SP      P9
+XCH
+KPG     P5 G208
+L       K27
+SP      P12
+LW      M9131
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9132
+FMUL
+FIX
+ATB
+L       K1127626
+SP      P9
+XCH
+KPG     P5 G208
+L       K28
+SP      P12
+LW      M9133
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9134
+FMUL
+FIX
+ATB
+L       K521095
+SP      P9
+XCH
+KPG     P5 G208
+L       K29
+SP      P12
+LW      M9135
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9136
+FMUL
+FIX
+ATB
+L       K462117
+SP      P9
+XCH
+KPG     P5 G208
+L       K30
+SP      P12
+LW      M9137
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9138
+FMUL
+FIX
+ATB
+L       K2718282
+SP      P9
+XCH
+KPG     P5 G208
+L       K31
+SP      P9
+LW      M9139
+SP      P10
+L       K63
+KPG     P5 G3
+SP      P3
+LG      G10
+SP      P4
+LW      M9140
+SP      P9
+LP      P3
+ATB
+LF      L20
+K       P5
+L       K10
+SP      P9
+LP      P4
+KPG     P5 G208
+L       K32
+SP      P9
+LW      M9141
+SP      P10
+L       K10
+SP      P11
+L       K63
+KPG     P5 G3
+SP      P3
+LW      M9142
+SP      P9
+LP      P3
+ATB
+LF      L20
+K       P5
+L       K33
+SP      P12
+LW      M9143
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9144
+FMUL
+FIX
+ATB
+LM      K693147
+SP      P9
+XCH
+KPG     P5 G208
+L       K34
+SP      P12
+LW      M9145
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9146
+FMUL
+FIX
+ATB
+LM      K301030
+SP      P9
+XCH
+KPG     P5 G208
+L       K40
+SP      P9
+LW      M9147
+SP      P10
+L       K63
+KPG     P5 G3
+SP      P3
+LG      G10
+SP      P4
+LW      M9148
+SP      P9
+LP      P3
+ATB
+LF      L20
+K       P5
+LW      M9149
+SP      P9
+LP      P4
+ATB
+LF      L20
+K       P5
+L       K36
+SP      P12
+LW      M9150
+SP      P13
+LW      M9151
+SP      P14
+L       K63
+KPG     P8 G3
+ATB
+LW      M9152
+FMUL
+FIX
+ATB
+L       K1414214
+SP      P9
+XCH
+KPG     P5 G208
+L       K37
+SP      P12
+LW      M9153
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9154
+FMUL
+FIX
+ATB
+L       K1414214
+SP      P9
+XCH
+KPG     P5 G208
+L       K38
+SP      P12
+LW      M9155
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9156
+FMUL
+FIX
+ATB
+L       K3000000
+SP      P9
+XCH
+KPG     P5 G208
+L       K38
+SP      P12
+LW      M9157
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9158
+FMUL
+FIX
+ATB
+LM      K2000000
+SP      P9
+XCH
+KPG     P5 G208
+L       K39
+SP      P12
+LW      M9159
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9160
+FMUL
+FIX
+ATB
+L       K2000000
+SP      P9
+XCH
+KPG     P5 G208
+L       K39
+SP      P12
+LW      M9161
+SP      P13
+L       K63
+KPG     P8 G3
+ATB
+LW      M9162
+FMUL
+FIX
+ATB
+LM      K3000000
+SP      P9
+XCH
+KPG     P5 G208
+L       K8
+SP      P12
+LW      M9163
+SP      P13
+LW      M9164
+SP      P14
+L       K63
+KPG     P8 G3
+ATB
+LW      M9165
+FMUL
+FIX
+ATB
+L       K250000
+SP      P9
+XCH
+KPG     P5 G208
+RTN
+CONST   M9076 W-940498944
+CONST   M9077 W-940498944
+CONST   M9078 W1065353216
+CONST   M9079 W1065353216
+CONST   M9080 W1215373312
+CONST   M9081 W1215373312
+CONST   M9082 W1206984704
+CONST   M9083 W1206984704
+CONST   M9084 W1199715584
+CONST   M9085 W1199715584
+CONST   M9086 W1177394176
+CONST   M9087 W1177394176
+CONST   M9089 W1150963712
+CONST   M9090 W1150963712
+CONST   M9091 W-996519936
+CONST   M9092 W1206984704
+CONST   M9093 W1178658406
+CONST   M9094 W1178658406
+CONST   M9095 W1178658406
+CONST   M9096 W-968825242
+CONST   M9097 W1178658406
+CONST   M9098 W1095237632
+CONST   M9099 W1110310912
+CONST   M9100 W1141370880
+CONST   M9101 W1095237632
+CONST   M9102 W-1037172736
+CONST   M9103 W-1097654178
+CONST   M9104 W1095237632
+CONST   M9105 W1110310912
+CONST   M9106 W1113587712
+CONST   M9107 W1095237632
+CONST   M9108 W1110310912
+CONST   M9109 W-1040711680
+CONST   M9110 W-968825242
+CONST   M9111 W-968825242
+CONST   M9112 W-968825242
+CONST   M9113 W1178658406
+CONST   M9116 W1056964608
+CONST   M9117 W1232348160
+CONST   M9118 W1056964608
+CONST   M9119 W1232348160
+CONST   M9120 W1056964608
+CONST   M9121 W1232348160
+CONST   M9122 W1056964608
+CONST   M9123 W1053609165
+CONST   M9124 W1232348160
+CONST   M9125 W1056964608
+CONST   M9126 W1232348160
+CONST   M9127 W1056964608
+CONST   M9128 W1232348160
+CONST   M9129 W1056964608
+CONST   M9130 W1232348160
+CONST   M9131 W1056964608
+CONST   M9132 W1232348160
+CONST   M9133 W1056964608
+CONST   M9134 W1232348160
+CONST   M9135 W1056964608
+CONST   M9136 W1232348160
+CONST   M9137 W1065353216
+CONST   M9138 W1232348160
+CONST   M9139 W1149222912
+CONST   M9140 W1065336832
+CONST   M9141 W1065336832
+CONST   M9142 W1149222912
+CONST   M9143 W1056964608
+CONST   M9144 W1232348160
+CONST   M9145 W1056964608
+CONST   M9146 W1232348160
+CONST   M9147 W1123450880
+CONST   M9148 W1048576000
+CONST   M9149 W1123418112
+CONST   M9150 W1073741824
+CONST   M9151 W1056964608
+CONST   M9152 W1232348160
+CONST   M9153 W1073741824
+CONST   M9154 W1232348160
+CONST   M9155 W1075838976
+CONST   M9156 W1232348160
+CONST   M9157 W-1071644672
+CONST   M9158 W1232348160
+CONST   M9159 W1075838976
+CONST   M9160 W1232348160
+CONST   M9161 W-1071644672
+CONST   M9162 W1232348160
+CONST   M9163 W1120436224
+CONST   M9164 W1103626240
+CONST   M9165 W1232348160
+STRING  M9075 K38 C37 C105 C52 C32 C84 C101 C115 C116 C105 C110 C103 C32 C102 C108 C111 C97 C116 C105 C110 C103 C32 C112 C111 C105 C110 C116 C32 C111 C112 C101 C114 C97 C116 C105 C111 C110 C115 C10
+STRING  M9088 K32 C115 C121 C115 C40 C83 C121 C115 C95 C102 C108 C116 C44 C32 C46 C46 C46 C41 C32 C110 C111 C116 C32 C97 C118 C97 C105 C108 C97 C98 C108 C101 C10
+STRING  M9114 K62 C37 C105 C52 C32 C84 C101 C115 C116 C105 C110 C103 C32 C102 C108 C111 C97 C116 C105 C110 C103 C32 C112 C111 C105 C110 C116 C32 C114 C101 C108 C97 C116 C105 C111 C110 C115 C32 C119 C105 C116 C104 C32 C120 C61 C37 C56 C46 C50 C102 C32 C97 C110 C100 C32 C121 C61 C37 C56 C46 C50 C102 C10
+STRING  M9115 K45 C37 C105 C52 C32 C84 C101 C115 C116 C105 C110 C103 C32 C102 C108 C111 C97 C116 C105 C110 C103 C32 C112 C111 C105 C110 C116 C32 C108 C105 C98 C114 C97 C114 C121 C32 C102 C117 C110 C99 C116 C105 C111 C110 C115 C10
+
+//Entry to: locals
+ENTRY   K6 C108 C111 C99 C97 C108 C115
+LAB     L32
+L       K103
+SP      P22
+LP      P3
+KPG     P18 G208
+L       K104
+SP      P22
+LP      P4
+KPG     P18 G208
+L       K105
+SP      P22
+LP      P5
+KPG     P18 G208
+L       K106
+SP      P22
+LP      P6
+KPG     P18 G208
+L       K107
+SP      P22
+LP      P7
+KPG     P18 G208
+L       K108
+SP      P22
+LP      P8
+KPG     P18 G208
+L       K109
+SP      P22
+LP      P9
+KPG     P18 G208
+L       K110
+SP      P22
+LP      P10
+KPG     P18 G208
+L       K111
+SP      P22
+LP      P11
+KPG     P18 G208
+L       K112
+SP      P22
+LP      P12
+KPG     P18 G208
+L       K113
+SP      P22
+LP      P13
+KPG     P18 G208
+L       K114
+SP      P22
+LP      P14
+KPG     P18 G208
+L       K115
+SP      P22
+LP      P15
+KPG     P18 G208
+L       K116
+SP      P22
+LP      P16
+KPG     P18 G208
+L       K117
+SP      P22
+LP      P17
+KPG     P18 G208
+RTN
+GLOBAL K2
+G1 L27
+G208 L11
+G602
+MODEND

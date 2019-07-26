@@ -1,0 +1,25 @@
+*command
+**
+NOTIFY command
+Form:           NOTIFY  machine  message
+Purpose:        To send a message to the user of machine
+Author:         IDW
+Specification:
+        This command does not use RDARGS.  The first item on the line is
+    taken as the name of the machine to which the message is to be sent.  The
+    rest of the line is the message which is sent.
+
+        The message is terminated by the semicolon character ";" by default,
+    but if the message is contained in either single or double quotation
+    marks, then the message is taken as being until the next such character,
+    or end of line.
+
+        Unlike WTO, NOTIFY does not look up the name of its service in the
+    name server, thus allowing messages to be sent to the 68000 machines.
+
+Examples:
+
+    NOTIFY BROWN I didn't know you cared!
+    NOTIFY DELTA Oh for "set terminal nomessage"
+
+

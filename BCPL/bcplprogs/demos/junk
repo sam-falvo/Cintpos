@@ -1,0 +1,352 @@
+
+Trig expressions
+
+Expression: y = x^7
+Parse tree:
+Eq
+*-y
+*-Pow
+  *-x
+  *-7
+
+Expression: y = 1 / x^5
+Parse tree:
+Eq
+*-y
+*-Div
+  *-1
+  *-Pow
+    *-x
+    *-5
+
+Expression: y = 1 / x''
+Parse tree:
+Eq
+*-y
+*-Div
+  *-1
+  *-Prime
+    *-Prime
+      *-x
+
+Expression: y = cos x
+Parse tree:
+Eq
+*-y
+*-Cos
+  *-x
+
+Expression: y = tan x
+Parse tree:
+Eq
+*-y
+*-Tan
+  *-x
+
+Expression: y = cot x
+Parse tree:
+Eq
+*-y
+*-Cot
+  *-x
+
+Expression: y = cse x
+Parse tree:
+Eq
+*-y
+*-Cse
+  *-x
+
+Expression: y = sec x
+Parse tree:
+Eq
+*-y
+*-Sec
+  *-x
+
+Expression: y = exp x
+Parse tree:
+Eq
+*-y
+*-Exp
+  *-x
+
+Expression: y = a^x
+Parse tree:
+Eq
+*-y
+*-Pow
+  *-a
+  *-x
+
+Expression: y = (sin x)^2
+Parse tree:
+Eq
+*-y
+*-Pow
+  *-Sin
+  ! *-x
+  *-2
+
+Expression: y = (cos x)^2
+Parse tree:
+Eq
+*-y
+*-Pow
+  *-Cos
+  ! *-x
+  *-2
+
+Expression: y = (1 - x^2) * tan x
+Parse tree:
+Eq
+*-y
+*-Mul
+  *-Sub
+  ! *-1
+  ! *-Pow
+  !   *-x
+  !   *-2
+  *-Tan
+    *-x
+
+Expression: y = sec x * tan x
+Parse tree:
+Eq
+*-y
+*-Mul
+  *-Sec
+  ! *-x
+  *-Tan
+    *-x
+
+Expression: y = sec x * (log x - 3 * x^2)
+Parse tree:
+Eq
+*-y
+*-Mul
+  *-Sec
+  ! *-x
+  *-Sub
+    *-Log
+    ! *-x
+    *-Mul
+      *-3
+      *-Pow
+        *-x
+        *-2
+
+Expression: y = cot x * ( sqrt x - 4 * exp x)
+Parse tree:
+Eq
+*-y
+*-Mul
+  *-Cot
+  ! *-x
+  *-Sub
+    *-Sqrt
+    ! *-x
+    *-Mul
+      *-4
+      *-Exp
+        *-x
+
+Expression: y = exp x * sin x
+Parse tree:
+Eq
+*-y
+*-Mul
+  *-Exp
+  ! *-x
+  *-Sin
+    *-x
+
+Expression: y = (x^2 + 3 * x) * exp x
+Parse tree:
+Eq
+*-y
+*-Mul
+  *-Add
+  ! *-Pow
+  ! ! *-x
+  ! ! *-2
+  ! *-Mul
+  !   *-3
+  !   *-x
+  *-Exp
+    *-x
+
+Expression: y = x * exp x * sin x
+Parse tree:
+Eq
+*-y
+*-Mul
+  *-Mul
+  ! *-x
+  ! *-Exp
+  !   *-x
+  *-Sin
+    *-x
+
+Expression: y = x * arctan x
+Parse tree:
+Eq
+*-y
+*-Mul
+  *-x
+  *-Arctan
+    *-x
+
+Expression: y = x^3 * arccos x
+Parse tree:
+Eq
+*-y
+*-Mul
+  *-Pow
+  ! *-x
+  ! *-3
+  *-Arccos
+    *-x
+
+Expression: y = sqrt x * arccos x
+Parse tree:
+Eq
+*-y
+*-Mul
+  *-Sqrt
+  ! *-x
+  *-Arccos
+    *-x
+
+Expression: y = exp x * arccse x
+Parse tree:
+Eq
+*-y
+*-Mul
+  *-Exp
+  ! *-x
+  *-Arccse
+    *-x
+
+Expression: y = exp x / ( exp x + 1)
+Parse tree:
+Eq
+*-y
+*-Div
+  *-Exp
+  ! *-x
+  *-Add
+    *-Exp
+    ! *-x
+    *-1
+
+Expression: y = log x / (1 + log x)
+Parse tree:
+Eq
+*-y
+*-Div
+  *-Log
+  ! *-x
+  *-Add
+    *-1
+    *-Log
+      *-x
+
+Expression: y = (x + sin x) / (x + cos x)
+Parse tree:
+Eq
+*-y
+*-Div
+  *-Add
+  ! *-x
+  ! *-Sin
+  !   *-x
+  *-Add
+    *-x
+    *-Cos
+      *-x
+
+Expression: y = log x / (1 + sqrt x)
+Parse tree:
+Eq
+*-y
+*-Div
+  *-Log
+  ! *-x
+  *-Add
+    *-1
+    *-Sqrt
+      *-x
+
+Expression: y = x * tan x / ( sec x + tan x)
+Parse tree:
+Eq
+*-y
+*-Div
+  *-Mul
+  ! *-x
+  ! *-Tan
+  !   *-x
+  *-Add
+    *-Sec
+    ! *-x
+    *-Tan
+      *-x
+
+Expression: y = (exp x - 1) / (exp x + 1)
+Parse tree:
+Eq
+*-y
+*-Div
+  *-Sub
+  ! *-Exp
+  ! ! *-x
+  ! *-1
+  *-Add
+    *-Exp
+    ! *-x
+    *-1
+
+Expression: y = 2^x * cot x / sqrt x
+Parse tree:
+Eq
+*-y
+*-Div
+  *-Mul
+  ! *-Pow
+  ! ! *-2
+  ! ! *-x
+  ! *-Cot
+  !   *-x
+  *-Sqrt
+    *-x
+
+Expression: y = arccos((x^2-1)/(x^2+1))
+Parse tree:
+Eq
+*-y
+*-Arccos
+  *-Div
+    *-Sub
+    ! *-Pow
+    ! ! *-x
+    ! ! *-2
+    ! *-1
+    *-Add
+      *-Pow
+      ! *-x
+      ! *-2
+      *-1
+
+Expression: y = log x + ln x + lg x
+Parse tree:
+Eq
+*-y
+*-Add
+  *-Add
+  ! *-Log
+  ! ! *-x
+  ! *-Ln
+  !   *-x
+  *-Lg
+    *-x

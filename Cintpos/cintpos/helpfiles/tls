@@ -1,0 +1,93 @@
+*COMMAND
+**
+TLS command
+Form:         "DICT/A,WITH/K,VER/K,INIT/S,NOTAPE/S,TAPEDEVICE/K,WORK/K"
+Purpose:      Tape Library System, with incremental archiving
+Author:       IDW
+
+Specification:
+    TLS is a Tape Library System, based on the one supported by the Computing
+Service.  Its purpose is to provide a convenient interface to the TRIPOS tape
+handler, via the device MT:.
+    Incremental file archiving and restoration are implemented, along with easy
+manipulation of files and directories.
+    TLS maintains its master dictionary on Disc, but keeps a copy of it
+as the last file on a TLS tape.  This means that the tape can be recovered,
+even if the disc dictionary is deleted.
+
+    DICT is the name of the TLS disc dictionary.  It must always be quoted.
+    WITH is the name of the TLS command stream.  If none is given, the default
+         of "*" (the terminal) is taken.
+    VER  is the name of the TLS output stream.  If none is given, then the
+         system default output stream is taken.
+    INIT is a switch, allowing a user to initialise a TLS disc dictionary.
+         If INIT is specified, then the DICT file must not exist.
+    NOTAPE is a switch which allows TLS to be used without the device MT: being
+         mounted.  NOTAPE mode is designed particularly for EXamination, thus
+         avoiding the need for a separate TLSEX program, but can be used
+         equally well with ARCHIVE or RESTORE to find out what WOULD be
+         transferred if the real tape operation were to take place.
+    WORK is an alternative file which TLS can use as a work file. Normally,
+         TLS creates a work file in the same directory as the dictionary,
+         thus avoiding the problem of renaming across disc packs.  However,
+         this is only reasonable if the directory is not protected.
+
+    (TAPEDEVICE is the name of an alternative tape device name.  If none is
+     specified, the default of MT: is taken.  This facility is provided
+     purely for debugging, and should not be generally used).
+
+Commands to TLS:
+
+    TOTAPE (TT)   <name>              [AS <name>]  [COMMENTS "<comments>"]
+                                      [INCLUDE <list>]  [EXCLUDE <list>]
+
+    ARCHIVE       <name>              [AS <name>]  [COMMENTS "<comments>"]
+                                      [INCLUDE <list>]  [EXCLUDE <list>]
+
+    FROMTAPE (FT) <name> or SEQ <seq> [AS <name>]  [VERSION <version>]
+                                      [INCLUDE <list>]  [EXCLUDE <list>]
+
+    RESTORE       <name> or SEQ <seq> [AS <name>]  [VERSION <version>]
+                                      [INCLUDE <list>]  [EXCLUDE <list>]
+
+    EXAMINE (EX) [<name>]             [FULL] [ALL] [FIFO] [LIFO] [TO <file>]
+
+    QUIT (Q)
+
+    ABANDON
+
+Where:   <name>       is the name of a TRIPOS file or directory
+         <comments>   is arbitrary text, terminated by a newline
+         <list>       is a series of <name>s, separated by commas
+         <file>       is the name of a TRIPOS file
+         <seq>        is a file sequence number, in decimal
+
+
+Whereas TOTAPE and FROMTAPE always transfer files, the incremental archiving
+commands, ARCHIVE and RESTORE do not.
+
+    ARCHIVE transfers files to tape ONLY if the files do not exist on TAPE,
+            or have a "last modified" date more recent on DISC than on TAPE.
+            
+    RESTORE transfers files from tape ONLY if the files do not exist on DISC,
+            or have a "last modified" date more recent on TAPE than on DISC.
+
+
+N.B.  Although TLS will run on both 68000 and LSI4 machines, the working
+      dictionary size is limited by the amount of memory available.  If a
+      dictionary of >500 entries is required, it is advised that a 68000
+      machine be used.
+
+
+For further information, try:
+
+     HELP TAPE LABELLED
+     HELP TAPE UNLABELLED
+     HELP TAPE SERVER
+
+or see the document:
+
+     "TLS  -  A Tape Library System for Tripos"
+
+
+

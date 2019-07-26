@@ -1,0 +1,9 @@
+*z80dump  #H z80
+*z80debug #H z80deb
+*zed
+ZED
+
+A rather restricted version of ZED exists under TRIPOS.  Recommended
+editors are WS, SSE and EDIT.  Try HELP EDITORS for further information.
+
+

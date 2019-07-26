@@ -1,0 +1,23 @@
+*procedure
+**
+SPLITNAME
+      To split a string on the first  occurance  of  a  par-
+ticular character.
+      pos := splitname ( prefix, ch, string, ptr )
+      The  string  'string'  is split on the character 'ch',
+except that all characters before that  indicated  by  'ptr'
+are  ignored.  The  substring  up  to  but not including the
+character 'ch ' is  put  into  'prefix'.  The  result  is  a
+pointer  at  the first character after 'ch', or zero if 'ch'
+is not found. If the prefix part of  the  string  is  longer
+than thirty characters then those after the first thirty are
+ignored.
+      Examples :
+      splitname ( pfx, ':', "sys:c.echo", 1 )
+      pfx <- "sys"
+      res <- 5
+      splitname ( pfx, ':', "bsp:print/sys:boggle", 5 )
+      pfx <- "print/sys"
+      res <- 15
+
+

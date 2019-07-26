@@ -1,0 +1,50 @@
+*entry
+*print
+*printer
+*spooler
+*spooling
+The ring spooling system is provided on one of the VAX systems, and is
+accessible to Tripos using the pseudo-device SPOOL:
+
+The string after SPOOL: describes which printer is to be used, together
+with further options. The full form is:
+
+    SPOOL:printer,options/title
+
+The printer name and options are as documented for the Unix `lpr' command.
+Since they are being interpreted on a Unix system, all of these strings are
+case sensitive. The document title is optional; if present it may appear on
+a banner heading.
+
+The ring spooler will infer the type of almost all documents by looking at
+the first few bytes, so it is rarely necessary to give more than the printer
+name (and even that will default to the Unix system's default printer).
+
+Examples:
+
+The simplest possible use:
+       copy t:gcode to spool:
+
+Explicit selection of printer, with title. Note quotes because of the space:
+       copy t:gcode to "spool:electric/Chapter 1"
+
+Use of options to get two-column landscape formatting of text on a LaserWriter:
+       copy textfile to spool:elm,Ttext,l,c2/textfile
+*command
+**
+SPOOL COMMAND
+Form:           SPOOL  "TO"
+Purpose:        To divert output from commands to a file.
+Author:         RDE
+Specification:
+
+   SPOOL <file> changes the standard command output stream to be to
+the given file.
+   SPOOL with no argument closes the file and redirects command
+output to the console.
+   For help about the rings printer spooler use HELP SPOOLER
+
+Example:        SPOOL T:0
+                SPOOL
+
+

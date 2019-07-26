@@ -1,0 +1,21 @@
+*command
+**
+Form:           TALK  "TMES,"
+Purpose:        To send a message to another console.
+Author:         RDE
+Specification:
+   The command will print a message of the form:
+   From Tn: <message>
+on a console (n is the taskid of the issuing CLI).
+   There are two ways of using the command:
+i)  With two parameters:
+   e.g. TALK 3 "Twas brillig and the slithy toves"
+   In this case, the first parameter must be the task number of a
+console handler, and identifies the console which is to receive the
+message.
+ii) With one parameter:
+   e.g. TALK "And shun the frumious bandersnatch"
+   In this case, the first console handler found that is not the one
+used by the current CLI receives the message.
+
+

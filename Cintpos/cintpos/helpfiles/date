@@ -1,0 +1,31 @@
+*procedure #H datstring
+*string #H datstring
+*dat #H dat
+*time #H dat
+*ring #H ringdat
+*set
+*command
+*+
+Form:           DATE  "IS,TO=VER/K"
+Purpose:        To print or set the system date.
+Author:         BJK
+Specification:
+
+DATE with no parameter prints the currently set system date.
+TO can be used to specify a stream for the output.
+DATE <date> sets it (calling the routine :L.STRING-TO-DAT to decode it).
+<date> should have the form DD-MMM-YY
+Example:        DATE
+                DATE 23-Jan-80
+*the #T
+*what #T
+dat
+quit
+** #I date
+For information about the DATE command type COMMAND,
+for information about the date and time command type DAT,
+for information about how to get the date from a program type PROCEDURE,
+for information about how to get the date from the ring type RING,
+for the date type WHAT.  To exit HELP type <CR>.
+
+

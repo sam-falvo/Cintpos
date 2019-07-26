@@ -1,0 +1,61 @@
+*library #H ssplib
+*lib #H ssplib
+*rsx #H rsxlib
+*rsxlib #H rsxlib
+*command
+Form:           SSP "SERVICE/A,,,,,,,,,,,FUNC/K,PORT/K,HEADER/K,NOFN/S,OPEN/S"
+Purpose:        To perform arbitrary SSP transactions
+Author:         NJO, CGG
+Specification:
+
+   SERVICE would normally be the name of an SSP service, however if the
+service is not marked as SSP in the nameserver the command will proceed
+anyway, using the supplied FUNC and PORT numbers if specified, or prompting
+for these interactively.  If the service is a machine name then the
+XLOOKUP nameserver service is used to set up a bridge path.
+
+   The data given in the next 10 positional parameters is placed into the
+data part of the SSP request.  Various types of data may be specified:
+
+            <number>  -  16 bit quantity
+           .<number>  -  8 bit quantity
+           $<chars>   -  characters preceded by a length byte
+           '<chars>   -  characters without a length byte
+
+   A <number> is assumed to be decimal unless preceded by #X for hex or
+#B for binary.  The data given will be packed in a byte at a time unless
+the prefix '>' is given, which will move to a 16 bit boundary.
+
+   The FUNC and PORT values given will be used if necessary.
+
+   The HEADER key allows a different bit pattern to be placed in the block
+header, overriding the default (6A00 for SSP, 6C00 for BSP).
+
+   The NOFN switch inhibits prompting for a function code even if one
+appears to be necessary.
+
+   The OPEN switch allows transactions with an OPEN (BSP) type service.
+If set then the service name will be checked as an OPEN service, and the
+default header code is an OPEN.
+*protocol
+Single Shot Protocol (SSP)
+
+SSP is a ring protocol used for simple transactions requiring one call and
+one reply.  The request and reply block formats are described in a Systems
+Research Group Note by N.J. Ody.  Briefly, the format is:
+
+      octet 0:  header    6A hex
+            1:  flags     ls bit set if data is odd-length, others zero
+            2:  ms.port   ms byte of the reply port number
+            3:  ls.port
+            4:  ms.func   ms byte of the function code
+            5:  ls.func
+            6 up:         user data
+** #I ssp
+
+Help is available on the Single Shot Protocol itself: type PROTOCOL; a
+command to send SSPs: type COMMAND; a BCPL library to support the protocol:
+type LIBRARY or an RSX-like library: type RSXLIB.  Type <CR> to exit HELP.
+
+
+

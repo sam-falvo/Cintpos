@@ -1,0 +1,330 @@
+*0000
+0000 non specific
+*0001
+0001 reply block contained message
+*0002
+0002 unknown function
+*0003
+0003 congestion
+*0004
+0004 required facility not available
+*0005
+0005 invalid parameters
+*0006
+0006 unauthorised call
+*0007
+0007 internal error
+*0008
+0008 reply block contained system return code
+*0009
+0009 service does not exist
+*000A
+000A service temporarily withdrawn
+*000B
+000B unexpected size of request block
+*000C
+000C services resource exhausted
+*000D
+000D insufficient workspace in service
+*000E
+000E privilege not allowed
+*000F
+000F failed to trace source of request
+*0010
+0010 not used at present
+*0011
+0011 called SSP service reception error
+*0012
+0012 called SSP service transmission error
+*0013
+0013 TSBSP connect message format error
+*0014
+0014 TSBSP unrecognised parameter type
+*0015
+0015 TSBSP required parameter or argument missing
+*0016
+0016 TSBSP argument too big
+*0017
+0017 TSBSP called address invalid
+*0040
+0040 invalid parameter 0
+*0041
+0041 invalid parameter 1
+*0042
+0042 invalid parameter 2
+*0043
+0043 invalid parameter 3
+*0044
+0044 invalid parameter 4
+*0045
+0045 invalid parameter 5
+*0046
+0046 invalid parameter 6
+*0047
+0047 invalid parameter 7
+*0048
+0048 invalid parameter 8
+*0049
+0049 invalid parameter 9
+*004A
+004A invalid parameter 10
+*004B
+004B invalid parameter 11
+*004C
+004C invalid parameter 12
+*004D
+004D invalid parameter 13
+*004E
+004E invalid parameter 14
+*004F
+004F invalid parameter 15
+*CEB0
+CEB0 WTO(?) - User not logged in
+*CEB1
+CEB1 WTO(?) - User has no message set
+*CEC0
+CEC0 RESMAN - attribute not recognized
+*CEC1
+CEC1 RESMAN - system not recognized
+*CEC2
+CEC2 RESMAN - no suitable load config for specified sys and mc name/attrs
+*AEC3
+AEC3 RESMAN - no suitable machine free
+*CEC4
+CEC4 RESMAN - no machine has suitable attributes
+*AEC5
+AEC5 RESMAN - no suitable free mc loading properly
+*CEC6
+CEC6 RESMAN - unknown command
+*CEC7
+CEC7 RESMAN - parameter missing
+*CEC8
+CEC8 RESMAN - machine marked for withdrawal
+*CEC9
+CEC9 RESMAN - machine not withdrawn
+*CECA
+CECA RESMAN - machine not deposited
+*CECB
+CECB RESMAN - machine neither withdrawn nor alloc to requestor
+*CECC
+CECC RESMAN - number expected
+*CECD
+CECD RESMAN - machine name not recognized
+*CECE
+CECE RESMAN - number too large
+*CECF
+CECF RESMAN - machine not in use
+*CED0
+CED0 RESMAN - not your machine
+*CED1
+CED1 RESMAN - invalid item number
+*CED2
+CED2 RESMAN - no open block available
+*AED3
+AED3 RESMAN - packserver trouble
+*CEE0
+CEE0 PACKSERVER - UID has invalid format
+*CEE1
+CEE1 PACKSERVER - pack not known to packserver
+*AEE2
+AEE2 PACKSERVER - pack not mounted
+*CEE4
+CEE4 PACKSERVER - UID given was TUID not PUID
+*AEE5
+AEE5 PACKSERVER - pack position temporarily unknown
+*CEE6
+CEE6 PACKSERVER - no UID to pack mappings valid
+*EEE7
+EEE7 PACKSERVER - pack appears to be mounted on more than one fileserver
+*EEE8
+EEE8 PACKSERVER - Packservers UID on this pack is invalid
+*EEE9
+EEE9 PACKSERVER - more than one fileserver responding to this pack number
+*CEEA
+CEEA PACKSERVER - invalid pack number
+*FE80
+FE80 X25 gate - request sent in wrong state (internal fault)
+*FE81
+FE81 X25 gate - connection abandoned
+*DE82
+DE82 X25 gate - error in connect parameters
+*FE83
+FE83 X25 gate - failed to send data to DTSX (internal fault)
+*9E84
+9E84 X25 gate - connection rejected by network or destination
+*9E85
+9E85 X25 gate - timeout while connecting or clearing
+*BE86
+BE86 X25 gate - no space available for new connection
+*DEA0
+DEA0 GYP - name is not for a local machine
+*AEA1
+AEA1 GYP - machine is already in use
+*AEA2
+AEA2 GYP - target machine went unselected (on header)
+*AEA3
+AEA3 GYP - target machine went unselected (during block)
+*AEA4
+AEA4 GYP - target machine is busy
+*AEA5
+AEA5 GYP - target machine ignored mini-packets
+*AEA6
+AEA6 GYP - hardware error / ring down or target machine off
+*AEA7
+AEA7 GYP - reception from target machine timed out
+*AEA8
+AEA8 GYP - unexpected header in block from target machine
+*AEA9
+AEA9 GYP - transmission to nameserver failed
+*AEAA
+AEAA GYP - reception from nameserver failed
+*AEAB
+AEAB GYP - non-zero return code from nameserver
+*DEAC
+DEAC GYP - syntax error in input
+*AEAD
+AEAD GYP - WARNING: isolated byte loaded
+*AEAE
+AEAE GYP - insufficient room for activation
+*AEAF
+AEAF GYP - BSP read error
+*AEB0
+AEB0 GYP - internal error
+*DEB1
+DEB1 GYP - Cambridge Hex record too long
+*DEB2
+DEB2 GYP - Cambridge Hex record too short
+*DEB3
+DEB3 GYP - illegal Cambridge Hex record
+*DF3D
+DF3D MAIL - Mail item already sent successfully
+*DF3E
+DF3E MAIL - No new mail
+*DF3F
+DF3F MAIL - User not known to system
+*BF41
+BF41 ANCILLA - nameserver reception failure
+*9F42
+9F42 ANCILLA - non-zero return code from nameserver
+*DF43
+DF43 ANCILLA - machine name too long
+*BF44
+BF44 ANCILLA - nameserver transmission failure
+*9F45
+9F45 ANCILLA - undocumented return code from LKUPNAME
+*BF46
+BF46 ANCILLA - target machine transmission timeout (on header)
+*BF47
+BF47 ANCILLA - target machine transmission timeout (during block)
+*BF48
+BF48 ANCILLA - target machine unselected (on header)
+*BF49
+BF49 ANCILLA - target machine unselected (during block)
+*BF4A
+BF4A ANCILLA - target machine switched off
+*BF4B
+BF4B ANCILLA - ring or station hardware error
+*9F4C
+9F4C ANCILLA - unexpected return code from TXBLK
+*BF4D
+BF4D ANCILLA - data transfer error
+*BF4E
+BF4E ANCILLA - persistent fileserver SSP failure
+*BF4F
+BF4F ANCILLA - fileserver read error
+*DF50
+DF50 ANCILLA - hard fileserver read error
+*BF51
+BF51 ANCILLA - fileserver retrieve error
+*DF52
+DF52 ANCILLA - hard fileserver retrieve error
+*DF53
+DF53 ANCILLA - incorrect MCTYPE in load file
+*DF54
+DF54 ANCILLA - invalid directive in load file
+*FF55
+FF55 ANCILLA - too many directives in load file
+*DF56
+DF56 ANCILLA - bad hexadecimal digit in PUID
+*DF57
+DF57 ANCILLA - invalid name (not a machine name)
+*DF58
+DF58 ANCILLA - system name not known
+*DF59
+DF59 ANCILLA - null index entry
+*DF5A
+DF5A ANCILLA - target machine is not on local ring
+*BF5B
+BF5B ANCILLA - failed to contact packserver
+*BF5C
+BF5C ANCILLA - packserver interaction failed
+*BF5D
+BF5D ANCILLA - non-zero return code from packserver
+*BF5E
+BF5E ANCILLA - failed to contact fileserver
+*FF5F
+FF5F ANCILLA - internal error - bad fsfind rc
+*DFD0
+DFD0 AOT - cannot verify UID set
+*DFD1
+DFD1 AOT - bad TUID
+*DFD2
+DFD2 AOT - bad PUID
+*DFD3
+DFD3 AOT - bad TPUID
+*DFD4
+DFD4 AOT - bad AUTY
+*DFD5
+DFD5 AOT - invalid timeout
+*DFD6
+DFD6 AOT - unauthorised request
+*DFD7
+DFD7 authenticator - syntax error in password
+*DFD8
+DFD8 authenticator - no reply from AOT
+*DFD9
+DFD9 authenticator - bad size
+*FFDA
+FFDA AOT - table full
+*DFDB
+DFDB unknown user or password incorrect
+*BFE0
+BFE0 printer - busy with a ring document
+*BFE1
+BFE1 printer - busy with a non-ring document
+*BFE2
+BFE2 printer - printer offline
+*BFE3
+BFE3 printer - printer switched off
+*BFE4
+BFE4 printer - status error
+*BFE5
+BFE5 printer - wrong size of paper loaded
+*DFE8
+DFE8 PS.MAP - source domain does not exist
+*DFE9
+DFE9 PS.MAP - destination domain does not exist
+*DFEA
+DFEA PS.MAP - name does not exist in source domain
+*DFEB
+DFEB PS.MAP - no corresponding name in destination domain
+*DFF1
+DFF1 nameserver - requested name or entry not found
+*DFF2
+DFF2 nameserver - syntax error in name string
+*BFF3
+BFF3 nameserver - attempt to do update while PROM nametable in use
+*DFF4
+DFF4 nameserver - entry not for calling station
+*DFF5
+DFF5 nameserver - name clashes with existing name
+*FFF6
+FFF6 nameserver - name table is full
+*DFF7
+DFF7 nameserver - attempt to add or remove a machine name
+*BFF9
+BFF9 nameserver - busy - try later
+*BFFA
+BFFA nameserver - error in communication with bridge
+
+

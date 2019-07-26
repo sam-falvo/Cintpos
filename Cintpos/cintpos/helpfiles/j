@@ -1,0 +1,29 @@
+*jd #H #HCH +
+++
+JD
+
+Stands for JOB DESCRIPTION - it is used by TRIPOS as a key to one or two
+commands which use the IBM, e.g. the CS command.  For further information
+use the IBM's help system.
++
+*Join
+Form:   JOIN  ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,AS/A/K,CHARS/S,WRITEINPLACE=ZAP/S"
+Purpose:To concatenate zero or more files to form a new
+        file.
+Authors:ARA MR BJK
+Modified: PB
+
+Specification:
+
+   The specified files are copied in order into a temporary file
+which is then renamed as the AS file.  By default, copying is in
+words mode.  CHARS may be used to select character mode.
+
+   If WRITEINPLACE is specified, the result is written directly to
+the AS file, rather than creating it in T: and then renaming
+(rename does not work between different filing systems)
+
+Example:        JOIN A B C AS D
+*jump #H skip
+
+

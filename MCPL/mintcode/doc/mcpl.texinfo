@@ -1,0 +1,2715 @@
+\input texinfo   @c -*-texinfo-*-
+@comment %**start of header
+@setfilename mcpl.info
+@settitle The MCPL Language and its Compiler
+@setchapternewpage odd
+@comment %**end of header
+
+@ifinfo
+@comment The following line inserts the copyright notice 
+@comment into the Info file.
+Copyright @copyright{} 1994 Martin Richards
+@end ifinfo
+
+@comment The titlepage section does not appear in the Info file.
+@titlepage
+@sp 6
+@comment The title is printed in a large font.
+@center @titlefont{The MCPL Language and its Compiler}
+@sp 4
+@center Martin Richards
+@sp 1
+@center @kbd{mr@@cl.cam.ac.uk}
+@sp 4
+@center Computer Laboratory
+@center University of Cambridge
+@center June 1994 (It is now obsolete)
+
+@vskip 0pt plus 1filll
+This document was produced using GNU Texinfo
+
+@end titlepage
+
+@comment The Top node contains the master menu for the Info file.
+@comment This appears only in the Info file, not the printed manual.
+
+@node    Top,       Language, (dir),    (dir)
+@comment node-name, next,     previous, up
+
+@menu
+* Language::            Definition of the MCPL language
+* Compiler::            The MCPL mintcode compiler
+@end menu
+
+
+@node Language, Compiler, Top, Top
+
+@chapter Introduction
+
+@menu
+* Abstract::
+* Overview::
+* Example1::
+* Expressions::
+* Commands::
+* Exception Handling::
+* Patterns::
+* Declarations::
+* Scope::
+* Modules::
+* Examples::
+* References::
+@end menu
+
+
+@node Abstract, Overview, Language, Language
+@section Abstract
+
+MCPL is a systems programming language having much in common with BCPL
+but augmented by the pattern matching ideas of both ML and Prolog.
+Unlike ML, MCPL is typeless, runs using a contiguous runtime stack and
+has no builtin garbage collector, but it does make extensive use of
+ML-like pattern matching.  The low level aspects of the language
+resemble those of BCPL and C.  For efficiency, MCPL uses its own
+function calling sequence, however a convenient mechanism for mixing
+MCPL and C programs is provided.
+
+Notable features of MCPL are its pattern matching facilities and the
+simple way in which data structures are handled.
+
+This document gives a complete definition of the language and includes,
+at the end, several examples programs to demonstrate its capabilities.
+
+@node Overview, Example1, Abstract, Language
+@section Overview
+
+The concepts underlying MCPL originates from my experience of using
+BCPL[1] for the past 25 years and from lessons learnt from using and
+teaching languages such as ML[2], Prolog[3] and C[4].  Indeed the name
+MCPL incorporates the letter ML, C and P in recognition of these
+languages.  It is designed to be easy to learn and use, and easy to
+combine with C programs.  Its simplicity results from the typlessness
+nature of the language causing all expressions to yield values 32 bits
+long.  Even though normal vectors elements have this size, an operator
+is provided to allow convenient access to strings of packed characters.
+
+As an introductory example, consider the following program:
+
+@example
+GET "mcpl.h"
+
+FUN start : =>
+  printf "Enter three lengths: "
+  LET a, b, c = readn(), readn(), read()
+  printf("\nLengths entered: %d %d %d", a, b, c)
+  printf("\nThis is %s triangle\n",
+  sort_of_triangle(a,b,c))
+
+FUN sort_of_triangle
+: a, b <a, c    => sort_of_triangle(b, a, c)
+: a, b,    c <b => sort_of_triangle(a, c, b)
+// At this point we know that a <= b <= c
+: a, b,    c    => c>a+b       -> "not a",
+                   a=c         -> "an equilateral",
+                   a=b | b=c   -> "an isosceles",
+                   c*c=a*a+b*b -> "a right angled",
+                                  "a scalene"
+@end example
+
+@noindent
+The directive @kbd{GET "mcpl.h"} is like the C @kbd{#include} directive
+and causes a file of standard declarations to be included in the
+program.  Function definitions are introduced by the word @kbd{FUN},
+which is followed by the function name and a list of pattern match items
+that successively test the function arguments.  The function @kbd{start}
+has an empty pattern indicating that it is a parameterless function,
+and, as can be seen, it will output a message, read three numbers and
+then output two messages about the triangle entered.
+
+The function @kbd{sort_of_triangle} returns a string that depends on its
+three arguments.  When the second argument is less than the value of the
+first, the first match item succeeds and causes @kbd{sort_of_triangle}
+to be re-entered with these two arguments swapped. The second match
+performs a similar test on the second and third arguments, and so, by
+the time the third match item is reached the arguments @kbd{a}, @kbd{b}
+and @kbd{c} are in sorted order.  The compiler notices that both calls
+are tail recursive, and optimises them accordingly.  Indeed, the first
+call would be further optimised to jump to the second match item since
+after swapping @kbd{a} and @kbd{b} the first match cannot succeed.
+
+The absence of types keeps the program pleasingly free of clutter and
+encourages the programmer to choose simple data representations.  My
+experience suggests that data can usually be represented without
+difficulty using integers, strings, bit patterns and pointers to vectors
+composed such values.  Although some say that lack of type checking
+makes programs difficult to debug, I have not found this to be the case
+in practice.  Indeed, there are many situations where the absence of
+types is a great advantage -- it does, for instance, greatly reduce the
+complexity of the language and this applies particularly to the pattern
+matching mechanism that is such a significant part of the language.
+
+
+@node Example1, Expressions, Overview, Language
+@section Language Overview
+
+An MCPL program is made up of one or more separately compiled modules,
+each consisting of a list of declarations that define the constants,
+static data and functions belonging to the module.  Within functions it
+is possible to declare dynamic variables and vectors that exist only as
+long as they are required.  The language is designed so that these
+dynamic quantities can be allocated space on a simple runtime stack.
+The addressing of these quantities is relative to the base of the stack
+frame (or activation record) belonging to the current function
+activation.  For this to be efficient, dynamic vectors have sizes that
+are known at compile time.  Functions may be called recursively and
+their arguments are called by value.  Input and output is provided by
+means of library functions.
+
+The main syntactic components of MCPL are: expressions, commands,
+patterns and declarations.  These are described in the next few
+sections.  In general, the purpose of an expression is to compute a
+value, while the purpose of a command is normally to change the value of
+one or more variables.  However, there is overlap between the two, since
+expressions can have side effects, and some commands can have results.
+
+
+@subsection Comments
+
+There are two form of comments.  One starts with the symbol @kbd{//} and
+extends up to but not including the end-of-line character, and the other
+starts with the symbol @kbd{/*} and ends at the next occurrence of
+@kbd{*/}.  A comment is treated as if it were a single space character.
+Comments may not occur in the middle of multi-character symbols such as
+identifiers or string constants.
+
+
+@node Expressions, , Example1, Language
+@section Expressions
+
+Expressions are composed of names, constants and expression operators
+and may be grouped, if necessary, using parentheses.  The precedence and
+associativity of the different expression constructs is given in Section
+???.
+
+@subsection Names and Constants
+
+Syntactically a name is of a sequence of letters, digits and underlines
+starting with a letter.  If the name starts with a capital letter, it
+denotes a constant that must have been declared within a previous
+@kbd{MANIFEST} declaration.  If it starts with a lower case letter then
+it corresponds to a local variable, a static variable, a function or an
+external entry point, depending on how it was declared.  The value of a
+name is always a 32 bit pattern whose interpretation depends on context.
+
+Decimal numbers consist of a sequence of digits, while binary, octal or
+hexadecimal hexadecimal are represented, repectively, by @kbd{#b},
+@kbd{#o} or @kbd{#x} followed by digits of the appropriate sort.  The
+@kbd{o} may be omitted in octal numbers.  Underlines may be inserted
+within numbers to improve their readability.  For instance, the
+following are valid numbers:
+
+@example
+          1234
+          1_234_456
+          #b_1011_1100_0110
+          #o377
+          #x_BC6
+@end example
+
+The constants @kbd{TRUE} and @kbd{FALSE} have values @kbd{-1} and
+@kbd{0}, respectively, which are the conventional MCPL representations
+of the two truth values.  Whenever a boolean test is made, this is
+performed by a comparison with @kbd{FALSE} (@kbd{=0}).
+
+Numbers may also be represented by character constants, which consist of
+a single quote (@kbd{'}) followed by zero to four characters, followed
+by a second single quote.  The characters are packed into 8 bit bytes to
+form a 32 bit value, padded on the left, if necessary, with zeroes.  The
+rightmost character of the constant is the least significant byte of the
+result. The normal ASCII character set is used augmented by escape
+sequences as follows:
+
+
+@table @samp
+@item \n
+  A single character interpreted by the system as end-of-line.
+@item \p
+  A newpage character.
+@item \s
+A space character.
+@item \b
+A backspace character.
+@item \t
+A tab character.
+@item \^@i{c}
+The control character @i{c}, for any appropriate @i{c}.
+@item \@i{ddd}
+The single character with number @i{ddd} (one or more decimal digits 
+denoting an integer in the interval [0,255]).
+@item \"
+A double quote
+@item \'
+A single quote
+@item \\
+A backslash
+@item \@i{f..f}\
+This sequence is ignored, where @i{f..f} stands for a sequence of one or
+more formatting characters.  The formatting characters are space, tab,
+newline and newpage.
+@end table
+
+A string constant consists of a sequence of zero or more characters
+enclosed within quotes (@kbd{"}).  Both string and character constants
+use the character escape mechanism described above.  The value of a
+string is a pointer to the place in memory where the characters are
+packed.  A zero byte is appended to mark the end of the string.  This
+makes MCPL and C strings compatible.
+
+A question mark (@kbd{?}) may be used as a constant with undefined
+value.  It can be used in statements such as:
+
+@example
+          sendpkt(P_notinuse, rdtask, ?, ?, Read, buf, size)
+          LET op, a, b, ptr = token, ?, ?, [3,?,?,?]
+@end example
+
+@subsection Vectors and Tables
+
+An expression of the form:
+
+@example
+          [ E0 ,..., En ]
+@end example
+
+@noindent returns a pointer to @kbd{n+1} consecutive locations of
+dynamic memory initialised with the values of the expressions
+@kbd{E0,..,En}.  The space is allocated when control passes into the
+current dynamic scope (see Section ?? on Scope and Extent).  It is
+released when execution leaves the current dynamic scope.  The pointer
+behaves like a vector with bounds @kbd{0} and @kbd{n}, and its elements
+can be accessed using the subscripting operator @kbd{!}, described
+below.  The initialising expressions @kbd{E0,..,En} may, of course,
+contain dynamic vectors, tables and strings, and so an expression such
+as:
+
+@example
+          [ '->', ['=', [Id, "x"], [Numb, 0]],
+                  [Numb, 0],
+                  [Id, "abc"]
+          ]
+@end example
+
+@noindent
+is legal.  However, remember that the space for this dynamic structure
+only remains allocated as long as control remains within the current
+dynamic scope.
+
+Uninitialised dynamic vectors of words or characters can be created by
+expressions of the form: @kbd{VEC K} or @kbd{CVEC K}, respectively,
+where @kbd{K} is a manifest constant expression (see Section 3.10)
+giving the upper bound.  The lower bound is always zero.  The space for
+a dynamic vector is only allocated while control is within the current
+dynamic scope (see Section 7).
+
+A static vector can be created using an expression of the following
+form:
+
+@example
+          TABLE [ SK0 ,..., SKn ]
+@end example
+
+
+where @kbd{SK0,..,SKn} are static constant expressions (see Section 3.11).  
+The space for a static vector is allocated for the
+lifetime of the program.
+
+@subsection Function Calls
+
+A function call is syntactically an expression followed by an
+argument list. Some example calls are as follows:
+
+@example
+          newline()
+          mk3(Mult, x, y)
+          printf "Hello\n"
+          f[1,2,3]
+          (fntab!i)(p, [a, b])
+@end example
+
+@noindent
+An empty argument list must to be specified explicitly using
+empty parentheses @kbd{()}.  Multiple arguments must be enclosed in
+parentheses, but a single argument does not need them, provided it is
+a name, a number, a string, @kbd{TRUE}, @kbd{FALSE} or
+an initialised dynamic vector.
+The last example illustrates a call in which the function is 
+specified by an expression.
+
+If a function is called using a name that was declared to be a C function
+by an @kbd{EXTERNAL} declaration, then the C calling sequence is used 
+passing the arguments as specified by the @kbd{EXTERNAL} declaration 
+(see Section 6.1). All other calls use the MCPL calling sequence.  If a 
+function is defined in the scope of an @kbd{EXTERNAL} declaration of 
+the same name, then the function is accessible from other modules, and 
+if it was specified by an @kbd{EXTERNAL} declaration
+to be a C function then it will be compatible with the C calling sequence.
+This scheme allows for convenient mixing of C and MCPL programs.
+
+If a function call occurs in the context of an expression then it is
+assumed to return a 32 bit result.
+
+
+@subsection Postfixed Expression Operators
+
+Expressions of the form: @kbd{E++}, @kbd{E+++}, @kbd{E--}
+or @kbd{E--@t{-}}
+cause the location specified by @kbd{E} to be incremented or decremented
+by one or four.  The result of the expression is its original value,
+before modification.  The
+operator @kbd{++} increments by one, @kbd{+++} increments by four, 
+@kbd{--} decrements by one and @kbd{--@t{-}} decrements by four.  In addition
+to working with integers, the operators @kbd{++} and @kbd{--} adjust byte
+pointers to point to adjacent bytes, and @kbd{+++} and @kbd{--@t{-}} 
+adjust word pointers to point to adjacent words.  It is thus assumed, in
+MCPL, that pointers to adjacent bytes are integers that differ by one, and
+pointers to adjacent words differ by four.
+
+@subsection Prefixed Expression Operators
+
+Expressions of the form: @kbd{++E}, @kbd{+++E}, @kbd{--E}
+or @kbd{--@t{-}E}
+cause the location specified by @kbd{E} to be incremented or decremented
+by one or four.  The result of the expression is its value after 
+modification.  As with the post fixed operators,
+@kbd{++} increments by one, @kbd{+++} increments by four, 
+@kbd{--} decrements by one and @kbd{--@t{-}} decrements by four, and they
+work as expected with pointers.
+
+An expression of the form @kbd{!E} returns the contents of the 32 bit 
+memory location pointed to by the value of @kbd{E}, and an expression 
+of the form @kbd{%E} returns an unsigned integer equal to the 8 bit
+byte pointed to by the value of @kbd{E}.
+
+An expression of the form @kbd{@@E} returns a pointer to the 8 bit or 
+32 bit memory location specified by @kbd{E}.  @kbd{E} must be a variable
+name or an expression with leading operator @kbd{!} or @kbd{%}. 
+
+Expressions of the form:
+
+@example
+          + E
+          - E
+          ~ E
+          ABS E
+or        NOT E
+@end example
+
+@noindent
+return the result of applying the given prefixed operator to the value
+of the expression @kbd{E}.  The operator @kbd{+} returns the value
+unchanged, @kbd{-} returns the integer negation, @kbd{~} returns the
+bitwise complement of the value, @kbd{ABS} returns the absolute value,
+and @kbd{NOT} returns the boolean complement of the value.
+
+@subsection Infixed Expression Operators
+
+An expression of the form @kbd{E1!E2} evaluates @kbd{E1} and @kbd{E2} to
+yield respectively a pointer and an integer, @i{n}
+say.  The value returned is the 32 bit contents of the @i{n}th word
+relative to the pointer.
+
+An expression of the form @kbd{E1%E2} evaluates @kbd{E1} and @kbd{E2} to
+yield a pointer and an integer, @i{n} say.  The
+expression returns a 32 bit unsigned result equal to the byte at
+position @i{n} relative to the pointer.
+
+An expressions of the form @kbd{E1<<E2} (or @kbd{E1>>E2}) evaluates
+@kbd{E1} and @kbd{E2} to yield a bit pattern, @i{w} say, and an
+integer, @i{n} say, and returns the result of shifting @i{w} to
+the left (or right) by @i{n} bit positions.  Vacated positions are
+filled with zeroes.
+
+Expressions of the form: @kbd{E1*E2}, @kbd{E1/E2}, @kbd{E1 MOD E2},
+@kbd{E1&E2}, @kbd{E1 XOR E2}, % @kbd{E1+E2}, @kbd{E1-E2}, and
+@kbd{E1|E2} return the result of applying the given operator to the
+values of the two operands.  The operators are, respectively, integer
+multiplication, integer division, remainder after integer division,
+bitwise AND, bitwise exclusive OR, integer addition, integer
+subtraction, and bitwise OR.
+
+An expression of the form: @kbd{E relop E relop ... relop E} where each
+@kbd{relop} is one of @kbd{=}, @kbd{~=}, @kbd{<=}, @kbd{>=}, @kbd{<} or
+@kbd{>} returns @kbd{TRUE} if all the individual relations are satisfied
+and @kbd{FALSE}, otherwise.  The operands are evaluated from left to
+right, and evaluation stops as soon as the result can be determined.  No
+operand is evaluated more than once.
+
+An expressions of the form: @kbd{E1 AND E2} or @kbd{E1 OR E2} returns
+the boolean value obtained by applying the given operator to the boolean
+values of @kbd{E1} and @kbd{E2}.  If the result can be determined from
+@kbd{E1} alone, then @kbd{E2} is not evaluated.
+
+An expression of the form: @kbd{E1->E2,E3} first evaluates 
+@kbd{E1}, and, if this yields @kbd{FALSE}, it returns the value
+of @kbd{E3}, otherwise it return the value of @kbd{E2}.
+
+
+@subsection @kbd{VALOF} Expressions
+
+An expression of the form @kbd{VALOF C}, where @kbd{C} is a command,
+is evaluated by executing the command @kbd{C}.  On encountering
+a command of the form @kbd{RESULT E} within @kbd{C} execution 
+terminates, returning the value of @kbd{E} as the result of the 
+@kbd{VALOF} expression.  The command
+@kbd{C} is in a new dynamic scope (see Section ??).
+
+@subsection @kbd{MATCH} and @kbd{EVERY} Expressions
+
+A @kbd{MATCH} expression has the following form:
+
+@example
+          MATCH args
+          : P ,.., P => Clist
+          ...
+          : P ,.., P => Clist
+@end example
+
+@noindent
+It consists of the word @kbd{MATCH} followed by an argument list,
+followed by zero or more match items (described in Section ??). The
+argument list is syntactically the same as the argument list of a
+function call and consists of either a single argument (a name, a
+number, a string, @kbd{TRUE}, @kbd{FALSE} or an initialised dynamic
+vector), or it is a list of arguments enclosed in parentheses. These
+arguments are evaluated and placed in consecutive stack locations before
+passing control to the first match item.  If all the patterns of this
+item match successfully, control passes to its command list, otherwise
+control passes to the next match item.  Execution of the @kbd{MATCH}
+expression is complete when execution of the selected command list
+finishes.  If the last executed command yields a result, this is
+returned as the result of the @kbd{MATCH} expression.
+
+If no match items are successful, a @kbd{PATERR} exception is raised 
+(see Section ??).
+
+An @kbd{EVERY} expression is syntactically identical to a @kbd{MATCH}
+expression with the word @kbd{MATCH} replaced by the word @kbd{EVERY}.
+It has the same meaning except that, when the execution of the selected
+command sequence is complete, control is passed to the next match item.
+Thus, the command lists of all successful match items are executed.
+An @kbd{EVERY} expression does not yield a result.
+
+
+@subsection Expression Precedence
+
+A lexical token that can start an expression or a pattern cannot denote
+an infixed or postfixed operator when occuring as the first token of a
+line. This rule applies to the tokens: @kbd{!}, @kbd{%}, @kbd{+},
+@kbd{-}, @kbd{++}, @kbd{+++}, @kbd{--}, @kbd{--@t{-}}, @kbd{=}, @kbd{~=},
+@kbd{<=}, @kbd{>=}, @kbd{<} and @kbd{>}, and its purpose is to allow
+most semicolons in command sequences to be omitted. For similar reasons
+the first token of a function argument list or the arguments of
+@kbd{RESULT}, @kbd{RETURN}, @kbd{EXIT} and @kbd{RAISE}) may not be the
+first token of a line. This applies also to the arguments of
+@kbd{RESULT}, @kbd{RETURN}, @kbd{EXIT},  @kbd{RAISE},  @kbd{GOTO},
+@kbd{MATCH} and @kbd{EVERY}.
+
+Table 1 specifies the precedence of the various expression constructs.
+The prcedence values are in the range 0 to 14, with the higher values 
+signifying greater binding power. The letters L and R denote the 
+associativity of the operators.  For instance, the dyadic operator
+@kbd{!} is left associative and so @kbd{v!i!j} is equivalent to
+@kbd{(v!i)!j}, while @kbd{b1->x,b2->y,z} is equivalent to
+@kbd{b1->x,(b2->y,z)}.  
+
+@example
+14L  Names, Literals,  Function calls
+     (E),  [E,..,E],  TABLE [K,..,K]
+13   ++  +++  --  --@t{-}                         Postfixed
+12   ++  +++  --  --@t{-}  ~  +  -  ABS           Prefixed
+11L  !  %                                     Dyadic
+10   !  %  @@                                  Prefixed
+9L   <<  >>                                   Dyadic operators
+8L   *  /  MOD  &
+7L   XOR
+6L   +  -  |
+5    =  ~=  <=  >=  <  >                      Extended Relations
+4    NOT                                      Truth value operators
+3L   AND
+2L   OR
+1R   -> ,                                     Conditional expression
+0    VEC  CVEC  VALOF  MATCH  EVERY
+@end example
+
+@noindent
+Notice that these precedence values imply that
+
+@example
+! f x          means    ! (f x)
+! p +++        means    ! (p +++)
+! @@ x          means    ! (@@ x)
+! v ! i ! j    means    ! ((v!i)!j)
+@@ v ! i ! j    means    @@ ((v!i)!j)
+@@ "abc" % i    means    @@ ("abc" % i)
+x<<1 + y>>1    means    (x<<1) + (y>>1)
+~x = y         means    (~x) = y
+NOT x=y        means    NOT (x=y)
+@end example
+
+@subsection Manifest Constant Expressions
+
+A manifest constant expression is an expression that can be evaluated
+at compile time to yield an integer.
+It may only contain manifest constant names, numbers and character
+constants, @kbd{TRUE}, @kbd{FALSE}, @kbd{?},
+the operators
+@kbd{~},
+@kbd{ABS},
+@kbd{<<},
+@kbd{>>},
+@kbd{&},
+@kbd{MOD},
+@kbd{*},
+@kbd{/},
+@kbd{XOR},
+@kbd{+},
+@kbd{-},
+@kbd{|},
+the relational operators, 
+@kbd{NOT},
+@kbd{AND},
+@kbd{OR},
+and conditional expressions.  Manifest expressions are used in
+@kbd{MANIFEST} declarations, @kbd{FOR} commands and
+as the operand of @kbd{VEC} or @kbd{CVEC}.
+
+@subsection Static Constant Expressions
+
+
+A static constant expression may be used to specify initial value of a
+static location.  It may be a string, a static vector, a function, the 
+address of a static variable or a manifest constant 
+expression.  Within a static constant expression, the constructs 
+@kbd{[SK0,..,SKn]}, @kbd{VEC K} and @kbd{CVEC K}, where @kbd{SKi} and
+@kbd{K} denote static constant expressions and manifest constant expressions,
+respectively, are allowed and create static vectors.  
+
+
+@node Commands, Exception Handling,, Language
+@section Commands
+
+The primary purpose of commands is for their side effects on the values
+of variables, for input/output operations, and for controlling the flow of
+control.
+
+@subsection Assignments
+
+A command of the form @kbd{L := E} causes a location specified
+by the expression @kbd{L} to be updated by the value of
+expression @kbd{E}.  Some example assignments are as follows:
+
+@example
+          cg_x := 1000
+          v!i := x+1
+          !ptr := mk3(op, a, b)
+          str%k := ch
+          %strp := 'A'
+@end example
+
+@noindent
+Syntactically, @kbd{L} must be either a
+the variable name or an expression whose leading operator
+is @kbd{!} or @kbd{%}.  If it is a name, it must have
+been declared as a static or dynamic variable.  External and function
+names do not denote updatable variables.  If @kbd{L} has leading
+operator @kbd{!}, then its evaluation (given in Section 3.6) leads 
+to a memory location which is the one that is updated by the 
+assignment.  If the @kbd{%} operator is used then the appropriate 
+8 bit location is updated by the least significant 8 bits of
+the value of @kbd{E}.
+
+A simultaneous assignment has the following form:
+
+@example
+          L1,..,Ln := E1,..,En
+@end example
+
+@noindent
+Here the locations to update and the values of the right hand side
+expressions are all determined before the assignments are performed.
+Thus the assignment @kbd{x,y := y,x} will swap the values of
+@kbd{x} and @kbd{y}, and the assignment @kbd{i,v%i := i+1,ch} will
+use the original value of @kbd{i} as the subscript of @kbd{v}. The 
+assignments are however performed in undefined order and so
+
+@example
+          x, x := 1, 2
+@end example
+
+@noindent
+may set @kbd{x} to either @kbd{1} or @kbd{2}.
+
+If the same value is to be assigned to several locations then an
+assignment of the following form can be used.
+
+@example
+          L1,..,Ln ALL:= E
+@end example
+
+The following assignments
+
+@example
+          LET V1,..,Vn = E1,..,En
+          LET V1,..,Vn ALL= E
+@end example
+
+@noindent
+where @kbd{V1,..,Vn} are variable names, cause dynamic locations for 
+the variables to be allocated when control enters the current dynamic 
+scope (see Section ???).  They are otherwise equivalent to the 
+assignments:
+
+@example
+          V1,..,Vn := E1,..,En
+          V1,..,Vn ALL:= E
+@end example
+
+@noindent
+respectively.
+
+An assignment of the form:
+
+@example
+          L1,..,Ln op:= E1,..,En
+@end example
+
+@noindent
+where @kbd{op:=} is one of:
+@kbd{<<:=},
+@kbd{>>:=},
+@kbd{&:=},
+@kbd{*:=},
+@kbd{/:=},
+@kbd{MOD:=},
+@kbd{XOR:=},
+@kbd{|:=},
+@kbd{+:=} or
+@kbd{-:=} is evaluated as follows. First, the left hand side locations
+and the values of the right hand side expressions are determined, then the
+assignments are performed.  Each assignment updates a location with the 
+result obtained by applying the given operator to the previous contents
+of the location and the value given by the right hand side. The assignment
+order is undefined.
+
+
+@subsection Conditional Commands
+
+The syntax of the three conditional commands is as follows:
+
+@example
+          IF E DO C1
+          UNLESS E DO C2
+          TEST E THEN C1 ELSE C2
+@end example
+
+@noindent
+where @kbd{E} denotes an expression and @kbd{C1} and @kbd{C2} denote
+commands.
+To execute a conditional command the expression @kbd{E} is first evaluated.
+If it yields a non zero value and @kbd{C1} is present then @kbd{C1} is 
+executed.
+If it yields zero and @kbd{C2} is present, @kbd{C2} is executed.
+
+@subsection Repetitive Commands
+
+The syntax of the repetitive commands is as follows:
+
+@example
+          WHILE E DO C
+          UNTIL E DO C
+          C REPEAT
+          C REPEATWHILE E
+          C REPEATUNTIL E
+          FOR vid = E1 TO E2 DO C
+          FOR vid = E1 TO E2 BY K DO C
+@end example
+
+The @kbd{WHILE} command repeated executes the command @kbd{C} so long 
+as @kbd{E} yields a non zero value.  The @kbd{UNTIL} command executes
+@kbd{C} until @kbd{E} is zero.  The @kbd{REPEAT} command executes
+@kbd{C} indefinitely.  The @kbd{REPEATWHILE} and @kbd{REPEATUNTIL}
+commands first execute @kbd{C} then behave, respectively, like
+@kbd{WHILE E DO C} or @kbd{UNTIL E DO C}. 
+
+The @kbd{FOR} command
+first initialises its control variable (@kbd{vid}) to the value
+of @kbd{E1}, and evaluates the end limit specified by @kbd{E2}.  Until
+@kbd{vid} moves beyond the end limit, the command @kbd{C} is executed and 
+@kbd{vid} increment by the step length given by @kbd{K} which
+must be a manifest constant expression (see Section 3.10). If @kbd{BY K} 
+is omitted @kbd{BY 1} is assumed.  A @kbd{FOR} command starts a new
+dynamic scope (see Section 7) and the control variable @kbd{vid} is
+allocated a location in this new scope, as are all other dynamic variables 
+and vectors within the @kbd{FOR} command.
+
+@subsection Flow of Control
+
+The following commands affect the flow of control.
+
+@example
+          RESULT
+          RESULT E
+          EXIT
+          EXIT E
+          RETURN
+          RETURN E
+          LOOP
+          BREAK
+          GOTO Args
+@end example
+
+@noindent
+@kbd{RESULT} causes evaluation of the current @kbd{VALOF} expression
+to complete.  If the expression @kbd{E} is present, its value becomes
+the result of the @kbd{VALOF} expression.
+
+@kbd{RETURN} causes evaluation of the current function to terminate, 
+returning the value of @kbd{E}, if present.
+
+@kbd{LOOP} causes control to jump to the point just after the end of the 
+body of the smallest textually enclosing repetitive command (see Section 4.3).
+For a @kbd{REPEAT} command, this will cause the body to be executed again.
+For a @kbd{FOR} command, it causes a jump to where the control variable
+is incremented, and for the other repetitive command it causes a jump to
+the place where the controlling expression is re-evaluated.
+
+@kbd{BREAK} causes a jump to the point just after the smallest
+enclosing repetitive command.
+
+@kbd{EXIT} causes evaluation of the command list of the smallest 
+enclosing match item to complete.  If the expression @kbd{E} is present, 
+its value becomes the result if appropriate.  Match items are described 
+in Section 5 and are used in the following four match constructs:
+@kbd{MATCH} expressions, @kbd{EVERY} expressions, @kbd{HANDLE} 
+commands and functions. Note that, if @kbd{EXIT} occurs in an @kbd{EVERY}
+construct, control will pass to the next match item, rather than leaving
+the entire construct.
+
+The @kbd{GOTO} command takes an argument list which is syntactically
+similar to the argument list of a function call (see Section 3.3).
+The arguments are evaluated and assigned to the argument locations 
+belonging to the smallest enclosing match construct.  Control is then 
+passed to its first match item.
+
+
+@node Exception Handling, Patterns, Commands, Language
+
+@subsection Exception Handling
+
+An expression of the form:
+
+@example
+          RAISE Args
+@end example
+
+@noindent
+causes an exception to be raised.  The argument list is syntactically
+similar to the argument list of a function call but must contain between
+one and three arguments.  These arguments are assigned to the argument
+locations belonging to the currently active exception handler and then
+control is passed to its first match item.  This transfer of control may
+involve implicitly returning from one or more function activations. If
+none of the match items of the current handler are successful, the same
+arguments are passes to the handler one level further out until a match
+is obtained.  By convention, the first exception argument is an integer
+specifying the exception, with zero reserved for the match exception
+(@kbd{PATERR}), and other small numbered exceptions reserved for use by
+standard library functions.
+
+An exception handler is declared by a construct of the following form:
+
+@example
+          C HANDLE : Plist => Clist
+                   ...
+                   : Plist => Clist
+@end example
+
+@noindent
+It executes the command @kbd{C} in an environment in which the exceptions
+will be matched against the given list of match items.  On completing the
+command the previous exception environment is restored.
+
+A simple example of how exceptions can be used is demonstrated by
+the following program.
+
+@example
+GET "mcpl.h"
+
+MANIFEST 
+Id=1, Num, Mult, Div, Pos, Neg, Plus, Minus,
+Lookup=100, Eval
+
+FUN lookup
+: n,            0 => RAISE(Lookup, n)
+: n, [=n, val, ?] => val
+: n, [ ?,   ?, e] => lookup(n, e)
+
+FUN eval
+: [Id, x],      e => lookup(x, e)
+: [Num, k],     ? => k
+: [Pos, x],     e => eval(x, e)
+: [Neg, x],     e => - eval(x, e)
+: [Mult,x,y],   e => eval(x, e) * eval(y, e)
+: [Div,x,y],    e => eval(x, e) / eval(y, e)
+: [Plus,x,y],   e => eval(x, e) + eval(y, e)
+: [Minus,x,y],  e => eval(x, e) - eval(y, e)
+: ?,            ? => RAISE Eval
+
+FUN start
+: => LET exp = [Mult, [Num,23], [Plus,[Id,'a'],[Id,'b']]]
+     LET env = ['a',36,['b',19,0]]
+     printf("Result is %d\n",  eval(exp, env) )
+     HANDLE
+     : Lookup, id => printf ("Id %c not declared", id)
+     : Eval       => printf "Unknown operator in eval"
+@end example
+
+
+
+@subsection Sequences and Compound Commands
+
+It is often useful to be able to execute commands in a sequence, and
+this can be done by writing the commands one after another, separated 
+by semicolons.  Syntactically, the semicolon is only needed if there
+is any ambiguity about where one command ends and the next begins. 
+The semicolon can always be omitted if the second command
+starts on a new line.  For this to work, expression and pattern operators
+which can be both prefixed operators and infixed or postfixed may only 
+occur as the first token on a line with its prefixed meaning (see 
+Section 3.9).  
+Remember also from Section 3.3 that the start of a function argument
+list must be on the same line as the end of the  expression specifying
+the function.
+
+It is sometimes necessary to group a sequence of commands to behave
+syntactically as a single command.  Curly brackets (@kbd{@{@}}) are
+used for this purpose.
+
+An expression is allowed wherever a command is permitted, and is
+evaluated at the same time that such a command would be.  This is 
+useful for invoking functions and executing the pre- and post-incrementing
+and decementing expressions. The result of any such expression is 
+thrown away unless it is the last position of a sequence. 
+
+Empty commands are allowed.
+
+
+@node Patterns,, Exception Handling, Language
+@section Patterns
+
+Pattern matching is one of the most important facilities provided
+within MCPL since it allows both a
+mechanism for multiway selection and a means of associating 
+variable names with locations in memory.  Patterns are used in function
+definitions, the @kbd{MATCH} and @kbd{EVERY} constructs, 
+and in the exception handling
+mechanism.  Within each of these constructs, the user may supply a list
+of match items.  Each match item has the following syntactic form:
+
+@example
+          : Plist => Clist
+@end example
+
+@noindent
+where @kbd{Plist} is a list of zero or more patterns separated by commas 
+and @kbd{Clist} is a sequence of commands, optionally separated by semicolons.
+At the moment control is passes to a match item, there is a list of
+argument values laid out in consecutive locations of memory.  
+The patterns in the pattern list are matched against these arguments
+in left to right order.  If all matches are successful then control 
+passes to the given command sequence.
+
+A pattern can be an explicit numerical constant (e.g. @kbd{1234} or
+@kbd{ 'A'})
+or a range (e.g. @kbd{0..9} or @kbd{'A'..'Z'}) or an alternation of constants
+or ranges (e.g. @kbd{2 | 3 | 5 | 10..20} ).  An argument matches such a 
+pattern if (a) it equals the number, (b) it lies within the given range, or
+(c) it is matched by one of the alternations.
+
+Manifest names may be used within patterns wherever numbers are allowed.
+
+The patterns @kbd{TRUE} and @kbd{FALSE} match the 
+corresponding values in the 
+current argument, and a question mark (@kbd{?}) or empty pattern will 
+match any argument value.
+
+A pattern consisting of a variable name always matches successfully and
+is treated as a declaration of the name, causing it to be attached 
+to the corresponding argument location.  The scope of the name is
+the entire pattern list and associated command sequence.
+
+An argument which is a pointer can be matched by a pattern of the 
+following form:
+
+@example
+          [ Plist ]
+@end example
+
+@noindent
+where @kbd{Plist} is a list of patterns separated by commas.  If this 
+pattern occurs, the corresponding argument is assumed to be a valid 
+pointer into memory.  The consecutive locations pointed to are 
+matched in turn
+by the patterns in @kbd{Plist}.  This construct can be nested to any depth.
+
+A pattern may consist of a relational operator ( 
+@kbd{=}, @kbd{~=}, @kbd{<=}, @kbd{>=}, @kbd{<} or @kbd{>}) followed
+by an expression. The corresponding argument is
+compared with the value of the expression to determine the success
+of the match. 
+
+A pattern consisting of one of the assignment operator (
+@kbd{:=}, @kbd{<<:=}, @kbd{>>:=}, @kbd{&:=}, @kbd{*:=}, @kbd{/:=},
+@kbd{MOD:=}, @kbd{XOR:=}, @kbd{|:=}, @kbd{+:=} or @kbd{-:=}
+) followed
+by an expression is always successful. It has the side effect
+that, if the entire pattern matches succesfully, the assignment
+is performed with the implied left hand operand, just prior to 
+executing the corresponding command sequence.
+
+If two patterns are justaposed, then both are matched against the
+same argument location.  For instance, in
+
+@example
+          : sum, coins[val <=sum] => ... 
+@end example
+
+@noindent @kbd{coins} matches the second argument, which must be
+a pointer to a memory location which is given the name @kbd{val} and
+which must be less than or equal to the first argument (@kbd{sum}).
+
+@node Declarations,,, Language
+@section Declarations
+
+Declarations are used to declare external names, manifest constants,
+static variables and to define functions, and they may only occur at the
+outermost level of a program.  It is thus not possible to declare a 
+function, for instance, within another function.  The four kind of declaration
+are described below.
+
+@subsection External Declarations
+
+An external declaration consists of the word @kbd{EXTERNAL} followed by 
+a list of names that are possibly qualified by type information. All 
+external names start with lower case letters.  The following example
+declaration:
+
+@example
+          EXTERNAL muldiv, printf/vpi, calloc/puu
+@end example
+
+@noindent
+declares the external names @kbd{muldiv}, @kbd{printf} and @kbd{calloc}.
+Since @kbd{muldiv} is unqualified, it is declared to be an external 
+MCPL function, while the qualified names @kbd{printf} and @kbd{calloc} 
+are taken to be external C functions.  A qualifier consists of a slash 
+(@kbd{/}) followed by a sequence of lower case letters possibly terminated 
+by an underline (@kbd{_}), and it specifies the type of the external C
+function.  Each letter denotes a data type, as follows:
+
+
+@table @kbd
+@item v
+The type @kbd{void}.
+@item p
+A pointer type.
+@item s
+The type @kbd{short}.
+@item i
+The type @kbd{int}.
+@item u
+The type @kbd{unsigned int}.
+@item l
+The type @kbd{long int}.
+@item _
+This can occur as the last character of a qualifier to indicate that the
+function takes a variable number of arguments, compatible with the
+@kbd{...} mechanism in C.
+@end table
+
+@noindent
+The first letter of a qualifier specifies the result type of the function
+and the remaining letters specify the types of the first few arguments.
+If an MCPL call of a C function supplies more arguments than the 
+specification declares then the extra arguments are assumed to be of
+type @kbd{long int}.
+
+If an MCPL function is declared in the scope of an external declaration
+for the same name then the function is declared as an external entry
+point and can be called
+from other modules.  If the external declaration specifies a C function
+type, then the MCPL function is compiled to be compatible with the C 
+calling sequence.
+
+
+@subsection Manifest Declarations
+
+A @kbd{MANIFEST} declaration has the following form:
+
+@example
+          MANIFEST N1=K1 ,..., Nn=Kn
+@end example
+
+@noindent
+where @kbd{N1,..,Nn} are constant identifiers (see Section ???) and
+@kbd{K1,..,Kn} are manifest constant expressions (see Section ???).  It
+may only occur at the outermost level of a program.  Each name is
+declared to have the constant value specified by the corresponding
+manifest expression.  If the first value specification (@kbd{=K0}) is
+omitted, then @kbd{=0} is assumed. If a subsequent value specification
+is omitted then the corresponding identifier is given a value one larger
+than the previous one.  Thus, the declaration:
+
+@example
+          MANIFEST A,B,C=10,D,E=C+100
+@end example
+
+@noindent
+declares @kbd{A}, @kbd{B}, @kbd{C}, @kbd{D} and @kbd{E} to have
+manifest values @kbd{0}, @kbd{1}, @kbd{10}, @kbd{11} and @kbd{110}, 
+respectively.
+
+
+@subsection Static Declarations
+
+A static declaration consists of the word @kbd{STATIC} followed by 
+a list of names, each possibly initialised by a static constant expressions
+(see Section ???).
+For example, the following declaration:
+
+@example
+          STATIC a=541, b, c=[123,"Hi"]
+@end example
+
+@noindent
+declares the static variables @kbd{a}, @kbd{b} and @kbd{c}.  The
+initial value given to @kbd{a} is @kbd{541}.  The initial value of
+@kbd{b} is given by default to be @kbd{0} and the initial value
+of @kbd{c} is the value of the static expression @kbd{[123,"Hi"]}, 
+that is, a vector of two elements initialised with the integer 
+@kbd{123} and a pointer to the string @kbd{"Hi"}.
+
+
+@subsection Function Definitions
+
+A function definition has the following form:
+
+@example
+          FUN name : P ,.., P => Clist
+                   ...
+                   : P ,.., P => Clist
+@end example
+
+@noindent
+It consists of the word @kbd{FUN} followed by the name of the function
+(which must start with a lower case letter), followed by zero or more
+match items (described in Section ??).  When a function is called, the
+arguments are placed in consecutive stack locations and control is
+passed to the first match item.  If all the patterns of this item
+successfully match their corresponding arguments then control is passed
+to its command list, otherwise control passes to the next match item.
+After executing the selected command list, control returns back to the
+call. If the last executed command yields a result then this is returned
+as the result of the function.
+
+If no match items are successful, a @kbd{PATERR} exception is raised 
+(@xref{Exception Handling}).
+Notice that functions defined without match items automatically
+generate a @kbd{PATERR} exceptions when called.
+
+Since functions have no dynamic free variables the calling overhead is
+small and it is permissible to pass them as arguments to other functions, 
+assign them to variables or return them as function results.  They are 
+also allowed in static constat expressions.
+
+
+@node Scope,,, Language
+@section Scope and Extent Rules
+
+All identifiers used in a program must have a declaration and must
+be used only within the scope of that declaration. The scope 
+of an identifier is the textual region of program for its
+declaration is valid, and this depends on the kind of declaration.
+
+@kbd{MANIFEST} identifiers are syntactically distinct from all 
+other identifiers and can be considered separately.  The
+scope of a @kbd{MANIFEST} identifier starts from the place that it is
+declared and extends to the end of the program.  It is thus
+necessary to declare manifests before they are used.  It is permissible
+to use a manifest identifier in the same @kbd{MANIFEST} declaration 
+provided its use occurs later in the declaration list.
+
+Identifiers declared by @kbd{EXTERNAL} declarations are regarded as being
+declared right at the start of the program, and have a scope that extends
+throughout the entire program.  All identifiers declared by function 
+declarations are regarded as declared immediately after the externals
+and so have a similar scope.  The scope of a static identifier 
+extends from its declaration to the end of the program, and so, as 
+with manifests, such variables must be declared before they are used.
+
+All other variables are dynamic, being allocated space within the stack
+frame of a function.  The scope of such a variable is the @i{dynamic
+scope} associated with the place in the program where the variable 
+is declared.  Space is allocated for a variable when control passes
+into its dynamic scope, and it is freed when control leaves its scope.
+
+A dynamic scope is the region of program that
+@enumerate
+
+@item 
+starts at the colon (@kbd{:}) of a match item and extends
+to the end of its command sequence,
+
+@item 
+starts just after the symbol @kbd{=>} of a match item 
+and extends to the end of the command sequence,
+
+@item 
+is the body of a @kbd{VALOF} expression, or
+
+@item 
+extends from the word @kbd{FOR} to then end of the body 
+of the @kbd{FOR} command.
+
+@end enumerate
+
+Thus, the scope of an indentifier declared within a pattern extends 
+forwards and backwards to include the entire pattern and command 
+sequence of the current match item, and the scope of identifiers 
+declared by a @kbd{LET} declaration extends forwards 
+and backwards to include the whole of the smallest enclosing 
+dynamic scope, which usually starts at the nearest @kbd{=>},
+@kbd{VALOF} or @kbd{FOR} symbol.
+
+Dynamic scopes also determine the dynamic lifetime (or extent) of
+local vectors declared by @kbd{VEC}, @kbd{CVEC} or @kbd{[E,..,E]}.  
+Space for such vectors is allocated when control passes into the 
+current dynamic scope, and is freed when control leaves this scope.
+
+@node Modules,,, Language
+@section Modules and the Interface with C
+
+An MCPL program may start with a declaration of the following form:
+
+@example
+          MODULE name
+@end example
+
+@noindent
+where @kbd{name} is a variable name starting with a lower case letter.
+This declares @kbd{name} to be an externally accessible pointer to
+the start of the loaded module.  This pointer may be used to gain access
+to some implementation dependent data held at the start of the module,
+such as its size, its name, its date of compilation etc.
+
+If an MCPL program calls a function whose name was declared by 
+an @kbd{EXTERNAL} declaration to be a C function, then the C calling 
+sequence is used, passing the arguments as prescribed by the @kbd{EXTERNAL}
+declaration.  If a function is declared in the scope of
+an @kbd{EXTERNAL} declaration then it can be called from other
+modules. If the @kbd{EXTERNAL} declaration declared it to be a C 
+function, it is compiled to be compatible with the C calling sequence.
+@kbd{EXTERNAL} names that have not been specified to be C functions
+have values that are either entry points to MCPL functions (possibly
+in other modules) or pointers to external static variables. Access to 
+the values of such a variable requires an indirection (using either
+@kbd{!} or @kbd{%}).
+
+@page
+
+@node Examples,,, Language
+@section Example Programs
+
+@subsection Coins
+
+The following program prints out how many different ways a sum of 
+money can be composed from coins of various denominations.
+
+@example
+GET "mcpl.h"
+
+FUN ways
+: 0,             ?  => 1
+: ?,           [0]  => 0
+: sum, coins[>sum]  => ways(sum, @ coins!1)
+: sum, coins[ val]  => ways(sum, @ coins!1) + ways(sum-val, coins)
+
+FUN t : sum =>
+    printf("Sum = %3d,   Ways = %4d\n",
+            sum,         ways(sum, [50, 20, 10, 5, 2, 1, 0])
+          )
+
+FUN start : => t 0; t 1; t 5; t 11; t 20; t 100
+@end example
+
+@subsection Primes
+
+The following program prints out a table of all primes less
+than 1000, using the sieve method.
+
+@example
+GET "mcpl.h"
+
+MANIFEST Upb = 999
+
+FUN start : =>
+  printf "\nTable of prime numbers\n\n"
+  LET count, isprime = 0, VEC Upb
+  FOR i = 2 TO Upb DO isprime!i := TRUE
+  FOR p = 2 TO Upb IF isprime!p DO
+  @{ LET i = p*p
+    UNTIL i>Upb DO isprime!i, i := FALSE, i+p
+    printf(" %i3", n)
+    IF ++count MOD 10 = 0 DO newline()
+  @}
+  printf "\nEnd of output\n"
+@end example
+
+@page
+
+@subsection Queens
+
+The following program calculates the number of ways eight queens can
+be placed on a chess board without any two occupying the same row,
+column or diagonal.
+
+@example
+GET "mcpl.h"
+
+STATIC count = 0
+
+FUN try
+:  ?, #xFF,  ? => count++
+: ld,  row, rd => LET poss = ~(ld | row | rd) & #xFF
+                  UNTIL poss=0 DO
+                  @{ LET bit = poss & -poss
+                    poss -:= bit
+                    try( (ld|bit)<<1, row|bit, (rd|bit)>>1 )
+                  @}
+FUN start
+: => try(0, 0, 0)
+     printf("\nNumber of solutions is %d\n", count)
+@end example
+
+
+
+@subsection Fridays
+
+The following program prints a table of how often the 13th day
+of the month lies on each day of the week over a 400 year period.
+
+@example
+GET "mcpl.h"
+
+MANIFEST Mon = 0, Sun = 6, Jan = 0, Feb = 1, Dec = 11
+
+STATIC
+count = [0,0,0,0,0,0,0], days  = 0,
+daysinmonth = [31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+dayname = ["Monday", "Tuesday", "Wednesday"," Thursday",
+           "Friday", "Saturday", "Sunday"]
+
+FUN febdays : year => year MOD 400 = 0 -> 29,
+                      year MOD 100 = 0 -> 28,
+                      year MOD 4   = 0 -> 29,
+                      28
+FUN start : => 
+  FOR year = 1973 TO 1973 + 399 DO
+  @{ daysinmonth!Feb := febdays year
+    FOR month = Jan TO Dec DO @{ LET day13 = (days+12) MOD 7
+                                (count!day13) ++
+                                days +:= daysinmonth!month
+                              @}
+  @}
+  FOR day = Mon TO Sun DO
+      printf(" %3d %ss\n", count!day, dayname!day)
+@end example
+
+@subsection Prover
+
+This program is a very free translation of the LISP version 
+of the Wang Algorithm given in the LISP 1.5 book.
+It checks whether formulae in propositional logic are
+tautologies.  The program includes both a parser for the expression
+and a prover function @kbd{pr} to test whether it is always true.
+
+@example
+GET "mcpl.h"
+
+MANIFEST 
+Id, Not, And, Or,     // Expression node operators
+Syntax=100            // Syntax exception
+
+STATIC
+str, strp, ch1, ch2, ch3, token, spacep
+
+FUN member : ?,        0 => FALSE
+           : x, [ ?, =x] => TRUE
+           : x, [ys,  ?] => member(x, ys)
+
+FUN add : x, xs => member(x, xs) -> xs, mk2(x, xs)
+
+FUN pr
+:  ?,  0,  ?,               0 => FALSE
+
+: al,  0, ar,   [[Not,x], cr] => pr(al, [x,0], ar, cr)
+
+: al,  0, ar, [[And,x,y], cr] => pr(al, 0, ar, [x,cr])
+                                 AND
+                                 pr(al, 0, ar, [y,cr])
+
+: al,  0, ar,  [[Or,x,y], cr] => pr(al, 0, ar, [x,[y,cr]], x))
+
+: al,  0, ar,    [[Id,x], cr] => member(x, al)
+                                 OR
+                                 pr(al, 0, add(x,ar), cr)
+
+: al,   [[Not,x],cl], ar, cr  => pr(al, cl, ar, [x,cr])
+
+: al, [[And,x,y],cl], ar, cr  => pr(al, [x,[y,cl]], ar, cr)
+
+: al,  [[Or,x,y],cl], ar, cr  => pr(al, [x,cl], ar, cr)
+                                 AND
+                                 pr(al, [y,cl], ar, cr)
+
+: al,    [[Id,x],cl], ar, cr  => member(x,ar)
+                                 OR
+                                 pr(add(x,al), cl, ar, cr)
+
+// A ,.., Z  -->  [Id, 'A'] ,..,  [Id, 'Z']
+// ~x        -->  [Not, x]
+// x & y     -->  [And,x,y]
+// x | y     -->  [Or,x,y]
+// x -> y    -->  ~x | y
+// x <-> y   -->  (x -> y) & (y -> x)
+
+FUN rch : => ch1, ch2, ch3 := ch2, ch3, str%strp
+             UNLESS ch3=0 DO strp++
+
+FUN parse : s => str, strp := s, 0
+                 rch(); rch(); rch()
+                 nexp 0
+
+FUN lex : => MATCH (ch1, ch2, ch3)
+: ' ' | '\n'   => rch(); lex()
+: ( 'A'..'Z' | '(' | ')' | '~' | '&' | '|' )
+  ch            => rch(); ch
+: '-', '>'      => rch(); rch(); '->'
+: '<', '-', '>' => rch(); rch(); rch(); '<->'
+:               => RAISE Syntax
+
+FUN prim : => MATCH token
+: 'A'..'Z' => LET a = mk2(Id, token)
+              lex()
+              a
+: '('      => LET a = nexp 0
+              UNLESS token=')' RAISE Syntax
+              lex()
+              a
+: '~'      => mk2(Not, nexp 3)
+:          => RAISE Syntax
+
+FUN nexp : n => lex(); exp n
+
+FUN exp : n =>
+    LET a = prim()
+    @{ MATCH (token, n)
+      :  '&', <3 => a := mk3(And, a, nexp 3) 
+      :  '|', <2 => a := mk3(Or , a, nexp 2) 
+      : '->', <1 => a := mk3(Or, mk2(Not, a), nexp 1) 
+      :'<->', <1 => LET b = nexp 1
+                    a := mk3(And, mk3(Or, mk2(Not, a), b), 
+                                  mk3(Or, mk2(Not, b), a) 
+                            )
+      :          => RETURN a
+    @} REPEAT
+
+FUN try : e => 
+    spacep := @ (VEC 10000)!10000
+    @{ TEST pr(0, 0, 0, [parse e, 0])
+      THEN printf("%s is TRUE\n", e)
+      ELSE printf("%s is FALSE\n", e)
+    @} HANDLE : Syntax => printf "Bad syntax\n"
+
+FUN mk1 : x => !spacep := x; spacep--@t{-}
+
+FUN mk2 : x, y => mk1 y; mk1 x
+
+FUN mk3 : x, y, z => mk1 z; mk1 y; mk1 x
+
+// Propositional examples supplied by Larry Paulson 
+// and modified by MR
+
+FUN start : =>
+  printf "associative laws of & and | \n"
+  try "(P & Q) & R  <->  P & (Q & R)"
+  try "(P | Q) | R  <->  P | (Q | R)"
+
+  printf "distributive laws of & and | \n"
+  try "(P & Q) | R  <-> (P | R) & (Q | R)"
+  try "(P | Q) & R  <-> (P & R) | (Q & R)"
+
+  printf "Laws involving implication \n"
+  try "(P|Q -> R) <-> (P->R) & (Q->R)"
+  try "(P & Q -> R) <-> (P-> (Q->R))"
+  try "(P -> Q & R) <-> (P->Q)  &  (P->R)"
+
+  printf "Classical theorems \n"
+  try "P | Q  ->  P | ~P & Q"
+  try "(P->Q)&( ~P->R)  ->  (P&Q | R)"
+  try "P & Q | ~P & R  <->  (P->Q) & (~P->R)"
+  try "(P->Q) | (P->R)  <->  (P -> Q | R)"
+  try "(P<->Q) <-> (Q<->P)"
+
+  /* Sample problems from F.J. Pelletier, Seventy-Five
+     Problems for Testing Automatic Theorem Provers,
+     J. Automated Reasoning 2 (1986), 191-216.
+  */
+
+  printf "Problem 5 \n"
+  try "((P|Q)->(P|R)) -> (P|(Q->R))"
+
+  printf "Problem 9 \n"
+  try "((P|Q) & ( ~P | Q) & (P | ~Q)) ->  ~( ~P | ~Q)"
+
+  printf "Problem 12.  Dijkstra's law \n"
+  try "((P <-> Q) <-> R)  ->  (P <-> (Q <-> R))"
+
+  printf "Problem 17"
+  try "(P & (Q->R) --> S)  <->  ((~P|Q|S) & (~P|~R|S))"
+
+  printf "False goals \n"
+  try "(P | Q -> R) <-> (P -> (Q->R))"
+  try "(P->Q)  <->  (Q ->  ~P)"
+  try " ~(P->Q) -> (Q<->P)"
+  try "((P->Q) -> Q)  ->  P"
+  try "((P | Q) & (~P | Q) & (P | ~Q)) ->  ~(~P | Q)"
+
+  printf "Indicates need for subsumption \n"
+  try "((P & (Q<->R))<->S)  <->  ((~P|Q|S) & ( ~P|~R|S))"
+@end example
+
+@page
+
+@subsection Eval
+
+The following program is a simple parser and evaluator for lambda 
+expressions.
+
+@example
+GET "mcpl.h"
+
+MANIFEST Id=1, Num, Times, Div, Pos, Neg, Plus, Minus,
+         Eq, Cond, Lam, Ap,
+         Syntax=1, Lookup, Eval
+
+STATIC str, strp, ch, nch, token, spacep
+
+FUN lookup : ?,          0 => RAISE Lookup
+           : n, [=n,val,?] => val
+           : n,    [?,?,e] => lookup(n, e)
+
+FUN eval
+: [Id, x],      e => lookup(x, e)
+: [Num, k],     ? => k
+: [Pos, x],     e => eval(x, e)
+: [Neg, x],     e => - eval(x, e)
+: [Times,x,y],  e => eval(x, e) * eval(y, e)
+: [Div,x,y],    e => eval(x, e) / eval(y, e)
+: [Plus,x,y],   e => eval(x, e) + eval(y, e)
+: [Minus,x,y],  e => eval(x, e) - eval(y, e)
+: [Eq,x,y],     e => eval(x, e) = eval(y, e)
+: [Cond,b,x,y], e => eval(b, e) -> eval(x, e), eval(y, e)
+: [Lam,x,body], e => mk3(x, body, e)
+: [Ap,x,y],     e => @{ MATCH eval(x, e)
+                       : [bv, body, env] =>
+                            eval(body,mk3(bv,eval(y,e),env))
+                     @}
+: ?,            ? => RAISE Eval
+
+// Construct       Corresponding Tree
+
+// a ,.., z   -->  [Id, 'a'] ,..,  [Id, 'z']
+// dddd       -->  [Num, dddd]
+// x y        -->  [Ap, x, y]
+// x * y      -->  [Times, x, y]
+// x / y      -->  [Div, x, y]
+// x + y      -->  [Plus, x, y]
+// x - y      -->  [Minus, x, y]
+// x = y      -->  [Eq, x, y]
+// b -> x, y  -->  [Cond, b, x, y]
+// Li y       -->  [Lam, i, y]
+
+FUN rch : => ch := nch
+             nch := str%strp++
+             UNLESS nch=0 DO strp++
+
+FUN parse : s => str, strp := s, 0
+                 rch(); rch(); nexp 0
+
+FUN lex : => MATCH (ch, nch)
+: ' '|'\n', ?  => rch(); lex()
+: '(' | ')' | '*' | '/' | '+' | '-' | 'L' | '.',
+            ? => token := ch; rch()
+: 'a'..'z', ? => token, lexval := Id, ch; rch()
+: '0'..'9', ? => token, lexval := Num, ch-'0'
+                 @{ rch()
+                   MATCH ch
+                   :'0'..'9' => lexval := 10*lexval+ch-'0'
+                   : ?       => RETURN
+                 @} REPEAT
+: '-',    '>' => token := '->'; rch()
+:   ?,     ?  => RAISE Syntax
+
+FUN prim : => MATCH token
+: Id   => LET a = mk2(Id, lexval)
+          lex()
+          a
+: Num  => LET a = mk2(Num, lexval)
+          lex()
+          a
+: 'L'  => lex()
+          UNLESS token=Id RAISE Syntax
+          LET bv = lexval
+          mk3(Lam, bv, nexp 0)
+: '('  => LET a = nexp 0
+          UNLESS token=')' RAISE Syntax
+          lex()
+          a
+: '+'  => mk2(Pos, nexp 3)
+: '-'  => mk2(Neg, nexp 3)
+:  ?   => RAISE Syntax
+
+
+FUN nexp : n => lex(); exp n
+
+
+FUN exp  : n => 
+    LET a = prim()
+    @{ MATCH (token, n)
+      :   '(' | Num | Id,
+                ? => a := mk3(   Ap, a, nexp 6)
+      :   '*', <5 => a := mk3(Times, a, nexp 5) 
+      :   '/', <5 => a := mk3(  Div, a, nexp 5) 
+      :   '+', <4 => a := mk3( Plus, a, nexp 4) 
+      :   '-', <4 => a := mk3(Minus, a, nexp 4) 
+      :   '=', <3 => a := mk3(   Eq, a, nexp 3) 
+      :  '->', <1 => LET b = nexp 0
+                     UNLESS token=',' RAISE Syntax
+                     a := mk4(Cond, a, b, nexp 0) 
+      :    ?,   ? => RETURN a
+    @} REPEAT
+
+FUN mk1 : a          => !--@t{-}spacep := a; spacep
+FUN mk2 : a, b       => mk1(b); mk1(b)
+FUN mk3 : a, b, c    => mk1(c); mk1(b); mk1(a)
+FUN mk4 : a, b, c, d => mk1(d); mk1(c); mk1(b); mk1(a)
+
+
+FUN wrs : s => printf("%s\n", s)
+FUN wrn : n => printf("%d\n", n)
+
+FUN try : e => wrs e
+               spacep := @ (VEC 10000)!10000
+
+               wrn ( eval(parse e, 0) )
+
+               HANDLE : Syntax => printf "Bad syntax"
+                      : Lookup => printf "Bad lookup"
+                      : Eval   => printf "Bad eval"
+
+FUN start : =>
+    try "1=2 -> 1234, 3*4+100"        // Answer 112
+    try "(Lx x+1) ((Lx x) (Ly y) 99)" // Answer 100
+    try "(Ls Lk s k k)           \
+         \  (Lf Lg Lx f x (g x)) \
+         \     (Lx Ly x)         \
+         \        (Lx x)         \
+         \           99"              // Answer 99
+@end example
+
+@page
+
+@subsection Fast Fourier Transform
+
+The following program is a simple demonstration of the algorithm
+for the fast fourier transform.  Instead of using complex numbers, it
+uses integer arithmetic modulo 65537 with an appropriate Nth 
+root of unity.
+
+
+@example
+GET "mcpl.h"
+
+MANIFEST
+   Modulus = #x10001,  // 2**16 + 1
+
+// Omega = #x00003, N = #x10000,
+// Omega = #x0ADF3, N = #x01000,
+   Omega = #x096ED, N = #x00400,
+// Omega = #x08000, N = #x00010,
+// Omega = #x0FFF1, N = #x00008,
+
+// Omega and N are chosen so that:  Omega**N = 1
+
+   Upb     = N-1,
+   MSB     = N>>1,
+   LSB     = 1
+
+STATIC v = VEC Upb, w = VEC Upb  
+
+FUN start : =>
+   FOR i = 0 TO Upb DO v!i := i
+
+   pr(v, 15)
+// Prints the original data
+//     0     1     2     3     4     5     6     7
+//     8     9    10    11    12    13    14    15
+
+   dofft v
+
+   pr(v, 15)
+// Prints the transformed data
+// 65017 26645 38448 37467 30114 19936 15550 42679
+// 39624 42461 43051 65322 18552 37123 60445 26804
+
+   invfft v
+
+   pr(v, 15)
+// prints  -- Original data
+//     0     1     2     3     4     5     6     7
+//     8     9    10    11    12    13    14    15
+
+FUN dofft
+: v => w!0 := 1         // Nth roots of unity
+       FOR i = 1 TO Upb DO w!i := mul(w!(i-1), Omega)
+       fft(N, v, 0, MSB)
+       reorder(v, v, MSB, LSB)
+
+FUN invfft
+: v => w!0 := 1         // inverse Nth roots of unity
+       FOR i = 1 TO Upb DO w!i := ovr(w!(i-1), Omega)
+       fft(N, v, 0, MSB)
+       reorder(v, v, MSB, LSB)
+       FOR i = 0 TO Upb DO v!i := ovr(v!i, N)
+
+FUN reorder
+:   p,  <p, 0, ? => RETURN
+: [x], [y], 0, ? => x, y := y, x
+:   p,   q, a, b => LET a1, b1 = a>>1, b<<1
+                    reorder(@@p!a, @@q!b, a1, b1)
+                    reorder(p,    q,    a1, b1)
+  
+FUN fft : nn, v, pp, msb =>
+    LET n, p = nn>>1, pp>>1
+    FOR i = 0 TO n-1 DO butterfly(@@v!i, @@v!(i+n), w!p)
+    IF n=1 RETURN
+    fft(n, @@v!0,     p, msb)
+    fft(n, @@v!n, msb+p, msb)
+
+FUN butterfly
+: [x], [y], wk => LET t = mul(y, wk)
+                  x, y := add(x, t), sub(x, t)
+
+FUN pr : v, upb => FOR i = 0 TO upb DO
+                   @{ printf("%5d ", v!i)
+                     IF i MOD 8 = 7 DO printf "\n"
+                   @}
+                   printf "\n"
+@end example
+
+@page
+
+@example
+FUN dv
+: 1, m,    ?, ? => m
+: 0, m,    ?, n => m-n
+: a, m, b >a, n => dv(      a,         m, b MOD a, m*(b/a)+n)
+: a, m,    b, n => dv(a MOD b, n*(a/b)+m,       b,         n)
+
+FUN inv : x => dv(x, 1, Modulus-x, 1)
+
+FUN ovr : x, y => mul(x, inv(y))
+
+FUN mul : 0, ? => 0
+        : x, y => (x&1)=0 -> mul(x>>1, add(y,y)),
+                  add(y, mul(x>>1, add(y,y)))
+
+FUN add : x, y => LET a = x+y
+                  0<=a<Modulus -> a, a-Modulus
+
+FUN sub : x, y => add(x, Modulus-y)
+@end example
+
+
+
+
+@subsection Turing
+
+The following program simulates the execution of a Turing Machine
+running a Turing program that is designed to multiply two numbers 
+together in unary.   The call: @kbd{turing("A11", 'B', "111A")} will
+run the machine with the reading head positioned over the character
+@kbd{B} and with a given initial setting of the left and right portions
+of the tape.  After several steps it will print:
+
+@example
+          A 1 1 1 1 1 1[A]
+@end example
+
+@noindent
+indicating the the head is positioned on the right hand @kbd{A}, with
+the answer represented by the six @kbd{1}s.
+
+@example
+GET "mcpl.h"
+
+MANIFEST Upb = 5000
+
+STATIC ltape, rtape, spacep
+
+FUN prb
+:         0 => RETURN
+:   [0, ch] => wrch ch
+: [chs, ch] => prb chs; wrch ' '; wrch ch
+
+
+
+FUN prf
+:         0 => RETURN
+:   [0, ch] => wrch ch
+: [chs, ch] => wrch ch; wrch ' '; prf chs
+
+FUN pr : x, c, y  => prb x; printf("[%c]", c); prf y; newline()
+
+FUN right : c => MATCH rtape
+:          0 => ltape := mk2(ltape, c)
+: [link, ch] => LET oldch = ch 
+                ltape,rtape,link,ch := rtape,link,ltape,c
+                oldch
+
+FUN left : c => MATCH ltape
+:          0 => rtape := mk2(rtape, c)
+: [link, ch] => LET oldch = ch
+                rtape,ltape,link,ch := ltape,link,rtape,c
+                oldch
+
+FUN halt : c => pr(ltape, c, rtape)
+
+FUN turing : lstr, ch, rstr =>
+    LET i = 0
+    ltape, rtape ALL:= 0
+    UNTIL lstr%i=0 DO i++
+    UNTIL i=0      DO ltape := mk2(ltape, lstr%--i)
+    UNTIL rstr%i=0 DO rtape := mk2(rtape, rstr%i++)
+    s0 ch
+
+FUN s0 : '1' => s1 (right '0')
+       : 'A' => s2 (right ' ')
+       :  c  => s0 (left   c )
+FUN s1 : 'A' => s3 (left  'A')
+       : 'X' => s1 (right '1')
+       :  c  => s1 (right  c )
+FUN s2 : 'A' => s5 (right 'A')
+       :  ?  => s2 (right ' ')
+FUN s3 : 'B' => s0 (left  'B')
+       : '1' => s4 (right 'X')
+       :  c  => s3 (left   c )
+FUN s4 : ' ' => s3 (left  'X')
+       :  c  => s4 (right  c )
+FUN s5 : ' ' => halt 'A'
+       : 'X' => s5 (right '1')
+       :  c  => s5 (right  c )
+
+FUN mk2 : x, y => !--@t{-}spacep := y
+                  !--@t{-}spacep := x
+                  spacep
+
+FUN start : => spacep := @ (VEC Upb)!Upb
+               printf "Turing entered\n"
+               turing("A11", "B", "111A")
+@end example
+
+@node References,,, Language
+@section References
+
+@table @kbd
+@item [1]  Richards,M. and Whitby-Strevens, C.
+@i{BCPL: the Language and its Compiler},
+Cambridge University Press, 1979.
+@item [2] Paulson, L.C., 
+@i{ML for the Working Programmer},
+Cambridge University Press, 1991.
+@item [3] Harbison, S.P. and Steele,G.L.,
+@i{C -- A Reference Manual},
+Prentice-Hall, 1987.
+@item [4]  Clocksin, W.F. and Mellish, C.S. 
+@i{Programming in Prolog},
+Springer-Verlag, 1981.
+@end table
+
+@node Compiler, , Language, Top
+
+The compiler is made up of four main components: a lexical analyser,
+the syntax analyser, the translation phase and the codegenerator. These
+are covered in the following sections.
+
+@menu
+* Lexical Analyser::
+* Syntax Analyser::
+* Translation Phase::
+* Codegenerator::
+@end menu
+
+
+@node Lexical Analyser, Syntax Analyser,, Compiler
+
+@section The Lexical Analyser
+
+The lexical analyser recognises the following tokens.
+
+@example
+numb        123   #377   #xFF    #b_101_111  'a'  'EDIT'
+sbra        [          for patterns and initialised vectors
+sket        ]
+lparen      (          for enclosing expression - has a result
+rparen      )
+cbra        @{          for enclosing commands - no result
+cket        @}
+plusass     +:=
+plus        +
+inc1        ++
+inc4        +++
+comma       ,
+semicolon   ;
+lv          @@
+bitand      &
+andass      &:=
+bitor       |
+orass       |:=
+rarrow      =>
+eq          =
+indw        !          word subscripting
+mult        *
+multass     *:=
+div         /
+divass      /:=
+            //         comment until newline
+            /*         comment until */
+ls          <
+le          <=
+lsh         <<
+lshass      <<:=
+gr          >
+ge          >=
+rsh         >>
+rshass      >>:=
+cond        ->
+subass      -:=
+sub         -
+dec1        --
+dec4        --@t{-}
+colon       :
+ass         :=
+query       ?
+indb        %          byte subscripting
+ne          ~=
+bitnot      ~
+dots        ..         range in a pattern
+vid         abc   x    etc
+cid         Abc   X    ETC
+string      "hello"   "hi\nthere"    (zero terminated)
+eof         <end of file>
+module      MODULE
+get         GET
+fun         FUN         (start of a function definition)
+external    EXTERNAL
+static      STATIC
+global      GLOBAL
+manifest    MANIFEST
+true        TRUE
+false       FALSE
+table       TABLE
+vec         VEC
+cvec        CVEC
+abs         ABS
+not         NOT
+and         AND
+or          OR
+let         LET
+be          BE
+goto        GOTO
+raise       RAISE
+test        TEST
+then        THEN
+else        ELSE
+if          IF
+unless      UNLESS
+do          DO
+while       WHILE
+until       UNTIL
+repeatwhile REPEATWHILE
+repeat      REPEAT
+repeatuntil REPEATUNTIL
+for         FOR
+to          TO
+by          BY
+valof       VALOF
+match       MATCH
+every       EVERY
+handle      HANDLE
+result      RESULT
+exit        EXIT
+return      RETURN
+break       BREAK
+loop        LOOP
+mod         MOD
+xor         XOR
+modass      MOD:=
+xorass      XOR:=
+allass      ALL:=
+alleq       ALL=
+
+@end example
+
+@node Syntax Analyser, Translation Phase, Lexical Analyser, Compiler
+
+@section The Syntax Analyser
+
+@subsection Operator Precedence
+
+14  Names, Literals,  f(...), (E),
+    [E,..,E],  TABLE [K,..,K]
+
+13  ++  +++  --  --@t{-}                         postfixed
+
+12  ++  +++  --  --@t{-}  ~  +  -  ABS           prefixed
+
+11  !  %                                     dyadic
+
+10  !  %  @@                                  prefixed
+
+9  <<  >>
+8  *  /  MOD  &
+7  XOR
+6  +  -  |
+
+5  =  ~=  <=  >=  <  >         Extended Relations
+
+4  NOT                         Truth value operators
+3  AND
+2  OR
+
+1  -> ,                        Conditional expression
+
+0  VEC K, CVEC K, VALOF C, MATCH, EVERY
+
+@subsection The Parse Tree
+
+@example
+Cid    -> [cid, -, <bytes>]
+
+Vid    -> [vid, -, <bytes>]
+
+Str    -> [string, <len>, <bytes>]    "hello\n"
+
+E      -> [true]                      TRUE
+       |  [false]                     FALSE
+       |  [query]                     ?
+       |  Vid                         x          init
+       |  Cid                         Abc        Mult
+       |  Str                         "hello\n"
+       |  [numb, <val>]               123   #377  #x_FF #b_101  'A'
+       |  [ltable, Elist, -]          [ E ,.., E ]
+       |  [table, SKlist]             TABLE [ SK ,..., SK ]
+       |  [call, E, Elist, ln]        E E  or E ( E ,.., E )
+       |  [call, E, 0, ln]            E ()
+       |  [inc1a, E]                  E ++
+       |  [inc4a, E]                  E +++
+       |  [dec1a, E]                  E --
+       |  [dec4a, E]                  E --@t{-}
+       |  [inc1b, E]                  ++ E
+       |  [inc4b, E]                  +++ E
+       |  [dec1b, E]                  -- E
+       |  [dec4b, E]                  --@t{-} E
+       |  [bitnot, E]                 ~ E
+       |  [neg, E]                    - E
+       |  [abs, E]                    ABS E
+       |  [indb, E, E]                E % E
+       |  [indw, E, E]                E ! E
+       |  [indb0, E]                  % E  (= E%0)
+       |  [indw0, E]                  ! E  (= E!0)
+       |  [lv, E]                     @ E
+       |  [lsh, E, E]                 E << E
+       |  [rsh, E, E]                 E >> E
+       |  [bitand, E, E]              E & E
+       |  [mult, E, E]                E * E
+       |  [div, E, E]                 E / E
+       |  [mod, E, E]                 E MOD E
+       |  [xor, E, E]                 E XOR E
+       |  [plus, E, E]                E + E
+       |  [sub, E, E]                 E - E
+       |  [bitor, E, E]               E | E
+       |  [rel, E, Rlist]             E relop E relop ... E
+       |  [not, E]                    NOT E
+       |  [and, E, E]                 E AND E
+       |  [or, E, E]                  E OR E
+       |  [cond, E, E, E]             E -> E, E
+       |  [vec, K, -]                 VEC K
+       |  [cvec, K, -]                CVEC K
+       |  [valof, C]                  VALOF C
+       |  [match, Elist, Fndef, ln]   MATCH Elist Fndef
+       |  [every, Elist, Fndef, ln]   EVERY Elist Fndef
+
+Rlist  -> 0
+       |  [eq, E, Rlist]
+       |  [ne, E, Rlist]
+       |  [le, E, Rlist]
+       |  [ge, E, Rlist]
+       |  [ls, E, Rlist]
+       |  [gr, E, Rlist]
+
+K      -> [true]                      TRUE
+       |  [false]                     FALSE
+       |  [query]                     ?
+       |  Cid                         Abc      Mult
+       |  [numb, <val>]               123      #377      #x_FF    #b_101
+       |  [neg, K]                    - E
+       |  [bitnot, K]                 ~ E
+       |  [abs, K]                    ABS E
+       |  [lsh, K, K]                 E << E
+       |  [rsh, K, K]                 E >> E
+       |  [mult, K, K]                E * E
+       |  [div, K, K]                 E / E
+       |  [mod, K, K]                 E MOD E
+       |  [bitand, K, K]              E & E
+       |  [xor, K, K]                 E XOR E
+       |  [plus, K, K]                E + E
+       |  [sub, K, K]                 E - E
+       |  [bitor, K, K]               E | E
+       |  [rel, K, RKlist]            K relop K relop ... K
+       |  [not, K]                    NOT E
+       |  [and, K, K]                 E AND E
+       |  [or, K, K]                  E OR E
+       |  [cond, K, K, K]             E -> E, E
+
+RKlist -> 0
+       |  [eq, E, RKlist]
+       |  [ne, E, RKlist]
+       |  [le, E, RKlist]
+       |  [ge, E, RKlist]
+       |  [ls, E, RKlist]
+       |  [gr, E, RKlist]
+
+SK     -> K
+       |  Str
+       |  [table, SKlist]
+       |  [ltable, SKlist, -]
+       |  [vec, K]
+       |  [cvec, K]
+
+P      -> 0
+       |  Cid                         Abc
+       |  Vid                         x
+       |  [numb, <val>]               1234
+       |  [query]                     ?
+       |  [true]                      TRUE
+       |  [false]                     FALSE
+       |  [dots,K,K]                  K .. K  where K is
+                                      numb, cid, true, false or char
+       |  [por,K,K]
+       |  [por,K,[por,K,..]]          K | K | ...
+                                      where the Ks contain only 
+                                      numb, cid, true, false, char and dots
+       |  [ptr, Plist]                [ Plist ]
+       |  [peq, E]                    = E
+       |  [pne, E]                    ~= E
+       |  [ple, E]                    <= E
+       |  [pge, E]                    >= E
+       |  [pls, E]                    < E
+       |  [pgr, E]                    > E
+       |  [pass, E]                   := E
+       |  [plshass, E]                <<:= E
+       |  [prshass, E]                >>:= E
+       |  [pandass, E]                &:= E
+       |  [pmultass, E]               *:= E
+       |  [pdivass, E]                /:= E
+       |  [pmodass, E]                MOD:= E
+       |  [pxorass, E]                XOR:= E
+       |  [porass, E]                 |:= E
+       |  [pplusass, E]               +:= E
+       |  [psubass, E]                -:= E
+       |  [pand, P, P]                P P ... P
+
+Plist  -> P                           P
+       |  [comma, P, Plist]           P ,.., P
+
+C      -> E                           E
+       |  [seq, C, C]                 C ; C
+       |  [repeat, C, ln]             C REPEAT
+       |  [repeatwhile, C, E, ln]     C REPEATWHILE E
+       |  [repeatuntil, C, E, ln]     C REPEATUNTIL E
+       |  [handle, C, Fndef, ln]      C HANDLE Fndef
+       |  [let, Vlist, Elist, ln]     LET x, y, z = 1, VEC 10, "abc"
+       |  [letall, Vlist, E, ln]      LET x, y, z ALL= E
+       |  [raise, Elist, ln]          RAISE E  or  RAISE ( E ,.., E )
+       |  [goto, Elist, ln]           GOTO E  or  GOTO ( E ,.., E )
+       |  [test, E, C, C, ln]         TEST E THEN C ELSE C
+       |  [if, E, C, ln]              IF E DO C
+       |  [unless, E, C, ln]          UNLESS E DO C
+       |  [while, E, C, ln]           WHILE E DO C
+       |  [until, E, C, ln]           UNTIL E DO C
+       |  [for, Vid, E, E, 0, C, ln]  FOR i = E TO E DO C
+       |  [for, Vid, E, E, K, C, ln]  FOR i = E TO E BY K DO C
+       |  [result, 0, ln]             RESULT  (of current VALOF expression)
+       |  [result, E, ln]             RESULT E
+       |  [exit, 0, ln]               EXIT    (from current match item)
+       |  [exit, E, ln]               EXIT E
+       |  [return, 0, ln]             RETURN  (from current function)
+       |  [return, E, ln]             RETURN E
+       |  [loop, ln]                  LOOP    (do current repetition again)
+       |  [break, ln]                 BREAK   (from current repetition)
+       |  [ass, Elist, Elist, ln]     E,..,E := E,..,E
+       |  [allass, Elist, E, ln]      E,..,E ALL:= E
+       |  [lshass, Elist, Elist, ln]  E,..,E <<:= E,..,E
+       |  [rshass, Elist, Elist, ln]  E,..,E >>:= E,..,E
+       |  [multass, Elist, Elist, ln] E,..,E *:= E,..,E
+       |  [divass, Elist, Elist, ln]  E,..,E /:= E,..,E
+       |  [modass, Elist, Elist, ln]  E,..,E MOD:= E,..,E
+       |  [andass, Elist, Elist, ln]  E,..,E &:= E,..,E
+       |  [xorass, Elist, Elist, ln]  E,..,E XOR:= E,..,E
+       |  [plusass, Elist, Elist, ln] E,..,E +:= E,..,E
+       |  [subass, Elist, Elist, ln]  E,..,E -:= E,..,E
+       |  [orass, Elist, Elist, ln]   E,..,E |:= E,..,E
+
+Fndef  -> 0
+       |  [funpat, Plist, Clist, Fndef, ln] : P ,.., P => Clist
+                                            ...
+                                            : P ,.., P => Clist
+
+Prog   -> [module, Vid, Body, ln]           MODULE mylib
+       |  Body
+
+Body   -> [manifest, Mlist, Body, ln]       MANIFEST A=1, B, C=123
+       |  [static,   Slist, Body, ln]       STATIC A=1, B, C=[123,"Hi"]
+       |  [global,   Glist, Body, ln]       GLOBAL a:200, b, c
+       |  [external, Xlist, Body, ln]       EXTERNAL Vid/Vid,..,
+       |  [fun, Vid, Fndef, Body, -, ln]
+
+Mlist  -> 0
+       |  [mdef, Cid, 0, Mlist]
+       |  [mdef, Cid, K, Mlist]
+
+Slist  -> 0
+       |  [sdef, Vid, 0, Slist]
+       |  [sdef, Vid, SK, Slist]
+
+Glist  -> 0
+       |  [gdef, Vid, 0, Glist]
+       |  [gdef, Vid, K, Glist]
+
+Xlist  -> 0
+       |  [xdef, Vid, 0, Xlist]
+       |  [xdef, Vid, Vid, Xlist]
+
+Elist  -> E
+       |  [comma, E, Elist]
+
+SKlist -> SK
+       |  [comma, SK, SKlist]
+
+Vlist  -> Vid
+       |  [comma, Vid, Vlist]
+
+@end example
+
+@node Translation Phase, Codegenerator, Syntax Analyser, Compiler
+
+The translation phase converts the abstract syntax tree produced
+by the syntax analyser into a linear stream of MCODE statements.
+This is written to the file @t{MCODE}.
+
+@subsection MCODE Operators
+
+@subsubsection Variable Access
+
+@example
+LP n            p!s := p!n; s:=s+1
+LLP n           p!s := @@ p!n; s:=s+1
+SP n            s:=s-1; p!n := p!s
+LG n            p!s := g!n; s:=s+1
+LLG n           p!s := @@ g!n; s:=s+1
+SG n            s:=s-1; g!n := p!s
+LL lab          p!s := Llab; s:=s+1
+LLL lab         p!s := @@ Llab; s:=s+1
+SL lab          s:=s-1; Llab := p!s
+
+LPATH n i       p!s := p!n!i; s:=s+1
+LLPATH n i      p!s := @ p!n!i; s:=s+1
+SPATH n i       s:=s-1; p!n!i := p!s
+@end example
+
+@subsubsection Loading Constants
+
+@example
+LN n            p!s := n; s:=s+1
+LF lab          p!s := <entry Llab>; s:=s+1
+LX n C1 .. Cn   Can only load the address of an external ref
+
+QUERY           p!s := ?; s:=s+1
+TRUE            p!s :=TRUE; s:=s+1
+FALSE           p!s := FALSE; s:=s+1
+@end example
+
+@subsubsection Data and Vectors
+
+@example
+DLAB lab
+DW n
+DL lab
+DB n
+VEC n        n is the upper bound
+@end example
+
+@subsubsection Expression Operators
+
+@example
+INC1A INC4A INC1B INC4B
+DEC1A DEC4A DEC1B DEC4B
+
+NEG
+BITNOT
+ABS
+INDB0
+INDB
+INDW0
+INDW
+LSH
+RSH
+BITAND
+MULT
+DIV
+MOD
+XOR
+BITOR
+PLUS
+SUB
+EQ NE LE GE LS GR
+@end example
+
+@subsubsection Conditional Jumps
+
+@example
+JXEQ Ln      TEST p!(s-2) = p!(s-1)
+             THEN @{ p!(s-2) := p!(s-1); s-- @}
+             ELSE @{ p!(s-2) := FALSE; s--; JUMP Ln @}
+
+JXNE Ln  similar to above
+JXLE Ln
+JXGE Ln
+JXLS Ln
+JXGR Ln
+
+JUMP lab
+JT lab
+JF lab
+LAB lab
+TORF lab     used in the compilation of AND and OR
+    It is equivalent to:
+       TRUE 
+       JUMP Ln
+       LAB lab
+       FALSE
+       LAB Ln
+
+GOTO Ln k    A1, A2, ... := P!k, P!(k+1), ...
+             PC := Ln
+
+@end example
+
+@subsubsection Function Definition and Call
+
+@example
+CFUN lab n C1 ... Cn m T1 ... Tm
+             // Entry point to a C callable external function
+             // T1 .. Tm are the function type letters.
+FUN lab n C1 ... Cn
+             // save return link and set ssp to 3
+FNARGS n     // the function has n arguments
+             // this occurs immediately after FUN or CFUN
+                ssp := 3 + n
+
+STACK n    ssp := n
+
+RETURN       // return from function or routine
+CALL k
+CALLX k n T1 ... Tn     Ti are the argument type letters
+                            s for string, n for integer
+ENDFUN
+
+MATCH n i    Start of match code with n arguments at stack position i.
+
+SETARGS n i  Copy n arguments from the top of the stack to stack position i.
+@end example
+
+@subsubsection Commands
+
+@example
+STW          !(P!(s-2)) := P!(s-1); s := s-2
+STB          %(P!(s-2)) := P!(s-1); s := s-2
+LVINDW       P!(s-2) := @ P!(s-2) ! P!(s-1); s:=s-1
+DUP          P!s := P!(s-1); s++
+LR
+CPR
+STR
+
+@end example
+
+@subsubsection Exceptions
+
+@example
+HANDLE Ln    P!s, P!(s+1), P!(s+2), H := H, Ln, P, @@P!s
+             s +:= 3  // leave room for exception triplet
+             
+UNHANDLE     H := !H
+
+HANDLER k    H!2, H!3, H!4 := A1, A2, A3
+             s := H+5
+             H := H!0
+
+RAISE k      IF h=0 DO trap "no handler" 
+             A1, A2, A3 := P!k, P!(k+1), P!(k+2)
+             P := H!2
+             GOTO H!1
+             s := k
+
+PATERR
+
+MODULE n C1 ,.., Cn
+@end example
+
+
+@node Codegenerator,, Translation Phase, Compiler
+
+@section The Codegenerator
+
+@subsection The Mintcode Instruction Set
+
+The mintcode machine has the following registers:
+
+@table @t
+@item A         working register A
+@item B         working register B
+@item C         working register C
+@item P         base of the current stack frame
+@item G         base of the global vector
+@item ST        status register (not currently used)
+@item PC        program counter
+@item Count     intructions to execute before next zero count interrupt
+@item H         pointer to current exception handler
+@end table
+
+@sp 1
+
+
+The mintcode instructions are given below in function code 
+order with mnemonic form and operand type.  The operand types are as
+follows:
+
+@table @t
+@item r         a signed byte used in direct relative addressing
+@item b         an unsigned byte
+@item bb        an unsigned two byte field
+@item bbbb      an unsigned four byte field
+
+@end table
+
+@sp 1
+
+The destination of a relative address (reladdr) is computed as follows.
+For direct relative address instructions (with operand @t{r}) it the address 
+of the instruction plus @t{r+1}. For indirect relative address instructions
+(marked by @t{$}), the address of the instruction is incremented by @t{2b+1}
+and rounded up to an even byte address. The two byte field at this address,
+interpreted as a signed integer, is added to it to give @t{reladdr}.
+
+@subsection The Instructions
+
+@table @t
+@item 0       Illegal instruction
+Cause trap 1
+@item 1       Illegal instruction
+Cause trap 1
+@item 2       BRK
+Cause trap 2
+@item 3-11    K3 ... K11
+Call the function whose entry address is in A and whose first argument
+(if any) is in B, incrementing the stack pointer by (3...11).
+@item 12-13   LF r, LF$ b
+@i{B := A; A := reladdr}
+@item 14      LM b
+@t{B := A; A := -b}
+@item 15      LM1
+@t{B := A; A := -1}
+@item 16-26   L0-L10
+@t{B := A; A := (0...10)}
+@item 27      FHOP
+@item 28-31   JEQ r, JEQ$ b, JEQ0 r, JEQ0$ b
+@t{IF B=A DO PC := reladdr} or @t{IF A=0 DO PC := reladdr}
+
+@item 32      K  b
+Call the function whose entry address is in A and whose first argument
+(if any) is in B, incrementing the stack pointer by b.
+@item 33      KH bb
+Call the function whose entry address is in A and whose first argument
+(if any) is in B, incrementing the stack pointer by bb.
+@item 34      KW bbbb
+Call the function whose entry address is in A and whose first argument
+(if any) is in B, incrementing the stack pointer by bbbb.
+@item 35-43   K3G b ... K11G b
+Call the function whose entry address is in G!b and whose first argument
+(if any) is in A, incrementing the stack pointer by (3...11).
+@item 44      S0G b
+@t{G!b!0 := A}
+@item 45-47   L0G b ... L2G b
+@t{B := A; A := G!b!(0...2)}
+@item 48      LG b
+@t{B := A; A := G!b}
+@item 49      SG b
+@t{G!b := A}
+@item 50      LLG b
+@t{B := A; A := @@ G!b}
+@item 51      AG b
+@t{A := A + G!b}
+@item 52      MUL
+@t{A := B * A}
+@item 53      DIV
+@t{A := B / A}
+@item 54      MOD
+@t{A := B MOD A}
+@item 55      XOR
+@t{A := B XOR A}
+@item 56-57   SL r, SL$ b
+@t{!reladdr := A}
+@item 58-59   LL r, LL$ b
+@t{B := A; A := ! reladdr}
+@item 60-63   JNE r, JNE$ b, JNE0 r, JNE0$ b
+@t{IF B~=A DO PC := reladdr} or @t{IF A~=0 DO PC := reladdr}
+
+@item 64      LLP b
+@t{B := A; A := @@ P!b}
+@item 65      LLPH bb
+@t{B := A; A := @@ P!bb}
+@item 66      LLPW bbbb
+@t{B := A; A := @@ P!bbbb}
+@item 67-75   K3G1 b ... K11G1 b
+Call the function whose entry address is in G!(256+b) and whose first argument
+(if any) is in A, incrementing the stack pointer by (3...11).
+@item 76      S0G1 b
+@t{G!(b+256)!0 := A}
+@item 77-79   L0G1 b ... L2G1 b
+@t{B := A; A := G!(b+256)!(0...2)}
+@item 80      LG1 b
+@t{B := A; A := G!(b+256)}
+@item 81      SG1 b
+@t{G!(b+256) := A}
+@item 82      LLG1 b
+@t{B := A; A := @@ G!(b+256)}
+@item 83      AG1 b
+@t{A := A + G!(b+256)}
+@item 84      ADD
+@t{A := B + A}
+@item 85      SUB
+@t{A := B - A}
+@item 86      LSH
+@t{A := B << A}
+@item 87      RSH
+@t{A := B >> A}
+@item 88      AND
+@t{A := B & A}
+@item 89      OR
+@t{A := B | A}
+@item 90-91   LLL r, LLL$ b
+@t{B := A; A := reladdr}
+@item 92-95   JLS r, JLS$ b, JLS0 r, JLS0$ b
+@t{IF B<A DO PC := reladdr} or @t{IF A<0 DO PC := reladdr}
+
+@item 96      L b
+@t{B := A; A := b}
+@item 97      LH bb
+@t{B := A; A := bb}
+@item 98      LW bbbb
+@t{B := A; A := bbbb}
+@item 99-107  K3GH bb ... K11GH bb
+Call the function whose entry address is in G!bb and whose first argument
+(if any) is in A, incrementing the stack pointer by (3...11).
+@item 108     S0GH bb
+@t{G!bb!0 := A}
+@item 109-111 L0GH bb ... L2GH bb
+@t{B := A; A := G!bb!(0...2)}
+@item 112     LGH bb
+@t{B := A; A := G!bb}
+@item 113     SGH bb
+@t{G!bb := A}
+@item 114     LLGH bb
+@t{B := A; A := @@ G!bb}
+@item 115     AGH bb
+@t{A := A + G!bb}
+@item 116     RV
+@t{A := A!0}
+@item 117-122 RV1 ... RV6
+@t{A := A!(1...6)}
+@item 123     RTN
+@t{P, PC := P!0, P!1}
+@item 124-127 JGR r, JGR$ b, JGR0 r, JGR0 r, JGR0$ b
+@t{IF B>A DO PC := reladdr} or @t{IF A>0 DO PC := reladdr}
+
+@item 128     LP b
+@t{B := A; A := P!b}
+@item 129     LPH bb
+@t{B := A; A := P!bb}
+@item 130     LPW bbbb
+@t{B := A; A := P!bbbb}
+@item 131-144 LP3 ... LP16
+@t{B := A; A := P!(3...16)}
+@item 145     SYS
+If @t{A=0} Cause trap with value P!4
+otherwise perform a system operation
+@item 146     LVIND
+@t{A := @ B!A}
+@item 147     STB
+@t{%A := B}
+@item 148     ST
+@t{A!0 := B}
+@item 149-151 ST1 ... ST3
+@t{A!(1...3) := B}
+@item 152-154 STP3 ... STP5
+@t{A!(P!3...P!5) := B}
+@item 155     Illegal instruction
+Cause trap 1
+@item 156-159 JLE r, JLE$ b, JLE0 r, JLE0$ b
+@t{IF B<=A DO PC := reladdr} or @t{IF A<=0 DO PC := reladdr}
+
+@item 160     SP b
+@t{P!b := a}
+@item 161     SPH bb
+@t{P!bb := a}
+@item 162     SPW bbbb
+@t{P!bbbb := a}
+@item 163-176 SP3 ... SP16
+@t{P!(3...16) := a}
+@item 177-180 S1 ... S4
+@t{A := A - (1...4)}
+@item 181     XCH
+@t{A, B := B, A}
+@item 182     INDB
+@t{A := B%A}
+@item 183     INDB0
+@t{A := %A}
+@item 184     ATC
+@t{C := A}
+@item 185     ATB
+@t{B := A}
+@item 186-187 J r, J$ b
+@t{PC := reladdr}
+@item 188-191 JGE r, JGE$ b, JGE0 r, JGE0$ b
+@t{IF B>=A DO PC := reladdr} or @t{IF A>=0 DO PC := reladdr}
+
+@item 192     AP b
+@t{A := A + P!b}
+@item 193     APH bb
+@t{A := A + P!bb}
+@item 194     APW bbbb
+@t{A := A + P!bbbb}
+@item 195-204 AP3 ... AP12
+@t{A := A + P!(3...12)}
+@item 205     INDW
+@t{A := B!A}
+@item 206     LMH
+@t{A := - bb}
+@item 207     BTC
+@t{C := B}
+@item 208     NOP
+No operation
+@item 209-213 A1 ... A5
+@t{A := A + (1...5)}
+@item 214-218 RVP3 ... RVP7
+@t{A := A!(P!3...P!7)}
+@item 219-220 ST0P3 ... ST0P4
+@t{(P!3...P!4)!0 := A}
+@item 221-222 ST1P3 ... ST1P4
+@t{(P!3...P!4)!1 := A}
+@item 223     CTA
+@t{A := C}
+
+@item 224     A b
+@t{A := A + b}
+@item 225     AH bb
+@t{A := A + bb}
+@item 226     AW bbbb
+@t{A := A + bbbb}
+@item 227-236 L0P3 ... L0P12
+@t{B := A; A := (P!3...P!12)!0}
+@item 237     S b
+@t{A := A - b}
+@item 238     SH bb
+@t{A := A - bb}
+@item 239     MDIV
+@t{A := muldiv(P!3, P!4, P!5)@*}
+@t{G!gn_result2 := remainder@*}
+@t{P, PC := P!0, P!1}
+@item 240     CHGCO
+@t{G!gn_currco!0 := P!0@*}
+@t{PC            := P!1@*}
+@t{G!gn_currco   := P!4@*}
+@t{P             := P!4!0@*}
+@item 241     NEG
+@t{A := - A}
+@item 242     NOT
+@t{A := NOT A}
+@item 243     INC1B
+@t{++(!A)}
+@item 244     INC4B
+@t{+++(!A)}
+@item 245     DEC1B
+@t{--(!A)}
+@item 246     DEC4B
+@t{---(!A)}
+@item 247     INC1A
+@t{(!A)++}
+@item 248     INC4A
+@t{(!A)+++}
+@item 249     DEC1A
+@t{(!A)--}
+@item 250     DEC4A
+@t{(!A)---}
+@item 251     Illegal instruction
+Cause trap 1
+@item 252-253 HAND r, HAND$ r
+@t{A!0, A!1, A!2 := P, H, reladdr; H := A }
+
+@item 254     UNH
+@t{H := H!1}
+
+@item 255     RAISE
+@example
+IF H=0 DO Cause trap 6 // No handler
+LET prevh = H!1
+P, PC := H!0, H!2
+H!0, H!1, H!2 := A, B, C
+H := prevh
+@end example
+
+@end table
+
+@bye

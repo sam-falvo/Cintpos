@@ -1,0 +1,818 @@
+/*
+
+This is a program to compute the fast fourier transform of 512 values
+using all 128 of the processor cores in the loki chip. This
+implementation cheats by representing the cores as coroutines with
+with bodies written in BCPL. The channels are also simplified and
+implemented using coroutinescontoleed by the cores.
+
+Implemented by Martin Richards (c) 3 Mar 2019
+
+*/
+
+GET "libhdr"
+
+MANIFEST {
+  // Fields of a core control block
+  c_link=0                         // This is the start of a core control block
+  c_cptr // The core coroutine
+  c_id   // The core number between 0 and 127
+
+  // The general purpose registers -- currently used
+  c_r0;  c_r1;  c_r2;  c_r3;  c_r4;  c_r5;  c_r6;  c_r7 
+  c_r8;  c_r9;  c_r10; c_r11; c_r12; c_r13; c_r14; c_r15 
+  c_r16; c_r17; c_r18; c_r19; c_r20; c_r21; c_r22; c_r23
+
+  c_z  // The zero register
+  c_pc // The program counter
+
+  c_wrkcov  // The vector of work coroutines.
+  c_bufv    // The vector of channel buffers.
+
+  c_size    // The size of the core control block.
+  c_upb=c_size-1
+
+  // Channel buffer fields
+  buf_data0=0; buf_data1; buf_data2; buf_data3  // The 4 word input buffer
+  buf_count       // Number of words currently in the input buffer.
+  buf_wrwaitlist  // List of coroutines waiting to send to this buffer.
+  buf_wrwaitliste // Pointer to the last link field in the wrwaitlist.
+  buf_rdwaitlist  // List of coroutines waiting to read from this buffer.
+  buf_rdwaitliste // Pointer to the last link field in rdwaitlist.
+  buf_size        // Size of the buffer control block.
+  buf_upb=buf_size-1
+
+  modulus = #x10001  // 2**16 + 1
+}
+
+GLOBAL {
+  stdin:ug    // 200
+  stdout
+  tofilename
+  tostream
+
+  tracing    // =TRUE causes debugging output.
+  walsh      // =TRUE if performing the Walsh transform.
+
+  // Variable visible to all core, element and other coroutines.
+
+  ln         // N = 2^ln
+  N
+  w          // The princpal root or inverse root of N
+  inverse    // =TRUE if performing the inverse transform.
+
+  prupb      // min(N-1, 31) specifying how many elements to print.
+
+  datav      // The vector holding the test data on which the FFT will be applied.
+  datavupb   // The upper bound of datav.
+
+  corev      // Vector for the 128 core control blocks
+  corevupb   // The upper bound of corev.
+
+  commcount  // The number of times a coroutine has waited for a command
+             // since the start of the run.
+
+  commlist   // List of cotoutins waiting for a command.
+  commliste  // Pointer to the last link in the comlist chain.
+             // This allows coroutines to be added at the end of the list.
+  currlist   // List of currently active coroutine that are ready to run.
+             // In the loki chip the core coroutines would be executed
+             // simultaneously.
+  currliste  // Pointer to the last link in the curlist chain.
+
+  createcore // 220
+  deletecore
+
+  send
+  recv
+
+  currwait    // Place the current coroutine on the end of currlist.
+  commwait    // Place the current coroutine on the end of cummlist.
+
+  fftcofn  // The main fuction of the fft coroutine.
+  fftco    // The fft coroutine
+
+  fftcofn
+  fftco
+
+  corecofn    // 230
+  The core coroutines have control block held in corev.
+
+  elemcofn
+  // The element coroutines are created and controlled by the
+  // core coroutines.
+}
+
+LET start() = VALOF
+{ LET argv = VEC 50
+
+  writef("*nLoki fft demo entered*n*n")
+
+  stdin := input()
+  stdout := output()
+  tofilename := 0
+  tostream := 0
+
+  fftco := 0
+
+  UNLESS rdargs("ln/N,TO/K,walsh/S,-t/S", argv, 50) DO
+  { writef("*nBad arguments for lokifft*n")
+    GOTO err
+  }
+
+  UNLESS argv!0 DO
+  { writef("*nArgs: ln/N,to/K,walsh/S,-t/S*n*n")
+
+    writef("ln/N    Specifies the size of the problem*n")
+    writef("        The transform will be performed on N=2^ln values*n")
+    writef("to/K    Specifies where to send the output*n")
+    writef("walsh/S Specifies that the Walsh transformation will be performed*n*n")
+    writef("-t/S    Generate debugging output*n")
+
+    RESULTIS 0
+  }
+
+  IF argv!0 DO ln := !argv!0          // ln/N
+  IF argv!1 DO tofilename := argv!1   // to/K
+  walsh   := argv!2                   // walsh/S
+  tracing := argv!3                   // -t/S
+
+  IF tofilename DO
+  { tostream := findoutput(tofilename)
+    UNLESS tostream DO
+    { writef("ERROR: Troble with TO stream %s*n", tofilename)
+      GOTO err
+    }
+    selectoutput(tostream)
+  }
+
+  fftco := createco(fftcofn, 500)
+
+  TEST fftco
+  THEN callco(fftco, 0)  // Run the FFT algorithm.
+  ELSE writef("*nERROR: More space needed*n")
+
+err:
+  IF fftco DO deleteco(fftco)
+  IF tostream DO
+  { endstream(tostream)
+    selectoutput(stdout)
+  }
+  writef("*nEnd of demo*n")
+  RESULTIS 0
+}
+
+AND fftcofn(args) BE
+{ // This is the main function of the fft coroutine. It is given
+  // control by start using callco and returns at the end using cowait.
+  // This coroutine is the controller of the FFT algorithm.
+  // When started only ln and walsh have been set.
+  // It creates to core coroutines and controls them by sending them
+  // a sequence of commands.
+  LET res = ?
+
+  N := 1<<ln     // The number of element values on whic to apply FFT.
+  datavupb := N-1
+  corevupb := N/4-1 // There are 4 element values per core.
+
+  prupb := N<=31 -> datavupb, 31 // Upper bound for printing
+
+  w := 1            // This will hold the Nth root of unity.
+
+  // Choose a suitable Nth root of Unity.
+  UNLESS walsh WHILE w < modulus DO
+  { LET x = 1
+    FOR i = 1 TO N DO
+    { x := mul(x, w)
+      IF x=1 TEST i=N THEN GOTO rootfound
+                      ELSE BREAK
+    }
+    w := w+1
+  }
+
+rootfound:
+
+  datav := getvec(datavupb)
+  corev := getvec(corevupb)
+
+  UNLESS datav & corev DO
+  { writef("*nERROR: More space needed*n")
+    GOTO fin
+  }
+
+  FOR i = 0 TO datavupb DO datav!i := i
+  FOR i = 0 TO corevupb DO corev!i := 0
+
+  commcount := 0
+  currlist, currliste := 0, @currlist
+  commlist, commliste := 0, @commlist
+
+  writef("%i5 fftco: Creating the core coroutines*n", commcount)
+  FOR id = 0 TO corevupb DO initco(corecofn, 500, id)
+//abort(1111)
+  TEST w=1
+  THEN writef("Performing the Walsh transform on %n words of data*n", N)
+  ELSE writef("*nThe principal %nth root of unity is %n = %x5*n*n",
+               N, w, w)
+
+  writef("%i5 fftco: Sending command 1 to all core coroutines to get initial values from datav*n",
+          commcount)
+//abort(6666)
+  FOR id = 0 TO corevupb DO send(id, 5, 1)
+  FOR id = 0 TO corevupb DO resumeco(corev!id!c_cptr, 0)
+  WHILE currlist DO schedule()
+
+  writef("%i5 fftco: All core coroutines have completed command 1.*n",
+          commcount)
+//abort(7777)
+
+  writef("%i5 fftco: Sending command 2 to copy all element values into datav*n",
+          commcount)
+//abort(6666)
+  FOR id = 0 TO corevupb DO send(id, 5, 2)
+  FOR id = 0 TO corevupb DO resumeco(corev!id!c_cptr, 0)
+  WHILE currlist DO schedule()
+
+  writef("%i5 fftco: All core coroutines have completed command 2.*n",
+          commcount)
+  writef("Initial data*n")
+  pr()
+//abort(7777)
+
+  writef("%i5 fftco: Sending command 3 to perform the perfect shuffle*n",
+          commcount)
+//abort(6666)
+  FOR id = 0 TO corevupb DO send(id, 5, 3)
+  FOR id = 0 TO corevupb DO resumeco(corev!id!c_cptr, 0)
+  WHILE currlist DO schedule()
+
+  writef("%i5 fftco: All core coroutines have completed command 3.*n",
+          commcount)
+//abort(7777)
+
+  writef("%i5 fftco: Sending command 2 to copy all element values into datav*n",
+          commcount)
+//abort(6666)
+  FOR id = 0 TO corevupb DO send(id, 5, 2)
+  FOR id = 0 TO corevupb DO resumeco(corev!id!c_cptr, 0)
+  WHILE currlist DO schedule()
+
+  writef("%i5 fftco: All core coroutines have completed command 2.*n",
+          commcount)
+  writef("Data after the perfect shuffle*n")
+  pr()
+abort(7777)
+
+  // The core are all suspendended in currlist waitng to be given control
+  // by the scheduler. They will then read and execute the first command
+  // just given to them from this coroutine.
+
+ 
+  // Give control to the scheduler. This will cause all cores to
+  // read and execute the command 1 which will load the initial element values
+  // into the core coroutines.
+
+  res := commwait()  // Put this coroutine on the end of commlist and call schedule.
+
+writef("*n%i5 fftco has just been given control again by scheduler, res=%n*n", commcount, res)
+//abort(1000)
+
+fin:
+  FOR id = 0 TO corevupb IF corev!id DO deletecore(id)
+  IF corev DO freevec(corev)
+  IF datav DO freevec(datav)
+}
+
+AND deletecore(id) BE
+{ LET corecb = corev!id              //### needs work ###
+  writef("Deleting core %n*n", id)
+  IF corecb DO deleteco(c_cptr!corecb)
+}
+
+// Scheduling functions
+
+AND schedule() = VALOF
+{ // This function selects the next coroutine to be given
+  // control using resumeco to pass the value zero. 
+
+  // currlist is the list of coroutines that are ready to
+  // run.
+
+  // When currlist is empty, commcount is incremented and
+  // all cores in commlist are transferred to it, leaving commlist
+  // empty. When both currlist and commlist are empty schedule
+  // returns control to fftco.
+  LET cptr = ?
+
+  IF currlist DO
+  { // Extract the next coroutine from currlist.
+    cptr := currlist!1
+    //writef("%i5 schedule: giving control to a coroutine in currlist*n", commcount)
+
+    currlist := !currlist // The link is always at offset zero.
+    IF currlist=0 DO currliste := @currlist // Update currliste if necessary.
+
+    //writef("%i5 schedule: currlist=%n calling resumeco(%n,0)*n", commcount, currlist,cptr)
+    RESULTIS resumeco(cptr, 0)
+  }
+
+  // currlist is empty.
+  IF commlist=0 DO
+  { //writef("%i5 schedule: No more coroutines to schedule ", commcount)
+    //writef(" so calling resumeco(fftco,1)*n")
+    RESULTIS resumeco(fftco, 1) // Return to fftco with value 1.
+  }
+
+  // currlist is empty but commlist is not commlist.
+  //writef("%i5 schedule: currlist is empty but commlist is not, calling(fftco,0).*n", commcount)
+  RESULTIS resumeco(fftco, 0) // Return to fftco with value 0.
+}
+
+AND currwait() BE
+{ // This places the current coroutine on the end of currlist
+  // Yhen calls schedule to give control to another coroutime.
+  // Execution will not resume until all the coroutines earlier
+  // in currlist have been given control.
+  LET link, co = 0, currco
+  LET node = @link
+  !currliste := node
+  currliste := node
+  schedule()  // Give control to another coroutine.
+}
+
+AND commwait() BE
+{ // This places the current coroutine on the end of commlist
+  // and then calls schedule to give control to another coroutine..
+  // Execution will not resume until after currlist becomes empty.
+  LET link, co = 0, currco
+  LET node = @link
+  !commliste := node
+  commliste := node
+  schedule()  // Give control back to the scheduler.
+}
+
+
+// The main functions for the core and element coroutines.
+
+AND corecofn(args) BE
+{ // args -> [id]
+
+  // This function is the body of all core coroutines. As soon
+  // as a core coroutine is created it initialises itself and
+  // enters the command loop. Each core coroutine creates four
+  // work coroutines,  number. The FFT coroutine sends a
+  // sequence of commands to the cores to cause them to perform
+  // the FFT algorithm. The commands are single integers read
+  // from channel 5. They are as follows.
+
+  //  1  This causes the core to tell its work coroutines to
+  //     obtain their element values from datav then wait for
+  //     another command.
+  //
+  //  2  This causes the core to tell its work coroutines to
+  //     copy its elements to the appropriate locations of
+  //     datav, the wait for another command.
+  //
+  //  3  Perform the perfect shuffle.
+  //
+  //  4  Perform the butterfly operations.
+  //
+  //  5  Divide all elements by N.
+  //
+  //  6  Close down releasing all the space it allocated,
+  //     ready to be deleted ready by the fft coroutine.
+
+  // Core i controls the computation of elements 4i to 4i+3.
+
+  // We now declare the control block for this core coroutine.
+
+  LET link, cptr = 0, currco // The start of the control block.
+  LET id = !args
+
+  // This core's general purpose registers -- not currently used.
+  LET  r0,  r1,  r2,  r3,  r4,  r5,  r6,  r7 = 0, 0, 0, 0, 0, 0, 0, 0
+  LET  r8,  r9, r10, r11, r12, r13, r14, r15 = 0, 0, 0, 0, 0, 0, 0, 0
+  LET r16, r17, r18, r19, r20, r21, r22, r23 = 0, 0, 0, 0, 0, 0, 0, 0
+
+  LET z = 0  // The zero register
+  LET pc = 0 // This core's pseudo program counter
+
+  LET wrkcov = 0  // To hold the vector of work coroutines.
+  LET bufv = 999  // To hold the vector of channel buffers.
+
+  // Declare the vector of work coroutines for channels 0 to 3.
+  LET wrkco0, wrkco1, wrkco2, wrkco3 = 0, 0, 0, 0
+  // The channel buffer control blocks
+  LET buf0, buf1, buf2, buf3, buf4, buf5 = 0, 0, 0, 0, 0, 0
+
+  // The output channel destination mappings (core, chno) -- not currently used.
+  LET outchcore0, outchcore1, outchcore2 = 0, 0, 0   // core control blocks
+  LET outchcore3, outchcore4, outchcore5 = 0, 0, 0   // for the out channels
+
+  LET outchchan0, outchchan1, outchchan2 = 0, 0, 0   // destination in channel numbers
+  LET outchchan3, outchchan4, outchchan5 = 0, 0, 0   // for this core's out channels
+
+  // Space for channel 0's buffer and control variables.
+  LET data0a, data0b, data0c, data0d = 0, 0, 0, 0  // The 4 word buffer
+  LET count0 = 0       // Number of buffer words currently in use.
+  LET wrwaitlist0 = 0  // List of coroutines waiting to send to this buffer.
+  LET wrwaitliste0 = 0 // Pointer to the last link field in the wrwaitlist.
+  LET rdwaitlist0 = 0  // List of coroutines waiting to read from this buffer.
+  LET rdwaitliste0 = 0 // Pointer to the last link field in the rdwaitlist.
+
+  // Space for channel 1's buffer and control variables
+  LET data1a, data1b, data1c, data1d = 0, 0, 0, 0  // The 4 word buffer
+  LET count1 = 0       // Number of buffer words currently in use.
+  LET wrwaitlist1 = 0  // List of coroutines waiting to send to this buffer.
+  LET wrwaitliste1 = 0 // Pointer to the last link field in the wrwaitlist.
+  LET rdwaitlist1 = 0  // List of coroutines waiting to read from this buffer.
+  LET rdwaitliste1 = 0 // Pointer to the last link field in the rdwaitlist.
+
+  // Space for channel 2's buffer and control variables
+  LET data2a, data2b, data2c, data2d = 0, 0, 0, 0  // The 4 word buffer
+  LET count2 = 0       // Number of buffer words currently in use.
+  LET wrwaitlist2 = 0  // List of coroutines waiting to send to this buffer.
+  LET wrwaitliste2 = 0 // Pointer to the last link field in the wrwaitlist.
+  LET rdwaitlist2 = 0  // List of coroutines waiting to read from this buffer.
+  LET rdwaitliste2 = 0 // Pointer to the last link field in the rdwaitlist.
+
+  // Space for channel 3's buffer and control variables
+  LET data3a, data3b, data3c, data3d = 0, 0, 0, 0  // The 4 word buffer
+  LET count3 = 0       // Number of buffer words currently in use.
+  LET wrwaitlist3 = 0  // List of coroutines waiting to send to this buffer.
+  LET wrwaitliste3 = 0 // Pointer to the last link field in the wrwaitlist.
+  LET rdwaitlist3 = 0  // List of coroutines waiting to read from this buffer.
+  LET rdwaitliste3 = 0 // Pointer to the last link field in the rdwaitlist.
+
+  // Space for channel 4's buffer and control variables
+  LET data4a, data4b, data4c, data4d = 0, 0, 0, 0  // The 4 word buffer
+  LET count4 = 0       // Number of buffer words currently in use.
+  LET wrwaitlist4 = 0  // List of coroutines waiting to send to this buffer.
+  LET wrwaitliste4 = 0 // Pointer to the last link field in the wrwaitlist.
+  LET rdwaitlist4 = 0  // List of coroutines waiting to read from this buffer.
+  LET rdwaitliste4 = 0 // Pointer to the last link field in the rdwaitlist.
+
+  // Space for channel 5's buffer and control variables
+  LET data5a, data5b, data5c, data5d = 0, 0, 0, 0  // The 4 word buffer
+  LET count5 = 0       // Number of buffer words currently in use.
+  LET wrwaitlist5 = 0  // List of coroutines waiting to send to this buffer.
+  LET wrwaitliste5 = 0 // Pointer to the last link field in the wrwaitlist.
+  LET rdwaitlist5 = 0  // List of coroutines waiting to read from this buffer.
+  LET rdwaitliste5 = 0 // Pointer to the last link field in the rdwaitlist.
+
+  writef("%i5 core %i3: Initialising*n", commcount, id)
+  corev!id := @link
+
+  bufv := @buf0        // Vector of channel buffer items.
+
+  buf0 := @data0a
+  buf1 := @data1a
+  buf2 := @data2a
+  buf3 := @data3a
+  buf4 := @data4a
+  buf5 := @data5a
+
+  // Create the element coroutines for this core, giving them the
+  // core's coroutine, its id and the appropriate channel numbers.
+  writef("%i5 core %i3: Creating the element coroutines*n", commcount, id)
+  wrkco0 := initco(elemcofn, 500, currco, id, bufv, 0)
+  wrkco1 := initco(elemcofn, 500, currco, id, bufv, 1)
+  wrkco2 := initco(elemcofn, 500, currco, id, bufv, 2)
+  wrkco3 := initco(elemcofn, 500, currco, id, bufv, 3)
+
+  UNLESS wrkco0 & wrkco0 & wrkco0 & wrkco0 DO
+  { writef("More space needed*n")
+    abort(999)
+  }
+
+  writef("%i5 core %i3: Cause the element coroutines to wait for a command*n", commcount, id)
+  resumeco(wrkco0, 0)
+  resumeco(wrkco1, 0)
+  resumeco(wrkco2, 0)
+  resumeco(wrkco3, 0)
+
+  // All four work coroutines are waiting for the next command.
+
+  writef("%i5 Core %i3: created, returning control to fftco*n",
+         commcount, id)
+
+  cowait(1)
+
+  // Enter the command loop.
+  { LET command = recv(bufv!5) // Get the next command.
+    LET busycount = ?
+    writef("%i5 Core %i3: command = %n*n", commcount, id, command)
+//abort(4444)
+    SWITCHON command INTO
+    { DEFAULT:
+        writef("%i5 Core  %i3: Unknown command = %n*n", 
+                commcount, id, command)
+        abort(999)
+        LOOP
+
+      CASE 1: // Get element data values.
+      CASE 2: // Copy element data into datav.
+      CASE 3: // Perform the perfect shuffle.
+      CASE 4: // Do the butterfly operations.
+      CASE 5: // Divide the element values by N.
+      CASE 6: // Free all allocated workspace.
+        busycount := 4
+        // This count is decremented every time this coroutine
+        // resumes execution with the value 1. When busycount
+        // reaches zero, all four work coroutines are ready to
+        // perform anothe command.
+
+        IF resumeco(wrkco0, command)  DO busycount := busycount-1
+        IF resumeco(wrkco1, command)  DO busycount := busycount-1
+        IF resumeco(wrkco2, command)  DO busycount := busycount-1
+        IF resumeco(wrkco3, command)  DO busycount := busycount-1
+
+        // Wait for all the work coroutines to complete performing
+        // the command.
+        WHILE busycount IF schedule() DO busycount := busycount-1
+
+        IF command=6 BREAK
+
+        // This command has now been complete start processing
+        // the next command.
+    }
+  } REPEAT
+
+  // Release all the space allocated by this core
+  deleteco(wrkco0)
+  deleteco(wrkco1)
+  deleteco(wrkco2)
+  deleteco(wrkco3)
+
+  resumeco(fftco, 1) // Tell fftco that this core coroutine is
+                     // ready for deletion.
+  abort(998)  // Should not be reached.
+}
+
+AND elemcofn(args) BE
+{ // args ->[cptr, id, bufv, chno]
+
+  // This coroutine performs the computations necessary for its
+  // data element. It is given commands by its controlling core
+  // coroutine. When this coroutine has completed its current
+  // command it returns control to its controlling core
+  // coroutine passing the value 1, indicating that it is ready
+  // to perform another command. If the core coroutine
+  // is given control by a call of schedule it receives the
+  // value 0.
+
+  LET x = 0    // The element value processed by this element coroutine
+  LET cptr, id, bufv, chno = args!0, args!1, args!2, args!3
+  // cptr is the core coroutine controlling this element coroutine.
+  // id   is the id of this core coroutine.
+  // bufv is the vector of channel buffers for this core coroutine.
+  // chno is the channel number belonging to this element coroutine.
+  LET buf = bufv!chno
+  LET p = 4*id + chno    // p and q are going to be the butterfly positions.
+  LET q = ?
+
+writef("%i5 elemco %i3/%n: Initialising for element %n*n", commcount, id, chno, p)
+//abort(3333)
+  cowait(0) // Transfer control to the owning core coroutine.
+            // It will call resumeco to cause this coroutine to
+            // enter its command loop.
+
+  // Enter the command loop
+writef("%i5 elemco %i3/%n: Waiting for a command from the core coroutine*n", commcount, id, chno)
+
+  { // Tell the core coroutine that this element coroutine is
+    // ready to receive the next command.
+    LET command = resumeco(cptr, 1) // Wait for the next command.
+//writef("%i5 elemco %i3/%n: Received command %n*n", commcount, id, chno, command)
+
+    SWITCHON command INTO
+    { DEFAULT:
+        writef("ERROR: Unknown command in element coroutine*n")
+        abort(999)
+        LOOP
+
+      CASE 1: // Get the element value from datav.
+              x := datav!p
+writef("%i5 elemco %i3/%n: x set to %n*n", commcount, id, chno, x)
+              LOOP
+
+      CASE 2: // Copy the element value into datav.
+              datav!p := x
+writef("%i5 elemco %i3/%n: Copied x=%n into datav position %n*n", commcount, id, chno, x, p)
+              LOOP
+
+      CASE 3: // Perform the perfect shuffle.
+              q := reverse(p, ln)
+              UNLESS p=q DO
+              { 
+writef("%i5 elemco %i3/%n: Sending x=%n from position p=%n and q=%n*n", commcount, id, chno, x, p, q)
+                send(q/4, q & 3, x)
+                x := recv(buf)
+              }
+writef("%i5 elemco %i3/%n: After shuffle x=%n at position %n*n", commcount, id, chno, x, p)
+              LOOP
+
+      CASE 4: // Perform the butterfly operations.
+      { LET k, sep = ln, 1
+
+        { // Loop over all the butterfly phases
+          q := p XOR sep
+          writef("Element co %n/%n butterfly sep=%n k=%n p=%n q=%n*n",
+                  id, chno, sep, k, p, q)
+
+          // Do the butterfly operation
+          //                              |<--sep-->|
+          //                              .         *wa
+          //                              |\       /|
+          //                              | \     / |
+          //                              | neg  / neg
+          //                              |   \ /   |
+          //                              |    .    |
+          //                              |   / \   |
+          //                              |  /   \  |
+          //                              | /     \ |
+          //                              |/       \|
+          //                              +         +
+          //                              |         |
+
+          // p point to the current element of the butterfly and q points to
+          // the other element. p may be < or > then q. The code here deals
+          // with the half of the butterfly corresponding to position p.
+
+          TEST p < q
+          THEN { send(q/4, q & 3, neg(x))
+               }
+          ELSE { LET e = (q<<(k-1)) MOD N
+                 LET we = pow(w, e)
+                 x := mul(x, we)
+//writef("  q=%i2 p=%i2 e=%n", q, p, e)
+                 send(q/4, q & 3, x)
+                 x := neg(x)
+               }
+          x := add(x, recv(buf))
+          k := k-1
+          UNLESS k BREAK // Done the last butterfly phase.
+          sep := 2*sep   // k and sep are ready for the next butterfly phase.
+        } REPEAT 
+
+        resumeco(cptr, 1) // Ready for the next command.
+        LOOP
+      }
+
+      CASE 5: // Divide the element by N.
+        x := div(x, N)
+        LOOP
+
+      CASE 6: // Free all allocated space
+        BREAK
+    }
+  } REPEAT
+
+  // Free all allocated space.
+  // Nothing to free.
+  schedule()
+  abort(997) // Should never br reached.  
+}
+
+AND send(destid, chno, val) BE
+{ // Send val to input channel chno of the core destid. If the
+  // buffer is full it suspends itself. This function is
+  // only used by fftco to send commands to core coroutines,
+  // and by element coroutines. Each element coroutine works
+  // on different element positions. It only uses send to
+  // give a value to a different element coroutine either
+  // during the perfect shuffle operation or a butterfly
+  // computation. It never send a value to itself.
+
+
+  // Find the destination buffer.
+  LET destcore = corev!destid         // Destination core control block
+  LET buf      = destcore!c_bufv!chno // and its in channel buffer.
+  LET count    = buf_count!buf
+
+  //writef("%i5 send: destid=%n chno=%n val=%n*n", commcount, destid, chno, val)
+
+  WHILE buf_count!buf = 4 DO
+  { // The buffer is full, so append the current sending core to
+    // the end of the destination core's input channel's wait list.
+    LET p = buf_wrwaitliste!buf
+    LET link, cptr = 0, currco
+    !p := @link
+    buf_wrwaitliste!buf := @link
+    schedule()
+  }
+
+  // Buffer count is < 4
+  buf!buf_count!buf := val
+  buf_count!buf := buf_count!buf + 1
+
+  // Buffer count > 0
+  IF buf_rdwaitlist!buf DO
+  { // The buffer is not empty and a coroutine was waiting for data
+    // from this channel, make it ready to run by appending it to
+    // the end of currlist.
+
+    // Dequeue the coroutine from rdwaitlist.
+    LET item = buf_rdwaitlist!buf
+    buf_rdwaitlist!buf := !item
+    TEST !item THEN buf_rdwaitliste!buf := !item
+               ELSE buf_rdwaitliste!buf := @buf_rdwaitliste!buf
+
+    // Put it at the end of currlist.
+    !item := 0
+    !currliste := item
+    currliste := item
+  }
+
+  //writef("%i5 send: destid=%n chno=%n val=%n returning*n", commcount, destid, chno, val)
+}
+
+AND recv(buf) = VALOF
+{ // This returns the next value from the given
+  // channel buffer and sets result2 to TRUE, if available.
+  // Otherwise it sets result2 to FALSE.
+  LET val = ?
+
+  UNLESS buf_count!buf DO
+  { result2 := FALSE
+    RESULTIS 0
+  }
+
+  // The buffer is non empty, so extract a value
+
+  val := buf_data0!buf           // Get the next value from the buffer
+  buf_data0!buf := buf_data1!buf // Shift the contents.
+  buf_data1!buf := buf_data2!buf
+  buf_data2!buf := buf_data3!buf
+  buf_count!buf := buf_count!buf - 1
+  //writef("%i5 recv: extracted value %n*n", commcount, res)
+
+  WHILE buf_wrwaitlist!buf DO
+  { // The buffer is no longer full and there is at least one
+    // coroutine waiting to send to this buffer, so cause the first
+    // to be scheduled by appending it to the end of currlist.
+
+    // Transfer the coroutines (typically just one) from wrwaitlist
+    // on the end of currlist.
+    !currliste := buf_wrwaitlist!buf
+    currliste := buf_wrwaitliste!buf
+    buf_wrwaitlist!buf := 0
+    buf_wrwaitliste!buf := @buf_wrwaitlist!buf
+  }
+
+  result2 := TRUE
+  RESULTIS val
+}
+
+AND pr() BE
+{ FOR i = 0 TO prupb DO { writef("%I5 ", datav!i)
+                          IF i MOD 8 = 7 DO newline()
+                        }
+  newline()
+}
+
+AND reverse(x, ln) = VALOF
+{ LET res = x & 1
+
+  WHILE ln>1 DO
+  { x, ln := x>>1, ln-1
+    res := res<<1 | x&1
+  }
+
+  RESULTIS res
+}
+
+AND dv(a, m, b, n) = a=1 -> m,
+                     a=0 -> m-n,
+                     a<b -> dv(a, m, b REM a, m*(b/a)+n),
+                     dv(a REM b, m+n*(a/b), b, n)
+
+
+AND inv(x) = dv(x, 1, modulus-x, 1)
+
+AND add(x, y) = VALOF
+{ LET a = x+y
+  IF a<modulus RESULTIS a
+  RESULTIS a-modulus
+}
+
+AND sub(x, y) = add(x, neg(y))
+
+AND neg(x)    = modulus-x
+
+AND mul(x, y) = x=0 -> 0,
+                (x&1)=0 -> mul(x>>1, add(y,y)),
+                add(y, mul(x>>1, add(y,y)))
+
+AND div(x, y) = mul(x, inv(y))
+
+AND pow(x, e) = VALOF
+{ LET res = 1
+  LET xi = x
+  WHILE e DO
+  { IF (e&1)>0 DO res := mul(res, xi)
+    e := e>>1
+    xi := mul(xi, xi)
+  }
+  RESULTIS res
+}

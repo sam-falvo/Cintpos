@@ -1,0 +1,3 @@
+.k file/a,opt
+echo "compiling com/<file>.m to min/<file>"
+mcpl com/<file>.m to min/<file> <opt>

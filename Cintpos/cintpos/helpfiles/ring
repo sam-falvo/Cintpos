@@ -1,0 +1,83 @@
+*boot #H boot
+*date #H dat
+*capability #H uidset
+*code #H rc
+*error #H rc
+*handler
+RING HANDLER
+
+Use command RHINFO to find the status of the Ring Handler and to delete
+it (use HELP RHINFO COMMAND for more information).
+Use command LOADRINGHAND to reload the Ring Handler.
+
+Use HELP DOCUMENTATION for further information about RING HANDLER
+documentation.
+*info #H rstatus
+*library #H ssplib
+*mail #H ringmail
+*map #H mapname
+*message #H ringmail
+*name #H nameserver
+*network #H #HCH %
+%university #H cudn
+*print #H ringprint
+*prod #H rprod
+*rc #H rc
+*send #H ringmail
+*service
+*ringserv
+*ringser
+*demon
+*daemon
+RING SERVICES TASK
+
+The Ring services task monitors a particular Ring port and fires up tasks for
+SSP or OPEN requests which arrive on that port. It reads the file
+:INFO.RING-SERVICES to determine the mapping between Ring function codes and
+filenames of programs to be run.
+
+Processor Bank TRIPOS systems have this task loaded by default. It will commit
+suicide if task flag 4 is set, so you can kill it by typing control-D at it
+or using BREAK n D.
+
+The LOADRINGSERV command will load the Ring services task.
+
+See the file TRIPOS.ALL.SPEC:RINGSW on Phoenix for details of how ring
+services are written.
+*software #H ssplib
+*status #H rstatus
+*task
+For information about the Ring Services task use HELP RING SERVICES, and
+for information about the Ring Handler task use HELP RING HANDLER
+*time #H dat
+*transfer #H file
+*why #H rc
+*uid #H uidset
+*uidset #H uidset
+** #I ring
+CAMBRIDGE RING
+
+The Cambridge Ring is a high speed local area communications network with
+a raw bandwidth of 10 MHz.  A number of machines are connected to it, and
+together they form a distributed system which includes the Processor Bank.
+This runs most of the Tripos sessions within the Laboratory.  You can send
+files etc. over the ring (and out to other networks).
+
+The use of the ring from TRIPOS is described in the document "TRIPOS Ring
+Software" which can be printed from the 370 file TRIPOS.ALL.SPEC:RINGSW
+
+HELP can give information about any of the following.
+Type one of
+      ERROR      - info on Ring return code format
+      HANDLER    - info about the ring handler
+      LIBRARY    - info on BCPL sources for use with TRIPOS's ring handler
+      MAIL       - the ring wide mail system
+      PRINT      - command to print on ring printer
+      PROD       - command to find status of a particular station on the ring
+      RINGSERV   - Ring services task
+      STATUS     - command to find status of stations on the ring
+      TIME       - command to get time from the ring
+      TRANSFER   - file transfers over the ring
+      <CR>       - to exit HELP
+
+

@@ -1,0 +1,168 @@
+*history
+*clist
+*cl
+HISTORY Shell Command
+
+Form:      HISTORY
+Author:    IDW
+
+The HISTORY command cause the Shell to print a list of the 20 most recently
+executed command lines.  HISTORY has synonyms CLIST and CL.
+*switch
+*sw
+SWITCH Shell Command
+
+Form:      SWITCH "EXEC/S,NOEXEC/S,MONITOR/S,NOMONITOR/S,REFLECT/S,NOREFLECT/S"
+Author:    IDW
+
+The SWITCH command sets options within the Shell.  The possible options
+are:
+
+        MONITOR           Print info about load/execute times
+        REFLECT           Print REX "obey" commands
+        EXEC              Execute loaded commands
+
+Options can be negated by prefixing the option name by "NO".  The default
+options are:
+
+        SWITCH EXEC NOREFLECT NOMONITOR
+
+SWITCH has the synonym SW.
+*char
+CHAR Shell Command
+
+Form:      CHAR "BRA/K,KET/K,PIPE/K,QUOTE/K,SEP/K,ESCAPE/K,AND/K"
+Author:    IDW
+
+The CHAR command alters the Shell's special character table.  The special
+characters are:
+
+        BRA         Start of pipe expression
+        KET         End of pipe expression
+        PIPE        Pipe symbol
+        QUOTE       String quote
+        SEP         Command separator
+        ESCAPE      Text escape character
+        AND         Asynchronous command separator
+
+The default settings are:
+
+        Bra         (
+        Ket         )
+        Pipe        |
+        Quote       "
+        Sep         ;
+        Escape      \
+        And         &
+*set
+SET Shell Command
+
+Form:      SET "DIR,COMDIR/K"
+Author:    IDW
+
+The Shell SET command has the same effect as the loaded SET command, in that
+it sets the current working or command directory.  The Shell command also
+keeps the name of the directory, so that the Shell commands UNSET, PUSHD,
+POPD and PWD can work.
+*unset
+UNSET Shell Command
+
+Form:      UNSET
+Author:    IDW
+
+The UNSET command strips off one level of directory nesting, making the
+current directory the logical "previous" directory.  This will only work
+if:
+
+        a)  A SET command has been issued previously, where the directory
+            name was specified unambiguously (i.e. using a ":").
+            
+        b)  The current directory is not already at the root of a directory
+            tree.
+
+The name of the new current directory is printed out, along with extra
+information if a pack change were involved.
+*pushd
+PUSHD Shell Command
+
+Form:      PUSHD "DIRITEM"
+Author:    IDW
+
+The PUSHD command pushes the current directory onto a stack, and sets a new
+current directory.  Possible arguments to PUSHD are:
+
+    PUSHD dirname   Push current directory onto stack, and set new one
+    PUSHD +<n>      Swap current directory with stacked directory <n>
+    PUSHD           Swap current directory with top stacked directory
+
+See HELP POPD for information on how to restore stacked directories.
+*popd
+POPD Shell Command
+
+Form:      POPD "DIRITEM"
+Author:    IDW
+
+The POPD command pops an item from the directory stack, and optionally sets it
+as the current directory.  Possible arguments to POPD are:
+
+    POPD +<n>      Discard stacked directory <n>
+    POPD           Replace current directory with top stacked directory
+
+See HELP PUSHD for information on how to stack directories.
+*pwd
+PWD Shell Command
+
+Form:      PWD
+Author:    IDW
+
+The PWD command prints the name of the current directory, and the names of
+the stacked directories (see HELP PUSHD and HELP POPD).
+*rexload
+REXLOAD Shell Command
+
+Form:      REXLOAD "REXFILE/A,AS/K"
+Author:    IDW
+
+The REXLOAD command explicitly loads a REX program into memory, optionally
+changing its loaded name.  REXLOAD must be used to load the new version of a
+REX program after its source has been altered.
+*rexunload
+REXUNLOAD Shell Command
+
+Form:      REXUNLOAD "COMMAND/A"
+Author:    IDW
+
+The REXUNLOAD command explicitly unloads a loaded REX command.  Note that,
+with the current implementation, this does not free any store, but just
+removes the command name from the list of loaded commands.
+*rextrace
+REXTRACE Shell Command
+
+Form:      REXTRACE "ON=TRUE/S,OFF=FALSE/S"
+Author:    IDW
+
+The REXTRACE command sets or unsets the tracing state of the REX interpreter.
+When set, each REX statement along with its source line number is printed out
+before being executed.  In this way, the execution of a REX program may be
+investigated, in order to remove bugs or perform optimisation.
+*rexlist
+REXLIST Shell Command
+
+Form:      REXLIST
+Author:    IDW
+
+The REXLIST command prints out the names of the REX commands which are
+currently loaded by the Shell.
+*rexstack
+REXSTACK Shell Command
+
+Form:      REXSTACK "STACKSIZE"
+Author:    IDW
+
+The REXSTACK command investigates or alters the size of the stack which should
+be given to REX programs when they are executed.  REXSTACK without an
+argument simply prints out the current REX stack size.  The default should be
+sufficient for most programs, but anything which makes heavy use of recursion
+will probably need its stack size increasing.
+
+

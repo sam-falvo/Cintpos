@@ -1,0 +1,145 @@
+*fileserver #H #HCH=+
+*fas #H #HCH=+
+*fs #H #HCH=+
+*file #H #HCH=+
++wicat #H SYS:Gray.DOC.wicatrc-help
++fas #H SYS:Gray.DOC.wicatrc-help
++server #H #HCH @
++fileserver #H #HCH @
++fs #H #HCH @
+@+ #N ..
+@* #C :L.HELP-fileserver-RC
+; Gray says this line must be left blank
+@*
+FILESERVER RETURN CODES
+
+   In each reply block from the file server a Return Code is included.
+This indicates the success or failure of a command execution as follows:
+   1)  Return code < 0:  means "not done".
+       An English explanation of the reasons for failure can be obtained
+       by calling the operation "explain".  NB: In all cases when a
+       negative return code is sent, no reply arguments follow it, and
+       the reply block is minimum size.
+   2)  Return code = 0:  means "done, normal execution".
+   3)  Return code > 0:  means "done".
+       The command was performed in circumstances which may be of interrest
+       to the caller.  The English version of this return code can again
+       be obtained by calling "explain".
+
+   HELP FILESERVER RC N will print the text message corresponding to fileserver
+return code N.
+@
++
+*ring #H #HCH=+
+*ringerror #H #HCH=+
+*ringwhy #H #HCH=+
+*ssp #H #HCH=+
+*bsp #H #HCH=+
+*protocol #H #HCH=+
++call
++callseg
++:l
++why
++ringwhy
++ringerror
+RING ERROR CALL
+    In SYS:L.RINGERROR resides a CALLSEGable procedure which uses the
+"WHY" service on the Ring to decode a particular ring return code (use
+HELP RING RC for more information).  This binary is 'callseg'd with the
+following parameters:
+
+       level := callseg("SYS:L.RINGERROR", rc, vect, n)
+
+where:
+     rc             The return code to be interpreted
+     string         A vector in which to place the returned string
+     n              The size of the vector in words
+     level          How confidently the return code is known:
+                        0   -  RC is a known global return code
+                        1   -  RC is an unknown global return code
+                        2   -  RC is zero
+                        4   -  RC is a positive (local) return code
+                        5   -  RC interpreter not called
+
+ return string is always given.  It is suitable for printing out with:
+
+               writef(string, rc)
+++
+RING RETURN CODES
+
+Ring (SSP and BSP open) return codes are allocated in the following way:
+Return codes are 16 bits long.  If they are positive they have a context
+dependent meaning - otherwise they have a fixed meaning.  If they are
+negative bits 13 and 14 (those just less significant than the sign bit)
+can be interpreted as follows:
+
+        bit14  bit13               meaning
+
+          0      0         don't know about the nature of this return code
+          0      1         error, but not fatal, retry if appropriate
+          1      0         fatal error, don't retry, caller at fault
+          1      1         fatal error, don't retry, called service is at fault
+
+Some services have a set of these standard return codes assigned to them.
+The "WHY" service can be used to find an interpretation for any given
+command.  This service can be used by CALLSEGing "SYS:L.ringerror" (use
+HELP RING ERROR CALL for further information).  Some ring return codes have
+been incorporated into the system return code space (use HELP SYSTEM RC
+for more info).
+    A zero return code is taken as an indication of success - any other
+denotes a failure.  However see HELP FILE SERVER RC for system employed
+by the file server.
+    See "Standard SSP and OPEN return codes" in the documentation folder
+for more information.
+    Use HELP RING RC <return code> for an explanation of any particular
+return code.
++* #C sys:l.help-rc ..
+;  Left blank!
+++ #TCH &
+&
++*
+Unknown ring return code(s)
++
+*command
+A return code can be passed back from a command if it uses the STOP PROCEDURE
+(use HELP STOP PROCEDURE for more info).  This return command can be tested in
+a command sequence using the IF command (use HELP IF COMMAND for more info
+here).  If the return code is too large it will cause a command sequence to
+abend - the value of return code at which this happens can be changed using
+the FAILAT command (HELP FAILAT COMMAND).  If the return command is not zero
+then the value of the global 'result2' will be copied to the CLI.  An
+explanation of the last return code that was passed back can be inspected using
+the WHY command (HELP WHY COMMAND).  Use HELP SYSTEM RC for info about the
+values held in 'result2'.
+*tripos #H #HCH=+
+*result2 #H #HCH=+
+*system #H #HCH=+
++*
+    System return codes are held in the global 'result2'.  Commands may
+fail using the STOP procedure (use HELP STOP PROCEDURE for more info)
+in which case this return code is copied into the CLI.  The WHY command
+can be used to find out why the last command failed (i.e. what the
+return code passed back was: see HELP WHY COMMAND).
+    An English description of any particular return code can be found
+using the FAULT procedure from a program or using the FAULT command from
+the terminal (see HELP FAULT COMMAND and HELP FAULT PROCEDURE).
+Alternatively HELP SYSTEM RC <return code> will give the return code.
+A list of the meanings of each return code can be found in the file
+SYS:INFO.FAULTS.
++
+** #C :L.HELP-rc ..
+*+ #TCH &
+&
+** #I rc
+HELP knows about command return codes, system return codes, ring return
+codes, and file server return codes.  Type one of the following:
+    COMMAND
+    SYSTEM
+    RING
+    FILE SERVER
+    FILE SERVER <a return code>
+    <a return code>
+Or type <CR> to exit HELP.
+*
+
+

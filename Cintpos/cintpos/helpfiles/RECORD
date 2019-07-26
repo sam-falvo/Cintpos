@@ -1,0 +1,67 @@
+*record
+Form:           RECORD  "TO,OFF/S,NOTIME/S"
+Purpose:        To record a console session with timing information.
+                The session can be played back by using the PLAYBACK
+                command.
+Author:         RDE
+Source:         :com.bcpl.record
+                :com.bcpl.record-task
+Specification:
+   The RECORD command creates a task which acts as the console
+output device.  It causes the console handler to send all its output
+via this task, which sends it to the TO file as well as to the
+console.  The file contains special characters representing timing
+information.  The character #XFE indicates a delay of one clock
+tick, and the pair '#XFF n' represents a delay of n ticks (0 <= n
+<= 255).
+   The OFF switch is used to finish a recording session.
+   NOTIME causes the timing information to be omitted from the file.
+Example:        RECORD RECORDING
+                RECORD OFF
+*playback
+*back
+Form:           PLAYBACK  "FROM/A,WAIT/S,NOTIME/S"
+Purpose:        To play back a recording made by RECORD (q.v.).
+Author:         RDE
+Specification:
+   FROM specifies the recording file.
+   WAIT indicates that playback should start in "discontinuous" mode
+(see "SPACE" below).
+   NOTIME specifies that playback should start in "fast" mode (see
+'f' and 's' below).
+   During the playback, various characters can be used to control
+the program:
+   space    Force out the next character, and go into
+            "discontinuous" mode:
+            i.e. only output the next character when
+            space or cr or esc is used.
+   <cr>     Resume continuous mode
+   <esc>    Resume continuous mode, but stop at end of line
+   F        Enter "fast" mode, in which the timing information
+            is ignored
+   S        Resume "slow" mode
+   Q        Quit
+Example:        PLAYBACK RECORDING
+*playfast
+*fast
+Form:           PLAYFAST  "FROM/A,TO/K"
+Purpose:        To remove timing information from a file produced
+                by RECORD (q.v.).
+Author:         MR
+Specification:
+   It copies a recording file from FROM to TO, removing all timing
+information and carriage returns.
+Example:        PLATFAST RECORD-FILE TO LP:
+*playtime
+*time
+Form:           PLAYTIME  "FROM/A"
+Purpose:        To calculate the playback time of a recording made
+                by RECORD (q.v.).
+Author:         BJK
+Specification:
+   FROM specifies the recording file.
+   The time that PLAYBACK would take to play back the file is printed.
+
+Example:        PLAYTIME RECORDING
+
+

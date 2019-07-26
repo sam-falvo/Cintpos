@@ -1,0 +1,175 @@
+*gasm #H asm
+*gcc
+Form:           GCC from/a,to
+Purpose:        To convert between GCODE versions 2 and 3
+Author:         PB
+Specification:
+
+        Reads the From file, converting the GCODE format. Version 2 is
+produced by OGCAL and version 3 by the current GCAL.  Version 2 used control
+characters and record boundaries, so it was hard to transport.
+
+        Use this program before shipping GCODE between CAP, TRIPOS and the 370.
+*gcode
+GCODE is an intermediate code produced by the paginator GCAL.
+
+It may be sent directly to the Canon printer via the devices canon: and
+scanon:, and is interpreted there.  It may also be converted to PostScript
+for feeding to PostScript driven printers (e.g. the Apple LaserWriter).
+See HELP GTOPS for more info.
+
+The program GTYPE is provided to format it for various type of output device,
+e.g. Diablo printer.  See HELP GTYPE.
+
+Pages of a GCODE file may be selected using GPAGE - see HELP on this.
+
+To transport or convert old (version 2) GCODE to current (v. 3) see HELP GCC.
+*getbyte #H byte
+*getfile #H takefile
+*get2bytes
+GET2BYTES
+
+  This is a function in MLIB for fetching a 16-bit word from a
+specified offset (in 16 bit words) in a BCPL vector. It is the
+16-bit analogue of BYTEGET.
+
+  BYTEPAIR := GET2BYTES(VECTOR, OFFSET)
+*gks
+GKS stands for Graphics Kernel System. This is a graphics package for which
+we have an implementation written in Modula-2. Peter Robinson (T74) has details.
+*globin
+GLOBIN
+    A KLIB procedure which initialises the Global Vector of a TRIPOS
+task.
+                   RESULT  :=  GLOBIN( segment )
+    Initialises the global vector with the definitions in the code of
+the segment.  A segment is a list of sections - each of which may have
+label and procedure variables to be assigned to particular globals.
+    Use HELP LKED ALL for more information about segment layout.
+*globname #H lsi4globname
+*goto #H skip
+*gpage
+Form:           GPAGE FROM/A,TO/A,PAGES/K,TRACE
+Purpose:        To allow partial printing of a GCODE file
+Author:         NJO
+Source code:    sys:com.bcpl.gpage
+Specification:
+
+   Reads a GCODE file from FROM and writes one to TO, omitting the pages
+which are not required.  The required pages may be specified on the command
+line using the PAGES parameter.  If this parameter is omitted then pages
+will be prompted for.
+
+   Pages are specified as a list of numbers separated by commas, or on
+separate lines when specified interactively.  A range consisting of two
+numbers separated by a minus sign may also be given.  Numbers need not be
+given in order.
+*graphics
+TRIPOS does not provide any graphics packages as such.  Graphics work is
+being done on the Rainbow workstation, but this is essentially of a private
+nature.  Alternatives are the GKS graphics package on the VAX, or the CAMPLOT
+or GINO packages on the IBM.
+*grep
+*egrep
+*fgrep
+Form:           GREP [ option ] ... expression  [ file ] ...
+Purpose:        To print lines in the given files matching the expression
+Author:         Unix program ported by DRM
+Source code:    Source is on Unix (in C)
+Specification:
+
+   This is virtually the same as the Unix "grep" command.  See Unix help
+for full details.  It does not use RDARGS, and can only run on a 68000.
+
+   Some of the options are:
+
+      -n   the line numbers of printed lines are given
+      -i   case of letters is equated
+      -l   just the files which contain matching lines are listed
+      -v   only non-matching lines are printed
+      -c   just a count of matching lines is printed
+
+   In all cases, if more than one file is specified then the name of the
+file is prefixed to the printed line.
+
+   Some of the things an expression may include are:
+
+      \c   matches character c
+      ^    matches beginning of line
+      $    matches end of line
+      .    matches any single character
+      [s]  matches any single character in the string s
+*gtops
+GTOPS command
+Form:           GTOPS "from/a,to/k,header/k,trailer/k,opt/k"
+Purpose:        Converting GCODE to POSTSCRIPT
+Author:         Philip Hazel (Computing Service)
+Tripos version: PB
+Source:         :com.gtops
+
+  GTOPS converts GCODE (output from the GCAL paginator) to POSTSCRIPT,
+  primarily for printer on an apple laser writer.
+
+  FROM is the manditory input file
+
+  TO is the destination file (dafeults to the Balfour LaserWriter)
+
+  HEADER is the postscript header (defaults to sys:gcal.gtops-pshdr)
+
+  TRAILER is the postscript trailer (no default)
+
+  OPT gives the keywords.  See the Spec on PHOENIX, or :info.spec.gtops-xx
+      where xx is one of raw, gcode, ps, ps-a5 or ps-a6
+
+  The library "a4atl" should be used when GCALling the document
+
+  This superceded gc2ps
+*gypload #H gyp
+*g.bcpl #H sourcelib
+*gc2ps
+GC2PS command
+Form:           GC2PS "from/a,to/k,hdr/k,first/k,last/k,pages/k,request/k,*
+                        *copies/k,margin/k,even/s,odd/s,ver/s,a5=a5ona4/s"
+Purpose:        Converting GCODE to POSTSCRIPT
+Author:         Philip Hazel (Computing Service)
+Tripos version: PB
+Source:         :com.gc2ps
+
+  **** Use GTOPS ****
+
+  GC2PS converts GCODE (output from the GCAL paginator) to POSTSCRIPT,
+  primarily for printer on an apple laser writer.
+
+  FROM is the manditory input file
+
+  TO is the destination file (dafeults to the Balfour LaserWriter)
+
+  HDR is the postscript header (defaults to sys:gcal.gc2ps-pshdr)
+
+  FIRST and LAST define the pages to be processes (defaults to all)
+
+  PAGES specifies the pages to be printed. This is of the form
+    range [,range]* where range is page | from-to | from-*
+
+  COPIES specifies the number of copies to be printed (generates a request)
+
+  MARGIN specifies the margin to be left              (generates a request)
+
+  REQUEST allows the user to supply a GCAL "request" string such as:
+        COPIES n    produce <n> copies of the document (use COPIES)
+        MARGIN n    set left margin to <x> points      (use MARGIN)
+        GET file    includes Postscript file <file> in output
+        MANUALFEED  subsequent pages use the manual feed mechanism
+        LANDSCAPE   print subsequent pages in landscape mode
+
+  EVEN or ODD define whether only odd or even pages are to be printed
+    (defaults to both)
+
+  VER produces `chatty' messages, such as the version number
+
+  A5 (or A5ONA4) produces two A5 pages on a single A4 page
+
+
+  The library "a4atl" should be used when GCALling the document
+
+

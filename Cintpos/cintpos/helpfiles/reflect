@@ -1,0 +1,38 @@
+*command
+REFLECT COMMAND
+Form:           REFLECT  command-file args
+Purpose:        To type out a command sequence file after
+                substituting the arguments.
+Author:         ARA
+Specification:
+        The input file is treated in exactly the same way that the C
+    command would use it - substituting arguments in the file with
+    those given except the resulting file is not executed as a command
+    file - it is printed.  Use HELP C COMMAND for more detail on the
+    parameter substitution performed.
+
+Example:        REFLECT COMSEQ ABC DEF
+*echo
+Form:           ECHO ""
+Purpose:        To output its argument to the currently selected
+                output stream.
+Author:         MR
+Source:         :com.bcpl.echo
+Specification:
+   The single argument is written to the current output stream.
+*character
+*reflection
+*reflexion
+In the ring system using a terminal concentrator, character reflection can
+be switched off by sending a packet to the console handler (rmvthand).
+The packet is of type ACT.NON.REFLECT.MODE and has a boolean argument
+indicating whether this mode is to be on or off.
+
+See :info.spec.rmvthand-packets for more details of packet format.
+** #I reflect
+REFLECT is a command to show command sequences with parameter subsitiution.
+Type COMMAND for info on this.  For info on suppressing character reflection
+type CHARACTER.  <CR> to exit HELP.
+
+
+

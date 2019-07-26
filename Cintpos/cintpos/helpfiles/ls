@@ -1,0 +1,41 @@
+*ls
+LS COMMAND
+
+Form:           ls -[ltfrnd] files ... [> file] 
+Purpose:        To list the contents of a directory or directory tree.
+Author:         RSC
+Specification:
+
+        ls is similar to the UNIX ls program, it lists the contents of a
+directory [file] in one of three formats, the default lists the files as
+a number of columns across the screen, the names of directories are followed
+by a '/'.  The -l option lists the files one per line along with information
+of the files like size, owner, date of creation/last update and the permissions
+of the file for the owner and for everyone else. The -n option list the files
+one per line without any additional information. With all the options the files
+are sorted unless the -f flag in given in which case the files are printed out
+in the order they are found in the directory. The -t flag will print out the
+files in the order of most recent first.
+
+        The -r flag says to list the directory recursively to include any sub-
+directories. The -d flag says not to list any of the files within the given
+directory but to just give information on the directory itself.
+
+        The output of the program may be redirected into a file using the
+format "> file".
+
+Examples:
+
+        ls              - list the files in the current directory
+        ls -l > out     - list the files in the current directory, giving
+                        information on the files and put the output in the
+                        file out
+        ls xx           - list the contents of the file xx if it is a directory,
+                        otherwise just print its name.
+        ls -ld home:    - give information on the creation time etc. of the
+                        home directory.
+
+Bugs:
+        The program does not check for looped directories...
+
+

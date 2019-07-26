@@ -1,0 +1,30 @@
+*procedure
+**
+RESULT := TESTFLAGS(MASK)
+   Discover the state of a  selection  of  the  issuing
+task's task flags.  (Used to detect breaks - use HELP BREAK HANDLING
+for more information).
+
+Arguments:
+
+MASK
+   The  selection of flags to be tested.  A 1 indicates
+selection, 0 otherwise.
+Normal return:
+
+RESULT=TRUE
+   At least one of the selected flags was set.  RESULT2
+holds the result of ANDing the contents of the flagword
+(prior to testing), with MASK.
+RESULT=FALSE
+   None of the selected flags was set.
+
+Side effects:
+
+   All selected flags will be cleared.
+   Note the setting of RESULT2 as data.
+Related routines:
+
+   SETFLAGS
+
+

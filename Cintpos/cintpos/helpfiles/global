@@ -1,0 +1,84 @@
+*libhdr #H #HCH %
+*lsi4 #H #HCH %
+*68000 #H #HCH %
+*number #H #HCH %
+*name #H #HCH %
+%lsi4 #H #HCH -
+-* #H lsi4globname
+-*
+Global not in LSI4's LIBHDR
+-
+%68000 #H #HCH -
+-* #H 68000globname
+-*
+Global not in 68000's LIBHDR
+-
+%* ..
+GLOBAL NUMBERS
+
+%default #N ..
+%* ..
+    Globals from LIBHDR may be slightly different depending upon which
+machine you are on: use HELP LSI4 GLOBAL <arg> or HELP 68000 GLOBAL <arg>
+where <arg> is either a number or a global's name.
+%*
+    The default number of GLOBALS allowed in a BCPL program running as a
+CLI command is 350 - this default can be changed using the GLOBALS command
+(use HELP GLOBALS COMMAND).
+    For a program running as a task, the correct size of global vector is
+obtained automatically on task activation.
+%
+*default
+The default value of a global is undefined.  The default number of globals
+can be found using HELP DEFAULT NUMBER OF GLOBALS.
+*globals
+*command
+Form:           GLOBALS  <number>
+Purpose:        To print or change the number of globals available
+                to a CLI task.
+Author:         ARA
+Specification:
+    If no number is specified, then the current size of the CLI
+global vector is printed.  Otherwise, the CLI task is recreated with
+the specified number of globals (minimum 200).
+    Use HELP DEFAULT GLOBALS for information about the default number of
+GLOBALS available to a command.
+    Use HELP LSI4 GLOBAL <name or number> or HELP 68000 GLOBAL ... to
+find the value of any particular LIBHDR global.
+
+Example:        GLOBALS
+                GLOBALS 450
+*show #H s
+*display #H s
+*system
+Some globals are set by TRIPOS and may be read by user commands and tasks:
+  CIS           The SCB of the current input stream (use INPUT() to read this)
+  CONSOLETASK   The task ID of the console handler for this task
+  COS           The SCB of the current output stream (use OUTPUT() to read this)
+  CURRENTDIR    A lock on the currently set directory
+  RESULT2       Used to return a second result from BCPL calls. Contains
+                a fault code when the primary result indicates failure.
+  STACKBASE     The address of the current coroutine stack
+  TASKID        The ID of this task
+  TCB           The address of this task's Task Control Block
+** #I global
+GLOBALS
+
+    In TRIPOS, there is one BCPL global vector per task.  Commands
+running under a CLI share the CLI's global vector. Programs should not
+define any globals with numbers less than the manifest value UG, to avoid
+clashing with system globals.
+
+  For further information, type one of the following:
+
+  COMMAND       -    GLOBALS command
+  SHOW          -    Show the globals used by a program
+  NUMBER        -    info on number of globals available to a task or command
+  SYSTEM        -    info on global variables set by TRIPOS
+  LSI4 <n>      -    info on LSI4 global number <n>
+  LSI4 <name>   -    info on LSI4 global name <name>
+  68000 <n>     -    info on 68000 global number <n>
+  68000 <name>  -    info on 68000 global name <name>
+  <CR>:      to leave HELP
+
+

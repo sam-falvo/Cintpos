@@ -1,0 +1,61 @@
+*command
+**
+WRULTAPE command
+Form:           "FILES,LRECL/K,BLKSIZE/K,VER/K,BINARY/S"
+Purpose:        To write unlabelled tapes
+Author:         IDW
+
+Specification:
+    WRULTAPE is a program to write an unlabelled tape, and is designed for
+use when exporting files to other computer systems.  Files are written
+on 9-track tape at 800-BPI, with a single tape mark separating files, and
+a double tape mark signifying "end of tape".
+      If the BINARY switch is set, then the files are copied onto the
+tape without modification.  Otherwise, unprintable ASCII characters are
+stripped, overlong records are split, and short records are padded with
+blanks.  The last record written in each file is a multiple of LRECL bytes,
+and if the transfer is binary, the last record is padded with NULs.
+
+N.B.  The files are written starting at the beginning of the tape, and so 
+      any data previously on the tape WILL BE LOST.
+
+
+    FILES       is the name of a file containing a list of files to be
+                moved onto tape.  The files are taken in sequential order,
+                and written with one tape mark between each file.  A double
+                tape mark is written at the end of the tape.  The files must
+                be text, unless the BINARY switch is set.  If no FILES file 
+                is given, the default of the terminal is taken.
+
+    LRECL       is a number, specifying the Logical RECord Length of the
+                files to be written (in bytes).  If no LRECL is given,
+                the default of 80 is taken.
+
+    BLKSIZE     is a number, specifying the BLocKSIZE of the files to be
+                written (in bytes).  BLKSIZE must be EVEN, and an integral
+                multiple of LRECL.  If no BLKSIZE is given, the default of
+                LRECL*10 is taken.  (There is an implementation restriction,
+                which means that BLKSIZE must be less than 8192).
+                
+    VER         is a file name which, if supplied, defines the output stream
+                to which verification output is sent.  This information is
+                useful if the tape is to be sent to another installation.
+                
+    BINARY      is a switch which, if set, causes no line imaging if the input
+                files to be done.  Files are written exactly as they are on
+                disc, with the last record being padded with NULs.
+
+    N.B.  WRULTAPE does not refresh the dead man's handle in the Tape Server
+          (see "The TRIPOS Tape Handler - IDW"), and so if an interactive
+          session is chosen, care must be taken not to be idle for more than
+          3 minutes, otherwise the tape server will time the session out.
+
+Examples:
+
+          WRULTAPE
+          WRULTAPE t:files        LRECL=132  BLKSIZE=2640
+          WRULTAPE :idw.file-list LRECL=120
+          WRULTAPE                           BLKSIZE=8000
+          WRULTAPE                LRECL=512  BLKSIZE=512    BINARY
+
+

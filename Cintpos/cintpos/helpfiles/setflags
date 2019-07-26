@@ -1,0 +1,26 @@
+*procedure
+**
+RESULT := SETFLAGS(TASKID, MASK)
+   Set selected task flags of a given task.
+   (These flags are used in break handling - use HELP BREAK HANDLING).
+Arguments:
+
+TASKID
+   The id. of the task whose flags are to be set.
+MASK
+   A  mask  indicating  which flags are to be set.  A 1
+indicates selection, 0 otherwise.
+Normal return:
+
+RESULT\=0
+   The specified flags have been set.
+Error return:
+
+RESULT=0, error is:
+
+   RESULT2=101, Invalid id.
+Related routines:
+
+   TESTFLAGS
+
+

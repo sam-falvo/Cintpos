@@ -1,0 +1,75 @@
+*command
+TRIPOS itself is built to run in an unprotected environment.  However certain
+commands which relate to other RING SERVICES use the facilities for
+authentication available on the RING.  These commands include:
+    GIVEFILE   - transfer a file to another machine
+    TAKEFILE   - take a file from another machine
+    STAR       - connect to another machine
+    LOGON      - obtain ring authentication
+    USER       - info on ring authentication UID SETs held
+    UIDEDIT    - editor for manipulation of UID SETs held
+    START      - obtain ring authentication (start of day)
+Try HELP COMMAND <command> for further information.
+*invalid
+*broken
+*gone
+*valid
+*no
+*not
+*none
+    If you have found that your authentication has, for some reason, become
+invalid use the LOGON command to regain it.  If it has timed out use the
+'timeout' parameter to give it a larger number of seconds (10000 hex seconds
+is about 18 hours!).
+
+    If you cannot authenticate yourself in either the START or the LOGON
+program then perhaps:
+
+    a) you have forgotten your password:
+         send mail to 'system-manager@cltripos' to ask for it to be reset
+    b) you are not yet a user known to TRIPOS:
+         send mail to 'system-manager@cltripos' to get installed as a new user
+    c) the AOTMANAGER Z80 is broken:
+         wait and try again
+*password #H password
+*procedure
+*proc
+There are a number of BCPL procedures for using the Active Object Table, and
+USERAUTH and SYSAUTH authentication services on the ring.  They are available
+in the users' source library.  Use HELP SOURCELIB AUTHENTICATION for info.
+*service
+AUTHENTICATION SERVICES:
+    There are two services on the RING that provide some kind of authentication.
+These are the USERAUTH which is responsible for authenticating users by password
+under the AUTHENTITY 'user', and SYSAUTH which is responsible for authenticating
+operating systems by password under the AUTHENTITY 'sysauth'.  Other related
+services are:
+        AOT-1           Active Object Table Service, responsible for UID SETs
+        NEWPUID         Generates a new PUID in the reply block
+*check
+*am
+To check to see if you are still an authentic user use the command:
+                          USER
+(use HELP USER COMMAND for more information about this command)
+*set
+*make
+*become
+To become an authentic user use either the START or the LOGON commands
+(they need no argument for this function: but use HELP LOGON COMMAND or
+HELP START COMMAND for further information on either).
+*uid #H uid
+*uidset #H uidset
+** #I authentication
+AUTHENTICATION
+    Type one of the following:
+        PROCEDURE    - For information about procedures which call
+                       the authentication services on the ring
+        SERVICES     - For information about authentication services
+        UIDSET       - For information about object representation
+        PASSWORD     - For information about passwords
+        NONE         - For information about what to do if you either find
+                       yourself without authentication or without the
+                       ability to authenticate yourself
+        <CR>         - To exit HELP
+
+

@@ -1,0 +1,52 @@
+*procedure
+**
+QPKT
+
+  QPKT is the TRIPOS kernel primitive for sending a packet (message)
+from a task to another task, a device, or the clock. The form is:
+
+RESULT := QPKT(PACKET)
+
+   The packet is appended to the work queue of  the  specified
+task  or  device,  or  inserted into the appropriate place on
+the timer work queue.
+
+Arguments:
+PACKET
+   A TRIPOS packet.
+   PACKET!0 must be NOTINUSE.
+   PACKET!1 indicates the destination  id.,  >0  for  a
+task, =-1 for the timer, <-1 for a device.
+   Contents of other offsets have application dependent
+information (see below for the timer).
+
+Normal return:
+RESULT\=0
+   The packet was queued successfully.
+
+Error return:
+RESULT=0, error is:
+   RESULT2=101, Invalid id.
+
+Abort condition:
+   PACKET!0 not NOTINUSE.
+
+Side effects:
+   PACKET!0 will be set to a value \=NOTINUSE.
+   PACKET!1 will be set to the issuing task's id.
+   May cause a change of current task.
+
+Related routines:
+   DQPKT
+   TASKWAIT
+
+Notes:
+Packets sent to the timer:
+__________________________
+   Offset PKT.ARG1 represents the requested  delay  (in
+clock timer units, unsigned).
+   A delay of X ticks means that  the  packet  will  be
+returned to the issuing task's work queue after a delay
+of between X-1 and X clock timer units.
+
+

@@ -1,0 +1,19 @@
+*procedure
+**
+FINDARG
+      To search for an item in a string.
+      res := findarg ( keys, string )
+      The string is compared with the items  in  the  string
+'keys' to see if there is a match. If there is then a number
+corresponding to the item in 'keys' is returned as a  result
+(  first  item  being  numbered  zero  ),  otherwise  -1  is
+returned.
+      The    'keys'    string    should    have   the   form
+"item1,item2,...,itemn".
+      Examples :
+      findarg ( "DP0:,DP1:,SYS:", "DP1:" )
+      res <- 1
+      findarg ( "DP0:,DP1:,SYS:", "FS4" )
+      res <- -1
+
+

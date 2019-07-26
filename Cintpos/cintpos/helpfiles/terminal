@@ -1,0 +1,187 @@
+*concentrator #H #HCH=+
+*virtual #H #HCH=+
+*vtp #H #HCH=+
+*@ #H #HCH=+
+*@x #H #HCH=+
+*escape #H #HCH=+
++***- #H break
++at
++@
++@n
++@@
++@q
++@z
++@x
++@xnn
++escape
+TERMINAL CONCENTRATOR ESCAPES
+    By local convention the character '@' introduces an escape sequence.
+It is followed by one or more characters which have special meaning in
+this context as listed below.  Any illegal characters reflect BELL.
+The escapes are as fllows:
+
+ @rubout  Cancel the @.
+
+ @n       Same as @rubout.
+
+ @l       Cancel the line completely.  Note that this will also be effective
+          in cancelling a partial line which has already been sent.
+
+ @@       Puts a single @ in the buffer.  The second @ is not reflected.
+
+ @q       Terminates the line with a 'Logical end of stream' code.  A
+          newline is reflected.
+
+ @return  Reflects newline on the screen but does not place anything in the
+          buffer for transmission.
+
+ @z       Switches off reflection for the remainder of the line but does
+          not put anything in the buffer.
+
+ @xnn     Reads two hex digits, nn, and converts these to a one byte code
+          which is passed to the remote machine without further
+          interpretation.  When both digits have been typed the last two
+          characters are erased leaving only '@x'.
+
+    Commands may be given directly to the terminal concentrator using the
+BREAK key - use HELP TERMINAL CONCENTRATOR COMMANDS for more information.
++break
+BREAK instructs the terminal concentrator to switch into command mode,
+when it will issue the prompt "Monitor> ".  Commands may then be issued -
+see HELP TERMINAL CONCENTRATOR COMMANDS for more info.
+
+An attention may be sent to the host by using the command 'B'.
++vtp
++protocol
+Cambridge virtual terminal protocol, commonly known as VTP, is a layer
+above byte stream protocol.  It is used by the terminal concentrator and
+various other machines around the ring for remote terminal sessions.
+
+The stream consists of commands interspersed with data.  Data is in ASCII
+with the top bit unset.  A command header is identified by the top bit
+being set, and the remaining 7 bits indicate the total length of the rest
+of the command.  The next byte is the command type byte, and any further
+bytes are arguments.
+
+See the document "The machine interface to the terminal concentrator:
+Cambridge virtual terminal protocol" for details of available commands etc.
++command
+TERMINAL CONCENTRATOR COMMANDS
+
+     The terminal concentrator is reentered from TRIPOS by pressing the
+BREAK key on the keyboard.  The prompt 'Monitor>' is given and any of the
+following commands can be given:
+
+C n name  Create a channel to the named destination, assign it to channel
+          n and 'select' it.  n is optional and will be chosen by the
+          terminal concentrator if not given.
+
+S n       Select channel n as current.  Further characters go to the
+          numbered channel.  n is optional the current channel being used
+          as default.
+
+T n       Exactly the same as S except that only output from the selected
+          channel will be allowed onto the screen.  See also "G n"
+
+B n       This command causes a virtual terminal BREAK to be sent down
+          channel n.  On TRIPOS this will cause the prompt '***-' to appear.
+          Use HELP VIRTUAL TERMINAL BREAK for more information.
+
+G n       'Gags' (i.e. stops output from) channel n.  C.f. "T n" which stops
+          output from all except channel n.
+
+F n       Causes any type ahead buffered in the concentrator for channel
+          n to be discarded.  Implicit reselection takes place as in B.
+          n defaults to the current channel.  Equivalent to <CTRL> F on
+          TRIPOS.
+
+I n       Compliments the state of a flag which, if set, causes a channel
+          identifier - "n:" to be placed before each line of output from
+          channel n.  Implicit reselection takes place.
+
+D n       Disconnect channel n.  Requests the remote machine to close the
+          numbered channel.  n defaults to the current channel.  Equivalent
+          to the LOGOFF command on TRIPOS.  Use HELP LOGOFF COMMAND and
+          HELP DISCONNECT COMMAND for further details.
+
+L         Lists the channel numbers of active channels together with the
+          name to which the connection was originally established.  The
+          current channel is specified by a '*' against its number.
+
+X n       Sets or indicates the state of a flag enabling X-ON/X-OFF handling
+          for the terminal.  If n is omitted the state is printed.  n = 1
+          sets the flag, n = 0 unsets it.
+
+H         Prints a page summarising the commands.
+
+?         Prints the version and date of the concentrator code running.
++*
+  Try one of the following for more info:
+
+  HELP TERMINAL CONCENTRATOR COMMANDS   for info on concentrator commands
+  HELP TERMINAL CONCENTRATOR ESCAPES    for info on escape sequences (@X etc.)
+  HELP TERMINAL CONCENTRATOR PROTOCOL   for brief info on the protocol used
+  HELP CONCPROD                         remote control facilities
++
+*console #H console
+*prompt #H prompt
+*readtermvec #H sourcelib
+*reflect #H reflect
+*reflection #H reflect
+*remote
+*rmvthand
+*rmvthan
+RMVTHAND - Virtual Terminal Handler and Resource Manager refresh task
+
+A description of the packets which this task understands is given in the
+file :INFO.SPEC.RMVTHAND-PACKETS.
+*sse #H sse
+*setterm #H setterm
+*set #H settterm
+*stream
+Terminal streams may be set up by opening the device * for input or output
+as required (e.g. findoutput("**")).
+
+In a command loaded by a CLI an input and an output stream will already have
+been opened and selected.  These can be kept and reselected later by using
+the procedures input() and output().  Commands MUST NOT close these streams.
+Opening * from within a loaded command is safe for output, and will create
+a new stream which SHOULD be closed explicitly.  Re-opening * for input may
+lead to unexpected effects (i.e. it is not defined which * stream any typed
+input will appear on)!
+
+In a newly created task no streams will be created by default, so * must be
+opened explicitly if required, and closed when finished with.  The procedure
+initio() should be called once before the first stream (terminal or other)
+is set up.  Opening * for input has a well defined effect in the case of a
+new task:  it will receive all input directed (by @Snn) at that task.
+*types #T
+setterm
+quit
+*width
+*depth
+*length
+*info
+*page
+Terminal information can be found by typing the command "SETTERM"
+For further information see "HELP COMMAND SETTERM"
+The machine interface to terminal dependant code is documented in :g.termhdr
+*type #H setterm
+*cifer #I #HCH=+
+*newbury #I #HCH=+
+** #I terminal #FULL
+Type one of the following:
+        CONCENTRATOR        - info on the terminal concentrator
+        ESCAPES             - info on terminal escape characters
+        STREAMS             - how to get at the terminal from a program
+        SETTERM             - info on command to set terminal type
+        REFLECTION          - info on suppressing reflection
+        REMOTE              - info on Remote Virtual Terminal Handler, RMVThand
+        CONSOLE             - info on the command to set console attributes
+        PROMPT              - info on the command to change prompt
+        READTERMVEC         - info on SOURCELIB procedure to get terminal data
+        TYPES               - list of terminal types
+        SSE TERMINAL        - terminals that SSE accepts
+To exit HELP type <CR>.
+
+

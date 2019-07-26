@@ -1,0 +1,42 @@
+$get!mushdr;
+
+\score "Opus 0" [
+
+\conductor
+ ( \name "conductor"
+   s1\t (100 * 60 80) |
+   s1 |
+   s1 |
+   %\volmap(10 40 50 100)
+   s1 |
+   s1 |
+   s1 ||
+ )
+
+\part
+ ( \name "Piano part"
+   $piano;
+
+   [ (2ces4 bis4 g~ g)\va 40 
+     (4e4 g c~ c) 
+   ]\v(50~ * -4.5 *~ 100) |
+   (4e g c~ c) |
+ )
+
+\solo
+ ( \name "Solo horn"
+   $horn;
+
+   [ 3c1\va 40 
+     3e 
+   ]\v(50~ * -4.5 *~ 100) |
+   3g1 |
+ )
+]
+
+%\interval 3.5
+
+%\interval
+
+%\interval(1.234)
+

@@ -1,0 +1,44 @@
+*spec
+SYSLINK spec is in the PHOENIX file TRIPOS.ALL.SPEC:SYSLINK
+*command
+**
+SYSLINK command
+
+Form:       SYSLINK  "FROM/A,TO/A,MAP/K"
+Purpose:    To link Tripos system images
+Author:     IDW
+
+    The SYSLINK command takes as its input a description of a Tripos system,
+and links together all the constituent files to form a system image.  This
+image is suitable for SYSIMAGE or ANCILLA, depending on the nature of the
+system being linked.
+
+FROM     Is the name of the SYSLINK input file, describing the Tripos system
+         to be linked.  See the PHOENIX file TRIPOS.ALL.SPEC:SYSLINK for 
+         details of the syntax.
+
+TO       Is the name of the SYSLINK output file, to which the system image
+         is written.
+
+MAP      Is the name of the SYSLINK map file.  If present, then a map of the
+         linked system, giving addresses of segments, segment lists, TCBs,
+         DCBs and so on.
+
+    Note that this version of syslink is a new implementation of ARA's
+original, and performs much more checking of parameters.  It is therefore
+possible that systems which linked with the old version may fail initially
+with the new.
+
+    N.B. In order to make the new version of SYSLINK truly machine independent,
+a new parameter "mcrelocinc" must be added to the system input file.  This is
+analogous to the "mcaddrinc" parameter, and defines the increment used for
+machine RELOCATION as opposed to ADDRESSING.  Typical values are:
+
+    Machine       Mcaddrinc      Mcrelocinc
+    =======       =========      ==========
+
+    LSI/4             1               1
+    PDP/11            2               1
+    68000             4               4
+
+

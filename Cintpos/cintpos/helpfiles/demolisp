@@ -1,0 +1,165 @@
+*bugs
+Known bugs in DEMOLISP (09 Jun 83)
+
+  An error on reading will not necessarily discard any pending input, so
+there may be problems with typeahead.
+
+  If a break occurs during a call to readfrom, and execution is continued
+after a backtrace, the input stream is left assigned to the console instead
+of the file.
+*atoms
+DEMOLISP: Built in atoms:
+_________________________
+ nil            same as (), the empty list, also used for false.
+ t              used to represent true
+ *lpar*         bound to be (
+ *rpar*              "      )
+ *dot*               "      .
+ *quote*                     "      '
+ *eof*          returned by read, readchar at end of file
+*functions
+DEMOLISP: Built in functions:
+_____________________________
+car             (car '(a . b)) => a
+cdr             (cdr '(a . b)) => b
+cons            (cons 'a 'b) => (a . b)
+atom            (atom x) returns t if x is an atom, nil otherwise
+eq              (eq a b) returns t if a is the same atom or cell
+                         as b, nil otherwise
+                         note that (eq 'a 'a) => t
+                         and (eq (cons 'a 'b) (cons 'a 'b)) => nil
+
+quote           (quote x) returns x unevaluated.
+                may be abbreviated as '
+
+cond            (cond (c1 e1)
+                      (c2 e2)
+                        ...
+                      (cn en)) returns the first ei for which ci
+                               is t
+
+de              (de name (parameters) body)
+                used for defining functions.   In this Lisp, this is
+                roughly equivalent to
+                (set 'name '(lambda (parameters) body))
+
+equal           (equal a b)  Returns t if is equal to b, nil otherwise
+                This is distinct from eq, in that it compares the
+                structure, rather than the cells, so that
+                (equal (cons 'a 'b) (cons 'a 'b)) => t
+                cf eq
+
+numberp         (numberp a) => returns t if x is a number, nil otherwise
+put             (put name key value) puts value on the property list of the atom
+                name, under the key key
+                eg (put 'put 'help '(Usage!: (put name key value)))
+                cf get
+
+get             (get name key) searches the property lisp of name for the key,
+                and returns the associated value if there is one, nil otherwise.
+                eg (get 'put 'help) would return '(Usage!: (put name key value))
+                if evaluated after the put example.
+                cf put
+
+print           (print e) causes e to be printed, followed by a newline.
+
+prin            (prin e) like print, but without the final newline.
+
+terpri          (terpri) causes a newline to be printed.
+
+eval            (eval e env) evaluates e in the environment env.
+                env is an alist of the form ((name . value) ...)
+
+read            (read) Returns an expression read from the terminal.
+
+assoc           (assoc name alist) returns the value associated with name
+                in alist if there is one, nil otherwise
+
+reclaim         (reclaim) causes a storage reclamation.
+                The value returned is the number of cells available.
+
+plus            (plus a b) returns the value of a + b for numbers a and b.
+
+difference      (difference a b) => a - b
+
+times           (times a b) => a * b
+
+quotient        (quotient a b) => a / b (integer result)
+
+remainder       (remainder a b) => a REM b
+
+lessp           (lessp a b) returns t if a < b, nil otherwise
+
+greaterp        (greaterp a b) returns t if a > b, nil otherwise
+
+set             (set name value) sets the value of the atom named by name
+                to be value
+                eg (set 'zero 0)
+
+oblist          (oblist) returns a list of atoms which have been created.
+
+stop            (stop n) gets out of the system, setting a return code of n
+
+progn           (progn e1 e2 ... en) returns en.
+                The point of this is that e1 ... en will be evaluated.
+
+debug           (debug) toggles the state of the debug toggle, and returns its
+                current value.  When debug = t, the garbage collector prints
+                extra information. (Useless)
+
+readchar        (readchar) returns the next character read from the keyboard
+
+plist           (plist name) retunrs the property list of the name name.
+
+symp            (symp x) returns true if x is a name, nil otherwise.
+
+list            (list e1 ... en) returns a newly created list with e1 ... en
+                as elements.
+                eg (list 'a 'b 'c) => (a b c)
+
+def             (def (function p1 ... pn) body) is a more logical way of writing
+                (de function (p1 ... pn) body).
+
+readfrom        (readfrom filename) returns the result of doing one read from
+                the file named by filename.
+
+printto         (printto filename expression) prints the expression in the file
+                named by filename, which is created or overwritten as necessary.
+
+escape          (escape) causes the current line to be output, without a newline.
+
+eject           (eject) tries to print a newpage.
+
+column          (column) returns the column into which the system believes it
+                will print the next character.
+                It will be wrong if you have output atoms containing wierd
+                characters.
+
+linelength      (linelength n) causes the system to try to constrain its
+                printing to n columns.
+
+rplaca          (rplaca pair value) replaces the 'car' of the pair with the
+                value (Nasty! Can be used to make re-entrant structures)
+
+rplacd          (rplacd pair value) replaces the 'cdr' of the pair with the
+                value.   Just as nasty as rplaca.
+**
+DEMOLISP
+
+A demonstration interactive LISP system is available (on 68000s only).
+It needs a large stack, so run it using
+
+STACK 15000
+DEMOLISP
+
+It is suitable only for learning about LISP, rather than writing large programs,
+as it is rather slow and lacks some important facilities.  It is interactive,
+and evaluates each LISP expression typed in as soon as it is complete. The
+character '!' is used to to escape in any character which would otherwise
+be interpreted specially.
+
+See HELP DEMOLISP FUNCTIONS for a list of the built-in functions.
+See HELP DEMOLISP ATOMS for a list of the built-in atoms.
+See HELP DEMOLISP BUGS for a list of known bugs.
+
+

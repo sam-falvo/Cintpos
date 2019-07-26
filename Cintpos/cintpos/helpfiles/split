@@ -1,0 +1,15 @@
+**
+     The pseudo-device allows a single output stream to be sent to more than
+one real output, for example, to send compiler error messages to both a file
+and to the terminal:
+
+     bcp source-file to object-file ver split:*+t:ver-file
+
+     The split: name consists of an arbitrary number of sections, separated
+by the + (plus) character.
+     The stream appears to BLIB to be interactive; the individual substreams
+are handled as appropriate. Hence, in the above example, lines will appear at
+the terminal as soon as they are written, while normal buffering will appear
+for the file stream.
+
+

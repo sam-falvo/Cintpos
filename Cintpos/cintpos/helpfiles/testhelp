@@ -1,0 +1,27 @@
+**
+This is a test document for help. It is primarily for terminals that are 80 * 24
+But ought to work for others
+3
+4
+5
+6
+7
+8
+        9
+>       10
+.>      11
+..>     12
+...>    13
+....>   14
+.....>  15
+......> 16
+next...>        17
+next....>       18
+19
+20
+21
+22
+This is line 23 and is made to be a line longer than 80 characters, so that it will be forced into pagewaiting in mid line!
+This is the second line of page 2
+
+

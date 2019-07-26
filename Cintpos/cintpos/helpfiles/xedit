@@ -1,0 +1,46 @@
+*command
+**
+XEDIT editor
+
+XEDIT is upwards compatible with EDIT (except for the '<' command) and
+has the following new commands:
+
+<               moves pointer one place to left
+PR              returns pointer to left end of line
+UCL             forces line to upper case
+LCL             forces line to lower case
+PA PB E A B     all now can take a numeric argument
+                eg E3/#/(/ is exchange the third # for (
+I R D           no longer require '.' to specify current line
+L F             if no arguments are specified then the last search is repeated
+BF BL           backwards find and locate
+FN LN BFN BLN   all hunt for a line not containing the search string
+X+-             if u+ is specified lines are always printed in hexadecimal
+TO <line no>    opens a buffer at the line number specified
+TO <line no>    closes a buffer if it was opened
+IB <line no>    insert contents of buffer before line specified
+DB              deletes the contents of the buffer
+TB              types the contents of the buffer
+TE              shows the last E A B PA PB command
+TF              shows the last F or L command
+TG              lists the globals
+LE              enters line edit mode
+
+LINE EDIT MODE
+
+[return]        exits mode
+[delete]        deletes to left of cursor
+cont B          moves cursor to beginning of line
+cont D          deletes to right of cursor
+cont E          moves cursor to end of line
+cont I          enters insert mode, any control exits insert mode
+cont J          joins the next lne to the end of this one
+cont L          moves the cursor one place left
+cont N          moves onto the next line
+cont P          moves to the previous line
+cont Q          undoes any editing done on this line so far
+cont R          moves the cursor right one place
+cont S          splits the current line at the cursor position
+cont @ <char>   moves cursor to the character specified
+
+

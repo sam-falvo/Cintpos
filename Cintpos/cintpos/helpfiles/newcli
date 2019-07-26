@@ -1,0 +1,23 @@
+*command
+**
+Form:           NEWCLI  "DEV"
+Purpose:        To create a new interactive CLI task.
+Author:         ARA
+Specification:
+        The new CLI task has the same set directory and prompt string as
+     the one in which NEWCLI is executed.  It announces its task number
+     as it starts up.
+        By default, the new CLI uses the same terminal as the one from
+     which it was created.  The DEV argument allows a different terminal
+     device to be specified.
+        Note that a new CLI can also be obtained from the console handler
+     by using the 'X' reply to a break (use HELP TERMINAL CONCENTRATOR
+     BREAK for more information).
+
+     In order to select which task you wish to talk to when you have several
+     interactive CLI tasks, type <Control-S> nn   where 'nn' is the two-digit
+     task number of the required task. <Control-S> will be reflected as '@S'.
+
+Example:        NEWCLI
+
+

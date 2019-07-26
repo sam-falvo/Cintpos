@@ -1,0 +1,18 @@
+*procedure
+**
+SENDPKT
+      A packet is transmitted, and its return awaited.
+      res := sendpkt ( link, id, type, r1, r2, a1,..., a6 )
+      The packet which makes up the argument is  sent  using
+qpkt, and pktwait called to await its return.
+      If the call of qpkt fails  then  sendpkt  aborts  with
+code  181; continuing the abort causes a return from sendpkt
+with an undefined result.
+      Unless the call of pktwait yields the same packet that
+was transmitted, sendpkt aborts with  code  182;  continuing
+this abort causes it to await the next packet.
+      If the packet is transmitted and  received  correctly,
+then  the  result  is the value of the pkt.res1 field of the
+packet, and the result2 global is set to the pkt.res2 value.
+
+

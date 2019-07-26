@@ -1,0 +1,31 @@
+*sequence #H init-sequence
+*message #H banner
+*diary #H d
+*command
+**
+INIT command
+Form:           INIT  "USER"
+Purpose:        To set a current directory and obey its
+                initialisation sequence.
+Author:         ARA (Modified by CGG)
+Specification:
+        If DIR is specified then it is set, and if it contains an
+    initialisation sequence (i.e. the file DIR.init-sequence) then that
+    is obeyed.
+        If no DIR is specified, the user's home directory is used if
+    he has one and "T:" if he has not.
+        INIT does not use the standard C command mechanism and does not
+    write to the disc.  As a consequence, if INIT is used in a command
+    file, any subsequent commands in that file are ignored.
+        Related commands: SET, T, START
+        For further information use HELP COMMAND <COMMAND>
+
+Example:
+        INIT :ADRIAN
+                {SETs :ADRIAN as the current working directory
+                 and executes the file INIT-SEQUENCE there, if there
+                 is one, as a T command}
+        INIT
+                {initialises the user's home directory}
+
+

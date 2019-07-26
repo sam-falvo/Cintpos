@@ -1,0 +1,33 @@
+*command
+Z80LOAD command
+Form:           Z80LOAD  "HEXIN/A,DEVICE/A,DEBUG,MAP/K,TRACE/K,MODULEINFO/K"
+Purpose:        To load a Z80 on the Ring from Tripos
+Author:         NJO
+Specification:
+
+     NOTE: this command has been superceeded by the GYPLOAD command for
+           general use.  This command will not work if the target Z80
+           is on another ring.
+
+        The keyword HEXIN gives the file containing Cambridge Hex which
+    is to be loaded.  The hex is loaded into the Z80 machine given by
+    the DEVICE keyword.
+        If a map of the areas into which the code has been loaded is
+    needed then the file to which to write this information must be
+    given using the MAP keyword.
+        The debug service which is to be used ("<name>-debug") is given by
+    the DEBUG keyword.  This will, by default, be the machine from which
+    the code is loaded.
+        The TRACE keyword is used to specify a file into which tracing
+    information is written - it is used mainly for debugging the command.
+        The MODULEINFO keyword may be used to specify a file into which
+    information derived from control records in the hex (such as date
+    and time of assembly, module name) will be written.
+
+Examples:
+
+        SYS:NICK.LIB.Z80LOAD z80prog proje2
+        SYS:NICK.LIB.Z80LOAD bigprog z80machine MAP map-of-code
+        SYS:NICK.LIB.Z80LOAD goodprog DEBUG=foxtrot myz80
+** #H gypload    
+

@@ -1,0 +1,42 @@
+MODSTART
+
+//Entry to: start
+ENTRY   K5 C115 C116 C97 C114 C116
+LAB     L1
+L       K10
+SP      P3
+L       K11
+SP      P4
+L       K12
+SP      P5
+LW      M9001
+SP      P6
+LLP     P3
+SP      P7
+A       K3
+ATBL    K5
+XCH
+SELST   NULL K12 K4
+L       K3
+AP      P7
+SELLD   K8 K4
+SP      P3
+LP      P7
+SELLD   K8 K4
+SP      P3
+LP      P7
+SELLD   K8 K0
+SP      P3
+LKP     K0 P7
+SP      P3
+LKP     K3 P7
+SP      P3
+L       K0
+RTN
+CONST   M9001 W13872
+Bad item, looking for F found W
+Bad op 305419896
+GLOBAL K1
+G1 L1
+G1
+MODEND

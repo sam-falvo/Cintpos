@@ -1,0 +1,211 @@
+*s-tripos #H tripos
+*s-bigtripos
+This is a system which may be requested to load an s-tripos image into a
+large machine.  It is provided for students using big programs (e.g.
+Modula2) for whom such a machine is essential.  A dim view will be taken
+if other students are found using this system!
+*sardch
+SARDCH is a 'stand-alone' version of RDCH.  It reads a character by driving
+the terminal device directly, and so does not rely on any other part of the
+operating system being in working order.  [SARDCH is not useful on processor
+bank machines, as they have no terminal!]
+*saturn
+SATURN is a planet in our solar system, with an orbit somewhere between
+Jupiter and Neptune. It has far too many moons, some of which are:
+
+                    Titan                Iapetus  
+                    Dione                Phoebe
+                    Tethys               Telesto
+                    Rhea                 Calypso
+                    Mimas                Epimetheus
+                    Enceladus            Atlas
+                    Hyperion             Janus     
+*sawrch
+SAWRCH is a 'stand-alone' version of WRCH.  It writes a character by driving
+the terminal device directly, and so does not rely on any other part of the
+operating system being in working order.  [SAWRCH is not useful on processor
+bank machines, as they have no terminal!]
+*scanmail  #H  triposmail
+*scb
+SCB stands for Stream Control Block, and is a descriptor for a Tripos
+stream.  It is the address of one of these which is returned by FINDINPUT
+or FINDOUTPUT.  An SCB contains the id of the handler task, pointers to the
+current data buffer and routines to be called (i) if the buffer is empty and
+needs to be refilled (for input) (ii) full and needs to be sent off (output)
+or (iii) is to be closed.  The fields of an SCB are defined in :g.iohdr.
+*scanon: #H printer
+*scbm: #H printer
+*scp: #H printer
+*sdiprint: #H printer
+*seglib  #H  preload
+*segment #H #HCH %
+*seglist #H #HCH $
+%list #H #HCH $
+$*
+The segment list of a Tripos task is a vector containing pointers to the
+code of the task.  A pointer to it is in TCB.SEGLIST!TCB.
+
+Word zero of the vector contains the upper bound.  Other words may contain
+pointers, or zero if unused.  Normally words 1 and 2 contain pointers to
+the (shared) KLIB+MLIB and BLIB code respectvely.  Word 3 is usually the
+task's own code.
+
+When creating a seglist for a call of CREATETASK words 1 and 2 are
+therefore a copy of those of the creating task, and word 3 is the result
+of LOADSEGing the required code.  This list may be constructed in a local
+VEC, as CREATETASK will take a copy.
+$
+%*
+Segment is the term used in Tripos for a linked list of one or more BCPL
+sections of compiled code. The procedure LOADSEG will load a file of
+concatenated sections as a segment in store. Each task has a segment list
+to indicate which pieces of code the task is using - see HELP SEGLIST.
+
+For more details of segments and other Tripos data structures, see the file
+TRIPOS.ALL.SPEC:DATASTR on Phoenix.
+%
+*select #H #HCH %
+*selection #H #HCH %
+%library #H sourcelib
+%console #H console
+%cli #H console
+%task #H console
+%directory #H set
+%dir #H set
+*sendmail  #H  triposmail
+*send  #H  triposmail
+*setdir #H set
+*shell #H rex
+*show-globals
+*show-global
+*show
+*global
+*globals
+Form:           :PB.<m>OBJ.SHOW-GLOBALS "file,to/k,r=rev=reverse/s,*
+                                        *globals/s,addrs/s,names/s"
+Purpose:        To show the globals defined in a routine.
+Authors:        PB
+Specification:
+
+   <m> is M for M68000 and L for Lsi4.
+
+   FILE is inspected, and all globals defined therein are printed, with their
+Global number, address, and if compiled with names, the routine name.
+
+   TO gives a destination file.
+
+   REVERSE inverts the order of printing the results.
+
+   The list may be sorted by Global number, Address or Name, or the daefult -
+the order in which they occur (this is usually the same as Address)
+
+Examples:
+                :PB.MOBJ.SHOW-GLOBALS t:1 names                 // M68000               :PB.LOBJ.SHOW-GLOBALS t:1 globals recerse       // Lso
+                :PB.MOBJ.SHOW-GLOBALS t:1 globals reverse       // Lsi4         :PB.LOBJ.SHOW-GLOBALS t:1 globals recerse       // Lso
+*sigma
+The SIGMA is a colour raster graphics terminal.  See the Phoenix document
+INFO.SIGMA for further information.
+*single #H #HCH %
+%character
+To allow character-at-a-time terminal input, you must send a packet of
+type ACT.SC.MODE to the terminal handler (whose task id is given in the
+global CONSOLETASK).  See the file :INFO.SPEC.RMVTHAND-PACKETS for
+information about the types of packet understood by terminal handlers.
+%* #N
+*slib
+SLIB
+
+This is a header file for the 68000 assembler which resides in SYS:G.ASM.SLIB
+It is used by students of the 68000 programming course and it contains
+equate directives useful for use with DEBUG68
+*slp: #H printer
+*sm #H manager
+*smp: #H printer
+*snobol
+*snobol4
+*snobol-4
+SPITBOL (SPeedy InTerpreted snoBOL), a semi-compiled version of the
+SNOBOL4 language is available under TRIPOS. See HELP SPITBOL for details.
+*soap
+SOAP is the Source Of All Privilege in the ring authentication system. See
+CGG's thesis for details.
+*sort
+Form:           SORT "from/a,to/a,reverse/s"
+Purpose:        VERY naive sort program useing SORTLIST
+Authors:        PB
+Specification:
+
+   This uses the sourcelib procedure sotrlist (See HELP SOURCELIB SORTLIST)
+   This misbehaves for sorted data.
+   The compare route is COMPSTRING.
+*source #H directory
+*spec #H documentation
+*specification #H documentation
+*spelling #H spell
+*split: #H split
+*spooler #H spool
+*spooling #H spool
+*startup
+At the startup of a Tripos the console task runs the CLI-INIT procedure (q.v.)
+to initialise, and this prints out a message banner (see HELP BANNER).
+On a real disc system the file :s.initial-commands is obeyed.
+
+The user's file home:init-sequence is obeyed (using a 'T' like mechanism,
+see HELP T COMMAND) when a user logs on.
+*station
+Use the LOOKUP command to find the station number of a ring station from
+its name.
+*stp: #H printer
+*stream #H file
+*string #H #HCH %
+%option #H rdargs
+%parm #H rdargs
+%parameter #H rdargs
+%argument #H rdargs
+*submit
+Use CS SUBMIT to submit a job to Phoenix.
+Use RUN to run a command in the background on Tripos.
+*suggest #H trouble
+*suggestion #H trouble
+*sw #H Shell-Commands
+*switch #H #HCH %
+%+
+SWITCHES
+
+Your request is a bit vague: one of the following may be useful:
+
+ HELP PROCEDURE RDARGS : switch keywords in command arguments.
+ HELP REX SWITCH       : switches in the Rex CLI
+*synfind #H sourcelib
+*syntax #H rdargs
+*sys #H #HCH %
+*system #H #HCH %
+%sys
+%sys:
+SYS: is is the name of the root of the filing system.
+%make
+%map
+Tripos systems are made using the SYSLINK program (q.v.).  Descriptors for
+standard systems are in :sys.sysmap.
+%+ #H "info:*****NThis is %S*N"
+%
+*sysdesc
+SYSDESC is a command to the Resource Manager. See HELP RESOURCE MANAGER.
+*sysgen #H syslink
+*sysname ..
+*systype ..
+Possible system types are:
+
+       Tripos : (LSI4)            No frills
+     S-Tripos : (LSI4)            Student version of LSI4 Tripos
+
+    FS-Tripos : (LSI4 and 68000)  Doesn't use filing machine
+
+       Tripos : (68000)           Mace BSP handler and REX Shell
+     S-Tripos : (68000)           Student version of 68000 Tripos
+   CLI-Tripos : (68000)           Mace BSP handler and old CLI
+
+*sysname #H "info:*****NThis is %S*N"
+*systype #H "info:*****NThis is %S*N"
+
+

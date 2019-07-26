@@ -1,0 +1,13 @@
+*procedure
+**
+WRITED
+      To write a number to the current output  stream  is  a
+given field width.
+      writed ( n, w )
+      The  number  'n'  is written in a field of 'w' spaces,
+except that if the field is not wide enough then it will  be
+expanded  to  the necessary size.  The number will be right-
+justified in the field, and the field will  be  padded  with
+blanks.
+
+

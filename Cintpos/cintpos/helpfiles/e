@@ -1,0 +1,102 @@
+*echo #H #HCH %
+%command #H reflect
+%* #I reflect
+For info on the ECHO command type ECHO.  For info on character echo
+suppression type CHARACTER.
+
+%
+*egcal #H gcal
+*egrep #H grep
+*endcli
+Form:           ENDCLI
+Purpose:        To end an interactive CLI task.
+Author:         ARA BJK
+Specification:
+   ENDCLI is allowed only as an interactive command.
+   If this finishes the last task the machine on which the session runs is
+returned to the free pool.
+Example:        ENDCLI
+*endread
+ENDREAD   A BLIB procedure to close the currently selected input stream.
+
+Example:      endread ()
+
+Note:  If no stream is selected then endread has no effect.
+*endstream
+ENDSTREAM   A BLIB procedure to close a specified input or output stream.
+
+      endstream ( stream )
+
+      The specified stream, which should be the result of a call of
+findinput ( q.v. ) or findoutput ( q.v. ) is closed.  If the stream is
+zero then endstream has no effect.
+*endstreamch
+ENDSTREAMCH is the value delivered by the BCPL routine RDCH at the end
+of a stream. It is a manifest constant in the standard BCPL header (LIBHDR).
+*endtask #H task
+*endwrite
+ENDWRITE   A BLIB procedure to close the currently selected output stream.
+
+Example:      endwrite ()
+
+Note:  If no stream is selected then endwrite has no effect.
+*enlarge #H #HCH %
+%callseg
+The ENLARGE command may be CALLSEGed to write an enlarged string to the
+current output stream. E.g.:-
+
+        callseg(":c.enlarge", "wombat")
+%*
+Form:           ENLARGE "/A,TO"
+Purpose:        To print a string in large letters.
+Author:         BJK
+Source:         :com.bcpl.enlarge
+Specification:
+   The first argument is the string to be enlarged.  It will be truncated
+to 8 characters if it is longer.  The TO parameter specifies an output file.
+The program may be CALLSEGed, see HELP ENLARGE CALLSEG.
+
+Example:        ENLARGE HELLO!
+%
+*eprom
+EPROMs can be written using the BBC micro workstation in the Titan room.
+Auto-boot the disc called "EPROMER" for instructions.  The Computing Service
+also have a prom blower.
+*error #H rc
+*escape #H terminal
+*exall #H ex
+*examine #H #HCH %
+%interactive #H iex
+%* #H ex
+*exist
+To test a file name for existance use the IF command.
+(Use HELP IF COMMAND for further details).
+*ex:
+*exall:
+The pseudo devices EX: and EXALL: give the effect of the EX program piped
+into a user input stream.  The general form of the device name is:
+
+    <device>:<directory>
+
+where <device> is EX or EXALL, and <directory> is the name of a directory.
+If no directory is given, then the current directory is taken by default.
+The input stream gives a list of files in the relevant directory, each
+separated by a newline character.  If EX is used, then the directory only
+is searched;  EXALL searches sub directories as well.
+
+Examples:      type ex:bcpl
+               list files=ex::idw.fred opt=canon
+
+Ambiguous names are allowed for directories and their contents.
+The syntax is the same as for CP/M and UNIX, i.e.
+
+       ?      Matches any character
+       *      Matches any sequence of characters.
+
+For example:
+
+       ex:bcpl.*-s   matches   bcpl.fred-s, bcpl.eric-s, bcpl.wombat-s  etc.
+       exall:file?   matches   file1, file2, file3  etc.
+       ex:*-*        matches   a-b, remote-debug, fred-, -eric  etc.
+
+

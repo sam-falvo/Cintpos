@@ -1,0 +1,103 @@
+*command
+**
+PRIV command
+Form:           PRIV  "ALLOWANCE/a,PUID,AUTHENTITY,T=Timeout/k,Service/k,*
+                      *Allowed/s,Grant/s,Give/s,Delete/s,AUTY/s"
+Purpose:        To use the PRIVMAN and SOAP services on the ring
+Author:         CGG
+Specification:
+        One of [ALLOWED | GRANT | GIVE | DELETE] may be specified:
+
+        If AUTY is given then the SOAP service is used and 'Authentities'
+        are manipulated; otherwise the PRIVMAN service is used and it
+        is 'Privileges' that are used.  The particular authentity or
+        privilege (allowance) under discussion is given with the ALLOWANCE
+        keyword.
+
+        PUID and AUTHENTITY can be used to specify an object other than
+        the logged on user (the default for PUID is the user's PUID and
+        the default for AUTHENTITY is the user's authentity).  This object
+        is the virtue by which the allowance is available.  (e.g. in
+        "girl Jane is allowed the privilege to cry" 'girl jane' is the
+        virtue (authentity 'girl' PUID 'jane') and 'to cry' is the allowance
+        (it being a privilege)).
+
+        If none are given:
+            The BESTOW entry is used. If the user has a valid UID set
+            (in the Fridge) for the virtue and is therefore allowed the
+            requested allowance a new UID set is generated which includes
+            the virtue's TUID.  (i.e. the service uses the active object
+            table's "enhance" entry to generate a new UID set).  Using this
+            entry other services will be able to check that the user owns the
+            allowance by inspecting the virtue's UID set.  The initial
+            timeout for the generated UID set can be specified using
+            'Timeout' to specify the number of HEX seconds that it will
+            initially last for.  The default is about 5 minutes.  (Note
+            that if the Fridge is working any UID set returned will, in
+            fact last until the user loggs off or deletes it).
+
+        GRANT:
+            If the user has a valid UID set for the virtue and is therfore
+            allowed the requested allowance a new UID set for the allowance
+            is generated and put into the Fridge.  Note that this UID set is
+            not associated, in the AOT, with the virtue's UID set.  The
+            initial timeout can be specified using 'Timeout' as above.
+
+        ALLOWED:
+            Whether or not the virtue would be allowed the stated allowance
+            is checked.
+
+        GIVE:
+            The selected service is given a new allowance which it can give
+            to the given virtue.  This entry will only work if the user has
+            either the privilege 'PRIVPRIV' for PRIVMAN or 'SOAPPRIV' for
+            'SOAP' in the Fridge.
+
+        DELETE:
+            The allowance for the given virtue is removed from the selected
+            service.  This entry will only work under similar condition to
+            GIVE.
+            
+        The SERVICE key can be used to specify a service other than SOAP
+        or PRIVMAN (which are the defaults) at which a request is to be
+        made.
+
+        Use HELP USER COMMAND for information about how to list privileges
+        gained.  Use HELP UIDEDIT COMMAND for information about the command
+        used to edit the list of UIDs that your privileges make up.
+        HELP AUTHENTICATION and HELP UIDSET can also be used for general
+        information in this area.  Use HELP PUID <privname> in order to
+        find the PUID corresponding to any particular mnemonic privilege
+        name.
+
+Examples:
+        PRIV pwpriv
+                {gives user privilege 'pwpriv' using enhance}
+        PRIV GRANT privpriv TIMEOUT 200
+                {gives user a separate privilege 'privpriv' which
+                 will last initially for #X200 seconds}
+        PRIV ALLOWED AUTY auth tripos system
+                {checks that the virtue 'system tripos' would allow
+                 a UID set for authentity 'auth'}
+        PRIV GRANT mypriv cgg
+                {GRANT's privilege 'mypriv' to USER cgg}
+        PRIV GRANT special general-privilege priv
+                {GRANTs privilege 'special' by virtue of the owner
+                 having a valid UID set for the privilege 'general-
+                 privilege'}
+        PRIV AUTY super-priv ALLOWED
+                {checks that the user is allowed a UID set for
+                 authentity 'super-priv'}
+        PRIV GIVE mypriv
+                {changes PRIVMAN to allow the user the privilege
+                 'mypriv'}
+        PRIV GIVE AUTY flower flower-server system
+                {changes SOAP to allow the 'service' 'flower-server'
+                 a UID set for a valid authentity 'flower'}
+        PRIV DELETE AUTY flower
+                {changes SOAP so as no longer to allow the user
+                 to claim a UID set for the authentity 'flower'}
+        PRIV alienpriv SERVICE anotherprivman
+
+  
+

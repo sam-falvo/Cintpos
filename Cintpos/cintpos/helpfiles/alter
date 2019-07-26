@@ -1,0 +1,41 @@
+*command
+**
+ALTER command
+Form:           ALTER   "NAME/A,ACCESS/A"
+Purpose:        To alter the access matrix associated with a directory entry.
+Author:         MFR
+
+Specification:
+
+NAME is the name of a filing system file or directory (strictly, the
+    directory entry referring to it).
+
+ACCESS is an access matrix, in the form
+                      /v-part/x-part/y-part/z-part
+
+    Each of the parts can contain any combination (possibly empty) of the
+    characters
+                      CVXZY, RWE, DAU
+
+    Provided that no protection violation occurs the access matrix will be set
+    to the specified value. Note that the filing machine will not permit
+    matrices to be created which have neither D(elete) not A(lter) access.
+    See HELP ACCESS MATRIX for further information.
+
+    Parts may be omitted, eg ( /v-part/x-part ) if no access is to be given
+    to trailing parts. Note that no check is made that the bits specified (ie.,
+    CVXYZ or RWE) are appropriate to the object type, although no irrevocable
+    damage can ensue (you'll just get an unexpected access matrix as the
+    result).
+
+    The ACCESS field may also be given as the string "default".  This will,
+    if allowed, set the matrix to the default value for the given object type.
+    At the time of writing this is /DAURW/ARW/RW/R for a file and
+    /ACV/ACX/CY/Z for a directory.
+
+Example:        ALTER WOMBAT /DAURW/ARW//R
+                ALTER WOMBAT DEFAULT
+                ALTER POSSUM /D
+                ALTER MYDIR /ACVXY/Z/Z/Z
+
+

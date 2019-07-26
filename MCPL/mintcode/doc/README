@@ -1,0 +1,220 @@
+                 MCPL (Revised 13 October 2006)
+
+         Interpretive and Native Code Implementations
+
+
+This distribution of MCPL is free of charge to individuals for
+private use and to academic institutions, but please, if you
+install the system send me an e-mail message (to mr@cl.cam.ac.uk) 
+so I can keep a record of who is interested in it.
+
+This distribution is still in a somewhat unpolished state. However, it
+currently works well enough to run all the demonstration programs in
+MCPL/mcplprogs/.
+
+It is ultimately meant to provide a machine independent interpretive
+version of MCPL. The interpreter in implemented in C.
+
+This distribution was developed under Linux, but should be (easily?)
+transferable to DEC Alpha machines, Mips R2000/3000 machines, Sun4s,
+Sun/SPARCs and 386/486 machines under MSDOS, MAC or OS/2. The simplest
+installation is for Linux machines. This distribution includes a version
+that runs under Windows 95/98/NT/2000/XP.
+
+Linux Installation 
+
+This section describes how to install Cintcode MCPL on
+an IBM PC running Linux.
+
+1) The following directory structure is required:
+
+   |
+   *--BCPL                (from bcpl.tgz or bcpl.zip)
+   |  |
+   |  *--cintcode         source and compiled code + headers
+   |  |
+   |  *--bcplprogs        various BCPL demonstration programs
+   |  |
+   |  *--natbcpl          experimental native code version
+   |
+   *--MCPL                (from mcpl.tgz or mcpl.zip)
+      |
+      *--mintcode         compiled code + header files
+      |
+      *--mcplprogs        contains directories of MCPL demonstrations
+      |
+      *--natmcpl          experimental native code version
+
+The above directory structure is built by performing the following
+steps.
+
+2) First install the BCPL system (bcpl.tgz or bcpl.zip) which is
+available from my homepage. Make sure you complete the installation of
+BCPL, including the setting of PATH and BCPLPATH (see the BCPL
+distribution README file), before attempting to install MCPL.
+
+3) Next make the parent of BCPL the current directory.
+
+        cd .......
+
+4) Extract the files from mcpl.tgz, eg (assuming ...../mcpl.tgz is in
+the where the mcpl.tgz file is)
+
+        tar zxvf ...../mcpl.tgz
+or
+        gunzip -c ...../mcpl.tgz | tar xvf -
+
+BEWARE: If you obtained mcpl.tgz using a browser such as Internet Explorer
+it may have already decompressed the file. If this has happened, use the
+following instead.
+
+        tar xvf mcpl.tgz
+
+
+This will create the directory MCPL containing the directories
+mintcode, mcplprogs and natmcpl, and fill them with useful
+material. The directory mcplprogs contains directories of
+demonstration programs.
+
+Alternatively, use mcpl.zip and the appropriate decompression step.
+
+5) Change directory to MCPL/mintcode
+
+        cd MCPL/mintcode
+ 
+6) Add the absolute address of the mintcode directory to the
+environment variables PATH and define MCPLROOT, MCPLPATH and MCPLHDRS.
+This could possibly be done by adding some lines to your .profile
+or .bash_profile file. On my system they are as follows:
+
+        export MCPROOT=$(HOME)/distribution/MCPL/mintcode
+        export MCPLPATH=$(MCPLROOT)/min
+        export MCPLHDRS=$(MCPLROOT)/g
+        export PATH=$PATH:$(MCPLROOT)/bin
+
+7) Build the Mintcode MCPL system by typing:
+
+        make clean
+        make
+
+This will compile and enterp the MCPL Mintcode system.
+
+8) To compile an MCPL program (eg MCPL/mcplprogs/demos/queens.m)
+change to directory MCPL/mcplprogs/demos, enter the BCPL system and
+invoke the MCPL compiler by typing:
+
+        cd ..../MCPL/mcplprogs/demos  -- get into the demos directory
+        cintsys                       -- enter the BCPL system
+        c mp queens                   -- compile the queens program
+
+This will compile queens.m leaving the compiled code queens in the
+current working directory.
+
+9) To execute the queens program, create another shell (xterm) window
+then type:
+
+        cd ..../MCPL/mcplprogs/demos  -- get into demos directory
+        mintsys                       -- enter the MCPL system
+        queens                        -- execute the queens program
+
+Some other example programs worth trying in demos are:
+
+        primes    -- print primes less than 1000
+        coins     -- how many ways to represent a given sum of money 
+        fridays   -- shows that the 13th is most often a friday
+        turing    -- a Turing machine demo
+        crdemo    -- a coroutine demo
+        eval      -- a lambda evaluator
+        fft       -- a demo fft program using modulo arithmetic
+        pento     -- finds 2339 solutions of the pentominoes problem
+                  -- allow 20 minutes or so!
+
+The are many other demonstration programs in MCPL/mcplprogs/.
+
+To leave the MCPL mintcode system type: logout or (^C).
+
+
+10) The MCPL programs that are part of the system are MBOOT.m, MLIB.m
+and MCLI.m. They reside in MCPL/mintcode/sysm and can be recompiled
+using the BCPL system (cintsys) by typing (in directory MCPL/mintcode)
+the commands:
+
+        c ms MBOOT
+        c ms MLIB
+        c ms MCLI
+
+System commands are in MCPL/mintcode/com may be compiled using mc
+(also in MCPL/mcplcomp), eg:
+
+        c mc echo
+        c mc abort
+        c mc logout
+        c mc stack
+        c mc map
+        c mc prompt
+
+The MCPL compiler is a BCPL program in BCPL/cintcode/com.  Its called
+mcpl.b, and it GETs com/mcplsyn.b and com/mcpltrn.b. It will have been
+compiler when the BCPL Cintcode system was installed.
+
+11) Read the documentation in MCPL/mintcode/doc and any README and
+Makefile files you can find.
+
+12) A postscript version of the the MCPL manual is available from my
+home page.
+
+Installation on machines running Windows 95/98/NT/2000/XP
+
+The file mintsys.exe is normally included in the standard distribution
+and should work under Windows 95/98/NT/2000/XP. To run the MCPL
+mintcode system, first set the environment variables PATH and MCPLPATH
+to include the full file name of the mintcode directory. This can be
+under Windows 95/98 by editing AUTOEXEC.BAT, and under Windows
+NT/2000/XP by clicking Start->Settings->System->Environment and
+editing the PATH and MCPLROOT, MCPLPATH and MCPLHDRS found there.
+
+Minterp.exe was compiled using the GNU development tools and utilities
+for Windows 95/98/NT/2000/XP.  I recommend using the GNU development
+tools and utilities for Windows 95/98/NT/2000/XP that are available
+from
+
+        http://sources.redhat.com/cygwin/download.html.
+
+I would recommend clicking on the "Install Cygwin Now!" link.  I am
+currently using the Cygwin DLL 1.3.3 release.
+
+Before attempting to install MCPL, first install and test the BCPL 
+Cintcode system. 
+
+To recompile mintcode.exe, goto directory MCPL\mcplcomp and edit
+the Makefile to comment out the lines refering to LINUX and uncomment
+the line refering to CYGWIN32.
+
+Then type:
+
+     make clean
+     make
+
+This should reconstruct the system and create the executable mintsys.exe.
+
+
+Native Code Compiler from Linux and DEC Alphas
+
+The directory MCPL/natmcpl contains files that make up the native code
+versions of MCPL for Linux and DEC Alpha machines. Look at the file
+README in MCPL/natmcpl/doc to see how to install and use the system.
+
+Good luck!
+
+
+Martin Richards
+     (mr@cl.cam.ac.uk, http://www.cl.cam.ac.uk/users/mr)
+University Computer Laboratory
+New Museums Site                  
+Pembroke Street
+Cambridge
+UK                                                   13 April 2006
+
+
+
+

@@ -1,0 +1,28 @@
+
+$get!mushdr1;
+
+\score "t.mus" [
+
+\conductor (
+  \timesig(2 8)
+  s1\tempo(:s4 120~) |
+  \timesig(3 8) s4. \timesig(3 8) s4. \timesig(2 8) s4 |
+  \timesig(4 4) s1 |
+  s1\tempo(60) |
+  s1 |
+  s1 |
+  s1 ||
+)
+
+\solo(
+ $piano;
+ 5c4\v(60)\l(120) c c c | d2 r |
+ [(c1)
+  (r4 c2.)
+  (r2 c)
+  (r2. c4)]\v(30~ 90) | r1 |
+
+)
+
+]
+

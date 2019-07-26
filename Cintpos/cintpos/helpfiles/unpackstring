@@ -1,0 +1,13 @@
+*procedure
+**
+UNPACKSTRING
+      To unpack the length count and characters in a  string
+into a vector, one to a word.
+      unpackstring ( string, vector )
+      The  length  and characters in the string are unpacked
+one to a word into the vector, such that
+          string % 0 -> vector ! 0
+etc. The string and vector may be coincident ( ie.,  @string
+= @vector ) but they may not otherwise overlap.
+
+

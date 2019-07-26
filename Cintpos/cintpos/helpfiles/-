@@ -1,0 +1,33 @@
+*"** " #H #HCH +
++command #H star
++*
+"*" is the name of the terminal stream - it can be used anywhere that
+a normal file name can be used.
+The "star" command is used for remote terminal connection:
+(use HELP STAR COMMAND)
++
+* ***- #H break
+*: #H directory
+*:c #H directory
+*:h #H directory
+*:l #H directory
+*:g #H directory
+*:s #H directory
+*:info.spec #H documentation
+*:info.sources #H sources
+*:g.bcpl #H sourcelib
+*@t #H console
+*@s #H console
+*@ #H terminal
+*@x #H terminal
+*% #H byte
+*/A
+*/K
+*/S
+The qualifiers /A /K and /S are used in RDARGS (q.v.), and define the format
+of parameters which a command is prepared to accept.  See HELP RDARGS for
+more information.
+*!
+! is the BCPL indirection operator.  See the BCPL book for further information.
+
+

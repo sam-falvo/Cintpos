@@ -1,0 +1,228 @@
+*documentation #N ..
+*resource #N ..
+*maintenance #N ..
+*MISC #N ..
+*layout #N ..
+*all ..
+** #I #TCH ~
+TRIPOS SOFTWARE STANDARDS (!)
+
+    Since TRIPOS is unprotected there is basically little to stop a user
+creating any software that he chooses - however the purpose of these
+recommendations is to ensure that that software is safely and easily usable
+by others.
+
+    These standards are broken down into the following areas each of which
+can be accessed using HELP STANDARD <area> - HELP STANDARD ALL printing
+the complete recommendation.
+    Also see HELP HELP STANDARDS and HELP SOURCELIB STANDARDS for standards
+in other areas.
+
+    DOCUMENTATION  - how, when and where to document what
+    MAINTENANCE    - installation, bug fixing and compilation
+    RESOURCES      - size requirements, management of resources
+    LAYOUT         - software layout and legibility
+    MISC           - use of RDARGS, TESTFLAGS etc.
+
+*all ..
+*documentation
+DOCUMENTATION STANDARDS
+
+When and where to document:
+    a)  When the software is installed it should be fully documented
+        in HELP (use HELP HELP STANDARDS for more information).  A reference
+        to this should be mentioned in the TRIPOS comments book if possible.
+        The ANNOUNCE command should be used to inform remote users of
+        the new utility.
+
+        Software is useless unless other people know that it exists.  It
+        is also of very little value unless they can easily find out how
+        to use it.
+
+    b)  On any major change to the utilities interface or function HELP
+        should be updated and (perhaps) ANNOUNCE used.
+
+    c)  Minor changes may only be accompanied by keeping HELP up to date.
+
+    d)  The documentation in the source should, at all times, be kept up
+        to date.
+
+    e)  If the software is particularly complex or is used on external
+        systems it may be a good idea to document it in a documentation
+        note which can be held in the documentation folder.
+
+What to document:
+    a)  The command line interface to a command.  This should specify
+        exactly what each item in the commands RDARGS string means and
+        is used for - there is an existing format for this documentation
+        which can be deduced from current HELP files.  Examples should
+        preferably be given.  Any syntax decoded within an item should
+        also be explained (e.g. file title, option string, list of items
+        separated by commas etc.).  The action of the utility in each
+        case should be fully explained.  Keys in HELP for a command should
+        include COMMAND.
+
+    b)  The format of any files or external data that the utility uses
+        should be given and explained.  This should include any command
+        syntax, record formats or field layout etc.  Commands should be
+        available from the HELP key COMMANDS.
+
+    c)  The machine interface to a task or CALLSEGable command or standard
+        procedure should include the exact requirements of each parameter
+        and describe the action of the utility in every different combination
+        of parameters.  Keys for HELP should include CALL and CALLSEG for
+        CALLSEGable commands.
+
+    d)  If the utility is very complex it may be desirable to document it
+        in a separate note and put it into the documentation folder (use
+        HELP DOCUMENTATION for more information) and include a reference
+        to it with the HELP key SPEC - describing the utility only briefly
+        in HELP.
+
+Internal Documentation:
+    a)  As already mentioned this should always be up to date.
+
+    b)  It should be of good enough quality for an experienced TRIPOS user
+        to read and understand.  The documentation should preferably be
+        local in nature (i.e. close to the procedures or data structures
+        to which it refers) and easily locatable.
+
+    c)  In particular use of any non-portable or non-standard facility should
+        be documented.  The same applies to any "devious" ("clever"?) or
+        non-obvious code.
+
+    d)  An overall description of the program can usefully be provided at
+        the front if the program has any hidden complexity.
+
+*all ..
+*maintenance
+MAINTENANCE STANDARDS
+
+     These standards refer to the maintenance (e.g. bug fixing and
+enhancements) of software.  In particular to the portability of a piece of
+software and the ease with which other people can fix or enhance it.
+
+    a)  Installation.  Is the new utility really necessary?  Would it have
+        been better to fix or enhance some other related utility?
+        Installation involves TESTING the utility thoroughly.  It should
+        conform to its specification exactly.  It should be documented
+        (see HELP STANDARD DOCUMENTATION) conform to the recommendations
+        made in HELP STANDARD RESOURCES and HELP STANDARD MISC too if
+        possible.  When it has been proved its source should be placed
+        in the standard place for that kind of source (use HELP SOURCES)
+        and its load module (if there is one associated with it) should
+        be placed in its standard place (e.g. SYS:L or SYS:C).  It may be
+        that help from a more experienced TRIPOS user will be necessary
+        here.  The relevant documentation should be inserted into HELP.
+        After installation it will be expected that the author maintains
+        the utility for as long as possible.
+
+    b)  Compilation or assembly requirements.  Utilities should not require
+        non-standard resources for their compilation or assembly.  For
+        example a BCPL program should be segmented if it is necessary to
+        quote options to the BCPL compiler in order to compile it.  Program
+        reorganization should also be undertaken if the standard compiler/
+        assembler habitually runs out of any other resource (e.g. stack)
+        whilst processing the software.
+
+    c)  Portability.  Sources should not conform to syntax other than that
+        supported by the standard language processing utilities.  It is
+        quite permissible for a subset of that syntax to be used but no
+        extensions that are unlikely to be supported at other TRIPOS sites
+        should be used.
+
+        Sources should, by good use of the standard libraries and headers,
+        be able to be compiled or assembled for any machine on which TRIPOS
+        runs - in particular both for the 32 bit MC68000 system and the
+        16 bit LSI4 system.
+
+*all ..
+*resource
+RESOURCE MANAGEMENT STANDARDS
+
+    Standards apply to TRIPOS which will not necessarily apply to other
+systems.  This is because TRIPOS runs on unprotected machines which have
+no separate safe environment in which to manage resources itself so that
+there is nothing to stop commands and programs from simply using all the
+resources available to the machine.  Basically each utility should
+return any resource that it allocates for temporary use.  It should do this
+consistently no matter what the reason for its termination.
+
+    a)  Streams and files.  A utility should always restore the original
+        input and output streams that it had when it was entered.  Any
+        file opened during its execution should be explicitly closed.
+        Any temporary files created should be created in the "T:"
+        directory and should be deleted where possible.  The current
+        system uses the Fileserver for its files.  The Fileserver can
+        maintain only thirty or so opened files simultaneously.  It is
+        therefore recommended that programs are not designed which rely
+        upon large numbers of files being open simultaneously.
+
+    b)  Storage.  All store that is allocated (using GETVEC) should be
+        explicitly returned before the utility terminates.  Storage
+        requirements in excess of 30K words are likely to reduce the
+        portability of the utility to smaller TRIPOS systems.
+
+*all ..
+*layout
+SOFTWARE LAYOUT
+
+    Naturally there is very little that can be said in this area that will not
+be fiercely contested by someone.  Consequently only very simple guidelines
+are given.
+
+    a)  Documentation.  Sources should be documented (use HELP STANDARDS
+        DOCUMENTATION for more details).
+
+    b)  Indentation.  No matter what your favourite indentation algorithm
+        is your sources should be usefully and consistently indented so
+        that a reader can in some way determine the structure of your
+        program.  (This may well not apply to assembly code sources).
+
+    c)  Blank lines.  Again - no matter what your own preferred way of
+        distributing blank lines about your source - your program should
+        include at least some blank lines (or lines with just a comment
+        symbol on if you wish).  They can be used either to improve the
+        legibility of the code or to make the structure of the program
+        more apparent (or perhaps even both!).
+
+    d)  Identifiers.  Where possible long identifiers are to be preferred.
+        In this respect they should be as descriptive as possible without
+        actually being wordy.
+
+    e)  Stropping.  You may care to use some consistent way to distinguish
+        the various kinds of lexical items in your program in any systematic
+        way - using case stropping or any other legal syntactic device.
+        A very common (and therefore preferable) stratagem is to use upper
+        case for reserved words only.
+
+*all
+*MISC
+MISC STANDARDS
+
+    These recommendations relate to the general performance expected from
+BCPL commands etc.
+
+    a)  Break handling.  TESTFLAGS(1) should be used in all loops and long
+        delays that could occur in a command.  It should be used in such a
+        way that the current activity is safely terminated.
+
+    b)  Argument strings.  RDARGS should always be used to determine the
+        arguments to a command.  When it fails the RDARGS string should
+        preferably be printed in the error message.
+
+    c)  TIDYUP.  A routine called TIDYUP should preferably be provided which,
+        as far as possible, frees all the resources that the program has
+        claimed (see HELP STANDARD RESOURCES).  This routine is used by the
+        KILL command in desparate circumstances (use HELP KILL COMMAND for
+        more information).
+
+    d)  Commands which can be CALLSEG'ed should not use any GLOBALs.
+
+    e)  If the name of the command is used in error messages etc. it should
+        be obtained from the global CLI.COMMANDNAME available in the "CLIHDR"
+        header file.
+
+** #H standard
+
+
