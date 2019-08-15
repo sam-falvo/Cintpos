@@ -701,7 +701,7 @@ clean:
 	rm -f *~ sysc/*~ sysb/*~ sysasm/*/*~ com/*~ doc/*~
 	rm -f sysc/INT.h
 	rm -f litender bigender
-	rm -f obj/*.o
+	rm -rf obj
 	rm -f cintsys rastsys
 	rm -f bin/cintsys bin/rastsys
 	rm -f bin/cintsys.exe bin/rastsys.exe
@@ -715,7 +715,7 @@ clean64:
 	rm -f *~ sysc/*~ sysb/*~ sysasm/*/*~ com/*~ doc/*~
 	rm -f sysc/INT.h
 	rm -f litender64 bigender64
-	rm -f obj/*.o
+	rm -rf obj
 	rm -f cintsys64 rastsys64
 	rm -f bin/cintsys64 bin/rastsys64
 	rm -f bin/cintsys64.exe bin/rastsys64.exe
