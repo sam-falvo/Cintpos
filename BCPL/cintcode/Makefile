@@ -236,11 +236,15 @@ sys:	bin/cintsys $(ENDER)
 sys64:	bin/cintsys64 $(ENDER)64
 	echo "bin/cintsys64 is up to date"
 
-bcplready:	bin/cintsys bin/rastsys $(ENDER) allcompiled
+bcplready:	obj/created bin/cintsys bin/rastsys $(ENDER) allcompiled
 	echo touch >bcplready
 
-bcplready64:	bin/cintsys64 bin/rastsys64 $(ENDER)64 allcompiled64
+bcplready64:	obj/created bin/cintsys64 bin/rastsys64 $(ENDER)64 allcompiled64
 	echo touch >bcplready64
+
+obj/created:
+	mkdir -p obj
+	echo "Created" >obj/created
 
 allcompiled:	bin/cintsys
 	cintsys -c c compall
