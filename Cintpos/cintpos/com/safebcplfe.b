@@ -301,9 +301,10 @@ LET default_hdrs() = VALOF // Changed MR 12/07/09
   IF hdrs RESULTIS hdrs
   // The following is only executed if cintsys or cintsys64 fails to set
   // the hdrs field in the rootnode.
+  // Note that tcb=0 when running under cintsys.
   TEST t64
-  THEN RESULTIS "BCPL64HDRS"
-  ELSE RESULTIS "BCPLHDRS"
+  THEN RESULTIS tcb -> "POS64HDRS", "BCPL64HDRS"
+  ELSE RESULTIS tcb -> "POSHDRS",   "BCPLHDRS"
 }
 
 GLOBAL {
@@ -318,7 +319,7 @@ token; wordnode; ch
 rdtag; performget
 lex; dsw; declsyswords; nlpending
 lookupword; eqlookupword; rch
-sourcenamev; sourcefileno; sourcefileupb
+sourcenamev; sourcefileno; sourcenamevupb
 skiptag; wrchbuf; chcount; lineno
 nulltag; rec_p; rec_l
  
@@ -350,10 +351,10 @@ c_space     = 32
 
 LET floatingchk() BE
 { TEST t64
-  THEN UNLESS c64 DO
-         synerr("64-bit floating point requires 64-bit cintcode")
-  ELSE IF c64 DO
-         synerr("32-bit floating point requires 32-bit cintcode")
+  THEN UNLESS ON64 DO
+         synerr("64-bit floating point constants cannot be compiled using 32 bit BCPL")
+  ELSE IF ON64 DO
+         synerr("32-bit floating point constants cannot be compiled using 64 bit BCPL")
 }
  
 LET start() = VALOF
@@ -364,8 +365,8 @@ LET start() = VALOF
                 *GB2312/S,UTF8/S,SAVESIZE/K/N,HARD/S,*
                 *T32/S,T64/S,OPT/K,TREE2/S,NOSELST/S"
   LET stdout = output()
-  LET objline1vec = VEC 256/bytesperword
-  LET optstringvec = VEC 256/bytesperword
+  LET objline1vec = VEC 256/bytesperword+1
+  LET optstringvec = VEC 256/bytesperword+1
   objline1 := objline1vec
   objline1%0 := 0
   optstring := optstringvec
@@ -388,11 +389,11 @@ LET start() = VALOF
   sysprint := stdout
   selectoutput(sysprint)
  
-  writef("*nBCPL (11 Dec 2018) %n bit with the FLT feature*n", bitsperword)
+  writef("*nBCPL (3 Sep 2019) %n bit with the FLT feature*n", bitsperword)
 
   // Allocate vector for source file names
-  sourcefileupb := 1000
-  sourcenamev := getvec(sourcefileupb)
+  sourcenamevupb := 1000
+  sourcenamev := getvec(sourcenamevupb)
   UNLESS sourcenamev DO
   { writef("Insufficient space available*n")
 abort(999)
@@ -400,12 +401,13 @@ abort(999)
     GOTO fin
   }
   sourcefileno := 0
-  FOR i = 0 TO sourcefileupb DO sourcenamev!i := 0  // Corrected 19/08/2018   
+  FOR i = 0 TO sourcenamevupb-1 DO sourcenamev!i := 0  // Corrected 19/08/2018   
  
   // Set the current system wordlength flag
-  c64 := B2Wsh=3                          // =TRUE if on a 64-bit system
+  //ON64 is now a manifest constant
+
   // Set the target system wordlength flag
-  t64 := c64                              // Set the default target word length
+  t64 := ON64                              // Set the default target word length
 
   IF rdargs(argform, argv, 50)=0 DO { writes("Bad arguments*n")
                                       errcount := 1
@@ -419,7 +421,9 @@ abort(999)
   IF argv!18 DO t64 := FALSE              // T32/S
   IF argv!19 DO t64 := TRUE               // T64/S
   wordbytelen := t64 -> 8,   4            // Set the target word length in bytes
+                                          // This may be different from bytesperword.
   wordbitlen  := t64 -> 64, 32            // Set the target word length in bits
+                                          // This may be different from bitsperword.
   IF argv!20 DO                           // OPT/K
   { LET s = argv!20
     FOR i = 0 TO s%0 DO optstring%i := s%i
@@ -462,11 +466,13 @@ abort(999)
                                           // to test the FLT feature.
 
   noselst := argv!22                      // NOSELST/S
-
+                                          // Do not generate SELLD or
+                                          // SELST Ocode instructions.
   // Added 5/10/2010
   IF eqcases DO lookupword := eqlookupword
 
 //writef("BCPL hdrs = %s*n", hdrs)
+IF noselst DO writef("NOSELST option was given*n")
 
   { // Feature added by MR 17/01/06
     // If file objline1 can be found, its first line will be written
@@ -497,7 +503,7 @@ abort(999)
   }
 
   sourcestream := findinput(argv!0)       // FROM/A
-  sourcenamev!0 := argv!0    // Fileno zero is the FROM file
+  sourcenamev!0 := argv!0    // File number zero is the FROM file
   sourcefileno  := 0
 
   IF sourcestream=0 DO { writef("Trouble with file %s*n", argv!0)
@@ -509,9 +515,29 @@ abort(999)
   selectinput(sourcestream)
  
   TEST argv!1                             // TO/K
-  THEN { gostream := findoutput(argv!1)
+  THEN { // Change cin/ to cin64/ if necessary.
+         LET arg1 = argv!1
+	 LET len  = arg1%0
+         LET tofilename = VEC 64+1 // Room for maximum length string.
+	 FOR i = 0 TO len DO tofilename%i := arg1%i
+         IF t64 & len>4 &
+	    arg1%1='c'  &
+	    arg1%2='i'  &
+	    arg1%3='n'  &
+	    arg1%4='/'  DO
+         { // The target code is 64 bit and the destination starts
+	   // with cin/ so replace it by cin64/
+	   tofilename%4 := '6'
+           tofilename%5 := '4'
+           FOR i = 4 TO len DO tofilename%(i+2) := arg1%i
+	   tofilename%0 := len+2
+         }
+
+         writef("bcpl compiling to file: %s*n", tofilename)
+
+         gostream := findoutput(tofilename)
          IF gostream=0 DO
-         { writef("Trouble with code file %s*n", argv!1)
+         { writef("Trouble with code file %s*n", tofilename)
            IF hard DO abort(1000)
            errcount := 1
            GOTO fin
@@ -535,7 +561,7 @@ abort(999)
     GOTO fin
   }
    
-  UNLESS argv!2=0 DO                      // VER/K
+  IF argv!2 DO                            // VER/K
   { TEST xrefing
     THEN sysprint := findappend(argv!2)
     ELSE sysprint := findoutput(argv!2)
@@ -551,14 +577,14 @@ abort(999)
   selectoutput(sysprint)
 
   // Now syntax analyse, translate and code-generate each section
-  { LET b = VEC 64/bytesperword
+  { LET b = VEC 64/bytesperword+1
     chbuf := b
     FOR i = 0 TO 63 DO chbuf%i := 0
     // Sourcefile 0 is the FROM filename
     // others are GET files of the current section
     sourcenamev!0 := argv!0
     sourcefileno := 0
-    FOR i = 1 TO sourcefileupb DO sourcenamev!i := 0 // Done for safety
+    FOR i = 1 TO sourcenamevupb DO sourcenamev!i := 0 // Done for safety
     chcount, lineno := 0, (sourcefileno<<20) + 1
     token, decval, fltval := 0, 0, flt0
     rch()
@@ -1368,14 +1394,14 @@ AND performget() BE
     RETURN
   }
 
-  IF sourcefileno>=sourcefileupb DO
+  IF sourcefileno>=sourcenamevupb DO
   { synerr("Too many GET files")
     RETURN
   }
 
-  { LET len = charv%0
+  { LET len  = charv%0
     LET node = getvec(3)  // Freed at end of GET insertion
-    LET str  = getvec(len/bytesperword) // Freed at end of compilation
+    LET str  = getvec(len/bytesperword+1) // Freed at end of compilation
 
     UNLESS node & str DO
     { IF node DO freevec(node)
@@ -1385,7 +1411,7 @@ AND performget() BE
     FOR i = 0 TO len DO str%i := charv%i
     sourcefileno := sourcefileno+1
     sourcenamev!sourcefileno := str
-//sawritef("performget: file %n is %s*n", sourcefileno, str)
+
     node!0, node!1, node!2, node!3 := getstreams, sourcestream, lineno, ch
     getstreams := node
   }
@@ -1688,7 +1714,7 @@ AND formtree() =  VALOF
 
   nametablesize := 541
 
-  charv      := newvec(256/bytesperword)
+  charv      := newvec(256/bytesperword+1)
   charv%0 := 0
   nametable  := newvec(nametablesize) 
   FOR i = 0 TO nametablesize DO nametable!i := 0
@@ -2349,19 +2375,18 @@ AND rcom() = VALOF // Added <> 18/07/2010
   RESULTIS a
 }
 
-/*
-LET plist(x) BE
+LET plist1(x) BE // Rename plist1 and plist to debug the hash table
 { writef("*nName table contents, size = %n*n", nametablesize)
    FOR i = 0 TO nametablesize-1 DO
    { LET p, n = nametable!i, 0
-      UNTIL p=0 DO p, n := p!1, n+1
+      WHILE p DO p, n := p!1, n+1
       writef("%i3:%n", i, n)
       p := nametable!i
-      UNTIL p=0 DO { writef(" %s", p+2); p := p!1  }
+      WHILE p DO { writef(" %s", p+2); p := p!1  }
       newline()
    }
 }
-*/
+
 LET plist(x, n, d) BE
 { LET size, ln = 0, 0
   LET v = TABLE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -2373,7 +2398,7 @@ LET plist(x, n, d) BE
                  { LET val = h2!x
                    TEST -1000000<=val<=1000000
                    THEN writef("NUMBER: %n", val)
-                   ELSE writef("NUMBER: %x8", val)
+                   ELSE writef("NUMBER: #x%x8", val)
                    RETURN
                  }
 
@@ -2986,21 +3011,24 @@ LET trans(x, next) BE
     CASE s_assadd:
     CASE s_asssub:
     CASE s_ass:
+      // Note that simultaneous assignments have already been
+      // replaced by sequences of simple assignments.
       // Convert op:= to #op:= if either operand has the FLT tag.
       UNLESS isflt(h3!x) | isflt(h2!x) DO
-      { // Compile a no FLT assignment
+      { // Compile a non FLT assignment
         context, comline := x, h4!x
         op := assop2op(op)
-        assign(h2!x, h3!x, FALSE, op, op2sfop(op))
+        assign(h2!x, h3!x, FALSE, op)
         trnext(next)
         RETURN
       }
 
-      op := cv2flt(op)   // Promote op:= to #op:=
+      // Promote op:= to #op:=
+      op := cv2flt(op)
       h1!x := op
       // Fall through
 
-    CASE s_assfmul:
+    CASE s_assfmul: // The floating point assignment operators
     CASE s_assfdiv:
     CASE s_assfmod:
     CASE s_assfadd:
@@ -3008,7 +3036,7 @@ LET trans(x, next) BE
     CASE s_fass:
       context, comline := x, h4!x
       op := assop2op(op)
-      assign(h2!x, h3!x, TRUE, op, op2sfop(op))
+      assign(h2!x, h3!x, TRUE, op)
       trnext(next)
       RETURN
 
@@ -3021,7 +3049,7 @@ LET trans(x, next) BE
     CASE s_assxor:
       context, comline := x, h4!x
       op := assop2op(op)
-      assign(h2!x, h3!x, FALSE, op, op2sfop(op))
+      assign(h2!x, h3!x, FALSE, op)
       trnext(next)
       RETURN
  
@@ -3650,7 +3678,7 @@ LET isflt(x) = x=0 -> FALSE, VALOF
     CASE s_fnum:  RESULTIS TRUE
 
     CASE s_neg: CASE s_abs:
-      IF isflt(h2!x) RESULTIS TRUE
+      RESULTIS isflt(h2!x)
 
     CASE s_add: CASE s_sub:
     CASE s_mul: CASE s_div: CASE s_mod:
@@ -3693,6 +3721,12 @@ LET load(x, ff) BE
              out1(s_add)
            }
 
+           // Optimise accessing a complete word.
+           IF sh=0 & (len=0 | len=wordbitlen) DO
+           { out1(s_rv) // The source field is a complete word
+             RETURN
+           }
+
            // Compile (SLCT len:sh:0)(E+offset)
            TEST noselst
            THEN { // Old version not using SELLD
@@ -3709,10 +3743,7 @@ LET load(x, ff) BE
                   }
                 }
            ELSE { // New version using SELLD
-                  TEST sh=0 &
-                       (len=0 | len=wordbitlen)
-                  THEN out1(s_rv) // The source field is a complete word
-                  ELSE out3(s_selld, len, sh)
+                  out3(s_selld, len, sh)
                 }
            RETURN
          }
@@ -3995,9 +4026,10 @@ AND loadlv(x) BE
                      RETURN
  
     CASE s_vecap: { LET a, b = h2!x, h3!x
-                    IF h1!a=s_name DO a, b := h3!x, h2!x
-                    load(a, FALSE)
-                    load(b, FALSE)
+                    TEST h1!a=s_name   |
+                         h1!a=s_number |
+                         h1!a=s_fnum THEN { load(b, FALSE); load(a, FALSE) }
+                                     ELSE { load(a, FALSE); load(b, FALSE) }
                     out1(s_add)
                     ssp := ssp - 1
                     RETURN
@@ -4017,17 +4049,19 @@ AND loadlist(x) BE
 }
 
 // The conversion function are:
-//    op2sfop   convert an expression op to a selst op
+//    op2sfop   convert an expression op to a selst sfop
 //    assop2op  convert op:= to op
-//    cv2flt    convert an integer expression or integer
-//              assignment op to floating point.
+//    cv2flt    convert an integer op or assignment op
+//              to the floating point version.
 
 AND op2sfop(op) = VALOF SWITCHON op INTO
 { DEFAULT:       sawritef("Syserr in op2sfop op=%s not in switch*n",
                           opname(op))
                  RESULTIS op
 
-  CASE  0:       RESULTIS 0
+  CASE s_none:   RESULTIS sf_none
+
+  CASE s_vecap:  RESULTIS sf_vecap
 
   CASE s_mul:    RESULTIS sf_mul
   CASE s_div:    RESULTIS sf_div
@@ -4041,6 +4075,13 @@ AND op2sfop(op) = VALOF SWITCHON op INTO
   CASE s_fadd:   RESULTIS sf_fadd
   CASE s_fsub:   RESULTIS sf_fsub
 
+  CASE s_lshift: RESULTIS sf_lshift
+  CASE s_rshift: RESULTIS sf_rshift
+  CASE s_logand: RESULTIS sf_logand
+  CASE s_logor:  RESULTIS sf_logor
+  CASE s_eqv:    RESULTIS sf_eqv
+  CASE s_xor:    RESULTIS sf_xor
+
 }
 
 AND assop2op(op) = VALOF SWITCHON op INTO
@@ -4048,7 +4089,7 @@ AND assop2op(op) = VALOF SWITCHON op INTO
                           opname(op))
                  RESULTIS op
 
-  CASE  0:       RESULTIS 0
+//  CASE  0:       RESULTIS 0
 
   CASE s_assfmul:   RESULTIS s_fmul
   CASE s_assfdiv:   RESULTIS s_fdiv
@@ -4070,8 +4111,8 @@ AND assop2op(op) = VALOF SWITCHON op INTO
   CASE s_asseqv:    RESULTIS s_eqv
   CASE s_assxor:    RESULTIS s_xor
 
-  CASE s_fass:                    // Not needed ??
-  CASE s_ass:       RESULTIS 0
+  CASE s_fass:
+  CASE s_ass:       RESULTIS s_none
 }
 
 AND cv2flt(op) = VALOF SWITCHON op INTO
@@ -4367,41 +4408,83 @@ LET evalconst(x, ff) = VALOF
   RESULTIS 0
 }
 
-AND assign(lhs, rhs, ff, op, sfop) BE
-// Compile a simple assignment: lhs op:= rhs
-// If op=0 the assigment is lhs := rhs or lhs #:= rhs
-// Otherwise the assignment is: lhs sfop:= rhs where sfop
-// is one of the SELST operators allowed in assignments, ie
-// sf_mul, sf_div, etc
-// op is only used if the assignment is of the form E1%E2 op:= E3
-// For this case the ocode geneared is: E1 E2 GBYT E3 op 
-// The commas used in simultaneous assignments have
-// already been removed by cvassign.
+AND assign(lhs, rhs, ff, op) BE
+// Compile a simple assignment: lhs := rhs, lhs #:= rhs or lhs op := rhs.
+// Note that for simultaneous assignments have already been replaced by
+// sequences of simple assignments by cvassign.
+
+// If op=s_none the assigment is either lhs := rhs or lhs #:= rhs,
+// otherwise it is of the form: lhs op:= rhs where op is one of
+// the dyadic expression operators allowed in assignments, namely:
+//    s_vecap,
+//    s_mul,   s_div,  s_mod,  s_add,  s_sub,
+//    s_fmul,  s_fdiv, s_fmod, s_fadd, s_fsub,
+//    s_lshift, s_rshift, s_logand, s_logor, s_eqv or s_xor.
+
 // ff=TRUE if the rhs is to be evaluated in FLT mode.
 
-{ //ff := FALSE
+{ LET sfop = op2sfop(op)
+  // sfop is either sf_none or
+  // an operator used in SELST Ocode instructions, namely:
+  //   sf_vecap,
+  //   sf_mul,  sf_div,  sf_mod,  sf_add,    sf_sub,
+  //   sf_fmul, sf_fdiv, sf_fmod, sf_fadd or sf_fsub.
+
   SWITCHON h1!lhs INTO
-  { CASE s_name:        // name := E
-      load(rhs, ff)
-      TEST sfop=sf_none
+  { CASE s_name:        // name op:= E
+      TEST op=s_none
       THEN { // Compile: name := E
+             load(rhs, ff)
              transname(lhs, s_sp, s_sg, s_sl, 0, 0)
              ssp := ssp - 1
            }
       ELSE { // Compile: name sfop:= E
-             loadlv(lhs)
-             out4(s_selst, sfop, 0, 0)
-             ssp := ssp - 2
+             TEST noselst
+             THEN { // Load: lhs op rhs
+                    // op is a dyadic operator
+                    LET operator, a, b = op, lhs, rhs
+                    load(@operator, ff)
+                    transname(lhs, s_sp, s_sg, s_sl, 0, 0)
+                    ssp := ssp - 1
+                  }
+             ELSE { load(rhs, ff)
+                    loadlv(lhs)
+                    out4(s_selst, sfop, 0, 0)
+                    ssp := ssp - 2
+                  }
            }
       RETURN
  
     CASE s_rv:
-    CASE s_vecap:  load(rhs, ff)
+    CASE s_vecap:  IF op=s_none DO
+                   { load(rhs, ff)
+                     loadlv(lhs)
+                     out1(s_stind)
+                     ssp := ssp - 2
+                     RETURN
+                   }
+
+                   // op is a dyadic expression operator allowed
+                   // in assignments.
+                   IF noselst DO
+                   { // Load: lhs op rhs
+                     // op is a dyadic operator
+                     LET operator, a, b = op, lhs, rhs
+                     // Load the expression whose tree node is [op,lhs,rhs]
+                     load(@operator, ff)
+                     loadlv(lhs)
+                     out1(s_stind)
+                     ssp := ssp - 2
+                     RETURN
+                   }
+
+                   // Compile using SELST
+                   load(rhs, ff)
                    loadlv(lhs)
-                   out1(s_stind)
+                   out4(s_selst, sfop, 0, 0) 
                    ssp := ssp - 2
                    RETURN
- 
+
     CASE s_of:   { LET slct = evalconst(h2!lhs, FALSE) // Inserted 11/7/01
                    LET len = slct>>24
                    LET sh  = slct>>16 & 255
@@ -4410,7 +4493,14 @@ AND assign(lhs, rhs, ff, op, sfop) BE
                    IF len>0 DO mask := (1<<len)-1
                    mask := mask<<sh
                    TEST noselst
-                   THEN { load(rhs, ff)
+                   THEN { TEST op=s_none
+                          THEN { load(rhs, ff)
+                               }
+                          ELSE { // Load: lhs op rhs
+                                 // op is a dyadic operator
+                                 LET operator, a, b = op, lhs, rhs
+                                 load(@operator, ff)
+                               }
                           IF sh DO
                           { out2(s_ln, sh)
                             out1(s_lshift)
@@ -4451,7 +4541,7 @@ AND assign(lhs, rhs, ff, op, sfop) BE
                           { out2(s_ln, offset)
                             out1(s_add)
                           }
-                          TEST len=0 & sh=0 & sfop=0
+                          TEST len=0 & sh=0 & sfop=sf_none
                           THEN out1(s_stind) // Full word field
                                              // and no op.
                           ELSE out4(s_selst, sfop, len, sh) 
@@ -4461,19 +4551,23 @@ AND assign(lhs, rhs, ff, op, sfop) BE
                  }
 
     CASE s_byteap:
-      TEST op
-      THEN { // It is not a full word field
-             IF sfop=sf_fmul | sfop=sf_fdiv | sfop=sf_mod |
-                sfop=sf_fadd | sfop=sf_fsub DO
-               trnerr("Bad floating point %s assignment",
-                       sfname(sfop))
-             // Compile: E%E op:= E
-             load(lhs, FALSE) // Not good since the operands
-             load(rhs, FALSE) // of lhs get evaluated twice.
-             out1(op)
-             ssp := ssp-1
+      TEST op=s_none
+      THEN { // Compiling: E1%E2 := E3
+             load(rhs, ff)
            }
-      ELSE { load(rhs, ff) // Compiling: E1%E2 := E3
+      ELSE { // Compiling: E1%E2 op:= E3
+             // op is a dyadic expression operator allowed
+             // in assignments.
+             LET operator, a, b = op, lhs, rhs
+
+             // The destination is not a full word field,
+             // so some operators are not permitted.
+             IF sfop=sf_fmul | sfop=sf_fdiv | sfop=sf_fmod |
+                sfop=sf_fadd | sfop=sf_fsub | sfop=sf_vecap DO
+               trnerr("Bad op in E%E op:= E")
+
+             // Load an expression whose tree node is [op,lhs,rhs]
+             load(@operator, FALSE)
            }
       load(h2!lhs, FALSE)
       load(h3!lhs, FALSE)
@@ -4667,6 +4761,8 @@ AND prctxt(x) BE IF x DO
     CASE s_asseqv:    str := "EQV";  GOTO case_ass
     CASE s_assxor:    str := "XOR";  GOTO case_ass
 
+    CASE s_fass:      str := "#";    GOTO case_ass
+
     CASE s_ass:       str := ""
 case_ass:
          prctxte(h2!x, 4, 0)
@@ -4809,6 +4905,12 @@ AND prctxte(x, d, prec) BE IF x DO
                    RETURN
                  } 
     
+    CASE s_fnum: 
+                 { LET n = h2!x
+                   writef("%5.3f", n)
+                   RETURN
+                 } 
+    
     CASE s_flt :   writef("FLT %s", @h3!(h2!x)); RETURN
     CASE s_name:   writef("%s", @h3!x);          RETURN
     CASE s_true:   writef("TRUE");               RETURN
@@ -4876,9 +4978,14 @@ AND prctxte(x, d, prec) BE IF x DO
          prctxte(h3!x, d-1, 10)
          RETURN
 
+    CASE s_float:
+    CASE s_fix:
     CASE s_rv:
     CASE s_lv:
-         writef(op=s_rv->"!","@")
+         writef(op=s_float->"FLOAT",
+                op=s_fix  ->"FIX",
+                op=s_rv   ->"!",
+                            "@")
          prctxte(h2!x, d-1, 10)
          RETURN
   }
@@ -4922,7 +5029,10 @@ AND prctxte(x, d, prec) BE IF x DO
 
     CASE s_fneg:
     CASE s_fabs:
-         writef(op=s_fneg->"#-","#ABS ")
+    CASE s_abs:
+         writef(op=s_fneg->"#-",
+                op=s_fabs->"#ABS",
+                           "ABS")
          prctxte(h2!x, d-1, 8)
          RETURN
   }

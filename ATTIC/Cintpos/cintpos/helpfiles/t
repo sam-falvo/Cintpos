@@ -1,0 +1,93 @@
+*t #H #HCH +
++file #H commandfile
++command
++*
+T COMMAND
+Form:           T  "FILE/A,IFEXISTS/S"
+Purpose:        To switch the command input stream to the given
+                file.
+Author:         ARA BJK
+Specification:
+
+   T behaves rather like the C command, but does not do parameter
+substitution.  Therefore it does not need to write to disc, and so can
+be used to execute command files during file handler restart.  It may
+also execute faster.
+
+   However, it works in a more simple minded manner than C and will
+switch the standard input stream back to the terminal when it has
+terminated - not the input stream current at its time of calling.
+The practical upshot of this is that it does not "return" when used in
+a command file, and therefore should only be used as the last command
+in a command file.
+
+   The IFEXISTS switch will cause the command not to report its failure if
+FILE could not be opened.
+
+   Use HELP COMMAND SEQUENCES for more information about the commands
+available in a command file.
+
+Example:        T ABC
+                T INIT-SEQUENCE IFEXISTS
++
+*T: #H file
+*tapeserver #H tape
+*tcb #H task
+*term #H terminal
+*terminate
+To terminate a session, do one of the following:
+
+- Type the FINISH command to TRIPOS.
+
+- Type <BREAK> D to delete one terminal concentrator channel
+
+- Type <BREAK> QU to kill all terminal concentrator channels
+
+- On UDN terminals, type <Control-P> C  to clear the connection
+*termtype #H setterm
+*tex
+TEX does not run on TRIPOS.  TEX will run on the VAX, but if you still want
+to use TRIPOS, then GCAL is a good alternative.  See HELP GCAL and HELP CANON
+for further information.
+*textscan
+The TRIPOS command CHKL can be used to find the number of lines and characters
+in a text file.  CHKW will report on the number of words.
+*tidyup
+On LSI4s only, a TIDYUP routine may be provided in a program in order that
+the KILL command can call it.  See HELP KILL COMMAND.
+*tlsinit #H tls
+*tobbc #H f
+*tophx
+Use CS INPUT to send files to Phoenix/MVT.
+*topic #H subject
+*tp: #H printer
+*tpuid #H uidset
+*transfer #H file
+*tsbsp #H sourcelib
+*tsbsplib #H sourcelib
+*tsparm #H sourcelib
+*tsparmlib #H sourcelib
+*ttp ..
+The TTP protocol is not supported on Tripos.
+
+*ttp #H file
+*tuid #H uidset
+*type #H #HCH %
+%commands #H print
+%hex #H typehex
+%command
+%*
+Form:           TYPE  "FROM/A,TO,OPT/K"
+Purpose:        To type a text file.
+Author:         ARA
+Specification:
+   TO specifies an output file; by default, output is to the current
+output stream.
+   OPT N causes line numbers to be included in the output.
+   Tabs are expanded.
+   Try HELP PRINT COMMANDS for a list of other file output commands.
+
+Example:        TYPE T:0 OPT N
+%
+
+

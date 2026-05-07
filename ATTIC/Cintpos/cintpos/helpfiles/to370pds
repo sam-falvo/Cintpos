@@ -1,0 +1,26 @@
+*command
+**
+NEW.TO370PDS Command
+Form:           "FILES/A,TO/A,USER/A,PW/A,JD/K"
+Purpose:        To send a list of files to a 370 PDS.
+Author:         IDW
+Specification:
+        Transfers the files listed (one per line) in the file given by
+    FILES to the PDS on the IBM given by TO.  The filespace to be used
+    is given by USER and the relevent password must be supplied using
+    PW.
+        The FILES file must contain a list of lines which satisfy the string
+    "TRIPOSFILE/A,AS", where TRIPOSFILE is the Tripos file name, and the
+    optional AS part is the 370 PDS member name.  This defaults to the
+    Tripos file name if it is omitted.  If FILES is * (the terminal) the
+    files will be prompted for.
+        The default JD parameters can be changed by quoting the JD
+    keyword.  The default of 200K LIMSTORE and 5 seconds COMP should
+    be enough for most applications.  The size of the TO file can be
+    increased on creation by adding phoenix qualifiers.
+
+Examples:
+        NEW.TO370PDS myfiles .myfiles idw2 PW password
+        NEW.TO370PDS myfiles .myfiles/trk20,5,10 idw2 PW password JD "comp 10"
+
+

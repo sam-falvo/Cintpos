@@ -1,0 +1,173 @@
+*send
+*sendmail
+*all ..
+SEND Command
+
+Form:    SEND  "TO,CC/K,BCC/K,SUBJECT/K,FILE/K,WORK/K"
+Author:  IDW
+
+The Tripos SEND command allows mail to be sent both within the Tripos
+domain and out to the JNT and ARPA mail networks.
+
+    TO       Is a list of names which are the primary recipients of the mail.
+    CC       Is a list of names to which carbon copies of the mail are sent.
+    BCC      Is a list of names to which blind carbon copies are sent.
+    SUBJECT  Is the subject of the mail.
+    FILE     Is a file containing the mail.
+    WORK     Is a file used as workspace by the SEND program.
+
+If only FILE is given, then the whole message is assumed to be in the file,
+and it is parsed for valid TO, CC, BCC and SUBJECT fields.  Otherwise, fields
+which are not given are prompted for, and the body of the message can be
+taken from a file, or typed interactively.  If WORK is given, then the working
+copy of the message is stored in it, and hence not deleted.
+
+Examples:  SEND idw SUBJECT "The price of socks"
+           SEND pb,maj BCC idw,njo FILE :idw.winge
+
+*read
+*readmail
+*command
+*all ..
+MAIL Command
+
+Form:    MAIL "USER=FOR,MBOX/K,DEMON/K"
+Author:  IDW
+
+The Tripos MAIL command allows mail sent to the Tripos mail system to
+be read, replied to, forwarded, deleted etc.  It has two main operating
+modes  -  interactive and non interactive.
+
+    USER     Is the name of the user whose mail is to be read.
+    MBOX     Is the name of a mailbox to be examined.
+    DEMON    Is the sort of mail demon to be created.
+
+If either of MBOX or DEMON is given, then MAIL goes into non interactive
+mode.  MBOX gives the name of a mailbox which should be examined, and the
+contents printed out.  The most usual mailbox will be NEW, which is where all
+new messages are stored.  DEMON is the sort of mail demon to be created.
+A "NOTIFY" demon just notifies the logged on user when new mail arrives. A
+"PRINT" demon notifies the user, and prints out the mail to the console.
+See HELP MAIL DEMON for more information on the demon itself.
+
+When running in interactive mode, the MAIL program prompts the user for
+commands  -  see HELP within the program for information on the commands
+available.
+
+If the user wishes to keep copies of mail items sent from within the MAIL
+command, he should create a directory "HOME:Mail-Blind", in which these
+items are stored.  If this directory does not exist, as is the case by
+default, then no copies are taken.
+
+WARNING: when running MAIL interactively on a small machine (e.g. an
+         LSI4) invoking other commands which are loaded dynamically,
+         notably SEND (also called implicitly by REPLY) may cause the
+         machine to run out of store and fail in an unpredictable way.
+
+Examples:    MAIL idw
+             MAIL MBOX=new DEMON=print
+
+*scan
+*scanmail
+*all ..
+SCANMAIL Command
+
+Form:    SCANMAIL "MAILBOXES"
+Author:  IDW
+
+The SCANMAIL command allows one or more mailboxes to be scanned, and
+information about the mail items therein to be printed out.  SCANMAIL is
+primarily intended for use in initialisation sequences.  The syntax is:
+
+    SCANMAIL  <item>,<item>, .... ,<item>
+
+Where each item is:
+
+    [name] [/mbox]
+
+The "name" is the name of the user whose mail is to be interrogated, and
+"mbox" is the name of the mailbox partition which is selected (usually
+"new" for new mail and "all" for all mail).
+
+Examples:    SCANMAIL idw
+             SCANMAIL idw/new,tripos/new
+
+*demon
+*daemon
+*all ..
+Mail Demon
+
+A mail demon can be started by using the DEMON keyword of the MAIL command
+(see HELP MAIL COMMAND).  The demon checks periodically to see whether
+new mail has arrived, and when it does, either notifies to user, or prints
+out the mail.  Break-D causes the DEMON to stop and delete itself within
+10 seconds.
+
+*mailbox
+*forward
+*redirect
+*readforward
+*writeforward
+*create
+*delete
+*all ..
+MAILBOX Command
+
+Form:    MAILBOX  "USER=FOR,WRITEFORWARD/K,READFORWARD/K,NOFORWARD/S,*
+                  *CREATE/S,DELETE/S"
+Author:  IDW
+
+The Tripos MAILBOX command is provided to enable the user to create, delete or
+modify the characteristics of his TRIPOS mailbox.  The functions provided
+are:
+
+    CREATE                Create a mailbox
+    DELETE                Delete a mailbox
+    WRITEFORWARD <file>   Write forwarding information from <file>
+    READFORWARD <file>    Read forwarding information into <file>
+    NOFORWARD             Delete the forwarding file
+
+The forwarding information associated with a mailbox enables the user to
+redirect or send copies of his mail to any number of destinations. The syntax
+of a forwarding information file is very simple - just a list of mail addresses
+separated by spaces or newlines, and comments.  Comments are introduced by the
+"*" character, which causes the rest of the line to be ignored.
+Note that a null ForwardFile means that all mail is DISCARDED -- it is NOT the
+same as not having a forward file.
+
+Example 1  -  Use for redirection:
+
+    *  Forwarding file for IDW
+
+        idw             *  Keep a copy for good measure
+        idw@elsewhere   *  Where I really want my to be sent
+
+Example 2  -  Use for distribution lists:
+
+    *  Distribution list Tripos-Hacks
+    
+        idw pb njo maj  *  The hacks themselves
+        tripos          *  System mailbox
+
+
+Examples:    MAILBOX CREATE
+             MAILBOX DELETE
+             MAILBOX WRITEFORWARD t:file
+             MAILBOX READFORWARD t:file
+             MAILBOX NOFORWARD
+
+*bulletin
+*distribution
+*list
+*all
+Distribution lists are handled as an extension of the forwarding mechanism:
+they are simply multiple forwarding addresses.  They are managed in the same
+way, using the MAILBOX command (q.v.).  Standard distribution lists are kept
+in source form in :sys.mail.bbdefs (bulletin board definitions).
+
+If you are SET into :sys.mail with Y or more access, then the REX sequences
+write-bbdef and read-bbdef may be used.
+**
+End of mail help
+
+

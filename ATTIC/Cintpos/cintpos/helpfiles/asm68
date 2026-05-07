@@ -1,0 +1,36 @@
+*command
+**
+68000 ASM command
+Form:           ASM  "PROG=FROM/A,CODE=TO/K,VER/K,LIST/S,HDR/K,OPT/K"
+Purpose:        To assemble a 68000 assembly code program
+Author:         IDW
+
+Specification:
+   FROM is the source file.
+   TO is the file for the object module.  If this is omitted then no
+code is produced.
+   VER is the file for messages.  By default, these go to the
+current output stream.
+   LIST is the file to which an assembly listing is sent. If it is
+omitted, then no listing is produced, even if LIST directives are
+encountered in the source.
+If LIST is absent, only lines containing errors are listed.
+   HDR specifies a header file to be textually inserted before the
+source file.
+   OPT specifies the option string to be handed to the assembler.
+Relevant options here are:
+
+   X     Produce a cross reference to the LIST stream
+   H     Cambridge HEX object module (sent to CODE stream)
+   M     Motorola object module (sent to CODE stream)
+   S     Dump the Symbol table for use with DEBUG68
+   Wn    Set workspace size to "n" words
+
+Example:        ASM abc
+                ASM abc TO abc-obj
+                ASM abc TO abc-obj VER lp: LIST t:listing
+
+
+N.B.  68000 ASM will only run on a 68000 processor.
+
+

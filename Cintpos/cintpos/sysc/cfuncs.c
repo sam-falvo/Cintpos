@@ -67,16 +67,18 @@ extern char *b2c_str(BCPLWORD bstr, char *cstr);
 
 int name2ipaddr(char *hname) { // name => ipaddr (host format)
   struct hostent *hp;
-  int ipaddr = -1;
+  struct in_addr inaddr;
+
+  memset(&inaddr, 0, sizeof(struct in_addr)); // Tip 27 of JC Snader
 
   if (hname==0) return INADDR_ANY;
 
-  //printf("name2ipaddr: \"%s\"\n", hname);
+  printf("name2ipaddr: %s\n", hname);
 
-  if(inet_aton(hname, &ipaddr)) return ntohl(ipaddr);
+  if (inet_aton(hname, &inaddr)) return ntohl(inaddr.s_addr);
 
   hp = gethostbyname(hname);
-  if(hp==NULL) return -1; // Unknown host
+  if (hp==NULL) return -1; // Unknown host
 
   return ntohl(((struct in_addr *)hp->h_addr)->s_addr);
 }

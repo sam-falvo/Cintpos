@@ -1,0 +1,60 @@
+*send  #H  triposmail
+*sendmail  #H  triposmail
+*read  #H  triposmail
+*readmail  #H  triposmail
+*command  #H  triposmail
+*scan  #H  triposmail
+*scanmail  #H  triposmail
+*demon  #H  triposmail
+*daemon  #H  triposmail
+*mailbox  #H  triposmail
+*forward  #H  triposmail
+*redirect  #H  triposmail
+*readforward  #H  triposmail
+*writeforward  #H  triposmail
+*create  #H  triposmail
+*delete  #H  triposmail
+*distribution #H triposmail
+*list #H triposmail
+*bulletin #H triposmail
+*all  #H  triposmail
+*address #H  #HCH %
+*route #H #HCH %
+*for #H #HCH %
+*to #H #HCH %
+%*  #C  sys:l.help-mail  ..
+Ignored line!!
+%+  #TCH &
+&
+%*  #TCH &  ..
+
+(Searching non-local mail information)
+
+&
+%*  #H  mail-addresses  #FULL
+%*
+If the user you want could not be found, try the tables on JENNY, which
+is the central mail machine for the Lab.
+%
+**  #I  mail
+TRIPOS MAIL
+
+Tripos can send to and receive from any of the JNT or ARPA mail sites.  The
+Cambridge processor bank machines are in domain "uk.ac.cam.cl.trps"
+(full form UK.AC.Cambridge.Computer-Lab.Tripos), and mail can be
+sent from outside to "xxx@uk.ac.cam.cl.trps", where "xxx" is a Tripos
+user id.  From within Tripos, use the SEND program to send mail, the MAIL
+program to read mail, and the MAILBOX program to create or delete a mailbox.
+
+Type one of the following for more information, or [RETURN] to leave HELP.
+
+    ADDRESS <userid> For help on a user's mail address
+    SEND             For help on the SEND command
+    MAILBOX          For help on the MAILBOX command
+    SCANMAIL         For help on the SCANMAIL command
+    COMMAND          For help on the MAIL command
+    DEMON            For help on the MAIL demon
+    ALL              For all mail help
+
+
+

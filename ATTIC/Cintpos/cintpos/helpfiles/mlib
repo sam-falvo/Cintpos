@@ -1,0 +1,28 @@
+*procedure #H procedure
+*proc #H procedure
+**
+MLIB is a resident library containing procedures written in assembly
+language which are found in most BCPL systems (cf. KLIB which contains
+the TRIPOS specific procedures).
+MLIB procedures are the following:
+res  := APTOVEC(function, size)
+ch   := BYTEGET(vec, byteoffset)
+        BYTEPUT(vec, byteoffset, ch)
+res  := CALLCO(cptr, arg)
+res  := COWAIT(arg)
+cptr := CREATECO(function, stacksize)
+        DELETECO(cptr)
+word := GET2BYTES(vec, wordoffset)
+ch   := GETBYTE(vec, byteoffset)
+lev  := LEVEL()
+        LONGJUMP(lev, label)
+        MULDIV(multiplicand, multiplier, divisor)
+        PUT2BYTES(vec, wordoffset, word)
+        PUTBYTE(vec, byteoffset, ch)
+res  := RESUMECO(arg)
+ch   := SARDCH()
+        SAWRCH(ch)
+        STOP(returncode)
+Each of these procedures can be looked up using HELP PROCEDURE <PROC>.
+
+

@@ -1,0 +1,77 @@
+*info
+**
+     The OBJINFO routines may be used to extract information about filing
+system and other objects independant of the implementation. It contains the
+following three user-callable routines.
+
+(a)  ObjInfo.Obj  [ReqInfo, Name, A1, A2, A3]
+     Information about the named object is obtained. The object will be
+     located relative to the current directory in the usual way.
+
+(b)  ObjInfo.Lock [ReqInfo, ObjLock, A1, A2, A3]
+     Information about the object identified by the lock is obtained. The
+     lock must not be zero.
+
+(c)  ObjInfo.Ex   [ReqInfo, ObjLock, InfoVec, A1, A2, A3]
+     Information about the object identified by the lock is obtained. InfoVec
+     should be the information vector filled in by the ExamineObject and
+     ExamineNext operations. This function if provided primarily for the
+     "ex" command, which needs to extract several pieces of information
+     about an object.
+
+     In the above: ReqInfo      - manifest indicating information required
+                   Name         - BCPL string which is the name of an object
+                   ObjLock      - a lock on the object
+                   InfoVec      - the vector filled in by ExamineObject/Next
+                   A1...        - pointers at result fields (if zero then no
+                                  result is returned for that argument)
+
+     The following information may be requested (ReqInfo):
+
+(a)  objinfo.key        : A1 should point to a 4-word vector. This will be
+                          set to a value which uniquely identifies the object.
+                          In the case of the fileserver this will only be
+                          the entire PUID if you have write access to the
+                          object. Any unused part of the vector will be set
+                          to zero.
+
+(b)  objinfo.size       : A1 should point to a 2-word vector. This will be set
+                          to the size of the object in device dependant units
+                          (bytes for FSFH and FMFH). The size will occupy the
+                          least significant 16 bits of each word, with A1!0
+                          containing the most significant 16 bits.
+
+(c) objinfo.access      : A1 should point to a 5-word vector. This will be set
+                          to the access state of the object. A1!0 will be set
+                          to the access availble. In the case of FMFH, A1!1
+                          through A1!4 will be set to the rows of the access
+                          matrix.
+
+(d) objinfo.type        : A1 should point to a 1-word vector. This will be set
+                          to the type of the object, given by the manifests
+                          type.dir and type.file defined in FILEHDR.
+
+(e) objinfo.date        : A1 should point to a three word vector, and will be
+                          set to the datstamp which is set in the object. This
+                          will be either the creation or last update time, but
+                          it is not possible to tell which.
+
+(g) objinfo.name        : A1 should point to a 32-byte buffer. It will be set
+                          to the name of the object, as a BCPL string.
+
+(h) objinfo.infov       : A1 should point to a vector of size
+                                [dirent.size+ file.header.size-1]
+                          (as defined in FILEHDR). This will be set by the
+                          ExamineObject operation on the specified object.
+
+     Note that the name of an object is NOT available from FMFH or FSFH from
+an ExamineObject operation, although the names of successive directory
+entries will result from the ExamineNext operation. If information is not
+available, then the result of the user-called function will be FALSE, and
+result2 will be set to Error.NotAvailable (defined in OBJINFO). Any other
+errors will return FALSE, with result2 set appropriately.
+     The headers "MANHDR" and "FILEHDR", and the code contained in the file
+"BCPL.OBJINFO" should be included in the program using the GET directive.
+
+
+

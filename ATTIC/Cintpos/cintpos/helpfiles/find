@@ -1,0 +1,79 @@
+*append
+*findappend
+FINDAPPEND procedure
+      To open an existing file for appending to the end
+
+      S := FINDAPPEND ( NAME )
+
+      FINDAPPEND is similar to FINDOUTPUT (q.v.), except that the file must
+already exist, and that the file pointer will be positioned at the end of the
+file so that any new material is appended to the previous contents.
+
+Warning: do not mix WRCH and WRITEWORDS.
+*input
+*findinput
+FINDINPUT  Procedure to find and open an input stream.
+
+      s := findinput ( name )
+
+  A unique identifier is returned which refers to the stream of the given
+name.  The name should be a string, and the result is a non-zero value.
+
+  If the stream cannot be found or opened then the result will be zero,
+and the result2 global will usually contain an error code indicating a
+reason for this failure.
+
+  The result may subsequently be used in a call of selectinput (q.v.) to
+select the stream.
+*output
+*findoutput
+FINDOUTPUT   Procedure to find and open an output stream.
+
+      s := findoutput ( name )
+
+  A unique identifier is returned which refers to the stream.  The name
+should be a string, and the result a non-zero value.
+
+  If the stream cannot be opened then the result will be zero, and
+the result2 global will usually contain a code indicating a specific reason
+for the failure.
+
+  The result may be subsequently be used in calls of selectoutput (q.v.)
+to select the stream for output.
+*pseudo-devices
+Pseudo-devices such as LP: can be created in the system by placing an
+appropriate "find" routine in the SYS:L directory.  When a device XXX: is
+opened BLIB will attempt to load the code in SYS:L.XXX-FIND to provide a
+handler.  See the source of LP: as an example.
+*update
+*findupdate
+FINDUPDATE   Procedure to open a file for reading and/or writing.
+
+      s := findupdate(name)
+
+  FINDUPDATE is similar to FINDINPUT and FINDOUTPUT, except that the file
+may be read AND written when opened. The file will be created if it did not
+exist. The file pointer is initially at the start of the file.
+
+  Use POINT to set the file pointer position in the file.
+  Use NOTE  to record a file pointer postion.
+  Use READWORDS and WRITEWORDS for reading and writing.
+  Do not use RDCH and WRCH with POINT - the results are undefined.
+*users #H who
+*user #H user
+*who #H who
+*wto #H sourcelib
+*fileserver #H sourcelib
+** #I find
+Please amplify your HELP request with one of the following:
+
+   WHO            program to type a list of logged on users
+   INPUT          procedure to open an input stream
+   OUTPUT         procedure to open an output stream
+   APPEND         procedure to append output to an existing file
+   UPDATE         procedure to open a file for direct access
+   WTO            open a pseudo stream to a WTO service
+   PSEUDO-DEVICES device finding mechanism (e.g. LP:)
+   <CR>           to exit HELP
+
+

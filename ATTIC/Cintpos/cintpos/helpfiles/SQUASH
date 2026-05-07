@@ -1,0 +1,14 @@
+*command
+**
+Form:           SQUASH  "FROM/A,TO/A"
+Purpose:        To produce compressed copies of files for archive
+                purposes, thus saving disc space.
+Author:         MFR
+Specification:
+   The file must be a text file.  Repeated characters in the input
+file are replaced by a pair of bytes:  a flag/count character and
+the character to be repeated.
+   Typical reductions in size are 10% - 50%
+Example:        SQUASH A TO SQUASHED-A
+
+

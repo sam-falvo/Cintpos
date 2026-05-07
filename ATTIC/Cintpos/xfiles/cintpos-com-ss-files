@@ -1,0 +1,11 @@
+cintpos/com/safebcpl.b
+cintpos/com/send.b
+cintpos/com/sendins.b
+cintpos/com/setflags.b
+cintpos/com/setlogname.b
+cintpos/com/shellcom.b
+cintpos/com/skip.b
+cintpos/com/stack.b
+cintpos/com/status.b
+cintpos/com/strtodat.b
+cintpos/com/syncdemo.b

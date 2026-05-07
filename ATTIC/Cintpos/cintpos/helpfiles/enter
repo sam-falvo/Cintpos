@@ -1,0 +1,20 @@
+*procedure
+**
+The ENTER procedure (available on 68000s only)
+
+ENTER is a BCPL callable function that allows arbitrary foreign code
+to be run (possibly in user state) within a Tripos task.  A typical call
+is the following:
+
+                RES  :=  ENTER(REGS)
+
+where REGS is a vector containing a complete set of machine registers
+(D0-D7, A0-A6, USP, SR, and PC).  The call causes the processor to execute
+instructions from that machine state.  ENTER returns if the entered code
+executes any of the TRAPs 1-12, 14-15, returning the TRAP number as result
+and the current state of the registers in REGS.  If the entered code faults
+in any other way, the standard Tripos debugging aid is entered, thus allowing
+for instance the standard breakpoint and single stepping facilities to
+work.
+
+

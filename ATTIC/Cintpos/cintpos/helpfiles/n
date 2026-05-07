@@ -1,0 +1,83 @@
+*name #H #HCH +
++server #H nameserver
++service #H nameserver
++ring #H nameserver
++network #H nameserver
++table #H nameserver
++* #H user
+*nametable #H nameserver
+*network #H ring
+*newline
+NEWLINE
+      To write a newline to the current output stream.
+      newline ()
+      A  newline  character  is  written  to  the  currently
+selected output stream. The routine is simply a call of wrch
+( '*N' ).
+*newpage
+The BCPL routine "newpage" does not exist under TRIPOS.  Use "wrch( '*P' )"
+as an alternative.
+*newpuid
+NEWPUID command
+
+Form:     NEWPUID  "TO/K"
+Author:   IDW
+
+   The NEWPUID command calls the ring NEWPUID service (located on AOTMAN),
+to allocate a new user PUID.  If the TO keyword is given, then the new PUID
+is written to the named file.  Otherwise the PUID is just printed out.
+
+Examples:    NEWPUID
+             NEWPUID  TO t:newpuid
+*newsys
+Form:           C NEWSYS  "LOAD/S"
+Purpose:        To link a new TRIPOS system and possibly load it.
+Author:         PB
+Source:         :s.newsys
+
+Availability:   *** Not available on the ring system ***
+
+Specification:
+   The system described in the file sys:sys.obj.system is linked
+into the file file sys:sys.obj.tripos.
+   If LOAD is specified then SYSLOAD is executed to load the new
+system.
+Example:        C SYSLOAD
+                C SYSLOAD LOAD
+*nil
+*nil:
+NIL: Device
+
+The pseudo-device NIL: behaves as a sink for output or a source of ENDSTREAMCH
+for input.
+*note
+NOTE Procedure
+
+RESULT  := NOTE( SCB, VECTOR )
+
+NOTE allows the current position of the file pointer in an open file to be
+remembered.
+SCB is the stream control block for the file (the result from FINDUPDATE).
+VECTOR is a vector with upperbound at least 2 in which the file pointer is
+       to be stored. The contents of this vector can be passed to a later
+       call of POINT in order to set the file pointer back to the same place.
+RESULT is zero if the call fails, non-zero if it succeeds.
+
+Both NOTE and POINT are in the NOTE-POINT library (SYS:L.NOTE-POINT) which
+should either be APPENDed to your program, or loaded with the LIBRARY command.
+
+NOTE and POINT should be used with READWORDS and WRITEWORDS only. The effect
+of using them with RDCH and WRCH is undefined.
+*note-point
+The NOTE-POINT library (SYS:L.NOTE-POINT) contains the routines NOTE and POINT,
+together with versions of SELECTINPUT and SELECTOUTPUT suitable for use with
+direct access files. It should either be APPENDed to your program, or loaded
+with the LIBRARY command.
+*nova
+*nova2
+The Data General NOVA2 computer attached to the ring, provides a magnetic
+tape service in the form of the RTH Remote Tape Handler.  See HELP TAPE
+and HELP TLS for help on using the Tape Server.
+*novasm #H asm
+
+

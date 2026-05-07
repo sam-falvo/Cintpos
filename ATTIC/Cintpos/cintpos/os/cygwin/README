@@ -1,0 +1,56 @@
+To install and run Cintpos under Cygwin, first install
+Cygwin typically in C:\cycwin.
+
+Then install the BCPL Cintcode system using either bcpl.zip or
+bcpl.tgz available from www.cl.cam.ac.uk/users/mr into, say,
+
+C:\cygwin\home\mr10\distribution\BCPL
+
+Copy BCPL/cintcode/os/cygwin/cygwin.bat to C:\cygwin\cygwin.bat and edit
+it if neccessary. This file will set all the environment variables for
+Cintsys and Cintpos. Now restart Cygwin, and check some variable setting
+by typing:
+
+echo $BCPLROOT
+echo $POSROOT
+
+If the output looks ok, build the Cintsys system by typing:
+
+make -f makefileCygwin clean
+make -f makefileCygwin
+
+If this fails to work see the BCPL documentation for help.
+
+Next fetch cintpos.tgz or cintpos.zip and extract all the files into,
+say,
+
+C:\cygwin\home\mr10\distribution\Cintpos
+
+Enter Cygwin and type:
+
+cd distribution/Cintpos/cintpos
+make -f MakefileCygwin clean
+make -f MakefileCygwin
+
+This should rebuild Cintpos and enter it.
+
+If something is wrong try
+
+cintpos -f
+
+or
+
+cintpos -f -v
+
+After successfully entering Cintpos, test the system by typing
+
+echo hello
+bcpl com/bcpl.b to junk
+junk com/bcpl.b to junk
+c compall
+bench100
+status
+
+Good luck!
+
+

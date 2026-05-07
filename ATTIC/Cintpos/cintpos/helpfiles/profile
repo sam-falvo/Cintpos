@@ -1,0 +1,67 @@
+*command
+**
+PROFILE Command
+Form:           PROFILE  "file/a"
+Purpose:        To create and remove user's default assignments
+Author:         MFR
+Specification:
+
+     This command is only relevent to the FM-TRIPOS system at the moment.
+     The profile command has the form profile "file/a". The file contains
+the information used to create and remove assignments. Each line in the file
+should either be blank, or start with an asterisk (*), or be one of
+
+     <ass-name>  <dir-name>|$  [<prot-bits>] [mc=<mctype>] [sys=<systype>]
+     >           <file-name>
+
+     FIRST CASE*
+     If a line starts with an asterisk (*) then it will be ignored, and treated
+as a comment.
+     If $ is unsed instead of <dir-name>, then <prot-bits> must not be included,
+if <dir-name> is used, then <prot-bits> must be set.
+     <ass-name> is the name of the assignment, and may contain any characters,
+except that the last, and only the last, must be a colon.
+     <dir-name> is the name of a directory, in any normal form.
+     <mctype> may be any machine type (currently either LSI4 or 68000)
+     <systype> may be any system type (eg.,TRIPOS, FM-TRIPOS, AJW-TRIPOS)
+
+     <prot-bits> can include two parts, separated by a slash (/) character.
+The former part can include the access states R, W and D, and is used when
+running the old protection system (usually with FSFH). The part after the
+slash can contain any of CVXYZ, RWE, and DAU; these are used when running
+with access matrices (but note that no check is made objects being files or
+directories, so that making an assignment to a file, with say, CVX access,
+could lead to bizare results!!!).
+     Alternatively, <prot-bits> can be set to the character &, in which case
+the new assignment will have the maximum permitted access.
+
+     If <mctype> is given then the line is only obeyed on that type of machine.
+     If <systype> is given then the line is only obeyed on that type of system.
+     If <dir-name> is given, then the assignment must not previously exist; a
+new one will be made, with the access limited to that specified by <prot-bits>.
+The access may be further limited by the protection scheme. If $ is used, then
+the assignment must already exist, and is cancelled.
+     <ass-name> or <dir-name> may contain substitutions (cf., the C command)
+which are any of:
+     <mctype>   : substitutes machine type
+                  will be either LSI4 or 68000 as appropriate
+     <mcname>   : will substitute the machine ring name
+     <mctype2>  : will substitute LSI4 or M68K as appropriate
+
+     If there is a fault in a line then an error message will be written, and
+the command will procede to the next line. The following is an example of a
+profile file.
+
+     B:    home:bcpl            RWD/CVXYZ
+     C:    home:<mctype2>-c     R/Z
+ *         only set up FM: on a 68000 machine running FM-TRIPOS
+    FM:    home:dfs-fmfh        RWD/CVXYZ       mc=68000 sys=fm-tripos
+
+    SECOND CASE:
+    Profile files may be nested, up to ten levels deep, by using a line
+starting with the > character. This will indirect to the file specified, and
+will return at the end of that file. No specific check is made for recursion,
+althouygh this would terminate on the tenth indirection. System and machine
+type checking are not available with this option.
+
+

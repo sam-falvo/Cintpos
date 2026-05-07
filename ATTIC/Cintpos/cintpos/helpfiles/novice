@@ -1,0 +1,30 @@
+*make
+*create
+Only those able to claim the PWPRIV privilege may create new TRIPOS users.
+The LOGON command can be used to make a new user known to USERAUTH
+(use HELP LOGON COMMAND for detailed information).  For the construction
+of the relevent data files for a new user to be known to TRIPOS read the
+information in SYS:USERS.INFO.
+**
+FIRST TIME USERS
+
+HELP has a lot of information in it.  If you are a first time user you can
+spend your first ten or twenty minutes following up the references below
+very profitably.  If you don't do it now you might never find what you will
+want to find out later.
+
+     Use HELP HOME DIRECTORY to find out about your new home directory.
+     Use HELP INIT-SEQUENCE to find out how to personalize your sessions.
+     Use HELP to find out how to use HELP.
+     Use HELP COMMANDS for information about TRIPOS commands &c.
+     Use HELP TOPICS for a short list of the sort of thing HELP knows about.
+
+MAKING A NEW USER
+     If you (or someone you know) are not yet a proper TRIPOS user
+and you/he want(s) to become one send a message to IDW (with command SEND)
+stating your full name (with all of your initials), PUID (if already allocated -
+you won't know what one of these is if you do not have one allocated), and the
+name you would like for your home directory (your initials by default).  When
+you have been 'installed' you will be sent a message.
+
+

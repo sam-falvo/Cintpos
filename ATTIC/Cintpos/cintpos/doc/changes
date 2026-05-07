@@ -1,0 +1,77 @@
+BCPL CINTPOS SYSTEM
+
+RECENT CHANGES
+
+09/02/11
+Chaned both Cintsys and Cintpos to use unix style filenames rather
+than target machine style names. Thus components of a file name
+are separated by '/'s (but '\'s are also allowed). Directory
+filenames used by pathinput are now separated by semicolons,
+although colons are allowed for systems not running under window.
+
+The bmake commans has be added recently. See the BCPL Cintsys and
+Cintpos User Guide for details.
+
+06/05/10
+Made many changes relating to the way time is measured. The timestamp
+is now in days since 1 January 1970 and milli-seconds since midnight.
+Relative delays are now in milli-seconds and the clock device now
+takes packets containing timestamps of when they are to be released.
+The concept of a clock tick is no longer present and the manifest
+constant tickpersecond has been removed. The time of day is polled by
+the interpreter roughly every milli-second. There is no longer a clock
+device thread.
+
+The TTYOUT device (-3) is now handled by qpkt sending the character to
+standard out directly without the need to use a separate device
+thread.
+
+10/03/10
+made many changes in the hope of making the use of Pthreads more
+system independent, particularly for advanced processors such as
+the Itanium. It is yet to be seen whether these changes are
+effective.
+
+12/01/09
+Replaced dot by underscores in all global and manifest names. So
+string.to.number is now string_to_number
+
+30/08/06
+Added the -d option to cintsys to trace the use of pathinput. This
+helps to solve problems caused by incorrect setting of the environment
+variables. Try calling:
+
+cintsys -d
+
+then
+
+bcpl com/bcpl.b to junk
+
+to see the location of successfully opened files.
+
+20/06/06
+Modified the Makefile to allow the system to be cross-compiled
+for the GP2X handheld Linux gaming machine.
+Renamed most files to use lower case letters to ease some problems
+with windows machines. 
+
+10/04/06
+Made rdch under native BCPL read the argument line characters
+before reading character from stdin, for compatibility with
+cintsys BCPL.
+
+
+
+The Cintpos System tries to remain compatible with the BCPL Cintcode
+system, so look at doc/changes in that system.
+ 
+
+Martin Richards
+     (mr@cl.cam.ac.uk, http://www.cl.cam.ac.uk/users/mr)
+University Computer Laboratory
+New Museums Site                  
+Pembroke Street
+Cambridge
+UK
+
+

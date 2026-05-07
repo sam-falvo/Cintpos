@@ -1,0 +1,42 @@
+*accounting
+*account
+*credit
+*filespace
+*income
+*inhibit
+*inhibited
+*inhibition
+*space
+FILESPACE ACCOUNTING
+
+For information about your filespace in general use HELP FILES.
+
+The TRIPOS filing system on the fileservers uses a simple accounting mechanism
+based on the old 370 system.  Every night an "accounting demon" runs and scans
+the entire filing system, building up a record of the total amount of disc
+space in use by each person.  Every filing system object is charged to the
+person who created or last wrote to it.  (In particular, note that you will
+be charged for anything you leave in a T: directory.)
+
+The filing machine makes use of the results of the demon's last run as follows.
+Each person has a Daily Income (I), which is the number of Kbytes of disc he
+can have allocated indefinitely, a Current Credit (C), and a Credit Limit (L).
+Each night, Current Credit is adjusted according to the rule:
+
+        C := C + I - A
+
+where A is the number of Kbytes currently in use.  C is constrained to stay
+in the range -L -> +L.  If C is negative, then the user is "inhibited", and
+is not allowed to create or write to files until he ceases to be inhibited.
+
+A message is issued at each logon, giving the current values of A, I, C and L.
+
+The object of this accounting system is to decrease the frequency with which
+fileserver packs become full, not to deny anyone filespace that they need for
+their work.  The initial income values were set from the amounts of disc
+actually in use by each person on 22.4.83.  Apply to IDW or NJO if you feel
+you have a case for your income being altered.  If you want your income
+increased, you may be asked to find someone to volunteer to have his
+reduced correspondingly, as the discs are nearly always rather full.
+
+

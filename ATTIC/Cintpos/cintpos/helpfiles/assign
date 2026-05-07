@@ -1,0 +1,45 @@
+*command
+**
+ASSIGN command
+Form:           ASSIGN   "NAME,DIR,TASK/K,LIST/S,NODELETE/S"
+Purpose:        To set up a logical name for a directory or task.
+Author:         BJK
+Specification:
+
+Directories and tasks may be given temporary alternative names with this
+command.  The assigned name has the same form as a device name  -  i.e. it ends
+with a colon.  After an assignment to a directory has been made, the new name
+becomes an alias for the full name of the directory, and can be used in place
+of it for filing system operations. The BLIB routine DEVICETASK returns the task
+number and filing system lock associated with an assigned name.
+
+NAME gives the assigned name. If neither DIR nor TASK is specified, then the
+assignment for NAME is deleted.
+
+DIR gives the name of a directory or set of directories to which an assignment
+is to be made.  The assignment holds a lock on the directory (rather than its
+text name).  Multiple directories may be concatenated together using the
+character '+'.
+
+TASK gives a task number to which the assignment is to be made. Task assignments
+to filing system tasks behave like assignments to the root directory. Only one
+of DIR and TASK may be given.
+
+LIST asks for a list of all existing assignments to be printed. This is done
+after any other operations have been performed.
+
+If NODELETE is quoted, then any attempt to replace or delete an existing
+assigned name will fail.
+
+Examples:
+        ASSIGN PROGS: :BRIAN.BCPL
+            sets up an assignment so that the file :BRIAN.BCPL.MAP (for
+            example) could be accessed by the name PROGS:MAP.
+
+        ASSIGN COM1: MYOBJ+HISOBJ
+            sets up an assignment to a pair of directories, which can then
+            be treated as a single read-only directory.
+
+        ASSIGN LIST
+
+

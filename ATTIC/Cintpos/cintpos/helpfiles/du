@@ -1,0 +1,28 @@
+*command
+**
+DU Command
+
+Form:           du -[td] file ... [> file]
+Purpose:        To give an idea of where all the disc space has gone
+Author:         RSC
+Specification:
+
+        du descends a directory tree printing out the amount of space taken up
+by the files in a directory in 1K units. The -t flag will mean that only the
+total value is printed and the -d flag means that no subdirectories are
+examined.
+
+Examples:
+        du home:
+
+
+Bugs:
+        The filing machine seems to have hicups every so often and sends the
+names of the files in a directory twice.
+
+        The program does not use RDARGS although "du ?" will produce a list of
+the arguments available.
+
+        The program does not check for looped directories...
+
+

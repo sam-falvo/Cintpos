@@ -1,0 +1,59 @@
+% This is a bmake makefile to rebuild the Cintpos system,
+% create a cross reference listing in xrefdata,
+% encode using xcencode all the source files of Cintpos into a file
+% called posxfiles/cintpos.xc
+% or expand posxfiles/cintpos.xc1 using xcdecode.
+
+% Last modified by Martin Richards (c) March 2012
+
+helpinfo
+<<
+echo
+echo "bmake xref          Create xrefdata"
+echo "bmake all           Re-build the entire Cintpos System"
+echo "bmake decodeall     Decode all files in cintpos.xc1"
+echo "bmake encodeall     Encode all files into cintpos.xc"
+echo
+>>
+
+
+xref
+<<
+delete -f rawxref
+c compall "ver rawxref xref"
+sortxref rawxref to xrefdata
+delete rawxref
+>>
+
+% xcdecode all the compressed source files in posxfiles/cintpos.xc1
+
+decodeall
+<<
+xcdecode bin posxfiles/cintpos.xc1
+>>
+
+% xcencode all source files into posxfiles/cintpos.xc
+
+encodeall
+<<
+xcencode bin list posxfiles/cintpos-files to posxfiles/cintpos.xc
+>>
+
+
+all <= allcompiled
+<< echo "all done*n">>
+
+allcompiled <=
+
+% commands
+
+% sys files
+<<
+dat msecs to allcompiled
+echo "All BCPL code compiled"
+>>
+
+
+
+clean <<
+>>

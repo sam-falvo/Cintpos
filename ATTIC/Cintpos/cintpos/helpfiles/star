@@ -1,0 +1,87 @@
+*stars #H break
+*ibm #H 370
+*370 #H 370
+*ibm370 #H 370
+*command
+**
+STAR command
+Form:           STAR   "Machine,Service/K,Text/K,Quality/K,NOTAUTH/S,MINADDR/S"
+Purpose:        To connect into an interactive ring service using VTP.
+Author:         BJK (modified by CGG)
+Specification:
+
+        The RATS protocol (Virtual Terminal Protocol) is used to connect to
+    the RING service "RATS-<Machine>", or, if the SERVICE key word is given
+    in preference to the MACHINE keyword, to the ring service "<Service>".
+    The initial connection is by the Cambridge version of a TSBSP open (see
+    "Byte Stream OPEN Blocks" by MAJ - 25.10.82, in the documentation
+    folder).  This open will include the user's UIDset unless the NOTAUTH
+    switch is given.  The "informative text" parameter of the CONNECT message
+    in the open can be set using the TEXT keyword and the "quality of
+    service" using the QUALITY keyword.  Note that implementations currently
+    available in the Lab will expect neither of these to be set.  The address
+    used to identify the caller when the connection is established can, under
+    normal circumstances, be quite long.  Strictly this address should be only
+    one character long in the current version of VTP accepted by the terminal
+    concentrators - the switch MINADDR can be used to enforce this rule.
+
+        This program is also used to support reverse connection into TRIPOS.
+    Reverse connections are accepted from the Ring and come up completely
+    ignorant of any STAR command that may have caused their existance.  When
+    it does come up it switches the default input stream to its own task,
+    leaving the initiating STAR command still active, but in another task.
+    When this task eventually ends it reselects the task that it interrupted
+    to be the default input stream.
+    
+        The communication ceases and the command ends when either the stream
+    ends or the user uses CRTL-D (or BREAK B D).
+    
+        CTRL-B and CTRL-C will echo these characters onto the VTP interface    
+    of the RATS service - which will give the correct effect if another
+    TRIPOS has been logged onto.
+    
+        CTRL-E is used to enter the STAR monitor which allows nonstandard use
+    of the RATS stream, such as sending uninterpreted characters and
+    characters to the VTP interfaces (for example, it can be used to get
+    CTRL-S and CTRL-T through to a destination TRIPOS).  Unfortunately, the
+    monitor can only be entered after the completion of a line of input: the
+    whole of the line in which CTRL-E is typed will be sent except for the
+    newline or escape that terminates it.  Thus this facility can be used to
+    insert curious characters into the middle of a line. STAR allows a second
+    way to enter the monitor:  if the escape string is typed on a line of its
+    own the characters that form it will not be sent to the destination
+    service and the monitor will be entered.  The default value of this
+    string is "*!" but it can be changed by a monitor command. A list of
+    monitor commands is given in response to the command '?' in the monitor. 
+
+Examples:
+
+        STAR cap
+        STAR udn NOTAUTH
+        STAR udn/s.rlgb   {logs onto a GEC at Rutherford Appleton Labs}
+        STAR SERVICE gec*rats-fermat TEXT "Connection from Cambridge"
+
+        {the following demonstrates how a line consisting of the characters
+         "abcdef<control-P>hijk" can be sent to the service RATS-XSERV}
+
+        STAR xserv
+        xserv: abcdef<control-E><carriage return>
+        Star> cu p
+        Star> s
+        hijk
+        xserv: received "abcdef<ctrl-p>hij"
+
+        {note that <control-E> could have been typed ANYWHERE on the
+         "abcdef.." line with exactly the same effect}
+ 
+        {.. and this demonstrates how <CTRL-S> can be sent to the VTP
+         interface of service RATS-XSERV (this is how @S works if XSERV
+         is provided by TRIPOS) - }
+        
+        STAR xserv
+        xserv: *!
+        Star> ci s
+        @S
+*
+  
+

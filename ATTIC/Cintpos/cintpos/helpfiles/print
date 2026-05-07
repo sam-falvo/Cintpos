@@ -1,0 +1,42 @@
+*DEVICE #H printer
+*PRINTS
+*COMMANDS
+There is a variety of PRINT programs available on TRIPOS, including
+              PRINT       -  the official one
+              RINGPRINT   -  prints lists of files without buffering
+              TYPE        -  official to screen
+              TYP         -  interactive to the screen
+              SCAN        -  prints selected part of file to screen
+              TYPEHEX     -  prints binary file (in hex) to screen
+Note that printer devices can be used as file names so that streams
+can be opened straight to a given printer (see HELP PRINTER).  Thus simple
+commands such as TYPE and COPY can be used to send files to a printer.
+Use HELP <command> COMMAND for more information.
+*HEX #H typehex
+*OLD
+Form:           PRINT  "FROM/A,TO,TITLE/K,OPT/K"
+Purpose:        To print a file with optional line numbers and multi
+                columning.
+Authors:        ARA BJK
+Specification:
+        TO defaults to LP:
+        Options:
+        T    Truncate lines that are too long for
+             their column.
+        F    Take FROM filename as title if no
+             TITLE specified.
+        N    include line Numbers
+        C n  Print in n columns (default 1)
+        P n  Set page length to n
+        W n  Set line width to n
+        P    Turn off paging
+        Titles are printed only if requested and the number of lines is
+     sufficient.  Tabs are expanded.  Carriage controls *n, *c, *e, *p
+     are handled.  Overprinting is possible if the printer allows it.
+Example:        PRINT PROG
+                PRINT PROG OPT N
+                PRINT T:0 OPT W80P50FC2
+*COMMAND  #H  PRINT-LIST
+**        #H  PRINT-LIST
+
+

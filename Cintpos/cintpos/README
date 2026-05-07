@@ -1,3 +1,24 @@
+This is a new version of the Cintpos system that is currently under
+development. It will no longer make use of Pthreads.  It will run as a
+single thread, but the Cintpos user will still have devices that will
+interrupt Cintpos tasks as before, but these devices will be
+implemented using polling, typically every millisecond.  Now that
+machines are so fast, this mechanism will be more efficient than using
+Pthreads and much easier to implement. It will also be more machine
+independent.
+
+The new mechanism is roughly as follows. The Cintcode interpreter will
+count the number of executed Cintcode instructions and when the count
+reached a value that takes about one millisecond it sets the
+interruptpending flag in the rootnode and if Cintcode interrupts are
+enable it will interrupt the current task and transfer control to
+irqrtn giving it its own runtime stack. It will use the kernel's
+global vector and will, of course, have access to the rootnode. irqrtn
+will transfer control to every coroutine in devwaitlist. This list
+will contain suspended coroutines for devices waiting for a
+transaction to complete. For more details see sysc/cintpos.c,
+sysc/cinterp.c and sysb/boot.b.
+
 
 Cintpos is a simple portable operating system implemented
 in BCPL using the Cintcode abstract machine.

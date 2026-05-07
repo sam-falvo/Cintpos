@@ -1,0 +1,20 @@
+*xgcal #H gcal
+*x25 #H #HCH %
+%gateway
+There is a gateway machine providing a Transport Level connection between
+the ring and JANET.  It is known as CAXU.
+
+To access it from the ring side, a CR82 connection should be opened to the
+service "X25A" with the called address in the OPEN block containing the
+required JANET address, starting with the number of the first-hop JANET host.
+For incoming calls, the called address in the Connect Message should be a
+nameserver name.
+
+See HELP CAXU for info on the machine itself.
+%*
+X25 is a protocol used on a number of wide-area networks, in particular
+JANET, the joint academic network.  There is a gateway from the ring to
+JANET accessible from Tripos.  See HELP X25 GATEWAY for more info.
+%
+
+

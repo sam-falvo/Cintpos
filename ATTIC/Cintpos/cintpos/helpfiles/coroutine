@@ -1,0 +1,126 @@
+*all ..
+*createco
+PROCEDURE CREATECO
+
+        CORTN.ID := CREATECO( FUNCTION, STACKSIZE )
+
+This procedure creates a new BCPL coroutine.
+
+FUNCTION is the address of the BCPL function which is to form the outermost
+routine of the coroutine.
+
+STACKSIZE is the number of BCPL words to be allocated for the stack of the
+new coroutine.
+
+If the call succeeds, then the new coroutine will be created with a stack of
+the specified size allocated by GETVEC.  CORTN.ID will be set to a non-zero
+coroutine identifier which can be used in calls of CALLCO etc.
+
+If the call fails, CORTN.ID will be set to zero, and RESULT2 will contain a
+fault code.
+*all ..
+
+*all ..
+*callco
+PROCEDURE CALLCO
+
+        RES := CALLCO( CORTN.ID, ARG )
+
+This procedure calls a coroutine.
+
+CORTN.ID is the identity of the coroutine to be called (i.e. the result
+of CREATECO when it was created).
+
+ARG is an argument to be passed to the coroutine. On the first call of the
+coroutine, ARG will appear as the argument to its outermost routine. When the
+coroutine has previously suspended itself by a call of COWAIT or RESUMECO,
+ARG will appear as the result of that function.
+
+RES is the result passed back by the coroutine when it suspends itself. This
+will be either the argument to a call of COWAIT within the coroutine, or the
+result from its outermost routine.
+
+The effect of CALLCO is to start or resume execution of the specified coroutine,
+passing it one argument.  The coroutine continues to execute until it
+voluntarily suspends itself by calling COWAIT or returning from its outermost
+procedure.  When this happens, control returns to the caller, and the execution
+of CALLCO completes.
+
+It is an error to call a coroutine which is already active.  If this is
+attempted, CALLCO will abort with error code 195.
+*all ..
+
+*all ..
+*cowait
+PROCEDURE COWAIT
+
+        RESULT := COWAIT( ARG )
+
+This procedure suspends a coroutine, passing control back to its parent.
+
+ARG is an argument to be passed back to the parent coroutine, which will see
+it as the result of CALLCO.
+
+RESULT will be set to the argument of CALLCO or RESUMECO when this coroutine
+is activated again.
+
+It is an error to execute COWAIT in the root coroutine of a task, as it has
+no parent.  Attempting to do this will cause COWAIT to abort.
+*all ..
+
+*all ..
+*deleteco
+PROCEDURE DELETECO
+
+        DELETECO( CORTN.ID )
+
+This procedure deletes a coroutine.
+
+CORTN.ID is the identity of the coroutine to be deleted (i.e. the result
+of CREATECO when it was created).  The coroutine must not be active, meaning
+that it must not be the current coroutine or a parent of it.
+
+DELETECO will abort with code 195 if the specified coroutine is active or
+does not exist.
+*all ..
+
+*all
+*resumeco
+PROCEDURE RESUMECO
+
+        RESULT := RESUMECO( CORTN.ID, ARG )
+
+This procedure calls another coroutine, suspending the caller.  The called
+coroutine inherits the parent of the calling coroutine.
+
+CORTN.ID is the identity of the coroutine to be called.
+
+ARG is an argument to be passed to the called coroutine, which will receive
+it as the argument to its outermost routine on the first call, and as the
+result of COWAIT or RESUMECO on subsequent calls.
+
+RESULT will be set to the argument to CALLCO or RESUMECO when this coroutine
+is reactivated.
+
+It is an error to use RESUMECO from the root coroutine, or to use it to call
+a coroutine which is already active.  However, it is permissible for a coroutine
+to resume itself.
+**
+The TRIPOS libraries support the BCPL coroutine mechanism described in the
+paper "A Coroutine Mechanism for BCPL" by Ken Moody and Martin Richards.
+This was published in Software - Practice and Experience, Vol 10, pp 765-771
+(October 1980). It is also in the file MR10.ROFF:CORTN on Phoenix (in ROFF
+source format).
+
+The routines available are:
+
+  CREATECO     - Create a new coroutine
+  DELETECO     - Delete a coroutine
+  CALLCO       - Call a junior coroutine
+  COWAIT       - Return to parent coroutine
+  RESUMECO     - Resume a coroutine giving it the current coroutine's parent
+
+Use HELP PROCEDURE CREATECO, etc., for info on individual procedures,
+HELP COROUTINE ALL for all info.
+
+

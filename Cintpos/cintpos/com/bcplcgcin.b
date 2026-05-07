@@ -4,6 +4,9 @@
 
 /* Change history
 
+21/09/2019
+Use ON64 instead of c64, It is defined in libhdr.h.
+
 14/05/18
 Added codegeneration of Ocode operator FMOD.
 
@@ -12,7 +15,7 @@ Modified to include floating point constants and the operators
 #* #/ ~+ #- #= #~= #< #> #<= and #>=.
 
 15/05/13
-Modified to use c64 and t64 that specify the BCPL word length of
+Modified to use ON64 and t64 that specify the BCPL word length of
 the compiler and target machines, respectively.
 
 10/05/13
@@ -25,17 +28,18 @@ bcplcgcin.b and bcplcgsial.b and added the interface
 header g/bcplfecg.h
 
 07/09/06
-This is a version of the BCPL compiler that generates 64-cintcode.  It
-is designed to run on both 32- and 64-bit systems. The options t32 and
-t64 specify the bit length of the BCPL word in the target system. The
-default is the same as the current system.  On 64-bit systems
-numerical constants are compiles to full precision, but on 32-bit
-systems they are truncated to 32 bits then sign extended to 64
-bits. 64-bit Cintcode has one new instruction (MW) that modifies the
-operand of the next W type instruction (KW, LLPW, LW, LPW, SPW, APW
-and AW). It does this by setting the senior 32-bits of the new 64-bit
-MW register. This is added to the operand of any W type instruction
-and is cleared after use.
+
+This is a version of the BCPL Cintcode generator can generate eithe 32
+or 64-bit cintcode.  It is designed to run on both 32- and 64-bit
+systems. The options t32 and t64 specify the bit length of the BCPL
+word in the target system. The default is the same as the current
+system.  On 64-bit systems numerical constants are compiles to full
+precision, but on 32-bit systems they are truncated to 32 bits then
+sign extended to 64 bits. 64-bit Cintcode has one new instruction (MW)
+that modifies the operand of the next W type instruction (KW, LLPW,
+LW, LPW, SPW, APW and AW). It does this by setting the senior 32-bits
+of the new 64-bit MW register. This is added to the operand of any W
+type instruction and is cleared after use.
 
 18/01/06
 Based on Dave Lewis's suggestion,
@@ -96,8 +100,8 @@ Cured bug concerning the closing of gostream when equal to stdout.
 
 SECTION "BCPLCGCIN"
 
-// If c64 is FALSE, we are running an a 32-bit system
-// If c64 is TRUE,  we are running an a 64-bit system
+// If ON64 is FALSE, we are running an a 32-bit system
+// If ON64 is TRUE,  we are running an a 64-bit system
 
 // If t64 is FALSE, it generates 32-bit Cintcode.
 // If t64 is TRUE,  it generates 64-bit Cintcode.
@@ -408,7 +412,8 @@ f_selst= 255  // Added 20/07/10
 }
 
 LET codegenerate(workspace, workspacesize) BE
-{ //writef("%n-bit system generating %n-bit code*n", (c64->64,32), (t64->64,32))
+{ //writef("%n-bit BCPL generating %n-bit %s ender Cintcode*n",
+  //         (ON64->64,32), (t64->64,32), (bigender->"big","little"))
 
   IF workspacesize<2000 DO { cgerror("Too little workspace")
                              errcount := errcount+1
@@ -448,7 +453,7 @@ AND cgsects(workvec, vecsize) BE UNTIL op=0 DO
   procdepth := 0
   info_a, info_b := 0, 0
 
-  TEST t64 & ~c64
+  TEST t64 & ~ON64
   THEN blkupb := 3 // t64 set but running on a 32-bit implementation
   ELSE blkupb := 2 // otherwise.
 
@@ -464,7 +469,7 @@ AND cgsects(workvec, vecsize) BE UNTIL op=0 DO
     rdname(n, v) // Pack up to 11 character of the name into v
 
     IF naming DO
-    { TEST c64
+    { TEST ON64
       THEN codew(  sectword>>32,  sectword)
       ELSE codew(-(sectword>>31), sectword) // Sign extend
       codestr(v)
@@ -825,7 +830,7 @@ AND scan() BE
 
                    // For 64-bit target deal with the senior 4 bytes
                    IF t64 DO
-                   { TEST c64
+                   { TEST ON64
                      THEN w := val>>32
                      ELSE w := val<0 -> -1, 0 // Sign extend
                      FOR i = 4 TO 7 DO
@@ -1459,7 +1464,7 @@ AND cgentry(l, n) BE
   chkrefs(80)  // Deal with some forward refs.
   align(wordbytelen)
   IF naming DO
-  { TEST c64
+  { TEST ON64
     THEN codew(  entryword>>32,  entryword)
     ELSE codew(-(entryword>>31), entryword) // Sign extend
     codestr(v)   // Compile the words containing the packed
@@ -1837,10 +1842,10 @@ AND cgstring(n) BE
            IF n>=3 DO h := rdn()
            n := n-4    // 1 to 8 bytes have been packed
            TEST bigender
-           THEN TEST c64
+           THEN TEST ON64
                 THEN h3!t := pack4b(a,b,c,d)<<32 | pack4b(e,f,g,h)
                 ELSE h4!t, h3!t := pack4b(a,b,c,d), pack4b(e,f,g,h)
-           ELSE TEST c64
+           ELSE TEST ON64
                 THEN h3!t := pack4b(h,g,f,e)<<32 | pack4b(d,c,b,a)
                 ELSE h4!t, h3!t := pack4b(h,g,f,e), pack4b(d,c,b,a)
          }
@@ -1907,10 +1912,10 @@ AND cgstatics() BE WHILE nlist DO
     LET w   = h3!blk
     nlist := !nlist
 //writef("cgstatics: blk=%n -> [%n, %n, %x8]*n", blk, blk!0, blk!1, blk!2)
-    TEST c64
+    TEST ON64
     THEN TEST t64
-         THEN codew( (w>>32), w)  // c64 -> T64
-         ELSE codew(-(w>>31), w)  // c64 -> t32   sign extend
+         THEN codew( (w>>32), w)  // ON64 -> T64
+         ELSE codew(-(w>>31), w)  // ON64 -> t32   sign extend
     ELSE TEST t64
          THEN codew(  h4!blk, w)  // c32 -> t64
          ELSE codew(       0, w)  // c32 -> t32
@@ -1996,19 +2001,24 @@ LET genh(f, h) BE IF incode DO  // Assume 0 <= h <= #xFFFF
 }
 
 LET genw(f, w) BE IF incode DO
-{ LET mw = w>>32
+{ IF t64 & ON64 DO
+  { // Only compile the MW instruction when in 64 bit BCPL
+    // compiling 64 bit Cintcode, and then only when w is
+    // large enough to need it.
+    LET mw = w>>32
+    // 32 bits immediate operands are signed before adding
+    // the mw correction, so mw may need correction.
+    UNLESS (w & #x80000000)=0 DO mw := (mw+1) & #xFFFFFFFF
+    // mw is chosen to cause
+    //    w = (mw<<32) + signextend(w & #xFFFFFFFF)
 
-  IF mw DO
-  { // This code is only executed if running on a 64-bit system
-    // and an MW instruction is needed.
-    chkrefs(5)
-    // Output code to set the senior 32 bits of the mw register
-    // so that w = mw + (w & #xFFFFFFFF).
-    // The MW register is always cleared after use.
-
-    IF debug>0 DO wrcode(f_mw, "#x%x8", mw)
-    codeb(f_mw)
-    code4b(mw)
+    IF mw DO
+    { chkrefs(5)
+      IF debug>0 DO wrcode(f_mw, "#x%x8", mw)
+      codeb(f_mw)
+      code4b(mw)
+    }
+    w := w & #xFFFFFFFF // A 32 bit positive value.
   }
 
   chkrefs(5)

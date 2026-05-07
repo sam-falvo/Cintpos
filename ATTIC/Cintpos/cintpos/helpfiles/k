@@ -1,0 +1,42 @@
+*Keys
+Form:           KEYS "F1,F2,F3,F4, ... CLEAR/s,LIST/s,NOSET/s,INIT/k"
+Purpose:        To set, clear or display a preferred set of function keys
+Author:         PB
+
+Specification:
+
+   The specified strings are associated with the relevant keys. The strings
+may contain *B, *C, *E, *N, *P, *S or *ooo where ooo is an octal number.
+
+   Unless NOSET is specified, the program attempts to set the function keys
+to the latest value of the specifed strings, but this may fail, e.g. if the
+strings are too long.
+
+   If CLEAR is specified, the remembered string values are lost, but the
+actually functions keys may not be reset. Note that SETTERM deletes the
+strings.
+
+   If LIST is specified, then the keys are listed.
+
+   The INIT string is transmitted each time keys is called.
+
+   (Currently works for 2632 only  --  others are easy to add)
+*Kill
+KILL command
+Format:         KILL  "task/a,substitute/s"
+Purpose:        Program to kill another task.
+Author:         BJK
+
+Warning:        *** This command is available on LSI4s only. ***
+
+Specification:
+
+   The victim task is forced to execute the global TIDYUP as if it were
+at the outermost level of the current coroutine.  This global may be the
+standard BLIB routine, or may have been overridden within the task.
+
+   If the global is unset in the victim then the command will refuse to
+work unless the switch SUBSTITUTE is set, in which case a call will be
+made to the standard TIDYUP routine.
+
+

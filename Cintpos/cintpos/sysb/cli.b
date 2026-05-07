@@ -148,7 +148,7 @@ execcoms:  // Execute commands
              LET hours, mins, secs, msecs = 0, 0, 0, 0
              LET datv = VEC 2
              datstamp(datv)
-             // Assume new dat format
+             // Assume new dat format is [days, msecs, -1]
              msecs := datv!1
              secs  := msecs / 1000
              mins  := secs  / 60
@@ -248,7 +248,7 @@ p := 0 // No preload list ????????????????????
 
                         cpumsecs := sys(Sys_cputime)
 
-                        returncode := 0 // MR 27/7/04
+                        //returncode := 0 // MR 27/7/04
 
                         // Enter the coroutine causing clihook to
                         // call start(0).

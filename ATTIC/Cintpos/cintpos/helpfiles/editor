@@ -1,0 +1,26 @@
+*link #H linking
+*z80 #H z80
+*uid #H uid
+*uidset #H uidedit
+*message #H message
+*mail #H message
+** #I #HCH=+ #FULL
+There are several edit commands available under TRIPOS they are:
+         EDIT      -  normal TRIPOS line editor
+         ZED       -  subset of commands from Phoenix editor
+                      of the same name
+         SSE       -  screen editor: as available on CAP and RSX
+         SCREED    -  the TRIPOS screen editor
+         SUE       -  a screen editor especially designed for the
+                      input of text
+         WS        -  a screen editor resembling MicroPro WordStar
+Type the names of the editors in which information is desired or type
+<CR> to exit HELP.
++edit #H edit
++zed
+No information is currently available on ZED
++sse #H sse
++screed #H screed
++sue #H sue
++ws #H ws
+

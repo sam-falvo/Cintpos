@@ -1,0 +1,22 @@
+*command
+**
+GSCR COMMAND
+
+Form:           gscr [+] filename
+Purpose:        Get screen contents from a Cifer 2632
+Author:         MB (Ported to TRIPOS by RSC curtesy of DRM's TRIPOS cc)
+Specification:
+
+Reads text from the screen into the given file.
+If the + flag is given, reads from entire 168 lines.
+
+
+Examples:
+
+Bugs:
+        The page is usually scrolled by one line when the RETURN is pressed at
+the end of the command line.
+ 
+        As it is a C program ported from UNIX it dosen't know what RDARGS is.
+
+

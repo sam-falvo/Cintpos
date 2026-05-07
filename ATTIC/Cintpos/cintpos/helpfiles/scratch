@@ -1,0 +1,33 @@
+*CALLSEG
+:C.SCRATCH may be CALLSEGed with two arguments, a directory name and a mode.
+The name MUST be supplied (0 is reserverd to mean that the program was called
+by the CLI) and the mode is TRUE for QUIET, FALSE for 'give error messages', and
+1 for 'verify all files'.
+
+The result is TRUE if the directory existed.
+*command
+**
+SCRATCH command
+Form:           SCRATCH "dir/k,quiet/s,ver/s"
+Purpose:        To delete all the unprotected files in a directory.
+Author:         PB
+Specification:
+
+    If DIR is not given the "T:" directory will be scratched.
+
+    QUIET causes no error messages to be produced, and VER lists all files.
+
+NOTE that this is designed to be a safer operation than that below - It will not
+delete protected files or directories.
+
+     In order to delete a directory and its contents use the ALTER command to
+allow deletion of a directory and delete it using the DELETE command:
+                  ALTER <directory name> /D///
+                  DELETE <directory name>
+    See IEX for selective deletion of files in a directory.
+
+Examples:
+        SCRATCH
+        SCRATCH DIR junkdir
+
+

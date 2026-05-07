@@ -1,0 +1,193 @@
+*sym #H #HCH=+
+*name #H #HCH=+
+*old #H #HCH=+
++info
+The spec of old Z80deb can be found on CAP in
+             .*.L.RING.SPEC.Z80DCMDS
+and the spec of the old 6809deb can be found on CAP in 
+             .*L.RING.SPEC.6809DCMDS
++
+*info
+The spec of Z80deb can be found on CAP in .*.L.RING.SPEC.Z80SYMDCMDS
+*commands
+6809DEB and Z80DEB COMMANDS
+
+   Commands generally have the form of a single character sometimes
+followed by an argument.  Spaces are usually usable as seperators
+and ; may also be used to separate multiple commands on a line.
+Numeric arguments may be given in decimal, prefixed by #d, or hex,
+#x, or binary, #b.  A character constant preceded by ' may also be given,
+as also may a fullstop character meaning the current address.
+Numbers may be preceded by a sign.  Values of external symbols read in from the
+'HEX' file may be accessed by preceeding their name by ':'.   If a sign alone is
+read the value + or - 1 is assumed in some commands.
+Numbers not preceded by # are read in hex.
+   Anywhere <number> is specified in the description of commands below
+a numeric expression may be used consisting of numeric items linked by
++ or - signs with no intervening spaces.  No brackets are allowed, and
+evaluation is simply left-right.
+
+   The prompt, #, is preceded by a verification of the "current
+location" if this has not been verified before.  Its address is given
+followed by the contents.  If the address is within 128 bytes of an external
+symbol the nearest and the offset of this address from it will be printed in
+parantheses.  The number in brackets is the next byte above, which is the more
+significant byte of a word value.
+
+   A single breakPoint may be set with the P command.  When a new
+position is given the old one is automatically cancelled.  A null
+argument cancels the breakpoint completely.  The 6809s allow multiple
+breakpoints up to a maximum of about 10.
+   The breakpoint cannot be continued from using G unless the
+breakpointed instruction was NOP.  The breakpoint must first be moved.
+This may be  circumvented by G <address>, or by doing a single-step ('S').
+
+   When a debugged program calls the prom RXBLK routine to receive its
+basic blocks then it may be interrupted by the receipt of a
+special immediate data packet (data 2AAA hex) from the name server.
+When this packet is received debug is entered from within RXBLK.
+   Control-C causes the transmission of an interrupt packet when
+the debug program is waiting.  Control-D in this state will print the
+debugged machine's status.
+
+   Commands are:
+
+M<number> - Set the current address to <number>.
+A         - Synonym for M.
++<number>
+-<number> - Move the current address by +/- <number>.
+N         - Synonym for +1.
+!         - Set current address to the contents of the word
+               at the present address.
+L<value>  - Set the current address to the first address at which <value> is
+               found.  A sequence of values may be given following L.  The
+               same set of values will be found starting at the located
+               address in memory.
+            If a value in the list is too large for a single byte it will be
+               taken as a double byte.
+            If the values remain unmatched after 4048 location have been tested
+               the search is abandoned and the current address remains
+               unchanged.
+            Ctrl B terminates the search.
+R<string> - Set the current address to the address in Z80 store
+               where register <string> was dumped.  Register names
+               are eg. a bc f hl' ix sp.
+            Note that to set a double length value into a double
+               register you must go:
+                     r<reg>=<ls byte>,<ms byte>
+R         - With no argument, R causes a dump of most registers.
+V         - Prints a list of external symbols and their values.
+K<number> - Prints a guess at a backtrace of the stack assuming SP is
+               the given number.  If the number is omitted the value
+               dumped on debug entry +2 is used, this being the start
+               of the user's area when interrupted.
+            Values which do not point 1 after a RST or 3 after a CALL
+               are assumed to be data.  RSTs 30 and 38 are not considered
+               since they are much more likely to be the result of a data
+               item pointing into unused or absent store.
+            Scanning stops when more than 5 data words are found in suc-
+               cession or two #X28s are found, the latter being a standard
+               underflow area format.  Ctrl B also stops scanning.
+            (Not yet available on 6809s).
+T<number> - Type <number> locations starting from the current
+               address.  The current address becomes one after
+               the last typed.  Prints either characters (with "?" used for
+               unprintable characters) or in hex depending on the prevailing
+               style option (see the O command).
+TC<number>- Same as T<number> except the style is always characters.
+TL<number>- Ditto
+TH<number>- Same as T<number> except the style is always hex.
+I<number> - Types out the next <number> instructions starting at the
+               current location.  Typing is in hex  with the address
+               verified before each instruction.  Ctrl B stops the
+               output at the end of the current line, as does
+               encountering an invalid instruction, the latter giving
+               an error message.  Each instruction is inspected for external
+               symbols.  If one is found it is printed to the right of the
+               instruction bytes.
+$         - Type the current location in decimal.
+#         - Type the current location in hex.
+P<number> - Set a breakpoint at address <number> and unset the
+               existing breakpoint, if any.
+P         - With no argument, unsets exisiting breakpoint.
+B         - Synonym for P.
+PL        - List breakpoints (6809 only).
+G<number> - Continue execution from address <number>.  If <number> is
+               omitted (as distinct from 0) continuation is from (SP).
+C         - Synonym for G.
+S<number> - Single step one instruction from address <number>.  If
+               <number> is omitted (distinct from 0) continuation is
+               from (SP).  Stepping is not allowed for invalid
+               instructions, and some difficult-to-deal-with
+               instructions, and also if the next instruction cannot
+               be altered to an ERRTRAP.  If this happens a message
+               will be given and no action performed.  The next location is
+               verified by printing out the bytes of the instruction found
+               there.
+SM<number>- Step multiple: single steps <number> times (6809 only).
+=<value>  - Set the contents of the current address to <value>.
+               A sequence of values may be given following =,
+               separated by commas.  These will be written into
+               successive ascending store locations.
+          - At the end of a number sequence the current address
+               will be left set to the beginning.  In the event of an
+               error in the sequence, however, the current address
+               will be set to the address about to be written.
+O         - Set option. Options are:
+               C        - set character mode for printout (bad characters
+                             are printed as '?', new line is also reflected
+                             as '?')
+               H        - set hexadecimal mode for printout
+               W<number>- set width of search for <name+offset> values in
+                             address comments to <number> (default 100)
+D <addr1> <addr2> <number>
+          - Dump (in Cambridge Hex) the memory from address <addr1> to
+            <addr2> to the file "DUMP-<number>"
+          - The default for <addr1> is address zero
+          - The default for <addr2> is #XFFFF
+          - The default value for <number> (which must be between 0 and 9)
+            is the last value specified in that position (initially 1)
+*command
+*z80deb
+*6809deb
+**
+Z80DEB and 6809DEB commands
+Form:           Z80DEB  "Device/A,From=With,Dic=Hex,Cache,Test/S" or
+                6809DEB "Device/A,From=With,Dic=Hex,Cache,Test/S"
+Purpose:        To remotely debug a ring Z80 or 6809 microprocessor.
+Author:         NJO (modified for symbols and GYP use by CGG)
+                (6809DEB converted by SJL and modified by NHG and CGG)
+Specification:
+
+        Debugs the Z80 or 6809 at the ring station given by the station name 
+    for keyword DEVICE.  Accepts commands from the currently selected input by 
+    default or from the file given by the FROM keyword.  If a test version of 
+    the GYP ring service is available the TEST keyword will select it.
+
+        This command will accept a copy of the Cambridge Hex that was loaded
+    into the machine and extract from it the names of the symbols referenced
+    in the code (if the linker has been asked to leave them there with the I
+    option).  The name of the file containing the hexis keyed to the HEX
+    keyword.  The symbols so extracted can be used in expressions during the
+    debugging dialogue and are used in displaying information.
+
+        Thew debugger buffers reads from the debugged machine's memory and 
+    holds them in a cache - the size of which can be set using the CACHE key 
+    word.  The default is 32 but for more speed (e.g. for dumping memory to 
+    file) it can be raised to about 250.  If care must be taken not to read
+    addresses in memory that are not explicitly addressed it should to set 
+    to 2.
+
+        For a description of the commands that are allowed use
+    HELP Z80DEB COMMANDS or HELP 6809DEB COMMANDS.
+
+Examples:
+
+    Z80DEB roger
+    RUN Z80DEB gyp.r FROM *
+    6809DEB 6809mc HEX assemblerhex
+    Z80DEB logger TEST FROM automatic-debug-commands
+    6809DEB black FROM dumpitall CACHE 200
+*
+ 
+

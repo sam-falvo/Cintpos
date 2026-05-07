@@ -1,0 +1,196 @@
+*CREATE
+*ALL ..
+The ANCILLA CREATE command
+
+Form:    ANCILLA  CREATE  <mctype>  FILE=<object file>  NAME=<system name>
+Author:  IDW
+
+   The CREATE command is used  for adding new entries into the  ANCILLA
+filing system. 
+The load file FILE is entered into the ANCILLA filing system, under the
+name NAME. Creation will fail if this system already exists.
+
+Example:    ANCILLA  CREATE  lsi4  FILE=obj.tripos  NAME=tripos
+
+
+*DELETE
+*ALL ..
+The ANCILLA DELETE command
+
+Form:    ANCILLA  DELETE  <mctype>  NAME=<system name>
+Author:  IDW
+
+   The DELETE command  is used  for removing entries  from the  ANCILLA
+filing system. 
+The filing system entry for the name NAME is removed.  The system  must
+obviously exist for this to be done.
+
+Example:    ANCILLA  DELETE  68000  NAME=oldest-newest-mailserver
+
+
+*REPLACE
+*ALL ..
+The ANCILLA REPLACE command
+
+Form:    ANCILLA  REPLACE  <mctype>  FILE=<object file>  NAME=<system name>
+Author:  IDW
+
+   The REPLACE command is identical to the CREATE command, except that is
+insists that the  system referenced  already exists,  and updates  that
+system in place. 
+The system whose name is NAME has its load file replaced by the file FILE.
+
+Example:    ANCILLA  REPLACE  lsi4  FILE=t:fm-tripos  NAME=test-fm-tripos
+
+
+*ALIAS
+*ALL ..
+The ANCILLA ALIAS command
+
+Form:    ANCILLA  ALIAS  <mctype>  NAME=<system name>  NAME2=<system name>
+Author:  IDW
+
+   The ALIAS command is  used for attributing  a new name  to a  filing
+system entry which already  exists, leaving both names referencing  the
+same object. 
+An entry is made in the filing system for the name NAME2, which references
+the same  load  file as  the  system  whose  name is  NAME.   ALIAS  is
+particularly useful, in that it enables a backup of a system to be taken,
+and a new system installed, without having a transient period where the
+system does not exist.  ALIAS requires that  NAME must exist, and NAME2
+must not.
+
+Example:    ANCILLA  ALIAS  68000  NAME=mace-tripos  NAME2=old-mace-tripos
+
+
+*RENAME
+*ALL ..
+The ANCILLA RENAME command
+
+Form:    ANCILLA  RENAME  <mctype>  NAME=<system name>  NAME2=<system name>
+Author:  IDW
+
+   The RENAME command changes the name of an object in the ANCILLA filing
+system. 
+The object whose name  is NAME, has its name changed to  NAME2.  RENAME
+requires that NAME must exist, and NAME2 must not.
+
+Example:    ANCILLA  RENAME  lsi4  NAME=tripos  NAME2=backup-tripos
+
+
+*RELEASE
+*ALL ..
+The ANCILLA RELEASE command
+
+Form:    ANCILLA  RELEASE  <mctype>  NAME=<system name>
+Author:  IDW
+
+   The RELEASE command release a new version of a boot file atomically.  The
+effect of the RELEASE command is equivalent to the following:
+
+         DELETE  NAME=backup-<system name>
+         RENAME  NAME=<system name>      NAME2=backup-<system name>
+         RENAME  NAME=new-<system name>  NAME2=<system name>
+
+RELEASE requires that the "new-..." system exists.
+
+Example:    ANCILLA  RELEASE  68000  NAME=tripos
+
+
+*LIST
+*ALL ..
+The ANCILLA LIST command
+
+Form:    ANCILLA  LIST  <mctype>
+Author:  IDW
+
+   The LIST command is used to examine the entries in the ANCILLA filing
+system. 
+The entries for the relevant arm of the filing system are printed out, as
+name and PUID pairs.
+
+Example:    ANCILLA  LIST  68000
+
+*INIT
+*ALL ..
+The ANCILLA INIT command
+
+Form:    ANCILLA  INIT  <mctype>
+Author:  IDW
+
+   The INIT command is used to re-initialise an arm of the ANCILLA filing
+system. It is equivalent to using the DELETE command on each individual
+entry. 
+The relevant arm of the ANCILLA filing system is initialised, leaving it
+with no entries.  Note that this command is  usually disabled, as it is
+extremely dangerous!
+
+
+*READLOG
+*ALL ..
+The ANCILLA READLOG command
+
+Form:    ANCILLA  READLOG
+Author:  IDW
+
+   The READLOG command is used to read the log of recent changes to the
+ANCILLA filing system. 
+Descripitions of filing system changes; i.e. who changed what, and when,
+are printed out.
+
+
+*FLUSHLOG
+*ALL ..
+The ANCILLA FLUSHLOG command
+
+Form:    ANCILLA  FLUSHLOG
+Author:  IDW
+
+   The FLUSHLOG command is used to remove all irrelevant entries from the
+log file. 
+All but the most recent log entry for each item in the filing system is
+removed, and a new log file produced. This command is intended for  the
+system manager's use, and should not normally be of interest to  anyone
+else.
+
+
+*CHUNKSIZE
+*ALL
+The ANCILLA CHUNKSIZE parameter
+
+   For the  CREATE  and REPLACE  commands, there  is an  extra  keyword
+CHUNKSIZE which can be quoted. This is the maximum size of a load  file
+chunk which the ANCILLA will be asked to load into a target machine. The
+default chunksize is 64K fileserver words, which means that most TRIPOS
+systems will fit into 2 chunks.
+   This should only be of interest for anyone attempting to load machines
+across bridges or satellites, and  is a facility  which may be  removed
+without notice.
+
+
+*COMMAND  #I  ANCILLA
+*+        #I  ANCILLA
+The Tripos ANCILLA command provides an interface to the ring ANCILLA filing
+system.  The valid ANCILLA commands are:
+
+        CREATE         Add a load file entry
+        DELETE         Delete a load file entry
+        REPLACE        Replace a old load file entry
+        ALIAS          Alias a load file entry as another 
+        RENAME         Rename a load file entry as another
+        RELEASE        Release a new system
+        LIST           List the load file entries
+        INIT           Initialise the relevant arm of the filing system
+        READLOG        Read the log of recent changes
+        FLUSHLOG       Remove out of date log entries
+
+Type one of the command names for help on that command, or <RETURN> to leave
+HELP
+
+**
+What you typed is not a valid ANCILLA function.  Try HELP ANCILLA for general
+help on the ANCILLA program, or HELP ANCILLA <command> for help on a specific
+command.
+*
+
+

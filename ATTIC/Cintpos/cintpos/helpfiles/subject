@@ -1,0 +1,22 @@
+**
+HELP currently knows something about the following subjects:
+
+          COMMANDS on TRIPOS
+          BLIB procedures
+          KLIB procedures
+          USERS on TRIPOS
+          FILES and DIRECTORIES on TRIPOS
+          TERMINAL CONCENTRATOR connections
+          UDN - the University Data Network
+          CHARACTERS - codes and uses
+          DEVICES on TRIPOS
+          TASKS on TRIPOS
+          LANGUAGES on TRIPOS
+          GLOBAL numbers in BCPL
+          RETURN CODES from TRIPOS and the RING
+          NEW software and changes
+
+Try HELP <subject> for information on any of these.
+Suggestions for additions are welcome (Use HELP TROUBLE).
+
+

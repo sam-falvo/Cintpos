@@ -1,0 +1,53 @@
+*info            SYS:sa.modula2.info.introduction
+*general         SYS:sa.modula2.info.introduction
+*m2db            SYS:sa.modula2.info.m2db
+*debug           SYS:sa.modula2.info.m2db
+*debugger        SYS:sa.modula2.info.m2db
+*heap            SYS:sa.modula2.info.heap-and-stack 
+*stack           SYS:sa.modula2.info.heap-and-stack
+*m2utils         SYS:sa.modula2.info.object-modules
+*commands        SYS:sa.modula2.info.object-modules
+*utilities       SYS:sa.modula2.info.object-modules
+*utility         SYS:sa.modula2.info.object-modules
+*object          SYS:sa.modula2.info.object-modules
+*sequence        SYS:sa.modula2.info.init-sequence ..
+*init            SYS:sa.modula2.info.init-sequence
+*sequence        SYS:sa.modula2.info.command-sequence
+*command         SYS:sa.modula2.info.command-sequence
+*mm2m            SYS:sa.modula2.info.mm2m
+*makefile        SYS:sa.modula2.info.mm2m
+*m2path          SYS:sa.modula2.info.m2path
+*path            SYS:sa.modula2.info.m2path
+*libraries       SYS:sa.modula2.info.m2path ..
+*m2library       SYS:sa.modula2.info.m2library
+*library         SYS:sa.modula2.info.m2library
+*libraries       SYS:sa.modula2.info.m2library
+*fault           SYS:sa.modula2.info.common-faults
+** #I modula2
+THE MODULA2 LANGUAGE
+
+MODULA2 is supported on PACK3 of the filing system.  This is a working
+and often used implementation which runs on 68000s.  The size of the MODULA2
+run time system and standard utilities is such that, although it will just
+run in half megabyte machines, it is progressively happier (and faster) on one
+and one and half megabyte machines.  The system is supported by extensive
+libraries and several utilities, including a debugger.  There are libraries of
+pertinent and oft-used command sequences and a standard INIT-SEQUENCE to set
+the relevant environment up.  Much of the documentation is rather extensive,
+so be prepared for a long read (remember that you can use HELP's #TO key
+to send a listing of the information to a file).  Type one of the following
+for further information:
+
+          GENERAL       -  introductory information about the system
+          DEBUG         -  information about the debugger
+          LIBRARY       -  specification of the MODULA2 library
+          PATH          -  information about the path taken to library code
+          UTILITIES     -  a description of the various support programs
+          MM2M          -  the MODULA2 makefile generating program
+          STACK, HEAP   -  information about MODULA2 heap and stack sizes
+          INIT          -  about the standard INIT-SEQUENCE used
+          COMMAND       -  about command sequences available for common functions
+          FAULTS        -  a description of common MODULA2 programming faults
+
+
+

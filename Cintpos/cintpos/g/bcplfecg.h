@@ -11,7 +11,9 @@ Extended to include manifests and globals used by xbcpl and procode
 */
 
 MANIFEST {
-
+c64 = BITSPERBCPLWORD=64 // Added 21/9/2019 replaces the global
+                         // Use ON64 instead defined in libhdr.h
+			 
 // Interface globals are betweeb ug and feg-1
 intg=ug     // First of the interface globals, ie those
             // common to Lex, Syn, Trn and the codegenerator.
@@ -62,7 +64,8 @@ s_none
 s_lf; s_lp; s_lg 
 s_ln    // Load an integer or floating point constant
 s_lstr; s_ll; s_llp; s_llg; s_lll 
-s_sp; s_sg; s_sl; s_stind; s_jump; s_jt; s_jf; s_endfor
+s_sp; s_sg; s_sl; s_stind; s_jump; s_jt; s_jf
+s_endfor // endfor is no longer used, but is left in to leave the other constants unchanged
 s_lab; s_stack; s_store; s_rstack; s_entry
 s_save; s_fnrn; s_rtrn; s_res; s_datalab; s_itemn
 s_endproc; s_getbyte; s_putbyte
@@ -107,7 +110,7 @@ sf_none=0     // Assignment operators
 sf_vecap
 sf_fmul
 sf_fdiv
-sf_fmod  // Incompatible change 26/11/18
+sf_fmod       // Incompatible change 26/11/18
 sf_fadd
 sf_fsub
 sf_mul
@@ -128,6 +131,10 @@ GLOBAL {
 
 nametable:intg; nametablesize
 fin_p; fin_l; plist; treep; treevec
+
+tofilename      // Derived from TO/K
+mapfilename     // Set by MAP/K option for the Z80 codegenerator
+listfilename    // Set by LIST/K option
 
 opname   // For lex tokens, tree and ocode ops
          // Used by both fe and cg
@@ -159,10 +166,12 @@ noselst          // TRUE if not compiling SELLD and SELST instructions.
 objline1         // either "" or of form "#!..."
 objline1written
 optstring        // The opt argument
-c64              // =TRUE if compiler is running on a 64-bit system
-t64              // =TRUE if generating 64-bit Cintcode
-wordbytelen      // = 4 or  8
-wordbitlen       // =32 or 64
+//c64  This is now a manifest constant based on BITSPERBCPLWORD
+t16              // =TRUE if generating 16-bit target code
+t32              // =TRUE if generating 32-bit target code
+t64              // =TRUE if generating 64-bit target code
+wordbytelen      // = 2, 4 or  8
+wordbitlen       // = 16, 32 or 64
 encoding         // Current encoding =RTF8 or GB2312
 defaultencoding  // Default encoding, set by command args.
 

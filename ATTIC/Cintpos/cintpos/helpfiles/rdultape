@@ -1,0 +1,39 @@
+*command
+**
+RDULTAPE command
+Form:           "FILES,LRECL/A/K,BLKSIZE/A/K,BINARY/S"
+Purpose:        To read unlabelled tapes in Fixed Block format
+Author:         IDW
+
+Specification:
+    RDULTAPE is a program designed for reading unlabelled tapes, written
+at installations other than Cambridge.  It uses the NOVA2 Tape Server,
+and hence the tape must be written on 9 track tape at 800bpi.
+
+    FILES       is the name of a file containing a list of files names into
+                which the tape files will be copied.  If no FILES file is
+                given, the default of the terminal is taken.
+
+    LRECL       is a number, specifying the Logical RECord Length of the
+                files to be read (in bytes).
+
+    BLKSIZE     is a number, specifying the BLocKSIZE of the files to be
+                read (in bytes).  BLKSIZE must be EVEN, and an integral
+                multiple of LRECL.
+
+    BINARY      is a switch which, if set, causes RDULTAPE to do no line
+                imaging on the files as they are read.  If BINARY is not
+                set, then RDULTAPE breaks the lines of the files at LRECL
+                byte boundaries, and strips trailing blanks.
+
+    N.B.  RDULTAPE does not refresh the dead man's handle in the Tape Server
+          (see "The TRIPOS Tape Handler - IDW"), and so if an interactive
+          session is chosen, care must be taken not to be idle for more than
+          3 minutes, otherwise the tape server will time the session out.
+
+Examples:
+
+          RDULTAPE          LRECL=80   BLKSIZE=800
+          RDULTAPE t:files  LRECL=132  BLKSIZE=2640  BINARY
+
+

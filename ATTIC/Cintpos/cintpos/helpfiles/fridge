@@ -1,0 +1,26 @@
+*edit #H uidedit
+*editor #H uidedit
+*editing #H uidedit
+**
+FRIDGE
+    The FRIDGE is a list of UID SETs (use HELP UID SET for more information)
+hanging off the root node.  TRIPOS refreshes these UIDsets when running
+normally to keep them "fresh" - for an hour every thirty seconds or so.
+They will "go bad" an hour after a TRIPOS crashes or, if it is released
+explicitly, will be deleted immediately.
+    The CONSOLETASK for which a UIDSET was created in the FRIDGE is kept
+with each UIDSET.  By convention the first UIDSET for a particular
+CONSOLETASK in the FRIDGE is always that of the USER of that console - if it
+is absent then no user is logged on.  A UIDSET LIST has the same format as
+a UIDset except that an additional word, at offset zero, is used to point
+to the next UIDSET LIST.  The first UIDset list is pointed to by:
+
+               rootnode ! rtn.info ! rtninfo.ring ! ri.uidset
+
+(The manifest RI.UIDSET is available in the RINGHDR header file).
+    The UIDEDIT command is used to manipulate this list manually - use
+HELP UIDEDIT COMMAND for more information.
+    Various procedures for manipulating the FRIDGE from a BCPL program are
+available in :G.BCPL - use HELP SOURCELIB for more information.
+
+

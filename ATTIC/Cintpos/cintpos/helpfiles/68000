@@ -1,0 +1,23 @@
+*ASSEMBLER     #H  ASM68
+*ASSEMBLE      #H  ASM68
+*M68KASM       #H  ASM68
+*ASM68         #H  ASM68
+*ASM           #H  ASM68
+*DISASSEMBLER  #H m68kda
+*DISASSEMBLE   #H m68kda
+*M68KDA        #H m68kda
+*DA            #H m68kda
+*TRIPOS
+See HELP TRIPOS  for information on the 68000 implementation of the TRIPOS
+operating system.
+*+
+The Motorola MC68000 is a 16 bit microcomputer, on which some of the machines
+in the Computer Laboratory processor bank is based.  An implementation of
+TRIPOS exists for it (see HELP TRIPOS for details).
+
+See also:
+
+    HELP 68000 ASSEMBLER
+    HELP 68000 DISASSEMBLER
+
+

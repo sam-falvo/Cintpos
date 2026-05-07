@@ -1,0 +1,54 @@
+*sequence #H commandfile
+*file #H commandfile
+*interpreter #H cli
+*language #H #HCH +
+++ #H commandfile
+*source #H directory
+*form
+COMMAND FORM
+
+The "Form:" given in HELP COMMAND <command> often gives the format of a command
+in terms of its RDARGS string (use HELP RDARGS STRING for more information) --
+see HELP HELP STANDARD for the specification of the way in which HELP is
+provided for commands.
+*commands #H #HCH=+
+*+ #H #HCH=+
++all #H allcommands
++list #H allcommands
++tripos #N ..
+
++system #N ..
+
++on #N ..
+
++in #N ..
+
++of #N ..
+
+++
+COMMANDS
+     TRIPOS supports a large variety of different commands:
+try HELP COMMAND <COMMAND> for details of a specific command.
+Almost all the commands on TRIPOS will display their RDARGS string if
+followed by a question mark - this is an easy way of determining any
+particular syntax.  (Use HELP RDARGS STRING to get information about the
+meaning of a RDARGS string).
+     Commands are kept in the directory SYS:C (try EX :C to see the list).
+     Use HELP ALL COMMANDS for a list of all the TRIPOS commands.  NOTE: that
+the students version of TRIPOS (S-TRIPOS) does not include the full set of
+commands.
+     Use HELP FILE COMMANDS for a list of elementary FILE commands.
+     Use HELP DIRECTORY COMMANDS for a similar list for DIRECTORIES.
+     If a command is interactive the commands which can be used in its
+operation can normally be found using HELP <command> COMMANDS.
+     Use HELP COMMAND SEQUENCE for information about how to execute commands
+listed in a files.
+     For information about where the sources for commands can be found use
+HELP COMMAND SOURCES.
+     For information about documentation use HELP DOCUMENTATION.
+     For information about the standards to be used when writing commands
+use HELP STANDARDS.
++
+*all #H #HCH %
+%+ #H allcommands
+

@@ -1,0 +1,17 @@
+*command
+**
+STATUS370 command
+Form:           STATUS370  "USER/A"
+Purpose:        Similar to the STATUS command on the 370.
+Author:         TJK
+Specification:
+        This command is similar to the STATUS command on the 370. It requires
+    an argument which is the userid or job number whose status is requested.
+    In the latter case, the number may be preceded by a 'J'.
+Examples:
+    STATUS370 tjk1
+        will provide a status of all jobs belonging to tjk1.
+    STATUS370 J1234
+        will provide a status report of job 1234.
+
+

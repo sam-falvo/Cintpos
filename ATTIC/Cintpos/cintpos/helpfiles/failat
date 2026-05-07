@@ -1,0 +1,20 @@
+*command
+**
+Form:           FAILAT  "RClim"
+Purpose:        To set the return code level at which a command
+                sequence will fail.
+Author:         CGG
+Specification:
+       The argument should be a positive number.  The fail level will be
+    reset to cli.initialfaillevel (currently 'return.hard' =  10) on exit
+    from a command sequence, hence its effect is local to a command sequence.
+       The current value of 'cli.faillevel': the value which a command's
+    return code must reach before a command sequence is exited, will be
+    displayed if no argument is given.
+        Use HELP STOP PROCEDURE for information about how to set a return
+    code from a command.
+
+Example:        FAILAT 25
+                FAILAT
+
+

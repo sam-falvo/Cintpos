@@ -1,0 +1,63 @@
+*6502 #H z80
+*6809 #H z80
+*8x300 #H z80
+*8080 #H z80
+*z80 #H z80
+*68000 #H 68000
+*pdp #H #HCH=+
+*pdp11 #H #HCH=+
+*pdp/11 #H #HCH=+
++dis #H pdpdisasm
++un #H pdpdisasm
++disassemble #H pdpdisasm
++disassembler #H pdpdisasm
++disassembly #H pdpdisasm
++dissassembler #H pdpdisasm
++dissassemble #H pdpdisasm
++dissassembly #H pdpdisasm
++* #H asm
+*ga #H gasm
+*automation #H gasm
+*nova #H novasm
+*lsi #H #HCH=+
+*lsi4 #H #HCH=+
+*lsi4/10 #H #HCH=+
+*lsi4/30 #H #HCH=+
+*lsi4/90 #H #HCH=+
++un #H disasm
++dis #H disasm
++disassembler #H disasm
++disassembly #H disasm
++disassemble #H disasm
++dissassembler #H disasm
++dissassembly #H disasm
++dissassemble #H disasm
++* #H asm
+*macro
+*relocating
+*reloc
+*+
+There are several assemblers and disassemblers on TRIPOS: they are
+summarised below:
+
+        MACHINE         ASSEMBLER           DISASSEMBLER
+        =======         =========           ============
+
+        LSI4            ASM                 DA        {out of date}
+        LSI4            ZASM                DISASM
+      + 68000           ASM                 M68KDA    {available on CAP/3081}
+        NOVA            NOVASM
+        GA              GASM
+        PDP11           PDPASM              PDPDISASM
+      * Z80             Z80                           {available on CAP}
+      * 6502            6502
+      * 6809            6809
+      * 8X300           8X300
+      * 8080            8080
+
+The entries marked '*' are local to the lab.
+The entries marked '+' are only available on 32 bit versions of TRIPOS.
+Try HELP <machine> ASSEMBLER or HELP <machine> DISASSEMBLER for further
+information on any particular assembler or disassembler.
+
+

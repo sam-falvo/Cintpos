@@ -1,0 +1,29 @@
+*spec
+IEX spec is in SYS:INFO.SPEC.IEX
+*all sys:info.spec.iex
+*command
+**
+Form:           IEX  "dir,to/k,titles/s,nodates/s,puid/s"
+Purpose:        To examine a directory interactively
+Author:         PBr
+   For full spec try HELP IEX ALL
+  <cr>          Go on to next entry
+  ?             Help - type list of options
+  *             Return to beginning of this directory
+  !             Send rest of line To CLI. '^' is substituted by the file name
+  DELete (-)    Add (remove) this file to (from) the list of those to be deleted
+  Examine       Examine this directory
+  EXAll         EXALL the current directory
+  Full (-)      Type full file information
+  Help          Type a list of options
+  List          Cease interaction
+  Previous      Go back one entry
+  PROtect (-)   Protect the current object R (or RWD if '-')
+  Quit          Do not examine rest of this directory
+  Sse           Edit the file (Be prepared to wait!)
+  Type          SCAN (q.v.) current file.       TYPE TO LP: - print current file
+  TItles (-)    Only show file titles
+  Windup        Windup - exit to top level
+   (-) indicates that the option may be turned off by putting a minus after it.
+
+

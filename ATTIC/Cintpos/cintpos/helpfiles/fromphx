@@ -1,0 +1,41 @@
+*command
+*old
+FROMPHX Command
+Form:           FROMPHX  "FROM/A,TO/A,USER/A,PW/A"
+Purpose:        To transfer files from Phoenix/MVT to TRIPOS
+Author:         TJK
+Specification:
+        This command may be used to transfer files from Phoenix/MVT to TRIPOS.
+    The syntax is
+
+            fromphx FROM <phxfile> TO <file> USER <uid> PW <pw>
+
+    which transfers the file called <phxfile> on Phoenix/MVT to a file called
+    <file> on TRIPOS. A valid Phoenix userid and password must be quoted
+    as <uid> and <pw>. The keywords FROM, TO, USER and PW are optional.
+        The program monitors how many lines have been sent, and may be
+    interrupted at any time by pressing CTRL/B. If Phoenix/MVT goes down, or
+    something else goes wrong, the program will terminate but without the
+    messsage "Transfer complete".  In this case simply try again.
+**
+The old FROMPHX command does not work with Phoenix/MVS (and is rather
+unlikely to do so again)!  If you really want to know what it used to do
+type HELP FROMPHX OLD.
+
+To transfer a file from Phoenix now there are two routes:
+
+ (i)   Use the CS FETCH command - see HELP on this
+
+ (ii)  Use IDW's STREAM command on the 3081
+
+To use stream, log on to Phoenix and go C IDW2.C:STREAM.  This takes
+parameters FROM (PHX filename), TO (Tripos filename) and MC (a machine
+running Tripos on the ring).  If the parameters are not given then they
+will be prompted.  After typing the command, do not log off the Tripos
+machine until two messages, indicating that the file transfer has started
+and finished, have been issued.
+
+Note that the STREAM facility can also be activated by submitting a job
+using CS SUBMIT (q.v.).
+
+

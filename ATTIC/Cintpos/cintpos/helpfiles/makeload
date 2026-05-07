@@ -1,0 +1,74 @@
+*MAKELOAD
+Form:    makeload FROM/A,TO/A,COMMAND/S,AD/K,START/K,TRAP/S,VERBOSE/S
+Purpose: Converts TRIPOS hunks into UNIVERSE boot format for loading
+         into VME machines
+
+The arguments are as follows -
+
+        FROM -  name of the file from which to take either the TRIPOS hunks or
+                commands.
+
+        TO -    name of the file in which to put the output.
+
+        COMMAND flag to indicate whether the file specified in the FROM
+                argument contains TRIPOS hunks or commands.  If it is given
+                then the file should contain commands.
+
+        AD -    name of the machine which the RIP should try and contact if it
+                gets into any difficulty.  This may be overwritten by ripload
+                if required.  If a name is not specified then ripload will put
+                in the name of the machine on which it is being run.
+
+        START - the address at which execution of the program should start. 
+                This defaults to LOCALRAMBASE. (See vme:g.asm.VMEhdr)
+
+        TRAP -  this is used to say whether or not the RIP should try and 
+                contact the machine specified by the active debug string before
+                starting the program that has just been loaded.  If TRAP is not
+                given then the RIP will start the program.
+                
+        VERBOSE normally no information on the file that is being processed
+                will be printed.  However if VERBOSE is given makeload will
+                print out a list of the hunks to be loaded, the number of
+                unmerged and merged hunks and a map of the merged hunks.
+                
+        
+        If a command file is used then the input file should consist of lines
+containg one of the following commands -
+
+        IMAGE <file>
+        CODE  <file>            name of the file from which to read TRIPOS
+                                hunks
+
+        DEFAULT-DEBUG <name>
+        DD <name>               similar to active debug except that the RIP
+                                will not try and contact the machine unless
+                                it cannot get in touch with the machine
+                                given by the active debug
+
+        ACTIVE-DEBUG <name>
+        AD <name>               As above
+
+        AUTH <number>           A 64 bit number which will be used by the RIP
+                                to validate futher load requests. The default
+                                value is FFFFFFFFFFFFFFFF
+
+        START <addres>          As above
+
+        OFFSET <address>        Allows the user to create a bootfile for dual
+                                processor systems or where code for a machine
+                                is to be loaded into two disjoint places in 
+                                memory.  After the command all addresses for
+                                load blocks will have the offset added to them.
+
+        ENTER-DEBUG
+        TRAP                    As above
+
+        TITLE <string>          All characters after title up to the end of the
+                                line are ignored except that they will be 
+                                printed out by ripload.
+
+        If an argument is given which is the same as one of the commands in the
+command file then the argument will take priority.
+
+

@@ -1,0 +1,21 @@
+*format #N ..
+*spec #N ..
+*+ #N ..
+** #H grasm
+
+**
+CAMBRIDGE HEX
+
+The format of Cambridge Hex is documented in CAP file
+               .*.L.RING.SPEC.CAMBRIDGE*CHEX
+it is in ROFF format.
+
+Briefly it is a character record based load module format similar to Intel
+or Mostek Hex.  It includes record types to handle external references,
+relocation and pragmats.  Its format is fairly general amongst computers
+with byte addressing. Several assemblers available in the Lab generate
+this format.
+
+For information about the linker use HELP CAMBRIDGE HEX LINKER.
+
+

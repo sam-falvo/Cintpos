@@ -1,0 +1,240 @@
+This file contains a record of recent tests of the BCPL 32 and 64 bit
+Cintpos System on various computers and operating systems that have
+access to. A similar file (CintsysTestLog.txt) will be maintained for
+the Cintsys System.
+
+################## The machines and operating systems ###############
+
+1) Dell laptop
+   CPU: Intel Core i5-8250U, 8th Gen
+        1.60 GHz  1.80 GHz
+   RAM: 8.00 GB
+        64-bit OS
+	x64 based processor
+   OS:  Windows 10 Pro
+        Running Ubuntu Linux 18.04 LTS under Oracle VM Virtualbox
+
+2) Samsung NC10 Netbook
+   CPU: 
+        1.60 GHz ??  1.80 GHz ??
+   RAM: 8.00 GB ??
+        32-bit OS
+	x32 based processor
+   OS:  Replaced Windows XP by Ubuntu Linux 18.04 LTS
+
+3) Apple: Mac Mini 6,1
+   CPU: Dual core Intel i5
+        2.50 GHz
+   RAM: 8.00 GB   Disc 500 GB
+   OS:  OSX
+
+4) Raspberry Pi Model 3 or 4
+   CPU: ARM
+        1.60 GHz  1.80 GHz ???
+   RAM: 1.00 GB
+   OS:  32-bit Ubuntu Linux
+
+5) Dell 32-bit Cywin under Windows 10
+   CPU: Intel Core i5-8250U, 8th Gen
+        1.60 GHz  1.80 GHz
+   RAM: 8.00 GB
+        64-bit OS
+	x64 based processor
+   OS:  Windows 10 Pro running 32-bit Cygwin
+
+6) Dell 64-bit Cywin under Windows 10
+   CPU: Intel Core i5-8250U, 8th Gen
+        1.60 GHz  1.80 GHz
+   RAM: 8.00 GB
+        64-bit OS
+	x64 based processor
+   OS:  Windows 10 Pro running 64-bit Cygwin
+
+
+
+
+##################### The tests ###############################
+
+1) Test 1                   32 bit BCPL Cintpos with no graphics
+   cd $POSROOT
+   make -f Makefile clean
+   make -f Makefile
+   sysinfo
+   cmpltest
+   fcmpltest
+   fltcmpltest
+   bench100
+   cosim
+   status
+   c bc bounce
+   c bc send
+   c bc run
+   run bounce
+   send
+   c bc tcobench
+   tcobench
+
+2) Test 2                   32 bit BCPL Cintpos with SDL
+   cd $POSROOT
+   make -f MakefileSDL clean
+   make -f MakefileSDL
+   sysinfo
+   cmpltest
+   fcmpltest
+   fltcmpltest
+   bench100
+   cosim
+   logout
+   cd ../bcplprogs/raspi
+   cintsys
+   c b engine
+   engine
+   c b dragon
+   dragon
+   c b hdmandset
+   hdmandset
+   
+3) Test 3                   32 bit BCPL Cintpos with SDL and GL
+   cd $POSROOT
+   make -f MakefileGL clean
+   make -f MakefileGL
+   sysinfo
+   cmpltest
+   fcmpltest
+   fltcmpltest
+   bench100
+   cosim
+   logout
+   cd ../bcplprogs/raspi
+   cintsys
+   c b engine
+   engine
+   c b gltst
+   gltst
+   logout
+   cd ../genome
+   c b dnaplot
+   dnaplot
+
+   
+4) Test 4                   64 bit BCPL Cintpos with no graphics
+   cd $POSROOT
+   make -f Makefile clean       Build the 32-bit versioon
+   make -f Makefile             needed to
+   logout
+   make -f Makefile clean64     build the 64-bit version
+   make -f Makefile run64       with luck
+   c compall64
+   sysinfo
+   cmpltest
+   fcmpltest
+   fltcmpltest
+   bench100
+   cosim
+
+5) Test 5                   64 bit BCPL Cintpos with SDL
+   cd $POSROOT
+   make -f Makefile clean         Build the 32-bit versioon
+   make -f Makefile               needed to
+   logout
+   make -f MakefileSDL clean64     build the 64-bit version
+   make -f MakefileSDL run64       with luck
+   c compall64
+   sysinfo
+   cmpltest
+   fcmpltest
+   fltcmpltest
+   bench100
+   cosim
+   logout
+   cd ../bcplprogs/raspi
+   cintsys
+   c b engine
+   engine
+   c b dragon
+   dragon
+   c b hdmandset
+   hdmandset 2
+   
+6) Test 6                   64 bit BCPL Cintpos with SDL and GL
+   cd $POSROOT
+   make -f Makefile clean         Build the 32-bit versioon
+   make -f Makefile               needed to
+   logout
+   make -f MakefileGL clean64     build the 64-bit version
+   make -f MakefileGL             with luck
+   sysinfo
+   cmpltest
+   fcmpltest
+   fltcmpltest
+   bench100
+   cosim
+   logout
+   cd ../bcplprogs/raspi
+   cintsys
+   c b engine
+   engine
+   c b gltst
+   gltst
+   logout
+   cd ../genome
+   c b dnaplot
+   dnaplot
+
+##################### Test results ###############################   
+
+1) Dell laptop Linux 18.04 LTS under Oracle VM Virtualbox
+   BCPL Version: cintpos.tgz date: Thu 18 Mar 21:52:07 GMT 2021
+   Test 1  32-bit with no graphics     OK
+   Test 2  32-bit with SDL             Not run
+   Test 3  32-bit with SDL and GL      Not run
+   Test 4  64-bit with no graphics     Not run
+   Test 5  64-bit with SDL             Not run
+   Test 6  64-bit with SDL and GL      Not run
+   
+2) Samsung NC10 Netbook running Ubuntu Linux 18.04 LTS
+   BCPL Version: cintpos.tgz date: 
+   Test 1  32-bit with no graphics     Not run
+   Test 2  32-bit with SDL             Not run
+   Test 3  32-bit with SDL and GL      Not run
+   Test 4  64-bit with no graphics     Not run
+   Test 5  64-bit with SDL             Not run
+   Test 6  64-bit with SDL and GL      Not run
+
+3) Dell laptop 32-bit Cygwin under Windows 10
+   BCPL Version: cintpos.tgz date:  Thu 18 Mar 21:52:07 GMT 2021
+   Test 1  32-bit with no graphics     OK
+   Test 2  32-bit with SDL             Not run
+   Test 3  32-bit with SDL and GL      Not run
+   Test 4  64-bit with no graphics     Not run
+   Test 5  64-bit with SDL             Not run
+   Test 6  64-bit with SDL and GL      Not run
+
+4) Dell laptop 64-bit Cygwin under Windows 10
+   BCPL Version: cintpos.tgz date:  Thu 18 Mar 21:52:07 GMT 2021
+   Test 1  32-bit with no graphics     Not run
+   Test 2  32-bit with SDL             Not run
+   Test 3  32-bit with SDL and GL      Not run
+   Test 4  64-bit with no graphics     Not run
+   Test 5  64-bit with SDL             Not run
+   Test 6  64-bit with SDL and GL      Not run
+
+5) Apple: Mac Mini running OSX
+   BCPL Version: cintpos.tgz date: Sat 20 Mar 06:39:21 GMT 2021
+   Test 1  32-bit with no graphics     OK  but some bugs are present
+                                       send-bounce test 2.375 secs
+   Test 2  32-bit with SDL             Not run
+   Test 3  32-bit with SDL and GL      Not run
+   Test 4  64-bit with no graphics     Not run
+   Test 5  64-bit with SDL             Not run
+   Test 6  64-bit with SDL and GL      Not run
+
+6) Raspberry Pi Model 3 or 4 running Linux
+   BCPL Version: cintpos.tgz date: 
+   Test 1  32-bit with no graphics     Not run
+   Test 2  32-bit with SDL             Not run
+   Test 3  32-bit with SDL and GL      Not run
+   Test 4  64-bit with no graphics     Not run
+   Test 5  64-bit with SDL             Not run
+   Test 6  64-bit with SDL and GL      Not run
+

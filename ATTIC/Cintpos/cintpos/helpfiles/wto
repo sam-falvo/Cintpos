@@ -1,0 +1,20 @@
+*command
+**
+WTO command
+Form:           WTO  [machine] text
+Purpose:        To Write To Operator's console on another machine
+Author:         BJK
+Specification:
+        This command does not use RDARGS.  The first item on the line is
+    taken as the name of the machine to which the message is to be sent.  The
+    rest of the line is the message which is sent.
+        Note that, in the case of a TRIPOS machine, the message will emerge
+    on the user's console.  On multi-user machines, however, the message will
+    be sent to the operators console.
+
+Examples:
+
+    WTO delta time to go to the pub?
+    WTO cap onto the operators console
+
+

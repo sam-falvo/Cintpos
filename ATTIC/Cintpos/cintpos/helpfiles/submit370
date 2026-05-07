@@ -1,0 +1,20 @@
+*command
+**
+SUBMIT370 command
+Form:           SUBMIT370   ",,,,,,,,,"
+Purpose:        To submit a JOB to the 370
+Author:         TJK
+Specification:
+
+    SUBMIT370 <file> [file]*
+    takes the file(s) and places them into a virtual paper tape punch on
+    the 370.  The start of the first file must contain a suitable job
+    description, and lines may not be longer than 80 characters.
+    The data in the job stream is converted from ASCII to EBCDIC at the
+    PDP11/34 (just before the 370), and hence the translation tables are
+    fixed. If, however, the first line after the end of the job description
+    is a line containing
+    +++B
+    then the rest of the data will be passed untranslated to the 370.
+
+

@@ -1,0 +1,49 @@
+*occ
+Form:           OCC  "FROM,TO,OPT,W/K"
+Purpose:        To convert OCODE formats
+Authors:        MJJ +PB
+
+Specification:
+      Reads FROM and writes TO. If text, the TO is W chars wide.
+      OPT specifies the formats of the input and outputs, as single characters:
+
+                B       Binary
+                D       Default         (B for input, L for output)
+                L       Literal
+                N       Numeric
+*ocode
+OCODE is the intermediate code produced by the BCPL compiler.
+
+The OCODE keyword to the BCPL and BCP commands enables OCODE to be written
+to or read from a permanent file.
+
+The command OCC exists for conversion between the various OCODE formats
+*open
+To open a file from BCPL use the procedures:
+        findinput(file.name.string)  -  to open for input
+        findoutput(file.name.string) -  to open for output
+To subsequently close the currently selected input use:
+        endread()                    -  to close input stream
+        endwrite()                   -  to close output stream
+Use HELP PROCEDURE <procedure> for futher information.
+
+If a file has been left open it will not close until some time
+after TRIPOS has stopped refreshing it a the FILESERVER.  (refreshing
+is stopped by relinquishing the machine to the resource manager).
+Files which are open can be deleted from their index using the
+DELETE command (q.v.)
+*device #H printer
+*output
+OUTPUT
+      To identify the currently selected output stream.
+
+            stream := output ()
+
+   The output routine yields the identifier of  the  currently
+selected output stream (originally yielded by a call of findoutput
+(q.v.) and selected by selectoutput (q.v.)). If there is no current
+output stream then the result will be zero.
+*owner
+Use the EX command with WHO option to discover the owner of a file.
+
+

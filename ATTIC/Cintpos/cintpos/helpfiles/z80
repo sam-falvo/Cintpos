@@ -1,0 +1,353 @@
+*z80deb #H z80deb
+*deb #H z80deb
+*debug #H z80deb
+*debugging #H z80deb
+*debuging #H z80deb
+*debugger #H z80deb
+*debuger #H z80deb
+*load #H gypload
+*loading #H gypload
+*z80load #H gypload
+*boot
+The Z80 systems in the Lab normally have a prom ("sboot") containing start-up
+code which causes them to boot themselves from a "boot server".  If the boot
+server is not operational, or a special program allowing manual loading is
+loaded by the boot server, then the machine may be loaded with a program
+directly from Tripos.  See HELP GYPLOAD for more details.
+*z80patch #H z80patch
+*patch #H z80patch
+*patching #H z80patch
+*edit #H z80patch
+*compile ..
+*compiler ..
+There is a BCPL code generator which runs on Tripos, and system for use with
+the Lab Z80 systems to support small-server type functions.
+See HELP Z80 BCPL for more information.
+
+*bcpl #H #HCH +
++all ..
+Using the system
+
++use
++usage
++all ..
+To use the Z80 bcpl system the program must be compiled with the appropriate
+headers (according to the libraries required) to an explicit OCODE file.
+This must then be used as input to the code-generator and the resulting HEX
+file linked with those BCPL system libraries which have been used, together
+with the assembler system libraries.  Note that different headers, including
+LIBHDR, must be used instead of those native to the compiling machine.
+
+Headers live in IDW:Z80, and bcpl system hex files in IDW:Z80.HEX.  Assembler
+system libraries are in :RING.HEX.
+
+Two REX sequences, COMPILE and LINK, can be found in IDW:Z80 for compiling
+and linking respectively.  One should be set into the directory IDW:Z80 in
+order to use them, so that the correct headers will be picked up.  COMPILE
+takes a source file and an optional destination, defaulting to T:CODE.  Any
+other information on the line is passed as options to the code generator.
+LINK takes a single argument which should be a list of modules separated
+by commas (',').  The user's module(s) together with required extra library
+modules (see below) should be specified.  Library module names are referenced
+as hex.<name>.  The sequence includes LAB-ROOT, INIT, MLIB, BLIB and the
+Z80 assembler libraries automatically.  See the example at the end if you
+want to do it yourself!
+
+When linking modules the ordering is important:  the module LAB-ROOT must
+be included first, followed by all BCPL modules in any desired order.  This
+must include the library modules INIT, MLIB, BLIB and (usually) RING-INITIO
+and BCPLIO.
+
+The user's code-generated module(s) also go here, and any of the procedure
+libraries referenced.  Note that these libraries must be quoted explicitly:
+the automatic library scan facility cannot pick out those required.
+Finally, the assembler system libraries should be included:  automatic scan
+will operate with these.
+
+Example:
+
+bcpl bcpl.myprog ocode t:ocode              compile to OCODE
+idw:68000-obj.z80cg t:ocode t:hex           code generate to a hex module
+clink here:! hex.myprog                     link to a loadable hex image
+ idw:z80.hex.lab-root                          BCPL system modules
+ idw:z80.hex.init
+ idw:z80.hex.blib
+ idw:z80.hex.mlib
+ idw:z80.hex.ring-initio
+ idw:z80.hex.bcplio
+ idw:z80.hex.ring
+ t:hex                                         user's module(s)
+ :ring.hex.util/l                              assembler libraries
+ :ring.hex.ssp/l
+ :ring.hex.bsp/l
+!
++all ..
+
+Libraries
+
++lib
++library
++libraries
++all ..
+The Z80 BCPL system provides a number of library modules which define
+BCPL procedures which are accessed via globals.  Some of these will be
+needed by most programs and some only by specialised ones.
+
+See HELP Z80 BCPL USE for information on linking modules together.
+
+MLIB
+----
+
+Provides the usual functions getbyte, putbyte, level, longjump, aptovec,
+globin, getvec and freevec.  In addition it provides two functions for
+reading and writing Z80 I/O ports:
+
+ result  := readport(port.number)
+
+ writeport(port.number, data)
+
+BLIB
+----
+
+Provides the usual functions.
+
+RING-INITIO
+----------
+
+The INITIO module is called before START.  The RING version of this sets
+up a coroutine system (using the assembler library's coroutine facilities)
+and activates START as a coroutine.  A ring-polling coroutine is also
+set up.
+
+This library also provides the routines sardch and sawrch.  In this module
+they are arranged to call NEXTCO while waiting for characters so that other
+coroutines will continue to run.
+
+Another version of this module, LAB-INITIO, operates in a fully stand alone
+and single-threaded manner.  It can be used for testing.
+
+Z80CO
+-----
+
+Supports the coroutine mechanism provided by the assembler library.
+Coroutines may be created and deleted.  Each one has its own BCPL environment
+established for it.  Coroutines are scheduled on a round-robin basis: when
+one suspends itself the next one in sequence is activated.
+See HELP Z80 BCPL COLIB for information on the routines provided.
+
+BCPLIO
+------
+
+Provides the usual stream-handling facilities rdch, unrdch, wrch, findinput,
+findoutput, selectinput, selectoutput, endread, endwrite, endstream, input
+and output.  In addition four procedures, each taking a boolean argument,
+allow control of buffering for certain streams:  bufferedinput, bufferedoutput,
+interactiveinput and interactiveoutput.
+
+RING
+----
+
+Provides basic ring communications functions.  Some of these are write-arounds
+calling the assembler library functions.  See HELP Z80 BCPL RINGLIB for
+detailed information.  This module is needed by the BSP and VTP modules.
+
+BSPIO
+-----
+
+This module is required if BSP streams are to be used.  It does not provide
+any explicitly callable routines.
+
+VTPIO
+-----
+
+This module is required if VTP streams are to be used.  It does not provide
+any explicitly callable routines.
+
+TTY
+---
+
+This module is required if console I/O is to be used.  It does not provide
+any explicitly callable routines.  Note that direct console I/O can only be
+used on systems with a directly connected console!
++all ..
+
++coroutine
++colib
++all ..
+The Z80CO library provides the following functions:
+
+bool := cocreate(function, stacksize, argument)
+
+   The given function is created as a coroutine with the given stacksize
+   (in words) and activated.  The new coroutine has its own global vector
+   which is initially a copy of its creator's.  The cocreate function returns
+   before the new coroutine's code is entered (the new routine will be
+   entered after the next call of NEXTCO).
+
+   When activated the function is called with two arguments: the first is
+   the coroutine's own base which must be passed to CODELETE if this is
+   called.  The second is the argument passed into cocreate.
+
+nextco()
+
+   Enters the next coroutine in sequence.  Returns after all other
+   coroutines have executed.  This procedure must be called "regularly"
+   by all coroutines (e.g. in their polling loop) otherwise other coroutines
+   will not execute.  It may be called implicitly by e.g. the SSP function.
+
+codelete(coroutine)
+
+   May be called by a coroutine to delete itself explicitly.  The argument
+   must be that given as the first parameter on activation.  Note that a
+   coroutine may delete itself implicitly by falling out of the bottom of
+   the called function.
++all ..
+
++ringlib
++all
+The RING library module provides the following functions:
+
+bool := lookupname(name, nsvec)
+
+   Performs a name server interaction and, on success, returns the results
+   in the vector passed in as parameter.  Fields of vector are:
+
+      0   Machine id (station number)
+      1   Flag byte
+      2   Port number
+      3   Function code
+
+bool := ssp(service, tx.buffer, rx.buffer)
+
+   Performs an SSP transaction with the given service, whose name is passed
+   in as a string.  The data in the tx buffer is sent, and the reply arrives
+   in the rx buffer.  These buffers have a length in ring (2 byte) words in
+   word 0 of the buffer.  Data in the rest of the buffer is in ring byte
+   order, i.e. the lowest addressed byte is the high-order byte of the first
+   ring word.  The routines GET2BYTES and PUT2BYTES may be used to read and
+   write ring-words.
+
+   If the ssp fails then the return code from the underlying assembler
+   library routine will be passed back in RESULT2.
+
+bool := rcvssp(port, ssp.message, station.pointer)
+
+   This procedure sets up a reception request on the given port number.
+   It always returns immediately.  If the setting up was successful then a
+   request is left on a pending queue.
+
+   When a block arrives on the given port, the location pointed to by
+   station.pointer is tested.  If it is non-zero then the incoming block is
+   discarded.  If it is zero then it is updated to the station number of the
+   incoming block.  If the given ssp.message is non-zero then it is assumed
+   to point to a buffer, and the incoming SSP data block is copied into it.
+   The buffer format is as for the SSP routine.
+
+   A program using this routine would normally have a coroutine sitting in
+   a loop polling the location pointed to by station.pointer, taking the
+   appropriate action when it becomes non-zero, and then resetting it to
+   zero ready for the next reception.
+
+bool := sspreply(buffer, station, port)
+
+   Transmits the given buffer, whose format is as for the SSP routine, as
+   an SSP reply message to the given station and port.
+
+bool := rcvopen(port, open.message, scb.pointer)
+
+   This procedure sets up a reception request for a byte stream connection.
+   It works in the same way as RCVSSP, except that the scb.pointer, if zero
+   when a block is received, is updated to point to a BCPL stream descriptor
+   for the byte stream.  The open.message parameter may be zero or the
+   address of a buffer into which the open message is copied.
+
+bool := rcvcancel(port)
+
+   Removes a reception request on the given port from the internal data
+   structures.  Fails iff no request for that port is found.
+
+scb := bspopen(service, open.message)
+
+   Opens a BSP connection to the named service.  If the open.message passed
+   in is non-zero then it is sent in the open, otherwise a null message is
+   sent.  The result is zero on failure, in which case RESULT2 contains an
+   error code.  On success the result is a stream descriptor.
+
+inscb  := makevtp(scb)
+outscb := result2
+
+   The given scb is assumed to be a byte stream, and is converted (by updating
+   the handler routines in the scb) into a VTP stream.  Our machine is
+   assumed to be the host end of the connection, and the remote end is the
+   terminal end.  This is correct for e.g. incoming connections from a
+   terminal concentrator when a ring service is being provided.
+
+word := get2bytes(buffer, offset)
+
+put2bytes(buffer, offset, word)
+
+   Allow access to ring-word quantities in data blocks in a machine-independent
+   way.  Using the ! or % operators will not give correct byte ordering on
+   some machines (e.g. Z80s!).
+
+
+The following routines provide access to the functions in the assembler
+SSP library.  Refer to the spec. of this for more information.
+
+   sspcb := sspopen(service, txsize, rxsize)
+   bool  := rfshssp(sspcb, service)
+            sendssp(sspcb, tx.buffer, rx.buffer)
+            sendtssp(sspcb, tx.buffer, rx.buffer, timeout)
+   rc    := testssp(sspcb)
+            sspnport(sspcb)
++*
+The bcpl code generator for the Z80 was written by ID Wilson and at
+present exists in his directory and must be regarded as for experimental
+use only.  It takes in numeric OCODE from most BCPL front-ends and produces
+Cambridge Hex modules which should be linked using the linker (see HELP CLINK).
+There is also a set of libraries providing ring interface functions,
+coroutines, console I/O etc. which may be linked into programs as required.
+See HELP Z80 BCPL USE for usage, and HELP Z80 BCPL LIB for brief descriptions
+of available library modules.  HELP Z80 BCPL ALL for all available info.
++
+*a68
+*a68c
+*algol
+*algol68
+*algol68c
+*compile
+*compiler
+There is an Algol 68C translator for the Z80, which runs on CAP.
+See "Z80 Algol 68C" in the documentation folder for a description of this.
+*dis
+*un
+*disassembler
+*disassembly
+*disassemble
+There is a Z80 Cambridge Hex disassembler available on CAP in .*.L.RING.08Z.
+This command takes either an absolute or a relocatable hex file and
+disassembles it to 'sysprint'.
+*assemble #H grasm
+*assembler #H grasm
+*assembly #H grasm
+*link #H clink
+*clink #H clink
+*linking #H clink
+*linker #H clink
+*+ #I z80
+** #H grasm
+** #I z80
+HELP knows about the assembly, linking, loading and debugging of Z80 programs,
+and the disassembly of Cambridge Hex; type one of the following:
+        ASSEMBLE        - info on assembler (Z80)
+        LINK            - info on linker (CLINK)
+        LOAD            - info on loader (GYPLOAD)
+        DEBUG           - info on debuggers (Z80DEB)
+        PATCH           - info on editing Z80 dumps &c (Z80PATCH)
+        BCPL            - info on BCPL code generator and system
+        DISASSEMBLE     - points to disassembler on CAP
+        A68             - points to Algol 68C compiler on CAP
+        <CR>            - exit HELP
+
+
+

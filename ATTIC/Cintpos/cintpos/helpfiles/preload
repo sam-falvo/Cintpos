@@ -1,0 +1,104 @@
+*COMMAND
+*ALL ..
+PRELOAD Command
+
+Purpose:    Interaction with the "preload:" device
+Form:       "NAME,AS,UNLOAD/S,LIST/S,NOTREENTRANT/S,MONITOR/S,NOMONITOR/S"
+Author:     IDW
+
+    The PRELOAD command allows the user to interact with the "preload:" 
+device.  The command has three forms:
+
+    PRELOAD  <file>  [AS <name>]     Preloads the segment in file <file> 
+               [NOTREENTRANT]        into memory.  The name of the file 
+                                     when loaded is <name> if AS is given, 
+                                     or <file> otherwise.  If the NOTREENTRANT
+                                     switch is given, then the code is marked
+                                     as non shareable, and code corruptions are
+                                     ignored.  Otherwise, when code is found to
+                                     be corrupt, it is unloaded as soon as 
+                                     possible.
+
+    PRELOAD  UNLOAD <name>           Unloads the preloaded segment whose name 
+                                     is <name>.  If the segment is in use,
+                                     then it is unloaded as soon as it becomes
+                                     free.  (Segments can also be unloaded by
+                                     using the DELETE command).
+
+    PRELOAD  LIST                    Lists the names, starting addresses and
+                                     sizes of all preloaded segments.
+
+    PRELOAD  MONITOR                 Enables monitoring of all "loadseg" 
+                                     operations.
+
+    PRELOAD  NOMONITOR               Disables monitoring of "loadseg" 
+                                     operations.
+
+Examples:     PRELOAD :c.status AS status
+              PRELOAD sys:l.dat-to-strings
+              PRELOAD :c.ex AS ex NOTREENTRANT
+              PRELOAD UNLOAD ws
+              PRELOAD LIST
+              PRELOAD MONITOR
+
+*DEVICE
+*PRELOAD:
+*ALL ..
+PRELOAD: Device
+
+Purpose:    Preloading of segments into memory
+Author:     IDW
+
+    The PRELOAD: device deals with the loading, unloading and housekeeping of
+program segments.  It runs in conjunction with the SEGLIB library, which
+redefines the standard library functions "loadseg" and "unloadseg".  Segments
+can be preloaded using the PRELOAD command.  If a "loadseg" is attempted
+where the filename argument matches the name of a preloaded segment, then
+the usecount of that segment is incremented, and its address is returned
+immediately.  When "unloadseg" is called to unload the segment, its usecount
+is decremented again.
+
+    Since the loaded segment is used directly, there is no copying of the
+segment is memory, which makes the operation fast and space efficient.  This
+also means that segments which a preloaded MUST BE REENTRANT, otherwise the
+sharing and reusing of code WILL NOT WORK.
+
+    Any code which is discovered to have been corrupted (i.e. updates STATICs,
+STRINGs, TABLEs etc) is unloaded as soon as its use count reaches zero.  It is
+possible to override this action by specifying the keyword "NOTREENTRANT" when
+the segment is loaded.  Segments loaded this way are not shareable, and code
+corruptions are ignored.  This may or may not work, depending on the nature of
+the corruption.   You have been warned...
+
+    MOUNT PRELOAD:             Mounts the device
+    DISMOUNT PRELOAD:          Dismounts the device
+
+    Users of Rex-Tripos should note that, because of the nature of the
+implementation of "preload:", preloaded commands will take precedence
+over commands in the current directory with the same name.
+
+*SEGLIB
+*ALL
+SEGLIB Library
+
+Purpose:    Loading/Unloading of segments from the "preload:" device
+Author:     IDW
+
+    The SEGLIB library redefines the standard library functions "loadseg" and
+"unloadseg" so that advantage is taken of the segments preloaded in the
+"preload:" device.
+
+    LIBRARY :L.SEGLIB          Loads the library
+    LIBRARY CANCEL SEGLIB      Unloads the library
+
+**  #I  PRELOAD
+Type one of the following for more information, or [RETURN] to leave HELP:
+
+    COMMAND           For help on the PRELOAD command
+    DEVICE            For help on the PRELOAD: device
+    SEGLIB            For help on the SEGLIB library
+    ALL               For all help on the PRELOAD system
+
+*
+
+

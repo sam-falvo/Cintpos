@@ -1,5 +1,5 @@
 The Cintpos Portable Operating System
-(Revised 25 Jan 2012)
+(Revised 06 Mar 2021)
 
 
 ************************ IMPORTANT **********************************
@@ -12,6 +12,13 @@ The Cintpos Portable Operating System
 
 *********************************************************************
 
+The implementation of Cintpos is currently undergoing modifications
+to make it more compatible with cintsys, the ultimate aim is for them
+to both use the same source files, particularly cinterp.c and cintsys.c
+with the differences controlled by #defines of CINTSYSyes and CINTPOSyes.
+
+I regret the the Cintpos distribution has been unreliable in recent
+month but I believe it now works at least under Linux.
 
 
 
@@ -19,7 +26,10 @@ This README file (residing in cintpos/doc/README) briefly describes
 the Cintpos System and explains how to install it from its standard
 distribution via my home page whose URL is:
 
-http://www.cl.cam.ac.uk/users/mr.
+http://www.cst.cam.ac.uk/users/mr10.
+
+Although the previous version http://www.cl.cam.ac.uk/users/mr should
+still work for some years.
 
 Cintpos is a version of the Tripos Portable Operating System developed
 and used in Cambridge over the period 1977 to 1987. It was originally
@@ -56,7 +66,7 @@ to use for any purpose whatsoever.
 Cintpos Distribution
 
 If you install the system send me an e-mail message (to
-mr@cl.cam.ac.uk) so I can keep a record of who is interested in it.
+mr10@cst.cam.ac.uk) so I can keep a record of who is interested in it.
 
 For this distribution to work, you must already have the Cintcode BCPL
 System installed. Remember to set the shell variables PATH, BCPLROOT,
@@ -101,7 +111,7 @@ instead:
 You will see that all this file it contains are in the directory
 Cintpos.
 
-Now extract all these files using the appropriate choice of:
+Now extract all these files using one of the following commands:
 
         tar zxvf cintpos.tgz
 or

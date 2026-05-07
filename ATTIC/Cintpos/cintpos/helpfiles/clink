@@ -1,0 +1,76 @@
+*spec
+Documentation on CLINK can be found on CAP in:
+                .L.RING.SPEC.CLINK
+Documentation on the link format used (Cambridge Hex) can be found in:
+                .L.RING.SPEC.CAMBRIDGE*HEX
+These files need roffing.
+*command
+**
+CLINK command
+Form:           CLINK "With=Files/a,Hex=To,Map/k,Ver/k,Opt/k"
+Purpose:        To link together a number of Cambridge Hex files
+Author:         CGG
+Specification:
+
+        The "With" keyword specifies a list of file names (separated either
+    by commas (,) or plus signs (+) or blanks if given in a string) to be
+    linked together.  If a file already contains references to other files
+    within it (e.g. the NEEDS directive in the assembler) it may not be
+    necessary to quote more than one file here.  The file (or files) given
+    may simply be a file containing a list of the files to be linked itself.
+    In this case each file must be given a line of its own and each line must
+    start with at least one space.
+        The "Hex" keyword specifies a file into which to put the linked
+    Cambridge Hex.  If it is not specified the linker will make only one
+    pass and generate a link map at the end.
+        The "Map" keyword specifies a file to which to write information
+    about the layout of the code generated in store.  It also contains
+    information about the value of the external symbols resolved and other
+    data about the files and modules found during linking.
+        The "Ver" keyword specifies a file to which to write normal
+    verification output (header &c).  This includes any errors that the
+    linker finds (undefined external references and doubly defined ones
+    principally).
+        The "Opt" keyword specifies an option string.  Such a string can
+    be inserted into any of the included files as well.  The options are:
+        N<n>      -    Set maximum no. of modules to <n> (default <n>=100)
+        F<n>      -    Set maximum no. of files to <n> (default <n>=50)
+        W<n>      -    Set map file page width to <n> (default <n>=135)
+        H<n>      -    Set hex file page width to <n> (default <n>=16)
+        P         -    Generate precisely Intel Hex: no '$' records
+        I         -    Input is incomplete: generate external refs & defs
+        U         -    Ignore specified but unused reference symbols
+        M         -    Generate map file only, ignore Hex file, no 2nd pass
+        C         -    Produce caution messages (default): C- to suppress
+        R         -    Generate module referencing information in map file
+        T<n>      -    Set top of available store to <n> (default <n>=#FFFF)
+        B<n>      -    Set bottom of available store to <n> (default <n>=0)
+        S<n>      -    Start execution at address <n> (default Unset=#FFFF)
+        E<n>      -    Set all unset store in modules to <n> (default 0)
+        X<n>      -    Set undefined external references to <n> (default 0)
+        D         -    Allocate store from top of store downwards
+        '<S>'<n>  -    Set external symbol <S> to <N> (no default)
+                       (<S> may be any string - cases are not converted)
+    The I option must be used if the output is to be used with the symbolic
+    debugger (use HELP Z80 DEBUG for more information).
+        For more information about the linker see the IBM file
+    MICROLIB.DOC.XASM:CLINK; for information about the linking format used
+    (Cambridge Hex) see MICROLIB.DOC.XASM:CHEX on the IBM.  Copies of these
+    may be available in the documentation drawer.
+
+Examples:
+
+        CLINK hex1,hex2,hex3,hex4 absolute-hex
+        CLINK files HEX=abshex
+                { where files contains:
+                  " hex1
+                    hex2
+                    hex3
+                    hex4"
+                }
+        CLINK files MAP=linkmap
+        CLINK hex1+hex2 abshex VER=errors
+        CLINK abshex MAP * OPT w80
+        CLINK hex,files HEX=abshex MAP=mapfile
+
+

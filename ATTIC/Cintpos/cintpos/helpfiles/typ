@@ -1,0 +1,31 @@
+*command
+**
+Form:           Typ  "FILE/A,STOP,)/S,FROM=START=(,TO/K,LN,NOLN,*
+                      *W=WIDTH/K,P=PAGELENGTH/K"
+Purpose:        To type a file
+Author:         PBr
+
+Specification:
+  Typ types selected lines of the file.  To type lines n to m, format may be:
+  m   or    (n m)    or    ( n m )    or   m n
+  m should be greater than n.
+  n defaults to 1 and m to maxint.
+  If NOLN is specified, line numbers are not added.
+  If LN is specified, line numbers are added.
+  The program types <PAGELENGTH> of text and then waits for input,
+    unless a TO file is specified.  Q or W (or CNTRL-z) stop the typing. L makes
+    it continuous.  <number> causes <number> lines to be printed before
+    the next halt.
+  Pagelength and width default to 22 and 80 unless the terminal type has been
+    set, when pagelength is set to the terminal depth -1.
+  Ctrl/B will cause it to stop at the next convenient point.
+  Typing any character causes pagewaiting EXCEPT those mentioned above, and
+    (return) causes the number of lines left to be typed to be reset to
+    pagelength.  While pagewaiting, any character EXCEPT (space) cause
+    continuation.  For more information on command line syntax use
+    HELP SCAN SYNTAX.
+
+Examples:       Typ A ( 15 100 )
+                Typ A 100 15
+
+

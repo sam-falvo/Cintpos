@@ -1,0 +1,58 @@
+*command
+**
+WHO command
+
+Form:           WHO     ",,,,,,,,,,ALL/S,ALLOC/S,*
+                        *WHO/S,WHAT/S,WHERE/S,STATE/S,FULL/S,TRACE/K"
+
+Purpose:        To print out infomration about who is using processor bank
+                machines, where they are, and what they are running.
+
+Author:         MAJ
+
+Specification:
+
+   WHO prints out information obtained from the resource manager and filing
+machine about the use of machines in the processor bank.
+
+
+   The following options control WHICH machines information is printed about:
+
+        unkeyed         Up to ten specific machine names may be given as
+                        positional parameters. Only these machines will be
+                        selected.
+        ALL             All machines known to the resource manager will be
+                        selected.
+        ALLOC           All 'allocated' machines will be selected.
+
+   At most one of the above three selections may be given. If none is given,
+the default is to choose allocated machines and withdrawn machines which are
+running something.
+
+
+   The following options control WHAT is printed about each selected machine:
+
+        WHO             The user's name (or PUID if it cannot be translated
+                        into a name).
+        WHAT            The name of the system running in the machine.
+        WHERE           The owning terminal or machine and its location.
+        STATE           The resource manager state of the machine.
+        FULL            All of the above information.
+
+   The default is equivalent to "WHO WHERE".  Under some circumstances the
+resource manager state will be printed even if it was not explicitly requested;
+this indicates that the state is such that the other information would not
+be relevant.
+
+   The following option is for debugging use only:
+
+        TRACE           Set the value of the internal trace mask.
+
+
+Warning:
+
+   WHO is examining a world which may be changing under its feet.  There can
+be no guarantee that the information printed represents the state of the
+world at any instant.
+
+

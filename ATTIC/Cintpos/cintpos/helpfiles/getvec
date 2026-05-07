@@ -1,0 +1,31 @@
+*procedure
+**
+VECTOR := GETVEC(UPPERBOUND)
+   Allocate a vector of the  indicated  size  from  the
+free store area.
+Arguments:
+
+UPPERBOUND
+   The upperbound (unsigned) of the required vector.
+Normal return:
+
+VECTOR\=0
+   The vector has been allocated successfully.
+Error return:
+
+VECTOR=0, error is:
+
+   RESULT2=103, Insufficient free store.
+Related routines:
+
+   FREEVEC
+Notes:
+
+   It is permissable to allocate vectors of 32k or more
+on a 16-bit machine, although this is  not  recommended
+as a matter of programming style.
+   It is possible that corruption  of  the  free  store
+area  might be detected by the call. If this is so then
+a system abort will occur.
+
+

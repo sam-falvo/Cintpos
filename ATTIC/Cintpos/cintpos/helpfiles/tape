@@ -1,0 +1,71 @@
+*UNLABELLED   #I  TAPE
+*NL           #I  TAPE
+Type one of the following for help, or <RETURN> to quit:
+
+    RDULTAPE      Read unlabelled tape
+    WRULTAPE      Write unlabelled tape
+
+*RDULTAPE     #H  RDULTAPE
+*WRULTAPE     #H  WRULTAPE
+*TLS          #H  TLS
+*ARCHIVE      #H  ARCHIVE
+*TAPESERVER
+*SERVER
+The ring NOVA2 computer runs the RTH (Remote Tape Handler) Tape Server
+program.  It provides a simple interface to its 800 bpi tape drive,
+enabling both labelled and unlabelled tapes to be read and written.
+
+The server machine is physically located near the back left hand corner
+of the Titan room, and the tape racks are behind it.
+
+For further information, see:
+
+                      HELP TAPE TLS
+                      HELP TAPE LABELLED
+                      HELP TAPE UNLABELLED
+
+or the SRG document:  "Using the NOVA2 tape server"
+*LABELLED
+*SL
+*DEVICE
+Tapes are available from TRIPOS via the MT: device.  The tape drive used
+is connected to the NOVA2 computer, which runs the RTH (remote tape handler)
+Tape Server program.  Tape file names are of the form  MT:<name>/<seq>, where
+<name> is a TRIPOS type file-name (of up to 17 characters), and <seq> is the
+sequence number of the file on the tape.
+
+Examples:
+
+(Mounting a tape)
+                      MOUNT MT:IDW001
+                      MOUNT MT:WOMBAT
+(Dismounting a tape)
+                      DISMOUNT MT:
+(Using tape files)
+                      COPY :G.LIBHDR TO MT:LIBHDR/1
+                      TYPE MT:ERIC-WAS-HERE/5
+                      MT:ECHO/56 "This is a string"
+                      EX MT:
+                      EX MT:ARTICHOKE/8
+*NEW
+*INIT
+*INITIALISE
+A tape must be initialised before it can be mounted as the MT: device.
+To do this, a special program must be run locally to the tape server
+machine.  See the instructions on the side of the tape server.
+
+After this, if the tape is to be used with TLS, it must be initialised
+for TLS.  This is done remotely using the INIT parameter of TLS.  See
+HELP TLS for details.
+**    #I  TAPE
+Type one of the following for help, or <RETURN> to quit:
+
+    ARCHIVE     General info on archiving
+    TLS         How to use the Tripos tape archiving system
+    NEW         How to initialise a new tape
+    SERVER      The Tripos tape server machine
+    RDULTAPE    Command to read unlabelled tapes
+    WRULTAPE       "    "  write    "        "
+
+
+

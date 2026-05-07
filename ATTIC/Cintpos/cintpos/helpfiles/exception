@@ -1,0 +1,28 @@
+*pxhand
+*handler
+Private exception handlers (68000 Tripos only)
+
+    In 68000 Tripos, the field in the TCB called TCB.PXHAND is provided
+to hold the machine address of a user supplied private exception handling
+routine that will be called whenever a fault (TRAP, CHK, illegal instruction
+etc.) is encountered while the task is running at interrupt level 0.  For
+convenience and to maintain upward compatibilty the standard Tripos fault
+handler is invoked if the PXHAND field is zero.  CREATETASK initialises this
+field to zero.
+
+    On entry to the private exception handler:
+
+        S  (=A5) = MC address of the current TCB
+        R  (=A6) = MC address of an area containing the following:
+                        the return link into the kernel,
+                        the old value of S,
+                        the old value of R,
+                        the old value of SR,
+                    and the old value of PC.
+
+From this state executing RTS will re-enter the kernel in CALLDBG and
+cause the standard tripos entry into DEBUG, however the handler may, if
+it chooses , handle the exception itself and return directly rather than
+via CALLDBG.
+
+

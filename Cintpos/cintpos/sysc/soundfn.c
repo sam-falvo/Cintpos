@@ -102,8 +102,9 @@ Note that it may be necessary to run alsamixer to enable the sound
 device and adjust its volume setting.
 */
 
-#if defined(forLinux) || defined(forARM)
-/******************** LINUX Version *********************************/
+#if defined(forLinux)||defined(forLinuxSDL)||defined(forLinuxGL)||\
+  defined(forARM)
+/******************** Linux Version *********************************/
 BCPLWORD soundfn(BCPLWORD *args, BCPLWORD *g) {
    
   //printf("soundfn: fno=%d a1=%d a2=%d a3=%d a4=%d\n",

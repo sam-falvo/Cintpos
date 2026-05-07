@@ -88,6 +88,8 @@ static inline void release_irq_lock() {
   
 BCPLWORD initdevices() {
   // Initialise the fifo to contain no device interrupt requests.
+  // This is called before any devices have been created, so
+  // the lock and unlock calls are unnecessary.
   int i;
   pthread_mutex_lock(&irq_mutex);
   for (i=0; i<1024; i++) irqfifov[i] = 0;
@@ -121,9 +123,18 @@ it receives another command (usually Devc_start), the kernel is free
 to add or remove packets from its wkq.
               
 */
-  
 
-// devcommand is invoked by sys(Sys_devcom, com, arg)
+void copyaddr(char*from, char*to) {
+  // This copies machine addresses between C code and
+  // BCPL structures.
+  int i=0;
+  while(i<sizeof(int*)) {
+    *to++ = *from++;
+    i++;
+  }
+}
+
+// devcommand is invoked by sys(Sys_devcom, com, arg
 
 // NOTE: it runs in the interpreter thread (NOT in a device thread)
 
@@ -147,7 +158,7 @@ BCPLWORD devcommand(BCPLWORD dcb, BCPLWORD com, BCPLWORD arg) {
 
   // Perform a command: create, destroy, start, stop or setintson
   switch (com) {
-    default: printf("devcommand: Bad device command %d\n", com);
+    default: printf("devcommand: Bad device command %lld\n", LL com);
              return 0;
 
     case Devc_create:
@@ -168,8 +179,8 @@ BCPLWORD devcommand(BCPLWORD dcb, BCPLWORD com, BCPLWORD arg) {
         // Allocate space for the condition variable
         pthread_cond_t *cvp =
                   (pthread_cond_t *)malloc(sizeof(pthread_cond_t));
-	//printf("sizeof(pthread_t) = %d\n", sizeof(pthread_t));
-	//printf("sizeof(pthread_cond_t) = %d\n", sizeof(pthread_cond_t));
+	//printf("sizeof(pthread_t) = %lld\n", LL sizeof(pthread_t));
+	//printf("sizeof(pthread_cond_t) = %lld\n", LL sizeof(pthread_cond_t));
         if(threadp==0 || cvp==0) {
           printf("devcommand: malloc failed\n");
           if (threadp) free(threadp);
@@ -180,8 +191,10 @@ BCPLWORD devcommand(BCPLWORD dcb, BCPLWORD com, BCPLWORD arg) {
         // Put pointers to the Pthread and condition variable (safely)
         // into the DCB
         pthread_mutex_lock(&irq_mutex);
-        dp[Dcb_threadp] = (BCPLWORD)threadp;
-        dp[Dcb_cvp]     = (BCPLWORD)cvp;
+	copyaddr((char*)&threadp, (char*)&dp[Dcb_threadp]);
+        // dp[Dcb_threadp] = threadp;
+	copyaddr((char*)&cvp, (char*)&dp[Dcb_cvp]);
+        //dp[Dcb_cvp]     = (BCPLWORD)cvp;
         pthread_mutex_unlock(&irq_mutex);
 
 #ifdef _POSIX_THREAD_PRIORITY_SCHEDULING
@@ -200,8 +213,8 @@ BCPLWORD devcommand(BCPLWORD dcb, BCPLWORD com, BCPLWORD arg) {
         fifo_min_prio = sched_get_priority_min(SCHED_FIFO);
         fifo_max_prio = sched_get_priority_max(SCHED_FIFO);
 
-        //printf("devices: FIFO min pri = %d  maxpri=%d\n",
-        //        fifo_min_prio, fifo_max_prio);
+        //printf("devices: FIFO min pri = %lld  maxpri=%lld\n",
+        //        LL fifo_min_prio, LL fifo_max_prio);
         fifo_param.sched_priority = (fifo_min_prio+fifo_max_prio)/2;
         rc = pthread_attr_setschedparam(&custom_sched_attr,
                                    &fifo_param);
@@ -222,8 +235,8 @@ BCPLWORD devcommand(BCPLWORD dcb, BCPLWORD com, BCPLWORD arg) {
 
       sw:
         switch (dp[Dcb_type]) {
-	  default: printf("Devc_create: Unknown device type %d\n",
-                   dp[Dcb_type]);
+	  default: printf("Devc_create: Unknown device type %lld\n",
+                   LL dp[Dcb_type]);
                    return 0;
 
           case Devt_clk:
@@ -257,50 +270,60 @@ BCPLWORD devcommand(BCPLWORD dcb, BCPLWORD com, BCPLWORD arg) {
         if (rc) {
 	  printf("Devc_create: rc=%d\n",rc);
 	  printf("EAGAIN=%d EINVAL=%d EPERM=%d\n", EAGAIN, EINVAL, EPERM);
-          printf("Devc_create: Unable to create thread for dev=%d\n", devid);
+          printf("Devc_create: Unable to create thread for dev=%lld\n", LL devid);
           return 0;
         }
         rc =  pthread_detach(*threadp);
         if (rc) {
-          printf("Devc_create: Unable to detach thread for dev=%d\n", devid);
+          printf("Devc_create: Unable to detach thread for dev=%lld\n", LL devid);
           return 0;
         }
-	//printf("Devc_create: dev=%d done\n", devid);
+	//printf("Devc_create: dev=%lld done\n", LL devid);
         { int policy;
           struct sched_param param;
           rc = pthread_getschedparam(*threadp, &policy, &param);
-          //printf("getschedparam()=> %d\n",rc);
-          //printf("policy=%d SCHED_FIFO=%d, SCHED_RR=%d, SCHED_OTHER=%d\n",
-          //        policy, SCHED_FIFO, SCHED_RR, SCHED_OTHER);
-          //printf("priority=%d\n",param.sched_priority);
+          //printf("getschedparam()=> %lld\n",LL rc);
+          //printf("policy=%lld SCHED_FIFO=%lld, SCHED_RR=%lld, SCHED_OTHER=%lld\n",
+          //        LL policy, LL SCHED_FIFO, LLSCHED_RR, SCHED_OTHER);
+          //printf("priority=%lld\n", LL param.sched_priority);
         }
         return 1;
       }
 
     case Devc_destroy:
+      { pthread_cond_t *cvp;
         // This runs on the interpreter thread
         //printf("devcommand: Devc_destroy called\n");
         pthread_mutex_lock(&irq_mutex);
-        //printf("Devc_destroy: sending signal to dev=%d\n",
-        //        dp[Dcb_devid]);
+        //printf("Devc_destroy: sending signal to dev=%lld\n",
+        //        LL dp[Dcb_devid]);
         // Wakeup the device thread just in case it was waiting on its
         // condition variable.
-        pthread_cond_signal((pthread_cond_t *)dp[Dcb_cvp]);
+
+	copyaddr((char*)&dp[Dcb_cvp], (char*)&cvp);
+        pthread_cond_signal(cvp);
+        //pthread_cond_signal((pthread_cond_t *)dp[Dcb_cvp]);
+
         // When the thread runs it will commit suicide
 
         while(dp[Dcb_devid]) {
           pthread_mutex_unlock(&irq_mutex);
-          //printf("Devc_destroy: wait for dev %d thread to die\n", devid);
+          //printf("Devc_destroy: wait for dev %lld thread to die\n", LL devid);
           msecdelay(20); // Wait 1/50 second and try again
           pthread_mutex_lock(&irq_mutex);
         }
     
-        //printf("Devc_detroy: dev %d thread has died\n", devid);
+        //printf("Devc_detroy: dev %lld thread has died\n", LL devid);
 
         // The thread does not use these fields, so freeing them is safe
-        { BCPLWORD *p1 = (BCPLWORD *)dp[Dcb_threadp];
-          BCPLWORD *p2 = (BCPLWORD *)dp[Dcb_cvp];
-          dp[Dcb_threadp] = 0;
+        { void *p1, *p2;
+	  void *nulladdr = (void*)0;
+	  copyaddr((char *)&dp[Dcb_threadp], (char*)&p1);
+	  //BCPLWORD *p1 = (BCPLWORD *)dp[Dcb_threadp];
+	  copyaddr((char *)&dp[Dcb_cvp], (char*)&p2);
+          //BCPLWORD *p2 = (BCPLWORD *)dp[Dcb_cvp];
+          copyaddr((char*)nulladdr, (char*)&dp[Dcb_threadp]);
+          //dp[Dcb_threadp] = 0;
           dp[Dcb_cvp] = 0;
 
           pthread_mutex_unlock(&irq_mutex);
@@ -309,36 +332,51 @@ BCPLWORD devcommand(BCPLWORD dcb, BCPLWORD com, BCPLWORD arg) {
           if(p2) free(p2);
         }
         return 1;
+      }
 
     case Devc_start:  // Start processing a new packet
-      { // This runs on the interpreter thread
+      { pthread_cond_t *cvp;
+	// This runs on the interpreter thread
 
         //if(devid==-2)
-        //  printf("Devc_start: dev=%d\n", devid);
+        //  printf("Devc_start: dev=%lld\n", LL devid);
         pthread_mutex_lock(&irq_mutex);
         // Tell the device thread that the wkq may be non empty
         dp[Dcb_flag] = 0;
-        pthread_cond_signal((pthread_cond_t *) dp[Dcb_cvp]);
+
+        copyaddr((char*)&dp[Dcb_cvp], (char*)&cvp);
+        pthread_cond_signal(cvp);
+
+	//pthread_cond_signal((pthread_cond_t *) dp[Dcb_cvp]);
         pthread_mutex_unlock(&irq_mutex);
         return 1;
       }
 
     case Devc_stop:
+      { pthread_cond_t *cvp;
         // This runs on the interpreter thread
-        printf("Devc_stop: dev=%d\n", devid);
+        printf("Devc_stop: dev=%lld\n", LL devid);
         pthread_mutex_lock(&irq_mutex);
-        pthread_cond_signal((pthread_cond_t *) dp[Dcb_cvp]);
+	
+        copyaddr((char*)&dp[Dcb_cvp], (char*)&cvp);
+        pthread_cond_signal(cvp);
+
+ //        pthread_cond_signal((pthread_cond_t *) dp[Dcb_cvp]);
         pthread_mutex_unlock(&irq_mutex);
         return 1;
-
+      }
     case Devc_setintson:
         // This runs on the interpreter thread
-        printf("Devc_setintson: dev=%d intson set to %d\n",
-               devid, arg);
+        printf("Devc_setintson: dev=%lld intson set to %lld\n",
+               LL devid, LL arg);
         pthread_mutex_lock(&irq_mutex);
         dp[Dcb_intson] = arg;
         if (arg) {
-          pthread_cond_signal((pthread_cond_t *) dp[Dcb_cvp]);
+          pthread_cond_t *cvp;	
+          copyaddr((char*)&dp[Dcb_cvp], (char*)&cvp);
+          pthread_cond_signal(cvp);
+
+          //pthread_cond_signal((pthread_cond_t *) dp[Dcb_cvp]);
 	}
         pthread_mutex_unlock(&irq_mutex);
         return 1;
@@ -365,7 +403,7 @@ void *clkcode(void *dcbp)
   tickspersecond = 5;
 #endif
 
-  printf("clkcode: entered tickspersecond = %d\n", tickspersecond);
+  printf("clkcode: entered tickspersecond = %lld\n", LL tickspersecond);
   msecspertick = 1000/tickspersecond;
 
   ftime(&tb);         // Get the current real time
@@ -374,7 +412,7 @@ void *clkcode(void *dcbp)
   while(msecs>=1000) { secs++; msecs -= 1000; }
 
   if(devid!=-1) printf("The clock must be device -1\n");
-  //printf("dev %d thread starting\n", devid);
+  //printf("dev %lld thread starting\n", LL devid);
   */
 
   while(1) {
@@ -382,20 +420,24 @@ void *clkcode(void *dcbp)
     // The clk thread is now a dummy since clock interrupts are detected
     // by the interpreter.
 
-    //if(++count%100 == 0) printf("\nclkcode: count=%d\n", count);
+    //if(++count%100 == 0) printf("\nclkcode: count=%lld\n", LL count);
 
-    //printf("dev %d thread trying to lock irq_mutex\n", devid);
+    //printf("dev %lld thread trying to lock irq_mutex\n", LL devid);
     pthread_mutex_lock(&irq_mutex);
-    //printf("dev %d thread got irq_mutex\n", devid);
-    //printf("clkcode: dcb op = %d\n", dp[Dcb_op]);
-    while(dp[Dcb_op]!=Devc_destroy)
-      pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
+    //printf("dev %lld thread got irq_mutex\n", LL devid);
+    //printf("clkcode: dcb op = %lld\n", LL dp[Dcb_op]);
+    while(dp[Dcb_op]!=Devc_destroy) {
+      pthread_cond_t *cvp;	
+      copyaddr((char*)&dp[Dcb_cvp], (char*)&cvp);
+      pthread_cond_wait(cvp, &irq_mutex);
+      //pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
+    }
     pthread_mutex_unlock(&irq_mutex);
     break;
   }
     /*
-    //printf("clkcode: Dcb_intson %d clkintson %d insadebug %d\n",
-    //dp[Dcb_intson], W[rootnode+Rtn_clkintson], W[rootnode+Rtn_insadebug]);
+    //printf("clkcode: Dcb_intson %lld clkintson %lld insadebug %lld\n",
+    //LL dp[Dcb_intson], LL W[rootnode+Rtn_clkintson], LL W[rootnode+Rtn_insadebug]);
 
     if( dp[Dcb_intson] &&
         W[rootnode+Rtn_clkintson] &&
@@ -405,32 +447,32 @@ void *clkcode(void *dcbp)
       irqfifoq = (irqfifoq+1) & 1023;
       if(irqfifop==irqfifoq) // Possibly loose a very old interrupt
         irqfifop = (irqfifop+1) & 1023;
-      //printf("dev %d thread sending signal irq_cv\n", devid);
+      //printf("dev %lld thread sending signal irq_cv\n", LL devid);
 
-      //printf("dev %d thread setting irq=1\n", devid);
+      //printf("dev %lld thread setting irq=1\n", LL devid);
       pthread_cond_signal(&irq_cv); // Wakeup the IDLE task, if necessary
     }
 
     pthread_mutex_unlock(&irq_mutex);
-    //printf("dev %d thread unlocked irq_mutex\n", devid);
+    //printf("dev %lld thread unlocked irq_mutex\n", LL devid);
 
     while(tb.time<secs || tb.millitm<msecs) // Wait for next Cintpos tick
     { usleep(2000);  // Poll the time every 2 msecs
       ftime(&tb);    // Get real time again
       //if(++count%50 == 0)
-      //   printf("\nclkcode: in polling loop, count=%d\n", count);
+      //   printf("\nclkcode: in polling loop, count=%lld\n", LL count);
     }
 
     msecs = tb.millitm + msecspertick;
     while(msecs>=1000) { secs++; msecs -= 1000; }
-    //printf("clkcode: msecs=%d\n", msecs);
+    //printf("clkcode: msecs=%lld\n", LL msecs);
   } // End of while(1) loop
     */
 
   // This point is only reached when a destroy command is received.
   //pthread_mutex_unlock(&irq_mutex);
-  //printf("dev %d thread unlocked irq_mutex\n", devid);
-  //printf("dev %d thread committing suicide\n", devid);
+  //printf("dev %lld thread unlocked irq_mutex\n", LL devid);
+  //printf("dev %lld thread committing suicide\n", LL devid);
   return 0;
 }
 
@@ -480,14 +522,14 @@ void *ttyincode(void *dcbp)
     // ch now holds the next input character, either from the
     // command line or standard input (the keyboard).
 
-    //printf("ttyincode: dcb op1 = %d\n", dp[Dcb_op]);
+    //printf("ttyincode: dcb op1 = %lld\n", LL dp[Dcb_op]);
 
-    //printf("devices: ttyincode: ch = %d '%c'\n", ch, ((ch==-1)?0:ch));
+    //printf("devices: ttyincode: ch = %lld '%c'\n", LL ch, ((ch==-1)?0:ch));
     //if(ch<0) exit(0);
 
-    //printf("dev %d thread trying to lock irq_mutex\n", devid);
+    //printf("dev %lld thread trying to lock irq_mutex\n", LL devid);
     pthread_mutex_lock(&irq_mutex);
-    //printf("dev %d thread got irq_mutex\n", devid);
+    //printf("dev %lld thread got irq_mutex\n", LL devid);
 
     W[rootnode+Rtn_lastch] = ch; // For sadebug polling input
 
@@ -496,8 +538,8 @@ void *ttyincode(void *dcbp)
     // or until it can be given to a packet, or a destroy command is received.
 
     while(W[rootnode+Rtn_lastch]!=-3 || dp[Dcb_op]==Devc_destroy) {
-      //printf("devices: ttyincode: ch = %d waiting to go dcb_irq=%d\n",
-      //        ch, dp[Dcb_irq]);
+      //printf("devices: ttyincode: ch = %lld waiting to go dcb_irq=%lld\n",
+      //        LL ch, LL dp[Dcb_irq]);
       BCPLWORD pkt = dp[Dcb_wkq];
 
       if(dp[Dcb_intson] &&             // ttyin interrupts are enabled
@@ -507,14 +549,15 @@ void *ttyincode(void *dcbp)
          W[rootnode+Rtn_insadebug]==0) // and we are not in sadebug.
       {
 	//The character can be given to a waiting packet.
-	//printf("devices: ttyincode: ch = %d going to packet\n", ch);
+	//printf("devices: ttyincode: ch = %lld going to packet\n", LL ch);
 
 	BCPLWORD *p = &W[pkt];
 	p[Pkt_res1] = ch;          // The character.
 	p[Pkt_res2] = 0;           // Indicates successful return.
         W[rootnode+Rtn_lastch]=-3; // Mark the character as taken.
 
-	//printf("pkt: %d %d %d %d %d\n",p[0],p[1],p[2],p[3],p[4]);
+	//printf("pkt: %lld %lld %lld %lld %lld\n",LL
+	//p[0],LL p[1],LL p[2],LL p[3],LL p[4]);
 
         // Put the device id in the interrupt FIFO
 	irqfifov[irqfifoq++] = dp[Dcb_devid];
@@ -522,10 +565,10 @@ void *ttyincode(void *dcbp)
 	if(irqfifop==irqfifoq) // Loose a very old interrupt!!
 	  irqfifop = (irqfifop+1) & 1023;
 
-	//printf("dev %d thread setting irq=1\n", devid);
+	//printf("dev %lld thread setting irq=1\n", LL devid);
 	dp[Dcb_irq] = -1; /* Leave flag to indicate interrupt from this dev */
 
-	//printf("dev %d thread sending signal irq_cv\n", devid);
+	//printf("dev %lld thread sending signal irq_cv\n", LL devid);
 	// Wakeup the interpreter if it were suspended waiting for irq to be set
 	pthread_cond_signal(&irq_cv);
 	break;
@@ -535,39 +578,39 @@ void *ttyincode(void *dcbp)
       // by sadebug or given to a packet.
 
       pthread_mutex_unlock(&irq_mutex);
-      //printf("dev %d thread unlocked irq_mutex\n", devid);
+      //printf("dev %lld thread unlocked irq_mutex\n", LL devid);
       //printf("ttyincode: sleep because ");
-      //printf("lastch=%3d, intson=%d dcbirq=%d wkq=%d insadebug=%d\n",
+      //printf("lastch=%3d, intson=%lld dcbirq=%lld wkq=%lld insadebug=%lld\n",
       //     W[rootnode+Rtn_lastch],
-      //     dp[Dcb_intson],
-      //     dp[Dcb_irq],
-      //     dp[Dcb_wkq],
-      //     W[rootnode+Rtn_insadebug]
+      //     LL dp[Dcb_intson],
+      //     LL dp[Dcb_irq],
+      //     LL dp[Dcb_wkq],
+      //     LL W[rootnode+Rtn_insadebug]
       //    );
 
       msecdelay(10);
       //printf("ttyincode: done sleeping for 5 msecs\n");
-      //printf("dev %d thread trying to lock irq_mutex\n", devid);
+      //printf("dev %lld thread trying to lock irq_mutex\n", LL devid);
       pthread_mutex_lock(&irq_mutex);
-      //printf("dev %d thread got irq_mutex\n", devid);
+      //printf("dev %lld thread got irq_mutex\n", LL devid);
     }
 
     //printf("ttyincode: out of loop\n");
 
-    //printf("dev %d thread waiting for cv\n");
+    //printf("dev %lld thread waiting for cv\n", LL devid);
     // Wait on the DCB's cv until allowed to proceed
     //pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
 
-    //printf("ttyincode: dcb op2 = %d\n", dp[Dcb_op]);
+    //printf("ttyincode: dcb op2 = %lld\n", LL dp[Dcb_op]);
     if(dp[Dcb_op]==Devc_destroy) break;
 
     pthread_mutex_unlock(&irq_mutex);
-    //printf("dev %d thread unlocked irq_mutex\n", devid);
+    //printf("dev %lld thread unlocked irq_mutex\n", LL devid);
   } // End of while(1) loop
 
   pthread_mutex_unlock(&irq_mutex);
-  //printf("dev %d thread unlocked irq_mutex\n", devid);
-  //printf("dev %d thread commiting suicide\n", devid);
+  //printf("dev %lld thread unlocked irq_mutex\n", LL devid);
+  //printf("dev %lld thread commiting suicide\n", LL devid);
   return 0;
 }
 
@@ -580,38 +623,46 @@ void *ttyoutcode(void *dcbp)
 { BCPLWORD *dp = (BCPLWORD *)dcbp;
   BCPLWORD devid = dp[Dcb_devid];
   BCPLWORD pkt=0, ch=-1;
-  //printf("\ndev %d: loop entered\n", devid);
+  //printf("\ndev %lld: loop entered\n", LL devid);
 
   while(1) {
-    //printf("dev %d thread trying to lock irq_mutex\n", devid);
+    //printf("dev %lld thread trying to lock irq_mutex\n", LL devid);
     pthread_mutex_lock(&irq_mutex);
-    //printf("dev %d thread got irq_mutex\n", devid);
-    //printf("ttyoutcode: dcb op1 = %d wkq=%d\n", dp[Dcb_op], dp[Dcb_wkq]);
+    //printf("dev %lld thread got irq_mutex\n", LL devid);
+    //printf("ttyoutcode: dcb op1 = %lld wkq=%lld\n",
+    //       LL dp[Dcb_op], LL dp[Dcb_wkq]);
 
     while(1) {
+      pthread_cond_t *cvp;	
       //int i;
       pkt = dp[Dcb_wkq];
-      //for(i=0; i<9; i++) printf("dp[%d]=%d\n", i, dp[i]);
+      //for(i=0; i<9; i++) printf("dp[%lld]=%lld\n", LL i, LL dp[i]);
       // Wait for the destroy command
       // or   for the wkq to be non empty
       //      and for flag=0
       if(dp[Dcb_op]==Devc_destroy) goto ret;
       if(pkt && dp[Dcb_flag]==0) break;
-      //printf("dev %d: currently pkt=%d and flag=%d\n", devid, pkt, dp[Dcb_flag]);
-      //printf("dev %d: cond wait for pkt and flag=0\n", devid);
-      pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
-      //printf("dev %d: cond wait done\n", devid);
+      //printf("dev %lld: currently pkt=%lld and flag=%lld\n",
+      //       LL devid, LL pkt, LL dp[Dcb_flag]);
+      //printf("dev %lld: cond wait for pkt and flag=0\n", LL devid);
+      copyaddr((char*)&dp[Dcb_cvp], (char*)&cvp);
+      pthread_cond_wait(cvp, &irq_mutex);
+      //pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
+      //printf("dev %lld: cond wait done\n", LL devid);
     }
 
     dp[Dcb_flag] = 1;
-    //printf("dev %d: Dcb_wkq=%d pkt=%d\n", devid, Dcb_wkq, pkt);
-    //printf("dev %d: op=%d pkt=%d\n", devid, dp[Dcb_op], pkt);
+    //printf("dev %lld: Dcb_wkq=%lld pkt=%lld\n",
+    //        LL devid, LL Dcb_wkq, LL pkt);
+    //printf("dev %lld: op=%lld pkt=%lld\n",
+    //        LL devid, LL dp[Dcb_op], LL pkt);
     ch = W[pkt+Pkt_arg1];
     pthread_mutex_unlock(&irq_mutex);
-    //printf("dev %d thread unlocked irq_mutex\n", devid);
+    //printf("dev %lld thread unlocked irq_mutex\n", LL devid);
 
     // The flag is zero and ch is a character to write
-    //printf("dev %d: writing ch %2x '%c'\n", devid, ch, (ch>=0) ? ch : '?');
+    //printf("dev %lld: writing ch %2x '%c'\n",
+    //        LL devid, ch, (ch>=0) ? ch : '?');
     if(ch>=0) {
       /* Do ttyout operation */
       #if defined(forCYGWIN32)
@@ -621,19 +672,22 @@ void *ttyoutcode(void *dcbp)
       fflush(stdout);
     }
 
-    //printf("\nDev %d operation done\n", devid);
+    //printf("\nDev %lld operation done\n", LL devid);
 
-    //printf("dev %d thread trying to lock irq_mutex\n", devid);
+    //printf("dev %lld thread trying to lock irq_mutex\n", LL devid);
     pthread_mutex_lock(&irq_mutex);
-    //printf("dev %d thread got irq_mutex\n", devid);
-    //printf("ttyoutcode: dcb op1 = %d\n", dp[Dcb_op]);
+    //printf("dev %lld thread got irq_mutex\n", LL devid);
+    //printf("ttyoutcode: dcb op1 = %lld\n", LL dp[Dcb_op]);
     if(dp[Dcb_op]==Devc_destroy) goto ret;
 
     // Wait for intson for this device
-    while(dp[Dcb_intson]==0) 
-      pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
-
-    //printf("dev %d intson=%d\n", devid, dp[Dcb_intson]);
+    while(dp[Dcb_intson]==0) {
+      pthread_cond_t *cvp;	
+      copyaddr((char*)&dp[Dcb_cvp], (char*)&cvp);
+      pthread_cond_wait(cvp, &irq_mutex);
+      //pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
+    }
+    //printf("dev %lld intson=%lld\n", LL devid, LL dp[Dcb_intson]);
     // The device can now request and interrupt
     dp[Dcb_flag] = 1;
 
@@ -643,7 +697,7 @@ void *ttyoutcode(void *dcbp)
       irqfifop = (irqfifop+1) & 1023;
 
     trpush(0xF3000000);
-    //printf("dev %d thread sending signal irq_cv\n", devid);
+    //printf("dev %lld thread sending signal irq_cv\n", LL devid);
     // Wakeup the interpreter if it were suspended waiting for irq to be set
     pthread_cond_signal(&irq_cv);
     trpush(0xF3000001);
@@ -653,8 +707,8 @@ void *ttyoutcode(void *dcbp)
 
  ret:
   pthread_mutex_unlock(&irq_mutex);
-  //printf("dev %d thread unlocked irq_mutex\n", devid);
-  //printf("dev %d thread commiting suicide\n", devid);
+  //printf("dev %lld thread unlocked irq_mutex\n", LL devid);
+  //printf("dev %lld thread commiting suicide\n", LL devid);
   pthread_exit(0);
   return 0;
 }
@@ -683,9 +737,10 @@ void *fileopcode(void *dcbp)
     op = dp[Dcb_op];                 // Get the devcommand op
     dp[Dcb_op] = 0;
 
-    //printf("fileopcode: devid:%d processing op = %d\n", devid, op);
+    //printf("fileopcode: devid:%lld processing op = %lld\n",
+    //        LL devid, LL op);
     switch(op) {
-      default: printf("fileop: Unknown op %d\n", op);
+      default: printf("fileop: Unknown op %lld\n", LL op);
                break;
 
       case 0:          break;  // No op present -- nothing to do
@@ -709,15 +764,15 @@ void *fileopcode(void *dcbp)
           // at a time and so there is no need to lock its variables
           // while it proceeds.  The cinterp thread can run in parallel.
 
-          //printf("fileopdev: pkt=%d type %d from cortn %d\n",
-          //         pkt, p[Pkt_type], p[10]);
+          //printf("fileopdev: pkt=%lld type %lld from cortn %lld\n",
+          //        LL pkt, LL p[Pkt_type], LL p[10]);
           switch(p[Pkt_type]) {
 	    default: 
 	      { int i;
-                printf("fileopdev: Unknown pkt type %d in Devc_start dev %d\n",
-                             p[Pkt_type], devid);
-                printf("pkt=%d\n", pkt);
-                for(i=0; i<=10; i++) printf("%2i: %d\n", i, W[pkt+i]);
+                printf("fileopdev: Unknown pkt type %lld in Devc_start dev %lld\n",
+                             LL p[Pkt_type], LL devid);
+                printf("pkt=%lld\n", LL pkt);
+                for(i=0; i<=10; i++) printf("%2i: %lld\n", i, LL W[pkt+i]);
                 break;
               }
 
@@ -736,7 +791,7 @@ void *fileopcode(void *dcbp)
             // Return the packet to the client task by putting
             // this device id into the irq fifo.
             rtnpkt = 0;
-            //printf("fileopdev %d thread setting irq=1\n", devid);
+            //printf("fileopdev %lld thread setting irq=1\n", LL devid);
             irqfifov[irqfifoq++] = dp[Dcb_devid];
             irqfifoq &= 1023;
             if(irqfifop==irqfifoq) // Loose an old interrupt!!
@@ -748,7 +803,7 @@ void *fileopcode(void *dcbp)
 
             // It is necessary to signal irq_cv since 
             // cinterp may be waiting on irq_cv in Sys_waitirq
-            //printf("fileopdev %d thread sending signal irq_cv\n", devid);
+            //printf("fileopdev %lld thread sending signal irq_cv\n", LL devid);
             pthread_cond_signal(&irq_cv);
           }
           break;
@@ -760,19 +815,23 @@ void *fileopcode(void *dcbp)
     // Wait on the DCB's cv until next device command arrives
     pthread_mutex_lock(&irq_mutex);
     while(dp[Dcb_op]==0)
-    { //printf("fileopdev %d thread waiting for cv\n", dp[Dcb_devid]);
-      pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
-      //printf("fileopdev %d thread woken up\n", devid);
+    { //printf("fileopdev %lld thread waiting for cv\n", LL dp[Dcb_devid]);
+      pthread_cond_t *cvp;	
+      copyaddr((char*)&dp[Dcb_cvp], (char*)&cvp);
+      pthread_cond_wait(cvp, &irq_mutex);
+      //pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
+      //printf("fileopdev %lld thread woken up\n", LL devid);
     }
     pthread_mutex_unlock(&irq_mutex);
-    //printf("fileopdev %d thread received command\n", devid, dp[Dcb_op]);
+    //printf("fileopdev %lld thread received command\n",
+    //        LL devid, LL dp[Dcb_op]);
 
   } // End of device command loop
 
 done:
   pthread_mutex_unlock(&irq_mutex);
-  //printf("fileopdev %d thread unlocked irq_mutex\n", devid);
-  printf("fileopdev %d thread committing suicide\n", devid);
+  //printf("fileopdev %lld thread unlocked irq_mutex\n", LL devid);
+  printf("fileopdev %lld thread committing suicide\n", LL devid);
   return 0;
 }
 
@@ -790,15 +849,11 @@ BCPLWORD name2ipaddr(BCPLWORD name) { // name => ipaddr (host format)
 
   for (i=1; i<=*hname; i++) *cp++ = hname[i];
   *cp=0;
-  #ifdef forVmsItanium
-  { struct in_addr ipaddr;
+
+  { struct in_addr ipaddr; // Not BCPLWORD
     if(inet_aton(chv, &ipaddr)) return ntohl(ipaddr.s_addr);
   }
-  #else
-  { BCPLWORD ipaddr;
-    if(inet_aton(chv, &ipaddr)) return ntohl(ipaddr);
-  }
-  #endif
+
   hp = gethostbyname(chv);
   if(hp==NULL) return -1; // Unknown host
   return ntohl(((struct in_addr *)hp->h_addr)->s_addr);
@@ -821,13 +876,13 @@ BCPLWORD name2port(BCPLWORD name) { // name => port (host format)
   *cp=0;
   port = strtol(chv, &endptr, 0);
   if(*endptr == '\0') {
-    //printf("devices: returning port=%d\n", port);
+    //printf("devices: returning port=%lld\n", LL port);
     return port;
   } else {
     //printf("devices: calling getservbyname\n");
     sp = getservbyname(chv, "tcp");
     if(sp==NULL) return -1;
-    //printf("devices: calling ntohs(%d)\n", sp->s_port);
+    //printf("devices: calling ntohs(%lld)\n", LL sp->s_port);
     return ntohs(sp->s_port);
   }
 }
@@ -844,20 +899,20 @@ int isconnected( int s, fd_set *rd, fd_set *wr, fd_set *ex)
   // readable and writable we must check the error status (using getsockopt).
   errno = 0;    // assume no error
   if (!FD_ISSET(s, rd) && !FD_ISSET(s, wr)) {
-//printf("isconnected finds that socket %d is neither readable nor writable\n", s);
+//printf("isconnected finds that socket %lld is neither readable nor writable\n", LL s);
     return 0; // The socket is neither readable nor writable, so not connected
   }
-//printf("isconnected: socket %d is readable or writable or both\n", s);
+//printf("isconnected: socket %lld is readable or writable or both\n", LL s);
   if( getsockopt(s, SOL_SOCKET, SO_ERROR, &err, &len)<0) {
-//printf("isconnected: socket %d has an error\n", s);
+//printf("isconnected: socket %lld has an error\n", LL s);
     return 0;  // The socket has an error, so not connected
   }
-//printf("isconnected: socket %d getsockopt => err=%d\n", s, err);
+//printf("isconnected: socket %lld getsockopt => err=%lld\n", LL s, LL err);
   errno = err; // err ~= 0 if the socket has an error
   //if (err) {
-  //  printf("isconnected finds that socket %d has an error, errno=%d\n", s, errno);
+  //  printf("isconnected finds that socket %lld has an error, errno=%lld\n", LL s, LL errno);
   //} else {
-  //  printf("isconnected finds that socket %d has no error\n", s);
+  //  printf("isconnected finds that socket %lld has no error\n", LL s);
   //}
   if (err==0) return -1;
   return 0;
@@ -903,17 +958,17 @@ void *tcpdevcode(void *dcbp)
     dp[Dcb_arg] = 0;
 
     if(devid != dp[Dcb_devid]) {
-printf("tcpdevcode: bad DCB=%d devid=%d/%d op=%d arg=%d\n",
-        dcb, devid, dp[Dcb_devid], op, arg);
+printf("tcpdevcode: bad DCB=%lld devid=%lld/%lld op=%lld arg=%lld\n",
+        LL dcb, LL devid, LL dp[Dcb_devid], LL op, LL arg);
       pthread_mutex_unlock(&irq_mutex);
       return 0;
     }
 
-    //printf("tcpdevcode: dcb=%d devid=%d/%d op=%d arg=%d\n",
-    //    dcb, devid, dp[Dcb_devid], op, arg);
+    //printf("tcpdevcode: dcb=%lld devid=%lld/%lld op=%lld arg=%lld\n",
+    //    LL dcb, LL devid, LL dp[Dcb_devid], LL op, LL arg);
     switch (op) {
-      default: printf("tcpdev: Unknown op %d\n", op);
-printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
+      default: printf("tcpdev: Unknown op %lld\n", LL op);
+printf("tcpdevcode: devid=%lld op=%lld arg=%lld\n", LL devid, LL op, LL arg);
                break;
 
       case 0:
@@ -926,11 +981,12 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
 
       case Devc_destroy: 
 //printf("tcpdev: op=destroy\n");
-//printf("tcpdevcode: destroying devid=%d op=%d arg=%d\n", devid, op, arg);
+//printf("tcpdevcode: destroying devid=%lld op=%lld arg=%lld\n",
+//        LL devid, LL op, LL arg);
 	                 dp[Dcb_devid] = 0;  // Mark as destroyed
                          pthread_mutex_unlock(&irq_mutex);
-//printf("dev %d thread unlocked irq_mutex\n", devid);
-//printf("devices: devid=%d thread committing suicide\n", devid);
+//printf("dev %lld thread unlocked irq_mutex\n", LL devid);
+//printf("devices: devid=%lld thread committing suicide\n", LL devid);
 
                          // This thread will now commit suicide.
                          return 0;
@@ -952,16 +1008,16 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
           // but, by convention, it will not be changing the content of
           // the packet.
 
-          //printf("tcpdev: pkt=%d type %d from cortn %d\n",
-          //         pkt, p[Pkt_type], p[10]);
+          //printf("tcpdev: pkt=%lld type %lld from cortn %lld\n",
+          //        LL pkt, LL p[Pkt_type], LL p[10]);
 
           // This thread can run in parallel with the interpreter
           // so unlock the irq mutex.
           pthread_mutex_unlock(&irq_mutex);
 
           switch(p[Pkt_type]) {
-	    default: printf("tcpdev: Unknown pkt type %d in Devc_start dev %d\n",
-                             p[Pkt_type], devid);
+	    default: printf("tcpdev: Unknown pkt type %lld in Devc_start dev %lld\n",
+                             LL p[Pkt_type], LL devid);
 	             break;
 
 
@@ -989,7 +1045,7 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
             case Tcp_reuseaddr:
               { BCPLWORD s = p[Pkt_arg1];
                 BCPLWORD n = p[Pkt_arg2];
-		//printf("tcpdev: reuseaddr sock=%d n=%d\n", s, n);
+		//printf("tcpdev: reuseaddr sock=%lld n=%lld\n", LL s, LL n);
 		p[Pkt_res1] = setsockopt( s, SOL_SOCKET, SO_REUSEADDR,
                                           ( char * )&n, sizeof( n ) );
                 // s               The socket descriptor
@@ -1005,7 +1061,8 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
             case Tcp_sndbufsz:
               { BCPLWORD s  = p[Pkt_arg1];
                 BCPLWORD sz = p[Pkt_arg2];
-		//printf("tcpdev: sndbufsz sock=%d sz=%d\n", s, sz);
+		//printf("tcpdev: sndbufsz sock=%lld sz=%lld\n",
+		//        LL s, LL sz);
 		p[Pkt_res1] = setsockopt( s, SOL_SOCKET, SO_SNDBUF,
                                           ( char * )&sz, sizeof( sz ) );
                 // Set socket send buffer maximum size
@@ -1017,7 +1074,8 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
             case Tcp_rcvbufsz:
               { BCPLWORD s  = p[Pkt_arg1];
                 BCPLWORD sz = p[Pkt_arg2];
-		//printf("tcpdev: rcvbufsz sock=%d sz=%d\n", s, sz);
+		//printf("tcpdev: rcvbufsz sock=%lld sz=%lld\n",
+		//        LL s, LL sz);
 		p[Pkt_res1] = setsockopt( s, SOL_SOCKET, SO_RCVBUF,
                                           ( char * )&sz, sizeof( sz ) );
                 // Set socket receive buffer maximum size
@@ -1031,7 +1089,8 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
 	        BCPLWORD ipaddr = p[Pkt_arg2]; // in host format
 	        BCPLWORD port   = p[Pkt_arg3]; // in host format
                 struct sockaddr_in addr;
-//printf("tcpdev: bind sock=%d ipaddr=%8x port=%d\n", s, ipaddr, port);
+//printf("tcpdev: bind sock=%lld ipaddr=%8x port=%lld\n",
+//        LL s, LL ipaddr, LL port);
                 bzero(&addr, sizeof(addr)); // See Snader book p200, MR 23/9/04
                 addr.sin_family = AF_INET;
                 addr.sin_port = htons(port);
@@ -1063,8 +1122,8 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                 // -1    means polling -- not implemented
                 // >0    means timeout of the specified number of msecs
                 struct sockaddr_in peer;
-//printf("tcpdev: connect sock=%d ipaddr=%8x port=%d timeout=%d\n",
-//       s, ipaddr, port, timeout);
+//printf("tcpdev: connect sock=%lld ipaddr=%8x port=%lld timeout=%lld\n",
+//       LL s, ipaddr, LL port, LL timeout);
                 bzero(&peer, sizeof(peer)); // See Snader book p200, MR 23/9/04
                 peer.sin_family = AF_INET;
                 peer.sin_port = htons(port);
@@ -1078,7 +1137,7 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                   // Connect socket s to socket (ipaddr, port)
                   // res1= 0         Indicates success
                   // res1=-1 res2=1  Indicates failure
-//printf("tcpdev: returned connect sock=%d\n", s);
+//printf("tcpdev: returned connect sock=%lld\n", LL s);
                   break;
                 }
 
@@ -1098,25 +1157,27 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                   int rc;
                   struct timeval tv;
                   int flags = fcntl(s, F_GETFL, 0);
-//printf("tcpdev: connect sock=%d ipaddr=%8x port=%d\n", s, ipaddr, port);
-//printf("tcpdev: pkt=%d connect with timeout %d\n", pkt, timeout);
+//printf("tcpdev: connect sock=%lld ipaddr=%8x port=%lld\n",
+//        LL s, ipaddr, LLport);
+//printf("tcpdev: pkt=%lld connect with timeout %lld\n",
+//        LL pkt, LL timeout);
 
                   if (flags<0)
 		  { // fcntl(F_GETFL) failed
-//printf("tcpdev: connect with timeout %d fcntl(F_GETFL) failed\n", timeout);
+//printf("tcpdev: connect with timeout %lld fcntl(F_GETFL) failed\n", LL timeout);
 		    p[Pkt_res1] = -1;
                     p[Pkt_res2] =  0;
                     break;
 		  }
-//printf("tcpdev: connect with timeout %d fcntl(F_GETFL) ok\n", timeout);
+//printf("tcpdev: connect with timeout %lld fcntl(F_GETFL) ok\n", LL timeout);
                   if(fcntl(s, F_SETFL, flags | O_NONBLOCK) < 0)
 		  { // fcntl(F_SETFL) failed
-//printf("tcpdev: connect with timeout %d fcntl(F_SETFL) failed\n", timeout);
+//printf("tcpdev: connect with timeout %lld fcntl(F_SETFL) failed\n", LL timeout);
 		    p[Pkt_res1] = -1;
                     p[Pkt_res2] =  0;
                     break;
 		  }
-//printf("tcpdev: connect with timeout %d fcntl(F_SETFL) ok\n", timeout);
+//printf("tcpdev: connect with timeout %lld fcntl(F_SETFL) ok\n", LL timeout);
 
                   // Make non-blocking connect call
                   rc = connect(s, (struct sockaddr *)&peer, sizeof(peer));
@@ -1134,12 +1195,12 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                     rc = fcntl(s, F_SETFL, flags);
                     if(rc<0)
                     { // fcntl(F_SETFL) failed
-//printf("tcpdev: connect with timeout %d fcntl(F_SETFL) failed\n", timeout);
+//printf("tcpdev: connect with timeout %lld fcntl(F_SETFL) failed\n", LL timeout);
 		      p[Pkt_res1] = -1;
                       p[Pkt_res2] =  0;
                       break;
 		    }
-//printf("tcpdev: connect with timeout %d fcntl(F_SETFL) ok\n", timeout);
+//printf("tcpdev: connect with timeout %lld fcntl(F_SETFL) ok\n", LL timeout);
                     p[Pkt_res1] = 0; // To indicate success
                     p[Pkt_res2] = 0;
                     break;
@@ -1153,45 +1214,47 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                   tv.tv_sec = timeout / 1000;           // seconds
                   tv.tv_usec = (timeout % 1000) * 1000; // micro-seconds
 
-//printf("tcpdev: connect with timeout %d calling select s=%d\n", timeout, s);
+//printf("tcpdev: connect with timeout %lld calling select s=%lld\n",
+//        LL timeout, LL s);
                   //rc = select(s+1, &rdevents, &wrevents, &exevents, &tv);
                   rc = select(s+1, NULL, &wrevents, NULL, &tv);
 //printf("tcpdev: select => rc=%d\n", rc);
                   if(rc<0) {
-//printf("tcpdev: pkt=%d connect with timeout %d select failed\n", pkt, timeout);
+//printf("tcpdev: pkt=%lld connect with timeout %lld select failed\n",
+//        LL pkt, LL timeout);
                     p[Pkt_res1] = -1;  // select failure
                     p[Pkt_res2] =  0;
                     break;
                   }
                   if(rc==0) {
-//printf("tcpdev: pkt=%d connect timed out\n", pkt);
+//printf("tcpdev: pkt=%lld connect timed out\n", LL pkt);
                     p[Pkt_res1] = -2;  // Indicate timeout
                     p[Pkt_res2] =  0;
                     break;
                   }
-//printf("tcpdev: pkt=%d connect with timeout select did not time out\n", pkt);
+//printf("tcpdev: pkt=%lld connect with timeout select did not time out\n",LL pkt);
                   if(isconnected(s, &rdevents, &wrevents, &exevents)) {
-//printf("tcpdev: isconnected socket %d => yes\n", s);
+//printf("tcpdev: isconnected socket %lld => yes\n", LL s);
                     rc = fcntl(s, F_SETFL, flags);
                     if(rc<0) {
                       // fcntl(F_SETFL) failed
-//printf("tcpdev: connect with timeout %d fcntl(F_SETFL) failed\n", pkt, timeout);
+//printf("tcpdev: connect with timeout %lld fcntl(F_SETFL) failed\n", LLpkt, LL timeout);
 		      p[Pkt_res1] = -1;
                       p[Pkt_res2] =  0;
                       break;
 		    }
-//printf("tcpdev: connect with timeout %d fcntl(F_SETFL) ok\n", timeout);
+//printf("tcpdev: connect with timeout %lld fcntl(F_SETFL) ok\n", LL timeout);
 //printf("tcpdev: connect Tcp_connect pkt returned with res1=0\n");
                     p[Pkt_res1] = 0; // To indicate success
                     p[Pkt_res2] = 0;
                     break;
 		  }
-//printf("tcpdev: connect with timeout %d connect failed\n", timeout);
+//printf("tcpdev: connect with timeout %lld connect failed\n", LL timeout);
                   p[Pkt_res1] = -1; // To indicate failure
                   p[Pkt_res2] =  0;
                   break;
 	        }
-//printf("tcpdev: polling connect sock=%d not implemented\n", s);
+//printf("tcpdev: polling connect sock=%lld not implemented\n", LL s);
                 p[Pkt_res1] = -1; // To indicate failure
                 p[Pkt_res2] =  0;
                 break;
@@ -1200,9 +1263,11 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
             case Tcp_listen:
               { BCPLWORD s = p[Pkt_arg1];
                 BCPLWORD n = p[Pkt_arg2];
-		//printf("tcpdev: calling listen sock=%d n=%d\n", s, n);
+		//printf("tcpdev: calling listen sock=%lld n=%lld\n",
+		//        LL s, LL n);
                 p[Pkt_res1] = listen(s, n);
-		//printf("tcpdev: listen sock=%d n=%d => %d\n", s, n, p[Pkt_res1]);
+		//printf("tcpdev: listen sock=%lld n=%lld =>%lld\n",
+		//        LL s, LL n, LL p[Pkt_res1]);
                 // Specify a willingness to accept incoming calls
                 // n               queue limit for incoming connections
                 // res1 = 0        Indicates success
@@ -1221,8 +1286,9 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
 	        BCPLWORD timeout = p[Pkt_arg4];
                 BCPLWORD res1=0, res2=0;
                 BCPLWORD eno = 0, rc=0;
-//printf("tcpdev: Tcp_accept listening sock=%d timeout=%d\n", s, timeout);
-//printf("tcpdev: pkt=%d calling recv sock=%d buf=%d len=%d timeout=%d\n",
+//printf("tcpdev: Tcp_accept listening sock=%lld timeout=%lld\n",
+//        LL s, LL timeout);
+//printf("tcpdev: pkt=%lld calling recv sock=%lld buf=%lld len=%lld timeout=%lld\n",
 //        pkt, s, p[Pkt_arg2], len, timeout);
 
                 if(timeout>0) { // accept with timeout
@@ -1232,16 +1298,16 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                   FD_SET( s, &readmask);
                   tv.tv_sec = timeout / 1000;           // seconds
                   tv.tv_usec = (timeout % 1000) * 1000; // micro-seconds
-//printf("tcpdev: pkt=%d accept with timeout=%d\n", pkt, timeout);
+//printf("tcpdev: pkt=%lld accept with timeout=%lld\n", pkt, timeout);
                   rc = select(s+1, &readmask, NULL, NULL, &tv);
                   if(rc<0) {
-//printf("tcpdev: pkt=%d read with timeout select failed\n", pkt);
+//printf("tcpdev: pkt=%lld read with timeout select failed\n", pkt);
                     p[Pkt_res1] = 0;  // select failure
                     p[Pkt_res2] = 1;
                     break;
                   }
                   if(rc==0) {
-//printf("tcpdev: pkt=%d accept timed out\n", pkt);
+//printf("tcpdev: pkt=%lld accept timed out\n", pkt);
                     p[Pkt_res1] = 0;  // select failure
                     p[Pkt_res2] = -2; // timeoutch = -2
                     break;
@@ -1257,16 +1323,16 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                   // res1 >= 0       A new socket for the connection
                   // res1 = -1       On error
                   // res2            IP address of the connecting machine
-//printf("tcpdev: returned from accept res1=%d\n", p[Pkt_res1]);
-//printf("tcpdev: returned from accept errno=%d  EAGAIN=%d\n", errno, EAGAIN);
+//printf("tcpdev: returned from accept res1=%lld\n", p[Pkt_res1]);
+//printf("tcpdev: returned from accept errno=%lld  EAGAIN=%lld\n", errno, EAGAIN);
                   break;
                 }
 
                 if(timeout<0) { // polling
                   int flags = fcntl(s, F_GETFL, 0);
-//printf("tcpdev: pkt=%d polling read\n", pkt);
+//printf("tcpdev: pkt=%lld polling read\n", pkt);
                   if(flags<0 || fcntl(s, F_SETFL, flags|O_NONBLOCK)<0) {
-//printf("tcpdev: pkt=%d polling read fcntl failure 1\n", pkt);
+//printf("tcpdev: pkt=%lld polling read fcntl failure 1\n", LL pkt);
                     p[Pkt_res1] = 0;  // fcntl failure
                     p[Pkt_res2] = 1;
                     break;
@@ -1289,11 +1355,11 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                     p[Pkt_res2] = -1; // connection closed if res1=0
                     eno = errno;
                   }
-//printf("tcpdev: pkt=%d polling recv sock=%d buf=%d len=%d res1=%d errno=%d\n",
-//         pkt, s, p[Pkt_arg2], len, p[Pkt_res1], eno);
+//printf("tcpdev: pkt=%lld polling recv sock=%lld buf=%lld len=%lld res1=%lld errno=%lld\n",
+//         LL pkt, LL s, LL p[Pkt_arg2], LL len, p[Pkt_res1], eno);
 
                   if(fcntl(s, F_SETFL, flags)<0) {
-//printf("tcpdev: pkt=%d polling read fcntl failure 2\n", pkt);
+//printf("tcpdev: pkt=%lld polling read fcntl failure 2\n", LL pkt);
                     p[Pkt_res1] = 0;  // fcntl failure
                     p[Pkt_res2] = 0;
                     break;
@@ -1318,8 +1384,8 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                 // Request up to len bytes into buf from socket s
                 // res1 >= 0   the number of chars received
                 // res = -1    on error
-//printf("tcpdev: pkt=%d back from recv sock=%d buf=%d len=%d res1=%d errno=%d\n",
-//         pkt, s, p[Pkt_arg2], len, p[Pkt_res1], eno);
+//printf("tcpdev: pkt=%lld back from recv sock=%lld buf=%lld len=%lld res1=%lld errno=%lld\n",
+//         LL pkt, LL s, LL p[Pkt_arg2], LL len, LL p[Pkt_res1], LL eno);
                 break;
               }
 
@@ -1330,8 +1396,8 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
 	        BCPLWORD timeout =            p[Pkt_arg4];
                 BCPLWORD res1=0, res2=0;
                 BCPLWORD eno = 0, rc=0;
-//printf("tcpdev: pkt=%d calling recv sock=%d buf=%d len=%d timeout=%d\n",
-//        pkt, s, p[Pkt_arg2], len, timeout);
+//printf("tcpdev: pkt=%lld calling recv sock=%lld buf=%lld len=%lld timeout=%lld\n",
+//        LL pkt, LL s, LL p[Pkt_arg2], LL len, LL timeout);
 
                 if(timeout>0) { // Read with timeout
                   fd_set readmask;
@@ -1340,16 +1406,16 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                   FD_SET( s, &readmask);
                   tv.tv_sec = timeout / 1000;           // seconds
                   tv.tv_usec = (timeout % 1000) * 1000; // micro-seconds
-//printf("tcpdev: pkt=%d read with timeout\n", pkt);
+//printf("tcpdev: pkt=%lld read with timeout\n", LL pkt);
                   rc = select(s+1, &readmask, NULL, NULL, &tv);
                   if(rc<0) {
-//printf("tcpdev: pkt=%d read with timeout select failed\n", pkt);
+//printf("tcpdev: pkt=%lld read with timeout select failed\n", LL pkt);
                     p[Pkt_res1] = 0;  // select failure
                     p[Pkt_res2] = 0;
                     break;
                   }
                   if(rc==0) {
-//printf("tcpdev: pkt=%d read timed out\n", pkt);
+//printf("tcpdev: pkt=%lld read timed out\n", LL pkt);
                     p[Pkt_res1] = 0;  // select failure
                     p[Pkt_res2] = -2; // timeoutch = -2
                     break;
@@ -1359,15 +1425,15 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                   p[Pkt_res2] = -1;   // endstreamch = -1
                   // res1 >= 0   the number of chars received
                   // res = -1    on error
-//printf("tcpdev: pkt=%d back from recv sock=%d buf=%d len=%d res1=%d errno=%d\n",
-//         pkt, s, p[Pkt_arg2], len, p[Pkt_res1], eno);
+//printf("tcpdev: pkt=%lld back from recv sock=%lld buf=%lld len=%lld res1=%lld errno=%lld\n",
+//         LL pkt, LL s, LL p[Pkt_arg2], LL len, LL p[Pkt_res1], LL eno);
                   break;
                 }
                 if(timeout<0) { // polling
                   int flags = fcntl(s, F_GETFL, 0);
-//printf("tcpdev: pkt=%d polling read\n", pkt);
+//printf("tcpdev: pkt=%lld polling read\n", LL pkt);
                   if(flags<0 || fcntl(s, F_SETFL, flags|O_NONBLOCK)<0) {
-//printf("tcpdev: pkt=%d polling read fcntl failure 1\n", pkt);
+//printf("tcpdev: pkt=%lld polling read fcntl failure 1\n", LL pkt);
                     p[Pkt_res1] = 0;  // fcntl failure
                     p[Pkt_res2] = 0;
                     break;
@@ -1385,11 +1451,11 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                     p[Pkt_res2] = -1; // EOF if res1=0
                     eno = errno;
                   }
-//printf("tcpdev: pkt=%d polling recv sock=%d buf=%d len=%d res1=%d errno=%d\n",
-//         pkt, s, p[Pkt_arg2], len, p[Pkt_res1], eno);
+//printf("tcpdev: pkt=%lld polling recv sock=%lld buf=%lld len=%lld res1=%lld errno=%lld\n",
+//         LL pkt, LL s, LL p[Pkt_arg2], LL len, LL p[Pkt_res1], LL eno);
 
                   if(fcntl(s, F_SETFL, flags)<0) {
-//printf("tcpdev: pkt=%d polling read fcntl failure 2\n", pkt);
+//printf("tcpdev: pkt=%lld polling read fcntl failure 2\n", LL pkt);
                     p[Pkt_res1] = 0;  // fcntl failure
                     p[Pkt_res2] = 0;
                     break;
@@ -1408,8 +1474,8 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
                 // Request up to len bytes into buf from socket s
                 // res1 >= 0   the number of chars received
                 // res = -1    on error
-//printf("tcpdev: pkt=%d back from recv sock=%d buf=%d len=%d res1=%d errno=%d\n",
-//         pkt, s, p[Pkt_arg2], len, p[Pkt_res1], eno);
+//printf("tcpdev: pkt=%lld back from recv sock=%lld buf=%lld len=%lld res1=%lld errno=%lld\n",
+//         LL pkt, LL s, LL p[Pkt_arg2], LL len, LLp[Pkt_res1], eno);
                 break;
               }
 
@@ -1420,8 +1486,8 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
 	        char *buf = (char *)&W[p[Pkt_arg2]];
 	        BCPLWORD len = p[Pkt_arg3];
 	        BCPLWORD timeout = p[Pkt_arg4];
-//printf("tcpdev: send sock=%d buf=%d len=%d, timeout=%d\n",
-//           s, p[Pkt_arg2], len, timeout);
+//printf("tcpdev: send sock=%lld buf=%lld len=%lld, timeout=%lld\n",
+//           LL s, LL p[Pkt_arg2], LL len, LL timeout);
                 p[Pkt_res1] = send( s, buf, len, 0 );
                 // res1 is the number of chars sent or -1 if error
                 // Send len bytes from buf to socket s
@@ -1432,7 +1498,7 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
 
             case Tcp_close:
               { BCPLWORD s = p[Pkt_arg1];
-//printf("tcpdev: close sock=%d\n", s);
+//printf("tcpdev: close sock=%lld\n", LL s);
                  p[Pkt_res1] = close(s);
                 // Close socket s
                 // res1 = 0        Indicates success
@@ -1448,7 +1514,7 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
             // this device id into the irq fifo. It is de-queued
             // from the DCB wkq by code in function irqrtn in BOOT.b
             rtnpkt = 0;
-            //printf("tcpdev %d thread setting irq=1\n", devid);
+            //printf("tcpdev %lld thread setting irq=1\n", LL devid);
             irqfifov[irqfifoq++] = dp[Dcb_devid];
             irqfifoq &= 1023;
             if(irqfifop==irqfifoq) // Possibly loose a very old interrupt!!
@@ -1460,7 +1526,7 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
 
             // It is necessary to signal irq_cv since 
             // cinterp may be waiting on irq_cv in the IDLE task
-            //printf("dev %d thread sending signal irq_cv\n", devid);
+            //printf("dev %lld thread sending signal irq_cv\n", LL devid);
             pthread_cond_signal(&irq_cv);
           }
           break;
@@ -1472,9 +1538,13 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
     // Wait on the DCB's cv until next device command arrives
     ////pthread_mutex_lock(&irq_mutex);
     while(dp[Dcb_op]==0)
-    { //printf("tcpdev %d thread waiting for cv\n", devid);
-      pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
-      //printf("tcbdev %d thread woken up, op=%d\n", devid, dp[Dcb_op]);
+    { //printf("tcpdev %lld thread waiting for cv\n", LL devid);
+      pthread_cond_t *cvp;	
+      copyaddr((char*)&dp[Dcb_cvp], (char*)&cvp);
+      pthread_cond_wait(cvp, &irq_mutex);
+      //pthread_cond_wait((pthread_cond_t *) dp[Dcb_cvp], &irq_mutex);
+      //printf("tcbdev %lld thread woken up, op=%lld\n",
+      //        LL devid, LL dp[Dcb_op]);
     }
     ////pthread_mutex_unlock(&irq_mutex);
     // irq has been set to 1 and the interrupting devices id places in
@@ -1490,8 +1560,9 @@ printf("tcpdevcode: devid=%d op=%d arg=%d\n", devid, op, arg);
 //done:   This point is never reached
 //printf("devices: ERROR: label done reached\n");
 //  pthread_mutex_unlock(&irq_mutex);
-  //printf("dev %d thread unlocked irq_mutex\n", devid);
-  //printf("devices: devid=%d thread committing suicide\n", devid);
+  //printf("dev %lld thread unlocked irq_mutex\n", LL devid);
+  //printf("devices: devid=%lld
+  //thread committing suicide\n", LL devid);
 
   // This thread will now commit suicide.
   //  return 0;

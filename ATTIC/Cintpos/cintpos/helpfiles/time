@@ -1,0 +1,26 @@
+*first #N
+*+ #I #TCH %
+The time can be set and displayed using the TIME command.
+The date can be set and displayed using the DATE command.
+The date and time can be displayed using the DAT command.
+The date and time can be accurately set from the Ring using the
+     RINGDAT command.
+Type TIME, DATE, DAT or RINGDAT here for further information.  Type <CR> to
+exit HELP.
+*ring #H ringdat
+*dat #H dat
+*date #H date
+*string #H datstring
+*time
+*command
+Form:           TIME  "IS"
+Purpose:        To print or set the system time.
+Author:         BJK
+Specification:
+   TIME with no argument prints the current system time.
+   If an argument is given, the system time is set to the specified
+value.  The format of the argument may be HH:MM:SS or HH:MM or HH.
+Example:        TIME
+                TIME 10:35
+    
+

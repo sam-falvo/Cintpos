@@ -1,0 +1,1580 @@
+1> ÿ
+1> ÿ
+1> ÿ(eÿnÿlÿaÿrÿgÿeÿ ÿeÿdÿsÿaÿcÿ
+                ########  ######     ######     ####      #####  
+                ########  #######   ########   ######    ####### 
+                ##        ##    ##  ##        ##    ##  ##       
+                ######    ##    ##  #######   ########  ##       
+                ##        ##    ##        ##  ##    ##  ##       
+                ##        ##    ##        ##  ##    ##  ##       
+                ########  #######   ########  ##    ##   ####### 
+                ########  ######     ######   ##    ##    #####  
+1> ÿeÿnÿlÿaÿrÿgÿeÿ ÿdÿeÿmÿoÿ&
+                     ######    ########  ##    ##   ######  
+                     #######   ########  ###  ###  ######## 
+                     ##    ##  ##        ########  ##    ## 
+                     ##    ##  ######    ## ## ##  ##    ## 
+                     ##    ##  ##        ##    ##  ##    ## 
+                     ##    ##  ##        ##    ##  ##    ## 
+                     #######   ########  ##    ##  ######## 
+                     ######    ########  ##    ##   ######  
+1> ÿæ
+1> ÿ
+
+This is a playback of a console session demonstrating an EDSAC simulator, and,
+in particular, the detailed execution of the initial orders loading the 'tape'
+of the squares program that was the first program to run successfully (on 6 May 1949).
+
+This recording has been editted to include annotations that, hopefully, help to
+clarify what is going on.
+
+1> ÿÈ
+
+
+We enter the simulator by typing the command: edsac
+
+
+1> ÿÂeÿdÿsÿaÿcÿ
+Paper tape: squares.txt
+
+EDSAC Simulator -- Type ? for help
+
+# ÿs
+# ÿ
+
+We can get a list of the simulator debugging command by typing '?'
+
+
+# ÿ~?
+
+?             Print list of debug commands
+123  .125  #1011  #.1011  'c  17-bit constants
+123S .125S #1011S #.1011S     17-bit constants
+123L .125L #1011L #.1011L     35-bit constants
+123F .125F #1011F #.1011F     71-bit constants
+*k +k -k      Multipy/Add/Subtract constant k
+/ ^           Divide/multiply the current value by 10
+~             Negate the current value
+< >           Shift the current value left/right one place
+$<s>          Set the default printing style to <s>
+                <s> = b   binary integer
+                <s> = d   decimal integer
+                <s> = f   decimal fraction
+                <s> = i   instruction
+=             Print the current value in current style
+LS LL LF      Change the length of the current value
+A H P         Get value from Acc, H or SCR
+Ma MSa MLa    Get a 17 or 35 bit value from memory
+SA SH         Store the current value in Acc or H
+Ja            Jump to a, ie set SCR to a
+Sa            Store the current value in memory address a
+Ia            Assemble instructions in location a, a+1,..
+Tn<s> TSn<s>  Print n consecutive 17-bit locations, style <s>
+TLn<s>        Print n consecutive 35-bit words, style <s>
+F<name>       Set the paper tape filename
+Q             Quit
+R             Load initial orders and clear registers SCR, H and Acc
+Z             Set all 1024 memory locations to zero
+DP            Toggle dump of SCR and the next order
+DR<s>         Toggle dump of the operand, style <s>
+DSH<s> DLH<s> Toggle dump of H, style <s>
+DSA<s> DLA<s> DFA<s> Toggle dump of Acc, style <s>
+DSa<s>        Toggle dump of 17-bit memory location, style <s>
+DLa<s>        Toggle dump of 35-bit memory word, style <s>
+;             Print requested values
+B  Ba  Ua     List, set or unset breakpoints
+C             Continue normal execution
+\             Execute one instruction
+# ÿœ
+
+We can type in values and print them out in various styles,
+for instance 123= will print the value is the current style
+(17-bit binary).
+
+# ÿ
+
+# ÿ1ÿ2ÿ3ÿ
+=
+00000000001111011
+# ÿd
+
+We can select decimal using $d
+
+# ÿd
+# ÿ;$ÿdÿ=
+   123
+# ÿd
+# ÿ(
+
+or a 17-bit fraction using $f
+
+
+# ÿd
+# ÿ$ÿfÿ=
+ 0.00188
+# ÿd
+# ÿ
+
+
+or as a machine order (or instruction) using $i
+
+
+# ÿd
+# ÿ
+
+# ÿ$ÿiÿ=
+00000_0_0000111101_1   P  61L  // 
+# ÿd
+# ÿ
+
+
+Machine orders (or instruction) are 17 bits long consisting of
+5 bits of function code, one bit of padding, 10 bits of operand
+(normally the address of a memory location), and one bit usually
+specifying the operand size (17 or 35).
+
+# ÿÈ
+# ÿ
+
+
+The machine has 1024 17-bit memory locations that are referred to
+by mem[0] to mem[1023]. Even-odd pairs form 35-bit words consisting
+of two 17-bit locations separated by a padding bit. 17-bit values
+are termed short and 35-bit values long.
+
+                mem[2n+1]      pad-bit>      mem[2n]
+word[2n]:   bbbbbbbbbbbbbbbbb     b      bbbbbbbbbbbbbbbbb
+
+# ÿÈ
+# ÿ
+
+
+Memory can be set to zero using the z command
+
+# ÿd
+# ÿz
+Memory cleared
+# ÿ–
+# ÿ
+
+Edsac had four central registers:
+
+SCR - 10 bits long, the sequence control register pointing to
+      the next instruction to be executed.
+R  -  17 bits long (not accessible to the programmer).
+H  -  35 bits long, used by the multiply instructions.
+A  -  71 bits long, the accumulator.
+
+# ÿÂ
+# ÿ
+
+These can be printed using the ; command.
+
+# ÿš
+# ÿ;
+
+SCR:   0: 00000_0_0000000000_0   P   0S  // 
+  R: 00000000000000000
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000þ000000000000000000
+
+# ÿÂ
+# ÿ;
+
+Since R is of little interest except for debugging the simulator we
+remove it from the register dump by the command drb.
+
+# ÿÂ
+# ÿdÿrÿbÿ
+
+# ÿ
+;
+
+SCR:   0: 00000_0_0000000000_0   P   0S  // 
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+# ÿÂ
+# ÿ;
+
+We can add to the dump the contents of memory locations 0, 1 and 2 using the
+commands: ds0i ds1i and ds2i. The i causes these to be printed in instruction
+format.
+
+
+# ÿd
+# ÿdÿsÿ0ÿiÿ
+# ÿdÿ
+sÿ1ÿiÿ
+# ÿdÿsÿ2ÿiÿ
+
+# ÿ;
+
+SCR:   0: 00000_0_0000000000_0   P   0S  // 
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000000_0   P   0S  // 
+   2:  00000_0_0000000000_0   P   0S  // 
+# ÿÂ
+# ÿ
+
+We will now assemble some instructions (or data) into
+locations 0 to 2.
+
+# ÿÂ
+# ÿiÿ0ÿ;
+   0> ÿhpÿ1ÿ2ÿ3ÿs
+   0: 00000_0_0001111011_0   P 123S  // 
+   1> ÿhpÿ1ÿs
+   1: 00000_0_0000000001_0   P   1S  // 
+   2> ÿ^tÿ3ÿ1ÿs
+   2: 00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, shþort
+   3> ÿ"
+# ÿ!
+# ÿg
+# ÿ
+
+We can print these out using the t3i command
+
+
+# ÿg
+# ÿ
+# ÿtÿ
+3ÿi
+   0: 00000_0_0001111011_0   P 123S  // 
+   1: 00000_0_0000000001_0   P   1S  // 
+   2: 00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, short
+# ÿp
+# ÿ
+
+
+We will now assemble some more instructions starting at location 100.
+
+
+# ÿp
+# ÿ
+# ÿiÿ1ÿ0ÿ0ÿ
+ 100> ÿ*tÿ0ÿs
+ 100: 00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+ 101> ÿ"aÿ2ÿs
+ 101: 11100_0_0000000010_0   A   2S  // acc += mem[2], short
+ 102> ÿ&aÿ1ÿs
+ 102: 11100_0_0000000001_0   A   1S  // acc += mem[1], short
+ 103> ÿ"tÿ2ÿs
+ 103: 00101_0_0000000010_0   T   2S  // mem[2] =þ acc; acc = 0, short
+ 104> ÿeÿ1ÿ0ÿ0ÿs
+ 104: 00011_0_0001100100_0   E 100S  // if acc>=0 goto 100
+ 105> ÿ"
+# ÿl
+# ÿ
+
+
+We can print out these instructions using the command 100t5i
+
+# ÿl
+# ÿ
+# ÿ
+1ÿ0ÿ0ÿtÿ
+5ÿi
+ 100: 00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+ 101: 11100_0_0000000010_0   A   2S  // acc += mem[2], short
+ 102: 11100_0_0000000001_0   A   1S  // acc += mem[1], short
+ 103: 00101_0_0000000010_0   T   2S  // mem[2] = acc; acc = 0, short
+ 104: 00011_0_0001100100_0   E 100S  // if acc>=0 goto 100
+# ÿÐ
+# ÿ
+
+
+We can set the sequence control register to 100 using j100
+
+
+# ÿÐ
+# ÿjÿ1ÿ0ÿ
+0ÿ
+# ÿl
+# ÿ
+
+and print out the current state using the ; command
+
+# ÿY
+# ÿ;
+
+SCR: 100: 00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 0000000000þ0000000 000000000000000000000000000000000000
+
+   0:  00000_0_0001111011_0   P 123S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, short
+# ÿ§
+# ÿ;
+
+This shows that the next instruction to be executed is T0S at
+location 100. This will store the senior 17 bits of the
+accumulator in location 0 and then clear the accumulator.
+We can use the single step execution command \ to perform this
+instruction.
+
+# ÿ§
+# ÿ
+# ÿ(\
+
+SCR: 101: 11100_0_0000000010_0   A  þ 2S  // acc += mem[2], short
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, short
+# ÿd
+
+Notice that location 0 is now clear.
+
+The next instruction (A2S) in location 101. It adds location 2 into the accumulator.
+
+# ÿ§
+# ÿ
+\
+
+SCR: 102: 11100_0_0000000001_0   A   1S  // acc += mem[1], short
+  H: 00000000000000000 0 00000000000000000
+  A: 00101000000111110 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, short
+# ÿd
+
+Note that the senior 17 bits of the accumulator is now the
+same as location 2.
+
+The next instruction (A1S) adds location 1 into the accumulator.
+
+# ÿ§
+# ÿ
+\
+
+SCR: 103: 00101_0_0000000010_0   T   2S  // mem[2] = acc; acc = 0, short
+  H: 00000000000000000 0 00000000000000000
+  A: 00101000001000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, short
+# ÿl
+
+and the instruction (T2S) at location 103 stores the accumulator back
+in location 2.
+
+# ÿ§
+# ÿ
+\
+
+SCRþ: 104: 00011_0_0001100100_0   E 100S  // if acc>=0 goto 100
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000100000_0   T  32S  // mem[32] = acc; acc = 0, short
+# ÿd
+
+Notice that location 2 used to hold the instruction T31S but
+has now been updated to hold T32S.
+# ÿd
+
+The instruction E100S at 104 jumps back to location 100.
+
+# ÿ§
+# ÿ
+\
+
+SCR: 100: 00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000þ000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000100000_0   T  32S  // mem[32] = acc; acc = 0, short
+# ÿœ
+
+We will now quickly single step round this loop once more.
+
+
+# ÿd\
+
+SCR: 101: 11100_0_0000000010_0   A   2S  // acc += mem[2], short
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000100000_0   T  32S  // mem[32] = acc; acc = 0, short
+# ÿ\
+
+SCR: 102: 11100_0_0000000001_0   A   1S  // acc += mem[1], short
+  H: 00000000000000000 0 00000000000000000
+  A: 00101000001000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000100000_0   T  32S  // mem[32] = acc; acc = 0, short
+# ÿ~\
+
+SCR: 103: 00101_0_0000000010_0   T   2S  // mem[2] = acc; acc = 0, short
+  H: 00000000000000000 0 00000000000000000
+  A: 00101000001000010 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000100000_0   T  32S  // mem[32] = acc; acc = 0, short
+# ÿ|\
+
+SCR: 104: 00011_0_0001100100_0   E 100S  // if acc>=0 goto 100
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000100001_0   T  33S  // mem[33] = acc; acc = 0, short
+# ÿh\
+
+SCR: 100: 00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000100001_0   T  33S  // mem[33] = acc; acc = 0, short
+# ÿ¾
+# ÿ
+
+We can set a break point at the jump instruction in location 104 using
+the command b104, and print the breakpoint using just b
+
+# ÿÜ
+# ÿ
+
+# ÿbÿ1ÿ0ÿ4ÿ
+
+# ÿ'bÿ
+Breakpoints:
+ 104: 00011_0_0001100100_0   E 100S  // if acc>=0 goto 100
+# ÿf
+# ÿ
+
+
+
+We can now run the simulator at full speed using the c command,
+knowing that it will stop when the breakpoint is reached.
+
+# ÿh
+# ÿc
+
+Breakpoint at 104
+
+SCR: 104: 00011_0_0001100100_0   E 100S  // if acc>=0 goto 100
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000100010_0   T  34S  // mem[34] = acc; acc = 0, short
+# ÿÂ
+# ÿ
+
+
+Note that location 2 is now T34S.
+
+Using c we can execute this loop two more times.
+
+# ÿ†
+# ÿ6c
+Breakpoint at 104
+
+SCR: 104: 00011_0_0001100100_0   E 100S  // if acc>=0 goto 100
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000100011_0   T  35S  // mem[35] = acc; acc = 0, short
+# ÿec
+
+Breakpoint at 104
+
+SCR: 104: 00011_0_0001100100_0   E 100S  // if acc>=0 goto 10þ0
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  00000_0_0000000001_0   P   1S  // 
+   2:  00101_0_0000100100_0   T  36S  // mem[36] = acc; acc = 0, short
+# ÿô
+# ÿ
+
+
+We will now see how the initial orders work.
+
+First we will clear all 1024 locations of memory, using the z command.
+
+
+# ÿ
+# ÿ2z
+Memory cleared
+# ÿe
+# ÿ
+
+Then we will load the initial orders into location 0 to 30 using the r
+command, which also sets all the central registers to zero.
+
+# ÿà
+# ÿr
+Initial orders loaded and registers cleared
+# ÿ|
+# ÿ
+
+We can inspect these orders by typing 0t31i
+
+# ÿh
+# ÿ0ÿtÿ3ÿ1ÿi
+   0: 00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1: 10101_0_0000000010_0   H   2S  // H = mem[2], short
+   2: 00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   3: 00011_0_0000000110_0   E   6S  // if acc>=0 goto 6
+   4: 00000_0_0000000001_0   P   1S  // 
+   5: 00000_0_0000000101_0   P   5S  // 
+   6: 00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   7: 01000_0_0000000000_0   I   0S  // mem[0] = rd()
+   8: 11100_0_0000000000_0   A   0S  // acc += mem[0], short
+   9: 00100_0_0000010000_0   R  16S  // acc >>= 6
+  10: 00101_0_0000000000_1   T   0L  // mem[0] = acc; acc = 0,þ long
+  11: 01000_0_0000000010_0   I   2S  // mem[2] = rd()
+  12: 11100_0_0000000010_0   A   2S  // acc += mem[2], short
+  13: 01100_0_0000000101_0   S   5S  // acc -= mem[5], short
+  14: 00011_0_0000010101_0   E  21S  // if acc>=0 goto 21
+  15: 00101_0_0000000011_0   T   3S  // mem[3] = acc; acc = 0, short
+  16: 11111_0_0000000001_0   V   1S  // acc += H * mem[1], short
+  17: 11001_0_0000001000_0   L   8S  // acc <<= 5
+  18: 11100_0_0000000010_0   A   2S  // acc += mþem[2], short
+  19: 00101_0_0000000001_0   T   1S  // mem[1] = acc; acc = 0, short
+  20: 00011_0_0000001011_0   E  11S  // if acc>=0 goto 11
+  21: 00100_0_0000000100_0   R   4S  // acc >>= 4
+  22: 11100_0_0000000001_0   A   1S  // acc += mem[1], short
+  23: 11001_0_0000000000_1   L   0L  // acc <<= 1
+  24: 11100_0_0000000000_0   A   0S  // acc += mem[0], short
+  25: 00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, short
+  26: 11100_0_0000011001_0   A  25S  // acc += mem[25], shortþ
+  27: 11100_0_0000000100_0   A   4S  // acc += mem[4], short
+  28: 00111_0_0000011001_0   U  25S  // mem[25] = acc, short
+  29: 01100_0_0000011111_0   S  31S  // acc -= mem[31], short
+  30: 11011_0_0000000110_0   G   6S  // if acc<0 goto 6
+# ÿÈ
+# ÿ
+
+The ; command shows the current state.
+
+
+# ÿ
+# [15];
+
+SCR:   0: 00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  10101_0_0000000010_0   H   2S  // þH = mem[2], short
+   2:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+# ÿŸ
+# [15]
+
+We will now use single stepping to see how these orders manage to read
+in and assemble the program in the 'tape' reader. The example program we
+are using is the squares program that ran for the first time on 6th May
+1949. The entire program is as follows:
+
+T123SE84SPSPSP10000SP1000SP100SP10SP1SQS#SA40S!S
+&S@SO43SO33SPSA46ST65ST129SA35ST34SE61ST48SA47ST
+65SA33SA40ST33SA48SS34SE55SA34SPST48ST33SA52SA4S
+U52SS42SG51SA117ST52SPSPSPSPSPSE110SE118SP100SE9
+5SO41ST129SO44SO45SA76SA4SU76ST48SA83ST75SE49SO4
+3SO43SH76SV76SL64SL32SU77SS78ST79SA77SU78ST48SA8
+0ST75SE49SO43SO43SA79ST48SA81ST75SE49SA35SA76SS8
+2SG85SO41SZS
+
+These were consecutive characters on the tape (without
+any line breaks).
+
+Believe it or not, this is a mnemonic assembly language, possibly the
+first in the world. Each order starts with a mnemonic operation
+letter, such as A for add, S for subtract, R for arithmentic right
+shift, I for input etc. The letter is followed by an optional decimal
+number for the address field. The order is terminated by S or L to set
+the oparand size bit.
+
+# ÿÍ
+# ÿ
+
+The first two instructions are thus:
+
+T123S              mem[123] := acc; acc := 0
+E84S               Jump to location 84
+
+# ÿÍ
+# ÿ
+
+We will now start executing a few instruction.
+
+
+# ÿ‹
+# ÿ\
+
+SCR:   1: 10101_0_0000000010_0   H   2S  // H = mem[2], short
+  H: 00000000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  10101_0_0000000010_0   H   2S  // H = mem[2], short
+   2:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+# ÿ6\
+
+SCR:   2: 00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  10101_0_0000000010_0   H   2S  // H = mem[2], short
+   2:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+# ÿ©
+# ÿ
+
+Note that the multiplier register has been set to a value related to
+the number 10 (1010 in binary). This will be used later to accumulate
+decimal numbers. The value itself was picked up from location 2 which
+is also the instruction T0S, which we execute next.
+
+# ÿ©
+# ÿ\
+
+SCR:   3: 00011_0_0000000110_0   E   6S  // if acc>=0 goto 6
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  10101_0_0000000010_0   H   2S  // H = mem[2], short
+   2:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+# ÿl
+# ÿ
+
+We now jump to location 6, leaving locations 0 to 5 for use as
+temporary variables and constants.
+
+Location 0 is used to hold the first tape character of an order.
+Location 1 is used to hold the address field of the current order.
+Location 2 is used to hold characters other than the first of an order.
+Location 3 is a junk location used by T3S at location 15 to
+           clear the accumulator.
+Location 4 hold the constant 1 positioned in the address field, and
+Location 5 holds the constant 10 used to check for the end of
+           a decimal number.
+
+# ÿÿ
+# ÿ
+
+Location 6 is the start of the main assembly loop.
+
+# ÿŠ
+# ÿ\
+
+SCR:   6: 00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+  H: 00101000000000000 0 00000000000000000
+  A: 0000þ0000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  10101_0_0000000010_0   H   2S  // H = mem[2], short
+   2:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+# ÿŸ\
+
+SCR:   7: 01000_0_0000000000_0   I   0S  // mem[0] = rd()
+þ  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000000_0   P   0S  // 
+   1:  10101_0_0000000010_0   H   2S  // H = mem[2], short
+   2:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+# ÿŠ
+# ÿ
+
+The I0S instruction at location 7 will read the first character from
+the tape reader and place it in the least significant end of location 0.
+
+# ÿŠ
+# ÿT\
+
+SCR:   8: 11100_0_0000000000_0   A   0S  // acc += mem[0], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00000_0_0000000010_1   P   2L  // 
+   1:  10101_0_0000000010_0   H   2S  // H = mem[2], short
+   2:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+# ÿ¸
+
+Since we are assembling the order T123S, location 0 now holds the code
+for T which is 5 (00101 in binary).
+
+This is now added to the accumulator,
+
+# ÿ¸
+# ÿ\
+
+SCR:   9: 00100_0_0000010000_0   R  16S  // acc >>= 6
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000101 0 00000000000000000 000000000000000000000000000000000000
+þ
+   0:  00000_0_0000000010_1   P   2L  // 
+   1:  10101_0_0000000010_0   H   2S  // H = mem[2], short
+   2:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+# ÿ¸
+# ÿ
+
+and shifted right 6 places.
+
+# ÿ¸
+# ÿ\
+
+SCR:  10: 00101_0_0000000000_1   T   0L  // mem[0] = acc; acc = 0, long
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00101000000000000 000000000000000000000000000000þ000000
+
+   0:  00000_0_0000000010_1   P   2L  // 
+   1:  10101_0_0000000010_0   H   2S  // H = mem[2], short
+   2:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+# ÿ|
+# ÿ\
+
+SCR:  11: 01000_0_0000000010_0   I   2S  þ// mem[2] = rd()
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_0   P   0S  // 
+   2:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, sþhort
+# ÿ¸
+# ÿ\
+
+The T0L stores the senior 35-bits of the accumulator in location 0 and
+1. This has the effect of setting location 0 to a pattern that has the
+5-bit operation code placed correctly at the senior end. It also
+(usefully) clears location 1.
+
+# ÿ¸
+# ÿ
+
+We are now at location 11, which is the start of the loop to read and
+accumulate the decimal number. In this case 123 of the order T123S.
+
+# ÿÌ;
+
+SCR:  11: 01000_0_0000000010_0   I   2S  þ// mem[2] = rd()
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_0   P   0S  // 
+   2:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, sþhort
+# ÿ|
+# ÿ
+
+
+The loop reads the next tape character (digit 1) and compared it with
+10.  The tape codes for the characters '0' to '9' are (luckily) just 0
+to 9 so no conversion is needed.
+
+The decimal number is terminated by the letters S or L whose codes as
+12 and 25, respectively.
+
+# ÿ|
+# ÿ\
+
+SCR:  12: 11100_0_0000000010_0   A   2S  // acc += mem[2], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_0   P   0S  // 
+   2:  00000_0_0000000000_1   P   0L  // 
+# ÿt
+# ÿ\
+
+SCR:  13: 01100_0_0000000101_0   S   5S  // acc -= mem[5], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000001 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_0   P   0S  // 
+   2:  00000_0_0000000000_1   P   0L  // 
+# ÿt
+# ÿ
+
+This instruction subtracts 10 (held in location 5) from the accumulator.
+If the latest character was a digit (0 to 9) the accumulator will be < 0. 
+
+# ÿt
+# ÿ\
+
+SCR:  14: 00011_0_0000010101_0   E  21S  // if acc>=0 goto 21
+  H: 00101000000000000 0 00000000000000000
+  A: 11111111111110111 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_0   P   0S  // 
+   2:  00000_0_0000000000_1   P   0L  // 
+# ÿt
+# ÿ
+
+This instruction jumps to 21 if the latest character is not a digit.
+
+# ÿt
+# ÿ\
+
+SCR:  15: 00101_0_0000000011_0   T   3S  // mem[3] = acc; acc = 0, short
+  H: 00101000000000000 0 00000000000000000
+  A: 11111111111110111 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_0   P   0S  // 
+   2:  00000_0_0000000000_1   P   0L  // 
+# ÿŒ\
+
+SCR:  16: 11111_0_0000000001_0   V   1S  // acc += H * mem[1], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_0   P   0S  // 
+   2:  00000_0_0000000000_1   P   0L  // 
+# ÿd\
+
+SCR:  17: 11001_0_0000001000_0   L   8S  // acc <<= 5
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_0   P   0S  // 
+   2:  00000_0_0000000000_1   P   0L  // 
+# ÿÈ
+# ÿ
+
+The multiply order (V1S) and shift (L8S) set the senior 17 bits of the
+accumulator to 10 times the value in location 1.
+
+We then add the digit in location 2.
+
+# ÿd\
+
+SCR:  18: 11100_0_0000000010_0   A   2S  // acc += mem[2], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_0   P   0S  // 
+   2:  00000_0_0000000000_1   P   0L  // 
+# ÿÈ
+# ÿ
+
+and store the result back in location 1. We are thus doing:
+
+                loc1 := 10 * loc1 + digit
+
+# ÿÂ\
+
+SCR:  19: 00101_0_0000000001_0   T   1S  // mem[1] = acc; acc = 0, short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000001 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_0   P   0S  // 
+   2:  00000_0_0000000000_1   P   0L  // 
+# ÿ#\
+
+SCR:  20: 00011_0_0000001011_0   E  11S  // if acc>=0 goto 11
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_1   P   0L  // 
+   2:  00000_0_0000000000_1   P   0L  // 
+# ÿ^
+# ÿ
+
+We now go back to the start of the digit loop to process the next character. 
+
+# ÿ
+# ÿ\
+
+SCR:  11: 01000_0_0000000010_0   I   2S  // mem[2] = rd()
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_1   P   0L  // 
+   2:  00000_0_0000000000_1   P   0L  // 
+# ÿÌ
+
+We now rapidly step through the processing of the remaining digits
+(23) of the instruction T123S.
+
+# ÿ
+# ÿ\
+
+SCR:  12: 11100_0_0000000010_0   A   2S  // acc += mem[2], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_1   P   0L  // 
+   2:  00000_0_0000000001_0   P   1S  // 
+# ÿ\
+
+SCR:  13: 01100_0_0000000101_0   S   5S  // acc -= mem[5], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000010 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_1   P   0L  // 
+   2:  00000_0_0000000001_0   P   1S  // 
+# ÿ+\
+
+SCR:  14: 00011_0_0000010101_0   E  21S  // if acc>=0 goto 21
+  H: 00101000000000000 0 00000000000000000
+  A: 11111111111111000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_1   P   0L  // 
+   2:  00000_0_0000000001_0   P   1S  // 
+# ÿ\
+
+SCR:  15: 00101_0_0000000011_0   T   3S  // mem[3] = acc; acc = 0, short
+  H: 00101000000000000 0 00000000000000000
+  A: 11111111111111000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_1   P   0L  // 
+   2:  00000_0_0000000001_0   P   1þS  // 
+# ÿ"\
+
+SCR:  16: 11111_0_0000000001_0   V   1S  // acc += H * mem[1], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000þ000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_1   P   0L  // 
+   2:  00000_0_0000000001_0   P   1S  // 
+# ÿ\
+
+SCR:  17: 11001_0_0000001000_0   L   8S  // acc <<= 5
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 10100000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_1   P   0L  // 
+   2:  00000_0_þ0000000001_0   P   1S  // 
+# ÿ"\
+
+SCR:  18: 11100_0_0000000010_0   A   2S  // acc += mem[2], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000001010 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_1   P   0L  // 
+   2:  00000_0_0000000001_0   P   1S  // 
+# ÿ!\
+
+SCR:  19: 00101_0_0000000001_0   T   1S  // mem[1] = acc; acc = 0, short
+  H: 00101000000000þ000 0 00000000000000000
+  A: 00000000000001100 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000000_1   P   0L  // 
+   2:  00000_0_0000000001_0   P   1S  // 
+# ÿ"\
+
+SCR:  20: 00011_0_0000001011_0 þ  E  11S  // if acc>=0 goto 11
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000110_0   P   6S  // 
+   2:  00000_0_0000000001_0   P   1S  // 
+# ÿ \
+
+SCR:  11: 01000_0_0000000010_0   I   2S  // mem[2] = rd()
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000110_0   P   6S  // 
+   2:  00000_0_0000000001_0   P   1S  // 
+# ÿ\
+
+SCR:  12: 11100_0_0000000010_0   A   2S  // acc += mem[2], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000110_0   P   6S  // 
+   2:  00000_0_0000000001_1   P   1L  // 
+# ÿ\
+
+SCR:  13: 01100_0_0000000101_0   S   5S  // acc -= mem[5], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000011 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000110_0   P   6S  // 
+   2:  00000_0_0000000001_1þ   P   1L  // 
+# ÿ1\
+
+SCR:  14: 00011_0_0000010101_0   E  21S  // if acc>=0 goto 21
+  H: 00101000000000000 0 00000000000000000
+  A: 11111111111111001 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000110_0   P   6S  // 
+   2:þ  00000_0_0000000001_1   P   1L  // 
+# ÿ\
+
+SCR:  15: 00101_0_0000000011_0   T   3S  // mem[3] = acc; acc = 0, short
+  H: 00101000000000000 0 00000000000000000
+  A: 11111111111111001 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000110_0   P   6S  // 
+   2:  00000_0_0000000001_1   P   1L  // 
+# ÿ"\
+
+SCR:  16: 11111_0_0000000001_0   V   1S  // acc += H * mem[1], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000110_0   P   6S  // 
+   2:  00000_0_0000000001_1   P   1L  // 
+# ÿ"\
+
+SCR:  17: 11001_0_0000001000_0   L   8S  // acc <<= 5
+  H: 00101000000000000 0 00000000000000000
+  A: 0000000000000001þ1 1 10000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000110_0   P   6S  // 
+   2:  00000_0_0000000001_1   P   1L  // 
+# ÿ%\
+
+SCR:  18: 11100_0_0000000010_0   A   2S  // acc += mem[2], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000001111000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000110_0   P   6S  // 
+   2:  00000_0_0000000001_1   P   þ1L  // 
+# ÿ&\
+
+SCR:  19: 00101_0_0000000001_0   T   1S  // mem[1] = acc; acc = 0, short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000001111011 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000000110þ_0   P   6S  // 
+   2:  00000_0_0000000001_1   P   1L  // 
+# ÿ\
+
+SCR:  20: 00011_0_0000001011_0   E  11S  // if acc>=0 goto 11
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 0000000000000000000000000000000þ00000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000001_1   P   1L  // 
+# ÿ \
+
+SCR:  11: 01000_0_0000000010_0   I   2S  // mem[2] = rd()
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000001_1   P   1L  // 
+# ÿ!\
+
+SCR:  12: 11100_0_0000000010_0   A   2S  // acc += mem[2], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+# ÿÂ
+# ÿ
+
+At this point we have just read the S of T123S.
+
+Location 0 holds T0S waiting for the operand field to be added.
+Location 1 holds the operand 123 (1111011 in binary), and
+Location 2 holds the character S (code 12).
+
+This is not less than 10 so we will leave the loop and jump to 21.
+
+# ÿÂ
+# ÿ\
+
+SCR:  13: 01100_0_0000000101_0   S   5S  // acc -= mem[5], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000001100 0 00000000000000000 00000000þ0000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+# ÿ+\
+
+SCR:  14: 00011_0_0000010101_0   E  21S  // if acc>=0 goto 21
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000þ000000010 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+# ÿÂ\
+
+SCR:  21: 00100_0_0000000100_0   R   4S  // acc >>= 4
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000010 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+# ÿ£
+
+We have left the digit loop and need to process the character S(12) or
+L(25). Note that if it was an S the senior 17 bits holds 2 (0010). If
+it was L the value woud be 15 (1111). The current instruction shifts
+these values to the right by 4 places. So the bit one place to the right of
+the senior 17 bits of the accumulator will be 0 or 1 depending on whether
+the latest character was S or L, respectively.
+
+# ÿÿ
+# ÿ
+
+ We now add in the address field and shift left one place.
+
+# ÿ£
+# ÿ\
+
+SCR:  22: 11100_0_0000000001_0   A   1S  // acc += mem[1], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 01000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+# ÿ7\
+
+SCR:  23: 11001_0_0000000000_1   L   0L  // acc <<= 1
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000001111011 0 01000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+# ÿí\
+
+And finally add in the function code field (that was saved in location 0) to
+form the assembled order.
+
+# ÿ£
+# ÿ\
+
+SCR:  24: 11100_0_0000000000_0   A   0S  // acc += mem[0], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000011110110 0 10000000000000000 00000000000000000000000000000000000þ0
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+# ÿm
+# ÿ
+
+At this point the senior 17 bits of the accumulator holds the
+assembled order. All that is require is to write this instruction in
+the next program location (31). This is done by the instruction T31S
+in location 25.
+
+# ÿm\
+
+SCR:  25: 00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, short
+  H: 00101000000000000 0 00000000000000000
+  A: 00101000011110110 0 10000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+
+# ÿÑ
+
+We now modify the register dump to show the contents locations 25 and 31.
+
+# ÿÑ
+# ÿWdÿsÿ2ÿ 5ÿiÿ
+# ÿ=dÿsÿ3ÿ1ÿiÿ
+# ÿ;
+# ÿH;
+
+SCR:  25: 00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, short
+  H: 00101000000000000 0 00000000000000000
+  A: 00101000011110110 0 10000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, þshort
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+  25:  00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, short
+  31:  00000_0_0000000000_0   P   0S  // 
+# ÿÄ
+
+This instruction (T31S) stores the assembled order (T123S) into location 31.
+
+# ÿÄ
+# ÿ\
+
+SCR:  26: 11100_0_0000011001_0   A  25S  // acc += mem[25], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+  25:  00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, short
+  31:  00101_0_0001111011_0   T 123S  // mem[123] = acc; acc = 0, short
+# ÿ®
+# ÿ
+
+We now add one (in location 4) to the instruction in location 25 to change it
+from T31S to T32S.
+
+
+# ÿ®
+# ÿ\
+
+SCR:  27: 11100_0_0000000100_0   A   4S  // acc += mem[4], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00101000000111110 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+  25:  00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, short
+  31:  00101_0_0001111011_0   T 123S  // mem[123] = acc; acc = 0, short
+# ÿ;\
+
+SCR:  28: 00111_0_0000011001_0   U  25S  // mem[25] = acc, short
+  H: 00101000000000000 0 00000000000000000
+  A: 00101000001000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+  25:  00101_0_0000011111_0   T  31S  // mem[31] = acc; acc = 0, short
+  31:  00101_0_0001111011_0   T 123S  // mem[123] = acc; acc = 0, short
+# ÿ6\
+
+SCR:  29: 01100_0_0000011111_0   S  31S  // acc -= mem[31], short
+  H: 00101000000000000 0 00000000000000000
+  A: 00101000001000000 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+  25:  00101_0_0000100000_0   T  32S  // mem[32] = acc; acc = 0, short
+  31:  00101_0_0001111011_0   T 123S  // mem[123] = acc; acc = 0, short
+# ÿà
+# ÿ
+
+Note locations 25 has been updated to T32S.
+
+We will next compare this value with the contents of location 32,
+by subtracting it (S31S) and jumping to 6 if the accumulator is
+negative (G6S).
+
+# ÿà
+# ÿ\
+
+SCR:  30: 11011_0_0000000110_0   G   6S  // if acc<0 goto 6
+  H: 00101000000000000 0 00000000000000000
+  A: 11111111101001010 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+  25:  00101_0_0000100000_0   T  32S  // mem[32] = acc; acc = 0, short
+  31:  00101_0_0001111011_0   T 123S  // mem[123] = acc; acc = 0, short
+# ÿ$\
+
+SCR:   6: 00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+  H: 00101000000000000 0 00000000000000000
+  A: 11111111101001010 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  00101_0_0000000000_0   T   0S  // mem[0] = acc; acc = 0, short
+   1:  00000_0_0000111101_1   P  61L  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+  25:  00101_0_0000100000_0   T  32S  // mem[32] = acc; acc = 0, short
+  31:  00101_0_0001111011_0   T 123S  // mem[123] = acc; acc = 0, short
+
+# ÿà
+# ÿ
+
+We are now at the start of the main loop about to assemble the next order.
+
+By setting a breakpoint at location 31 we can assemble the entire
+squares program stopping when location 25 equals to location 31
+(T123S).
+
+# ÿè
+# ÿbÿ3ÿ1ÿ
+# ÿ4cÿ"
+
+Breakpoint at 31
+
+SCR:  31: 00101_0_0001111011_0   T 123S  // mem[123] = acc; acc = 0, short
+  H: 00101000000000000 0 00000000000000000
+  A: 00000000000000000þ 0 00000000000000000 000000000000000000000000000000000000
+
+   0:  01101_0_0000000000_0   Z   0S  // stop
+   1:  00000_0_0000000000_0   P   0S  // 
+   2:  00000_0_0000000110_0   P   6S  // 
+  25:  00101_0_0001111011_0   T 123S  // mem[123] = acc; acc = 0, short
+  31:  00101_0_0001111011_0   T 123S  // mem[123] = acc; acc = 0, short
+# ÿÜ
+# ÿ
+
+The complete program has now been loaded and is ready for execution.
+
+# ÿx
+# ÿ
+
+We can inspect it by typing 31t93i
+
+# ÿd
+# ÿ
+3ÿ1ÿtÿ9ÿ3ÿiÿ
+  31: 00101_0_0001111011_0   T 123S  // mem[123] = acc; acc = 0, short
+  32: 00011_0_0001010100_0   E  84S  // if acc>=0 goto 84
+  33: 00000_0_0000000000_0   P   0S  // 
+  34: 00000_0_0000000000_0   P   0S  // 
+  35: 00100_1_1100010000_0   R1808S  // acc >>= 6
+  36: 00000_0_1111101000_0   P1000S  // 
+  37: 00000_0_0001100100_0   P 100S  // 
+  38: 00000_0_0000001010_0   P  10S  // 
+  39: 00000_0_0000000001_0   P   1S  // 
+  40: 00001_0_0000000000_0   Q   0S  // 
+  41: 01011_0_0000000000_0   #   0S  // 
+  42: 11100_0_0000101000_0   A  40S  // acc += mem[40], short
+  43: 10100_0_0000000000_0   !   0S  // 
+  44: 11000_0_0000000000_0   &   0S  // 
+  45: 10010_0_0000000000_0   @   0S  // 
+  46: 01001_0_0000101011_0   O  43S  // wr(mem[43])
+  47: 01001_0_0000100001_0   O  33S  // wr(mem[33])
+  48: 00000_0_0000000000_0   P   0S  // 
+  49: 11100_0_0000101110_0   A  46S  // acc += mem[46], short
+  50: 00101_0_0001000001_0   T  65S  // mem[65] = acc; acc = 0, short
+  51: 00101_0_0010000001_0   T 129S  // mem[129] = acc; acc = 0, short
+  52: 11100_0_0000100011_0   A  35S  // acc += mem[35], short
+  53: 00101_0_0000100010_0   T  34S  // mem[34] = acc; acc = 0, short
+  54: 00011_0_0000111101_0   E  61S  // if acc>=0 goto 61
+  55: 00101_0_0000110000_0   T  48S  // mem[48] = acc; acc = 0, short
+  56: 11100_0_0000101111_0   A  47S  // acc += mem[47], short
+  57: 00101_0_0001000001_0   T  65S  // mem[65] = acc; acc = 0, short
+  58: 11100_0_0000100001_0   A  33S  // acc += mem[33], short
+  59: 11100_0_0000101000_0   A  40S  // acc += mem[40], short
+  60: 00101_0_0000100001_0   T  33S  // mem[33] = acc; acc = 0, short
+  61: 11100_0_0000110000_0   A  48S  // acc += mem[48], short
+  62: 01100_0_0000100010_0   S  34S  // acc -= mem[34], short
+  63: 00011_0_0000110111_0   E  55S  // if acc>=0 goto 55
+  64: 11100_0_0000100010_0   A  34S  // acc += mem[34], short
+  65: 00000_0_0000000000_0   P   0S  // 
+  66: 00101_0_0000110000_0   T  48S  // mem[48] = acc; acc = 0, short
+  67: 00101_0_0000100001_0   T  33S  // mem[33] = acc; acc = 0, short
+  68: 11100_0_0000110100_0   A  52S  // acc += mem[52], short
+  69: 11100_0_0000000100_0   A   4S  // acc += mem[4], short
+  70: 00111_0_0000110100_0   U  52S  // mem[52] = acc, short
+  71: 01100_0_0000101010_0   S  42S  // acc -= mem[42], short
+  72: 11011_0_0000110011_0   G  51S  // if acc<0 goto 51
+  73: 11100_0_0001110101_0   A 117S  // acc += mem[117], short
+  74: 00101_0_0000110100_0   T  52S  // mem[52] = acc; acc = 0, short
+  75: 00000_0_0000000000_0   P   0S  // 
+  76: 00000_0_0000000000_0   P   0S  // 
+  77: 00000_0_0000000þ000_0   P   0S  // 
+  78: 00000_0_0000000000_0   P   0S  // 
+  79: 00000_0_0000000000_0   P   0S  // 
+  80: 00011_0_0001101110_0   E 110S  // if acc>=0 goto 110
+  81: 00011_0_0001110110_0   E 118S  // if acc>=0 goto 118
+  82: 00000_0_0001100100_0   P 100S  // 
+  83: 00011_0_0001011111_0   E  95S  // if acc>=0 goto 95
+  84: 01001_0_0000101001_0   O  41S  // wr(mem[41])
+  85: 00101_0_0010000001_0   T 129S  // mem[129] = acc; acc = 0, short
+  86: 01001_0_0000101100_0   O  44S  // wr(mem[44])
+  87: 01001_0_0000101101_0   O  45S  // wr(mem[45])
+  88: 11100_0_0001001100_0   A  76S  // acc += mem[76], short
+  89: 11100_0_0000000100_0   A   4S  // acc += mem[4], short
+  90: 00111_0_0001001100_0   U  76S  // mem[76] = acc, short
+  91: 00101_0_0000110000_0   T  48S  // mem[48] = acc; acc = 0, short
+  92: 11100_0_0001010011_0   A  83S  // acc += mem[83], short
+  93: 00101_0_0001001011_0   T  75S  // mem[75] = acc; acc = 0, short
+  94: 00011_0_0000110001_0   E  49S  // if acc>=0 goto 49
+  95: 01001_0_0000101011_0   O  43S  // wr(mem[43])
+  96: 01001_0_0000101011_0   O  43S  // wr(mem[43])
+  97: 10101_0_0001001100_0   H  76S  // H = mem[76], short
+  98: 11111_0_0001001100_0   V  76S  // acc += H * mem[76], short
+  99: 11001_0_0001000000_0   L  64S  // acc <<= 8
+ 100: 11001_0_0000100000_0   L  32S  // acc <<= 7
+ 101: 00111_0_0001001101_0   U  77S  // mem[77] = acc, short
+ 102: 01100_0_0001001110_0   S  78S  // acc -= mem[78], short
+ 103: 00101_0_0001001111_0   T  79S  // mem[79] = acc; acc = 0, short
+ 104: 11100_0_0001001101_0   A  77S  // acc += mem[77], short
+ 105: 00111_0_0001001110_0   U  78S  // mem[78] = acc, short
+ 106: 00101_0_0000110000_0   T  48S  // mem[48] = acc; acc = 0, short
+ 107: 11100_0_0001010000_0   A  80S  // acc += mem[80], short
+ 108: 00101_0_0001001011_0   T  75S  // mem[75] = acc; acc = 0, short
+ 109: 00011_0_0000110001_0   E  49S  // if acc>=0 goto 49
+ 110: 01001_0_0000101011_0   O  43S  // wr(mem[43])
+ 111: 01001_0_0000101011_0   O  43S  // wr(mem[43])
+ 112: 11100_0_0001001111_0   A  79S  // acc += mem[79], short
+ 113: 00101_0_0000110000_0   T  48S  // mem[48] = acc; acc = 0, short
+ 114: 11100_0_0001010001_0   A  81S  // acc += mem[81], short
+ 115: 00101_0_0001001011_0   T  75S  // mem[75] = acc; acc = 0, short
+ 116: 00011_0_0000110001_0   E  49S  // if acc>=0 goto 49
+ 117: 11100_0_0000100011_0   A  35S  // acc += mem[35], short
+ 118: 11100_0_0001001100_0   A  76S  // acc += mem[76], short
+ 119: 01100_0_0001010010_0   S  82S  // acc -= mem[82], short
+ 120: 11011_0_0001010101_0   G  85S  // if acc<0 goto 85
+ 121: 01001_0_0000101001_0   O  41S  // wr(mem[41])
+ 122: 01101_0_0000000000_0   Z   0S  // stop
+# ÿÿ<
+# ÿ
+
+Finally we can execute it by typing c.
+
+# ÿs
+# ÿcÿ
+
+    1      1      1
+    2      4      3
+    3      9      5
+    4     16      7
+    5     25      9
+    6     36     11
+    7     49     13
+    8     64     15
+    9     81     17
+   10    100     19
+   11    121     21
+   12    144     23
+   13    169     25
+   14    196     27
+   15    225     29
+   16    256     31
+   17    289     33
+   18    324     35
+   19    361     37
+   20    400     39
+   21    441     41
+   22    484     43
+   23    529     45
+   24    576     47
+   25    625     49
+   26    676     51
+   27    729     53
+   28    784     55
+   29    841     57
+   30    900     59
+   31    961     61
+   32   1024     63
+   33   1089     65
+   34   1156     67
+   35   1225     69
+   36   1296     71
+   37   1369     73
+   38   1444     75
+   39   1521     77
+   40   1600     79
+   41   1681     81
+   42   1764     83
+   43   1849     85
+   44   1936     87
+   45   2025     89
+   46   2116     91
+   47   2209     93
+   48   2304     95
+   49   2401     97
+   50   2500     99
+   51   2601    101
+   52   2704    103
+   53   2809    105
+   54   2916    107
+   55   3025    109
+   56   3136    111
+   57   3249    113
+   58   3364    115
+   59   3481    117
+   60   3600    119
+   61   3721    121
+   62   3844    123
+   63   3969    125
+   64   4096    127
+   65   4225    129
+   66   4356    131
+   67   4489    133
+   68   4624    135
+   69   4761    137
+   70   4900    139
+   71   5041    141
+   72   5184    143
+   73   5329    145
+   74   5476    147
+   75   5625    149
+   76   5776    151
+   77   5929    153
+   78   6084    155
+   79   6241    157
+   80   6400    159
+   81   6561    161
+   82   6724    163
+   83   6889    165
+   84   7056    167
+   85   7225    169
+   86   7396    171
+   87   7569    173
+   88   7744    175
+   89   7921    177
+   90   8100    179
+   91   8281    181
+   92   8464    183
+   93   8649    185
+   94   8836    187
+   95   9025    189
+   96   9216    191
+   97   9409    193
+   98   9604    195
+   99   9801    197
+  100  10000    199
+Successful termination of the program
+# ÿÂ
+# ÿ
+
+
+This is the end of the demonstration so we leave the Edsac simulator
+using the q command.
+
+# ÿ¸
+# ÿq

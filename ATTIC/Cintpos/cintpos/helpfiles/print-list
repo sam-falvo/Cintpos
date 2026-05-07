@@ -1,0 +1,237 @@
+*COMMAND
+*ALL      ..
+PRINT/LIST commands
+
+Form:          "FILE,FILES/K,TO/K,OPT/K"
+Purpose:       General purpose, multi columning print program
+Author:        IDW
+
+Specification
+
+PRINT/LIST takes one or more input files, and processes them, producing output
+suitable for a variety of printers.  The options available are many and varied,
+and should be general enough for any desired format of output to be generated.
+
+    FILE   If specified, FILE corresponds to a file to be printed.  This file
+           only is printed.
+
+    FILES  If specified, FILES corresponds to a file containing a list of
+           files to be printed.  This file must be a series of lines each
+           containing the name of a file to be printed.  If neither FILE 
+           nor FILES is specified, then PRINT/LIST prompts the user for 
+           the names of files to be printed.  The device EX: can be used
+           to examine a directory in order to produce a FILES list.  See
+           HELP EX: for details.
+
+    TO     If specified, TO corresponds to the name of a file into which the
+           print image is to be placed.  This overrides the implied name of
+           the printer to be used, given the options string.
+
+    OPT    If specified, OPT corresponds to an options string relating to the
+           print run.  It is in this options string that the format of the
+           printer for which the output is destined is given.  The options
+           apply to all files printed in this run.  See HELP PRINT OPTIONS
+           for a list of the options known to the PRINT/LIST program.
+*OPTIONS ..
+*ALL     ..
+
+Options to the PRINT/LIST program are as follows, and are separated by
+spaces or commas:
+
+*C
+*OPTIONS ..
+*ALL     ..
+    C [=] n       Set the number of columns to "n".
+*MC
+*OPTIONS ..
+*ALL     ..
+    MC [=] n      Set the maximum number of columns to "n".
+*S
+*OPTIONS ..
+*ALL     ..
+    S [=] n       Set the column separation to "n".
+*SPREAD
+*NOSPREAD
+*OPTIONS ..
+*ALL     ..
+    SPREAD        Spread output of multi columned pages.
+    NOSPREAD      Do not spread output of multi columned pages.
+*TITLE
+*NOTITLE
+*OPTIONS ..
+*ALL     ..
+    TITLE [=] s   Set the page title to "s".  If "s" contains separator
+                  characters, then it must be enclosed within single
+                  quotes.  To obtain a single quote, two must be used.
+                  If no "s" is given, then the file name is used instead.
+    NOTITLE       Do not print a page title.
+*U
+*NOU
+*OPTIONS ..
+*ALL     ..
+    U             Underline the page title.  Causes page titles to be printed.
+    NOU           Do not underline the page title.
+*L
+*OPTIONS ..
+*ALL     ..
+    L [=] n       Set the page length to "n".
+*W
+*OPTIONS ..
+*ALL     ..
+    W [=] n       Set the page width to "n".
+*LN
+*NOLN
+*OPTIONS ..
+*ALL     ..
+    LN            Print line numbers.  Causes page titles to be printed.
+    NOLN          Do not print line numbers.
+*LO
+*OPTIONS ..
+*ALL     ..
+    LO [=] n      Set line offset to "n".
+*PN
+*NOPN
+*OPTIONS ..
+*ALL     ..
+    PN            Print page numbers.  Causes page titles to be printed.
+    NOPN          Do not print page numbers.
+*PW
+*NOPW
+*OPTIONS ..
+*ALL     ..
+    PW [=] s      Page wait, with "s" as the prompt string.  If "s"
+                  contains separator characters, then it must be
+                  enclosed within single quotes.  To obtain a single
+                  quote, two must be used.  If no "s" is specified, then
+                  "Page waiting ... " is used instead.
+    NOPW          Do not page wait.
+*PM
+*OPTIONS ..
+*ALL     ..
+    PM            New page per output member (one file per page).
+*CM
+*OPTIONS ..
+*ALL     ..
+    CM            New column per output member (one file per column).
+*N
+*NN
+*OPTIONS ..
+*ALL     ..
+    N             Include file names in listing.
+    NN            Do not include file names in listing.
+*TR
+*NOTR
+*OPTIONS ..
+*ALL     ..
+    TR            Truncate all overlong lines.
+    NOTR          Do not truncate (i.e. wrap) overlong lines.
+*PF
+*OPTIONS ..
+*ALL     ..
+    PF [=] n      Set the page factor (number of input pages per output
+                  column) to "n".
+*PRINTERS ..
+*ALL      ..
+
+The printers which PRINT/LIST knows about are:
+
+*TITAN
+*PRINTERS ..
+*OPTIONS  ..
+*ALL      ..
+    TITAN         Titan room line printer, device "TP:" ("/LP" on CAP).
+                  Equivalent to  OPT "L60,W132".
+
+*MOND
+*PRINTERS ..
+*OPTIONS  ..
+*ALL      ..
+    MOND          Mond room line printer, device "MP:" ("/MOND" on CAP).
+                  Equivalent to  OPT "L60,W136".
+
+*CANON
+*CCANON
+*PRINTERS ..
+*OPTIONS  ..
+*ALL      ..
+    CANON         Canon laser printer, device "CP:" ("/CANON" on CAP).
+                  Equivalent to  OPT "L98,W98".
+
+    CCANON        Compact canon laser printer, device "CP:" ("/CANON" on CAP).
+                  Equivalent to  OPT "L196,W196".
+
+*BALFOUR
+*CBALFOUR
+*LCBALFOUR
+*LBALFOUR
+*PRINTERS ..
+*OPTIONS  ..
+*ALL      ..
+    BALFOUR       Balfour LaserWriter, device "BP:"
+                  Equivalent to  OPT "L73,W91".
+
+    CBALFOUR      Balfour LaserWriter, device "BP:", suffix "*Npointsize=5"
+                  Equivalent to  OPT "L134,W180".
+
+    LBALFOUR      Balfour LaserWriter, device "BP:", suffix "*Nlandscape"
+                  Equivalent to  OPT "L50,W132".
+
+    LCBALFOUR     Balfour LaserWriter, device "BP:",
+                                       suffix "*Npointsize=5 landscape"
+                  Equivalent to  OPT "L93,W264" (actually only W255).
+
+*VDU
+*PRINTERS ..
+*OPTIONS  ..
+*ALL      ..
+    VDU           Visual Display Unit, device "*" ("/M" on CAP).
+                  Equivalent to  OPT "L22,W80,PW".
+
+*SPOOL
+*PRINTERS ..
+*OPTIONS  ..
+*ALL      ..
+    SPOOL         Send printer output via the ring SPOOL server.
+
+*PRINTERS
+*DEFAULTS  ..
+*DEFAULT   ..
+*OPTIONS   ..
+*ALL       ..
+By default, the printer chosen is "LP:" ("/LP" on CAP).
+*DEFAULTS  ..
+*DEFAULT   ..
+*OPTIONS   ..
+*ALL       ..
+
+Default options are:   L60   W132  MC8   NOTITLE  NOU   NOLN  N
+                       NOPN  NOPW  S2    SPREAD   NOTR  PF1
+
+*LIST
+*DEFAULTS
+*DEFAULT
+*OPTIONS
+*ALL
+The LIST program is exactly equivalent to "PRINT ... OPT=LN".
+*+       #I  PRINT-LIST
+Type one or more of the following to obtain help, or <RETURN> to quit:
+
+     COMMAND      For information on the PRINT/LIST commands
+     OPTIONS      For information on the options to PRINT/LIST
+     PRINTERS     For information on the printers which PRINT/LIST knows about
+     ALL          For all information
+
+     Or the name of an option for information about that option.
+
+**
+There is no help on what you typed.  See HELP PRINT <keyword>,
+where <keyword> is:
+
+     COMMAND      For information on the PRINT/LIST commands
+     OPTIONS      For information on the options to PRINT
+     PRINTERS     For information on the printers which PRINT/LIST knows about
+     ALL          For all information
+
+     Or the name of an option for information about that option.
+
+

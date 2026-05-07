@@ -78,7 +78,6 @@ LET cli_init(parm_pkt) = VALOF
   cli_standardoutput := output()
   cli_currentoutput  := cli_standardoutput
   cli_commanddir := parm_pkt!pkt_arg4
-  returncode := 0
   cli_returncode := 0
   cli_faillevel  := cli_initialfaillevel
   cli_result2 := 0

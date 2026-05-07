@@ -1,0 +1,454 @@
+*+
+Use HELP BASIC COMMAND for information about the BASIC command.
+HELP BASIC <BASIC help request> gives HELP on other aspects of BASIC.
+Try HELP BASIC TOPICS to find out what help knows about; a brief
+specification (200 lines) of this version can be found in
+INFO.SPEC.BASIC on the 370.
+* loop #H #HCH=+
++ detail
+ The control variable is set to the initial value when the FOR
+statement is executed; the increment and limit are calculated
+at the same time. Before execution of the body of the loop, and
+each time the NEXT statement is obeyed, the step is added to
+the control variable, which is then compared with the limit. If
+the variable exceeds the limit, the loop terminates, and the
+statement after the NEXT becomes current. If the step is
+negative, the test is reversed.
++*
+ The FOR statement and the matched NEXT statement cause the
+statements between them to be executed a number of times. For
+more info try HELP BASIC FOR SYNTAX or HELP BASIC FOR DETAILS.
++
+* for #H #HCH=+
++ syntax
+ FOR statement syntax:
+
+ FOR <variable>=<expression> TO <expression>
+ FOR <variable>=<expression> TO <expression> STEP <expression>
+
+ NEXT statement syntax:
+
+ NEXT <variable>
++*
+ The FOR statement and the matched NEXT statement cause the
+statements between them to be executed a number of times. For
+more info try HELP BASIC FOR SYNTAX or HELP BASIC FOR DETAILS.
++
+* jump
+ GOTO (or GO TO) allows a jump in the flow of control; GOSUB
+and RETURN allow subroutine calls. The ON statement enables
+computed GOSUBs and GOTOs. For more info, try HELP BASIC <keyword>
+SYNTAX or HELP BASIC <keyword> DETAILS.
+* go #H #HCH=+
+* branch #H #HCH=+
+* goto #H #HCH=+
++ syntax
+ GOTO <label>
++ detail
++*
+ GOTO statements cause a jump to the statement indicated by the
+label. If this statement lies outside any currently open FOR
+loop, the loop is closed; jumping into a FOR loop will produce
+an error diagnostic when the NEXT is met.
++
+* gosub #H #HCH=+
++ syntax
+ GOSUB <label>
+ RETURN
++ detail
++*
+ When a GOSUB is met the current statement label is saved, and
+a jump made to the required label. On execution of a RETURN,
+any FOR loops opened since the GOSUB was obeyed are closed, and
+control resumes at the statement after the one containing the
+GOSUB.
++
+* computed #H #HCH=+
+* on #H #HCH=+
++ syntax
+ ON <expression> GO TO <label list>
+ ON <expression> GOTO  <label list>
+ ON <expression> GOSUB <label list>
++ detail
++*
+ When the ON is encountered, the expression is evaluated, and
+used as an offset into the label list to decide which label
+shall be used for the GOSUB or GOTO.
++
+* /
+* **
+* <>
+* >
+* "="
+* "<="
+* ">="
+* operator
+ arithmetic operators: +  -  * DATA  /  ** (exponentiation)
+ relational operators: >  <  =  >=  <=  <> (not equal)
+
+Note that only = and <> can be used for strings at this time.
+* data
+ READ, DATA and RESTORE enable a number of values to be held
+within the program, and to be assigned to variables or array
+elements. INPUT allows the user to hand data to a running
+program. For more info, try HELP BASIC <keyword> SYNTAX or HELP BASIC
+<keyword> DETAILS.
+* read #H #HCH=+
++*
++ syntax
+ Syntax of READ:
+ READ <read list>
+ where the read list consists of a number of cell identifiers
+(variable names or array elements) separated by commas.
++
+* data
+ A DATA statement consists of the keyword DATA, followed by a
+list of values, either numbers (optionally signed) or quoted
+strings.
+* restore
+ The RESTORE statement consists of the key RESTORE by itself.
+* keyword
+* key
+* commands
+    BASIC commands:
+ BREAK DEBUG DELETE FILE GET HELP BASIC LIST NEW QUIT RUN SCRATCH
+SETUP STEP TABLE TIME TRACE UNBREAK UNTRACE
+    Built-in functions:
+ ABS ACS ASN ATN COS EXP INT LOG LOG10 RND SGN SIN SQR SQRT TAN
+    Other keywords:
+ DATA DEF DIM DO ELSE END FOR GO GOSUB GOTO IF INPUT LET NEXT
+ON PRINT RANDOMISE READ REM RESTORE RETURN STEP STOP TAB TEST
+THEN TO
+
+For more information on any of the above type HELP BASIC followed by
+the keyword.
+* subject
+* know
+* topic
+ HELP BASIC has information on a number of subjects; try HELP BASIC
+followed by a suitable word or symbol. Among the subjects HELP BASIC
+knows about are: keywords (try HELP BASIC KEY); statement and command
+syntax (SYNTAX); statement/command semantics (DETAILS); saving
+programs (FILES); running programs (RUN); debugging and tracing
+(DEBUG); breakpoints; listing programs (LIST); reading data
+(DATA); outputting data (PRINT); loops; routines; finishing
+(QUIT).
+ For each subject a number of alternative keys are remembered;
+if more than one word is given on the HELP BASIC command line, more
+specific information may be given - thus HELP BASIC READ will yield a
+description of the READ and DATA statements; HELP BASIC READ SYNTAX
+will give the syntax rules.
+* command
+BASIC command:
+Form:           BASIC   "store"
+Purpose:        To run the BASIC interpreter
+Author:         NGPD
+Specification:
+        BASIC enters the BASIC interpreter with a default amount of
+    store.  The 'store' key word can be used to give the interpreter
+    more memory in which to store programs and data.
+        For a brief spec of BASIC see INFO.SPEC.BASIC on the IBM.
+* sin
+* cos
+* tan
+* asn
+* acs
+* atn
+* circular
+ Circular functions:
+ COS, with the inverse ACS
+ SIN, with the inverse ASN
+ TAN, with the inverse ATN
+
+These work in radians rather than degrees.
+* log10
+* ln
+* exp
+* sqrt
+* sqr
+* logarithmic
+* logarithm
+* log
+ Logarithmic functions:
+ EXP (raise e to the given power)
+ LOG (natural logarithm, to base e)
+ LOG10 (logarithm, to base ten)
+ SQR or SQRT (square root)
+* int
+* absolute
+* abs
+* sgn
+* sign
+* arithmetic
+ INT returns the largest integer less than the argument.
+ ABS returns the absolute value.
+ SGN returns -1, 0 or 1 to indicate the sign.
+* function
+* fn
+* func
+ The standard functions available are:
+
+SGN ABS INT SQR (or SQRT) EXP LOG LOG10 SIN COS TAN ASN ACS ATN
+RND
+
+For more information on any of the above type HELP BASIC followed by
+the keyword.
+* help
+ When a command starting HELP is read, the rest of the list is
+treated as a sequence of unquoted strings; these strings are
+compared against the contents of a number of lines, looking for
+the most number of matches. The message associated with the
+'best' line is then printed out on the terminal. At some stage
+it is intended to log reqests that are not matched in any way.
+* name
+* identifier
+ Names start with a letter, and continue with any mixture of
+letters, digits, and dollars ($). Names starting with FN are
+user function names; those containing a dollar are string
+names. Otherwise names are numeric variable or array
+identifiers unless they are system keywords - type HELP BASIC
+KEYWORDS for a list of these.
+* random
+* randomise
+* rnd
+ RND is a function returning a pseudo-random result in the
+range zero to one, with a uniform distribution. RANDOMISE is a
+statement which causes the seed for RND to be set to a value
+calculated from the time of day.
+* get #H #HCH=+
+* save #H #HCH=+
+* saving #H #HCH=+
+* program #H #HCH=+
+* new #H #HCH=+
+* delete #H #HCH=+
+* file #H #HCH=+
++ data
+ Data files have not yet been implemented.
++*
+ The FILE, GET, NEW commands allow BASIC programs to be saved
+on disc and fetched back again; the DELETE command enables disc
+files to be deleted. Each of these commands should be followed
+by a string defining the filename; this need not be enclosed in
+quotes if it does not contain commas, spaces or tabs.
+ The difference between GET and NEW is that in the latter case
+any program that is currently loaded is first thrown away
+before loading the requested program.
++
+* run
+* step
+ To execute a program, type RUN optionally followed by a number
+indicating a number of units of time, and also optionally one
+of the keys DEBUG or STEP - the former enables breakpoints, the
+latter causes the program to be initialised and broken mode to
+be entered before the first statement is obeyed.
+ Try HELP BASIC BROKEN for more details of broken mode.
+* debuging
+* debugging
+* debug
+* trace
+* tracing
+ Debugging facilities: the BREAK, TRACE, UNBREAK and UNTRACE
+commands can be used to set and clear any number of break- and
+trace-points on a program; see HELP BASIC <keyword> SYNTAX for
+details. Whenever a tracepointed statement is met, its label is
+output before it is executed; whenever a breakpointed statement
+is met (and breakpoints have been enabled - see HELP BASIC DEBUG),
+the line is output and BROKEN mode entered; see HELP BASIC BROKEN.
+ It is also possible to single-step programs by use of the STEP
+command: see HELP BASIC STEP.
+* broken
+* single
+* breakpoint
+* single-step
+ When a program exceeds its time limit, or a break point is
+reached (if enabled by the key DEBUG in the RUN command), or
+the user causes an interrupt, broken mode is entered; the user
+is able to alter and alter the values of variables, etc. by use
+of un-numbered statements. To obey one statement, type STEP; to
+continue the program type RUN, or DEBUG if breakpoints are to
+be enabled. To stop the program, type STOP.
+* **>
+* T**>
+* D**>
+* I**>
+* T**
+* D**
+* I**
+* S**
+* S**>
+ The letter before the **> indicates why broken mode has been
+entered; t for timeout, d for breakpoint met, i for interrupt,
+s for single-stepping. HELP BASIC BROKEN gives more information on
+broken mode.
+* ->
+* ?>
+* mode
+* prompt
+ The prompt is -> in normal mode, ?> in broken mode, and ? if
+input is expected; see HELP BASIC BROKEN for more details of broken
+mode.
+* table
+* dictionary
+ The TABLE command causes the current dictionary to be printed;
+the values of variables are given, the bounds of arrays, and
+the location of user function definitions.
+* step
+ The STEP command in normal mode is synonymous with RUN STEP;
+in broken mode it causes one statement to be executed and for
+control to then return to broken mode. The STEP keyword is also
+used in FOR statements.
+* scratch
+* clear
+* restart
+* clean
+* cleanup
+ The SCRATCH command causes the current program to be cleared,
+the dictionary emptied, and all space used by arrays and
+strings to be recovered.
+* finish
+* windup
+* w
+* quit
+* q
+* bye
+* logoff
+* logout
+* abandon
+* leave
+* quit
+ The QUIT command causes the BASIC system to be left; if being
+run as a command program, the session is ended, otherwise
+control returns to the command program.
+* mat
+* matrix
+* vector
+* vec
+* array
+* matrices
+ 1- and 2-dimensional arrays are available, with default bounds
+(10) and (10,10); use the DIM statement to set up others. The
+lowest numbered cells are (1) and (1,1). The MAT statement is
+not yet implemented.
+* output
+* type
+ To output results, use the PRINT statement; to list part or
+all of a program, use the LIST command - try HELP BASIC PRINT SYNTAX
+or HELP BASIC LIST SYNTAX
+* print
+ The PRINT statement consists of the keyword, followed by a
+list of numeric or string expressions; these may be separated
+by semicolons (which are ignored) or commas (causing a skip to
+a tab position - every 15'th column). Instead of an expression
+one can use the TAB clause - the keyword TAB followed by a
+parenthesised numeric expression - which causes a skip to the
+indicated column. If a list does not end in a comma, semicolon,
+or TAB clause, a newline will be forced.
+* list
+ After the LIST, (UN)BREAK or (UN)TRACE keywords is expected a
+list of range identifiers, separated by commas; if none is
+given, the command refers to the whole program. A range
+identifier is a statement number, or two statement numbers
+separated by a minus sign; an error message is output if the
+first statement in a range is non-existent.
+* definition #H #HCH=+
+* def #H #HCH=+
++ detail
+ When a program is run, the program is scanned for DEF lines;
+an asociation between function name and the defining statement
+is set up. If more than one statement defines a given function,
+an error is reported and the program is not run.
+ The association allows the function to be used, and is only
+cleared when the statement is deleted or replaced, or when an
+error is found that stops a program being run (mismatched
+FOR/NEXT, double function definition, etc).
+
+ When a function is accessed, the argument is evaluated, and
+the value temporarily assigned to the dummy variable. The
+expression is now evaluated, and the dummy variable reset.
+ DEF is used to define a statement function; the syntax is:
+ <label> DEF <fn name>(<dummy variable>) = <expression>
+
++*
+Function names must start with the letters FN. Type HELP BASIC DEF
+DETAILS for more info on statement functions.
++
+* DIM #H #HCH=+
++ syntax
+ DIM is used to set the bounds for one or more arrays: the
+statement (which must be labelled) starts with the word DIM,
+and then has a number of array element identifiers, separated
+by commas. The arrays are set up so that the cell referenced is
+the top one. Try HELP BASIC DIM DETAILS for more info, including
+default bounds.
++ DETAIL
+ When a program is run, all array definitions are cleared. An
+array is only defined when referenced, either by an executed
+DIM statement, or by an attempt to access a value in it; this
+enables array bounds to be dynamic.
+ Whilst an array is defined, all references are checked for the
+correct dimension, and that the bounds are obeyed; faults will
+cause a termination of a program run. Arrays cannot be
+redefined unless the definition is first cleared, so in a
+program the DIM statement for an array must be executed before
+the array is used.
+ The default bound is 10 for each dimension, increased as
+needed to ensure the cell first referenced is in the array.
++
+* IF
+* condition
+* conditional
+* then
+* else
+* test
+ The syntax of the conditional statements are:
+ IF   <logical expression> THEN <label>
+ IF   <logical expression> THEN <statement>
+ TEST <logical expression> THEN <statement1> ELSE <statement2>
+
+The keyword THEN can be omitted in an IF statement. The first
+form is a conditional jump; the second causes the sub-statement
+to be conditionally executed; the last causes one of the two
+sub-statements to be selected for execution.
+* end
+ The last statement of a program should be the statement
+consisting of the keyword END by itself. If omitted, a warning
+will be given, but the program will be run.
+* let
+* assign
+* assignment
+ The keyword LET introduces an assignment statement:
+ LET <lvalue> = <expression>
+
+The item to the left of the = sign should be a variable name or
+array cell identifier; the expression must be the correct type
+(string or numeric) to be assigned to the cell referred to on
+the lhs. The keyword LET may be omitted.
+* stop
+ The STOP statement must be labelled; when executed, the
+program run is terminated. The STOP command is used to return
+from BROKEN to normal mode.
+* TAB
+ TAB is used to cause a number of spaces to be output; try HELP BASIC
+PRINT
+* REM
+* comment
+* /*
+* #
+ A statement introduced by the key REM is treated as a comment;
+the rest of the line is ignored by the lexical and syntax
+analysers, and execution has no effect.
+* syntax
+ For information on the syntax of a statement or command, try
+HELP BASIC <keyword> SYNTAX
+* detail
+ Typing HELP BASIC <keyword> DETAILS will cause more information
+about that topic to be given if any is available.
+ When a program starts, the DATA statements are linked together
+so that the values on them can be treated as one long list.
+When a READ is encountered, a value is picked off the data list
+for each element on that read list; the values must be of the
+right type for the cell to which they are assigned. When a
+RESTORE is encountered, the data list is reset so that the next
+READ gets the first element of the list.
+
+

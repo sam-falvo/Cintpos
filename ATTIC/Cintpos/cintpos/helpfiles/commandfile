@@ -1,0 +1,21 @@
+**
+COMMAND SEQUENCES
+     There are two main ways in which files containing TRIPOS commands
+can be executed.  Either the C or the T command can be used.  If the C
+command is used the file is processed in two passes.  The first is
+responsible for the substitution of parameters and dealing with lines
+beginning with the character "." (use HELP C COMMAND for further
+information here).  The second pass is identical to the effect of the
+T command - the file is executed as if it contained characters typed in
+at the terminal (use HELP T COMMAND for information about the T command).
+     There are a certain number of TRIPOS commands the major use of which
+is within such command sequences:
+        IF <args> ; <commands>     - conditionally executes <commands>
+        SKIP <label>               - skips forewards to the label <label>
+        LAB <label>                - indicates a label in the sequence
+        QUIT <rc>                  - stops processing and returns <rc>
+        FAILAT <rc>                - sets the return code at which the
+                                     command sequence will abend
+     For information about any of these commands use HELP COMMAND <command>.
+
+

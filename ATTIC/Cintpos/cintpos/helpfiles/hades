@@ -1,0 +1,1087 @@
+** #FULL #H #TCH=~
+
+*+
+
+HADES is an unsophisticated program management system. RSX HADES users should
+note that there are a considerable number of implementation differences between
+the RSX implementation and later ones. TRIPOS documentation may be found in the
+370 file CEB4.SPEC(HADES). On TRIPOS, HADES may be invoked by a command of the
+form:
+
+:Caroline.HADES "DIR,OPT/K"
+
+The directory is that which will become current when HADES is entered; if none
+is given the current one will be used. HADES uses a paged heap database in
+"-hades-ph-" in that directory. The default operation is to open an existing
+paged heap for reading and writing. Three other options are available:
+ OPT=N Create a new paged heap from scratch.
+ OPT=I Create a new paged heap, initially taking input from an import file.
+ OPT=R Open an existing paged heap for read access only.
+
+HADES does not guarantee the integrity of its paged heap database if it is open
+when TRIPOS crashes, or if the program aborts. For safety, the export command
+should be used to keep a backup of the basic database information.
+*callseg
+
+HADES cannot be CALLSEGed
+*globals
+
+HADES requires 400 globals. It is recommended that at least 450 be provided as
+the GCAL command requires this number.
+*all
+*command
+
+HADES command
+
+Form:               :caroline.hades DIR,OPT/K
+
+Purpose:            A program management system
+
+Authors:            Designed for RSX and implemented there by AJW.
+                    Implemented on CAP and TRIPOS (32 bit machines only) by CEB.
+                    Improved and added to for later implementations by CEB.
+
+Specification:      See CEB4.SPEC(HADES) on IBM370
+
+Options:            OPT=R - Open database readonly
+                    OPT=N - Create a new database
+                    OPT=I - Create a new database from an import file
+
+Examples:           :caroline.hades
+                    (opens existing database in current directory for reading
+                    and writing)
+
+                    :caroline.hades a-big-program opt=n
+                    (creates a new database in directory a-big-program and opens
+                    it for reading and writing)
+
+                    :caroline.hades someone-elses-directory opt=r
+                    (opens existing database in someone-elses-directory for
+                    reading only)
+*option
+*options
+*opt
+*opts
+
+There are 3 single character options available:
+ OPT=N Create a new paged heap from scratch.
+ OPT=I Create a new paged heap, initially taking input from an import file.
+ OPT=R Open an existing paged heap for read access only.
+
+By default HADES will try to open an existing database for reading and writing.
+*commands
+*command
+
+Commands available in TRIPOS HADES:
+
+Commands that move about and extract information from the tree:
+DOWN  UP  INFO  TOP  GOTO
+
+Commands to change the structure the tree:
+ADD  CHANGE  DELETE  FLATTEN  JOIN  MIGRATE  MOVE  SELECT
+
+Commands to print out information from the tree:
+OPEN  CLOSE  INDEX  PRINT
+
+Commands to perform file transfer:
+CONCAT  COPY  EXPORT  IMPORT  TAKEFILE  GIVEFILE
+
+Commands to change or type the files associated with a node:
+INPUT  EDIT  SSE  TYPE  RENAME  ALTER
+
+Commands that call another program to use the data in the leaves:
+A68C  BCPL  CLINK  GCAL  GTYPE  Z80  6809
+
+Commands to call operating system facilities:
+RUN  @  !  #
+
+Miscellaneous commands.
+HELP  QUIT
+*nest
+*neststring
+*nest-string
+
+A nest string for a node describes one possible path to it from the root node.
+It consists of the node numbers that would have to be issued to the DOWN command
+to get to the node, starting from the root node.
+
+In printouts nest strings are given in hexadecimal, they should also be given in
+hexadecimal when a nest string is requested from the user. Nodes are normally
+referenced using decimal numbers.
+
+The nest string of the current node is displayed in the top right hand corner of
+the menu.
+*node
+*structure
+
+There are two main types of node in a HADES database: leaf nodes and branch
+nodes. A leaf node has a file associated with it, and a type which usually
+describes the 'type' of the file. A branch node may have up to 16 other nodes as
+its descendants.
+
+The nodes are arranged in a tree structure emanating from the ROOT node. Branch
+and leaf nodes may be shared, but cyclic structures are not allowed.
+
+A nest string for a node describes one possible path to it from the root node.
+It consists of the node numbers that would have to be issued to the DOWN command
+to get to the node, starting from the root node. In printouts these are given in
+hexadecimal, they should also be given in hexadecimal when a nest string is
+requested from the user. Nodes are normally referenced using decimal numbers,
+but for some commands letters may be used to represent the required node. The
+allowable letters are:-
+
+C - the Current node
+F - the First descendant of the current node
+L - the Last descendant of the current node
+R - the Root node
+E - the End of the descendants of the current node (used only by MOVE)
+B - the Base node, represents the overall state of database (for INFO)
+*number
+*value
+
+All numbers entered are in decimal (except those given as nest strings which are
+given in hexadecimal) and may optionally be signed. No blanks are allowed inside
+numbers, even between the sign and the first digit.
+
+Not entering a number (by typing a non-digit or a blank line) usually has the
+effect of causing the current command to cease further processing.
+*prompt
+*replies
+*reply
+*yes
+*no
+*choice
+*multiple-choice
+*answer
+*optional
+
+Prompts ending with a '?' (question mark) require either a yes/no answer or the
+selection of one of several alternatives. Only the first non-space character
+entered by the user is significant, but characters up to either the next space
+or the end of the line will be consumed when the reply is read. Currently the
+reply may be enclosed in matching single or double quotes like a string, this
+facility may be removed in the future. In the case of a yes/no answer, yes is
+assumed if the reply starts 'Y' or 'y', and no if it starts 'N', 'n' or a blank
+line is entered.
+
+Prompts ending in ':' require a number or a string to be entered. If a filename
+is required, then in most cases, it is also possible to specify the file
+associated with a node using an escape mechanism - see HELP HADES FILENAME.
+
+In all cases where one value is requested (including the initial command line)
+multiple values may be entered to satisfy a series of requests. Multiple numeric
+values should be separated by a single non-numeric character, or by a sequence
+of blanks; all strings except the last one on a line have to be enclosed in
+quotation marks. Quotes of the same type as those used to delimit a string may
+be included in the string by doubling them.
+*tab
+*string
+*quote
+
+Strings (e.g. titles) are terminated by end of line, or by a matching closing
+single(') or double(") quote, if that was the first non-blank character read.
+Leading and trailing blanks are stripped from strings, unless the string is
+enclosed in quotes. If a quote of the same type as the quotes being used to
+delimit a string is required inside the string it should be doubled.
+
+Tabs are expanded to the 'expected' number of spaces, columns being numbered
+from one at the start of the string. On TRIPOS this facility does not work
+properly, as the operating system does not pass tabs through to HADES, but
+expands them to an arbitrary number of spaces depending on where the string is
+positioned on the line.
+
+Any characters (other than terminating ones) beyond the maximum allowed length
+of the string are ignored.
+
+'Strings' which would normally be expected to be terminate on a space are read
+in as 'items' - see HADES help for items.
+*item
+
+Items are defined to be strings which would normally terminate on a space.
+Filenames and type fields are typical items. The item is terminated by the first
+space on the line, unless it in enclosed on either single(') or double(")
+quotes. See also HADES help for "strings".
+*terminal
+*setterm
+*terminal-type
+
+HADES uses the full screen facilities available on Newbury and Cifer VDUs. If
+the terminal attached to a line is not the default for that line the SETTERM
+command should be used to set up the terminal type before HADES is entered
+unless the system has set it up already. HADES will also work on other types of
+terminal, all of which are treated as unintelligent VDUs.
+*file
+*filename
+*file-substitution
+*node-substitution
+*substitution
+
+Filenames are entered as strings, for files other then those stored in the data-
+base, if the first character of the string is an '@' character, the file is
+looked up in the directory which was current when HADES was invoked, rather than
+the one given to HADES which is the default.
+
+In many situations, it is also possible to specify that the file associated with
+one of the sons of the current node by introducing an escape character '^'
+(circumflex) into the string. The same mechanism may be used to cause the name
+of a file at a node to be substituted into a string which will be passed to the
+command program as part of the command line.
+
+The '^' character may be followed by the following character combinations:
+
+nn  (where nn is a node number) - replace with filename associated with the
+    relevant son of the current node.
+L   replace with the filename associated with the last son of the current node.
+F   replace with the filename associated with the first son of the current node.
+^   insert a single circumflex in the string.
+N   ignore the circumflex and the N. (Can be used to terminate an otherwise
+    ambiguous character combination.)
+*pagedheap
+*paged-heap
+*paged
+*heap
+*database
+*data-base
+
+HADES maintains a database describing the structure of a particular system in a
+BCPL paged heap. This is stored in the file -hades-ph- in the directory which is
+passed to HADES. It may become corrupted as a result of a TRIPOS or a program
+crash or because of some other error.
+*read
+*readonly
+*read-only
+
+If HADES is being used with read only access to the paged heap, commands which
+change the basic structure of the database are explicitly locked out. Commands
+which normally cause the database to be time stamped are allowed, but cannot
+cause the time stamp for that node to become updated.
+
+HADES may be opened with read only access by specifying OPT=R on the command
+line. Alternatively, if write access to the file is not available, and the user
+attempts to open it for normal use, he will be asked if he wishes to continue
+with read access only. The last feature is not yet implemented on TRIPOS
+*scanhades
+*broken
+*scan
+*damaged
+*crash
+*broken
+*crashed
+*corrupt
+*mend
+*repair
+*locked
+*lock
+
+The SCANHADES program for mending broken paged heaps is not implemented on
+TRIPOS. There is less chance of paged heap corruption because the program has
+control over when the paged heap is written to disc. Since the paged heap is not
+protected it could be damaged by a user program writing all over it and then
+being written to disc.
+
+The export command should be used to keep a copy of the structure of the
+database if it is critical.
+*spec
+*specification
+*documentation
+*all
+
+For full details of the TRIPOS implementation of HADES please see the
+specification in the 370 file CEB4.SPEC(HADES).
+*break
+*handling
+
+HADES does not generally test any of the break flags, so break cannot be used to
+get out of a long command. Improvements are on the list, but the structure of
+HADES is such that break polling is difficult to implement in a sensible way.
+
+The "C" break flag is tested when HADES is simulating a CLI and will cause a a
+command sequence to stop executing at the next convenient point as in the CLI.
+
+If a series of questions is being asked of the user, an illegal response to one
+of them will generally cause the command to cease executing. E.g. if a
+multiple-choice question has been asked, respond with a character outside the
+range of valid replies, or if a non null string is expected enter a null string.
+This provides the only form of internal break handling in HADES.
+*a68c
+*algol68c
+*a68
+*algol
+*algol68
+
+A68C command:
+
+A68c <node$LF> <options>
+
+TRIPOS users of this command should note that it does not set up the correct
+environment for Algol68C, that should be done before HADES is entered. A minimum
+of 3 characters are required for this command. The A68C command invokes the
+compiler to compile the file associated with the specified node. Note that this
+must be a leaf node, there is no equivalent to the scan performed by the BCPL
+command.
+
+No options are passed to the command line by default, so if any options, such as
+which machine to produce code for, are required, they should be given after the
+"Command line options:" prompt. This string will have filenames substituted for
+escaped node numbers and will then be appended to the command line before it is
+sent for execution.
+*add
+*a
+*make
+*create
+
+ADD command:
+
+Add <branch?> <title> [<type> <filename>]
+
+The ADD command adds a new node to the tree by adding a new descendant to the
+current node after the last current descendant.
+
+Since two types of nodes exist, the user is first asked to indicate which type
+of node he wishes to create, by the prompt "Create a branch node?", to which he
+should reply 'Yes' or 'No', as described in "Data formats". In either case, the
+user is then prompted with "Title:" to which he should reply with a suitable
+title string. The length should be <= 60 characters; if it is more the string
+will be truncated.
+
+For a branch node, no further options need be specified. For a leaf node,
+however, two additional fields are prompted for: the type field and the
+filename. Note that the system does not check for the existence of a file with
+the given name, nor does it attempt to create one. These fields are read in as
+items as described in "Data formats".
+
+The message "*** No room in current node" is issued if the current node already
+has sixteen descendants.
+*alter
+*alt
+*protect
+*access
+*access-matrix
+
+ALTER command:
+
+ALTer <node$LRCF> [<confirm alterations?>] <new access>
+
+This command is used to alter the access associated with the file whose name is
+stored at a node. If a branch node is specified the access associated with all
+the files which can be reached by descending the tree from the specified node
+will be altered. For a branch node, the user is asked if he wants to confirm,
+verify or just perform the alteration on each individual file.
+
+Finally the user is invited to type in the new access for the file(s). The
+access should be given as an item containing the characters R (read), W (write)
+and D (delete).
+
+An error will be reported if the access of an individual file can not be changed
+for any reason.
+*BCP
+*BCPL
+
+BCPl command:
+
+BCP <node$LFC> <o/p file> <compiler opts> <other opts>
+
+This command requests a node number and invokes the BCP compiler to compile the
+source files in it. If a branch node is given the subtree is searched until a
+leaf node found. If there is not one, the message "*** No leaf on the tree" is
+output, and the command terminates.
+
+If there is more than one leaf file on the indicated node, a file
+"t:hades-scan-bcpl-xxxxxxxx" is then created for use as input to the BCPL
+compiler. (xxxxxxxx is the first eight (or less if there are less) characters of
+the last component of the filename at the first leaf node found when the tree is
+scanned.) The subtree is scanned again with a line 'GET "leaffilename"' being
+written to t:hades-scan-bcpl-xxxxxxxx for each filename found. This file is
+deleted at the end of the command.
+
+The user will be asked to supply compiler options (these will be given as
+OPT=options on the command line), and any other command line options. These will
+be processed and filenames substituted for node numbers before being put at an
+appropriate place on the command line. Finally, the compiler is activated.
+*CH
+*change
+
+CHANGE command:
+
+CHange <node$LFCR> <title> [<filename> <type>]
+
+The CHANGE command edits the information contained in a selected node.
+
+If a null string is given as reply to any of the questions, the original string
+will be unchanged. Firstly, the user is prompted for a new title. This is all
+that can be changed for branch nodes.
+
+For a leaf node new contents for both the type and filename fields are also
+requested. These will be read in as items, i.e. they will be terminated by the
+first space on the line unless enclosed in quotes.
+*LINK
+*CLINK
+*CLI
+*HEX
+*HEXLINK
+
+CLINK command:
+
+CLInk <node$LFC> <output> <command line options>
+
+Runs the Cambridge hex linker on the file(s) contained in specified node. If the
+node is a branch node then a list of all the leaf files below it are placed in a
+file with the name "t:hades-scan-clink-xxxxxxxx" which is then passed to CLINK.
+This file will be deleted at the end of the link.
+
+Both the output file and the command line options strings will have filenames
+substituted for escaped node numbers before being used.
+*CLOSE
+*CL
+
+CLOSE command:
+
+CLose
+
+Any currently open spool file will be closed. (See OPEN for more information on
+the spooling system). QUIT will automatically do a CLOSE if there is an open
+spool file. If the spool file is destined for the printer it will be sent to the
+despooler.
+
+Automatic despooling is not yet implemented on TRIPOS. If the output had been
+sent to a file it will just be left there. If it should have been sent to the
+printer it will be left in the file t:hades-spool-file despite the fact that all
+the questions about where to send it will have been asked!
+*CONCAT
+*con
+*concatenate
+
+CONCAT command:
+
+CONcat <separators?> <confirm-additions?> <filename> <node$LRFC> ...
+
+This command will concatenate the files pointed to by the specified nodes into a
+single file.
+
+The first prompt requests the separator to be placed between files; replying '5'
+gives five newlines, replying 'P' gives a pagethrow, and return on its own gives
+nothing. The second question asks whether files should be added only after
+confirmation, or whether they should be added with the possible production of a
+verification list.
+
+After the user has provided the filename he is prompted to provide a list of
+nodes whose files are to be concatenated. If a file occurs more than once,
+either in separate nodes or as part of a joined sub-nodes system, it will only
+be occur once in the output file. (This part of the program may be altered if
+users have other requirements.)
+
+The command terminates when a null response is given to the "Node:" prompt.
+*COPY
+*CO
+
+COPY command:
+
+COpy <destination-node$LF> <nest-string> [<filename>]
+
+This command copies the contents of one file into another. The destination file
+is specified by its node number, the source file may either be specified by a
+nest string, or if that is blank, by a file name.
+
+If the file named by the specified destination node already exists, the user
+will be asked if he wishes to overwrite it before being asked for the source.
+*delete
+*del
+*remove
+
+DELETE command:
+
+DELete <node$LF> <delete-files?> [<confirm-deletes?>]
+
+This command is used to delete a subtree from the database. Optionally, some or
+all of the files to which leaves on the subtree refer may be deleted.
+
+The first prompt asks for a descendant of the current node to delete, the second
+asks whether any of the files associated with the subtree are to be deleted.
+
+If the answer is yes, and the node specified was a branch node, the user is
+asked if he wants to confirm the deletions. This enables him to selectively
+delete some of the files. The alternatives are to produce a verification list of
+the files deleted, or just have them all deleted. The subtree is then scanned,
+and all nodes which are not also pointed to by another node (i.e. are not part
+of a shared subtree) are deleted, and, if required, the associated files are
+deleted too.
+
+An error will be reported if a file cannot be deleted, in which case processing
+continues with the other nodes in the subtree.
+*down
+*d
+*descend
+
+DOWN command:
+
+Down <node$LF>
+
+The DOWN command selects a branch descendant of the current node and makes it
+the current node.
+*edit
+*editor
+*ed
+*line
+
+EDIT command:
+
+EDit <node$LF>
+
+The EDIT command invokes the EDIT program to edit the file associated with a
+selected leaf node.
+*EX
+*export
+*archive
+*backup
+
+EXPORT command:
+
+EXport <node$LFCR> <file> <nodes?> [<files?>] [<confirm files?>]
+
+This command generates a file external to the database containing control
+information and the text of the files pointed to by a node or its descendants.
+The output file format allows the files and/or the node structure to be
+recreated by use of the IMPORT command. This mechanism provides a convenient way
+to back up both the contents of the files pointed to by the HADES database, and
+paged heap itself.
+
+Firstly, the node which is to form the base of the scan is requested, and then
+the name of the export file. Next the user is asked if he wishes to export the
+node information from the database. If the node structure was exported, the user
+is asked if he also wishes to export the individual files. If no nodes were
+exported it is assumed that file export is required. If the files are to be
+exported the user is asked if he wishes to confirm, verify, or just have the
+export of each file done.
+*flatten
+*fl
+*squash
+
+FLATTEN command:
+
+Flatten <node$LF>
+
+The FLATTEN command prompts for the node number of a branch node, and, if there
+is sufficient space in the current node, replaces the branch node entry with the
+descendants of the selected branch. If the branch node is not part of a shared
+subtree, it is deleted.
+*GCAL
+*GC
+*ROFF
+*PAGINATE
+*PAGINATOR
+
+GCAL command:
+
+GCal <node$LFC> <o/p file> <options> [<GTYPE it?>]
+
+This command invokes the GCAL paginator to paginate the GCAL source file(s) in a
+subtree. The node number of the selected subtree is requested, and the subtree
+searched until a leaf node found. If there is not one, the message "*** No leaf
+on the tree" is output, and the command terminates. Otherwise, the filename from
+the leaf is extracted.
+
+If there is more than one leaf file on the indicated node, a file
+"t:hades-scan-gcal-xxxxxxxx" is then created for use as input to GCAL. The
+subtree is re-scanned with a line '.get "leaffilename"' being written to
+t:hades-scan-gcal-xxxxxxxx for each leaf node.
+
+The user will be asked to supply an output file and any GCAL options to be
+placed on the command line. Both of these will be processed and node numbers
+replaced with filenames before GCAL is called to paginate the resulting file.
+
+The user will be asked if he wants the output GTYPEd or not.
+*givefile
+*giv
+*ring
+*ring-transfer
+
+GIVEFILE command:
+
+GIVefile <node$LF> <to machine> <remote filename>
+
+Transfers the file contained in a node to a named file in another machine on the
+ring.
+
+The number of the node containing the file is first requested, then the name of
+the remote machine, and finally the name that the file is to have in the remote
+machine's filing system.
+*GOTO
+*go
+
+GOTO command:
+
+GOto <nest-string>
+
+This command makes the branch node specified by the nest string into the current
+node. An error will be reported if the end node is not a branch node, or the
+nest string is invalid, and the current node will remain unchanged.
+*GTYPE
+*GT
+
+GTYPE command:
+
+GType <node$LF>
+
+This command calls the GTYPE program to process the file associated with the
+given node. All options for GTYPE are given by direct interaction with that
+program.
+*help
+*"?"
+*h
+
+HELP command:
+
+Help <keyword> ...
+
+Will try to provide information about HADES - the keywords will usually be
+passed onto the system help program in such a way as to pick up help about
+HADES.
+
+This command currently looks for its help in a directory other than the system
+one. Information held in help may not be up to date.
+*import
+*im
+*unarchive
+*dearchive
+*restore
+
+IMPORT command:
+
+IMport <filename> [<import nodes?>] [<import files?>] [<confirm-files?>]
+
+The result of a previous EXPORT command is re-loaded into a database. The file
+must be in 'importable' format, and be suitable for the machine it is running
+on. (If it is not a conversion program should be used to pre-process it.) Error
+messages will be given, and the import abandoned, if the format of the input
+file is not correct.
+
+If a 'nodes' section is present the user will be asked if he wishes to import
+it. Note that the 'root node' of the import file will be added to the database
+after the last son of the current node; existing nodes will not be replaced. An
+error will be reported and the import abandoned if the current node already
+contains 16 sons.
+
+If the import file contains a 'files' section, the user will be asked whether he
+wants to import the files into the HADES directory. If he does, he is asked
+whether he wishes to confirm each addition before it is made. He may have the
+additions verified or just done instead.
+*index
+*ind
+
+INDEX command:
+
+INDex [open-options]
+
+The INDEX command produces a formatted printout of all the records held in the
+database. There is one line of printout for each node in the database.
+
+The format is designed to indicate the tree structure of the data, and each line
+gives the node type, the node title, and the associated filename (for leaf
+nodes).
+
+If there is a spool file currently open, then it will be used for the output.
+Otherwise, one will be opened for the duration of the command by automatic
+invocation of the OPEN and CLOSE commands. Please see note in CLOSE command.
+*info
+*inf
+*information
+
+INFO command:
+
+INFo <node$LFBCR>
+
+The timestamp and filename (in the case of a leaf node) associated with a node
+will be displayed.
+
+HADES is not very careful about timestamps; it doesn't ensure that the database
+is written to disc every time one is changed for efficiency. The timestamp and
+the date of the file in the filing system may get out of step if the file is
+changed with HADES in read-only mode, or if the file is changed as the result of
+use of the ^ (circumflex) escape mechanism in a command. Improvements to this
+are on the list....
+*input
+*inp
+
+INPUT command:
+
+INPut <node$LF> [<proceed?>]
+
+A new file is created for the given leaf node using SSE. If there is already a
+file with the same name, the user is requested to verify that he wishes to
+proceed.
+*join
+*j
+*share
+
+JOIN command:
+
+Join <nest-string>
+
+The JOIN command creates shared subtrees. The user is prompted for a nest string
+of the node to create a join to. If successful this results in the addition of a
+pointer to the indicated node to the current node.
+
+Errors can arise from an invalid nest string (e.g. a selected node does not
+exist, or is a leaf and not the last element in the nest string), or from an
+attempt to create a cyclic structure.
+*migrate
+*mi
+
+MIGRATE command:
+
+MIgrate <nest-string>
+
+This command allows whole subtrees to be moved about the database. Its operation
+is similar to JOIN, but it deletes the node from the original parent after
+moving it into the current one. The user is prompted for the current nest string
+of the node which is to be moved; the moved node will be inserted after the last
+descendant of the current node.
+
+Note that after a migrate has been performed the nest string of the current
+node, which is displayed at the top right of the screen is not recalculated. It
+may have been changed if one of the nodes above the current one has been changed
+because the migrated node was an earlier son of the node than the antecedent of
+the current node. It may be corrected by ascending the structure and then
+descending again.
+
+An error will be reported if a detached structure would result from the use of
+migrate; i.e. if the nest string specifies a parent of the current node.
+*move
+*M
+
+MOVE command:
+
+Move <node$LF> <to-before-node$LFE>
+
+The MOVE command re-orders the descendants of the current node. This is often
+used after a new descendant is added to a node, as insertions always occur at
+the end of the list.
+
+It prompts the user for two node numbers:
+1.  The node which is to be moved
+2.  The node before which it is to be placed.
+
+E.g. a node could be moved to the first position by replying 0 to the second
+prompt, or to after the last one by replying 'E' to the second prompt.
+
+Blank lines to either prompt cause immediate exit from the command, with no
+further processing.
+*open
+*op
+*spool
+
+OPEN command:
+
+OPen <title> [<also print?>] [<where print?>]
+
+This command is used to open a spool file. The user is prompted for the name of
+the file, if none is given then an anonymous file will be opened which will be
+sent to the despooler when it is closed. If a name is provided the file will be
+kept after it is closed, in this case the user will be asked if he also wants it
+printed.
+
+If the file is to be printed, the user will be asked whether he wants it sent to
+the Mond or Titan room printer (the default is the Titan room one.)
+
+By opening spool files explicitly, a user can arrange to collect certain pieces
+of output together in a single document. Automatic despooling has not been
+implemented on TRIPOS yet, so despite the fact that the user gets asked the same
+questions, his printout will just be left in t:hades-spool-file at the end of
+the day! (Sorry!)
+*print
+*pr
+*list
+*listing
+
+PRINT command:
+
+PRint <Pagethrows?> <Line numbers?> [open-options] <node$LFCR> ...
+
+This command prints out the files pointed to by the leaves of one or more
+selected subtrees. Each file is preceded by a header giving the filename the
+node's title, the date and time it was last updated, and its nest string. Only
+one occurrence of each file whose name is found in a leaf node will be printed -
+even if the same node is requested twice in the same command.
+
+"Pagethrows?" asks whether to insert pagethrows, or the default of five blank
+lines between files. Answering yes to "Line numbers?" causes each file to be
+line numbered separately. The print command no longer automatically generates an
+index at the start of the printout, OPEN INDEX PRINT CLOSE, must be used to
+obtain a printout preceded by an index.
+
+If there is an open spool file, output is sent to that. Otherwise, one is opened
+for the duration of the command by automatic calls to OPEN and CLOSE. A null
+reply to the "Node:" prompt terminates the list of nodes to be printed.
+
+Errors can result from a failure to open the output file, which causes immediate
+cessation of activity, or a failure to open one or more of the input files,
+which is recorded on the printout and at the terminal. Please see notes about
+automatic despooling in OPEN and CLOSE.
+*quit
+*q
+*bye
+*windup
+*w
+*finish
+*logoff
+*end
+
+QUIT command:
+
+Quit
+
+The QUIT command terminates the execution of HADES; the current state is saved
+and will be restored when the database is next opened. It is generated
+automatically by terminal end-of-file (@Q to the terminal concentrator). If a
+spool file is open it will be closed as though a CLOSE command had been issued.
+*rename
+*re
+
+RENAME command:
+
+REname <node$LF> <newname>
+
+The RENAME command changes the name of a file associated with a leaf, together
+with the filename stored in the leaf node itself. After selecting a leaf node,
+the user will be prompted for a new filename.
+
+If the second file already exists the user will be asked if he wishes to
+proceed. Errors will be reported if for any reason the renaming can not take
+place.
+*run
+*ru
+
+RUN command:
+
+RUn <node$LF> <parameters for substitution>
+
+Run attempts to execute the file specified by the leaf node as an operating
+system command sequence in a separate task using RUN C on the file specified by
+the node. The user will be prompted for a string giving the parameters to be
+passed over to the command sequence.
+
+This command should not be used if there is not much memory available, as HADES
+and the commands it calls do not behave in a predictable way if they run out of
+memory.
+*select
+*se
+
+SELECT command:
+
+SElect <title> <node$LF> ...
+
+It is often useful, for example when a branch node becomes full, or simply for
+organizational reasons, to be able to take a subset of the current node's
+descendants, and manufacture a new branch node to contain them, entering it as a
+descendant of the current node. The SELECT command provides this.
+
+After asking the user for the title of the new node to create, it prompts for
+the list of descendants of the current node that are to be moved to the new one.
+A blank line signals the end of the list.
+
+Note that selecting no nodes is treated as an error.
+*sse
+*s
+*screen
+*screeneditor
+
+SSE command:
+
+Sse <node$LF>
+
+This command invokes SSE on the file pointed to by a leaf node. This file should
+already exist; if it does not the operation will fail. Use INPUT if the file
+does not already exist.
+*takefile
+*ring
+*ring-transfer
+*tak
+
+TAKEFILE command:
+
+TAKefile <node$LF> <from machine> <remote filename>
+
+Updates the file contained in a node with a file taken from another machine on
+the ring.
+
+The number of the node to take the file into is first requested, then the name
+of the remote machine, and finally the name that the required file has in the
+remote machine's filing system.
+*root
+*top
+*to
+
+TOP command:
+
+TOp
+
+The root node is made the current node, thus moving the current position to the
+top of the tree.
+*type
+*t
+
+TYPE command:
+
+Type <node$LF>
+
+The file associated with a selected leaf node is displayed at the terminal. A
+pagewaiting type is provided, at the end of a page the user should type return
+to continue and 'q' return to break out of the type. Alternatively he may type
+'c' return, which will cause the rest of the file to be typed without
+pagewaiting.
+
+WARNING:
+There is no break handling in the TYPE command, so if you reply 'c' to the
+pagewaiting prompt you will be unable to get out until all the file has been
+typed.
+*up
+*ascend
+*u
+
+UP command:
+
+Up [<times>]
+
+The parent of the current node (the last from which a DOWN command was issued)
+is made the current node. A suitable message is output if the current node is
+the root node, which has no user-accessible parent. If UP is immediately
+followed by a number, that many UP operations will be performed as a single
+command.
+*z80
+*z80assembler
+*z80-assembler
+*assembler
+
+Z80 command:
+
+Z80 <node$LFC> <output> <command line options>
+
+This command may not be shortened; all 3 characters must be given. It runs the
+Z80 assembler on the files contained in node specified. If the node is a branch
+node then a list of get directives for all the leaf files below it are placed in
+a file "t:hades-scan-z80-xxxxxxxx" which is then passed to Z80. This file is
+deleted at the end of the assembly.
+
+Both the output file and the command line options strings will have filenames
+substituted for escaped node numbers before being used.
+
+Warning: because of a feature (bug?) of this assembler, if the 'scan' feature is
+used to generate a file containing get directives, an incorrect result will be
+obtained. Unlike GCAL and BCPL it does not have the same effect as that obtained
+from a concatenation of the individual files. Until this aspect of the assembler
+is improved, the desired effect may be obtained by using the CONCAT command and
+running the assembler on its output file.
+*6809
+*6809-assembler
+*6809assembler
+*assembler
+
+6809 command:
+
+6809 <node$LFC> <output> <command line options>
+
+This command may not be shortened; all 4 characters must be given. It runs the
+6809 assembler on the files contained in node specified. If the node is a branch
+node then a list of get directives for all the leaf files below it are placed in
+a file "t:hades-scan-6809-xxxxxxxx" which is then passed to 6809. This file is
+deleted at the end of the assembly.
+
+Both the output file and the command line options strings will have filenames
+substituted for escaped node numbers before being used.
+
+Warning: because of a feature (bug?) of this assembler, if the 'scan' feature is
+used to generate a file containing get directives, an incorrect result will be
+obtained. Unlike GCAL and BCPL it does not have the same effect as that obtained
+from a concatenation of the individual files. Until this aspect of the assembler
+is improved, the desired effect may be obtained by using the CONCAT command and
+running the assembler on its output file.
+*at
+*@
+*external
+*os
+*commercial-at
+*at-sign
+
+General (external) operating system command:
+
+@ <command line>
+
+The user is asked for a command line which is to be processed as if it had been
+presented to a standard TRIPOS CLI. HADES simulates the action of the CLI to do
+this, and does not use the CLI already in the machine. The mechanism used is
+exceedingly grubby, and may collapse if the program called messes around with
+globals below UG. TRIPOS does not seem to have any mechanism for providing the
+clean operating system interface which users of HADES on CAP and RSX may have
+come to expect and this makes HADES rather fragile. YOU HAVE BEEN WARNED. HADES
+does not unload its own code, so memory may well be short. Changes to the
+standard CLI will not be instantaneously reflected in HADES.
+
+The directory which will be current in the simulated CLI is that which was
+current at the time HADES was called.
+
+If no string is given when the command is requested, the user will be given an
+interactive simulated CLI; he should type terminal end-of-stream (@Q to the
+terminal concentrator) to return to HADES from this. The FINISH, ENDCLI and
+LOGOFF commands are trapped and will also cause a return to be made to HADES.
+Any other command which would normally also release the CLI or the machine
+SHOULD NOT BE ISSUED to HADES - the effect may be catastrophic.
+
+If a string is to be passed across as a single command to the command program,
+node numbers given in it will be replaced by the corresponding filenames. Node
+number substitution is not available if the interactive mode is entered.
+*!
+*pling
+*internal
+*os
+*exclamation
+*exclamation-mark
+
+General (internal) operating system command:
+
+! <command line>
+
+The user is asked for a command line which is to be processed as if it had been
+presented to a standard TRIPOS CLI. HADES simulates the action of the CLI to do
+this, and does not use the CLI already in the machine. The mechanism used is
+exceedingly grubby, and may collapse if the program called messes around with
+globals below UG. TRIPOS does not seem to have any mechanism for providing the
+clean operating system interface which users of HADES on CAP and RSX may have
+come to expect and this makes HADES rather fragile. YOU HAVE BEEN WARNED. HADES
+does not unload its own code, so memory may well be short. Changes to the
+standard CLI will not be instantaneously reflected in HADES.
+
+The directory which will be current in the simulated CLI is that which contains
+the HADES database, i.e. that which was given on the command line when HADES was
+called.
+
+If no string is given when the command is requested, the user will be given an
+interactive simulated CLI; he should type terminal end-of-stream (@Q to the
+terminal concentrator) to return to HADES from this. The FINISH, ENDCLI and
+LOGOFF commands are trapped and will also cause a return to be made to HADES.
+Any other command which would normally also release the CLI or the machine
+SHOULD NOT BE ISSUED to HADES - the effect may be catastrophic.
+
+If a string is to be passed across as a single command to the command program,
+node numbers given in it will be replaced by the corresponding filenames. Node
+number substitution is not available if the interactive mode is entered.
+*hash
+*#
+*commandsequence
+*c
+
+Execute an operating system command sequence command:
+
+# <node$LF> <Parameters for substitution>
+
+The hash command calls the C command with the file specified by the node number
+as the file to be executed. The user will be asked for a string containing the
+parameters for substitution in the file. The command sequence will be executed
+with the current directory being the HADES local directory, i.e. that given on
+the command line when HADES was called.
+**
+
+Sorry: HADES help has no information on this subject.
+
+HADES documentation for TRIPOS may be found in CEB4.SPEC(HADES) on the 370.
+
+

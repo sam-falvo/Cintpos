@@ -1,0 +1,63 @@
+*spec
+BLIB spec is in SYS:INFO.SPEC.BLIB
+*all sys:info.spec.BLIB
+*procedure #H procedure
+*proc #H procedure
+**
+BLIB is a resident library of procedures complied from BCPL.
+BLIB procedures are the following:
+Each of these procedures can be looked up using HELP PROCEDURE <PROC>.
+  res := CALLSEG(filename,arg1,arg2,arg3,arg4)
+  cch := CAPITALCH(ch)
+  res := COMPCH(ch1, ch2)
+  res := COMPSTRING(s1, s2)
+  lock:= COPYDIR(lock)
+  res := CREATEDIR(name)
+  vec := DATSTAMP(vec)
+  vec := DATSTRING(vec)
+  res := DELAY(ticks)
+  res := DELETEOBJ(name)
+  res := DEVICETASK(devname)
+         ENDREAD()
+         ENDSTREAM(scb)
+         ENDTASK(seg)
+         ENDWRITE()
+         FAULT(faultno)
+  res := FINDARG(keys, item)
+  scb := FINDINPUT(name)
+  scb := FINDOUTPUT(name)
+  scb := FINDUPDATE(name)
+         FREEOBJ(lock)
+         INITIO()
+  scb := INPUT()
+  seg := LOADSEG(name)
+  lock:= LOCATEOBJ(name)
+         NEWLINE()
+  scb := OUTPUT()
+  res := PACKSTRING(v, s)
+  pkt := PKTWAIT(dest, pkt)
+  res := RDARGS(keystring, vec, upb)
+  ch  := RDCH()
+  res := RDITEM(v, upb)
+  n   := READN()
+  res := READWORDS((v, n)
+  res := RENAMEOBJ(name)
+  res := RETURNPKT(pkt, res1, res2)
+         SELECTINPUT(scb)
+         SELECTOUTPUT(scb)
+  res := SENDPKT(link, id, type, r1, r2, ... args)
+  res := SPLITNAME(pfxv, ch, s, n)
+         UNLOADSEG(seg)
+         UNPACKSTRING(s, v)
+  res := UNRDCH()
+         WRCH(ch)
+         WRITED(n, d)
+         WRITEF(format, .. args ..)
+         WRITEHEX(n, d)
+         WRITEN(n)
+         WRITEOCT(n, d)
+         WRITES(string)
+         WRITEWORDS(v, n)
+For a full specification of BLIB use HELP BLIB ALL.
+
+

@@ -1,0 +1,468 @@
+*parameter ..
+*parm ..
+*all ..
+The TBCPL command has the following parameter string:
+
+TBCPL "FROM,TO=OBJ,OCODE/K,COPY/K,
+                     OPT/K,VER/K,HDR/K,MC/K,CHARCODE/K"
+
+FROM      input  source file
+
+OBJ       output object file
+TO
+
+OCODE     OCODE file name.  If a FROM (source file)
+          parameter is not quoted, then the OCODE file is
+          used as input to the code generator.
+
+COPY      output for copy of source with conditional
+          compilation operations stripped
+
+OPT       front end and code generator options
+
+VER       verification output file
+
+HDR       GET definition
+
+MC        machine name for cross compilation
+
+CHARCODE  character code file (used when cross-compiling
+          to a non-ASCII machine)
+
+*parameter
+*parm
+   Try HELP TBCPL <parameter name> for more information.
+
+*from
+*to
+*obj
+*ver
+*mc
+*charcode
+Should be self-explanatory!
+*ocode
+*all ..
+OCODE output
+------------
+
+If the OCODE parameter is not used, the OCODE will be
+retained in store between the translation and code
+generation phases, and will not be written to a file.  In
+this case, the code generator is run for each section of the
+source program, rather than once only at the end.  If OCODE
+is quoted, the code is written to the named file, and the
+code generator is run once only.
+
+If the source program contains very large sections, there
+may be insufficient free store for the tree and in-store
+OCODE.  The front end option -O may then be used to force
+the OCODE to be written to a temporary file, which is
+deleted when the compilation is complete.
+*all ..
+
+*opt
+*options
+*all ..
+OPT parameter
+-------------
+
+The option string gives both front end and code generator
+options, separated by a /.  Options may be separated by
+commas.
+
+BCPL OPT ? may be used to obtain a list of options.
+
+The following front end options are available:
+
+option            meaning                    default
+
+  +       turn following options on
+  -       turn following options off
+
+  Bn      set 'bitswidth' for target machine      32
+  C       equate cases in identifiers             on
+  O       retain OCODE in store                   on
+  Rn      set 'restriction bits'                   3
+  Xn      set extension level to n             10000
+  Sn      set save space size to n                 3
+  $tag    set conditional tag to TRUE
+  $tag'   set conditional tag to FALSE
+  *cn     set value of escape *c (c is B, C, E, N, P or T)
+
+The $ option is used to initialise conditional compilation
+tags (HELP TBCPL CONDITIONAL for more information).
+
+The 'restriction bits' option may be used to selectively
+disallow features which are not available on certain target
+machines.  Setting a restriction bit disables the
+corresponding feature.  The current bit definitions are:
+
+  1     use of static routines as variables
+  2     tables of strings or tables of tables
+  4     external symbols
+
+The code generator options are:
+
+  +       turn following options on
+  -       turn following options off
+
+  C       stack checking                         off
+  N       procedure names in code                 on
+  P       profile and call counting              off
+  K       call counting only                     off
+  I       'incorrect' code; more optimisation    off
+
+Note that the N option now means 'generate names'; to turn
+names off, -N must be quoted.
+
+The compiler and code generator both allocate all the
+workspace required automatically, and so the L, D and W
+options are no longer required, and will be faulted if used.
+
+The I option instructs the code generator to optimise
+certain indirect stores.  For example, in the following
+code sequence:
+
+   a ! 1 := 0
+   a ! 2 := 1
+   a ! 3 := b+c
+
+The value of 'a' is normally loaded into a register before
+each store operation, in case it has been updated by the
+previous assignment.  If the I option is set, the contents
+of the register used for 'a' are not 'forgotten' after each
+store.  This could result in incorrect code in the very rare
+case of a location which points at itself.  The option may
+be used to improve the code produced when setting up fields
+in an object in a data structure.
+*all ..
+
+*hdr
+*header
+*libhdr
+*get
+*all ..
+HDR parameter
+-------------
+
+The HDR parameter may be used to set up indirections for use
+in GET directives.  If HDR is not quoted, a GET works in the
+normal way: the current directory is tried first, followed by
+SYS:G.
+
+If a HDR parameter is given, it should have the following
+format:
+
+    hdr1=file1,hdr2=file2,....
+
+Examples:
+
+    LIBHDR=MYHDR,XYZ=ABC
+
+    LIBHDR=:SYS.G.NEWLIBHDR
+
+Each GET directive in the source program must refer to one
+of the 'hdr' names in the HDR parameter.  The actual file
+name used is the corresponding 'file' value.
+
+GET "" always refers to the current source program, whether
+or not HDR was quoted.
+*all ..
+
+*extension ..
+*all ..
+Language extensions
+-------------------
+
+The front end X option may be used to disallow certain
+extensions, to aid in the production of portable programs.
+By default, all extensions are allowed.  Defined values of
+the X option are:
+
+  0    no extensions allowed
+
+  1    SECTION, NEEDS, || comments, _ in identifiers,
+       *B, *C, *E
+
+  2    %, GET ""
+
+  3    <op>:=, conditional compilation, field selectors
+
+  4    EXTERNAL
+
+  5    Manifest strings and tables
+
+X2 corresponds to the extensions allowed in the previous
+compiler.  X3 corresponds to the compiler on the Computing
+Service 3081.
+
+EXTERNAL
+--------
+
+The form of an external declaration is:
+
+   EXTERNAL $( name : "string" ... $)
+
+The effect is as if name is a static cell containing the
+machine address of the external symbol "string".  If name
+is declared as a routine or label within the scope of the
+external declaration, the external symbol will be set to the
+entry point of the routine or the label address.
+
+There is no overhead if an external name is not used, and so
+EXTERNAL declarations may be used in headers with no waste.
+
+It is not permissible to assign to an external name or to
+take its address (ie. @name would not be allowed).
+
+Example:
+
+   EXTERNAL $( extern : "EXTSYM"
+               entry  : "EXT2"
+            $)
+
+   LET entry() BE
+     $( ...
+        extern()
+        ...
+     $)
+
+The external symbol EXT2 is set to the address of the
+routine 'entry', whilst the call to 'extern' is a reference
+to the external symbol EXTSYM.
+
+A program using external symbols must be linked by the
+linkage editor LKED and run with the linking loader
+(:rde.loader32) as a loaded library.
+
+External symbols may also be used to overlay a program using
+the automatic overlay facility of LKED.  Calling a routine
+defined as an external symbol will result in the overlay
+being loaded automatically.  See the LKED manual for further
+details.
+
+<op>:=
+------
+
+a <op>:= b is equivalent to a := a <op> b, and is available
+with the following operators (and all their synonyms):
+
+  + - * / REM & | EQU NEQV << >>
+
+Note that the destination address is evaluated once only, so
+that <op>:= will be more efficient if the left hand side
+involves indirections.
+
+<op>:= is not allowed if the left hand side is a byte
+application or selection (eg. a % b +:= 1 is not allowed).
+*extension ..
+*all ..
+
+*copy
+*conditional
+*extension ..
+*all ..
+Conditional compilation
+-----------------------
+
+Conditional compilation allows sections of code to be
+skipped at compilation time, depending on the values of
+'tags'.  A tag has the same syntax as a BCPL identifier, but
+is completely distinct from any BCPL symbol or variable with
+the same name.
+
+A tag is tested by brackets of the form:
+
+     $<tag ...... $>tag
+
+The code between these brackets is compiled only if the tag
+has the value 'true'.
+
+An alternative is:
+
+     $<tag' ...... $>tag'
+
+The code between these brackets is compiled only if the tag
+has the value 'false'.
+
+The following tags are initialised to 'true' in the 68000
+compiler:
+
+   MC68000
+   TRIPOS
+   BITS32
+
+These are initialised before the compiler OPT parameter is
+scanned, so may be unset by using the $tag' option
+($MC68000', for example).
+
+All other tags are initialised to 'false'.  The value of a
+tag may be changed by:
+
+   $$tag                 complements the value of the tag
+
+or $$tag := expression   set tag to the expression value
+
+The expression in the second case case consists of a series
+of primaries separated by & or | operators.  Each primary is
+TRUE, FALSE, $$tag or NOT primary.  All synonyms of & and |
+are available.  Note that brackets are not allowed, and the
+operators have the same priority.
+
+For example:
+
+   $$ABC := TRUE                set ABC to TRUE
+
+   $$DEF := $$ABC & $$XYZ       set DEF to TRUE if both ABC
+                                and XYZ are TRUE
+
+   $$GHI := NOT $$ABC           set GHI to TRUE if ABC is
+                                false
+
+COPY parameter
+--------------
+
+The COPY parameter may be used to strip conditional
+compilation operations from a BCPL source program.
+Conditional testing and setting directives ($<) and skipped
+text are removed from the COPY output.  Note that a
+conditional setting directive ($$TAG :=) is removed by
+ignoring the rest of the line containing it, and should
+therefore occur on a single line by itself.
+*extension
+*all
+
+MANIFEST strings and tables
+---------------------------
+
+A manifest name may now be set to a string or table.  For
+example:
+
+        MANIFEST $( str = "a string"
+                    tab = TABLE 0, 1, 2, 3
+                 $)
+
+Note that strings and tables may not occur in constant
+expressions.
+
+Field selectors
+---------------
+
+A field selction has the following format:
+
+     selector OF E
+
+The selector must be a constant expression.  E is any
+expresion, and is interpreted as the address of the zeroth
+cell of a vector.
+
+A convenient means for setting up a selector value is the
+SLCT construct:
+
+     SLCT k3
+or   SLCT k2:k3
+or   SLCT k1:k2:k3
+
+k1, k2 and k3 are constant expressions.  SLCT and : have
+lower binding power than any other expression operators.
+The value of a SLCT expression is a constant.
+
+  k1   is the size of the field in bits; if omitted, zero is
+       used.
+
+  k2   is the number of bits between the right end of the
+       field and the cell containing it; if omitted, zero is
+       used.
+
+  k3   is the subscript of the element of the vector
+       containing the field.
+
+A size of zero implies that the field extends to the most
+significant end of the cell containing it.
+
+k2 must be in the range 0-31; k1 must be in the range
+0-(32-k2).  k3 must be in the range 0 to 2**22-1.
+The method of packing the three values is not defined,
+except that 0:0:n always has the value 'n'.
+
+A selection may be used in two contexts:
+
+  a) Expression: the field defined by the selector is
+     extracted and shifted so that it is right justified.
+
+  b) Assignment: sel OF e := source   the appropriate number
+     of bits from the least significant end of the source
+     are assigned to the field defined by the selector.
+
+Example:
+
+  // 'sl' defines a four-bit field starting at bit 12 of
+  // element 1 of a vector.
+
+  MANIFEST $( sl = SLCT 4:12:1 $)
+
+  LET v = VEC 1
+  LET a = ?
+
+  v ! 1 := #X01234567
+
+  a       := sl OF v  // 'a' is set to #X4
+  sl OF v := #XABC    // v!1 is now #X0123C567
+
+selector OF @x may be used to refer to a field in the
+variable x.
+
+
+The code generator uses a variety of instructions to
+implement field selectors, including BTST, MOVE.B,
+and MOVE.W.
+
+String escapes
+--------------
+
+The following string escapes are accepted:
+
+escape          value
+
+  *T             :09
+  *S             :20
+  *N             :0A
+  *P             :0C
+  *B             :08
+  *C             :0D
+  *E             :1B
+  *"              "
+  *'              '
+  **              *
+  *Xnn           :nn
+  *Onnn        nnn (octal)
+  *nnn         nnn (octal)
+
+All other escape combinations are rejected.  The value of
+the escapes *B, *C, *E, *N, *P and *T may be changed by
+means of a compiler option.
+**
+Form:           TBCPL  "FROM,TO=OBJ,OCODE/K,COPY/K,
+                                      OPT/K,VER/K,HDR/K,MC/K,CHARCODE/K"
+Purpose:        To compile a BCPL program
+Author:         RDE
+Specification:
+   This compiler is available for 68000s only.  It was developed for
+Topexpress, and sources are not available.  It requires a global vector of
+at least 400, use the GLOBALS command if necessary.
+
+   It has a number of extensions over the standard BCPL compiler supporting
+external symbols, <op>:=, conditional compilation, manifest strings and
+tables, field selectors and an extended set of string escape characters.
+Type HELP TBCPL EXTENSIONS for more information on these.  Options may be
+specified to inhibit these extensions, see HELP TBCPL OPTS.
+
+   It also loads all phases of the compiler at the beginning, and by default
+keeps the OCODE in store so it will go much faster once it has loaded.  This
+is especially true for multi-section programs.  It performs all its own
+store management so there is no need for archaic "l15000/w10000" stuff, and
+it produces good error messages with line numbers.  Type HELP TBCPL PARAMETERS
+for parameters, HELP TBCPL ALL for the rest of the available help information.
+
+
+

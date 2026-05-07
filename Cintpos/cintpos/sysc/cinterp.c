@@ -19,6 +19,9 @@
 ** of range. Note - only indirect not direct updates.
 */
 
+//09/04/10
+
+//Put time the time stamp (days, msecs) in the rootnode approx every msec.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -80,13 +83,15 @@ UBCPLWORD tallylimb;
 #endif
 
 extern BCPLWORD dosys(BCPLWORD p, BCPLWORD g);
-extern BCPLWORD doflt(BCPLWORD op, BCPLWORD a, BCPLWORD b);
+extern BCPLWORD doflt(BCPLWORD op, BCPLWORD a, BCPLWORD b, BCPLWORD c);
 extern BCPLWORD muldiv(BCPLWORD a, BCPLWORD b, BCPLWORD c);
 
 extern void wrcode(char *form, BCPLWORD f, BCPLWORD a); 
 extern void wrfcode(BCPLWORD f);
 extern void trace(BCPLWORD pc, BCPLWORD p, BCPLWORD a, BCPLWORD b);
 extern BCPLWORD timestamp(BCPLWORD *datstamp);
+
+//extern BCPLWORD joyscan(BCPLWORD fd, BCPLWORD *g, BCPLWORD *W);
 
 
 #define Gn_currco      7
@@ -225,23 +230,6 @@ extern BCPLWORD timestamp(BCPLWORD *datstamp);
 #define F_selst 255
 #define F_255   255
 
-#define sf_none    0     // Assignment operators
-#define sf_vecap   1
-#define sf_fmul    2
-#define sf_fdiv    3
-#define sf_fadd    4
-#define sf_fsub    5
-#define sf_mul     6
-#define sf_div     7
-#define sf_rem     8
-#define sf_add     9
-#define sf_sub    10
-#define sf_lshift 11
-#define sf_rshift 12
-#define sf_logand 13
-#define sf_logor  14
-#define sf_eqv    15
-#define sf_neqv   16
 
 /* The function interpret is designed to be separately compiled,
 // and possibly implemented in assembly language.
@@ -352,10 +340,9 @@ fetch:
    /* Special watch debugging aid */
    if(watchaddr && *watchaddr!=watchval)
    { /*
-       printf("%7" FormD ": changed from %7" FormD "(%8" FormX ") to %7" FormD
-              "(%8" FormX ")\n",
-              watchaddr-W, watchval, (UBCPLWORD)watchval,
-              *watchaddr, (UBCPLWORD)*watchaddr);
+       printf("%7lld: changed from %7lld(%8llx) to %7lld(%8llx)\n",
+              LL watchaddr-W, LL watchval, LL (UBCPLWORD)watchval,
+              *LL watchaddr, LL (UBCPLWORD)*watchaddr);
      */
      watchval = *watchaddr;
      W[1] = watchaddr-W;
@@ -414,8 +401,8 @@ fetch:
        W[bootregs+0]  = a;
        W[bootregs+1]  = b;
        W[bootregs+2]  = c;
-       W[bootregs+3]  = p<<2;
-       W[bootregs+4]  = g<<2;
+       W[bootregs+3]  = p<<B2Wsh;
+       W[bootregs+4]  = g<<B2Wsh;
        W[bootregs+5]  = st;
        W[bootregs+6]  = pc;
        W[bootregs+7]  = count;
@@ -453,8 +440,8 @@ fetch:
        W[saveregs+0]  = a;
        W[saveregs+1]  = b;
        W[saveregs+2]  = c;
-       W[saveregs+3]  = p<<2;
-       W[saveregs+4]  = g<<2;
+       W[saveregs+3]  = p<<B2Wsh;
+       W[saveregs+4]  = g<<B2Wsh;
        W[saveregs+5]  = st;
        W[saveregs+6]  = pc;
        W[saveregs+7]  = count;
@@ -463,8 +450,8 @@ fetch:
        a      = devid;    // Put the device id in register a
        b      = 0;
        c      = 0;
-       p      = W[isrregs+3]>>2;
-       g      = W[isrregs+4]>>2;
+       p      = W[isrregs+3]>>B2Wsh;
+       g      = W[isrregs+4]>>B2Wsh;
        st     = 3;   // We are now entering the interrupt service routine.
        lastst = st;
        pc     = W[isrregs+6];
@@ -524,7 +511,7 @@ switch(B[pc++])
        a = 0;
        goto fetch;
 #else
-       //printf("fltop op=%" FormD "\n", op);
+       //printf("fltop op=%lld\n", LL op);
        switch (op) {
        default:
          W[1] = op;
@@ -537,9 +524,9 @@ switch(B[pc++])
        { BCPLWORD exponent = B[pc++]; // Signed byte
 	 // The senior bit represents -128
          if (exponent>=128) exponent = exponent-256;
-	 //printf("fl_mk calling doflt(%" FormD ", %" FormD ", %" FormD ")\n",
-         //        op, a, exponent);
-         a = doflt(op, a, exponent);
+	 //printf("fl_mk calling doflt(%lld, %lld, %lld)\n",
+         //        LL op, LL a, LL exponent);
+         a = doflt(op, a, exponent, 0);
          goto fetch;
        }
 
@@ -548,7 +535,7 @@ switch(B[pc++])
        case fl_pos:
        case fl_neg:
        case fl_abs:
-         a = doflt(op, a, 0);
+         a = doflt(op, a, 0, 0);
          goto fetch;
 
        case fl_mul:
@@ -562,7 +549,7 @@ switch(B[pc++])
        case fl_gr:
        case fl_le:
        case fl_ge:
-         a = doflt(op, b, a);
+         a = doflt(op, b, a, 0);
          goto fetch;
        }
 #endif
@@ -617,7 +604,7 @@ switch(B[pc++])
                          val = x.i;               break;
        case sf_mul:      val *= b;                break;
        case sf_div:      val /= b;                break;
-       case sf_rem:      val %= b;                break;
+       case sf_mod:      val %= b;                break;
        case sf_add:      val += b;                break;
        case sf_sub:      val -= b;                break;
        case sf_lshift:   if (b>=BperW) val=0; /* bug */
@@ -627,11 +614,12 @@ switch(B[pc++])
        case sf_logand:   val &= b;                break;
        case sf_logor:    val |= b;                break;
        case sf_eqv:      val = ~(val ^ b);        break;
-       case sf_neqv:     val ^= b;                break;
+       case sf_xor:      val ^= b;                break;
        }
-       //printf("selst: op=%" FormD " len=%" FormD " sh=%" FormD
-       //         " oldval=%08" FormX " val=%08" FormX " mask=%08" FormX "\n",
-       //       op, len, sh, (UBCPLWORD)oldval, (UBCPLWORD)val, (UBCPLWORD)mask);
+       //printf("selst: op=%lld len=%lld sh=%lld oldval=%08llx "
+                "val=%08llx mask=%08llx\n",
+       //       LL op, LL len, LL sh,
+       //       LL (UBCPLWORD)oldval, LL (UBCPLWORD)val, LL (UBCPLWORD)mask);
        // Replace field by new value
        *ptr ^= ((val ^ oldval)&mask) << sh;
        goto fetch;
@@ -700,9 +688,9 @@ switch(B[pc++])
                  lastWp = Wp;
                  goto fetchchk;
 
-   case F_gbyt: i=a+(b<<2); MC1(i>>2) a=B[i]; goto fetch;
-   case F_pbyt: i=a+(b<<2); MC1(i>>2) B[i]=c; goto fetch;
-   case F_xpbyt:i=b+(a<<2); MC1(i>>2) B[i]=c; goto fetch;
+   case F_gbyt: i=a+(b<<B2Wsh); MC1(i>>B2Wsh) a=B[i]; goto fetch;
+   case F_pbyt: i=a+(b<<B2Wsh); MC1(i>>B2Wsh) B[i]=c; goto fetch;
+   case F_xpbyt:i=b+(a<<B2Wsh); MC1(i>>B2Wsh) B[i]=c; goto fetch;
    case F_atc:  c = a;                      goto fetch;
    case F_btc:  c = b;                      goto fetch;
    case F_atb:  b = a;                      goto fetch;
@@ -764,8 +752,8 @@ switch(B[pc++])
                          a  = W[s+0];
                          b  = W[s+1];
                          c  = W[s+2];
-                         p  = W[s+3]>>2;
-                         g  = W[s+4]>>2;
+                         p  = W[s+3]>>B2Wsh;
+                         g  = W[s+4]>>B2Wsh;
                          st = W[s+5];
                          pc = W[s+6];
                          //count = W[s+7];
@@ -787,7 +775,7 @@ switch(B[pc++])
                          W[s+1] = b;
                          W[s+2] = c;
                          W[s+3] = Wp[0];  /* typically p of eg qpkt not sys  */
-                         W[s+4] = g<<2;
+                         W[s+4] = g<<B2Wsh;
                          W[s+5] = st;
                          W[s+6] = pc;     /* pc -> RTN in sys function  */
                          W[s+7] = count;
@@ -1221,7 +1209,7 @@ badpc:
  
 ret:
    tracing = 0;
-   //printf("cinterp: returning from interpret, res=%" FormD "\n", res);
+   //printf("cinterp: returning from interpret, res=%lld\n", LL res);
    W[regs+0]  = a;    /* Save the machine registers  */
    W[regs+1]  = b;
    W[regs+2]  = c;

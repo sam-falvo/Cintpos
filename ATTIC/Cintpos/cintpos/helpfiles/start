@@ -1,0 +1,86 @@
+*banner #H banner
+*message #H banner
+*procedure
+*global
+This is the name of the global procedure which is called to enter a BCPL
+program.  It is global number 1.
+
+The parameter(s) passed to the procedure depend on the way in which it was
+called.  If it was activated from the CLI (see HELP CLI) then its parameter
+will be zero.  If activated as a task then the parameter will by its
+activation packet (which should usually be returned to the activating task
+as soon as possible, after extracting any required arguments).  If activated
+by CALLSEG (see HELP CALLSEG) then there may be several arguments.
+*command #H #HCH +
++call
++callseg
++callseging
++callseged
+CALLSEGing the START COMMAND
+
+    The START COMMAND can be CALLSEG'ed from a program with the following
+paramters:
+
+    privileges.obtained := CALLSEG("SYS:C.START", -1, necessary.privilegs)
+
+PRIVILEGES.OBTAINED and NECESSARY.PRIVILEGES are both bit maps of the possible
+privileges that could be requested and required respectively.  The only
+privileges with bit positions currently assigned are:
+
+        TRIPPRIV  = #X0002    (for FULL access to the Filing System)
+        LABPRIV   = #X0001    (for users of LAB ONLY systems)
+
+All of the NECESSARY.PRIVILEGES will always appear in PRIVILEGES.OBTAINED
+since failure to obtain one of the former will result in the Machine on
+which the system is running to be returned to the Resource Manager.  START
+executes as described in HELP START COMMAND with none of its command line
+keys specified.
++*
+START command
+Form:           START   "User=Initials,Init/s,Noauth/s,Labuser/s"
+Purpose:        To log a new user on to TRIPOS.
+Author:         CGG
+Specification:
+    This command is CALLSEG'ed in the initial log on sequence to admit a user
+to TRIPOS.  However, it can also be used as a command.
+    Types the file SYS:INFO.INIT-MESSAGE.
+    Requests a valid USER-PASSWORD combination using prompts.  Uses the
+USERAUTH ring service to perform the check.  Logs the user off if more
+than three attempts have to be made.  Either @Q or <Ctrl-B> will terminate
+the dialogue and log off the user.  A user's name can either be his
+initials (looked up on TRIPOS to get the users PUID) or his PUID (in hex).
+    The "User: " prompt expects a reply corresponding to the following RDARGS
+string:
+
+        User:   "Initials,Status,PW/K"
+
+In which the user's PUID or initials are expected for 'Initials' and his
+password can (optionally) be given using the 'PW' keyword.  Any special
+status the user both needs and can obtain can be requested using 'Status'.
+Requesting a status to which the user is not entitled will result in his
+being logged off.
+    If 'Labuser' is quoted a request is made to PRIVMAN to verify that the user
+would be allowed the privilege LABPRIV.  If not he is logged off.
+    If 'User' is quoted the first prompt for the user's name will be omitted.
+    If the user has a HOME DIRECTORY this is set and if 'Init' is quoted
+and the file "INIT-SEQUENCE" exists it is executed as a T COMMAND.
+    If 'Noauth' is quoted then the user's UIDset will not be written into
+the root node, nor will the user be logged off (in any circumstance).
+    START can be CALLSEG'ed - use HELP START COMMAND CALLSEG for more
+information.
+
+Examples:
+
+        START INIT
+        START cgg
+        START NOAUTH INIT
+        START xyz NOAUTH
+        START LABUSER
+        START
++
+** #I start
+START is both the name of a BCPL procedure and of a TRIPOS command.  For
+information about the procedure type PROCEDURE, and for information about
+the command type COMMAND.  To exit HELP type <CR>.
+
+

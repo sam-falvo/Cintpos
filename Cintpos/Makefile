@@ -4,46 +4,34 @@ PUB = /homes/mr/public_html
 
 # My public HTML directory when not mountable on this machine.
 # Remember to call ssh-add before calling make sshpub
-SSHPUB = ely.cl.cam.ac.uk:public_html
+SSHPUB = mr10@ely.cl.cam.ac.uk:public_html
 
 help:	
 	@echo
 	@echo "make all      Construct the files: cintpos.tgz and cintpos.zip"
-	@echo "make dosd     Put them in /dosd"
 	@echo "make dose     Put them in /dose"
-	@echo "make pub      Put them in my home page"
-	@echo "make sshpubd  Put them in /dosd and my home page using scp"
 	@echo "make sshpube  Put them in /dose and my home page using scp"
+	@echo "make pub      Same as make sshpube"
 	@echo
 
 all:
 	rm -f *~ */*~
-	echo >TGZDATE
-	echo -n "Distributed from machine: " >>TGZDATE
-	hostname >>TGZDATE
-	date >>TGZDATE
-	rm -f FILES
+	rm -f TGZFILES
+	date >TGZDATE
 	cp -p cintpos/doc/README .
 	(cd cintpos; make vclean)
 	(cd ..; tar zcvf cintpos.tgz Cintpos)
 	(cd ..; rm -f cintpos.zip; zip -rv9 cintpos.zip Cintpos)
-	cp TGZDATE FILES
-	ls -l ../cintpos.tgz ../cintpos.zip>>FILES
+	ls -l ../cintpos.tgz ../cintpos.zip >TGZFILES
 
-pub:	dosd
-	cp README FILES ../cintpos.tgz ../cintpos.zip $(PUB)/Cintpos
-	cat FILES
-
-sshpubd:	dosd
-	scp README FILES ../cintpos.tgz ../cintpos.zip $(SSHPUB)/Cintpos
-	cat FILES
+pub:	sshpube
 
 sshpube:	dose
-	scp README FILES ../cintpos.tgz ../cintpos.zip $(SSHPUB)/Cintpos
-	cat FILES
-
-dosd:	all
-	cp ../cintpos.tgz ../cintpos.zip /dosd
+	scp README TGZFILES ../cintpos.tgz ../cintpos.zip $(SSHPUB)/Cintpos
+	cp TGZDATE PUBDATE
+	cp TGZFILES PUBFILES
+	@cat TGZFILES
+	@cat TGZDATE
 
 dose:	all
 	cp ../cintpos.tgz ../cintpos.zip /dose

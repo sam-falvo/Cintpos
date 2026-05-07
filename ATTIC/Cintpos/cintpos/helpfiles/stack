@@ -1,0 +1,20 @@
+*default #H stacksize
+*command
+Form:           STACK  "SIZE"
+Purpose:        To print or set the stack size for commands.
+Author:         RDE
+Specification:
+   STACK alone writes out the currently set stack size.
+   STACK n sets the stack size for running further commands to n
+words.
+Example:        STACK
+                STACK 1000
+*size #H stacksize
+** #I #HCH=+
+For information about the default size of a BCPL stack type SIZE, for
+information about the STACK command type COMMAND, to leave HELP type <CR>.
+*
++command #H stack
++size #H stacksize
+
+

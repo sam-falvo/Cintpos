@@ -5,6 +5,10 @@
 
 /* Change history
 
+01/10/2020
+Added option T16 to allow the frontend to be used with codegenerators
+for 16 bit machines such as the Z80.
+
 11/12/2018
 Major addition to standard BCPL, including operators such as <>, #:=
 and the op:= operators with corresponding additions to the FLT
@@ -301,9 +305,10 @@ LET default_hdrs() = VALOF // Changed MR 12/07/09
   IF hdrs RESULTIS hdrs
   // The following is only executed if cintsys or cintsys64 fails to set
   // the hdrs field in the rootnode.
+  // Note that tcb=0 when running under cintsys.
   TEST t64
-  THEN RESULTIS "BCPL64HDRS"
-  ELSE RESULTIS "BCPLHDRS"
+  THEN RESULTIS tcb -> "POS64HDRS", "BCPL64HDRS"
+  ELSE RESULTIS tcb -> "POSHDRS",   "BCPLHDRS"
 }
 
 GLOBAL {
@@ -335,6 +340,8 @@ mk3list               // Free list of nodes of size 3
 unmk3                 // Return a node of size 3
 newvec
 rnexp; rexp; rbexp
+
+calib
 }
  
  
@@ -350,10 +357,10 @@ c_space     = 32
 
 LET floatingchk() BE
 { TEST t64
-  THEN UNLESS c64 DO
-         synerr("64-bit floating point requires 64-bit cintcode")
-  ELSE IF c64 DO
-         synerr("32-bit floating point requires 32-bit cintcode")
+  THEN UNLESS ON64 DO
+         synerr("64-bit floating point constants cannot be compiled using 32 bit BCPL")
+  ELSE IF ON64 DO
+         synerr("32-bit floating point constants cannot be compiled using 64 bit BCPL")
 }
  
 LET start() = VALOF
@@ -362,7 +369,8 @@ LET start() = VALOF
   AND argform = "FROM/A,TO/K,VER/K,SIZE/K/N,TREE/S,NONAMES/S,*
                 *D1/S,D2/S,OENDER/S,EQCASES/S,BIN/S,XREF/S,GDEFS/S,HDRS/K,*
                 *GB2312/S,UTF8/S,SAVESIZE/K/N,HARD/S,*
-                *T32/S,T64/S,OPT/K,TREE2/S,NOSELST/S"
+                *T16/S,T32/S,T64/S,OPT/K,TREE2/S,NOSELST/S,MAP/K,LIST/K"
+  // T16, t32, MAP and LIST added by MR 01/10/2020
   LET stdout = output()
   LET objline1vec = VEC 256/bytesperword+1
   LET optstringvec = VEC 256/bytesperword+1
@@ -388,9 +396,7 @@ LET start() = VALOF
   sysprint := stdout
   selectoutput(sysprint)
  
-  writef("*nBCPL (3 Jan 2019) %n bit with the FLT feature*n", bitsperword)
-
-  // Allocate vector for source file names
+   // Allocate vector for source file names
   sourcenamevupb := 1000
   sourcenamev := getvec(sourcenamevupb)
   UNLESS sourcenamev DO
@@ -403,24 +409,41 @@ abort(999)
   FOR i = 0 TO sourcenamevupb-1 DO sourcenamev!i := 0  // Corrected 19/08/2018   
  
   // Set the current system wordlength flag
-  c64 := B2Wsh=3                          // =TRUE if on a 64-bit system
+  // ON64 is defined in libhdr.h. Previously called c64.
+
   // Set the target system wordlength flag
-  t64 := c64                              // Set the default target word length
+  t64 := ON64 // Set the default target word length
 
   IF rdargs(argform, argv, 50)=0 DO { writes("Bad arguments*n")
                                       errcount := 1
                                       GOTO fin
                                     }
 
-  bigender := (!"AAAAAAA" & 255) = 'A'    // =TRUE if on a bigender m/c
+  bigender := (!"AAAAAAA" & 255) ~= 7    // =TRUE if on a bigender m/c
 
-  IF argv!18 & argv!19 DO                 // T32/S and T64/S
-    writef("Both T32 and T64 specified -- T64 assumed*n")
-  IF argv!18 DO t64 := FALSE              // T32/S
-  IF argv!19 DO t64 := TRUE               // T64/S
-  wordbytelen := t64 -> 8,   4            // Set the target word length in bytes
-  wordbitlen  := t64 -> 64, 32            // Set the target word length in bits
-  IF argv!20 DO                           // OPT/K
+  t16, t32, t64, wordbytelen, wordbitlen := FALSE, TRUE, FALSE, 4, 32  // T32 is the default setting
+  
+  IF argv!18 DO                           // T16/S
+  { t16, t32, t64, wordbytelen, wordbitlen :=  TRUE, FALSE, TRUE, 2, 16
+    IF argv!19 | argv!20 DO
+    { writef("Only one of T16, T32 or T64 is allowed*n")
+      RESULTIS 0
+    }
+  }
+  IF argv!19 DO                           // T32/S
+  { t16, t32, t64, wordbytelen, wordbitlen := FALSE, TRUE, FALSE, 4, 32
+    IF argv!20 DO
+    { writef("Only one of T16, T32 or T64 is allowed*n")
+      RESULTIS 0
+    }
+  }
+  IF argv!20 DO                           // T64/S
+  { t16, t32, t64, wordbytelen, wordbitlen :=  FALSE, FALSE, TRUE, 8, 64
+  }
+
+  writef("*n%n bit BCPL (10 Oct 2020) %n bit target*n", bitsperword, wordbitlen)
+
+  IF argv!21 DO                           // OPT/K
   { LET s = argv!20
     FOR i = 0 TO s%0 DO optstring%i := s%i
 //writef("*nopt=%s*n", optstring)
@@ -455,19 +478,25 @@ abort(999)
   encoding := defaultencoding
   IF argv!16 DO savespacesize := !(argv!16) // SAVESIZE/K/N
   hard := argv!17                         // HARD/S
-                                          // t32/S is 18
-                                          // t64/S is 19
-                                          // OPT   is 20
-  prtree2 := argv!21                      // TREE2/S -- print tree after trans
+                                          // t16/S is 18
+                                          // t32/S is 19
+                                          // t64/S is 20
+                                          // OPT   is 21
+  prtree2 := argv!22                      // TREE2/S -- print tree after trans
                                           // to test the FLT feature.
 
-  noselst := argv!22                      // NOSELST/S
+  noselst := argv!23                      // NOSELST/S
                                           // Do not generate SELLD or
                                           // SELST Ocode instructions.
+
+  mapfilename  := argv!24                  // MAP/K     For the Z80 codegenerator
+  listfilename := argv!25                  // LIST/K    and possibly others
+
   // Added 5/10/2010
   IF eqcases DO lookupword := eqlookupword
 
 //writef("BCPL hdrs = %s*n", hdrs)
+IF noselst DO writef("NOSELST option was given*n")
 
   { // Feature added by MR 17/01/06
     // If file objline1 can be found, its first line will be written
@@ -492,13 +521,14 @@ abort(999)
         objline1%len := ch
       }
       endread()
+      line1stream := 0
     }
     objline1%0 := len
     objline1written := FALSE
   }
 
   sourcestream := findinput(argv!0)       // FROM/A
-  sourcenamev!0 := argv!0    // Fileno zero is the FROM file
+  sourcenamev!0 := argv!0    // File number zero is the FROM file
   sourcefileno  := 0
 
   IF sourcestream=0 DO { writef("Trouble with file %s*n", argv!0)
@@ -510,9 +540,30 @@ abort(999)
   selectinput(sourcestream)
  
   TEST argv!1                             // TO/K
-  THEN { gostream := findoutput(argv!1)
+  THEN { // Change cin/ to cin64/ if necessary.
+         LET arg1 = argv!1
+	 LET len  = arg1%0
+         LET tofilenamev = VEC 64+1 // Room for maximum length string.
+         tofilename := tofilenamev
+	 FOR i = 0 TO len DO tofilename%i := arg1%i
+         IF t64 & len>4 &
+	    arg1%1='c'  &
+	    arg1%2='i'  &
+	    arg1%3='n'  &
+	    arg1%4='/'  DO
+         { // The target code is 64 bit and the destination starts
+	   // with cin/ so replace it by cin64/
+	   tofilename%4 := '6'
+           tofilename%5 := '4'
+           FOR i = 4 TO len DO tofilename%(i+2) := arg1%i
+	   tofilename%0 := len+2
+         }
+
+         writef("bcpl compiling to file: %s*n", tofilename)
+
+         gostream := findoutput(tofilename)
          IF gostream=0 DO
-         { writef("Trouble with code file %s*n", argv!1)
+         { writef("Trouble with code file %s*n", tofilename)
            IF hard DO abort(1000)
            errcount := 1
            GOTO fin
@@ -593,7 +644,7 @@ abort(999)
       obufq := obufp     // Prepare to read from OCODE buffer
       obufp := 0
 
-      TEST argv!1=0
+      TEST argv!1=0  // TO/K
       THEN { // Comment out one of the following lines
              writeocode()  // Write OCODE file if no TO argument
              //writeocodebytes()
@@ -618,12 +669,13 @@ fin:
 
   IF treevec       DO freevec(treevec)
   IF obuf          DO freevec(obuf)
-  IF sourcestream  DO endstream(sourcestream)
-  IF ocodeout      UNLESS ocodeout=stdout DO endstream(ocodeout)
-  IF gostream      UNLESS gostream=stdout DO endstream(gostream)
+  IF sourcestream  DO IF sourcestream DO endstream(sourcestream)
+  IF ocodeout      IF ocodeout UNLESS ocodeout=stdout DO endstream(ocodeout)
+  IF gostream      IF gostream UNLESS gostream=stdout DO endstream(gostream)
   UNLESS sysprint=stdout DO endstream(sysprint)
 
   selectoutput(stdout)
+  result2 := 0
   RESULTIS errcount=0 -> 0, 20
 }
 
@@ -705,10 +757,17 @@ AND wrn(n) BE
 
 // ************* End of  OCODE I/O Routines *******************
 
+LET calib(a) = a!10000 + a!-10000
+// calib is provided to help check the calibration of
+// graphs draw using rastsys and raster.
+
 LET lex() BE
 { LET assop = ?
   nlpending := FALSE
- 
+  
+  //calib(1_000_000) 
+  //calib(treep)
+  
   {
 //sawritef("lex: ch=%i3 '%c'*n", ch, ch)
  SWITCHON ch INTO
@@ -898,7 +957,12 @@ LET lex() BE
       CASE '@': token := s_lv;        BREAK
       CASE '=': token := s_eq;        BREAK
       CASE '%': token := s_byteap;    BREAK
-      CASE '.': token := s_dot;       BREAK
+
+      CASE '.': token := s_dot
+                rch()
+                UNLESS getstreams RETURN
+		synerr("A section separating dot is not allowed in GET files")
+		LOOP
 
 checkassx:      rch()
 checkass:       UNLESS ch=':' RETURN
@@ -1178,7 +1242,7 @@ LET eqlookupword(word) = VALOF
 AND dsw(word, sym) BE { lookupword(word); h1!wordnode := sym  }
  
 AND declsyswords() BE
-{ dsw("AND", s_and)
+{ dsw("AND", s_and)  // Added old 1980s style reserved word for historic reasons.
   dsw("ABS", s_abs)
   dsw("BE", s_be)
   dsw("BITSPERBCPLWORD", s_bitsperbcplword)
@@ -1187,7 +1251,7 @@ AND declsyswords() BE
   dsw("CASE", s_case)
   dsw("DO", s_do)
   dsw("DEFAULT", s_default)
-  ///dsw("EQ", s_eq)
+  dsw("EQ", s_eq)
   dsw("EQV", s_eqv)
   dsw("ELSE", s_else)
   dsw("ENDCASE", s_endcase)
@@ -1198,33 +1262,33 @@ AND declsyswords() BE
   dsw("FLT", s_flt)
   dsw("FOR", s_for)
   dsw("GOTO", s_goto)
-  ///dsw("GE", s_ge)
-  ///dsw("GR", s_gr)
+  dsw("GE", s_ge)
+  dsw("GR", s_gr)
   dsw("GLOBAL", s_global)
   dsw("GET", s_get)
   dsw("IF", s_if)
   dsw("INTO", s_into)
   dsw("LET", s_let)
-  ///dsw("LV", s_lv)
-  ///dsw("LE", s_le)
-  ///dsw("LS", s_ls)
-  ///dsw("LOGOR", s_logor)
-  ///dsw("LOGAND", s_logand)
+  dsw("LV", s_lv)
+  dsw("LE", s_le)
+  dsw("LS", s_ls)
+  dsw("LOGOR", s_logor)
+  dsw("LOGAND", s_logand)
   dsw("LOOP", s_loop)
-  ///dsw("LSHIFT", s_lshift)
+  dsw("LSHIFT", s_lshift)
   dsw("MANIFEST", s_manifest)
   dsw("MOD", s_mod)
-  ///dsw("NE", s_ne)
+  dsw("NE", s_ne)
   dsw("NEEDS", s_needs)
   dsw("NEQV", s_xor)
   dsw("NOT", s_not)
   dsw("OF", s_of)                   // Inserted 11/7/01
-  ///dsw("OR", s_else)
+  dsw("OR", s_else)
   dsw("RESULTIS", s_resultis)
   dsw("RETURN", s_return)
   dsw("REM", s_mod)
-  ///dsw("RSHIFT", s_rshift)
-  ///dsw("RV", s_rv)
+  dsw("RSHIFT", s_rshift)
+  dsw("RV", s_rv)
   dsw("REPEAT", s_repeat)
   dsw("REPEATWHILE", s_repeatwhile)
   dsw("REPEATUNTIL", s_repeatuntil)
@@ -1675,6 +1739,7 @@ AND mk5(x, y, z, t, u) = VALOF
 AND mk6(x, y, z, t, u, v) = VALOF
 { LET p = newvec(5)
   p!0, p!1, p!2, p!3, p!4, p!5 := x, y, z, t, u, v
+  //sawritef("mk6 => %n*n", p*4)
   RESULTIS p
 }
  
@@ -2377,7 +2442,7 @@ LET plist(x, n, d) BE
                    RETURN
                  }
 
-    CASE s_fnum:   writef("FNUM: %6e", h2!x); RETURN
+    CASE s_fnum:   writef("FNUM: %14.6f", h2!x); RETURN
 
     CASE s_name:   writef("NAME: %s", x+2); RETURN
  
@@ -3632,7 +3697,7 @@ AND transfor(x, next) BE
 }
 
 LET isflt(x) = x=0 -> FALSE, VALOF
-{ // Return TRUE if expression x is and fnumber, a name declared
+{ // Return TRUE if expression x is an fnumber, a name declared
   // with the FLT tag or has a leading operator such as #+ or #-
   // that returns a floating point value. Remember the operators
   // such as + and - are converted to #+ and #- if they have
@@ -3653,7 +3718,7 @@ LET isflt(x) = x=0 -> FALSE, VALOF
     CASE s_fnum:  RESULTIS TRUE
 
     CASE s_neg: CASE s_abs:
-      IF isflt(h2!x) RESULTIS TRUE
+      RESULTIS isflt(h2!x)
 
     CASE s_add: CASE s_sub:
     CASE s_mul: CASE s_div: CASE s_mod:
@@ -4736,6 +4801,8 @@ AND prctxt(x) BE IF x DO
     CASE s_asseqv:    str := "EQV";  GOTO case_ass
     CASE s_assxor:    str := "XOR";  GOTO case_ass
 
+    CASE s_fass:      str := "#";    GOTO case_ass
+
     CASE s_ass:       str := ""
 case_ass:
          prctxte(h2!x, 4, 0)
@@ -4864,6 +4931,13 @@ case_ass:
 AND prctxtd(x, d) BE writef("..")
 AND prctxtc(x, d) BE writef("..")
 
+AND wrhexval(n) BE
+{ LET lsdig = n & #xFF
+  n := n>>8
+  IF n DO wrhexval(n)
+  writef("%2x", lsdig)
+}
+
 AND prctxte(x, d, prec) BE IF x DO
 { LET op = h1!x
 
@@ -4874,7 +4948,19 @@ AND prctxte(x, d, prec) BE IF x DO
                  { LET n = h2!x
                    TEST -1_000_000<=n<=1_000_000
                    THEN writef("%n", n)
-                   ELSE writef("#x%x8", n)
+                   ELSE { IF n<0 DO
+		          { wrch('-')
+			    n := -n
+			  }
+		          writef("#x")
+			  wrhexval(n)
+			}
+                   RETURN
+                 } 
+    
+    CASE s_fnum: 
+                 { LET n = h2!x
+                   writef("%5.3f", n)
                    RETURN
                  } 
     
@@ -4945,9 +5031,14 @@ AND prctxte(x, d, prec) BE IF x DO
          prctxte(h3!x, d-1, 10)
          RETURN
 
+    CASE s_float:
+    CASE s_fix:
     CASE s_rv:
     CASE s_lv:
-         writef(op=s_rv->"!","@")
+         writef(op=s_float->"FLOAT ",
+                op=s_fix  ->"FIX ",
+                op=s_rv   ->"!",
+                            "@")
          prctxte(h2!x, d-1, 10)
          RETURN
   }
@@ -4966,7 +5057,7 @@ AND prctxte(x, d, prec) BE IF x DO
          prctxte(h2!x, d-1, 9)
          writef(op=s_fmul -> "#**",
                 op=s_fdiv -> "#/",
-                             "#MOD")
+                             "#MOD ")
          prctxte(h3!x, d-1, 9)
          RETURN
   }
@@ -4989,9 +5080,14 @@ AND prctxte(x, d, prec) BE IF x DO
          prctxte(h3!x, d-1, 8)
          RETURN
 
+    CASE s_neg:
     CASE s_fneg:
     CASE s_fabs:
-         writef(op=s_fneg->"#-","#ABS ")
+    CASE s_abs:
+         writef(op=s_neg ->"-",
+                op=s_fneg->"#-",
+                op=s_fabs->"#ABS ",
+                           "ABS ")
          prctxte(h2!x, d-1, 8)
          RETURN
   }
@@ -5119,7 +5215,7 @@ AND prctxte(x, d, prec) BE IF x DO
          RETURN
          
     CASE s_valof:
-         writef("VALOF {")
+         writef("VALOF{")
          prctxtc(h2!x, d-1)
          wrch('}')
          RETURN

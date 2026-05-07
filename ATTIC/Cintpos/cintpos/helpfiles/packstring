@@ -1,0 +1,19 @@
+*procedure
+**
+PACK
+      To pack the characters in a vector into a string.
+      size := pack ( vector, string )
+      The zero element of  the  vector  should  contain  the
+number of characters to be packed; this is anded with a mask
+of 255 ( =#XFF ) to prevent the string being longer than 255
+characters.
+      The specified numbers of characters  are  then  packed
+into the string such that
+      vector ! i -> string % i
+etc.  The  length  is  inserted, and any unused bytes in the
+last word of the string are set to zero. The string and vec-
+tor  may  be coincident ( ie., @vector = @string ), but they
+may not otherwise overlap.
+      The result is the number of words used in the string.
+
+

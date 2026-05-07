@@ -1,0 +1,25 @@
+*command
+**
+TAKEFILE command
+Form:           TAKEFILE   "FILE/A,FROM=MACHINE,AS/A,SERVICE/K,NOTAUTH/S"
+Purpose:        To take a file from another machine.
+Author:         BJK
+Specification:
+        FILE    - the name of the file on machine <FROM> from which to take
+                  the transferred file
+        FROM    - the name of the machine from which the file is to be
+                  transferred
+        AS      - the name of the file into which to the remote file is to
+                  be transferred
+        SERVICE - a name to be prefixed to "-<machine>" when constructing
+                  the service name to be accessed.  Default is "givefile",
+                  thus the default full service name is "givefile-<machine>".
+        NOTAUTH - normally AUTHBSP: will be used to make the transfer, this
+                  will include proof of the user's identity at the beginning of
+                  transfer so that full access may be allowed to the user's file
+                  space on the remote machine.  Quoting this switch will use
+                  BSP: for the transfer which does not include the user's
+                  identity.  For use with "untrusted" remote machines and
+                  those that have not implemented AUTHBSP.
+
+

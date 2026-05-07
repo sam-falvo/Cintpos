@@ -1,0 +1,8 @@
+*6502 #H grasm
+*6809deb #H z80deb
+*6809 #H grasm
+*68k #H 68000
+*68kasm #H asm68
+*68000asm #H asm68
+ 
+

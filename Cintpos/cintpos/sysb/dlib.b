@@ -21,7 +21,7 @@ LET devicetask(name) = VALOF
 { // Takes a device name string and returns the task number of the
   // corresponding device handler.
   // The device name may be a filing system directory, in which case
-  // a pointer to a shared directory lock is returned in result2?????
+  // a pointer to a shared directory lock is returned in result2 ?????
 
   LET v    = VEC 256/bytesperword
   LET dir  = 0//currentdir
@@ -287,7 +287,7 @@ AND returnpkt(pkt, res1, res2) = VALOF
 AND initio() BE
 { cis, cos := 0, 0
   currentdir, consoletask := 0, Task_consolehandler
-  returncode := 0
+  //returncode := 0
 }
 
 // Routine to set the task name. It copies the given name into the

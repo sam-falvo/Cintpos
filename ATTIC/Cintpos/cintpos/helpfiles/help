@@ -1,0 +1,367 @@
+*subject #H subject
+*callseg
+*call
+CALLSEGing HELP
+
+    HELP can be CALLSEG'ed as follows:
+
+            CALLSEG("SYS:C.HELP", args, helpdir, tofile, opt)
+
+    The arguments are explained as follows:
+        ARGS contains vector of up to ARGS!0 help keywords from ARGS!1 to
+            ARGS!(ARGS!0) each pointing to a string (or being zero)
+        HELPDIR is a string naming an alternate HELP directory (or zero)
+        TOFILE is a string naming an alternative output file (or zero)
+        OPT is a bit array of options the bits have the following meanings:
+            1 = (1 & (OPT>>0))   -  TRACE: route to files is to be listed
+            1 = (1 & (OPT>>1))   -  STAND: logging is to be allowed
+
+    The call will leave the vector entirely unaffected.
+
+    HELP can also CALLSEG other programs - use HELP HELP FILES for further
+    details.
+*format #H #HCH %
+*content #H #HCH %
+*standard #H #HCH %
+*file #H #HCH %
+%standard
+%data
+%information
+%content
+HELP INFORMATION FORMAT
+    This information deals with the text that should be displayed to HELP users
+use HELP HELP FILES for information about how to write HELP files.
+    There is a recommended format for the text describing a command that is
+given to a user (e.g. HELP HELP COMMAND) which includes the following headings:
+
+
+                <COMMAND> command
+                Form:           <COMMAND> <args>
+                Purpose:        <purpose>
+                Author(s):      <authors>
+                Specification:  <specification>
+                                        :
+                Example(s):     <examples>
+                                        :
+
+        <COMMAND> should be the text which is required to run the command
+    under normal circumstances (in upper case preferably) e.g. FRED if the
+    command is in SYS:C or NEW.FRED if it is in SYS:C.NEW
+        <args> should be the commands RDARGS string (in quotes) if it has
+    one, otherwise any other suitable  nomenclature will do (e.g. that used
+    on the IBM).
+        <purpose> is a one-line description of what the command does.
+        <authors> is a list of the command's authors - in general it will
+    be these people to whom maintenance requests should be sent.  Hence, if
+    possible, their TRIPOS identifiers should be used here.  A full name or
+    IBM identifier is appropriate if the authors have no TRIPOS identifier
+    (this will only normally occur when the authors have left).
+        <specification> is one page or more of description, about the use
+    of the commands parameters in general and any special syntax expected
+    within them.  With large and complex commands it is often better to
+    refer to other HELP entries for further details (see below).  These
+    references should preferably be placed at the end of this section along
+    with references to other relevant HELP entries and to HELP entries
+    that a user might be looking for (when he has made a mistaken incantation
+    to get him to this command's help).
+        <examples> are normally a set of one-line example calls to the
+    command which demonstrate a range of the command's capabilities.  It is
+    preferable to distinguish the command name and key-words using upper
+    case here.  Uses of the command which are expected to be particularly
+    common should receive priority when deciding which examples to include.
+
+    If a command needs additional documentation there are certain key-words
+that are to be prefered when refering to particular aspects of the command.
+By standardizing these key-words user's will find it easier (with experience)
+to find exactly what they are looking for: first time.  These are as follows:
+
+        SPEC
+                This should give the location of any external documentation
+                available on the command (even though it may be available
+                in HELP as well).  Name, author(s), date and location are
+                all useful data to give here.
+        COMMAND <command>
+                If the command is interactive and itself supports a set of
+                commands (or very complex options) this should describe the
+                command <command> (note that this will mean that the keyword
+                <command> by itself will have to be checked for).
+        ALL
+                This should print as much helpful information as possible
+                from the other HELP entries.  A copy of the documentation
+                refered to in HELP COMMAND <command> SPEC would be a good
+                choice - otherwise printing all the information in HELP
+                COMMAND <command> <command> (as above) will do.
+        OPTION <option>
+                As for COMMAND <command> above if options have sufficiently
+                complex syntax or they are themselves quite complex.
+        COMMANDS
+                Should print a brief list of the that may be documented in
+                COMMAND <command> above.  (one line each).
+        OPTIONS
+                Ditto for OPTION <option>.
+        CALLSEG
+                If the command can be callseged this should give details of how
+                this can be done with an example BCPL use of CALLSEG.  Any
+                restrictions on the range, values and types of the arguments
+                should be given.
+
+%use
+%example
+HELP FILE EXAMPLES
+
+     It is very simple to get HELP to do simple things.. and possible to get
+it to do quite complex things.  To provide HELP ABC, unless there is a very
+small amount of it, a HELP file should be written to SYS:HELP.ABC - if there
+is only one line of HELP or HELP ABC is really a reference to HELP available
+elsewhere, a help entry should be placed in SYS:HELP.<char> where <char> is
+the first character of ABC (i.e. A).  ALWAYS check that SYS:HELP.ABC DOES NOT
+EXIST before writing to it.  In these examples the first column of a file is
+   HERE
+    |
+
+Very Simple use of HELP (e.g. :HELP.wto)
+
+    input :HELP.x
+    **
+    LOTS and
+    LOTS of
+    Text about X
+    /*
+
+Simple Use of HELP  (e.g. :HELP.file)
+
+    input :HELP.x
+    * POSSUM
+    Text for HELP X POSSUM
+    * QUAIL
+    Text for HELP X QUAIL (or HELP QUAIL X)
+    * RHINO
+    * SNAIL
+    Text for HELP X RHINO and HELP X SNAIL
+    * +
+    Text for HELP X with no other key words
+    * *
+    Text for HELP X for anything else
+    /*
+
+Normal Use of HELP  (e.g. :HELP.rc)
+
+    input :HELP.x
+    * PANDA sys:info.spec.x-panda ; (Type this file for HELP X PANDA)
+    * QUOKKA #T
+    * RAT #T
+    echo "executing a command file for HELP X QUOKKA or HELP X RAT"
+    quit
+    * SLOTH #T sys:s.help-sloth   ; (T this file for HELP X SLOTH)
+    * URCHIN #C sys:l.help-urchin ; (CALLSEG this file for HELP X URCHIN)
+    * VIPER #H sys:help.x-viper   ; (execute this HELP file for HELP X VIPER)
+    * VIPER #H x-viper            ; (exactly the same as above ^)
+    * WALLABY #H #HCH $
+    * YAK #H #HCH $
+    $ AARDVARK
+    Text for HELP X WALLABY AARDVARK or HELP X YAK AARDVARK (or other orders
+    of keywords)
+    $ BABOON
+    $ COOT
+    Text for HELP X WALLABY BABOON or HELP X YAK BABOON or
+    HELP X WALLABY COOT or HELP X YAK COOT
+    $ +
+    Text for exactly HELP X WALLABY or HELP X YAK with no other keywords.
+    $
+    * + #I sys:help.x
+    Text for answering a question if exactly HELP X has been typed with
+    no other key words.  This is the text of the question and, when it
+    has been answered SYS:HELP.X (it could have been written just "X")
+    will be executed as a help file with the answer to the question
+    constituting the new key words.
+    * *
+    Text for HELP X <anything else>
+    /*
+
+Complicated Use of HELP  (e.g. :HELP.uidedit)
+
+    input :HELP.x
+    * ANTLEOPE ..
+    Text for HELP X ANTLEOPE , but only the first - we keep looking for more
+    * BUDGIE #N      ; wrong place for HELP X BUDGIE - FAIL and look elsewhere
+    * ANTELOPE
+    Last of the text on HELP X ANTELOPE
+    * CASSOWARY #N ..
+    * DUGONG #N ..
+    * * ..
+    Text for HELP X <anything except CASSOWARY or DUGONG (or ANTELOPE),
+    but not finished yet
+    * CASSOWARY
+    Text for HELP X CASSOWARY
+    * EAGLE #H xeagle #FULL .. ; execute SYS:HELP.XEAGLE reading all of it
+    * DUGONG ..
+    * *
+    Text for HELP X DUGONG and HELP X <anything except CASSOWARY or
+    DUGONG (or ANTELOPE)> - the last of it: but not the last of
+    HELP X DUGONG.
+    * *
+    Last of the Text for HELP X DUGONG
+    /*
+
+Very Complicated Use of HELP
+
+     There really isn't much use resorting to examples here - you will
+just have to wade through HELP HELP FILES and understand how it all works.
+It's not that complicated, what you do (#H, #C, #T, #I, #N etc.) is completely
+orthogonal to the keyword match (+, * or another identifier) and the the
+"go on" switch, .. ; lines which include a file name use that file for
+the chosen function (type it by default) but the current file will be used
+in line otherwise (except with #C).
+%syntax
+%*
+HELP FILES
+
+    Examples of HELP files can be found 1) by typing out files in the
+SYS:HELP directory or 2) by using HELP HELP FILE EXAMPLES.
+
+    A help file in the help directory (see HELP HELP) is executed when
+its name matches one of the keys on the HELP command line.  Each key is
+tried in turn until either help is found or there are no keys left.  A
+key will match a file name in which the characters are a different case,
+it will also match a file name in which the terminal 'S' is absent.
+If there is no help found for any of the keys matched in this way the help
+files whose names are just the first character of each key are used.  Any non
+file name characters in a key (including colon (:) star (*) and point (.))
+are converted to the minus character (-) before the match is tested.
+
+    HELP looks at lines in help files which begin with the character HELPCH
+(default '*').  All other lines are ignored.  The line following such a
+character must conform to the RDARGS string:
+
+   "#KEYWORD/a,#FILE,#H/s,#T/s,#I/s,#C/s,#N/s,#TCH/k,#HCH/k,#FULL/s,../s"
+
+HELP scans the file until it finds a #KEYWORD that matches one of the
+items on the command line.  It will examine only this line of the HELP file
+unless the ".." switch is given or #FULL has been given when the file was
+specified (in which case every matching entry will be used).  The #KEYWORD '*'
+will match anything if nothing has been matched so far in the HELP file.
+The #KEYWORD '+' will match anything if all of the items on the command line
+have already been matched.  #KEYWORDs without a trailing 'S' match command
+line items with an 'S'.  Trailing blanks are ignored in #KEYWORDS except for
+'+' and '*'  (this enables the strings for plus and star to be matched
+by quoting them as "+ " and "** " respectively - with the quotes).
+    If no entry is found the request is logged.  Otherwise the command
+line is decoded as follows:  A file is required, if #FILE is not given
+then the current HELP file is used.  If #FILE is given but it does not exist
+the file name consisting of only the initial character is used (if it exists).
+If none of the switches are given the file is typed to the terminal.  When a
+page of text has been typed the output will be held up to enable the user to
+read it.  Output can be continued by typing <CR>.  The other options are:
+
+           #T      the file is T'D (see T COMMAND); if the file being used
+                   is the current one it is important to ensure that the
+                   T'd sequence ends with QUIT.  NOTE: that this form of HELP
+                   will produce an error if the #TO key is specified on the
+                   command line, or if HELP is callseg'd.
+
+           #H      either the file is used as another HELP FILE in which to
+                   lookup the items on the command line or it is a directory
+                   name preceeded by the character at (@) which is searched
+                   for a file of the same name as items on the command line.
+
+           #I      the file is used in the same way as #H but, unlike #H, new
+                   items are prompt for interactively.  The prompt ('? ')
+                   appears after the succeeding in-line text (starting
+                   after the last adjacent HELPCH and continuing until the
+                   next HELPCH) has been output to the terminal.
+
+           #C      the file contains code which will be CALLSEG'd (use HELP
+                   PROCEDURE CALLSEG for detailed information).  Unlike the
+                   other option this file may not be "in line".  The program
+                   within the file will be executed in the following
+                   environment:  current directory -- the currently selected
+                   help directory;  current input -- the help file from which
+                   this match was made;  current output -- the help listing
+                   file.  The file should use no globals of its own and should
+                   return with either TRUE or FALSE assigned to RESULT2.  This
+                   denotes whether or not the search for a matching key should
+                   continue or not.  The parameters to START will be the
+                   following:
+                                START(argvec, vecsize, all)
+                                                             where ARGVEC
+                   contains strings representing each of the keys to this
+                   call of HELP from offset 1 to VECSIZE and ALL is TRUE if
+                   #FULL was specified for this help file.  ARGVEC!0 contains
+                   a bit map in which (1 & (ARGVEC!0 >> n)) = 1 iff the key
+                   given by ARGVEC!(n+1) has already been matched.
+
+           #N      no file is used - nothing is done.  However the match will
+                   stop processing of the current HELP FILE as if no match had
+                   been found (unless the HELP FILE is being done with #FULL
+                   set).
+
+    If the file used is the current help file input is taken from the
+first line after the entry which does not begin with HELPCH.  For #H this
+character can be used using the #HCH key word.  Files are read (except in
+the case of #T) until a line begining with the character TERMCH is found.
+This is normally set up to be ENDSTREAMCH or HELPCH when #H is used within
+the help file.  It can be changed using the #HCH keyword.
+%
+*command
+**
+HELP command
+Form:           HELP   ",,,,,,,,,,,,,,,#HELPDIR/K,#TO/K,#TRACE/S"
+Purpose:        To produce information about its arguments.
+Author:         CGG
+Specification:
+
+   The HELP command will attempt to give help on a subject of your choice. A
+sequence of key words can follow HELP on a command line to specify the
+subject for which guidance is sought.
+
+   If no HELP can be found using the keywords supplied the user is given a
+chance to log the failure - these failures can be seen using HELP PENDING.
+Help may be provided in the future for these topics.
+
+   The keyword #TO specifies a file into which to write the HELP
+information obtained.  Normally it is not given and the information will
+appear on the terminal. Text is output to the terminal in pages.  At the
+end of each page (e.g. this one) output pauses to give the user time to
+read the written information.  Output is continued by typing <CR>.
+
+   If the search for help either takes too long or is no longer deemed
+necessary CTRL B can be used to terminate the command completely and CTRL D
+to terminate just the current activity (e.g. typing out).  If HELP has T'd a
+command file which is executing, HELP will no longer be running and CTRL C
+should be used to terminate the processing of the command file - use HELP
+BREAK HANDLING for further information.
+
+   The keyword #HELPDIR specifies a private help directory in which key
+words are looked up as file names.  If it is not specified SYS:HELP will be
+used. Files found to match key words are scanned as HELP files:  use HELP
+HELP FILES for further information.
+
+   If the #TRACE keyword is given then HELP will trace the route it takes to
+the information finally displayed.
+
+   HELP can be CALLSEG'ed from a program.  See HELP HELP COMMAND CALLSEG for
+more information about parameters etc.
+
+   If you are going to write HELP for a new command use HELP HELP STANDARDS
+for a description of the default format for such information.
+
+   If HELP gives wrong or unexpected (or no) information use HELP TROUBLE.
+   For information addressed to new TRIPOS users use HELP NOVICE.
+   For a list of what HELP knows about use HELP SUBJECTS.
+   For a list of what HELP has failed to help with use HELP PENDING. 
+   For information about a TRIPOS command use HELP COMMAND <command>.
+   For help about a users identity use HELP USER <username>.
+   For a list of elementary commands try HELP FILE COMMANDS.
+
+Examples:       HELP what does the star command do
+                HELP how do I find the time
+                HELP tell me about libraries
+                HELP what on the earth is Cambridge Hex
+                HELP subjects
+                HELP
+                HELP where is the bcpl spec #TRACE
+                HELP all about lked #TO lked-spec
+                HELP wombat #HELPDIR=zoodir #TO "LP:Zoo Info"
+                HELP a b c d e f #HELPDIR=:user.my-alphabet
+
+

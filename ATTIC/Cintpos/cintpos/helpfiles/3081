@@ -1,0 +1,43 @@
+*to #H cs
+*send #H cs
+*give #H cs
+*from #H fromphx
+*get #H fromphx
+*take #H fromphx
+*receive #H fromphx
+*status #H cs
+*submit #H cs
+*submission #H cs
+*job #I 3081
+For information about how to SUBMIT a 3081 job type SUBMIT,  for information
+about how to find the STATUS of a 3081 job type STATUS.  Type <CR> to exit
+HELP.
+*phoenix
+*pheonix
+*connect
+*log
+*logon
+*use
+*star
+*rats
+In order to log onto the 3081 from TRIPOS use the STAR command (use HELP
+COMMAND STAR for more information).  e.g.:
+           STAR PHOENIX NOAUTH
+*command
+The following commands are available to use the 3081:
+         CS          -  has various sub-commands for file transfer, etc.
+         FROMPHX     -  take a file from the 3081
+For further information about any of these use HELP COMMAND <command>.
+*doc #H documentation
+*documentation #H documentation
+*filespace #H documentation
+*space #H documentation
+*owner #H documentation
+** #I 3081
+For a list of TRIPOS 3081 commmands (for file transfer etc.) type COMMANDS.
+For information about how to log on to the 3081 from TRIPOS type CONNECT.
+For information about the documentation available in the TRIPOS
+file space on the 3081 type DOCUMENTATION.
+Type <CR> to exit HELP.
+
+

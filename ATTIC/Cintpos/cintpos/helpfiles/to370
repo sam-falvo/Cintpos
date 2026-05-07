@@ -1,0 +1,45 @@
+*pds #H to370pds
+*callseg #N
+*command
+**
+TO370 command
+Form:           TO370  "FROM/A,TO/A,USER/A,PW/A,PROJECT/K,*
+                       *ROUTE/K,COMP/K,LIMSTORE/K,JD/K"
+Purpose:        To send TRIPOS files to the IBM370
+Author:         TJK
+Warning:        *** The CS command is a preferred alternative ***
+Specification:
+        This command transfers files from TRIPOS to the IBM370. The syntax is
+    similar to FROM370:
+
+        to370 FROM <file> TO <370file> USER <uid> PW <pw>
+
+    where the keywords FROM, TO, USER and PW are all optional.
+    The file is sent by constructing a job, which is sent to the 370 in
+    the same way as any normal job is submitted. A line will be printed at
+    the end of the job submission indicating failure, or the priority and
+    turnround if it worked. Occasionally further messages may be given such
+    as when the next dedicated period is scheduled.
+        A number of other parameters may be given, but defaults are provided
+    if they are not. These parameters are as follows:
+            PROJECT     Project number, default *
+            ROUTE       Route, default RECEPTION
+            COMP        Time limit, default 5 seconds
+            LIMSTORE    Store requested, default 20K
+            JD          Default SAVE.
+        The JD keyword may be used to set other Job Description options
+    such as TURNROUND, etc.
+
+    If the transfer succeeds, then the job output is rerouted to dummy
+    and the job released, so the job output is kept only if something
+    goes wrong.
+Example:
+
+    TO370 fred tjk1.fred tjk1 PW secret JD "Turnround overnight"
+
+        will send the TRIPOS file "fred" to the 370 as "tjk1.fred", using
+        userid tjk1 and password as shown. The job has requested turnround
+        of "overnight".  Note the use of quotation marks around the value quoted
+        as argument to JD, because the value contains a space.
+
+

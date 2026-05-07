@@ -1,0 +1,21 @@
+*command
+**
+GIVEFILE command
+Form:           GIVEFILE   "FROM/A,TO=MACHINE,AS/A,BINARY/S,NOTAUTH/S"
+Purpose:        To send a file to another machine.
+Author:         BJK
+Specification:
+        FROM    - the name of the file to be transferred
+        TO      - the name of the machine to which the file is to be transferred
+        AS      - the name of the file on machine <TO> in which to put the
+                  transferred file
+        BINARY  - this must be quoted if the file to be transferred is not text
+        NOTAUTH - normally AUTHBSP: will be used to make the transfer, this
+                  will include proof of the user's identity at the beginning of
+                  transfer so that full access may be allowed to the user's file
+                  space on the remote machine.  Quoting this switch will use
+                  BSP: for the transfer which does not include the user's
+                  identity.  For use with "untrusted" remote machines or with
+                  those that have not implemented AUTHBSP.
+
+

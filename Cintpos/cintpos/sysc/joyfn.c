@@ -12,6 +12,7 @@ Initial implementation
 This module defines the following functions:
 
 fd :=joyopen()
+            fd is a small nonnegative integer or -1.
             This is only called from dosys in cintsys.c or cintpos.c.
             It opens the joystick device /dev/input/js0 (for Linux)
             and initialises the all the joystick variables in the
@@ -70,7 +71,12 @@ The application program typically repeated reads joybuttons and the axis values
 calling joyclear each time.
 */
 
+#ifdef CINTPOSyes
 #include "cintpos.h"
+#else
+#include "cintsys.h"
+#endif
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
@@ -170,8 +176,8 @@ BCPLWORD joyfn(BCPLWORD *a, BCPLWORD *g, BCPLWORD *W) {
 
   switch(a[0]) {
   default:
-    printf("joyfn: Unknown op: fno=%"FormD" a1=%"FormD" a2=%"FormD" a3=%"FormD" a4=%"FormD"\n",
-            a[0], a[1], a[2], a[3], a[4]);
+    printf("joyfn: Unknown op: fno=%ld a1=%ld a2=%ld a3=%ld a4=%ld\n",
+	   (long)a[0], (long)a[1], (long)a[2], (long)a[3], (long)a[4]);
     return 0;
 
   case joy_avail: // Test whether JSAavail is set

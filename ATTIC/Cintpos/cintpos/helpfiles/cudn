@@ -1,0 +1,42 @@
+*udn
+**
+CUDN (Cambridge University Data Network)
+
+LOGGING ON
+
+To log on to a Data Ring machine via the CUDN, respond to the "Logon:"
+prompt on a CUDN terminal with "TO RING/name" where "name" is the name
+you would have typed after the Terminal Concentrator C command. For example:
+
+Logon: TO RING/S-TRIPOS
+
+TERMINAL USER INTERFACE
+
+The character DLE (CTRL/P) provides a 'network escape'; i.e. sequences DLE
+followed by a character provide various control functions.  For example:
+
+  DLE A enters CUDN command mode
+  DLE B is the alternative to BREAK
+  DLE C at present clears the connection
+  DLE D is the alternative to RUBOUT (DEL) to delete the last character
+  DLE E turns echo off and on.
+  DLE T causes the input line to be transmitted without adding a character
+  DLE control-char enters the control character as data.
+
+See HELP CONTROL CHARS for information on how to send control characters to
+either the TRIPOS terminal handler, or to the final program.
+
+Note that the CUDN always works in line mode for input, so it is very tedious
+to use programs which require single-character input (e.g. screen editors,
+DEBUG68) via it.
+
+Note also that the CUDN allows only one connection per terminal. One way round
+this is to connect to TRIPOS, set up several CLIs, and use the STAR command
+to set up further connections.
+
+CAMBRIDGE RING
+
+For information about the Cambridge Ring data network at Cambridge try
+HELP CAMBRIDGE RING.
+
+

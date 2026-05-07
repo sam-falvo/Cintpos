@@ -1,16 +1,44 @@
 /*
-** This is a 32 bit CINTCODE interpreter written in C designed
-** to run on most machines with Unix-like C libraries.
-**
-** (c) Copyright:  Martin Richards  31 Dec 2018
-**
+This is the main program of the BCPL Cintpos system written in C
+and designed to run on most machines with Unix-like C libraries. It
+is designed to work for both 32 and 64 bit BCPL. It is currently
+being modified to be the main program for both cintsys and cintpos
+with the differences being controlled by the macros CINTSYSyes and
+CINTPOSyes.
+
+(c) Copyright:  Martin Richards  07 Mar 2021
 */
 
-// Just testing whether this sort of comment is available.
+// Just testing whether this sort of comment is available. From now
+// on we will assume it is available.
 
 /*
-29/10/18
-Made changes to make Cintpos more compatible with Cintsys.
+History
+
+04/11/2019
+Tried to make the source of cintsys and cintpos identical controlled
+bt whether CINTPOSyes is defined. This change is still being tested.
+
+03/09/2019
+Making changes to cause Cintpos to run with 32 and 64 bit BCPL on both 32 and
+64 bit machines. This requires changes in BCPLPATH, BCPL64PATH, POSPATH and
+POS64PATH and most of the compilation command commands such as bc, bc32, bc64,
+bs, bs32, bs64, etc. The values of POSPATH and POS64PATH will be different
+specifying either cin/ or cin64/, but POSROOT and POS64ROOT will typically
+specify the same directory. Similarly POSHDRS and POS64HDRS will be the same,
+as will POSSCRPITS and POS64SCRIPTS. If the BCPL compiler is generating 64 bit
+Cintcode and the TO field starts with cin/ it will be automatically replaced
+by cin64/. This requires a minor change to com/bcplfe.b.
+
+When using cintsys or cintsys64 to compile BCPL programs for cintpos or
+cintpos64 it is necessary to specify PATHHDRS or POS64HDRS as the headers
+environment variable when invoking the compiler. It will otherwise mistakenly
+use BCPLHDRS or BCPL64HDRS.  The compilation scripts in BCPL/cintcode/ and
+Cintpos/cintpos/ specify different headers. Currently libhdr.h and bcplfecg.h
+are the same for both 32 and 64 bit BCPL and for both cintsys and cintpos.
+
+30/03/16
+Added rootnode field Rtn_system. =1 for Cintsys, =2 for Cintpos, =0 otherwise.
 
 03/03/14
 The Cintcode memory must have read, write and execute permissions.  Allocating
@@ -206,14 +234,23 @@ pending interrupts can be dealt with.
 */
 
 /* cintsys.h and cintpos.h contains machine/OS dependent #defines  */
+
+#ifdef CINTPOSyes
 #include "cintpos.h"
+#endif
+
+#ifdef CINTSYSyes
+#include "cintsys.h"
+#endif
+
 #include <math.h>
 #include "time.h"
 
 /* Function defined in callc.c  */
 extern BCPLWORD callc(BCPLWORD *args, BCPLWORD *g);
 
-// Declared in devices.c
+#ifdef CINTPOSyes
+// The following two vectors are declared in devices.c
 extern BCPLWORD irqfifov[];         /* A fifo of interrupting devid's */
 extern BCPLWORD irqfifop, irqfifoq; /* circular queue from p to q-1   */
 
@@ -237,112 +274,146 @@ extern BCPLWORD initdevices(void);
 extern BCPLWORD devcommand(BCPLWORD dcb, BCPLWORD com, BCPLWORD arg);
 
 #ifndef _POSIX_THREADS
-  PRINTF("_POSIX_THREADS is not defined\n");
-  PRINTF("Cintpos requires Posix Threads to run\n");
+  printf("_POSIX_THREADS is not defined\n");
+  printf("Cintpos requires Posix Threads to run\n");
+#endif
+
 #endif
 
 BCPLWORD trcount = -1; // trpush initially disabled
 BCPLWORD trvec[4096];  // 4096 elements in the trpush circular buffer
 
-/* Low level trace functions */
+// Low level trace functions
 
 void trpush(BCPLWORD val);
 BCPLWORD settrcount(BCPLWORD count); // Set trcount and returns its old value
-BCPLWORD gettrval(BCPLWORD count); // Get the specified trace value
+BCPLWORD gettrval(BCPLWORD count);   // Get the specified trace value
 BCPLWORD incdcount(BCPLWORD n);
 
-/* Functions defined in kblib.c  */
+// Functions for keyboard input defined in kblib.c
 extern int Readch(void);
 extern int pollReadch(void);
 extern int init_keyb(void);
 extern int close_keyb(void);
 extern int intflag(void);
 
-/* Function defined in soundfn.c */
+// Function defined in soundfn.c
+// This file is included if SOUND is defined
 BCPLWORD soundfn(BCPLWORD *args, BCPLWORD *g);
 
 /* Function defined in joyfn.c */
-BCPLWORD joyfn(BCPLWORD *args, BCPLWORD *g, BCPLWORD *W);
+extern BCPLWORD joyfn(BCPLWORD *args, BCPLWORD *g, BCPLWORD *W);
 
 /* Function defined in sdlfn.c */
-BCPLWORD sdlfn(BCPLWORD *args, BCPLWORD *g, BCPLWORD *W);
+extern BCPLWORD sdlfn(BCPLWORD *args, BCPLWORD *g, BCPLWORD *W);
 
 /* Function defined in glfn.c */
-BCPLWORD glfn(BCPLWORD *args, BCPLWORD *g, BCPLWORD *W);
+extern BCPLWORD glfn(BCPLWORD *args, BCPLWORD *g, BCPLWORD *W);
 
 /* Function defined in extfn.c */
-BCPLWORD extfn(BCPLWORD *args, BCPLWORD *g, BCPLWORD *W);
+extern BCPLWORD extfn(BCPLWORD *args, BCPLWORD *g, BCPLWORD *W);
 
-/* Functions defined in rastlib.c (or nullrastlib.c)  */
+// The function setraster is defined in rasterp.o, but in
+// fasterp.o there is only a dummy definition.
 extern BCPLWORD setraster(BCPLWORD n, BCPLWORD val);
 
-/* Function defined in graphics.c
-   Only available under Windows CE -- Now obsolete.
-*/
-#ifdef forWinCE
-extern BCPLWORD sysGraphics(BCPLWORD p);
-#else
-BCPLWORD sysGraphics(BCPLWORD p) { return 0; } /* Dummy definition */
-#endif
+// sysgraphics is obsolete
+BCPLWORD sysGraphics(BCPLWORD p) { return 0; } // Dummy definition
 
 #define Stackupb     500L
-#define Globupb     1000L
 
-BCPLWORD *W;  /* This will hold the pointer to the Cintcode memory */
+// Globupb is now a variable that can be set using the -g option.
+// Its default value is now 2000
+
+BCPLWORD *W;    // This will hold the pointer to the Cintcode memory
+
+BCPLWORD sysp;  // Value of p when executing instruction SYS
+BCPLWORD sysg;  // Value of g when executing instruction SYS
+BCPLWORD sysst; // Value of st when executing instruction SYS
+// These are stored in the rootnode when a dump of the Cintcode
+// memory is made. This help the analysis of memory dumps.
 
 BCPLWORD *lastWp;    /* Latest setting of Wp  */
 BCPLWORD *lastWg;    /* Latest setting of Wg  */
 BCPLWORD  lastst;    /* Latest setting of st  */
 
-BCPLWORD rootvarstr = 0;
-BCPLWORD pathvarstr = 0;
-BCPLWORD hdrsvarstr = 0;
+BCPLWORD rootvarstr    = 0;
+BCPLWORD pathvarstr    = 0;
+BCPLWORD hdrsvarstr    = 0;
 BCPLWORD scriptsvarstr = 0;
 
-BCPLWORD prefixstr = 0; /* Position in the Cintcode memory of the filename */
-                        /* prefix. The prefixstr is prepended to all non */
-                        /* absolute file names. prefixstr is set by */
-                        /* sys(Sys_setprefix, str) and read by */
-                        /* sys(Sys_getprefix). */
-char *prefixbp;         /* Address of byte holding the length of the prefix */
+BCPLWORD prefixstr = 0; // Position in the Cintcode memory of the filename
+                        // prefix. The prefixstr is prepended to all non
+                        // absolute file names. prefixstr is set by
+                        // sys(Sys_setprefix, str) and read by
+                        // sys(Sys_getprefix).
+char *prefixbp;         // Address of byte holding the length of the prefix
 
 BCPLWORD stackbase;
 BCPLWORD globbase;
 BCPLWORD result2;
 
-static char chbuf1[256]; /* These buffers are used to hold filenames */
+static char chbuf1[256];
 static char chbuf2[256];
 static char chbuf3[256];
 static char chbuf4[256];
 
 #ifdef TARGET64
 
-static char* rootvar    = "POS64ROOT";    /* The default setting */
-static char* pathvar    = "POS64PATH";    /* The default setting */
-static char* hdrsvar    = "POS64HDRS";    /* The default setting */
-static char* scriptsvar = "POS64SCRIPTS"; /* The default setting */
+#ifdef CINTSYSyes
+static char* rootvar    = "BCPL64ROOT";    // The default setting
+static char* pathvar    = "BCPL64PATH";    // The default setting
+static char* hdrsvar    = "BCPL64HDRS";    // The default setting
+static char* scriptsvar = "BCPL64SCRIPTS"; // The default setting
+#endif
+
+#ifdef CINTPOSyes
+static char* rootvar    = "POS64ROOT";    // The default setting
+static char* pathvar    = "POS64PATH";    // The default setting
+static char* hdrsvar    = "POS64HDRS";    // The default setting
+static char* scriptsvar = "POS64SCRIPTS"; // The default setting
+#endif
 
 #else
 
-static char* rootvar    = "POSROOT";    /* The default setting */
-static char* pathvar    = "POSPATH";    /* The default setting */
-static char* hdrsvar    = "POSHDRS";    /* The default setting */
-static char* scriptsvar = "POSSCRIPTS"; /* The default setting */
+#ifdef CINTSYSyes
+static const char* rootvar    = "BCPLROOT";    // The default setting
+static const char* pathvar    = "BCPLPATH";    // The default setting
+static const char* hdrsvar    = "BCPLHDRS";    // The default setting
+static const char* scriptsvar = "BCPLSCRIPTS"; // The default setting
+#endif
+
+#ifdef CINTPOSyes
+static char* rootvar    = "POSROOT";    // The default setting
+static char* pathvar    = "POSPATH";    // The default setting
+static char* hdrsvar    = "POSHDRS";    // The default setting
+static char* scriptsvar = "POSSCRIPTS"; // The default setting
+#endif
 
 #endif
 
 int tracing = 0;
+int settracing = 0; // If >0 it is copied to tracing just before
+                    // calling interpret in case Sys_interpret:
+
 int filetracing = 0;
 int dumpflag = 0;
 int slowflag = 0;   /* If non zero always use the slow interpreter */
 int boottrace = 0;
 
 BCPLWORD memupb;
+BCPLWORD Globupb=2000;  // MR 28/12/2019 used to be 1000
+                        // also made a similar change in boot.b
 BCPLWORD tallyupb, tallyvec, *tallyv, tallylim=0;
 BCPLWORD vecstatsvupb, vecstatsvec, *vecstatsv;    /* Stats of getvec/freevec */
 BCPLWORD dcountv;    /* To hold the BCPL pointer to the debug count vector */
 
 BCPLWORD taskname[4];         /* Used in getvec for debugging */
+
+// Functions defined in this file (cintsys.c).
+
+void copyaddrB2C(void*from, void*to); // Used for saving and restoring
+void copyaddrC2B(void*from, void*to); // host machine addresses.
 
 BCPLWORD concatsegs(BCPLWORD seg1, BCPLWORD seg2);
 BCPLWORD loadsysseg(char *name);
@@ -371,8 +442,12 @@ BCPLWORD timestamp(BCPLWORD *v);
 void msecdelay(unsigned int delaymsecs);
 
 // Interpreter implemented in assembly language.
+// or compiled from cintterp.c when FASTyes or RASTERINGyes
+// is defined.
 extern int cintasm(BCPLWORD regs, BCPLWORD *mem);
-// Interpreter implemented in C.
+
+// The standard interpreter implemented in C compiled
+// without FASTyes or RASTERINGyes being defined.
 extern int interpret(BCPLWORD regs, BCPLWORD *mem);
 
 #define Globword       0x8F8F0000L
@@ -396,20 +471,95 @@ extern int interpret(BCPLWORD regs, BCPLWORD *mem);
 #define T_bhunk   3000L
 #define T_bhunk64 4000L
 
+BCPLFLOAT N2F(BCPLWORD x) {
+  union {
+    BCPLWORD i;   // Members i and f are either
+    BCPLFLOAT f;  // both 32 or 64 bit values.
+  } u;
+  u.i = x;
+  return u.f;
+}
+
+BCPLWORD F2N(BCPLFLOAT x) {
+  union {
+    BCPLWORD i;   // Members i and f are either
+    BCPLFLOAT f;  // both 32 or 64 bit values.
+  } u;
+  u.f = x;
+  return u.i;
+}
+
+void copyaddrC2B(void*from, void*to) {
+  // This function copies a machine address from a C program
+  // to one or two BCPL words in a BCPL programs.  
+#ifdef CURRENT64
+#ifdef TARGET64
+  // 64 bit machine address
+  // 64 bit BCPL word
+  // so copy one 64 bit value
+  ((BCPLINT64*)to)[0] = ((BCPLINT64*)from)[0];
+#else
+  // 64 bit machine address
+  // 32 bit BCPL word
+  // so copy two 32 bit values
+  ((BCPLINT32*)to)[0] = ((BCPLINT32*)from)[0];
+  ((BCPLINT32*)to)[1] = ((BCPLINT32*)from)[1];
+#endif
+#else
+#ifdef TARGET64
+  // 32 bit machine address
+  // 64 bit BCPL word
+  // so copy the 32 bit machine address extended to 64 bits
+  ((BCPLINT64*)to)[0] = (BCPLINT64)(((BCPLINT32*)from)[0]);
+#else
+  // 32 bit machine address
+  // 32 bit BCPL word
+  // so copy one 32 bit value
+  ((BCPLINT32*)to)[0] = ((BCPLINT32*)from)[0];
+#endif
+#endif
+}
+
+void copyaddrB2C(void*from, void*to) {
+  // This function copies data from one or two BCPL to
+  // a C variable holding am machine address pointed to
+  // by the second argument.
+#ifdef CURRENT64
+#ifdef TARGET64
+  // 64 bit machine address
+  // 64 bit BCPL word
+  // so copy one 64 bit value
+  ((BCPLINT64*)to)[0] = ((BCPLINT64*)from)[0];
+#else
+  // 64 bit machine address
+  // 32 bit BCPL word
+  // so copy two 32 bit values
+  ((BCPLINT32*)to)[0] = ((BCPLINT32*)from)[0];
+  ((BCPLINT32*)to)[1] = ((BCPLINT32*)from)[1];
+#endif
+#else
+  // 32 bit machine address
+  // 32 or 64 bit BCPL word
+  // so copy a 32 bit value to the C variable
+  ((BCPLINT32*)to)[0] = ((BCPLINT32*)from)[0];
+#endif
+}
+
 int badimplementation(void)
 { int bad = 0;
   int A='A';
   BCPLCHAR c = (BCPLCHAR)255;
   if(sizeof(BCPLWORD)!=(1<<B2Wsh)) {
-       PRINTF("Size of a BCPL word is not %d\n", 1<<B2Wsh);
+    printf("Size of a BCPL word is %ld but 1<<B2Wsh is %d\n",
+	    sizeof(BCPLWORD), 1<<B2Wsh);
        bad = 1;
   }
   if(A!=65) {
-       PRINTF("Character set is not ASCII\n");
+       printf("Character set is not ASCII\n");
        bad = 1;
   }
   if (c/-1 != 1) {
-    PRINTF("There is a problem with BCPLCHAR\n");
+    printf("There is a problem with BCPLCHAR\n");
     bad = 1;
   }
   /* Test vmsfname */
@@ -424,64 +574,44 @@ int badimplementation(void)
   return bad;
 }
 
-/* The following four functions are necessary since the type FILE*
-** may be too large for a BCPL word on some machines (such as the
-** DEC Alpha). As of 26/8/2018 the fpvec is now always used.
+/*
+** The following systematic changes were made on 6 Sep 2019.
 **
-** We allow a maximum of 100 files open at the same time.
+** Whenever a BCPL program needs to hold a host machine address it
+** allocates two consecutive BCPL words and uses a BCPL pointer
+** to the first. On 32 bit BCPL running on a 64 bit architecture
+** both words will be used. Otherwise only the first is needed.
+** In sys calls such a machine addresses will always be passed
+** as a BCPL pointer to the first word of the pair. The C code will
+** assume that the pair is BCPL word aligned, not necessarily 64 bit
+** aligned.
+**
+** This mechanism is used for quantities of type FILE* eliminating
+** the need for the fpvec mechanism. It is also used when
+** handling machine address interfaces with SDL, OpenGL and
+** Pthread operations.
+**
+** The C function copyaddrC2B(void*from, void*to) is used to
+** copy 32 or 64 bit C address to one or two BCPL words.
+
+** The C function copyaddrB2C(void*from, void*to) is used to
+** copy 32 or 64 bit value held in one or two BCPL word to
+** a C address pointed to by the second argument.
 */
-
-#define Fnolim 101
-
-FILEPT fpvec[Fnolim]; /* This holds the mapping from file number
-		      ** to corresponding values of type FILE*.
-                      */
-
-int initfpvec(void)
-{ BCPLWORD i;
-  for(i=1;i<Fnolim;i++) fpvec[i]=NULL;
-  return 0;
-}
-
-BCPLWORD newfno(FILEPT fp)
-{ int i;
-  for(i=1;i<Fnolim;i++) if(fpvec[i]==NULL){
-    fpvec[i]=fp;
-    /* printf("newfn: i=%d\n", i); */
-    return WD i;
-  }
-  return WD 0;
-}
-
-BCPLWORD freefno(BCPLWORD fno)
-{ if(0<fno && fno<Fnolim){
-    fpvec[fno]=NULL;
-    /* printf("freefno: i=%d\n", fno); */
-    return WD 1;
-  }
-  return WD 0;
-}
-
-FILEPT findfp(BCPLWORD fno)
-{ if(0<fno && fno<Fnolim) {
-    /* printf("findfp: i=%d\n", fno); */
-    return fpvec[fno];
-  }
-  return WD 0;
-}
 
 int mainpid=0;
 
-extern BCPLWORD exitflag; /* Set to one on receiving SIGINT or SIGGEGV */
+extern BCPLWORD exitflag; /* Set to 1 on receiving SIGINT or SIGGEGV */
 
-#ifndef forWinCE
 void (*old_inthandler)(int);
 void (*old_segvhandler)(int);
 
 void inthandler(int sig)
 { 
-  PRINTF("\nSIGINT received\n");
+  printf("\nSIGINT received\n");
   old_inthandler = signal(SIGINT, old_inthandler);
+
+#ifdef CINTPOSyes
   icount = 0;
   kcount = 0;
 
@@ -492,21 +622,34 @@ void inthandler(int sig)
   }
 
   // A second SIGINT received before sadebug entered.
-  PRINTF("\nSecond SIGINT received\n");
-
+  printf("\nSecond SIGINT received\n");
+#endif
+  
   close_keyb();
 
 #ifdef TARGET64
-  PRINTF("\nLeaving Cintpos64\n");
+
+#ifdef CINTPOSyes
+  printf("\nLeaving Cintpos64\n");
 #else
-  PRINTF("\nLeaving Cintpos\n");
+  printf("\nLeaving Cintsys64\n");
+#endif
+
+#else
+
+  #ifdef CINTPOSyes
+  printf("\nLeaving Cintpos\n");
+#else
+  printf("\nLeaving Cintsys\n");
+#endif
+
 #endif
 
   if(W[rootnode+Rtn_dumpflag])
-  { W[rootnode+Rtn_lastp] = lastWp-W;
-    W[rootnode+Rtn_lastg] = lastWg-W;
+  { W[rootnode+Rtn_sysp] = lastWp-W;
+    W[rootnode+Rtn_sysg] = lastWg-W;
     dumpmem(W, memupb, 1);
-    PRINTF("\nMemory dumped to DUMP.mem, context=1\n");
+    printf("\nMemory dumped to DUMP.mem, context=1\n");
   }
   /*if(mainpid) { kill(mainpid, SIGKILL); mainpid = 0; } */
   exit(0);
@@ -514,30 +657,41 @@ void inthandler(int sig)
 
 void segvhandler(int sig)
 { 
-  PRINTF("\nSIGSEGV received\n");
+  printf("\nSIGSEGV received\n");
   old_segvhandler  = signal(SIGSEGV,  old_segvhandler);
 
   close_keyb();
 
 #ifdef TARGET64
-  PRINTF("\nLeaving Cintpos64\n");
+
+#ifdef CINTPOSyes
+  printf("\nLeaving Cintpos64\n");
 #else
-  PRINTF("\nLeaving Cinpos\n");
+  printf("\nLeaving Cintsys64\n");
+#endif
+
+#else
+
+#ifdef CINTPOSyes
+  printf("\nLeaving Cintpos\n");
+#else
+  printf("\nLeaving Cintsys\n");
+#endif
+
 #endif
 
   if(W[rootnode+Rtn_dumpflag])
-  { W[rootnode+Rtn_lastp] = lastWp-W;
-    W[rootnode+Rtn_lastg] = lastWg-W;
+  { W[rootnode+Rtn_sysp] = lastWp-W;
+    W[rootnode+Rtn_sysg] = lastWg-W;
     dumpmem(W, memupb, 2);
-    PRINTF("\nMemory dumped to DUMP.mem, context=2\n");
+    printf("\nMemory dumped to DUMP.mem, context=2\n");
   }
   /*if(mainpid) { kill(mainpid, SIGKILL); mainpid = 0; } */
   exit(0);
 }
-#endif
 
 char *inbuf = NULL;	/* Buffer for input to interpreter */
-int reattach_stdin = 0;	/* =FALSE, if =true switch to stdin after inbuf is empty */
+int reattach_stdin = 0;	/* If =true switch to stdin after inbuf is empty */
 
 /* Replacement for Readch() when taking stdin from a command line parameter */
 int inbuf_next()
@@ -594,11 +748,12 @@ void prepend_stdin(char *leading_string,
   }
   strcat(inbuf, "\n"); /* Simulate interactive end of line */
 
-  /*PRINTFS("\nPrepended string:\n%s\n", inbuf); */
+  /*printf("\nPrepended string:\n%s\n", inbuf); */
 }
 
 /* The MC package printf function */
 BCPLWORD mcprf(char *format, BCPLWORD a) {
+  // This probably has a 32/64 bit problem
   printf(format, a);
   return 0;
 }
@@ -610,52 +765,50 @@ int main(int argc, char* argv[])
 
   for (i=0; i<4; i++) taskname[i] = 0;
 
-#ifdef forWinCE
-  argc = 0;     /* temporary fiddle for Windows CE */
-  memupb   = 2000000L;
-  tallyupb =  200000L;
-#else
-  memupb   = 4000000L;
-  tallyupb = 1000000L;
-#endif
+  memupb   =  8000000L; //4000000L;
+  tallyupb =  2000000L; // Default upb of tallyv
 
   vecstatsvupb = 20000L;
 
-#ifndef forWinCE
   mainpid = getpid();
-#endif
 
-  /*for (i=0; i<argc; i++) printf("%2"FormD": %s\n", i, argv[i]); */
+  //for (i=0; i<argc; i++) printf("%2lld: %s\n", LL i, argv[i]);
 
+  // Decode the command arguments
   for (i=1; i<argc; i++) {
 
     if (strcmp(argv[i], "-m")==0) {
-      memupb   = atoi(argv[++i]);
+      memupb   = atoi(argv[++i]);    // Memory upb in words
+      continue;
+    }
+
+    if (strcmp(argv[i], "-g")==0) {
+      Globupb   = atoi(argv[++i]);   // Default global vector upb
       continue;
     }
 
     if (strcmp(argv[i], "-t")==0) {
-      tallyupb = atoi(argv[++i]);
+      tallyupb = atoi(argv[++i]);    // tallyv upb
       continue;
     }
 
     if (strcmp(argv[i], "-cin")==0) {
-      pathvar = argv[++i];
+      pathvar = argv[++i];  // BCPLPATH variable name
       continue;
     }
 
     if (strcmp(argv[i], "-f")==0) {
-      filetracing = 1;
+      filetracing = 1;      // Trace use of environment variables
       continue;
     }
 
     if (strcmp(argv[i], "-d")==0) {
-      dumpflag = 1;
+      dumpflag = 1;         // Set the dump flag
       continue;
     }
 
     if (strcmp(argv[i], "-slow")==0) {
-      slowflag = 1;
+      slowflag = 1;         // For use of the slow interpreter
       continue;
     }
 
@@ -688,7 +841,7 @@ int main(int argc, char* argv[])
     }
 
     if (strcmp(argv[i], "--")== 0) {
-      /* Like -c but reattach standard input after exhausting command */
+      /* Like -c but re-attach standard input after exhausting command */
       /* line characters. */
       reattach_stdin = 1; /* TRUE */
     }
@@ -711,40 +864,43 @@ int main(int argc, char* argv[])
 
     if (strcmp(argv[i], "-vv")== 0) { boottrace=2; continue; }
 
-    if (strcmp(argv[i], "-h")!=0) PRINTF("Unknown command option: %s\n", argv[i]);
+    if (strcmp(argv[i], "-h")!=0) printf("Unknown command option: %s\n",
+					 argv[i]);
 
-    PRINTF("\nValid arguments:\n\n") ;
-    PRINTF("-h            Output this help information\n");
-    PRINTF("-m n          Set Cintcode memory size to n words\n");
-    PRINTF("-t n          Set Tally vector size to n words\n");
-    PRINTF("-c args       "
-           "Pass args to interpreter as standard input (executable bytecode)\n");
-    PRINTF("-- args       "
-           "Pass args to interpreter standard input, then re-attach stdin\n");
-    PRINTF("-s file args  "
-           "Invoke command interpreter on file with args (executable scripts)\n");
-    PRINTF("-cin name     Set the pathvar environment variable name\n");
-    PRINTF("-f            Trace the use of environment variables in pathinput\n");
-    PRINTF("-v            Trace the bootstrapping process\n");
-    PRINTF("-vv           As -v, but also include some Cincode level tracing\n");
+    printf("\nValid arguments:\n\n") ;
+    printf("-h            Output this help information\n");
+    printf("-m n          Set Cintcode memory size to n words\n");
+    printf("-t n          Set Tally vector size to n words\n");
+    printf("-g n          Set the default global vector upb to n\n");
+    printf("-c args       "
+           "Pass args to interpreter as CLI input\n");
+    printf("-- args       "
+           "Pass args to interpreter as CLI input, then re-attach stdin\n");
+    printf("-s file args  "
+           "Invoke the interpreter with this file as CLI input\n");
+    printf("-cin name     Set the pathvar environment variable name\n");
+    printf("-f            Trace use of environment variables in pathinput\n");
+    printf("-v            Trace the bootstrapping process\n");
+    printf("-vv           As -v, but include some Cincode level tracing\n");
 
-    PRINTF("-d            Cause a dump of the Cintcode memory to DUMP.mem\n");
-    PRINTF("              if a fault/error is encountered\n");
+    printf("-d            Cause a dump of the Cintcode memory to DUMP.mem\n");
+    printf("              if a fault/error is encountered\n");
 
-    PRINTF("-slow         Force the slow interpreter to always be selected\n");
+    printf("-slow         Force the slow interpreter to always be selected\n");
 
     return 0;
   }
 
-  if (boottrace>0) PRINTFD("Boot tracing level is set to %d\n", boottrace);
+  if (boottrace>0) printf("Boot tracing level is set to %d\n", boottrace);
 
-  if(boottrace>0) {
-    printf("\nThe following constants are defined:\n");
-#ifdef _POSIX_THREADS
-    printf("  _POSIX_THREADS\n");
-#endif
+#ifdef CINTPOSyes
+
+  //#ifdef _POSIX_THREADS
+  //  printf("  _POSIX_THREADS is defined\n");
+  //#endif
+
 #ifdef _POSIX_THREAD_PRIORITY_SCHEDULING
-    printf("  _POSIX_THREAD_PRIORITY_SCHEDULING\n");
+    //printf("  _POSIX_THREAD_PRIORITY_SCHEDULING is defined\n");
     { pthread_t self = pthread_self();
       pthread_attr_t thread_attr;
       int thread_policy;
@@ -778,18 +934,18 @@ int main(int argc, char* argv[])
       if(status != 0) {
 	printf("getschedparam failed\n");
       }
-      printf("Interpreter thread policy is: %s\n",
-	     (thread_policy==SCHED_FIFO ? "FIFO" :
-              thread_policy==SCHED_RR ? "RR" :
-              thread_policy==SCHED_OTHER ? "OTHER" : "Unknown"));
-      printf("Interpreter priority is: %d\n", thread_param.sched_priority);
+      //printf("Interpreter thread policy is: %s\n",
+      //     (thread_policy==SCHED_FIFO ? "FIFO" :
+      //      thread_policy==SCHED_RR ? "RR" :
+      //      thread_policy==SCHED_OTHER ? "OTHER" : "Unknown"));
+      //printf("Interpreter priority is: %d\n", thread_param.sched_priority);
     }
-      
 #endif
-  }
+
+#endif
 
   if (memupb<50000 || tallyupb<0) {
-    PRINTF("Bad -m or -t size\n");
+    printf("Bad -m or -t size\n");
     return 10;
   }
 
@@ -798,12 +954,25 @@ int main(int argc, char* argv[])
     int litend = 0;
 
 #ifdef TARGET64
-    printf("\ncintpos64 31 Dec 2018  15:40\n\n");
+
+#ifdef CINTPOSyes
+    printf("\ncintpos64 04 Nov 2019  10:26\n\n");
 #else
-    printf("\ncintpos 31 Dec 2018  15:40\n\n");
+    printf("\ncintsys64 04 Nov 2019  10:26\n\n");
 #endif
 
-    printf("bytestr=\"%s\" whose first word is %8"FormX"\n", bytestr, *(PT bytestr));
+#else
+
+#ifdef CINTPOSyes
+    printf("\ncintpos 04 Nov 2019  10:26\n\n");
+#else
+    printf("\ncintsys 04 Nov 2019  10:26\n\n");
+#endif
+
+#endif
+
+    printf("bytestr=\"%s\" whose first word is %8llx\n",
+	   bytestr, LL *(PT bytestr));
     if((((BCPLWORD*)bytestr)[0]&255)=='A') litend = 1;
 
 #ifdef BIGENDER
@@ -832,16 +1001,12 @@ int main(int argc, char* argv[])
     printf("sizeof(long)       = %d\n", (int)sizeof(long));
     printf("sizeof(BCPLWORD)   = %d\n", (int)sizeof(BCPLWORD));
     printf("sizeof(BCPLWORD *) = %d\n", (int)sizeof(BCPLWORD *));
-    printf("FormD is \"%s\"\n", FormD);
-    printf("FormX is \"%s\"\n", FormX);
   }
 
   if (badimplementation())
-  { PRINTF("This implementation of C is not suitable\n");
+  { printf("This implementation of C is not suitable\n");
     return 0;
   }
-
-  initfpvec();
 
   /* Allocate Cintcode memory */
   { int membytes = (memupb+tallyupb+vecstatsvupb+7)<<B2Wsh;
@@ -863,14 +1028,18 @@ int main(int argc, char* argv[])
 #endif
  
     if (W==NULL) {
-      PRINTF("Unable to allocate Cintcode memory of size %d\n", membytes>>B2Wsh);
+      printf("Unable to allocate Cintcode memory of size %d\n", membytes>>B2Wsh);
       return 0;
     }
   }
  
-  /*  printf("Cintcode memory %8"FormX" (unrounded)\n", (UBCPLWORD) W); */
+  /*  printf("Cintcode memory %8llx (unrounded)\n", LL (UBCPLWORD) W); */
   W = PT(((long) W + 7L) & -8L);
-  /*  printf("Cintcode memory %8" FormX" (rounded)\n", (UBCPLWORD)W);  */
+  /*  printf("Cintcode memory %8llx (rounded)\n", LL (UBCPLWORD)W);  */
+
+  sysp  = 0; // Not currently in executing the sys instruction.
+  sysg  = 0;
+  sysst = 0;
 
   lastWp = W;
   lastWg = W;
@@ -878,7 +1047,8 @@ int main(int argc, char* argv[])
 
   for (i=0; i<memupb; i++) W[i] = 0xDEADC0DE;
 
-  if (boottrace>0) PRINTFD("Cintcode memory (upb=%"FormD") allocated\n", memupb);
+  if (boottrace>0) printf("Cintcode memory (upb=%lld) allocated\n",
+			   LL memupb);
 
   W[0] = memupb+1;  /* Initialise heap space to allow getvec to work.
                        At 0 we have a free block of size memupb */
@@ -898,7 +1068,7 @@ int main(int argc, char* argv[])
   for(i=0; i<=vecstatsvupb; i++) vecstatsv[i] = 0;
  
   getvec(rootnode-14);  /* Allocate space for interrupt vectors and other
-                           system variables */
+                           system variables, not used by cintsys */
 
   // Allocate the rootnode in exactly the correct place in Cintcode memory
   if (rootnode != (i=getvec(100L)+1)) {
@@ -928,31 +1098,31 @@ int main(int argc, char* argv[])
 
   if (filetracing) {
     char *path = getenv(rootvar);
-    PRINTFS("Environment variable %s", rootvar);
-    PRINTFS(" = %s\n", path);
+    printf("Environment variable %s", rootvar);
+    printf(" = %s\n", path);
     path = getenv(pathvar);
-    PRINTFS("Environment variable %s", pathvar);
-    PRINTFS(" = %s\n", path);
+    printf("Environment variable %s", pathvar);
+    printf(" = %s\n", path);
     path = getenv(hdrsvar);
-    PRINTFS("Environment variable %s", hdrsvar);
-    PRINTFS(" = %s\n", path);
+    printf("Environment variable %s", hdrsvar);
+    printf(" = %s\n", path);
     path = getenv(scriptsvar);
-    PRINTFS("Environment variable %s", scriptsvar);
-    PRINTFS(" = %s\n", path);
+    printf("Environment variable %s", scriptsvar);
+    printf(" = %s\n", path);
   }
 
-  stackbase = getvec(Stackupb+6);  /* +6 because it will be a coroutine */
+  stackbase = getvec(Stackupb+6);  // +6 because it will be a coroutine
   globbase  = getvec(Globupb);
   result2 = 0L;
 
-  if (boottrace>0) PRINTF("Boot's stack allocated at %"FormD"\n", stackbase);
+  if (boottrace>0) printf("Boot's stack allocated at %lld\n", LL stackbase);
 
-  W[stackbase] = Stackupb; /* Tell boot how large its stack is. */
+  W[stackbase] = Stackupb; // Tell boot the size of its stack.
   for(i=1; i<=Stackupb+6; i++) W[stackbase+i] = 0xABCD1234;
   /* boot will turn this stack into a coroutine stack */
 
   if (boottrace>0)
-    PRINTF("Boot's global vector allocated at %"FormD"\n", globbase);
+    printf("Boot's global vector allocated at %lld\n", LL globbase);
 
   for(i = 0; i<=Globupb; i++) W[globbase+i] = Globword+i;
   W[globbase+Gn_globsize] = Globupb;
@@ -960,8 +1130,12 @@ int main(int argc, char* argv[])
 
   for(i=0; i<=Rtn_upb; i++) W[rootnode+i] = 0;
 
-  W[rootnode+Rtn_system]       = 2;  // This is Cintpos
-
+#ifdef CINTPOSyes
+  W[rootnode+Rtn_system]       = 2;  // 1 for Cintsys, 2 for cintpos
+#else
+  W[rootnode+Rtn_system]       = 1;  // 1 for Cintsys, 2 for cintpos
+#endif
+  
   W[rootnode+Rtn_membase]      = 0;
   W[rootnode+Rtn_memsize]      = memupb;
   W[rootnode+Rtn_blklist]      = 0;
@@ -970,6 +1144,7 @@ int main(int argc, char* argv[])
   W[rootnode+Rtn_vecstatsvupb] = vecstatsvupb;
   W[rootnode+Rtn_boottrace]    = (BCPLWORD) boottrace;
   W[rootnode+Rtn_dumpflag]     = dumpflag;
+
   { // This fudge is for systems where the size of BCPLWORD
     // and BCPLWORD* are different. The fields mc0 to mc3 are
     // only used by the MC package
@@ -987,6 +1162,7 @@ int main(int argc, char* argv[])
     W[rootnode+Rtn_mc3]          = fv.v[1];
   }
 
+  // Copy environment variable names into the rootnode as BCPL strings.
   W[rootnode+Rtn_rootvar]      = rootvarstr;
   W[rootnode+Rtn_pathvar]      = pathvarstr;
   W[rootnode+Rtn_hdrsvar]      = hdrsvarstr;
@@ -994,75 +1170,88 @@ int main(int argc, char* argv[])
 
   W[rootnode+Rtn_dcountv]      = dcountv;
 
-  if (boottrace>0) PRINTF("Rootnode allocated at %"FormD"\n", rootnode);
+  W[rootnode+Rtn_hostaddrsize]  = 8 * sizeof(BCPLWORD*);
+  W[rootnode+Rtn_gvecsize]  = Globupb; // Added 28/12/2019
 
   W[rootnode+Rtn_joystickfd]   = 0;
-  W[rootnode+Rtn_icount] = 100000000; // Estimated Cintcode instructions per second.
+  W[rootnode+Rtn_joystickfd1]  = 0;
+  W[rootnode+Rtn_icount] = 100000000; // Estimated Cintcode instrs per sec.
 
-  if (boottrace>0) PRINTF("About to loading the resident programs\n");
+  if (boottrace>0) printf("Rootnode allocated at %d\n", rootnode);
+
+  if (boottrace>0) printf("About to loading the resident programs\n");
 
   { BCPLWORD seg = loadseg("syscin/boot");
     if (seg==0) {
-      PRINTF("\nUnable to load segment syscin/boot\n");
-      PRINTF("This is probably caused by incorrect settings of\n");
-      PRINTF("environment variables such as POSROOT and POS64ROOT\n");
-      PRINTF("Try entering cintsys using the command\n\n");
-      PRINTF("cintpos -f -v\nor\n");
-      PRINTF("cintpos64 -f -v\n\n");
-      PRINTF("to see what is wrong\n");
+      printf("\nUnable to load segment syscin/boot\n");
+      printf("This is probably caused by incorrect settings of\n");
+      printf("environment variables such as BCPLPATH or POSPATH\n");
+      printf("Try entering cintsys using the command\n\n");
+
+#ifdef CINTPOSyes
+      printf("cintpos -f -v\nor\n");
+      printf("cintpos64 -f -v\n\n");
+#else
+      printf("cintsys -f -v\nor\n");
+      printf("cintsys64 -f -v\n\n");
+#endif
+
+      printf("to see what is wrong\n");
       return 20;
     }
 
     W[rootnode+Rtn_boot] = globin(seg, globbase);
     if(W[rootnode+Rtn_boot]==0) {
-      PRINTF("Can't globin boot\n");
+      printf("Can't globin boot\n");
       return 20;
     }
 
-    if (boottrace>0) PRINTF("syscin/boot loaded successfully\n");
+    if (boottrace>0) printf("syscin/boot loaded successfully\n");
 
     seg = loadseg("syscin/blib");
-    if (seg==0) { PRINTF("Can't load syscin/blib\n"); return 20; }
-    if (boottrace>0) PRINTF("syscin/blib loaded successfully\n");
+    if (seg==0) { printf("Can't load syscin/blib\n"); return 20; }
+    if (boottrace>0) printf("syscin/blib loaded successfully\n");
 
     seg = concatsegs(seg, loadseg("syscin/syslib"));
-    if(seg==0) { PRINTF("Can't load syscin/syslib\n"); return 20; }
-    if (boottrace>0) PRINTF("syscin/syslib loaded successfully\n");
+    if(seg==0) { printf("Can't load syscin/syslib\n"); return 20; }
+    if (boottrace>0) printf("syscin/syslib loaded successfully\n");
 
     seg = concatsegs(seg, loadseg("syscin/dlib"));
-    if(seg==0) { PRINTF("Can't load syscin/dlib\n"); return 20; }
-    if (boottrace>0) PRINTF("syscin/dlib loaded successfully\n");
+    if(seg==0) { printf("Can't load syscin/dlib\n"); return 20; }
+    if (boottrace>0) printf("syscin/dlib loaded successfully\n");
 
     W[rootnode+Rtn_blib] = globin(seg, globbase);
     if(W[rootnode+Rtn_blib]==0) {
-      PRINTF("Can't globin {blib,syslib,dlib}\n");
+      printf("Can't globin {blib,syslib,dlib}\n");
       return 20;
     }
 
+#ifdef CINTPOSyes
     seg = loadseg("syscin/klib");
     if (seg==0) { printf("Trouble with klib\n"); return 20; }
-    if (boottrace>0) PRINTF("syscin/klib loaded successfully\n");
+    if (boottrace>0) printf("syscin/klib loaded successfully\n");
     W[rootnode+Rtn_klib] = globin(seg, globbase);
     if(W[rootnode+Rtn_klib]==0) {
       printf("Can't globin klib\n");
       return 20;
     }
+#endif
+    
   }
-
-#ifndef forWinCE
+  
   /* Set handler for CTRL-C */
   old_inthandler  = signal(SIGINT, inthandler); /* To catch CTRL-C */
   /* Set handler for segment violation */
   old_segvhandler  = signal(SIGSEGV, segvhandler); /* To catch segv */
-#endif
 
   /* Make sys available via the root node */
   W[rootnode+Rtn_sys] = W[globbase+Gn_sys];
 
   /*
   boot has no coroutine environment.  Note that boot's global vector is also
-  used by interrupt service routines. The chain of stack frames in such an
-  environment must be terminated by a zero link (for DEBUG to work properly).
+  used by interrupt service routines in cintpos. The chain of stack frames
+  in such an environment must be terminated by a zero link (for DEBUG to
+  work properly).
   */
   W[globbase+Gn_currco] = 0;
   W[globbase+Gn_colist] = 0;
@@ -1087,32 +1276,34 @@ int main(int argc, char* argv[])
   /* Uncomment the following line to trace Cintcode execution */
   /* tracing = 1; */
 
+#ifdef CINTPOSyes
   initdevices();  // Defined in devices.c
+#endif
 
   init_keyb();
 
-  if (boottrace>0) PRINTF("Calling interpret(bootreg, W)\n");
+  if (boottrace>0) printf("Calling interpret(bootreg, W)\n");
   if (boottrace>1)
-  { PRINTF("with instruction tracing on\n\n");
+  { printf("with instruction tracing on\n\n");
     tracing = 1;
   }
 
   /* Call the slow interpreter even though Count=-1 */
   res = interpret(bootregs, W);
   if (boottrace>0)
-    PRINTFD("interpreter returned control to cintpos, res=%"FormD"\n", res);
+    printf("Returned from interpreter(..) with result %lld\n", LL res);
 
   close_keyb();
 
   if (res) {
-    PRINTFD("\nExecution finished, return code %"FormD"\n", res);
+    printf("\nExecution finished, return code %lld\n", LL res);
 
     if (res && W[rootnode+Rtn_dumpflag]) {
       dumpmem(W, memupb, 3);
-      PRINTF("\nCintpos memory dumped to DUMP.mem, context=3\n");
+      printf("\nCintpos memory dumped to DUMP.mem, context=3\n");
     }
   }
-  PRINTF("\n");
+  printf("\n");
   /*Change suggested by Dave Lewis - return cli_returncode rather than res */
   return W[globbase+Gn_cli_returncode]; /* MR 17/01/06 */
 }
@@ -1121,9 +1312,9 @@ BCPLWORD concatsegs(BCPLWORD seg1, BCPLWORD seg2) {
   BCPLWORD p = seg1;
   if(p==0 || seg2==0) return 0;
   while (W[p]) p = W[p];
-  /*PRINTFD("concatsegs: seg1 %"FormD" ", seg1); */
-  /*PRINTFD("seg2 %"FormD" ", seg2); */
-  /*PRINTFD("p %"FormD"\n", p); */
+  /*printf("concatsegs: seg1 %lld ", LL seg1); */
+  /*printf("seg2 %lld ", LL seg2); */
+  /*printf("p %lld\n", LL p); */
   W[p] = seg2;
   return seg1;
 }
@@ -1134,7 +1325,7 @@ BCPLWORD loadsegfp(FILEPT fp)
 
   for(;;)
   { BCPLWORD type = rdhex(fp);
-    /* PRINTFD("loadsegtype = %"FormD"\n", type); */
+    /*printf("loadsegtype: type = %lld\n", LL type); */
     switch((int)type)
     { default:
           err:   unloadseg(list);
@@ -1149,8 +1340,8 @@ BCPLWORD loadsegfp(FILEPT fp)
 #endif
                { BCPLWORD i, n=rdhex(fp);
                  BCPLWORD space = getvec(n);
-		 /*PRINTFD("loading hunk size %"FormD" ", n); */
-		 /*PRINTFD("to %"FormD"\n", space); */
+		 /*printf("loading hunk size %lld ", LL n); */
+		 /*printf("to %lld\n", LL space); */
                  if(space==0) goto err;
                  W[space] = 0;
                  for(i = 1; i<=n; i++) W[space+i] = rdhex(fp);
@@ -1195,7 +1386,7 @@ BCPLWORD loadseg(char *file)
 { BCPLWORD list  = 0;
   BCPLWORD liste = 0;
 
-  //PRINTF("loadseg: attempting to load file %s\n", file);
+  //printf("loadseg: attempting to load file %s\n", file);
 
   // First look in the current directory
   FILEPT fp = pathinput(file, 0);
@@ -1261,19 +1452,19 @@ BCPLWORD globin(BCPLWORD segl, BCPLWORD g)
   */
   BCPLWORD  a = segl, globsize = W[g];
 
-  /*PRINTFD("globin segl = %6"FormD"  ", segl); */
-  /*PRINTFD("g = %6"FormD"\n", g); */
+  /*printf("globin segl = %6lld  ", LL segl); */
+  /*printf("g = %6lld\n", LL g); */
   while (a) { BCPLWORD base = (a+1)<<B2Wsh;
               BCPLWORD i = a + W[a+1];
               if (W[i]>globsize) return 0;
-	      /*PRINTFD("globin:  base %6"FormD"  ", a+1); */ 
-	      /*PRINTFD("to %6"FormD"  ", i); */
-	      /*PRINTFD("size: %5"FormD"\n", W[a+1]); */ 
+	      /*printf("globin:  base %6lld  ", LL (a+1)); */ 
+	      /*printf("to %6lld  ", LL i); */
+	      /*printf("size: %5lld\n", LL W[a+1]); */ 
               for(;;) { i -= 2;
                         if (W[i+1]==0) break;
                         W[g+W[i]] = base + W[i+1];
-			/*PRINTFD("globin:  g[%3"FormD"] ", W[i]);  */
-			/*PRINTFD("= %6"FormD"\n", base+W[i+1]); */
+			/*printf("globin:  g[%3lld] ", LL W[i]);  */
+			/*printf("= %6lld\n", LL (base+W[i+1])); */
                       }
               a = W[a];
             }
@@ -1311,7 +1502,7 @@ BCPLWORD getvec(BCPLWORD requpb)
   if(p+size!=q)
     W[p+size] = q-p-size+1; /* If splitting, the size of the other part with a
                                flag of 1 indicating that it is free */
-  W[p] = size;              /* The size of this block in words with a flag of zero
+  W[p] = size;              /* size of this block in words with a flag of zero
                                indicating that it is allocated */
   /* The following improves the safety of memory allocation */
   /* by adding some checkable redundancy */
@@ -1327,13 +1518,13 @@ BCPLWORD getvec(BCPLWORD requpb)
   W[p+size- 2] = taskname[3]; /* The taskname, if any */
 
   W[p+size-1] = p;           /* Pointer to base of this memory block */
-  /*PRINTFD("getvec: allocating block %6"FormD"  ", p); */
-  /*PRINTFD("upb %4"FormD"\n", upb); */
+  /*printf("getvec: allocating block %6lld  ", LL p); */
+  /*printf("upb %4lld\n", LL upb); */
 
   // upb is the requested upper bound (forced to be >= 0)
   if (upb>vecstatsvupb) upb = vecstatsvupb;
   W[vecstatsvec+upb]++;
-  //printf("getvec req upb = %d  count=%d\n", upb, W[vecstatsvec+upb]);
+  //printf("getvec req upb = %lld  count=%lld\n", LL upb, LL W[vecstatsvec+upb]);
   return p+1;
 }
 
@@ -1346,25 +1537,30 @@ BCPLWORD freevec(BCPLWORD p)
   size = W[p];
 
   if (size & 1) {
-    PRINTFD("\n#### freevec: block at %"FormD" already free\n", p);
+    printf("\n#### freevec: block at %lld already free\n", LL p);
     return 0;
   }
 
-  /*PRINTFD("#### freevec: Freeing block at %"FormD"\n", p); */
+  /*printf("#### freevec: Freeing block at %lld\n", LL p); */
 
   if (
      W[p+size-9]!=0xCCCCCCCC ||
      W[p+size-8]!=0x55555555 ||
      W[p+size-7]!=0xAAAAAAAA ||
      W[p+size-1]!=p) {   /* Back pointer */
-       PRINTFD("\n#### freevec: block at %"FormD" ", p);
-       PRINTFD("size %"FormD" corrupted", size);
-       PRINTFD("\n#### freevec: check words\n");
-       PRINTFD("%7"FormD": %8"FormX" should be CCCCCCCC\n",  p+size-9, (UBCPLWORD)W[p+size-9]);
-       PRINTFD("%7"FormD": %8"FormX" should be 55555555\n",  p+size-8, (UBCPLWORD)W[p+size-8]);
-       PRINTFD("%7"FormD": %8"FormX" should be AAAAAAAA\n",  p+size-7, (UBCPLWORD)W[p+size-7]);
-       PRINTFD("%7"FormD": %8"FormD" should be the requested upb\n", p+size-6, W[p+size-6]);
-       PRINTFD("%7"FormD": %8"FormD" should be %8"FormD"\n", p+size-1, W[p+size-1], p);
+       printf("\n#### freevec: block at %lld ", LL p);
+       printf("size %lld corrupted", LL size);
+       printf("\n#### freevec: check words\n");
+       printf("%7lld: %8llx should be CCCCCCCC\n",
+	       LL(p+size-9), LL (UBCPLWORD)W[p+size-9]);
+       printf("%7lld: %8llx should be 55555555\n",
+	       LL(p+size-8), LL (UBCPLWORD)W[p+size-8]);
+       printf("%7lld: %8llx should be AAAAAAAA\n",
+	       LL(p+size-7), LL (UBCPLWORD)W[p+size-7]);
+       printf("%7lld: %8lld should be the requested upb\n",
+	       LL(p+size-6), LL W[p+size-6]);
+       printf("%7lld: %8lld should be %8lld\n", LL(p+size-1),
+	       LL W[p+size-1], LL p);
        return 0;
   }
   W[p] |= 1; /* Mark the block a free */
@@ -1373,7 +1569,7 @@ BCPLWORD freevec(BCPLWORD p)
     int upb = W[p+size-6];  /* The requested upper bound */
     if (upb>vecstatsvupb) upb = vecstatsvupb;
     W[vecstatsvec+upb]--;   /* Decrement count of block of this size */
-    //printf("freevec req upb = %d count=%d\n", upb, W[vecstatsvec+upb]);
+    //printf("freevec req upb = %lld count=%lld\n", LL upb, LL W[vecstatsvec+upb]);
   }
   return -1;
 }
@@ -1412,8 +1608,8 @@ BCPLWORD muldiv(BCPLWORD a, BCPLWORD b, BCPLWORD c)
   rn = ub % uc;
   
   while(ua)
-  { //printf("qn=%8"FormX" rn=%8"FormX" ua=%8"FormX" ", qn, rn, ua);
-    //printf("q =%8"FormX" r =%8"FormX"\n", q, r);
+  { //printf("qn=%8llx rn=%8llx ua=%8llx ", LL qn, LL rn, LL ua);
+    //printf("q =%8llx r =%8llx\n", LL q, LL r);
     if(ua&1) { q += qn;
                r += rn;
                if(r>=uc) { q++; r -= uc; }
@@ -1422,10 +1618,10 @@ BCPLWORD muldiv(BCPLWORD a, BCPLWORD b, BCPLWORD c)
     qn <<= 1;
     rn <<= 1;
     if(rn>=uc) { qn++; rn -= uc; }
-    //printf("ua=%8"FormX" q =%8"FormX" r =%8"FormX"\n", ua, q, r);
+    //printf("ua=%8llx q =%8llx r =%8llx\n", LL ua, LL q, LL r);
   }
-  //printf("qn=%8"FormX" rn=%8"FormX" ", qn, rn);
-  //printf("q =%8"FormX" r =%8"FormX"\n\n", q, r);
+  //printf("qn=%8llx rn=%8llx ", LL qn, LL rn);
+  //printf("q =%8llx r =%8llx\n\n", LL q, LL r);
   result2 = rneg ? -(BCPLWORD)r : r;
   return    qneg ? -(BCPLWORD)q : q;
 }
@@ -1455,15 +1651,16 @@ FILEPT pathinput(char *name, char *pathname)
 { FILEPT fp = 0;
 
   if ( pathname==0 || !relfilename(name)) {
-    /* If no pathname given or name is absolute just search the current directory */
+    /* If no pathname given or name is absolute just search
+       the current directory */
     //printf("pathinput: pathname=0\n");
     fp = fopen(osfname(name, chbuf4), "rb");
     if(filetracing)
-    { PRINTFS("Trying: %s in the current directory - ", name);
+    { printf("Trying: %s in the current directory - ", name);
       if(fp) {
-        PRINTF("found\n");
+        printf("found\n");
       } else {
-        PRINTF("not found\n");
+        printf("not found\n");
       }
     }
     return fp;
@@ -1475,9 +1672,9 @@ FILEPT pathinput(char *name, char *pathname)
   { char *path = getenv(pathname);
  
     if(filetracing) {
-      PRINTFS("pathinput: attempting to open %s", name);
-      PRINTFS(" using\n  %s", pathname);
-      PRINTFS(" = %s\n", path);
+      printf("pathinput: attempting to open %s", name);
+      printf(" using\n  %s", pathname);
+      printf(" = %s\n", path);
     }
 
     /* Try prefixing with each directory in the path until the
@@ -1526,11 +1723,11 @@ FILEPT pathinput(char *name, char *pathname)
 
       fp = fopen(osfname(filename, chbuf4), "rb");
       if(filetracing)
-      { PRINTFS("Trying: %s - ", filename);
+      { printf("Trying: %s - ", filename);
         if(fp) {
-          PRINTF("found\n");
+          printf("found\n");
 	} else {
-          PRINTF("not found\n");
+          printf("not found\n");
 	}
       }
       if(fp) return fp;
@@ -1541,11 +1738,11 @@ FILEPT pathinput(char *name, char *pathname)
 
     fp = fopen(osfname(name, chbuf4), "rb");
     if(filetracing)
-    { PRINTFS("Trying: %s in the current directory - ", name);
+    { printf("Trying: %s in the current directory - ", name);
       if(fp) {
-        PRINTF("found\n");
+        printf("found\n");
       } else {
-        PRINTF("not found\n");
+        printf("not found\n");
       }
     }
     return fp;
@@ -1554,12 +1751,20 @@ FILEPT pathinput(char *name, char *pathname)
 
 BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
 { register BCPLWORD i;
-  /*PRINTFD("dosys(%"FormD", ", p); */
-  /*PRINTFD("%" FormD, g); */
-  /*PINTFD(") P3=%"FormD" ", W[p+3]); */
-  /*PRINTFD("P4=%"FormD"\n",  W[p+4]); */
+
+  BCPLWORD res = 0; // The default result
+  
+  sysp = p;         // The values of p and g of the most recent call
+  sysg = g;         // of dosys are saved and for use by dumpmem which
+                    // stores them in the root node before dumping
+                    // the entire Cintcode memory.
+  
+  /*printf("dosys(%lld, ", LL p); */
+  /*printf("%lld, LL g); */
+  /*PINTFD(") P3=%lld ", LL W[p+3]); */
+  /*printf("P4=%lld\n",  LL W[p+4]); */
   switch((int)(W[p+3]))
-  { default: PRINTFD("\nBad sys number: %"FormD"\n", W[p+3]);
+  { default: printf("\nBad sys number: %lld\n", LL W[p+3]);
              return W[p+3];
 
     /* case Sys_setcount: set count               -- done in cinterp
@@ -1584,11 +1789,83 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
               }
               return 0;
      
-    case Sys_interpret: /* call interpreter (recursively) */
+    case Sys_interpret: // call interpreter (recursively) */
             { BCPLWORD regsv = W[p+4];
-              if(W[regsv+7]>=0 || slowflag) return interpret(regsv, W);
-              return CINTASM  (regsv, W);
+	      BCPLWORD rc;
+	      // Start interpreting Cintcode instructions from
+	      // the state specified by regsv in the
+	      // Cintcode memory W.
+              if(W[regsv+7]>=0 || slowflag || settracing>0) {
+		tracing = settracing;
+		settracing = 0;
+	        res = interpret(regsv, W);
+	      } else {
+                res = cintasm(regsv, W);
+	      }
+	      break;
             }
+
+	    //    case Sys_interpret: /* call interpreter (recursively) */
+            //{ BCPLWORD regsv = W[p+4];
+            //  if(W[regsv+7]>=0 || slowflag) return interpret(regsv, W);
+            //  return CINTASM  (regsv, W);
+            //}
+
+    case Sys_getbuildno:
+    { // Return the current build number
+      // and set result2 to the current build flags.
+      // This is currently under development.
+      BCPLWORD res=0;
+      BCPLWORD res2=0;
+      // Set the buildno
+#ifdef forLinux
+      res = bld_Linux;
+#elif forLinuxSDL
+      res = bld_LinuxSDL;
+#elif forLinuxSDL2
+      res = bld_LinuxSDL2;
+#elif forLinuxGL
+      res = bld_LinuxGL;     // This will be phased out
+#elif forLinuxSDLGL
+      res = bld_LinuxSDLGL;
+#elif forLinuxSDL2GL
+      res = bld_LinuxSDL2GL;
+
+#elif forLinuxRaspi
+      res = bld_LinuxRaspi;
+#elif forLinuxRaspiSDL
+      res = bld_LinuxRaspiSDL;
+#elif forLinuxRaspiSDL2
+      res = bld_LinuxRaspiSDL2;
+#elif forLinuxRaspiSDLGL
+      res = bld_LinuxRaspiSDLGL;
+#elif forLinuxRaspiSDL2GL
+      res = bld_LinuxRaspiSDL2GL;
+
+#elif forVmsVax
+      res = bld_VmsVax;
+#elif forWin32
+      res = bld_Win32;
+#elif forCYGWIN32
+      res = bld_CYGWIN32;
+#else
+      res = bld_Unknown;
+#endif
+      
+      // Set the flags result
+#ifdef SOUND
+      res2 |= 1;
+#endif
+#ifdef CALLC
+      res2 |= 1<<1;
+#endif
+      W[g+Gn_result2] = res2;
+      return res;
+    }
+
+    case Sys_settracing:
+              settracing = W[p+4];
+	      break;
 
     case Sys_sardch:
               { int ch;
@@ -1612,13 +1889,13 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
                 /* Normal case, stdin input to interpreter */
 
                 ch = Readch(); /* get the keyboard character  */
-		/*PRINTFD("Sys_sardch: ch = %d\n", ch); */
+		/*printf("Sys_sardch: ch = %d\n", ch); */
 		if(ch==127) /* RUBOUT from the keyboard */
 		  ch = 8;   /* Replace by BS */
                 if (ch>=0) putchar(ch);
                 if(ch==13) { ch = 10; putchar(10); }
                 fflush(stdout);
-		/*PRINTFD("Sys_sardch returning ch = %d\n", ch); */
+		/*printf("Sys_sardch returning ch = %d\n", ch); */
                 //incdcount(1);
                 return ch;
               }
@@ -1633,23 +1910,25 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
               return 0;
 
     case Sys_read:  /* bytesread := sys(Sys_read, fp, buf, bytecount) */
-              { FILEPT fp = findfp(W[p+4]);
+              { FILEPT fp = 0;
+		copyaddrB2C(&W[W[p+4]], &fp);
                 BCPLWORD bbuf = W[p+5]<<B2Wsh;
                 BCPLWORD len  = (int) W[p+6];
-#ifndef forWinCE
+
                 clearerr(fp); /* clear eof and error flag */
-#endif
+
                 len = fread(&(BP W)[bbuf], (size_t)1, (size_t)len, fp);
-#ifndef forWinCE
+
                 if(ferror(fp)) { perror("sys_read");
                                  return -1; /* check for errors */
 		}
-#endif
+
                 return len;
               }
 
     case Sys_write:
-      { FILEPT fp = findfp(W[p+4]);
+     { FILEPT fp = 0;
+	copyaddrB2C(&W[W[p+4]], (BCPLWORD*)&fp);
         BCPLWORD bbuf = W[p+5]<<B2Wsh;
         BCPLWORD len = W[p+6];
         /*fseek(fp, 0L, SEEK_CUR); */ /* Why?? MR 9/7/04 */
@@ -1658,14 +1937,17 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
         return len;
       }
 
-    case Sys_openread:
+    case Sys_openread: // sys(Sys_openread, filename, path, fpptr)
       { char *name = b2c_str(W[p+4], chbuf1);
         FILEPT fp;
         fp = pathinput(name,                      /* Filename */
 	               b2c_str(W[p+5], chbuf2));  /* Environment
 	      				             variable */
         if(fp==0) return 0L;
-        return newfno(fp);
+	//printf("Sys_openread: filename=%s fp=%16lX\n", chbuf1, (BCPLINT64)fp);
+       	copyaddrC2B(&fp, &W[W[p+6]]);
+	//printf("Sys_openread: =%8X %8X\n", W[W[p+6]], W[W[p+6]+1]);
+        return 1;
       }
 
     case Sys_openwrite:
@@ -1673,7 +1955,8 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
         FILEPT fp;
         fp = fopen(osfname(name, chbuf4), "wb");
         if(fp==0) return 0L;
-        return newfno(fp);
+       	copyaddrC2B(&fp, &W[W[p+5]]);
+        return 1;
       }
 
     case Sys_openappend:
@@ -1681,21 +1964,24 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
         FILEPT fp;
         fp = fopen(osfname(name, chbuf4), "ab");
         if(fp==0) return 0L;
-        return newfno(fp);
+       	copyaddrC2B(&fp, &W[W[p+5]]);
+        return 1;
       }
 
     case Sys_openreadwrite:
       { char *name = b2c_str(W[p+4], chbuf1);
-	FILEPT fp;
-        fp = fopen(osfname(name, chbuf4), "rb+");
+	FILE *fp = fopen(osfname(name, chbuf4), "rb+");
         if(fp==0) fp = fopen(name, "wb+");
         if(fp==0) return 0L;
-        return newfno(fp);
+       	copyaddrC2B(&fp, &W[W[p+5]]);
+        return 1;
       }
 
     case Sys_close:
-    { BCPLWORD res = fclose(findfp(W[p+4]));
-      freefno(W[p+4]);
+    { FILE *fp = 0;
+      copyaddrB2C(&W[W[p+4]], &fp);
+      BCPLWORD res = fclose(fp);
+      //freefno(W[p+4]);
       return res==0 ? -1 : 0; /* res==0 means success */
     }
 
@@ -1794,7 +2080,6 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
     case Sys_cputime: /* Return CPU time in milliseconds  */
       return muldiv(clock(), 1000, TICKS_PER_SEC);
 
-#ifndef forWinCE
     case Sys_filemodtime:
     /* sys(Sys_filemodtime, filename, datv)
        Set the elements of datv to represent the date and time of
@@ -1824,11 +2109,10 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
       W[datestamp] = days;
       W[datestamp+1] = msecs;
       W[datestamp+2] = -1;  // New dat format
-      //printf("filemodtime: name=%s days=%"FormD" msecs=%"FormD"\n",
-      //        name, days, msecs);
+      //printf("filemodtime: name=%s days=%lld msecs=%lld\n",
+      //        name, LL days, LL msecs);
       return -1;
     }
-#endif
 
     case Sys_setprefix: /* Set the file name prefix string  */
     { BCPLWORD str = W[p+4];
@@ -1847,40 +2131,38 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
       return sysGraphics(p);
 
     case 35: /* Return TRUE if no keyboard character is available */
-#ifdef forWinCE
-              return chBufEmpty() ? -1 : 0;
-#else
               return -1;
-#endif
 
     case 36:   return 0; /* Spare */
 
     case 37:   return 0; /* Spare  */
 
     case Sys_seek:  /* res := sys(Sys_seek, fd, pos)   */
-    { FILEPT fp = findfp(W[p+4]);
+    { FILEPT fp = 0;
+      copyaddrB2C(&W[W[p+4]], &fp);
       BCPLWORD pos = W[p+5];
       BCPLWORD res = fseek(fp, pos, SEEK_SET);
       W[g+Gn_result2] = errno;
-      /*PRINTFD("fseek pos=%"FormD" ", pos); */
-      /*PRINTFD("=> res=%"FormD"\n", res); */
-      /*PRINTFD("errno=%d\n", errno); */
+      /*printf("fseek pos=%lld ", LL pos); */
+      /*printf("=> res=%lld\n", LL res); */
+      /*printf("errno=%lld\n", LL errno); */
       return res==0 ? -1 : 0; /* res=0 succ, res=-1 error  */
     }
 
     case Sys_tell: /* pos := sys(Sys_tell,fd)  */
-    { FILEPT fp = findfp(W[p+4]);
+    { FILEPT fp = 0;
+      copyaddrB2C(&W[W[p+4]], &fp);
       BCPLWORD pos = ftell(fp);
       W[g+Gn_result2] = errno;
-      /*PRINTFD("tell => %"FormD"\n", pos); */
+      /*printf("tell => %lld\n", LL pos); */
       return pos; /* >=0 succ, -1=error */
     }
 
     case Sys_waitirq:
-                // sys(Sys_waitirq, msecs) 
+              { // sys(Sys_waitirq, msecs) 
                 // Wait for irq to be set or a timeout then 
                 // signal irq_cv under the control of irq_mutex
-              { BCPLWORD msecs = W[p+4];
+                BCPLWORD msecs = W[p+4];
                 //BCPLWORD sec, nsec;
                 struct timespec tspec;
                 BCPLINT64    secs = 0;
@@ -1888,7 +2170,7 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
 
                 const unsigned int secsperday = 60*60*24;
 
-		//#if defined(forWIN32) || defined(forCYGWIN32) || defined(forLINUX)
+//#if defined(forWIN32) || defined(forCYGWIN32) || defined(forLINUX)
 #if defined(forWIN32) || defined(forCYGWIN32)
                 // Code for Windows, Cygwin and Linux
                 // ftime is obsolete and the advice is to use
@@ -1929,36 +2211,46 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
                 kcount = 0; // Cause the interpreter to check the clock
                 return 0;
               }
-
+      
     case Sys_lockirq: /* Stop all devices from modifying */
                       /* packets or generating interrupts */
+#ifdef CINTPOSyes
       pthread_mutex_lock(&irq_mutex);
+#endif
       return 0;
 
     case Sys_unlockirq: /* Allow devices to modify packets */
                         /* and generate interrupts */
+#ifdef CINTPOSyes
       pthread_mutex_unlock(&irq_mutex);
+#endif
       return 0;
 
     case Sys_devcom: /* res := sys(Sys_devcom, dcb, com, arg) */
+#ifdef CINTPOSyes      
       return devcommand(W[p+4], W[p+5], W[p+6]);
+#else
+      return 0;
+#endif
 
     case Sys_datstamp: /* res := sys(Sys_datstamp, v)  */
     // Set v!0 = days  since 1 January 1970
     //     v!1 = msecs since midnight
     //     v!2 = ticks =-1 for new dat format
     // Return -1 if successful
-                return timestamp(&W[W[p+4]]);
+      return timestamp(&W[W[p+4]]);
 
     case Sys_filesize:  /* res := sys(Sys_filesize, fd)   */
-      { FILEPT fp = findfp(W[p+4]);
-        long pos = ftell(fp);
-        BCPLWORD rc = fseek(fp, 0, SEEK_END);
-        BCPLWORD size = ftell(fp);
-        rc  = fseek(fp, pos, SEEK_SET);
-        if (rc) size = -1;
-        return size; /* >=0 succ, -1=error  */
-      }
+    { FILE *fp = 0;
+      copyaddrB2C(&W[W[p+4]], &fp);
+      //printf("Sys_filesize fp=%16lX\n", (BCPLINT64)fp);
+      long pos = ftell(fp);
+      BCPLWORD rc = fseek(fp, 0, SEEK_END);
+      BCPLWORD size = ftell(fp);
+      rc  = fseek(fp, pos, SEEK_SET);
+      if (rc) size = -1;
+      return size; /* >=0 succ, -1=error  */
+    }
 
     case Sys_getsysval: /* res := sys(Sys_getsysval, addr) */
               { BCPLWORD addr = W[p+4];
@@ -1971,7 +2263,6 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
                 return 0;
               }
 
-#ifndef forWinCE
     case Sys_shellcom: /* res := sys(Sys_shellcom, comstr) */
               { BCPLWORD comstr = W[p+4]<<B2Wsh;
 	        int i;
@@ -1979,20 +2270,17 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
                 int len = ((char *)W)[comstr];
                 for(i=0; i<len; i++) com[i] = ((char *)W)[comstr+i+1];
                 com[len] = 0;
-		/*PRINTFS("\nmain: calling shell command %s\n", com); */
+		/*printf("\nmain: calling shell command %s\n", com); */
                 return system(com);
               }
-#endif
 
-#ifndef forWinCE
     case Sys_getpid: /* res := sys(Sys_getpid) */
                 return getpid();
-#endif
 
     case Sys_dumpmem: /* sys(Sys_dumpmem, context) */
                 dumpmem(W, memupb, W[p+4]);
-                PRINTFD("\nMemory dumped to DUMP.mem, context=%"FormD"\n",
-                        W[p+4]);
+                printf("\nMemory dumped to DUMP.mem, context=%lld\n",
+                        LL W[p+4]);
                 return 0;
 
     case Sys_callnative: /* res := sys(Sys_callnative, fn, a1, a2, a3) */
@@ -2105,8 +2393,8 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
     case Sys_callc: /* res := sys(Sys_callc, fno, a1, a2,...) */
 #ifdef CALLC
       /*
-         printf("dosys: sys(Sys_callc, %"FormD", %"FormD", %" FormD", ...)\n",
-                 W[p+4], W[p+5], W[p+6]);
+         printf("dosys: sys(Sys_callc, %lld, %lld, %lld, ...)\n",
+                 LL W[p+4], LL W[p+5], LL W[p+6]);
       */
                 return callc(&W[p+4], &W[g]);
 #else
@@ -2139,7 +2427,6 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
                 return incdcount(W[p+4]);
 
 
-#ifndef forWinCE
     case 135:
     { /* Return system date and time in VEC 5 */
       time_t clk = time(0);
@@ -2153,7 +2440,6 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
       arg[5] = now->tm_sec;
       return 0;
     }
-#endif
 
   }
   // This is unreadchable
@@ -2161,7 +2447,7 @@ BCPLWORD dosys(register BCPLWORD p, register BCPLWORD g)
 }
 
 void msecdelay(unsigned int delaymsecs) {
-#if (defined(forWIN32) || defined(forWinCE))
+#ifdef forWIN32
   { Sleep(delaymsecs); // ?????????????????
                 return;
               }
@@ -2194,12 +2480,12 @@ void msecdelay(unsigned int delaymsecs) {
                   diffdays = days - tv[0];
                   diffmsecs = msecs - tv[1];
                   if (diffdays>0) { diffdays--; diffmsecs += msecsperday; }
-		  //printf("Sys_delay: diffmsecs = %"FormD" msec\n", diffmsecs);
+		  //printf("Sys_delay: diffmsecs = %lld msec\n", LL diffmsecs);
                   if (diffmsecs<=0) return;
                   if (diffmsecs>900) diffmsecs = 900;
                   timeout.tv_sec = 0;
                   timeout.tv_usec = diffmsecs * 1000;
-		  //printf("Sys_delay: waiting for %"FormD" msec\n", diffmsecs);
+		  //printf("Sys_delay: waiting for %lld msec\n", LL diffmsecs);
                   select(FD_SETSIZE, NULL, NULL, NULL, &timeout);
                 }
               }
@@ -2216,7 +2502,7 @@ BCPLWORD doflt(BCPLWORD op, BCPLWORD a, BCPLWORD b, BCPLWORD c) {
 
   switch (op) {
     default:
-      printf("\ndoflt(%"FormD", %"FormD", %"FormD"...) not implemented\n", op, a, b);
+      printf("\ndoflt(%lld, %lld, %lld...) not implemented\n", LL op, LL a, LL b);
 
     case fl_avail:
       return -1;
@@ -2230,7 +2516,7 @@ BCPLWORD doflt(BCPLWORD op, BCPLWORD a, BCPLWORD b, BCPLWORD c) {
       while(b <-5) { da /= 100000.0; b+=5; }
       while(b < 0) { da /=     10.0; b++;  }
       res = (BCPLFLOAT) da;
-      return F2N res;
+      return F2N(res); 
     }
 
     case fl_unmk: // eg for 32 bit BCPL sys(Sys_flt, fl_unmk, 1.234)
@@ -2244,7 +2530,7 @@ BCPLWORD doflt(BCPLWORD op, BCPLWORD a, BCPLWORD b, BCPLWORD c) {
                   // arithmetic.
     { BCPLINT64 mantissa;
       int exponent=0;
-      FLOAT64 d = (FLOAT64) (N2F a);  // N2F is defined to be *(BCPLFLOAT*)&
+      FLOAT64 d = (FLOAT64) (N2F(a));  // N2F(x) is  (*(BCPLFLOAT*)&(x))
       int neg = 0;
 
       if (d==0.0) {
@@ -2294,7 +2580,8 @@ BCPLWORD doflt(BCPLWORD op, BCPLWORD a, BCPLWORD b, BCPLWORD c) {
       mantissa = floor(d * 1e16); // Mantissa has 17 digits
       exponent -= 16;
 
-      //printf("unmk8: d = %24.18f mantissa=%18lld exponent=%d\n", d, mantissa, exponent);
+      //printf("unmk8: d = %24.18f mantissa=%18lld exponent=%lld\n",
+      //        LL d, LL mantissa, LL exponent);
 
 #ifndef TARGET64
       // For 32 bit BCPL, ensure that mantissa has no more
@@ -2334,34 +2621,34 @@ BCPLWORD doflt(BCPLWORD op, BCPLWORD a, BCPLWORD b, BCPLWORD c) {
 
     case fl_float:
     { BCPLFLOAT fa = (BCPLFLOAT) a;
-      return F2N fa;
+      return F2N(fa);
     }
 
     case fl_fix: // Return nearest integer
-    { BCPLFLOAT fa = N2F a;
+    { BCPLFLOAT fa = N2F(a);
       if(fa<0.0) return (BCPLWORD)(fa - 0.5);
       else       return (BCPLWORD)(fa + 0.5);
     }
 
     case fl_abs:
-    { BCPLFLOAT fa = N2F a;
+    { BCPLFLOAT fa = N2F(a);
       if (fa<0.0) fa = -fa;
-      return F2N fa;
+      return F2N(fa);
     }
 
     case fl_mul:
-    { BCPLFLOAT res = N2F a * N2F b;
-      return F2N res;
+    { BCPLFLOAT res = N2F(a) * N2F(b);
+      return F2N(res); 
     }
 
     case fl_div:
-    { BCPLFLOAT res = N2F a / N2F b;
-      return F2N res;
+    { BCPLFLOAT res = N2F(a) / N2F(b);
+      return F2N(res); 
     }
 
     case fl_mod:
-    { BCPLFLOAT res = Cfmod(N2F a, N2F b);
-      return F2N res;   // Return the floating point remainder
+    { BCPLFLOAT res = Cfmod(N2F(a), N2F(b));
+      return F2N(res);  // Return the floating point remainder
                         // after dividing a by b. Ie return
                         // x - n * y where n is the integer
                         // quotient of x / y. ie how many times
@@ -2370,97 +2657,97 @@ BCPLWORD doflt(BCPLWORD op, BCPLWORD a, BCPLWORD b, BCPLWORD c) {
     }
 
     case fl_add:
-    { BCPLFLOAT res = N2F a + N2F b;
-      return F2N res;
+    { BCPLFLOAT res = N2F(a) + N2F(b);
+      return F2N(res);
     }
 
     case fl_sub:
-    { BCPLFLOAT res = N2F a - N2F b;
-      return F2N res;
+    { BCPLFLOAT res = N2F(a) - N2F(b);
+      return F2N(res);
     }
 
     case fl_pos:
       return a;
 
     case fl_neg:
-    { BCPLFLOAT res = N2F a;
+    { BCPLFLOAT res = N2F(a);
       res = -res;
-      return F2N res;
+      return F2N(res);
     }
 
     case fl_eq:
-      return N2F a == N2F b ? -1 : 0;
+      return N2F(a) == N2F(b) ? -1 : 0;
 
     case fl_ne:
-      return N2F a != N2F b ? -1 : 0;
+      return N2F(a) != N2F(b) ? -1 : 0;
 
     case fl_ls:
       //printf("cintsys: fl_ls of %8X and %8X\n", a, b);
-      //printf("cintsys: fl_ls of %13.4f and %13.4f\n", N2F a, N2F b);
-      return N2F a < N2F b ? -1 : 0;
+      //printf("cintsys: fl_ls of %13.4f and %13.4f\n", N2F(a), N2F(b));
+      return N2F(a) < N2F(b) ? -1 : 0;
 
     case fl_gr:
-      return N2F a > N2F b ? -1 : 0;
+      return N2F(a) > N2F(b) ? -1 : 0;
 
     case fl_le:
-      return N2F a <= N2F b ? -1 : 0;
+      return N2F(a) <= N2F(b) ? -1 : 0;
 
     case fl_ge:
-      return N2F a >= N2F b ? -1 : 0;
+      return N2F(a) >= N2F(b) ? -1 : 0;
 
     case fl_acos:
-    { BCPLFLOAT res = Cacos(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = Cacos(N2F(a));
+      return F2N(res);
     }
 
     case fl_asin:
-    { BCPLFLOAT res = Casin(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = Casin(N2F(a));
+      return F2N(res);
     }
 
     case fl_atan:
-    { BCPLFLOAT res = Catan(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = Catan(N2F(a));
+      return F2N(res);
     }
 
     case fl_atan2:
-    { BCPLFLOAT res = Catan2(N2F a, N2F b);
-      return F2N res;
+    { BCPLFLOAT res = Catan2(N2F(a), N2F(b));
+      return F2N(res);
     }
 
     case fl_cos:
-    { BCPLFLOAT res = Ccos(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = Ccos(N2F(a));
+      return F2N(res);
     }
 
     case fl_sin:
-    { BCPLFLOAT res = Csin(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = Csin(N2F(a));
+      return F2N(res);
     }
 
     case fl_tan:
-    { BCPLFLOAT res = Ctan(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = Ctan(N2F(a));
+      return F2N(res);
     }
 
     case fl_cosh:
-    { BCPLFLOAT res = Ccosh(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = Ccosh(N2F(a));
+      return F2N(res);
     }
 
     case fl_sinh:
-    { BCPLFLOAT res = Csinh(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = Csinh(N2F(a));
+      return F2N(res);
     }
 
     case fl_tanh:
-    { BCPLFLOAT res = Ctanh(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = Ctanh(N2F(a));
+      return F2N(res);
     }
 
     case fl_exp:
-    { BCPLFLOAT res = Cexp(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = Cexp(N2F(a));
+      return F2N(res);
     }
 
     case fl_frexp:
@@ -2470,71 +2757,71 @@ BCPLWORD doflt(BCPLWORD op, BCPLWORD a, BCPLWORD b, BCPLWORD c) {
     { int r2=222;
       // frexp expects an int* as its second argument but
       // actually places a floating point integer there.
-      BCPLFLOAT fa = frexp(N2F a, &r2);
-      //printf("frexp: a=%13.3f => %13.6f  e=%d\n", N2F a, fa, r2);
+      BCPLFLOAT fa = frexp(N2F(a), &r2);
+      //printf("frexp: a=%13.3f => %13.6f  e=%d\n", N2F(a), fa, r2);
       result2 = r2;
       //printf("frexp: resul2=%d\n", result2);
-      return F2N fa;
+      return F2N(fa);
     }
 
   case fl_ldexp:  // Returns a x 2^b where a is floating
                   //                 and b is an integer
-    { BCPLFLOAT res = ldexp(N2F a, b);
-      return F2N res;
+    { BCPLFLOAT res = ldexp(N2F(a), b);
+      return F2N(res);
     }
 
     case fl_log:
-    { BCPLFLOAT res = log(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = log(N2F(a));
+      return F2N(res);
     }
 
     case fl_log10:
-    { BCPLFLOAT res = log10(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = log10(N2F(a));
+      return F2N(res);
     }
 
     case fl_modf:
     { BCPLFLOAT r1, r2;
 #ifdef TARGET64
-      r1 = modf(N2F a, &r2);
+      r1 = modf(N2F(a), &r2);
 #else
-      r1 = modff(N2F a, &r2);
+      r1 = modff(N2F(a), &r2);
 #endif
-      result2 = F2N r2;   // The integer part of x as a BCPLFLOAT
-      return F2N r1;      // The fractional part of x
+      result2 = F2N(r2);   // The integer part of x as a BCPLFLOAT
+      return F2N(r1);      // The fractional part of x
                           // both are the same sign a x
     }
 
     case fl_pow:
-    { BCPLFLOAT res = pow(N2F a, N2F b);
-      return F2N res; 
+    { BCPLFLOAT res = pow(N2F(a), N2F(b));
+      return F2N(res); 
     }
 
     case fl_sqrt:
-    { BCPLFLOAT res = sqrt(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = sqrt(N2F(a));
+      return F2N(res);
     }
 
     case fl_ceil:
-    { BCPLFLOAT res = ceil(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = ceil(N2F(a));
+      return F2N(res);
     }
 
     case fl_floor:
-    { BCPLFLOAT res = floor(N2F a);
-      return F2N res;
+    { BCPLFLOAT res = floor(N2F(a));
+      return F2N(res);
     }
 
     case fl_N2F:
     { // eg sys(Sys_flt, fl_N2F, 1_000, 1_234) => 1.234
       BCPLFLOAT res = (BCPLFLOAT)b / (BCPLFLOAT)a;
-      return F2N res;
+      return F2N(res);
     } 
 
     case fl_F2N:
     { // eg sys(Sys_flt, fl_F2N, 1_000, 1.234) => 1_234
       BCPLFLOAT fa = (BCPLFLOAT)a;
-      BCPLFLOAT fb = N2F b;
+      BCPLFLOAT fb = N2F(b);
       BCPLFLOAT res = fa * fb;
       if(res<0) { res = res - 0.5; }
       else      { res = res + 0.5; }
@@ -2544,20 +2831,31 @@ BCPLWORD doflt(BCPLWORD op, BCPLWORD a, BCPLWORD b, BCPLWORD c) {
     case fl_radius2:
     { // eg sys(Sys_flt, fl_radius2, 3.0, 4.0) => 5.0
       // since 9 + 16 = 25
-      BCPLFLOAT fa = N2F a;
-      BCPLFLOAT fb = N2F b;
+      BCPLFLOAT fa = N2F(a);
+      BCPLFLOAT fb = N2F(b);
       BCPLFLOAT res = sqrt(fa*fa + fb*fb); 
-      return F2N res;
+      return F2N(res);
     }
 
     case fl_radius3:
     { // eg sys(Sys_flt, fl_radius3, 1.0, 2.0, 2.0) => 3.0
       // since 1 + 4 + 4 = 9
-      BCPLFLOAT fa = N2F a;
-      BCPLFLOAT fb = N2F b;
-      BCPLFLOAT fc = N2F c;
-      BCPLFLOAT res = sqrt(fa*fa + fb*fb+fc*fc); 
-      return F2N res;
+      BCPLFLOAT fa = N2F(a);
+      BCPLFLOAT fb = N2F(b);
+      BCPLFLOAT fc = N2F(c);
+      BCPLFLOAT res = sqrt(fa*fa + fb*fb + fc*fc); 
+      return F2N(res);
+    }
+
+    case fl_64to32: // sys(Sys_flt, fl_64to32, a)
+                    // a is a 32 or 64 bit floating point number.
+                    // The result is the nearest 32 bit floating
+                    // point number. Normally only used under
+                    // 64 bit Cintcode.
+    { FLOAT32 a32 = (FLOAT32)(*((BCPLFLOAT*)(&a)));
+      BCPLWORD b32 = (BCPLWORD)(*((BCPLUINT32*)(&a32)));
+      //printf("fl_64to32: a32=%f  b32=%d\n", a32, b32);
+      return (BCPLWORD)(*((BCPLUINT32*)(&a32)));
     }
   }
 }
@@ -2567,7 +2865,7 @@ BCPLWORD timestamp(BCPLWORD *v) {
   //     v[1] = msecs since midnight
   //     v[2] = -1 for new date and time format
   // Return -1 if successful
-#if defined(forWinCE) || defined(forMacOSPPC) || defined(forMacOSX)
+#if defined(forMacOSPPC) || defined(forMacOSX)
   v[0]=v[1]=0;
   v[2]=-1;
   return 0;   /* To indicate failure */
@@ -2589,7 +2887,7 @@ BCPLWORD timestamp(BCPLWORD *v) {
     secs = tb.time;
     //if(tb.dstflag) secs += 60*60;
     secs -= tb.timezone * 60;
-    //printf("tb.dstflag=%"FormD" tb.timezone=%"FormD"\n",
+    //printf("tb.dstflag=%lld tb.timezone=%lld\n",
     //        tb.dstflag, tb.timezone);
     msecs = tb.millitm;
   }
@@ -2614,7 +2912,7 @@ BCPLWORD timestamp(BCPLWORD *v) {
   v[0] = days;  // days  since on 1 January 1970
   v[1] = msecs; // msecs  since midnight
   v[2] = -1;    // For new dat format
-  //  printf("days=%"FormD" msecs=%"FormD"\n", days, msecs);
+  //  printf("days=%lld msecs=%lld\n", days, msecs);
   return -1;   /* To indicate success */
 #endif
 }
@@ -2851,9 +3149,9 @@ char *catstr2c_str(char *cstr1, char *cstr2, char *str) {
 
 void wrcode(char *form, BCPLWORD f, BCPLWORD a)
 {  wrfcode(f);
-   PRINTF ("  ");
-   PRINTFD(form, a);
-   PRINTF ("\n");
+   printf ("  ");
+   printf(form, a);
+   printf ("\n");
 } 
 
 void wrfcode(BCPLWORD f)
@@ -2902,22 +3200,22 @@ void trval(BCPLWORD w) {
   BCPLWORD gw = w & 0xFFFF0000;
   BCPLWORD gn = w & 0x0000FFFF;
     if(gw==Globword && gn<=1000) {
-      PRINTFD("     #G%03" FormD"# ", gn);
+      printf("     #G%03lld# ", LL gn);
     } else {
       if(-10000000<=w && w<=10000000) {
-        PRINTFD(" %10"FormD" ", w);
+        printf(" %10lld ", LL w);
       } else {
-        PRINTFD(" #x%8"FormX" ", (UBCPLWORD)w);
+        printf(" #x%8llx ", LL (UBCPLWORD)w);
       }
     }
 }
 
 void trace(BCPLWORD pc, BCPLWORD p, BCPLWORD a, BCPLWORD b)
-{ PRINTFD("A="); trval(a);
-  PRINTFD("B="); trval(b);
-  PRINTFD("P=%5"FormD" ", p);
-  PRINTFD("%9"FormD": ", pc);
-  wrcode("(%3"FormD")", WD (BP W)[pc], WD (BP W)[pc+1]);
+{ printf("A="); trval(a);
+  printf("B="); trval(b);
+  printf("P=%5lld ", LL p);
+  printf("%9lld: ", LL pc);
+  wrcode("(%3lld)", LL (BP W)[pc], LL (BP W)[pc+1]);
   putchar(13);
 }
 
@@ -2931,13 +3229,13 @@ void dumpmem(BCPLWORD *mem, BCPLWORD upb, BCPLWORD context)
   fp = fopen("DUMP.mem", "wb");
   if(fp==0) goto bad;
 
-  mem[rootnode + Rtn_lastp]   = lastWp-W;
-  mem[rootnode + Rtn_lastg]   = lastWg-W;
-  mem[rootnode + Rtn_lastst]  = lastst;
+  mem[rootnode + Rtn_sysp]   = lastWp-W;
+  mem[rootnode + Rtn_sysg]   = lastWg-W;
+  mem[rootnode + Rtn_sysst]  = lastst;
 
   mem[rootnode + Rtn_context] = context;
-  /* context = 1   SIGINT received                 (lastp, lastg)
-  ** context = 2   SIGSEGV received                (lastp, lastg)
+  /* context = 1   SIGINT received                 (sysp, sysg)
+  ** context = 2   SIGSEGV received                (sysp, sysg)
   ** context = 3   fault while running boot        (bootregs)
   ** context = 4   user called sys(Sys_quit, -2)   (klibregs)
   ** context = 5   fault while user running        (klibregs)
@@ -2950,7 +3248,7 @@ void dumpmem(BCPLWORD *mem, BCPLWORD upb, BCPLWORD context)
   mem[rootnode + Rtn_ticks] = -1;          // new dat format
 
   /* Write out size of cintcode memory */
-  /*PRINTFD("\n%8"FormD" Memory upb\n", upb); */
+  /*printf("\n%8lld Memory upb\n", upb); */
   len = fwrite((char*)&count, (size_t)4, (size_t)1, fp);
   if(len!=1) goto bad;
 
@@ -2966,7 +3264,7 @@ void dumpmem(BCPLWORD *mem, BCPLWORD upb, BCPLWORD context)
     */
     count = q-p; /* count>=0 */
     if(count)
-    { /*PRINTFD("%8"FormD" BLOCK\n", count); */
+    { /*printf("%8lld BLOCK\n", count); */
       len = fwrite((char*)&count, (size_t)4, (size_t)1, fp);
       if(len!=1) goto bad;
       len = fwrite((char*)&mem[p], (size_t)4, (size_t)count, fp);
@@ -2976,7 +3274,7 @@ void dumpmem(BCPLWORD *mem, BCPLWORD upb, BCPLWORD context)
     /* Write out repetition count (negated) followed by the data word */
     count = q-r; /* count<=0 */
     if(count) {
-      /*printf("%8"FormD" x %8"FormX"\n", -count, (UBCPLWORD)dataword); */
+      /*printf("%8lld x %8llx\n", -count, (UBCPLWORD)dataword); */
       len = fwrite((char*)&count,    (size_t)4, (size_t)1, fp);
       if(len!=1) goto bad;
       len = fwrite((char*)&dataword, (size_t)4, (size_t)1, fp);
@@ -2988,7 +3286,7 @@ void dumpmem(BCPLWORD *mem, BCPLWORD upb, BCPLWORD context)
 
  bad:
   if(fp) fclose(fp);
-  /*PRINTFD("\nMemory dumped to DUMP.mem, context=%"FormD"\n", context); */
+  /*printf("\nMemory dumped to DUMP.mem, context=%lld\n", context); */
   return; 
 }
 
@@ -2996,9 +3294,11 @@ void trpush(BCPLWORD val) {
   // If trcount>=0 push val into the circular trace buffer
   // possibly preceeded by a time stamp.
   // Note that trpush is disabled if trcount=-1
+#ifdef CINTPOSyes
   pthread_mutex_lock(&trpush_mutex);
+#endif
   if(trcount>=0) {
-#if defined(forWinCE) || defined(forMacOSPPC) || defined(forMacOSX)
+#if defined(forMacOSPPC) || defined(forMacOSX)
 #else
     BCPLWORD v[3];
     BCPLWORD msecs;
@@ -3009,28 +3309,39 @@ void trpush(BCPLWORD val) {
 #endif
     trvec[trcount++ & 4095] = val;
   }
+#ifdef CINTPOSyes
   pthread_mutex_unlock(&trpush_mutex);
+#endif
 }
 
 BCPLWORD settrcount(BCPLWORD count) {
   // Set trcount returning the previous value.
   // Setting trcount to -1 disables trpush.
+#ifdef CINTPOSyes
   BCPLWORD res;
   pthread_mutex_lock(&trpush_mutex);
   res = trcount;
   trcount = count;
   pthread_mutex_unlock(&trpush_mutex);
+#else
+  BCPLWORD res = trcount;
+  trcount = count;
+#endif
   return res;
 }
 
 BCPLWORD gettrval(BCPLWORD count) {
   // Return the trace value corresponding to position count.
   // The result is only valid if the circular buffer has not overflowed
+#ifdef CINTPOSyes
   BCPLWORD res;
   pthread_mutex_lock(&trpush_mutex);
   res = trvec[count & 4095];
   pthread_mutex_unlock(&trpush_mutex);
   return res;
+#else
+  return trvec[count & 4095];
+#endif
 }
 
 BCPLWORD incdcount(BCPLWORD n) {
@@ -3042,4 +3353,5 @@ BCPLWORD incdcount(BCPLWORD n) {
 #ifdef SOUND
 #include "soundfn.c"
 #endif
+
 

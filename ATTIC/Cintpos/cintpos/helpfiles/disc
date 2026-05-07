@@ -1,0 +1,66 @@
+*df-disccopy
+Form:           DF-DISCCOPY  "FROM/A,TO/A/K,CHECKBLOCKS=CHKBLKS/S"
+Purpose:        To physically copy a floppy disc.
+Author:         PB
+Specification:
+   Similar to DISCCOPY, but for floppy discs.  The entire disc is
+copied.
+   CHECKBLOCKS causes a read-after-write check to be performed on
+each block.
+Example:        DF-DISCCOPY DF0: TO DF1:
+                DF-DISCCOPY DF0: TO DF2: CHECKBLOCKS
+*df-disced
+Form:           DF-DISCED
+Purpose:        Disc editor for TRIPOS floppy discs.
+Author:         BJK
+Specification:
+   Commands are the same as for DISCED (q.v.).
+Example:        DF-DISCED
+*disccopy
+Form:           DISCCOPY  "FROM/A,TO/K"
+Purpose:        To copy logical disc packs or bootstrap areas
+                (physical copy).
+Authors:        BJK PB
+Specification:
+   Use DISCCOPY <disc-area> TO <disc-area>
+   <disc-area> specifies either a logical disc of the form
+DP<unit>-<disc number>:  (e.g. DP1-3: is unit 1, logical disc 3) OR
+a bootstrap area of the form DP<unit>-BOOT: .
+   An area may not be copied to itself, nor may areas of different
+type be copied.
+Example:        DISCCOPY DP0-0: TO DP1-1:
+                DISCCOPY DP0-BOOT: TO DP1-BOOT:
+                DISCCOPY DK0: TO DK1:  [system with RK05 discs]
+*disced #H #HCH %
+%spec
+DISCED spec is in SYS:INFO.SPEC.DISCED
+%commands sys:info.spec.disced
+%command
+%*
+Form:           DISCED
+Purpose:        To examine and patch disc blocks.
+Author:         BJK
+Specification:
+    Numbers can start with # or #X to indicate octal or hex.
+Strings can include BCPL string escapes (*N etc.).
+    The current block is that from the last G or P command.  It is
+the offset from the logical block number base.
+     For information on the commands available see HELP DISCED COMMANDS.
+Example:        DISCED
+%
+*discinfo
+*info
+Form:           DISCINFO  "DEVICE"
+Purpose:        To produce information on the identity, size and
+                usage of a disc.
+Author:         PB
+Specification:
+   By default, the information refers to the disc which contains the
+currently set directory.
+   DEVICE can be used to specify a different disc, which must be
+MOUNTed for updating.
+Example:        DISCINFO
+                DISCINFO DP1:
+** #H fileserver
+
+

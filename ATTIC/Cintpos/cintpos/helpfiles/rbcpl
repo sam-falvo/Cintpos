@@ -1,0 +1,85 @@
+*command
+**
+SYS:RDE.RBCPL command
+
+Form:         ( GLOBALS 400
+                LIBRARY :RDE.LOADER
+                STACK 1000 )
+                SYS:RDE.RBCPL "FROM,TO=OBJ,OCODE/K,OPT/K,VER/K,MC/K,CHARCODE/K"
+
+Purpose:        An extended BCPL compiler for LSI4's.
+
+Author:         RDE
+
+(Preliminary) Specification:
+
+    The new compiler supports the following extensions over and above those
+supported by BCP.
+        - External references, eg
+                 EXTERNAL $( X: "X" $)
+          which in conjunction with LKED allows linking of bcpl routines
+          to Pascal routines, Assembly language, ...
+        - Tables of tables, tables of strings, MANIFEST strings and tables, etc.
+        - Field selectors.
+        - OP:=  done properly.
+        - Automatic allocation of workspace.
+
+    The compiler uses overlays rather than LOADSEG/CALLSEG for each pass, and it
+keeps OCODE in store between passes.  Hence it is noticably faster than BCP
+for small programs, and faster than BCPL in general.
+
+    The new compiler has the following restrictions.
+        - The %% operator is not (yet) supported.
+        - OP:= operators are not allowed when the LHS uses the % operator
+          or field selectors.
+
+    The options string takes the form,
+                feopt,feopt, .. feopt/cgopt,cgopt, .. cgopt
+                                         with the comma separators are optional.
+    The front end options include the following.
+        $tag
+        $tag'   Respectively set and clear conditional compilation flags;
+                $TRIPOS is set by default.
+        +C      Equate upper and lower cases in identifiers (default).
+        -C      Treat upper and lower cases as distinct in identifiers.
+        +O      Keep OCODE in store for all SECTIONS.
+        -O      Write all OCODE out to file between passes.
+                By default, OCODE is kept in store for 1 SECTION programs only.
+        Xn      Allow various levels of extension to the bcpl language.
+                With n = 0, no extensions whatsoever are allowed.
+                With n = 1, as BCPL except for the % operator.
+                With n = 2, also allows the % operator.
+                With n = 3, also allows OP:= , selectors and conditional
+                            compilation tags.
+                With n = 4, also allows the new form of EXTERNAL.
+                With n = 5 (default), all supported extensions are available.
+    The code generator options include the following.
+        Gnnn    Assume that the GLOBAL vector starts at fixed location nnn,
+                optimizing accordingly.  (Of use to Kernel writers only.)
+        +I      Optimize indirect store operations such as
+                        A!n := X; A!n+1 := Y
+                BE WARNED; this option is also called the INCORRECT CODE option
+                since if A!n is the same location as A, the code generated will
+                not produced the desired effect.
+        -N      Exclude procedure names.  The default is +N.
+        +C      Include stack checking code. The default is -C.
+        +P      Include profile counting code. The default is -P.
+        +K      Include call counting code. The default is -K.
+
+    For compatibility, the BCPL options L, W and D are accepted and ignored.
+
+
+Examples:
+                SYS:RDE.RBCPL prog TO obj
+                                Compiles prog and puts the binary in obj.
+                SYS:RDE.RBCPL prog TO obj OPT=$testing
+                                As above, setting the conditional compilation
+                                flag "$testing".
+                SYS:RDE.RBCPL prog TO obj OPT=X2-O
+                                Equivalent to "BCPL prog TO obj"
+
+
+        A simple demonstration program, showing some of extensions currently
+        lives in SYS:RDE.DEMO.
+
+

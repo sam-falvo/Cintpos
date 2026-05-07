@@ -1,0 +1,15 @@
+*callseg #N
+*command
+**
+Form:           RUN  command; command .....
+Purpose:        To execute commands in background tasks.
+Author:         ARA
+Specification:
+   RUN creates a non-interactive Command Language Interpreter (CLI)
+task at low priority and gives it the rest of the command line as
+input.  The background CLI will execute the commands and then delete
+itself.
+Example:        RUN BCPL A TO B
+                RUN  PRINT A; DELETE A; ECHO "Printing finished"
+
+

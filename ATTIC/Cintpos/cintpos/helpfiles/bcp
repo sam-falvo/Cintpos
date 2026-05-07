@@ -1,0 +1,160 @@
+*command
+Form:           BCP  "FROM,TO,OCODE/K,MC/K,CHARCODE/K,VER/K,OPT/K"
+Purpose:        To compile a BCPL program
+Author:         PB
+
+Specification:
+   This is a shiny compiler that allows a more standard Cambridge version of
+the BCPL language. The BCPL command takes 50% longer to compile the bench mark,
+so this is also notably faster. See HELP BCP INTRO for an introduction.
+
+   If FROM is specified, then the front end is called to generate intermediate
+code.  If TO is specified, then the code generator is called to translate the
+intermediate code into object code.  If OCODE is specified, then the given file
+is used for the intermediate code, otherwise a temporary file is used and is
+deleted at the end of the compilation.
+
+   MC is ignored at the moment ...
+
+   CHARCODE may be used to specify a character translation file for
+bootstrapping.  The format is 128 three-digit octal integers, separated by tab,
+space, or newline.
+
+   VER specifies an output stream for the listing.  If QT is specified, then
+only error appear on VER.
+
+   OPT specifies options.  Most options are a pair of letters, optionally
+preceeded by 'NO' or '-' to indicate negation. Switches need no seperators, but
+'/', ';', space or tab are ignored (all but '/' need the string in Quotes)
+For further details see HELP BCP OPTIONS
+
+    See also HELP BCP INTRO or HELP BCP ERRORS
+
+Example:        BCP PROG-SOURCE TO PROG
+                BCP OCODE PROG-OCODE TO PROG
+*option
+*sw
+*switch
+   The OPT keyword specifies options.  Most options are a pair of letters,
+optionally preceeded by 'NO' or '-' to indicate negation. Switches need no
+seperators, but '/', ';', space or tab are ignored (all but '/' need the string
+in Quotes)
+
+Below, 'T' and 'F' mean the default is TRUE, FALSE, and 'm' means TRUE on 68000s
+
+ AL F   Produce 'Assembler' output (i.e. hex dump) (same as HX)
+ BY F   Generate routine calls for PUTBYTE and GETBYTE
+ CC     Set Conditional Compilation flag. Syntax is CCx<name>x where x is a
+        non letter Or CC<name>x where x is ':' or '/'
+ CR F   Set up for cross compilation
+ CO F   Codegenerator Optimisations. Do not kill register slaves after !a :=
+ DB F   Set (or unset) FC, FN, SC, SN
+ DE F   Debug the installed compiler. Not of general interest.
+ DI m   Generate dibyte OCODE, instead of calling global routine. See HW
+ EM 20  The maximum number of errors before aborting
+ EX F   Allow extensions ...
+ FN T   Include Function Names
+ FC F   Include Function Counts
+ FS F   Use a FALLING stack
+ GE F   Listing includes all 'GET' files (i.e. builds a complete file). see PR
+ HW m   If TRUE, treat %% as the dibyte operator rather than ! (for 32 bit)
+ HX F   produduce HeX dump (same as AL)
+ IG F   Ignore all gets
+ LB F   Place a LIBWORD (23456) before each routine
+ LN T   Give Line Numbers in trn error messages
+ LO T   Genearte long procedure names   (680x0s only)
+ MC     Like CC but sets CR-SY. Used for specifying destination m/c
+ MD T   Do multiplication by indirection off (S) (not through GV) (680x0 only)
+ MI F   use M68020 instructions (680x0s only)
+ NU F   Generate Numeric ocode, instead of binary ocode
+ OP T   Allow OP:=
+ PC F   Profile counting
+ PR F   PRint out the source compiled to ver (omit $<.$>). Acts as pre-processor
+ QT F   Reduce messages -- If true -> no listing to VER.
+ RE T   Optimise for register machine rather than stack machine
+ SW 150 Define the maximum number of cases allowed
+ SC m   Include code for stack checking
+ SL F   Send Ocode to a file: don't try to keep it in memory
+ SN T   Include Section names
+ SA ?   Specify savespace size. 2 for LSI4, 3 for MC68000
+ SY T   Set the system Conditional Compilation flag ($$<mctype>TRIPOS)
+ TO T   Perform Translator Opmimisations. E.g. IF (A&4)=4 -> IF (A&4)
+ TS F   display the Trn Space free after compilation
+ UN T   Flag mismatch on untagged section brackets
+ VE F   Display Version number
+ WA T   Warn user about dubious operations
+ WS 15000 Set the working store to n (also WO, L or W). Note that the space is
+        shared between the two passes. The number given is the free store for
+        the first pass
+
+// ..... Hmmm...
+ O   alternative object module format FALSE
+ P   profile counts                 FALSE
+ R   restricted instruction set     FALSE
+*error
+ERRORS: Please report all bugs to PB.
+
+Warning messages normally contain the word 'warning' and the compilation will
+terminate sucessfully.
+
+The common ones are:
+
+IF const THEN found (n)
+        A constant was found in a condtional expression (IF, TEST or ->).
+    The value of (n) is that of the constant.
+    This is often caused by 'IF (a & #X100)' instead of 'IF (a & #X100)~=0'.
+
+VALOF block may be undefined
+        Valof blocks ought to return some value.  However it may be known by the
+    programmer that a routine call (e.g. stop(n)) will never return.
+
+Multiple section names. Program may not run ASIS
+        You have given two section names. The second one has generated an
+    external definition, and the standard LOADSEG will complain about it.
+    This is useful is linking is required.
+    To discard it do <..>LINK <from> to <to> (See HELP LINK COMMAND)
+
+Unsupported condtional tag
+        You are using a tag that used to be set by the system, but is no longer
+    supported. You are advised to remove it!
+
+Any cryptic comments from the Code Generator phase should be passed on to PB.
+
+To supress the messages (at your own peril!!) set the option '-WA'.
+*expert
+FOR EXPERTS ONLY:
+=================
+
+BCP is a stub which loads overlays from a special overlay file.
+This may be provided by assigning BCP-COMPILER: to the overlay FILE.
+If no assignment exists, it looks in the system default file. Each new 'version'
+has its own file, the name being of the format 'sys:l.bcp-<v>-ov' (currently it
+is 'sys:l.bcp-j-ov').  Thus by including the command (in your init-sequence)
+
+ 'copy sys:l.bcp-j-ov core:bcp-compiler; assign bcp-compiler: core:bcp-compiler'
+
+it will run much faster.
+*intro
+**
+BCP is an upwards compatible BCPL compiler. It runs upto twice as fast as BCPL
+if the -sl option is used (the default).
+
+   It allows OP:= (where op is +-*/|&), tight binding (<>), the dibyte operator
+(%%) and conditional compilation ($$TAG := bool      $<TAG ... $>TAG).
+  Note that OP:= is NOT done properly on LSI4s - it is a fudge in TRN to convert
+A OP:= B into A := A OP B so A should not have side effects. (I feel that it
+should be discouraged anyway!).
+   A Dibyte is a pair of bytes, which is a word on a 16 bit machine. Thus a%%b
+is the same as a!b for these machines.  For 32 bit machines, %% is an efficient
+way of using the hardware HALFWORD opcodes.  The identities are
+        get2bytes(a, b) == a%%b    &    put2bytes(a,b,c) == a%%b := c
+   System tags are $$LSI4TRIPOS and $$68000TRIPOS, i.e. <mctype>TRIPOS.
+
+It is recomended that the STACK 1000 command is used in init-sequence, or else
+before compiling a non-trivial program.
+
+If a GET fails, the program tries various directories:  G0:, G1:, G2:, the
+current directory, G4:, G5:, SYS:G, G7:, G8: and G9:
+See HELP BCP COMMAND, HELP BCP ERRORS, HELP BCP OPTIONS, HELP BCP EXPERT
+
+

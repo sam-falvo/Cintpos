@@ -1,0 +1,35 @@
+*command
+**
+OBSERVE command
+Form:           OBSERVE   "TASK,TICKS,NOPROC/S,HELP/S"
+Purpose:        To monitor CPU usage by task and procedure.
+Author:         JD + IML + PB
+Specification:
+        This command runs at low priority for TICKS/50 seconds.  It then
+    runs at the highest possible priority inspecting the stacks of each
+    task (or the single task TASK) in the system.  It accumulates
+    information about which procedure is running in each task (or if
+    NOPROC only which task is running).  This information is displayed
+    whenever the command is broken with CTRL D.  The information, in terms of
+    which procedure in which task has been using what percentage of the CPU,
+    on the basis of how often it was found to be running during the passed
+    samples, is also printed when the command is ended with CTRL B.
+    The tables are cleared with CTRL C, and the task is deactived with CTRL E.
+        If HELP is specified a brief description of the command is given.
+
+Examples:
+
+    RUN OBSERVE TASK 1
+        Observe will start to run in another task and monitor task 1.
+        A command executed at task 1 (if it is a CLI) will thus be measured.
+        The task in which OBSERVE is running should be selected and
+        periodically broken using CTRL D to observe the progress of the
+        monitored command.
+        When the command has finished OBSERVE is broken with CTRL D and
+        will print a summary of the commands performance.
+
+    OBSERVE NOPROC
+        will obtain statistics about the relative activity in each of the
+        system's tasks.
+
+

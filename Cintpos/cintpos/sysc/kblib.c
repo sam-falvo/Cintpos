@@ -490,14 +490,14 @@ int fread(char *buf, size_t size, size_t len, FILEPT fp) {
 	if(!rc) {
           DWORD err = GetLastError();
 	  /*
-          PRINTFD("fread: ReadFile, err=%" FormD "\n", (DWORD)err);
+          printf("fread: ReadFile, err=%" FormD "\n", (DWORD)err);
 	  */
           return -1;
 	}
 	/*
-	PRINTFD("fread trying to read from fd=%" FormD "\n", (DWORD)fp);
-	PRINTFD("fread trying to read %" FormD " bytes, ", (DWORD)(size*len));
-	PRINTFD("got %" FormD "\n", n);
+	printf("fread trying to read from fd=%" FormD "\n", (DWORD)fp);
+	printf("fread trying to read %" FormD " bytes, ", (DWORD)(size*len));
+	printf("got %" FormD "\n", n);
 	*/
 	return n;
 }

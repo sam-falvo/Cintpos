@@ -1,0 +1,48 @@
+*command
+**
+Form:           JOBMSG "From/S,String=file,To,Term/K"
+Purpose:        To output its argument with "% variables" expanded.
+Author:         CGG
+Specification:
+    Input is taken either from a file or from a string.  When input is
+from a string FROM is not given and STRING is taken as the text to be
+expanded.  Otherwise FROM is quoted and the file name from which input
+is to be taken is given by FILE (which = STRING).  If no file name is
+given the default input is used.  A file is read until either its end is
+found or a line consisting only of the characters in the keyed string
+TERM are found.  The default value for TERM is "/*".
+    Input text is expanded and output either to the default output
+(normally the screen) or the the file quoted after TO.
+    Characters in the input text are normally copied straight through
+to the output.  However the character '%' is an escape character used
+to introduce one of the following expansions:
+
+     Escape Sequence       Expands Into        Example Expansion
+          %%           <percent>                      %
+          %F           <name of the output file>      *
+          %I           <current task number>          8
+          %T           <the time>                     15:41:33
+          %D           <the date>                     25-Nov-81
+          %W           <the week day>                 Wednesday
+          %K           <the machine kind>             LSI4
+          %M           <the machine name>             ALPHA
+          %P           <the user's PUID>              FF02B7A4415C1C3F
+          %U           <the user's initials>          CGG
+          %L           <name of loading machine>      TITAN.VDU/7
+          %C           <reverse connection name>      RevCon-TITAN.VDU/7
+          %V           <the vdu or terminal type>     Cifer2632
+
+The special escape sequence "%=" has no expansion.  Any occurences of
+%T, %W, %D or %U occuring after %= are forced to be re-evaluated however.
+Escape sequences other than those given above will have an undefined
+effect.
+
+Examples:
+    JOBMSG %M              - prints machine name
+    JOBMSG FROM TO T:LOG   - info for log
+    user %u (PUID=%p) logged on
+       at %t on %m from terminal %l:%c
+    /*
+    JOBMSG "Executing in task %I"
+ 
+

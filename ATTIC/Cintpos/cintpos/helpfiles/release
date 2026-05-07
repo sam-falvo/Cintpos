@@ -1,0 +1,35 @@
+*command
+Form            RELEASE  "Task/a"
+Purpose:        To release a given task.
+Specification:  Allows the numbered task to continue execution.
+Example:        RELEASE 8
+*procedure
+RESULT := RELEASE(TASKID)
+   Place a task into a non-held state.
+Arguments:
+
+TASKID
+   The id. of the task to be  placed  into  a  non-held
+state.
+Normal return:
+
+RESULT\=0
+   The  specified  task  has  been placed in a non-held
+state.
+Error return:
+
+RESULT=0, error is:
+
+   RESULT2=101, Invalid id.
+Side effects:
+
+   May cause a change of current task.
+Related routines:
+
+   HOLD
+** #I release
+RELEASE is the name both of a KLIB procedure and of a TRIPOS command.
+Type PROCEDURE for information about the procedure and COMMAND for
+information about the command.
+
+

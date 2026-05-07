@@ -123,8 +123,8 @@ LET start() BE
 
     CASE 1:
     CASE 2: FOR r = 0 TO 7 DO bootregs!r := 0
-            bootregs!r_p := mem(rootnode+rtn_lastp)
-            bootregs!r_g := mem(rootnode+rtn_lastg)
+            bootregs!r_p := mem(rootnode+rtn_sysp) // ????
+            bootregs!r_g := mem(rootnode+rtn_sysg)
 
     CASE 3: // In BOOT
     CASE 6: // In sadebug in BOOT
@@ -161,7 +161,7 @@ LET start() BE
   }
   newline()
 
-  { LET st = mem(rootnode+rtn_lastst)
+  { LET st = mem(rootnode+rtn_sysst)
     SWITCHON st INTO
     { DEFAULT: sawritef("Unexpected ST value: %n*n", st); ENDCASE
       CASE 0:  sawritef("while in user code -- interrupts enabled*n"); ENDCASE
@@ -490,8 +490,8 @@ AND dumprootnode() BE
   writef("  klib       %iA*n", mem(rtn_klib+rootnode))
   writef("  abortcode  %iA*n", mem(rtn_abortcode+rootnode))
   writef("  context    %iA*n", mem(rtn_context+rootnode))
-  writef("  lastp      %iA*n", mem(rtn_lastp+rootnode))
-  writef("  lastg      %iA*n", mem(rtn_lastg+rootnode))
+  writef("  sysp       %iA*n", mem(rtn_sysp+rootnode))
+  writef("  sysg       %iA*n", mem(rtn_sysg+rootnode))
   writef("  days       %iA*n", mem(rtn_days+rootnode))
   writef("  msecs      %iA*n", mem(rtn_msecs+rootnode))
   writef("  idletcb    %iA*n", mem(rtn_idletcb+rootnode))
@@ -782,7 +782,7 @@ AND wrcortns(tcb) BE
   { TEST cptr=cont(gptr+g_currco)
     THEN TEST 1<=mem(rootnode+rtn_context)<=2 & // SIGINT or SIGSEGV
               mem(rootnode+rtn_crntask)=tcb
-         THEN pptr := mem(rootnode+rtn_lastp)
+         THEN pptr := mem(rootnode+rtn_sysp)
          ELSE pptr := mem(regs+r_p)>>2
     ELSE pptr := cont(cptr+co_pptr)>>2
 
@@ -983,7 +983,7 @@ AND selectask(id) BE
   // leaving cinterp, otherwise select the tcb for task id
   // and the registers corresponding to that task.
   LET tasktab = mem(rtn_tasktab+rootnode)
-  AND st      = mem(rootnode+rtn_lastst)  // The latest ST value
+  AND st      = mem(rootnode+rtn_sysst)   // The latest ST value
   AND ctxt    = mem(rootnode+rtn_context) // The context
   LET t = 0                               // To hold the TCB address
 

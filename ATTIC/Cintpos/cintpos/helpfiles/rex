@@ -1,0 +1,32 @@
+*history #H Shell-Commands
+*clist #H Shell-Commands
+*cl #H Shell-Commands
+*switch #H Shell-Commands
+*sw #H Shell-Commands
+*char #H Shell-Commands
+*unset #H Shell-Commands
+*set #H Shell-Commands
+*pushd #H Shell-Commands
+*popd #H Shell-Commands
+*pwd #H Shell-Commands
+*rexload #H Shell-Commands
+*rexunload #H Shell-Commands
+*rextrace #H Shell-Commands
+*rexlist #H Shell-Commands
+*rexstack #H Shell-Commands
+**
+REX is a command executor, providing extended command line interpreter
+facilities in conjunction with the Tripos Shell.  REX includes an
+interpreter for a programming language which is sufficiently powerful
+to enable simple "throw-away" programs to be written, and has a sufficiently
+good interface to the Shell to enable complex command sequences to be
+constructed easily.
+
+Relevant documents are:
+
+    a)  The REX Executor      -    Documentation of the REX language
+    b)  The REX Shell         -    Documentation of the Shell
+
+See HELP REX xxx for information on REX Shell commands.
+
+

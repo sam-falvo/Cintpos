@@ -1,0 +1,113 @@
+*label
+*lab
+Form:           LAB <text>
+Purpose:        To implement labels in command sequence files.
+Author:         CGG
+Specification:
+   Ignores any parameters it is given.  The parameter will usually be a
+name which is intended to be searched for by the SKIP command (q.v.)
+
+Example:        IF mctype = 68000 SKIP compiledone
+                BCP file t:1
+                LAB compiledone
+*level
+LEVEL
+
+  LEVEL is a function in MLIB for delivering the current BCPL stack level
+in a form suitable for passing to the procedure LONGJUMP.  This is the only
+purpose for which the value returned is defined.  E.g:
+
+  LEV := LEVEL()
+*libhdr
+The standard BCPL Header containing the specification of system GLOBALS
+and MANIFESTS, "LIBHDR", can be found in SYS:G.LIBHDR.
+*library #H libraries
+*limit #H accounting
+*line #H #HCH %
+%argument #H rdargs
+%check #H chkl
+%option #H rdargs
+%parameter #H rdargs
+%parm #H rdargs
+*link #H linking
+*linker #H linking
+*linkage #H linking
+*lisp #H demolisp
+*listing #H printer
+*list #H #HCH %
+%name #H nameserver
+%command #H print-list
+%+ #H print-list
+%*
+Try HELP LIST COMMAND for the command to print a file with line numbers.
+Try HELP NAMESERVER for help on the system name list.
+%
+*listout #H print-list
+*listnames #H nameserver
+*loadringserv
+LOADRINGSERV COMMAND
+
+LOADRINGSERV loads the Ring services task. It will fail if the port used
+for ring services is already reserved.
+*locateobj
+*locatedir
+LOCATEOBJ procedure (LOCATEDIR is an alias)
+
+RESULT := LOCATEOBJ( NAME )
+
+Obtain a filing system lock on a file or directory.
+NAME is a string giving the name of the object.
+RESULT is set to point to a new lock on the object (which should be released
+after use with FREEOBJ).
+If the call fails, RESULT will be zero and RESULT2 will hold an error code.
+*lock
+Filing System Locks
+
+A lock is the data structure used by filing systems as a handle for, and
+interlock on, an open file.  Locks on directories are also used as handles
+(e.g. for the currently set directory in a CLI, or for 'examine' operations)
+but do not behave as interlocks.
+
+Locks are obtained by LOCATEOBJ, copied by COPYOBJ, and released by FREEOBJ.
+*logger
+RING LOGGER
+
+Messages can be printed on the ring log teletype by sending 'wto'-style
+SSP blocks to the service "wto-log". This can be done at command level by
+using the WTO command, or from program by using the FINDWTO procedure
+(see HELP SOURCELIB FINDWTO).
+
+The logger is particularly useful for reporting errors from services
+which normally run without a terminal connection.  However, please try to
+ensure that no error condition can induce your program to bombard the log
+with a continuous stream of messages!
+*logout #H logoff
+*longjump
+LONGJUMP procedure
+
+LONGJUMP( STACKPTR, LABEL )
+
+Perform a jump (in a BCPL program) which involves a change of stack frame
+(i.e. jump out of one or more levels of procedure call).
+
+LABEL is the destination label for the jump.
+STACKPTR is a value which should have been obtained previously by a call
+of LEVEL in the environment of LABEL.
+*lookup #H nameserver
+*love
+The LSI4 and MC68000 series of microcomputers, being of essentialy neuter
+gender, are unable to help with personal physical and emotional problems.
+*lp #H printer
+*lp: #H printer
+*lsi4 #H #HCH +
+++
+LSI4
+
+The Computer Automation LSI4 is a 16 bit minicomputer, on which some of the
+machines in the Computer Laboratory processor bank is based.  An implementation
+of Tripos exists for it (see HELP TRIPOS for details).  The Tripos is 16 bit,
+and the machines have a full 64K WORDS of store.  Two kind of LSI4 are
+available:  LSI4/10 and LSI4/30.  The latter model is about 3 times faster.
++
+
+

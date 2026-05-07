@@ -1,0 +1,15 @@
+*command
+**
+Form:           SYSIMAGE  "FROM/A,UNIT/K,PRIMARY/S,SECONDARY/S"
+Purpose:        To write a core image bootstrap to the bootstrap
+                area of a disc.
+Author:         PB
+Specification:
+   The FROM file should be an absolute object module of a TRIPOS
+system produced by SYSLINK (q.v.).
+   UNIT specifies the disc drive number.
+   PRIMARY and SECONDARY control which of the two bootstrap areas is
+used.
+Example:        SYSIMAGE TRIPOS UNIT 0 PRIMARY
+
+

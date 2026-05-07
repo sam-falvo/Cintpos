@@ -1,0 +1,311 @@
+*commands #N ..
+*command #H #TCH=@
+
+*c #N ..
+*current #N ..
+*m #N ..
+*move #N ..
+*t #N ..
+*type #N ..
+*p #N ..
+*put #N ..
+*ed #N ..
+*rem #N ..
+*remove #N ..
+*r #N ..
+*refresh #N ..
+*o #N ..
+*output #N ..
+*i #N ..
+*input #N ..
+*pw #N ..
+*password #N ..
+*g #N ..
+*gettuid #N ..
+*e #N ..
+*enhance #N ..
+*rep #N ..
+*repeat #N ..
+*? #N ..
+*help #N ..
+*q #N ..
+*quit #N ..
+*all #N ..
+** #H #HCH +
++commands #N ..
++* ..
+UIDEDIT Command
+Form:           UIDEDIT "service"
+Purpose:        To inspect modify and save UID sets in the FRIDGE.
+Author:         CGG
+Specification:
+
+         This  command is used to enter the UIDset editor.  It takes
+    one, optional, argument  -- the name of an AOT service.  If it is
+    not supplied AOT-1 will be used (which will normally be correct).
+
+         From this command the contents of the  fridge  can be inspected,
+    modified and saved.  It provides a practical method of using and
+    filing user's UIDsets.
+    
+         A summary of the commands available can be obtained using
+    HELP UIDEDIT COMMANDS, and a detailed description of the editor's
+    use is given with HELP UIDEDIT ALL.  Help on each command is
+    available by going HELP UIDEDIT <command>.  This help can also be
+    obtained from within the editor.
+
++commands
+UIDEDIT Commands are, briefly, as follows:
+
+    Current   - displays currently selected UID set
+    Type      - displays UID sets currently resident in FRIDGE
+    Move      - copy's numbered UID set from FRIDGE to Current
+    Put       - puts Current UID set back into FRIDGE
+    EDit      - changes fields in the Current UID set
+    REMove    - deletes version of Current UID set in FRIDGE
+    Refresh   - changes the timeout on the Current UID set
+    Output    - writes coded Current UID set to a named file
+    Input     - reads coded UID set from a file into Current
+    PassWord  - sets and checks password used for OUTPUT and INPUT
+    Gettuid   - uses Current UID set to generate new UID sets for FRIDGE
+    Enhance   - ditto but new UID sets have same TUID as Current UID set
+    REPeat    - repeats former commands on line <argument> times
+    Help      - gives the names of commands and their synonyms
+    Quit      - exits the editor
+
+         Most of these commands have a one, two or three letter synonym.
+    (These are designated by the use of upper-case in the above list).
+    For further information use HELP UIDEDIT COMMAND <command>.  For all
+    that HELP knows about UIDEDIT commands use HELP UIDEDIT COMMAND ALL.
+    Use HELP UIDEDIT COMMANDS for a brief list of the commands available.
++*
+
+Example:
+       UIDEDIT
+       UID set editor
+       =
+
++
+*all ..
+UIDEDIT In detail description:
+
+*all ..
+*c
+*current
+    The editor holds UIDsets in a container called  'current'.   This
+    container  can  obtain  its  UIDset  from  the fridge or from the
+    TRIPOS filing system.  It  can  also  be  deposited  either  into
+    either of these places.  Initially it has the value of the user's
+    UIDset.  Its value can be printed using the CURRENT command.
+
+       = current
+         1: CGG             USER          verifiable, TPUID valid TAG 3
+       =
+
+    The first column 'CGG' refers to the PUID and the second  to  the
+    authentity  (this  UIDset  was produced by the USER manager).  If
+    the UIDset is described as 'verifiable' then the TUID matches the
+    PUID  and  authentity.  Whether or not the TPUID matches the rest
+    of the UIDset is also noted.  If the TPUID is zero then the  fact
+    that the user can have no control over whether it goes bad or not
+    is noted in the message "not owned".   The  "1:"  refers  to  the
+    position  of  this  UIDset in the fridge.  If the UIDset were not
+    known to be duplicated there this number  would  be  replaced  by
+    "<c>"  which indicates that this UIDset may  ONLY be available in
+    in Current.  The TAG is a unique number  identifying the notional
+    owner of this UIDset.
+
+         The  names  "CGG" and "USER" are text names for the PUID and
+    authentity which are 16 digit hex numbers.  If no name  is  known
+    for  a  particular UID or if the name cannot be looked up then it
+    is printed out in full.  The TUID and TPUID for  the  UIDset  are
+    always  printed  in  full.   They  are printed when the parameter
+    "all" is given to the CURRENT command.
+
+*all ..
+*t ..
+*type ..
+*p ..
+*put ..
+         The contents of the fridge can be printed in the same format
+    using  the TYPE command.  UIDsets can be moved from the fridge to
+    current using the MOVE command using its  position  as  an  index
+    (note that the fridge COULD change its contents at any time so it
+    is sensible to check that the correct UIDset  is  in  current  if
+    there  is  any  doubt).  Similarly the contents of current can be
+    put into the fridge with the PUT command.  This command will  not
+    duplicate  information in the fridge:  if a copy of the UIDset is
+    already there another UIDset will not be added.
+
+*all ..
+*t
+*type
+*p
+*put
+*edit ..
+*ed ..
+       = type
+         1: CGG              USER             verifiable, TPUID valid TAG 3
+         2: FF0220940ED0F1DC PRIV             verifiable, TPUID valid TAG 3
+       = move 2
+       = current all
+         2: FF0220940ED0F1DC FF02PRIVxxxxxxxx verifiable, TPUID valid TAG 3
+            TUID  010278C00524D3F7         TPUID  0102456864889FBE
+       = edit tpuid=0
+       = current
+       <c>: FF0220940ED0F1DC PRIV             verifiable, not owned TAG 3
+       = put
+       = type
+         1: CGG              USER             verifiable, TPUID valid TAG 3
+         2: FF0220940ED0F1DC PRIV             verifiable, TPUID valid TAG 3
+         3: FF0220940ED0F1DC PRIV             verifiable, not owned TAG 3
+       = current
+         3: FF0220940ED0F1DC PRIV             verifiable, not owned TAG 3
+       =
+
+
+*all ..
+*edit
+*ed
+         The EDIT command in the above modified the  named  field  to
+    the  given  value (in this case changed current's TPUID to zero).
+    The  keywords  PUID, TUID,  TPUID, AUTY  and  TAG can  be used to 
+    change any or all of current's UIDs in a similar manner.
+*all ..
+*rem ..
+*remove ..
+         In order to remove the UIDset in current from the fridge the
+    command REMOVE is used.  It will only work if the UIDset given in
+    current matches the one in the list at its  given  position.   It
+    will  not  remove the first UIDset (the user's identification) in
+    any event.  The UIDset remains  in  current  and  can  be  either
+    subsequently put back, output to a file or lost.  Note that since
+    the UIDset is no longer in the fridge it will start to go bad.
+
+*all ..
+*rem
+*remove
+*r ..
+*refresh ..
+*o ..
+*output ..
+       = type
+         1: CGG              USER             verifiable, TPUID valid TAG 3
+         2: FF0220940ED0F1DC PRIV             verifiable, TPUID valid TAG 3
+         3: FF0220940ED0F1DC PRIV             verifiable, not owned TAG 3
+       = move 2
+       = current
+         2: FF0220940ED0F1DC PRIV             verifiable, TPUID valid TAG 3
+       = remove
+       = current
+       <c>: FF0220940ED0F1DC PRIV             verifiable, TPUID valid TAG 3
+       = refresh 10000
+       = output priv.sysman
+       =
+
+*all ..
+*r
+*refresh
+*o
+*output
+*i
+*input
+*pw ..
+*password ..
+    The REFRESH command is  used to change the timeout for the UIDset
+    in current to 10000 (hex) seconds (about 18 hours).   The maximum
+    (hex) number that can be specified  in  the  REFRESH  command  is
+    FFFFFF  seconds  --  about  six  months.   This command will only
+    succeed if there is a valid  TPUID  available  in  current.   The
+    OUTPUT command sent the UIDset to the file "priv.sysman".  It can
+    be read back into current using the INPUT command.  In  order  to
+    protect  the  UIDsets  written to public files in this manner the
+    TUID and TPUID can be coded on output and decoded on input with a
+    password.   Such  a  password  can be specified with the PASSWORD
+    command which prompts for its argument.  If no  password  is  set
+    files  are  neither  coded  on  output nor decoded on input.  The
+    method of  coding  works  optimally  if  the  password  has  nine
+    characters  or  more  in it.  Consequently two word passwords are
+    allowed: to encourage length.  The password that has been set can
+    be  checked  by giving the password command the argument 'check'.
+    Naturally care must be taken to  specify  the  same  password  on
+    input as was used when the UIDset was output.
+
+*all ..
+*pw
+*password
+       = pw
+       Password: changed password
+       = input priv.sysman
+       = current
+       <c>: FF0220940ED0F1DC PRIV            not verifiable, not owned TAG 3
+
+
+*all ..
+*e
+*enhance
+*g
+*gettuid
+         The AOT functions 'gettuid' and  'enhance'  can  be  invoked
+    using  commands  GETTUID  and  ENHANCE.   Both  of  these entries
+    require a valid UIDset with authentity  "AUTH".   Such  a  UIDset
+    must be provided in current when using these commands.  They both
+    have the effect of creating new UIDsets which are  put  into  the
+    fridge  for  safe keeping.  The initial timeout of the new UIDset
+    must be specified (in hex seconds) as a parameter to the command.
+    The  PUID  to  be given to the new UIDset must also be given.  In
+    ENHANCE the position in the fridge of the UIDset  being  enhanced
+    must be supplied.
+
+       = type
+         1: CGG              USER             verifiable, TPUID valid TAG 3
+         2: PRIV             AUTH             verifiable, TPUID valid TAG 3
+       = move 2
+       = gettuid puid=bjk 100
+       = gettuid puid=cgg 100
+       = type
+         1: CGG              USER             verifiable, TPUID valid TAG 3
+         2: PRIV             AUTH             verifiable, TPUID valid TAG 3
+         3: BJK              PRIV             verifiable, TPUID valid TAG 3
+         4: CGG              PRIV             verifiable, TPUID valid TAG 3
+       = enhance uidset=1 puid=bjk 100
+       = type
+         1: CGG              USER             verifiable, TPUID valid TAG 3
+         2: PRIV             AUTH             verifiable, TPUID valid TAG 3
+         3: BJK              PRIV             verifiable, TPUID valid TAG 3
+         4: CGG              PRIV             verifiable, TPUID valid TAG 3
+         5: BJK              PRIV             verifiable, TPUID valid TAG 3
+       =
+
+    In the above UIDsets 1 and 5 will have identical TUID, TPUID sets
+    -- but all the others will have different ones.   Note  that  the
+    name  "bjk",  "cgg"  &c can be used instead of using 16 digit hex
+    numbers.  This is only true when there is a known  correspondence
+    between  the  name  given  and a PUID or authentity.  The same is
+    true  of the EDIT command  mentioned  above.  The "TAG"s given to
+    the newly created UIDsets are all the same - they are the default
+    tag for this  UIDedit session, which can be  found using the HELP
+    command.
+
+*all ..
+*rep
+*repeat
+         Commands  may be  repeated  either  indefinately  or a fixed
+    number  of times using  the  REPEAT command.  If  it is given  no
+    argument  then the  commands  textually preceeding  REPEAT on the
+    command  line will  be repeated  until BREAK is  given  (CTRL B).
+    Otherwise  if a  number  follows  REPEAT  the  commands  will  be
+    executed only that number of times.
+
+*all
+*help
+*"?"
+*q
+*quit
+         There is a HELP command which gives the  names  of  all  the
+    commands  and  some  synonyms.   A  question  mark  (?)  will, in
+    general, print a desription of what is expected in that position.
+    The QUIT command exits the editor.
+*
+        
+

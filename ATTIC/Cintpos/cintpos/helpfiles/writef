@@ -1,0 +1,34 @@
+*procedure
+**
+WRITEF
+      To write out formated data.
+      writef ( format, a, b,..., k )
+      The  'format'  is  a  string.  This  is  written   out
+character  by  character  as for writes ( q.v. ) except that
+when a percent ( % ) character is encountered, the next item
+from  'a',  'b', etc., is taken, and written out in a format
+dependant on the character or characters directly  following
+the %.
+      The options are as follows :
+     %S  Write argument as a string.
+     %Tn   Write arguement as  a  string  in  a  field  of n
+places.
+         n should be 0,...., 9, A,......
+     %C  Write argument as a character.
+     %On   Write argument in octal in a field of n places.
+         n should be 0,...., 9, A,......
+     %Xn  Write as for %O but in hexadecimal.
+     %In  Write as for %O but in decimal.
+     %N  Write in decimal.
+     %Un  Write as for %O but in unsigned decimal.
+      For the cases of writing in a given field  width,  the
+truncation  and padding schemes are as for the corresponding
+direct routines ( ie., writet ( q.v. ), writeoct (  q.v.  ),
+etc. ).
+      If the character following the % is  not  one  of  the
+above  then that character is written out. Hence to output a
+% the string 'format' should contain %%.
+      Note  that strings that are written out ( %S and %Tn )
+are not processed for percent symbols.
+
+

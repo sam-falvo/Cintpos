@@ -601,7 +601,13 @@ LET createtask(segl, stacksize, pri) = VALOF
   }
 
 ret:
+//sys(Sys_sawrch, 'X')
+//sys(Sys_sawrch, '*n')
+//sys(Sys_tracing+200, TRUE)
+//sawritef("createtask has created task %n*n", id)
+
   sys(Sys_setst, 0)
+//sawritef("createtask has enabled interrupts before returning*n")
   RESULTIS id
 }
 
@@ -812,7 +818,8 @@ LET createdev(dcb) = VALOF
        }
   ELSE  result2, devid := 104, 0 // Device table is full
 //sawritef("KLIB: createdev(%n) => %n*n", dcb, -devid)
-  sys(Sys_setst, 0)   // Return to user mode
+//  sys(Sys_setst, 0)   // Return to user mode, ie enable interrupts
+//sawritef("KLIB: returning from createdev with result %n*n", -devid)
   RESULTIS -devid
 }
 

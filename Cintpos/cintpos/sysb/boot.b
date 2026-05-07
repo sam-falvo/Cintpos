@@ -24,6 +24,9 @@ SECTION "BOOT"
 GET "libhdr"
 
 GLOBAL {
+// Note that boot has a global vector different from Cintpos tasks.
+// This global vector is also used by the interrupt service routine irqrtn.
+// The rootnode is shared by all BCPL and C code in the system.
 sadebug:ug
 checkaddr
 cont
@@ -116,6 +119,7 @@ LET start(fn, size, c) BE
 // Most rootnode fields have been initialised by cintsys/cintpos,
 // including
 
+
 // rtn_boot   The module boot ie this module
 // rtn_klib   The module klib
 // rtn_blib   The modules blib, syslib and dlib
@@ -135,6 +139,14 @@ LET start(fn, size, c) BE
   currco!co_size     :=  cosize //                                 size
   currco!co_c        :=  0      //                             and c
 
+//abort(1238)  // These all work
+  //sawrch('*n')
+  //sawrch('X')
+  //sawrch('*n')
+//sawritef("ABCD*n")
+  //abort(1239)
+//sawritef("Calling boot()*n")
+
   boot()
 }
 
@@ -150,9 +162,12 @@ AND boot() BE
   p := getvec(root_stackupb+6)  // The root coroutine stack
   g := getvec(root_gvecupb)     // The root global vector
 
+  //sys(Sys_tracing, TRUE)
   // boot and standalone debug only use standalone i/o
   rdch, wrch := sardch, sawrch
-
+  //wrch('Z')
+  //writes("XX*n")
+//abort(1348, 10, 11, 12)
   IF rootnode!rtn_boottrace>1 DO
   { sys(Sys_tracing, FALSE)
     sawritef("boot: instruction tracing turned off*n")
@@ -174,25 +189,11 @@ AND boot() BE
   FOR i = 1 TO g!0 DO g!i := globword + i;
   FOR i = 1 TO p!0+6 DO p!i := stackword
  
-  writef("*nCintpos System (4 Jan 2019)*n")
+  writef("*n%n bit Cintpos System (2 Sep 2019)*n", bitsperword)
 
   IF rootnode!rtn_boottrace>1 DO
   { sawritef("boot: turning on instruction tracing*n")
     sys(Sys_tracing, TRUE)
-  }
-
-  // Set the environment variable names for this system in the rootnode
-  // BCPL Cintcode uses BCPLROOT,   BCPLPATH   and BCPLHDRS
-  // BCPL64        uses BCPL64ROOT, BCPL64PATH and BCPL64HDRS
-  // Cintpos       uses POSROOT,    POSPATH    and POSHDRS
-  { LET rootvar, pathvar, hdrsvar, scriptsvar = 
-      //"BCPLROOT",   "BCPLPATH",   "BCPLHDRS",   "BCPLSCRIPTS"
-      //"BCPL64ROOT", "BCPL64PATH", "BCPL64HDRS", "BCPL64SCRIPTS"
-      "POSROOT",    "POSPATH",    "POSHDRS",    "POSSCRIPTS"
-    FOR i = 0 TO rootvar%0    DO (rootnode!rtn_rootvar)%i    := rootvar%i
-    FOR i = 0 TO pathvar%0    DO (rootnode!rtn_pathvar)%i    := pathvar%i
-    FOR i = 0 TO hdrsvar%0    DO (rootnode!rtn_hdrsvar)%i    := hdrsvar%i
-    FOR i = 0 TO scriptsvar%0 DO (rootnode!rtn_scriptsvar)%i := scriptsvar%i
   }
 
 //writef("Type 5 characters to test standalone rdch*n")
@@ -259,6 +260,20 @@ AND boot() BE
     // without interferring with the sys calls used here.
     LET res = 0
     LET sysf = (rootnode!rtn_sys>>B2Wsh)-4
+    // sysf is a BCPL pointer to the start of stored name of the sys
+    // function. It will point to one of the  following depending on
+    // the BCPL word length and endedness of the current system.
+
+    //0000DFDF 7379730B 20202020 20202020 00007B91 # SYS RTN 32 bit litender
+
+    //0000DFDF 0B737973 20202020 20202020 917B0000 # SYS RTN 32 bit bigender
+
+    //000000000000DFDF 202020207379730B 0000000020202020 # 64 bit litender
+    //0000000000007B91                                   # SYS RTN
+
+    //000000000000DFDF 0B73797320202020 2020202000000000 # 64 bit bigender
+    //917B000000000000                                   # SYS RTN
+
     LET sysv = VEC 4       // The vector to hold the private copy sys.
                            // This copy will work on big and little
                            // ender machines running using either 32-
@@ -270,11 +285,6 @@ AND boot() BE
     //FOR i = 0 TO 4 DO writef("sysv!%n = %x8*n", i, sysv!i)
     sys := (sysv+4)<<B2Wsh // Update the sys function in boot's global
                            // vector to point to this private version.
-
-    //sysv%0 := #x91      // SYS
-    //sysv%1 := #x7B      // RTN
-    //sys := sysv<<B2Wsh  // Update the sys function in boot's global
-                          // vector to point to this private version.
 
     IF rootnode!rtn_boottrace DO
     { sawritef("boot: about to call sys(Sys_interpret,...)*n")
@@ -365,25 +375,29 @@ AND startroot(fn, size, c) BE
 
 AND rootcode() BE
 {
-  crntcb := 0 // Cintpos only -- no current task yet
+  tcb, taskid := 0, 1
+  crntcb := 0         // Cintpos only -- no current task yet
 
   // Set the globals defined in klib
   sys(Sys_globin, rootnode!rtn_klib)
+  
   // Set the globals defined in blib, syslib and dlib
   sys(Sys_globin, rootnode!rtn_blib)
 
+//abort(1459)
   // Setup tasktab, devtab and create the initial devices and tasks.
 //sawritef("rootcode: initialising the kernel data structure*n")
   initkernel()
+//abort(1460)
 
-// Now start Tripos running by entering the scheduler, giving
-// it the highest priority tcb -- It will actually run idle which
-// will send a startup packet to task 1, the cli task.
+// Now start cintpos running by entering the scheduler, giving it
+// the highest priority tcb. This will actually run the idle task
+// which will send a startup packet to task 1, the cli task.
 
-//  sawritef("rootcode: calling srchwk(%n)*n", rtn_tcblist!rootnode)
+//sawritef("rootcode: calling srchwk(%n)*n", rtn_tcblist!rootnode)
   srchwk(rtn_tcblist!rootnode)
 
-  // This should code should never be reached.
+  // This code should never be reached.
   sawritef("Unexpected return from srchwk*n")
   sys(Sys_quit, 0)
 }
@@ -426,7 +440,7 @@ AND initkernel() BE
 //sawritef("*nNOT Calling createdev for clk*n")
   //createdev(dcb)
 
-  // Create of the keyboard device (-2)
+  // Create of the keyboard input device (-2)
   dcb := getvec(Dcb_upb)
   FOR i = 0 TO Dcb_upb DO dcb!i := 0
   Dcb_devid!dcb := -2
@@ -436,22 +450,22 @@ AND initkernel() BE
   createdev(dcb)
 
   // Ttyout (device -3) is now handled by qpkt.
-  dcb := getvec(Dcb_upb)
-  FOR i = 0 TO Dcb_upb DO dcb!i := 0
-  Dcb_devid!dcb := -3
-  Dcb_type!dcb := Devt_ttyout
-  Dcb_intson!dcb := TRUE
-  //devtab!3 := -1
-  devtab!3 := dcb
-//sawritef("*nNOT Calling createdev for ttypout*n")
+  //dcb := getvec(Dcb_upb)
+  //FOR i = 0 TO Dcb_upb DO dcb!i := 0
+  //Dcb_devid!dcb := -3
+  //Dcb_type!dcb := Devt_ttyout
+  //Dcb_intson!dcb := TRUE
+  devtab!3 := -1 // Stop createdev from ever creating device -3
+  //devtab!3 := dcb
   //createdev(dcb)
+//sawritef("*nttypout device NOT created since dev -3 is handled by cinterp*n")
 
 // Set interrupt service routine registers
   isrregs!r_a     := 0
   isrregs!r_b     := 0
   isrregs!r_c     := 0
-  isrregs!r_p     := getvec(500) << 2
-  isrregs!r_g     := g << 2            // Share the klib's globals vector
+  isrregs!r_p     := getvec(500) << B2Wsh
+  isrregs!r_g     := g << B2Wsh        // Share the klib's globals vector
   isrregs!r_st    := 3                 // In the ISR -- Interrupts disabled
   isrregs!r_pc    := irqrtn            // Interrupt service routine
   isrregs!r_count := -1
@@ -476,15 +490,17 @@ AND initkernel() BE
 // initial tasks will be in DEAD state without packets.
 // The Idle task will send a startup pkt to the main CLI (task 1)
 // which then starts up the other resident Cintpos tasks
-
-  createtask(mksegl(3, klib, blib, getseg("idle")), 400, 0) 
+sys(Sys_tracing, 1)
+  createtask(mksegl(3, klib, blib, getseg("idle")), 400, 0)
+//sawritef("About change task 1 into the idle task*n")
   tcb := tasktab!1            // It must have created task 1
   tasktab!1 := 0              // remove its entry from tasktab
   tcb_taskid!tcb := 0         // set its id to zero
   tcb_wkq!tcb := TABLE 0,0,0  // give it a startup pkt
   tcb_state!tcb := #b1101     // and set its state to DEAD with PKT
   rtn_idletcb!rootnode := tcb // Remember where the idle TCB is.
-
+  // This will be the first task activated but not until srchwk is called.
+  
 // Create the other resident tasks
 
 // Note:  createtask(segl, stacksize, priority)
@@ -508,8 +524,8 @@ AND initkernel() BE
 // Task 6 -- The TCP Handler
   createtask(mksegl(3, klib, blib, getseg("tcphand")),  1000, 9600) 
 
-  rtn_clkintson!rootnode := TRUE // At last we can turn on clock interrupts
-
+  //rtn_clkintson!rootnode := TRUE // At last we can turn on clock interrupts
+//sawritef("*nAbout to call prrootnode()*n")
 //prrootnode()
 //prtasks()
 }
@@ -522,9 +538,9 @@ AND getseg(name) = VALOF
   FOR i = 1 TO prfx%0 DO { len := len+1; filename%len := prfx%i }
   FOR i = 1 TO name%0 DO { len := len+1; filename%len := name%i }
   filename%0 := len
+//sawritef("getseg: loading %s*n", filename)
   seg := loadseg(filename)
   UNLESS seg DO sawritef("Trouble loading %s*n", filename)
-//sawritef("loading %s*n", filename)
   RESULTIS seg
 }
 
@@ -541,8 +557,8 @@ THEN
 
   LET pkt = rtn_clwkq!rootnode // Find the packet
 
-  //sawritef("irqrtn: clk int received, clkwkq = %n*n", pkt)
-  sys(Sys_trpush, #xDD000001) // Indicate clk int rcvs
+//sawritef("irqrtn: clk int received, clkwkq = %n*n", pkt)
+  sys(Sys_trpush, #xDD000001) // Indicate clk int rcveived
 
   IF pkt DO
   { LET ctcb = rtn_crntask!rootnode // The current TCB
@@ -576,11 +592,12 @@ ELSE
   LET dcb = 0
   LET devtab = rtn_devtab!rootnode
 
-  sys(Sys_trpush, #xDD000000+n) // Indicate int rcvd from device n
+  sys(Sys_trpush, #xDD000000+n) // Indicate int rcveived from device n
 
   // Get the DCB
   IF 0 < n <= devtab!0 DO dcb := devtab!n
   //IF n=4 DO sawritef("irqrtn: processing interrupt for device %n*n", devid)
+  //sawritef("irqrtn: processing interrupt for device %n*n", devid)
 
 //sawritef("irqrtn: devid=%d*n", devid)
   IF dcb DO
@@ -671,20 +688,20 @@ AND interrupttask(tcb) BE
 }
 
 AND prrootnode() BE
-{ writef("Rootnode at %n:*n", rootnode)
-  writef("  tasktab    %i8*n", rtn_tasktab!rootnode)
-  writef("  devtab     %i8*n", rtn_devtab!rootnode)
-  writef("  tcblist    %i8*n", rtn_tcblist!rootnode)
-  writef("  crntask    %i8*n", rtn_crntask!rootnode)
-  writef("  blklist    %i8*n", rtn_blklist!rootnode)
-  writef("  clkintson  %i8*n", rtn_clkintson!rootnode)
-  writef("  clwkq      %i8*n", rtn_clwkq!rootnode)
-  writef("  memsize    %i8*n", rtn_memsize!rootnode)
-  writef("  info       %i8*n", rtn_info!rootnode)
-  writef("  sys        %i8*n", rtn_sys!rootnode)
-  writef("  blib       %i8*n", rtn_blib!rootnode)
-  writef("  boot       %i8*n", rtn_boot!rootnode)
-  writef("  klib       %i8*n", rtn_klib!rootnode)
+{ sawritef("Rootnode at %n:*n", rootnode)
+  sawritef("  tasktab    %i8*n", rtn_tasktab!rootnode)
+  sawritef("  devtab     %i8*n", rtn_devtab!rootnode)
+  sawritef("  tcblist    %i8*n", rtn_tcblist!rootnode)
+  sawritef("  crntask    %i8*n", rtn_crntask!rootnode)
+  sawritef("  blklist    %i8*n", rtn_blklist!rootnode)
+  sawritef("  clkintson  %i8*n", rtn_clkintson!rootnode)
+  sawritef("  clwkq      %i8*n", rtn_clwkq!rootnode)
+  sawritef("  memsize    %i8*n", rtn_memsize!rootnode)
+  sawritef("  info       %i8*n", rtn_info!rootnode)
+  sawritef("  sys        %i8*n", rtn_sys!rootnode)
+  sawritef("  blib       %i8*n", rtn_blib!rootnode)
+  sawritef("  boot       %i8*n", rtn_boot!rootnode)
+  sawritef("  klib       %i8*n", rtn_klib!rootnode)
 }
 
 
@@ -693,21 +710,21 @@ AND prtasks() BE
   WHILE t DO
   { LET seglist = tcb_seglist!t
     LET pkt = tcb_wkq!t
-    writef("tcb at %i4:*n", t)
-    writef(" taskid %i4", tcb_taskid!t)
-    writef(" wkq %i4", tcb_wkq!t)
-    writef(" pri %i4", tcb_pri!t)
-    writef(" state %i4", tcb_state!t)
-    writef(" stsiz %i4", tcb_stsiz!t)
-    writef(" seglist %i4", tcb_seglist!t)
-    writes("*n   Seglist:  ")
-    FOR i = 0 TO seglist!0 DO writef("%i8 ", seglist!i)
-    writes("*n   Packets:  ")
+    sawritef("tcb at %i4:*n", t)
+    sawritef(" taskid %i4", tcb_taskid!t)
+    sawritef(" wkq %i4", tcb_wkq!t)
+    sawritef(" pri %i4", tcb_pri!t)
+    sawritef(" state %i4", tcb_state!t)
+    sawritef(" stsiz %i4", tcb_stsiz!t)
+    sawritef(" seglist %i4", tcb_seglist!t)
+    sawritef("*n   Seglist:  ", seglist)
+    FOR i = 0 TO seglist!0 DO sawritef("%i8 ", seglist!i)
+    sawritef("*n   Packets:  ")
     UNTIL pkt<=0 DO
-    { writef("pkt %n id  %n   ", pkt, pkt_id!pkt)
+    { sawritef("pkt %n id  %n   ", pkt, pkt_id!pkt)
       pkt := pkt_link!pkt
     }
-    newline()
+    sawritef("*n")
     t := tcb_link!t
   }
 }
@@ -717,6 +734,28 @@ AND mksegl(n, a, b, c, d) = VALOF
   LET t = @n
   FOR i = 0 TO n DO segl!i := t!i
   RESULTIS segl
+}
+
+AND nsize(n) = VALOF
+{ LET res = 1
+  IF n<0 DO { res := res+1; n := -n }
+  WHILE n > 9 DO { res := res+1; n := ABS(n/10) }
+  RESULTIS res
+}
+
+AND wrd(n, d) BE
+{ FOR i = nsize(n)+1 TO d DO wrch(' ')
+  wrn(n)
+}
+
+AND wrn(n) BE
+{ IF n<0 DO { wrch('-'); n := -n }
+  wrpn(n)
+}
+
+AND wrpn(n) BE
+{ IF n > 9 DO wrpn((n>>1)/5) // Unsigned division by 10
+  wrch((n + 10) MOD 10 + '0')      // Unsigned MOD 10
 }
 
 AND sadebug(code) = VALOF
@@ -732,6 +771,15 @@ AND sadebug(code) = VALOF
     sys(Sys_quit, code)
     RESULTIS FALSE
   }
+
+//wrn(ON64)
+//newline()
+//writen(-1234); writed(-1234, 10)
+//newline()
+//wrn(-1234); wrd(-1234, 10)
+//newline()
+  writen := wrn  // Temp fix while debugging 64 bit fault
+  writed := wrd  // Temp fix
 
   trapregs := regs // Save the register set at time of entering sadebug
                    // (In Cintpos, regs changes when selecting different
@@ -950,16 +998,6 @@ sw:
               GOTO recover
 
     CASE 'T': rch()
-              IF ch='+'DO
-              { writef("*nInstruction tracing turned on*n")
-                sys(Sys_tracing, TRUE)
-                GOTO nxt
-              }
-              IF ch='-'DO
-              { writef("*nInstruction tracing turned off*n")
-                sys(Sys_tracing, FALSE)
-                GOTO nxt
-              }
             { LET n = rdn()
               LET k = bitsperword=32 -> 5, 4
               IF n<=0 DO n := 1
@@ -973,9 +1011,10 @@ sw:
 
     CASE '$': rch()
               UNLESS ch='B' | ch='C' | ch='D' | ch='F' |
-                     ch='O' | ch='S' | ch='U' | ch='X' DO
-              { writef("Valid style letters are: BCDFOSUX*n")
-                GOTO nxt
+                     ch='O' | ch='E' | ch='S' | ch='U' |
+                     ch='X' DO
+              { writef("  Valid style letters are: BCDEFOSUX*n")
+                GOTO recover
               }
               style := ch
               GOTO nxt
@@ -1113,7 +1152,7 @@ AND prprompt() BE
   LET st = trapregs!r_st
   LET letter = '?'
 //sys(Sys_tracing, FALSE)
-//sawritef("crntcb=%n*n", crntcb)
+//sawritef("crntcb=%n st=%n A=%n ", crntcb, st, trapregs!r_a)
   IF crntcb DO id, letter := crntcb!tcb_taskid, crntcb!tcb_active -> 'a', 'd'
   IF st=1 DO letter := 'k'
   IF st=2 DO letter := 'b'
@@ -1289,15 +1328,20 @@ AND praddr(a) BE
 }
 
 AND print(n) BE
+{ //sawritef("print: style=%c n=%n*n", style, n)
+  print1(n)
+}
+
+AND print1(n) BE
 TEST bitsperword=32
 THEN // Write value in given style in a field width of 13
      SWITCHON style INTO
      { DEFAULT:   error();                 RETURN
-       CASE 'C':  { LET p = @n
+       CASE 'C':  { LET p = @n // Write n as 4 bytes
                     writes("         ")
                     FOR i = 0 TO 3 DO
                     { LET ch = p%i
-                      wrch(32<=ch<=127 -> ch, '.')
+                      wrch(32<=ch<=127 -> ch, '?')
                     }
                     RETURN
                   }
@@ -1305,51 +1349,32 @@ THEN // Write value in given style in a field width of 13
        CASE 'D':  writef( "  %IB", n);     RETURN
        CASE 'F':  writearg(n);             RETURN
        CASE 'O':  writef( "  %OB", n);     RETURN
+       CASE 'E':  writef( " %13e", n);     RETURN
        CASE 'S':  checkaddr(n)
                   writef( "  %S",  n);     RETURN
        CASE 'U':  writef( "  %UB", n);     RETURN
-       CASE 'X':  writef( "     %X8", n);     RETURN
+       CASE 'X':  writef( "     %X8", n);  RETURN
      }
 ELSE // Write 64-bit value in given style in a field width of 21
      SWITCHON style INTO
      { DEFAULT:   error();                 RETURN
-       CASE 'C':  { LET p = @n
+       CASE 'C':  { LET p = @n // Write n as 8 bytes
                     writes(" ")
                     FOR i = 0 TO 7 DO
                     { LET ch = p%i
-                      wrch(32<=ch<=127 -> ch, '.')
+                      wrch(32<=ch<=127 -> ch, '?')
                     }
                     RETURN
                   }
-       CASE 'B':  TEST bitsperword=32
-                  THEN writef( " %32b ", n)
-                  ELSE writef( " %64b ", n)
-                  RETURN
-
-       CASE 'D':  TEST bitsperword=32
-                  THEN writef( " %10i ", n)
-                  ELSE writef( " %20i ", n)
-                  RETURN
-
-       CASE 'F':  writearg(n);             RETURN
-
-       CASE 'O':  TEST bitsperword=32
-                  THEN writef( " %11o ", n)
-                  ELSE writef( " %22o ", n)
-                  RETURN
-
+       CASE 'B':  writef( " %64b ", n);      RETURN
+       CASE 'D':  writef( " %20i ", n);      RETURN
+       CASE 'E':  writef( " %13e", n);       RETURN
+       CASE 'F':  writearg(n);               RETURN
+       CASE 'O':  writef( " %22o ", n);      RETURN
        CASE 'S':  checkaddr(n)
-                  writef( " %S ",  n);     RETURN
-
-       CASE 'U':  TEST bitsperword=32
-                  THEN writef( " %10U ", n)
-                  ELSE writef( " %20U ", n)
-                  RETURN
-
-       CASE 'X':  TEST bitsperword=32
-                  THEN writef( " %8x ", n)
-                  ELSE writef( " %16x ", n)
-                  RETURN
+                  writef( " %S ",  n);       RETURN
+       CASE 'U':  writef( " %20U ", n);      RETURN
+       CASE 'X':  writef( " %16x ", n);      RETURN
      }
 
 AND checkaddr(a) = VALOF
@@ -1370,7 +1395,7 @@ AND selectask(id, givename) BE
   IF id<0 DO t := rtn_crntask!rootnode
 
   UNLESS t DO
-  { sawritef("Task %n does not exist*n", id)
+  { //sawritef("Task %n does not exist*n", id)
     RETURN
   }
 
@@ -1385,8 +1410,8 @@ AND selectask(id, givename) BE
 
 
 //sawritef("regs=%n*n", regs)
-  gptr  := r_g !regs >> 2
-  pptr  := r_p !regs >> 2
+  gptr  := r_g !regs >> B2Wsh
+  pptr  := r_p !regs >> B2Wsh
 
   // Set current coroutine if in user or kernel mode and the task
   // is active
@@ -1541,7 +1566,7 @@ AND rch() BE
   { // Perform polling input from the TTYIN device
     lch := rtn_lastch!rootnode
     rtn_lastch!rootnode := pollingch
-//sawritef("lch = %n*n", lch)
+//UNLESS lch=-3 DO sawritef("lch = %n*n", lch)
     UNLESS lch=pollingch BREAK
     sys(Sys_delay, 20)       // 20 msecs
     //sys(Sys_delay, 1000)       // 1000 msecs

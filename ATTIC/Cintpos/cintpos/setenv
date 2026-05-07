@@ -1,0 +1,13 @@
+# One way to set the POSROOT, POSPATH and PATH environment variable
+# for the Cintpos system is as follows:
+
+# Edit the following line to specify the cintpos home directory
+# on your machine, and then execute the shell command:
+
+# . ./setenv
+
+export CINTPOS=$HOME/distribution/Cintpos/cintpos
+
+export POSROOT=$CINTPOS:.
+export POSPATH=$CINTPOS/cin
+export PATH=$PATH:$CINTPOS/bin

@@ -1,0 +1,21 @@
+*procedure
+**
+LOADSEG
+      To load a load module into memory.
+      res := loadseg ( file )
+      The file should be  a  load  module  consisting  of  a
+series  of  interspersed 'relocatable hunk' and 'relocation'
+blocks ( manifest types t.hunk and t.reloc )  terminated  by
+an end ( t.end ) block. These are scatter loaded into memory
+in a series of getvec'ed blocks, chained together  on  their
+first words. The end of the chain is indicated by a zero.
+      In the event of an  error ( unrecognised  block  type,
+relocation  offsets outside hunk limits, no end block ) then
+any blocks loaded will be unloaded, the result2  global  set
+to 121, and a false ( zero ) result will be returned. In the
+event of the file not being found the result is zero.
+      If the module is correctly loaded then the result will
+be a pointer at the beginning of the list of  blocks,  which
+may be used at the argument to the 'globin' routine.
+
+

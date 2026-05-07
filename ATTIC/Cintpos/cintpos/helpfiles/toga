@@ -1,0 +1,10 @@
+*command
+**
+Form:           TOGA  "FROM/A,ECHO/S"
+Purpose:        To send files to a GA computer.
+Author:         MR (?)
+Specification:  Sends file FROM along a serial connection to a General
+                Automation computer.  The text sent is reflected on the screen
+                if the key ECHO is given.
+
+

@@ -1,0 +1,22 @@
+*command
+**
+format  : preproc "from/a,to/a,header/k,ver/s,with/k"
+author  : MFR
+purpose : conditional compilation tag stripping
+
+          The preproc command processes conditional compilation tags of the
+form $<tag $>tag, etc.
+
+          from   : input file
+          to     : destination file
+          header : optional header file   (concatentated to front of input)
+          with   : optional header string (concatentated to front of input)
+                   (ie., input is <with>+<header>+<from>)
+          ver    : will give list of tags and settings at end
+
+          Tags should be of the form $<tag $>tag and $<tag' $>tag'. They may
+be set by $$tag:=true, $$tag:=false, $$tag:=$$tag2, or $$tag:=$$tag2'. Other
+expressions are not allowed.  There is almost no error checking. Tags may be
+nested.
+
+

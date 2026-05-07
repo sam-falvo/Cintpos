@@ -1,0 +1,16 @@
+*quit
+Form:           QUIT  "RC,RESULT2"
+Purpose:        To exit from a command sequence with a given return
+                code and RESULT2 value.
+Author:         CGG
+Specification:
+   QUIT reads through the command file to ENDSTREAMCH, and then does
+STOP(RC), after setting RESULT2.
+   The defaults for return code and RESULT2 are zero.
+Example:        QUIT
+                QUIT 20
+                QUIT 16 40
+                QUIT RESULT2=40
+*quota #H accounting
+
+

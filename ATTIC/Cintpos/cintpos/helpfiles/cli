@@ -1,0 +1,49 @@
+*cliinit
+*cli-init
+*init
+Part of the CLI task (q.v.) is some initialisation code which is run at
+start-up to set up various data structures, print the banner message etc.
+It is unloaded after it has run.
+*task
+**
+CLI
+
+CLI stands for Command Line Interpreter.  It is the program which loads
+and executes TRIPOS commands.  A description of the interface between
+the CLI and commands is given in TRIPOS.ALL.SPEC:CLI on Phoenix.
+
+Note that under Rex-Tripos (the normal 68000 system) the CLI is replaced
+by the Shell.  See HELP SHELL for more info.  The following applies to
+the old CLI which runs on LSI4s, and non-Rex 68000 Tripos.
+
+Each command runs as a coroutine of the CLI, sharing its global vector
+(and hence its streams) but with a private stack (the size of which may be
+controlled by means of the STACK command).  Having loaded the code of
+a command and initialised its globals, the CLI will enter START (global 1)
+passing a parameter of zero.  When the loaded program exits its code is
+unloaded and global vector re-initialised for the CLI itself.
+
+Note that the CLI expects its input and output streams still to be in
+existence (although they need not be selected) when the loaded code exits.
+The CLI may abort if these streams have been closed.
+
+When TRIPOS starts, there is only one CLI task (task 1) and console
+input is directed to it.  The commands NEWCLI and RUN may be used
+to create extra CLI tasks, so that commands may be executed in parallel.
+
+NEWCLI creates a new interactive CLI, to which console input may be directed
+using Control-S or Control-T followed by the task number (use HELP TASK
+SELECTION for further information).  The command ENDCLI will delete the CLI
+in which it is executed.
+
+RUN creates a background CLI which takes the rest of the command line
+as its input.  Having executed that, it dies.
+
+When TRIPOS is being used from a Ring virtual terminal, the sequence
+<BREAK> B <CR> X
+will fire up an extra interactive CLI task.
+
+A CLI may be made to take its input from a file using the C or T commands;
+output may be directed to a file by using the SPOOL command.
+
+

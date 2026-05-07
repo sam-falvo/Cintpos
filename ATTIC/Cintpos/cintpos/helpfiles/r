@@ -1,0 +1,192 @@
+*rainbow
+The RAINBOW is a high resolution graphics workstation developed at Cambridge.
+See a member of the RAINBOW research group, or Dr. N.E. Wiseman for further
+information.
+*ram
+Use the MAP command to find out how much memory is available and how much
+is currently in use.
+*range #H #HCH %
+%syntax #H scan
+*rats
+RATS stands for Remotely Activated Terminal Session.  It is the prefix
+conventionally applied to the service names of Cambridge virtual terminal
+protocol services, e.g. "RATS-PHOENIX" to access phoenix.  The terminal
+concentrator adds this prefix by default to names it is given.  Its reverse
+is STAR, which is the name of the TRIPOS command which makes connections.
+*rdch
+RDCH
+      To read the next character from the currently selected
+input stream.
+      ch := rdch ()
+      A call of rdch yields the next sequential character of
+the currently selected input stream, unless that  stream  is
+exhausted,  in which case the end-of-stream character ( end-
+streamch ) is returned.
+*reader
+READER is a ring service analagous to WRITER, which enables files to be
+read remotely from other TRIPOS machines.  It bipasses all forms of
+authentication, and hence should be used with care.
+
+    copy bsp:read-black/:idw.fred to t:fred
+
+will copy the file ":idw.fred" on machine "black" into a local file.
+*readhex
+Form:           READHEX  "FROM/A,TO/A"
+Purpose:        To convert a file of hexadecimal numbers to binary
+Author:         ??
+Specification:
+
+   Undoes TYPEHEX.
+*readmail  #H  triposmail
+*readvec #H readwords
+*reason
+Use the WHY command to find the reason that the last command failed,
+or the FAULT command or procedure to convert a fault code into text.
+*reboot
+*recover
+*reload
+*restart
+*restarting
+To reboot a processor bank machine, connect to the Session Manager and type:
+
+SYS system MCNAME name
+
+where 'system' is the name of the system you want loaded (e.g. TRIPOS), and
+      'name'   is the machine name (e.g. BROWN)
+
+You can load a machine by name only if it is allocated to you already (or
+withdrawn).  If a machine crashes, you will usually have 5 minutes before
+the Resource Manager reclaims it.
+*reflection #H reflect
+*reflexion #H reflect
+*relocation
+See HELP LKED ALL for details of object module format, including the way
+relocation information is stored.
+*remote-debug
+A version of DEBUG which enables one 68000 to be debugged from another is
+available in "idw:68000-obj.remote-debug".
+*rename
+Form:           RENAME  "FROM/A,TO=AS/A"
+Purpose:        To rename a file.
+Author:         PB
+Specification:
+   The FROM file is renamed with the TO name.  FROM and TO must be
+filenames on the same disc.
+Example:        RENAME ABC AS DEF
+*renameobj
+RENAMEOBJ
+
+  RENAMEOBJ is the BLIB routine for renaming a file or directory.  The
+form is:
+
+    RESULT := RENAMEOBJ( fromname, toname )
+
+where both arguments are strings.
+
+  RESULT is non-zero if the rename succeeds, and zero (with a fault code in
+RESULT2) if it fails.  Note that renaming is allowed only if both names
+refer to the same device.  In Fileserver filing systems, renaming will fail
+if the two names refer to different fileserver packs.
+*repair
+To report faults in equipment maintained by the Computer Laboratory, use the
+REPAIR command on Phoenix.  Otherwise try a message to "tripos-manager".
+*result2 #H rc
+*returnpkt
+RETURNPKT
+      To return a packet to its sender.
+      res := returnpkt ( pkt, res1, res2 )
+      The res1 and res2 values are set into the pkt.res1 and
+pkt.res2 fields of the packet, and the  packet  then  trans-
+mitted using the qpkt primitive.  The result of returnpkt is
+the result of the call of qpkt.
+*reverse #H #HCH %
+*revtrace #H #HCH %
+%trace
+%revtrace
+See HELP SOURCELIB REVTRACE for details of a routine to perform a nameserver
+'reverse trace' call.
+%connection
+A "reverse connection" in Cambridge virtual terminal protocol is when a
+host makes a connection to a terminal handler (usually the terminal handler
+initiates the connection).  See HELP VTP for general info on VTP.
+%
+*resumeco #H coroutine
+*returncode #H rc
+*rex        #H Shell-Commands
+*rexload    #H Shell-Commands
+*rexunload  #H Shell-Commands
+*rextrace   #H Shell-Commands
+*rexlist    #H Shell-Commands
+*rexstack   #H Shell-Commands
+*rex-tripos
+Rex-Tripos is the name of the version of Tripos which uses the Rex Shell
+as its main CLI.  On 68000s, this is the default version, and is called
+simply "Tripos".
+*ringdat #H dat
+*ringserv #H ring
+*ringser  #H ring
+*ringerror #H rc
+*ringhdr
+RINGHDR is the BCPL header file containing MANIFEST definitions for the
+Cambridge Ring environment.  The source is in SYS:G.RINGHDR.
+*ringprod #H rprod
+*ringrc  #H rc
+*rm #H manager
+*rmail #H ringmail
+*rsend #H ringmail
+*rmessage #H ringmail
+*rmcommand
+*rmssp
+The Tripos RMCOMMAND command provides an SSP interface to the Resource
+Manager's RMSSP service.  The command can be found in the directory
+SYS:SYS.RESMAN.<mctype>-OBJ.  Please note that this command is NOT for
+general use, and should only be executed by system managers, or people
+that really know what they are doing.
+*rmvthand #H terminal
+*rmvthan #H terminal
+*roff
+ROFF PAGINATOR
+
+The ROFF paginator is not available under TRIPOS.  It is still available
+on CAP and RSX.  For new documents use GCAL on Tripos or the IBM, or TeX
+on Unix.
+*room #H #HCH %
+%titan
+TITAN ROOM
+
+The Titan Room is room 203 in the Arup building (which has access via
+Corn Exchange Street and the New Museum Site).  It is named after the famous
+computer that resided there from 1963 - 1973.  In general only research
+staff and students are allowed access to the Titan Room, although others
+are sometimes allowed temporary access (a list of such people can normally
+be found on the door).
+
+The Titan Room houses a large number of computers, notably the Computing
+Service's VAX, the CAP and the Processor Bank.  It also contains the
+Titan Room line printer and the Canon laser printer.  Documentation is kept
+there in the Documentation Drawer and on various shelves - on one of which
+the Documentation Folder can be found.
+%
+*rootlib #H root
+*rootlib: #H root
+*rootnode    #H root
+*rtn.tasktab #H root
+*rtn.devtab  #H root
+*rtn.tcblist #H root
+*rtn.crntask #H root
+*rtn.blklist #H root
+*rtn.debtask #H root
+*rtn.days    #H root
+*rtn.mins    #H root
+*rtn.ticks   #H root
+*rtn.clwkq   #H root
+*rtn.memsize #H root
+*rtn.info    #H root
+*rtn.kstart  #H root
+*rsx
+RSX11-M is a DEC operating system available on the PDP11 computers in
+the Laboratory.  There is a source library of RSX-like routines for use
+with Tripos BCPL - see HELP RSXLIB.
+*rsxlib #H sourcelib
+
+

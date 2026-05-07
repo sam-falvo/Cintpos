@@ -1,0 +1,14 @@
+*comment
+**
+RHINFO command
+Form:           RHINFO  "kill/s"
+Purpose:        To give information about the ring handler
+Author:         BJK
+Specification:
+        Gives information about number of basic blocks with bad checksums,
+    basic blocks recieved and unwanted, information about blocks recieved,
+    and information about allocated ports.
+        If the switch 'kill' is quoted the ring handler will be removed if
+    possible.
+
+

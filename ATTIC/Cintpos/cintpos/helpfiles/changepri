@@ -1,0 +1,48 @@
+*command
+CHANGEPRI command
+
+Form:          CHANGEPRI "TASK=PRIORITY/A,PRI"
+Purpose:       To change the priority of a task.
+Specification: If a single argument is given, the priority of the task
+               in which CHANGEPRI runs is altered.
+               If two arguments are given, the first is taken as a task
+               number, and the second as a priority.
+Examples:      CHANGEPRI 400
+               CHANGEPRI 8 1100
+*procedure
+RESULT := CHANGEPRI(TASKID, NEWPRIORITY)
+   Change the priority of a task.
+Arguments:
+
+TASKID
+   The task id. of  the  task  which  is  to  have  its
+priority changed.
+NEWPRIORITY
+   The priority that the specified task is to adopt.
+   Must  be  strictly  positive  and  distinct from any
+existing task priority other than that of the specified
+task.
+Normal return:
+
+RESULT\=0
+   The task's priority has been changed.
+Error return:
+
+RESULT=0, possible errors are:
+
+   RESULT2=101, Invalid id.
+   RESULT2=102, Invalid priority.
+Side effects:
+
+   May cause a change of current task.
+Related routines:
+
+   CREATETASK
+   DELETETASK
+** #I changepri
+CHANGEPRI is the name of a KLIB procedure and a command. For more information
+type one of: PROCEDURE
+             COMMAND
+         or  <RETURN> to leave HELP
+
+

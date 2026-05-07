@@ -1,0 +1,17 @@
+*command
+**
+Form:           TYPEHEX  "FROM/A,TO/K"
+Purpose:        To type a file out as hexadecimal numbers.
+Author:         MR
+Specification:
+
+   TYPEHEX outputs enough (4 or 8)  hex digits for each word of the file,
+laid out 16 per line.
+   See READHEX for the inverse operation.
+
+   For information about typing words in store in hexadecimal etc. use
+HELP DEBUG.
+
+Example:        TYPEHEX OBJ
+
+

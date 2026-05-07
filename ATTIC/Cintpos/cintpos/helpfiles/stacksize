@@ -1,0 +1,7 @@
+*command #H stack
+**
+The default size of stack given to BCPL programs is 500 words.  This may
+be changed using the STACK command (use HELP STACK COMMAND).  The current
+value of this default can also be inspected using this command.
+
+

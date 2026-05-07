@@ -1,0 +1,20 @@
+*puids
+PUIDS
+     Permanent Unique IDentifiers are assigned to any object that needs a
+name on the Ring.  Each user has an associated PUID.  Use HELP PUID to find
+the PUID of a user, or HELP USER for more information.
+     Use HELP AUTHENTICATION for information about other aspects of the
+Ring's object representation system and HELP UID SETS for information about
+UIDs in general.
+*create
+NEW PUID CREATION
+
+There is a NEWPUID service provided on the Ring from which new PUIDs can be
+obtained.  The command "newpuid" calls this service to allocate a new PUID.
+** #H #HCH %
+%* #C sys:l.help-puid ..
+<a line to skip>
+%*
+%
+
+

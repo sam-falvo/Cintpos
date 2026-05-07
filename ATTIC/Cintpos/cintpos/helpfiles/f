@@ -1,0 +1,115 @@
+*f
+*fgrep #H grep
+*filename #H file
+*filespace #H file
+*findappend #H find
+*findinput #H find
+*findoutput #H find
+*findupdate #H find
+*findwto #H sourcelib
+*find.fileserver #H sourcelib
+*find-fileserver #H sourcelib
+*finish #H logoff
+*floppies #H floppy
+*fmfh
+FMFH is the version of the Tripos file handler task which uses a remote
+filing system on the Ring by means of the Tripos Filing machine.
+*fonts
+*founts
+See HELP GCAL and HELP CANON for information on typesetting.  For details of
+the fonts available, see the examples folder on top of the CANON printer.
+*fork ..
+Tasks are forked in Tripos by using CREATETASK (see HELP CREATETASK).  The
+nearest thing to a simple fork procedure, for use within BCPL programs, is
+a source level library FORKSEG:
+*fork #H sourcelib
+*forkseg #H sourcelib
+*form #H command
+*forth
+The FORTH is a FIRTH in Scotland, and supports two famous bridges.  It is
+also a language, which is not supported on Tripos!  Sorry!
+*fortran
+The Computer Laboratory does not possess a FORTRAN system which runs under
+Tripos.  Try the Computing Service.
+*freeobj
+FREEOBJ   Procedure to release a filing system lock.
+
+Example:   freeobj(lock)
+
+Argument:  LOCK is a filing system lock on a directory or file obtained by
+           an earlier call of LOCATEOBJ or COPYOBJ.
+*freevec
+FREEVEC   Procedure to return a vector (if supplied) to the free store area.
+
+Example:    freevec(vector)
+
+Argument:   VECTOR  A pointer to a vector allocated by GETVEC.
+
+Related routine:   GETVEC
+
+Notes:
+
+   An attempt to free a vector which does not appear to have been allocated
+by GETVEC results in the aborting of the issuing task.
+
+   A call of freevec(0) is permissible and has no effect.
+*frombbc #H bbc
+*tobbc #H bbc
+*fromibm #H fromphx
+*ftp #H #HCH %
+%command
+FTP command
+
+Form:          FTP  "MACHINE,LOCALFILE,REMOTEFILE,GET/S,SEND/S,BINARY/S,*
+                              *USER/K,PASSWORD=PW/K,SERVICE/K,INFO/S,TRACE/S"
+Purpose:       To transfer a file of series of files to another machine
+Author:        NJO
+Source:        :com.ring.bcpl.ftp
+Specification:
+
+The program may be run under a CLI, CALLSEGed or activated as a task.
+If CALLSEGed then the first argument must be 1 or -1 and the second
+argument a vector of parameters, see below for fields.  If set up as
+task then the first argument of the activation packet must be the
+parameter vector, in the same format as for CALLSEG.  The result in
+the activation packet will be zero on success, or a code on failure, with
+a reason code in RES2.
+
+Under a CLI the program can be interactive or non-interactive.  This
+is controlled by giving filenames on the command line:  if nether a local
+nor a remote filename is given then interactive mode is entered.  If
+neither the machine nor service name is given then these will be prompted
+for as well.
+
+The FTP service name called is obtained by concatenating the given service
+name, defaulting to "ftp-", with the given machine name.  The user and
+password parameters are optional.  The userid defaults to the Tripos userid
+of the logged on user, and the password to the user's UIDset converted to
+a (48 byte) hex string.
+
+In interactive mode multiple transfers may be performed.  The stream
+will not be closed until commanded by the user.  New filenames, direction
+and mode will be prompted before each transfer.
+
+The parameter vector is passed in if the program is activated as a task
+(as PKT.ARG1) or by CALLSEG (as the second parameter).  It has fields:
+
+   0   machine name
+   1   local file
+   2   remote file
+   3   TRUE if a transfer is to the host, FALSE if from the host
+   4   service name
+   5   TRUE for a binary transfer, FALSE for text
+   6   userid to be used at the host
+   7   password
+%service
+A ring service called FTPSRV exists to act as the recipient end of an
+FTP file transfer.  Its source is in :sys.ring.bcpl.ftpsrv, and the service
+name to activate it should be "ftp-<machine name>".
+%*
+FTP stands for FILE TRANSFER PROTOCOL, and is defined by the Joint Networking
+Team in the Blue Book.  A Tripos FTP program and a corresponding ring
+service exist on Tripos.  See HELP FTP COMMAND or SERVICE respectively.
+%
+
+

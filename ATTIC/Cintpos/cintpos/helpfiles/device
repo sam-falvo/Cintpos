@@ -1,0 +1,83 @@
+*lp: #H lp-
+*mp: #H mp-
+*cp: #H cp-
+*lp #H lp-
+*mp #H mp-
+*cp #H cp-
+*mond #H mp-
+*core #H core-
+*core: #H core-
+*pipe #H pipe-
+*pipe: #H pipe-
+*nil #H nil
+*nil: #H nil
+*info #H info-
+*info: #H info-
+*call #H call-
+*call: #H call-
+*make #H createdev
+*creation #H createdev
+*create #H createdev
+*delete #H deletedev
+*deletion #H deletedev
+*install #H mount
+*mount #H mount
+*installation #H mount
+*kill #H deletedev
+*pseudo
+PSEUDO DEVICES
+
+Pseudo devices are special streams (and are distinct from machine-code
+device drivers). They are invoked by opening a stream whose name includes
+a colon, but as this syntax is also used for slightly different purposes some
+explanation may be useful.
+
+When FINDINPUT etc. are asked to open a stream with a name of the
+form "AAAA:BBBB", the sequence of events is as follows:
+
+  (a) The assignments list (which starts from the root node) is examined
+      to see if the name AAAA: has already been assigned to a filing system
+      object, or to a handler task (see HELP ASSIGN). If so, then a stream
+      is opened to it.
+
+  (b) If there is no assignment, then the program in SYS:H.AAAA is CALLSEGed.
+      This should return a stream. It is by this mechanism that pseudo-devices
+      are implemented, as the loaded program can construct a stream of
+      arbitrary complexity.
+
+Use HELP DEVICE AAAA: for information on device AAAA:
+Use HELP DEVICES for a list of the devices HELP knows about.
+*+ #I device
+DEVICES
+
+"Device" is used to describe two different things within Tripos:
+
+  - True devices are machine-code device drivers corresponding to physical
+    peripherals.
+  - Pseudo-devices are special streams, some of which invoke handlers for
+    physical devices, but most of which perform some special processing
+    of data in the stream. See HELP PSEUDO DEVICES.
+
+     HELP knows about the following pseudo-devices
+                LP:
+                MP:
+                CP:
+                PIPE:
+                CORE:
+                NIL:
+                INFO:
+                CALL:
+     A command is available to
+                MOUNT
+     non-resident pseudo-devices.
+
+     BLIB and MLIB procedures are available to
+                CREATE
+                DELETE
+     device drivers.
+
+     Just type one of these key words (or <CR> to exit HELP)
+     for the relevant information.
+
+
+

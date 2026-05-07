@@ -1,0 +1,233 @@
+*general
+The TRIPOS kernel provides support for multi-tasking. Tasks may be created and
+destroyed dynamically, and may communicate by means of messages called
+'packets', and signals called 'task flags'. The structure of tasks is somewhat
+BCPL-oriented: each task has its own global vector and BCPL stack. A task may
+consist of several coroutines, each with its own stack. A small positive number
+is used to identify each task.
+*chain
+TASK CHAIN
+
+The TCBs of all tasks are linked in order of decreasing priority for the
+benefit of the task scheduler. The chain always ends with the TCB of the idle
+task. The start of the chain is in the rootnode field whose offset is given by
+the manifest RTN.TCBLIST.
+*cli
+There are several ways to create a new CLI task:
+  The RUN command creates a non-interactive CLI (see HELP RUN)
+  The NEWCLI command creates an interactive CLI (see HELP NEWCLI)
+  In the processor bank version of TRIPOS, replying 'X' to the '***-'
+    prompt after an attention will create a new interactive CLI.
+    [See HELP VTP BREAK].
+*creation
+TASK CREATION
+
+The simplest way to create a new task to run a command is to use one of the
+commands RUN or NEWCLI (see HELP RUN or HELP NEWCLI).
+
+To create a new task from a program, use the Kernel routine CREATETASK (see
+HELP CREATETASK).
+
+There is a source library called FORKSEG which takes a code file and
+creates a task from it.  See HELP SOURCELIB FORKSEG.
+*createtask
+*create
+CREATETASK   Create a task.
+
+     TASKID := CREATETASK(SEGMENTLIST, STACKSIZE, PRIORITY)
+
+Arguments:
+
+SEGMENTLIST
+   A list of segments headed by an entry count.  Entries in the list may
+   be 0 indicating that no segment exists for that entry.  May be 0 if no
+   segment list is provided.
+STACKSIZE
+   The size of the root stack upon activation.
+PRIORITY
+   The priority of the new task.  Must be strictly positive and distinct
+   from any existing task priority.
+
+Normal return:
+
+   TASKID\=0   The id. of the newly created task.
+
+Error return:
+
+   TASKID=0, possible errors are:
+
+      RESULT2=102, Invalid priority.
+      RESULT2=103, Insufficient free store.
+      RESULT2=105, Task table full.
+
+Related routines:  CHANGEPRI, DELETETASK
+
+Notes:
+
+   If a segment list is present it is copied into a GETVEC'ed vector.
+   The TCB is allocated from the free store area.
+   The segment list (at task activation) is used to initialise global slots.
+A segment list should therefore exist at task activation and segments should
+consist of a chained list of BCPL-format sections.
+   Note that the creation of a task is distinct from its activation, which
+occurs when a task receives its first packet and which might occur some time
+after the task was created.   Sufficient free store must be available at the
+time of task activation for the allocation of a global vector and a root stack.
+Otherwise, the task will abort.
+*deletion
+TASK DELETION
+
+The Kernel routine DELETETASK allows one task to delete another (or itself).
+The library routine ENDTASK allows a task to delete itself and unload a code
+segment.  See HELP DELETETASK or HELP ENDTASK for more details.
+
+Note that TRIPOS does not support deletion of a task in an arbitrary state.
+This is because the system does not (indeed cannot) keep a record of the
+resources being used by a task, location of its outstanding packets, etc.
+Use the HOLD command (or H command to DEBUG) to stop an errant task from
+executing.
+*deletetask
+*delete
+DELETETASK   Delete a task.
+
+   RESULT := DELETETASK(TASKID)
+
+Argument:
+
+   TASKID   The id. of the task to be deleted.
+
+Normal return:
+
+   RESULT\=0   The given task has been deleted.
+
+Error return:
+
+   RESULT=0, possible errors are:
+
+      RESULT2=101, Invalid id.
+      RESULT2=108, Task not deletable.
+
+Side effects:
+
+   The task's entry in the task table is removed.
+   The task's entry in the TCB chain is removed.
+   The task's segment list is FREEVEC'ed (if any).
+   The task's TCB is FREEVEC'ed.
+
+Related routines:   CHANGEPRI, CREATETASK, ENDTASK
+
+Notes:
+
+   The task must be dead, not held and without packet(s).  However, the
+issuing task may delete itself if it has an empty work queue.
+
+   The ENDTASK procedure is often useful for dynamically loaded tasks.
+See HELP on this for more info.
+*endtask
+*end
+ENDTASK   To cause a task to end.
+
+      endtask ( seg )
+
+      If the specified segment is non-zero then it will be unloaded.
+The DELETETASK kernel primitive is then called to delete the task.  If
+this should return then endtask will abort with code 180;  continuing
+the abort will cause a return from endtask.
+
+      The usual argument to this procedure, when a task is ending itself,
+is TCB ! TCB.SEGLIST ! 3, which will be the task's own code.
+*flags #H flag
+*packets #H packet
+*priority
+*priorities
+*scheduling
+TASK PRIORITIES
+
+Each task in TRIPOS has a priority, represented as a positive number - the
+larger the number, the higher the priority. Each task has a different priority.
+The command and Kernel primitive called CHANGEPRI can be used to change a
+task's priority (see HELP CHANGEPRI).
+
+The task scheduling rule is very simple: The task currently running is the
+highest priority task which is free to run (i.e. not held, not dead with no
+packet on its work queue, and not waiting with no packet). There is an idle
+task with priority zero which is always free to run.
+*table
+TASK TABLE
+
+The task table enables a task's control block (TCB) to be found from the task
+number. The address of the task table can be found from the root node:
+
+  tasktab := rootnode ! rtn.tasktab
+
+  tasktab!0  holds the size of the task table (i.e. the maximum number of tasks
+             that can exist together).
+  tasktab!n  holds the BCPL address of the TCB of task n (or zero if task n
+             does not exist).
+*status #H status
+*state
+*dead
+TASK STATES
+
+Each task has a state held as a 4-bit number in its TCB. Each of the 4 bits
+has independent significance:
+
+  #B0001:  Set if the task has at least one packet on its work queue.
+  #B0010:  Set if the task is held. While held, the task will never run,
+           even if it is otherwise free to do so.
+  #B0100:  Set if the task is waiting for a packet.
+  #B1000:  Set if the task has been interrupted.
+  #B1100:  This state is used to indicate that the task is 'dead'.
+           A task is dead before it receives its first packet, and becomes
+           dead again if it returns from its main routine. A dead task has
+           no global vector or stack.
+           Note that this state bit pattern could not otherwise occur.
+*tcb
+TASK CONTROL BLOCKS
+
+Each task has a task control block (TCB), containing information about that
+task. The TCB for a task can be found from the task number by looking in the
+Task Table (see HELP TASK TABLE). Each task has a global variable TCB which
+is initialised to the address of its own TCB. TCBs are linked together in
+order of decreasing priority in the Task Chain (see HELP TASK CHAIN).
+
+A task control block contains the following fields. The names given are those
+of the BCPL manifest constants (in LIBHDR) giving the offsets of the fields.
+
+   tcb.link             Link to next TCB in chain
+   tcb.taskid           Identifier of the task
+   tcb.pri              Priority of task (see HELP TASK PRIORITY)
+   tcb.wkq              Work queue of packets received by this task
+                        (see HELP TASK PACKETS)
+   tcb.state            Current state of task (see HELP TASK STATE)
+   tcb.flags            Task flags (see HELP TASK FLAGS)
+   tcb.stsiz            Stack size of task's root coroutine
+   tcb.seglist          Segment list pointer (see HELP TASK CREATION)
+   tcb.gbase            Pointer to global vector
+   tcb.sbase            Pointer to root stack base
+
+The rest of the TCB is machine dependent, and contains space for register
+dumps, etc.
+*selection #H console
+*change #H console
+*+ #I task
+TRIPOS TASKS
+
+Type one of the following keywords to indicate which aspect of tasks you
+want help on, or <CR> to leave HELP:
+
+GENERAL  - General description of tasks
+CHAIN    - The task chain
+CLI      - How to create new CLI tasks
+CREATION - How to create new tasks
+DELETION - How to delete tasks
+FLAGS    - Task flags used for inter-task signalling
+PACKETS  - Inter-task and task-device communication
+PRIORITY - Task priorities
+SELECTION- How to choose which task to talk to
+STATE    - Task states
+STATUS   - STATUS command for displaying task states
+TABLE    - The task table
+TCB      - Contents of a task control block
+
+

@@ -1,0 +1,157 @@
+*dynamic
+The "Dynamic Name Server" was part of a project implemented by M Yudkin.
+It is no longer operating.  See his thesis for details.
+*services
+The name server provides the services described below.  Full details can
+be found in the name server specification document "Universe Nameservers".
+
+  Name Lookup     Station 240 port 1 function 1
+                     This is the only service on the ring normally accessed
+                     by explicit address.  It accepts a name and maps it to
+                     a physical address, setting up any paths necessary.
+  Global lookup   GLOBLOOKUP
+                     Returns the global address of a named service, and does
+                     not set up a path to it.
+  Reverse lookup  REVLOOKUP
+                     Maps a station number on the local ring to its name.
+  Reverse trace   REVTRACE
+                     Maps a path derived from a previous name lookup into
+                     the name of the station at the remote end.
+  Own name        OWNNAME
+                     Returns the name of the requestor.
+  Own address     OWNADDRESS
+                     Returns the global address of the requestor.
+  Path setup      XLOOKUP
+                     Allows a path to be set up to an anonymous service.
+  Table listings  NAMELIST and DOMLIST
+                     Allows the contents of the tables to be read.
+
+Routines to access some of these services can be found in :g.bcpl (see
+HELP SOURCELIB) and, in particular, :g.bcpl.ssplib (see HELP SSPLIB).
+*flag
+NAMESERVER FLAGS
+   The bits in the flag byte of entries in the Ring Name Server have the
+following meanings:
+
+  Bits .....111 specify the protocol to be used to this service:
+
+       .....000  non-standard protocol
+       .....001  Byte Stream Protocol (BSP)
+       .....010  Single Shot Protocol (SSP)
+       .....011  This entry is a machine name rather than a service name
+
+  Bit  ....1...  No function code is specified
+  Bit  ...1....  The service may be slow to respond (> 5 seconds, say)
+
+The BCPL header file RINGHDR (in :G.RINGHDR) contains manifest constants
+for these flags
+*lookup #H #HCH %
+%command
+LOOKUP command
+Form:           LOOKUP  "name/a,local=pathsetup/s"
+Purpose:        To print the Name Server entry for a name
+Author:         BJK modified by NJO
+Specification:
+   The Name server is called to look up the given name, and the station number,
+port, function code, and flags of the entry are printed.  It makes use
+of the global lookup function in the nameserver by default.  This means
+that it will not set up a path through a bridge to a non-local name.
+It also prints the site and subnet of non-local names, and the "extended
+name" string returned by the nameserver if this is not null.
+
+A local lookup, which will cause path set-up in a bridge, may be requested
+using the switch parameter LOCAL or PATHSETUP.
+
+Example:
+         LOOKUP alpha
+         LOOKUP rats-cap
+         LOOKUP canon PATHSETUP
+%*
+NAMESERVER LOOKUP
+    A routine for looking up names in the Name Server is provided in the
+library SSPLIB in the file :RING.BCPL.SSPLIB.
+
+    The LOOKUP command will print the Name Server entry for the name
+supplied as its argument.  (Use HELP LOOKUP COMMAND for more information).
+%
+*listname
+*listnames
+*name
+Form:           LISTNAMES "TO,FROM=SERVICE/K,MCORDER/S"
+Purpose:        To list the names in a Ring Name Server
+Authors:        BJK NJO
+Source:         :com.ring.bcpl.listnames
+Specification:
+   All names are read from the nameserver, sorted into alphabetical order
+with all machine names first, and sent to TO, which defaults to the cli's
+output stream.  If the switch MCORDER is set then numerical order of machine
+numbers will be used, rather than alphabetical order of names.
+
+   The default service from which the name table is read is "namelist" giving
+local names.  This can be overridden with the key FROM or SERVICE.  This would
+usually be used for listing names in another domain by giving the namelist
+service in that domain.
+
+   The table is prefixed with the contents of "sys:ring.nametables.header",
+which contains site topology information and is in a format which allows the
+output to be fed into CGG's "name table assembler" program to regenerate
+the table.
+
+Examples:       LISTNAMES
+                LISTNAMES TO LP:NAMES
+                LISTNAMES FROM RAL*NAMELIST
+*table
+The nameserver derives its initial name table from an on-board prom.  After
+doing this it attempts to read a main table from a service called
+NAMETABLEREAD, which at the time of writing resides on a fileserver.  See
+the nameserver spec. document for details of this service.
+
+There is a facility on Tripos for writing the table which the nameserver
+will later read.  This consists of a nametable in a human-readable form
+and a "compiler" to translate this into the nameserver's representation
+and write the data in.  The source form of the table and the compiler are
+in :nametables.  The name table source is in the file camb-main.  You need
+higher than Z access to this filespace to access the compiler - contact
+the Tripos managers if you wish to get access.
+*prom
+*make
+The nameserver has two 4K proms on board, which contain the whole of the
+code, and an initial name table which is used until the NAMETABLEREAD
+service (q.v.) can be contacted to get the main table.
+
+The code is organised into two parts:  the lower 4K contains the main body
+of the code, and this is the part which would normally be modified if a
+change in function is required.  The lower half of the upper prom (address
+4K and 5K) contains "library" type code which should not normally need to
+be modified.  It has no references into the lower 4K, so will not be altered
+if the lower 4K code is changed.
+
+The upper half of the upper prom contains the initial name table.  This
+is generated from a name table source using the name table compiler program,
+in the same way as for the main name table.  To generate it, use the HEX
+output file, and specify the base as #1800.  Note that the site and subnet
+on which the server is to reside (different for each nameserver of course!)
+are fed in as options H and S respectively, thus for Cambridge's subnet 2
+the options are h#12s2b#1800.  The PUID of the nametable must also be fed
+in;  it can be found in the file ntab:puids.
+*name #I nameserver
+** #I nameserver
+NAMESERVER
+The Name Server on the Data Ring converts names of ring services and machines
+into ring addresses: station number, port, function code, and flags indicating
+the protocol expected. It also has services to convert station numbers to names,
+for a machine to find its own name, and for listing the entire name table.
+
+For more information, type one of the following:
+
+  LOOKUP:         how to lookup names
+  LOOKUP COMMAND: command to look up a name
+  SERVICES:       other services provided
+  FLAGS:          flags in name server entries
+  TABLE:          where the nameserver gets its names from
+  LISTNAMES:      command to list out nameserver's table
+  PROM:           proms containing code and initial table
+
+  <CR>:    to exit HELP
+
+

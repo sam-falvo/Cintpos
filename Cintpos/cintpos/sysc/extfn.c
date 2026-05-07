@@ -25,7 +25,13 @@ The function numbers such as EXT_avail, EXT_init and EXT_testfn are declared
 as mainfests in g/ext.h
 */
 
+#ifdef CINTPOSyes
 #include "cintpos.h"
+#else
+#include "cintsys.h"
+#endif
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -44,18 +50,15 @@ BCPLWORD extfn(BCPLWORD *args, BCPLWORD *g, BCPLWORD *W) {
 #define EXT_Testfn              2
 
 BCPLWORD extfn(BCPLWORD *a, BCPLWORD *g, BCPLWORD *W) {
-  char tmpstr[256];
-  int argc = 0;
+  //char tmpstr[256];
+  //int argc = 0;
 
   //printf("extfn: EXTavail was defined\n");
 
-  //printf("extfn: fno=%d a1=%d a2=%d a3=%d a4=%d\n",
-  //        a[0], a[1], a[2], a[3], a[4]);
-
   switch(a[0]) {
     default:
-      printf("extfn: Unknown op: fno=%d a1=%d a2=%d a3=%d a4=%d\n",
-              a[0], a[1], a[2], a[3], a[4]);
+      printf("extfn: Unknown op: fno=%lld a1=%lld a2=%lld a3=%lld a4=%lld\n",
+              LL a[0], LL a[1], LL a[2], LL a[3], LL a[4]);
       return 0;
 
     case EXT_Avail: // Return TRUE since the EXT features are available.
@@ -66,8 +69,8 @@ BCPLWORD extfn(BCPLWORD *a, BCPLWORD *g, BCPLWORD *W) {
       }
 
     case EXT_Testfn:  // Set result2 and return a result.
-        printf("extfn: fno=%d a1=%d a2=%d a3=%d\n",
-              a[0], a[1], a[2], a[3]);
+        printf("extfn: fno=%lld a1=%lld a2=%lld a3=%lld\n",
+              LL a[0], LL a[1], LL a[2], LL a[3]);
         g[Gn_result2] = a[1]*a[2] - a[3];
         return a[1]*a[2] + a[3];
   }

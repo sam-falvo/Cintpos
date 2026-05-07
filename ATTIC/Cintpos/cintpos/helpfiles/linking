@@ -1,0 +1,90 @@
+*z80 #H clink
+*6809 #H clink
+*6502 #H clink
+*8080 #H clink
+*chex #H clink
+*cambridge #H #HCH +
++hex #H clink
+*command
+LINK Command
+Form:           :PB.<m>OBJ.LINK  file,, .. ,to/K,command/K,temp/K,ver/s,refs/S,
+                                        large/s,nosections/s,smallreloc/s
+Purpose:        To link in modules from an object module library
+Author:         PB
+
+Specification:
+               Reads a list of files and directories and links the files into a
+        a single section, resolving any NEEDS directives by scanning the given
+        directories.  It looks first in the current directory and then in the
+        directories in the order that they appear on the command line.
+
+                The result is created in the file TEMP, which defaults to the
+        unique filename T:LINK-Tnn, where nn is the task number.
+        If TO is specified, then an attempt is made at the end to rename TEMP
+        as TO.  One of TO and TEMP must be given.
+        If no TEMP is given, the linking is considered to fail if any references
+        are unresolved.
+
+        The REFS switch can be used to do a partial link, as it generates a list
+        of definitions and references.  If it is quoted, then unresolved
+        references do not stop TEMP being renamed as TO.
+
+        If the only fault is unresolved references, which may be resolved by
+        further calls of LINK, the result is placed in the temporary file.
+
+                If COMMAND is given, then the specified file is read after
+        decoding the command line, each word being treated as a file or
+        directory.
+
+                If VER is specified, verification is given of each step.
+
+                If the program runs out of tables, set the LARGE switch.
+
+                NOSECTIONS can be used if the files were not compiled with
+        section names. It inhibits unresolved refrences from aborting the
+        program, and causes no External entries to occur in the output.
+
+                SMALLRELOC tells the program to generate small relocation blocks
+        instead of a single large one. This may make loading slightly slower but
+        means that store requirements are reduced. (BCP(L) on 68000s produces
+        position independant code.)
+
+                As TRIPOS runs on many machines, the command has to be different
+        for each machine.  Currently the <m> mentioned above is the first letter
+        of the machine name, i.e. L for LSI4 and M for MC68000s.  Remember to
+        keep your object modules in different directories, and use ASSIGN to
+        select the right one.
+
+                Use HELP LINKING for more general information on LINKING.
+
+                Comments please.
+
+Examples:       :PB.MOBJ.LINK file1 dir1 file2 file3    TO = file4
+                :PB.LOBJ.LINK file                      TO destination
+                :PB.MOBJ.LINK file command = filename   TO output
+*tripos
+*BCPL
+*fortran
+*pascal
+*algol68
+*algol68c
+*a68
+*a68c
+*+
+LINKING
+
+When using BCPL on TRIPOS no linkage phase is necessary.  However if
+NEEDS directives are used, the object module cannot be run as it is.
+A prototype program to resolve NEEDS directives in a set of directives is
+available - use HELP LINK COMMAND.  BCPL programs without NEEDS directives
+can be combined simply by using the JOIN or APPEND commands.  (Use HELP
+JOIN COMMAND or HELP APPEND COMMAND for further information).
+
+If other languages are used (e.g. PASCAL, ALGOL68 or FORTRAN) the
+TRIPOS linkage editor must be used, LKED.  Use HELP LKED COMMAND for
+further information.
+
+There are facilites for linking Cambridge Hex available.  Use HELP
+CLINK COMMAND for futher information here.
+
+

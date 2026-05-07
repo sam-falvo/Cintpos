@@ -1,0 +1,361 @@
+
+
+
+
+
+
+This is a recording of a console session made on Friday 12 September
+1997 to demostrate some of the features oc the Cintpos interpretive
+implementation of Tripos running under Linux on a 90MHz Pentium.
+
+
+
+
+
+
+
+1þ>þ ÿA
+1> ÿfeÿnÿ.lÿaÿrÿgÿeÿ3 ÿ5cÿ
+iÿnÿtÿpÿoÿ1sÿ%
+þ þ       #####   ########  ## þ   ##  ########  #######    þ######    ######  
+       #######  ########  ###   ##  ########  ########  ########  ######## 
+      ##           ##     ####  ##     ##     ##    ##  ##    ##  ##       
+      ##           ##     ## ## ##     ##     #######   ##    ##  #######  
+      ##           ##     ##  ####     ##     ##        ##    ##        ## 
+      ##           ##     ##  ####     ##     ##        ##    ##        ## 
+       #######  ########  ##   ###     ##     ##        ########  ######## 
+        #####   ########  ##    ##     ##     ##         ######    ######  
+1> ÿZeÿnÿlÿaÿrÿgÿeÿ ÿdÿeÿmÿoÿ&
+ þ                    ###### þ   ########  ##    ##   ####þ##  
+                     #######   ########  ###  ###  ######## 
+                     ##    ##  ##        ########  ##    ## 
+                     ##    ##  ######    ## ## ##  ##    ## 
+                     ##    ##  ##        ##    ##  ##    ## 
+                     ##    ##  ##        ##    ##  ##    ## 
+                     #######   ########  ##    ##  ####þ#### 
+                     ######    ########  ##    ##   ######  
+þ1> ÿž
+1> ÿItÿyÿpÿeÿ ÿcÿoÿmÿ/ÿeÿcÿ	hÿoÿ!.ÿbÿ*
+ÿ// (C) Copyrightþ 1978 Tripos Research Groupþ
+//     University of Cambridge
+//     Computer Laboratory
+
+SECTION "ECHO"
+
+GET "g/libhdr.h"
+
+LET start() BE
+  $( LET v = VEC 80
+
+     IF rdargs("",v,80) = 0 THEN
+       RETURN
+
+     IF v!0 = 0 THEN RETURN
+
+     writes(v!0); wrch('*N')
+  $)
+
+1> ÿ‡bÿcÿpÿlÿ ÿcÿoÿmÿ'/ÿ)eÿcÿ	hÿoÿ.ÿbÿ ÿtÿoÿ* ÿjÿuÿnÿkÿ.
+þ
+þBCPL (16 August 1996)
+ÿ
+þTree sizeþ 3807
+þCIN32CGþ 23 Apr 1993
+þProgram size = 84 bytes
+1> ÿk
+1> ÿ0jÿuÿnÿkÿ ÿhÿeÿlÿlÿoÿ:
+hellþo
+1> ÿ‹tÿyÿpÿeÿ ÿbÿ)
+ÿ.k file/a
+echo "bcpl com/<file>.b to <file>"
+bcpl com/<file>.b to <file>
+1> ÿ¡cÿ ÿ#bÿ  ÿ%eÿcÿhÿoÿ4
+þbþcpl com/echoþ.b to echo
+
+BCPL (16 August 1996)
+ÿþ
+Tree size 3807
+CIN32CG 23 Apr 1993
+Program size = 84 bytes
+1> ÿseÿcÿ	hÿoÿ ÿhÿ	eÿlÿlÿoÿ@
+hþello
+1> ÿ|cÿ ÿbÿ ÿbÿ	cÿpÿlÿ3
+bþcpl com/bcpl.b to bcpl
+þ
+BCPL (16 August 1996)
+ÿþ
+þTree þsize 17261
+ÿ1þ
+þTree sþize 14745
+ÿOþ
+þTrþee size 23557þ
+ÿCþIN32CþG 23 Apr 1993þ
+ÿvPþrogram size =þ 26184 bytes
+þ1> ÿ‚
+þ1> ÿ	
+þ1> ÿ"tÿ
+yÿpÿ#eÿ ÿcÿoÿ#mÿ0/ÿ)bÿoÿuÿnÿcÿeÿ@.ÿbÿ
+ÿSEþCTION "bounceþ"
+þ
+þGET "g/libhdr.h"
+
+LET start() þBE qpkt(taskwait()) REPEAT
+1> ÿ¶cÿ ÿbÿ ÿbÿ
+oÿuÿnÿcÿeÿ;
+bþcpl com/bþounce.b to bounce
+
+BCPL (16 August 1996)
+þþ
+þTree size þ3739
+þCIN32CG 23 þApr 1993
+þProgramþ size = 52 bytes
+1> ÿÈsÿ	tÿaÿtÿuÿsÿ
+þTþask  1: running CLþI     Loaded as command: STAþTUS 
+Task  2: waiting DEBUG  
+Task  3: waiting COHAND 
+Task  4: waiting FH0    
+Task  5: waiting REC-TAS
+1> ÿÐrÿuÿnÿ ÿbÿoÿuÿnÿcÿ#eÿ2
+ÿ1> ÿ{sÿ	tÿaÿtÿuÿsÿ?
+Tþask  1: runningþ CLI     Loaded as command: þSTATUS 
+Task  2: waiting DEBUG  
+Task  3: waiting COHAND 
+Task  4: waiting FH0    
+Task  5: waiting REC-TAS
+Task  6: waiting CLI     Loaded as command: bounce 
+1> ÿ
+1> ÿ?tÿyÿpÿeÿ ÿcÿoÿmÿ./ÿ'sÿeÿnÿ'dÿ5.ÿbÿ•
+þSECTION "send"
+
+GET "g/libhdr.h"
+
+LET start() BE 
+{ LET pkt = VEC 2
+  pkt!0, pkt!1, pkt!2 := -1, 6, 30000
+
+  writes("Starting*n")
+
+  { LET n = pkt!2
+    IF n=0 BREAK
+    pkt!2 := n-1
+    qpkt(pkt)
+    pkt := taskwait()
+  } REPEAT
+
+  writes("done*n")
+}
+
+1> ÿÍcÿ ÿbÿ ÿsÿeÿ	nÿ	dÿ
+bþcpl com/send.b to sendþ
+
+BCPL (16 August 1996)
+ÿþ
+þTþree size 3869
+CþIþN32CG 23 Apr 19þ93
+þProgram size = 104 bytes
+þ1> ÿrsÿeÿnÿdÿ2
+Startþing
+ÿ>dþoneþ
+þ1>þ ÿ‰
+þ1> ÿ
+þ1> ÿ$nÿeÿwÿcÿlÿiÿM
+ÿNeþw CLI task 7þ
+þ1> 7>þ ÿ‡
+1> ÿ
+1> ÿ7sÿtÿ	aÿtÿuÿsÿL
+Tþask  1: runningþ CLI     Loaded as command:þ STATUS 
+Task  2: waiting DEBUG  
+Task  3: waiting COHAND 
+Task  4: waiting FH0    
+Task  5: waiting REC-TAS
+Task  6: waiting CLI     Loaded as command: bounce 
+Task  7: waiting CLI     No command loaded
+1> ÿî@ÿsÿ0ÿ%7ÿ.
+7> ÿ$
+7> ÿÿÿdÿaÿ'tÿ"
+ Friday 12-Sep-97 13:16:44
+7> ÿadÿaÿ	tÿ
+eÿ
+Fþriday 12-Sep-9þ7
+7> ÿJtÿ	iÿmÿeÿ
+13:16:50
+7> ÿUtÿ
+iÿmÿeÿ*
+1þ3:16:53
+7> ÿÿ	@ÿsÿ?0ÿ1ÿ"
+1> ÿ<
+1> ÿsÿtÿaÿtÿtuÿsÿ‹
+Task  1: running CLI     Loaded as command: STATUS 
+Task  2: waiting DEBUG  
+Task  3: waiting COHAND 
+Task  4: waiting FH0    
+Task  5: waiting REC-TAS
+Task  6: waiting CLI     Loaded as command: bounce 
+Task  7: waiting CLI     No command loaded
+1> ÿ
+1> ÿ,hÿoÿlÿdÿ ÿ7ÿ
+þ1þ> ÿ8sÿ	tÿ
+aÿtÿuÿsÿG
+Tþask  1: running CLI     Loadeþd as command: STATUS 
+Task  2: waiting DEBUG  
+Task  3: waiting COHAND 
+Task  4: waiting FH0    
+Task  5: waiting REC-TAS
+Task  6: waiting CLI     Loaded as command: bounce 
+Task  7: waiting held CLI     No command loaded
+1> ÿÿv
+1> ÿ~@ÿsÿ0ÿ62ÿ&
+* ÿasÿ57ÿL
+* ÿ\wÿNtÿ5ÿ-
+
+P38378:      40007           7         999           0           6 
+* ÿÿ	.ÿc
+   62621:    Root coroutine     startta   Size     0  Hwm     0
+      62734:    taskwai       41041           0      250936       11228 
+* * ÿh,ÿ#
+   62731:þ    pktwait      250924 
+* * ÿI,ÿ
+   62716:    sendpkt       14497           7        1001     freevec 
+* * ÿ#,ÿ
+   62712:þ    actread       39981    þ  250848 
+* * ÿ,ÿ
+   62707:    repleni  þ         5     actread      250828 
+* * ÿ,ÿ
+   62702:    rdch              5           5      250808 
+* * ÿ,ÿ
+   6269þ3:    rditem        62651   þ       25           0       þ  103 
+* * ÿ,ÿ
+   62629:    start    þ     57690       62634  1047þ405828       40992 
+* * ÿ,ÿ
+ Base of þstack
+* * ÿð
+* ÿ?
+* ÿ9gÿtÿ1ÿ0ÿ0ÿB
+
+G  0:       1000     GLOB135     stop        sys         GLOB  4 
+G  5:    GLOB  5     changec       62621       62621     srchwk  
+G 10:          0           0     sardch      sawrch      GLOB 14 
+G 15:      41041           7     level       longjum     muldiv  
+G 20:    GLOB 20     createc     deletec     callco      cowait  
+G 25:    resumec     initco      GLOB 27     GLOB 28     getvec  
+G 30:    freevec     abort       packstr     unpacks     GLOB 34 
+G 35:    GLOB 35     GLOB 36     GLOB 37     GLOB 38     GLOB 39 
+G 40:      39981       42063     rdch        unrdch      wrch    
+G 45:    findinp     findout     selecti     selecto     endread 
+G 50:    endwrit     input       output      GLOB 53     GLOB 54 
+G 55:    GLOB 55     GLOB 56     GLOB 57     GLOB 58     GLOB 59 
+G 60:    readn       newline     GLOB 62     writed      writeu  
+G 65:    writen      writeoc     writehe     wrþites      writþet  
+þGþ 70:    writef      GLOB 71þ     GLOB 72     GLOB 73    þ GLOB 74 
+Gþ 75:    capþital     compch      compstrþ     rdargs      rditem  
+þG 80:    findarg     loadseg     unloads     callseg     GLOB 84 
+G 85:    GLOB 85     GLOB 86     randno      str2num     GLOB 89 
+G 90:    GLOB 90     GLOB 91     GLOB 92     GLOB 93     GLOB 94 
+G 95:    GLOB 95     GLOB 96     GLOB 97     GLOB 98     GLOB 99 
+* ÿ=
+* ÿ.@ÿsÿ 0ÿ"1ÿQ
+1> ÿhsÿtÿ
+aÿtÿuÿ-sÿ$
+Tþask  1: running CLI     Loaded as command: STATUS 
+Task  2: waiting DEBUG  
+Task  3: waiting COHAND 
+Task  4: waiting FH0    
+Task  5: waiting REC-TAS
+Task  6: waiting CLI     Loaded as command: bounce 
+Task  7: waiting held CLI     No command loaded
+1> ÿ‰tÿyÿ;pÿ7eÿ  ÿcÿoÿmÿ/ÿ-wÿaÿ	iÿtÿ..ÿbÿ"
+þ// (C) Copyright 1978 Triþpos Research Group
+//     University of Cambridge
+//     Computer Laboratory
+
+SECTION "WAIT"
+
+GET "g/libhdr.h"
+
+LET start() BE
+ $( LET v = VEC 50
+    LET secs = 0
+    LET mins = 0
+    LET n = 0
+
+    IF rdargs(",SEC=SECS/S,MIN=MINS/S,UNTIL/K",v,50)=0 DO
+       error(1)
+
+    TEST v!3=0 THEN
+    $( TEST v!0=0 THEN
+          n := 1
+       ELSE
+       $( LET s = v!0
+          FOR i = 1 TO s%0 DþOþ
+          $( LET ch = s%i
+             UNLESS '0'<=ch<='9' DO error(2)
+             n := n*10+ch-'0'
+          $)
+       $)
+
+       TEST v!2 THEN
+          mins := n
+       ELSE
+       $( mins := (n>>1)/30
+          secs := n-mins*60 $)
+    $)
+
+    ELSE
+    $( LET s = v!3
+       LET hour = 0
+       LET min = 0
+       UNLESS s%0=5 DO error(3)
+       FOR i=1 TO 5 DO
+          UNLESS i=3 -> s%i=':', '0'<=s%i<='9' þDO error(3)
+þ       hour := (s%1-þ'0')*10+s%2-'0'
+       IþF hour>=24 DO þerror(3)
+ þ      min := (s%4-'0')*10+þs%5-'0'
+       IF min>=60 DO error(3)
+       mins := hour*60+min-rootnode!Rtn_mins
+       IF mins<0 DO mins := mins+24*60
+    $)
+
+    FOR i = 0 TO mins DO
+       FOR jþ = 1 TO i=0 -> secs,60 DO
+       $( delay(tickspersecond)
+          IF testflags(1) DO
+          $( writes("****BREAK*N")
+             stop(10) $)
+       $)
+ $)
+
+
+AND error(n) BE
+ $( writes(n=1 -> "Bad args*N",
+           n=2 -> "Error in number*N",
+                  "Time should be HH:MM*N")
+    stop(20)
+ $)
+1> ÿÿÿ'rÿeÿlÿeÿaÿsÿeÿ
+ ÿE7ÿ’
+þ1> ÿEbÿrÿeÿaÿkÿ! ÿ7ÿ ÿdÿS
+þ1> ÿ%sÿ
+tÿaÿ	tÿuÿ#sÿ=
+Task  1: running CLI     Loaded as command: STATUS 
+Task  2: waiting DEBUG  
+Task  3: waiting COHAND 
+Task  4: waiting FH0    
+Task  5: waiting REC-TAS
+Task  6: waiting CLI     Loaded as command: bounce 
+Task  7: waiting CLI     No command loaded
+1> ÿÚ@ÿ$sÿ0ÿa7ÿ&
+7> ÿ/
+7> ÿ4eÿnÿdÿcÿ
+lÿiÿ-
+þCLI task 7þ ending
+ÿ»@ÿ!sÿ$0ÿ1ÿE
+1> ÿ(
+1> ÿ(sÿ	tÿaÿ	tÿuÿsÿ+
+Tþask  1: running CLI     Loadþed as command: STATUS 
+Task  2: waiting DEBUG  
+Task  3: waiting COHAND 
+Task  4: waiting FH0    
+Task  5: waiting REC-TAS
+Task  6: waiting CLI     Loaded as command: bounce 
+1> ÿT
+1> ÿrÿeÿcÿoÿrÿdÿ ÿoÿfÿ	fÿ'

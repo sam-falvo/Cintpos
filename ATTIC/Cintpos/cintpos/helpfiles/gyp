@@ -1,0 +1,100 @@
+*load
+*gypload
+GYPLOAD command
+Form:           GYPLOAD  "Hexin/a,Device/a,Mctype,Test/s"
+Purpose:        To load a Z80 on a Ring from Tripos
+Author:         CGG
+Specification:
+
+        The keyword HEXIN gives the file containing Cambridge Hex which
+    is to be loaded.  The hex is loaded into the Z80 machine given by
+    the DEVICE keyword.  The command loads Z80's by default but the MCTYPE
+    keyword can be used to specify another type of machine - if the network
+    supports them (e.g. 6809).
+        The debug service used will be set automatically to the appropriate
+    service.  Normally the code loaded will be able to be debugged from
+    any machine - not just the one from which it was loaded (as has been
+    the case in the past).  Use HELP Z80 DEBUGGING for more information.
+        Sometimes there will be a test version of the network's Z80 (etc.)
+    loading services - in order to use these (at your own risk) the TEST
+    keyword can be specified.
+        This command is implemented very simply and its effect for loading
+    a Z80 at Cambridge's Ruby ring called GRIBBIT would be adequately 
+    accomplished by the command:
+
+                  COPY <hexin> BSP:G1201-Z80-MANLOAD/GRIBBIT
+                
+    (In fact this command can be used instead.)  The GYPLOAD command has the
+    advantage that it will catch and interpret any errors that are found
+    during the load.
+        GYPLOAD responds to two BREAK flags - CTRL B and CTRL E.  CTRL B
+    will cause as swift an exit from the command as is possible and CTRL E
+    causes "progress" data to be printed whilst the load continues (note
+    that this very much slows the command down - CTRL E will also stop the
+    printing).
+
+Examples:
+
+        GYPLOAD z80prog proje2
+        GYPLOAD bigprog 6809machine MCTYPE 6809
+        GYPLOAD goodprog myz80 TEST
+*+
+*the
+*service
+*machine
+THE GYP
+
+On each ring in the Lab there is a special Z80 called The GYP which provide
+services local to that ring.  By and large these services provide for the
+debugging and loading of simple microprocessors (Z80s and 6809s) that use
+protocols too simple to be used over a ring-ring bridge.  It is the GYP that
+provides the facilities which allow the Z80DEB, 6809DEB and GYPLOAD commands
+to work (use HELP COMMAND <command> for information on these).  It also prints
+the register contents of microprocessors that crash when not being debugged
+(on the LOGGER teletype).
+
+Documentation is available from the documentation folder giving details
+of its use.
+
+In brief, the services that it provies are as follows (in what follows "<GID>"
+refers to the global identifier of the ring on which the given GYP service
+resides, Ruby is "G1201" and Emerald is "G1202".
+
+       CODEID-GYP.R and CODEID-GYP.E
+           These services can be used to return a string giving the version
+           number of the code in use at the relevent GYP (GYP.R for Ruby's
+           GYP and GYP.E for Emerald's GYP).  When they are in use the string
+           returned also gives the number of debuggers or loaders in use.
+
+       <GID>-XSSP
+           An SSP service which will send an SSP on the GYP's ring and return
+           the reply.
+
+       <GID>-RPROD
+           An SSP service which sends an arbitrary Basic Block on the GYP's
+           ring on the user's behalf.
+
+       <GID>-MCINT
+           A (soon to be authenticated) SSP service which sends a special
+           "interrupt" mini-packet to a given machine.  This will typically
+           cause that machine to enter debug or reboot itself.
+
+       <GID>-Z80-DEBUG and <GID>-6809-DEBUG
+           These are BSP services used to debug Z80s and 6809s respectively.
+           A special GYP debugging protocol is used to interact with the user.
+
+       <GID>-Z80-MANLOAD and <GID>-6809-MANLOAD
+           These are BSP services used to load Z80s and 6809s that have been
+           loaded with a special "MANLOAD" program (this is normally the
+           default boot file for unassigned microprocessors).  Cambridge Hex
+           can be passed to these services to effect a load.
+
+       <GID>-Z80-GYP and <GID>-6809-GYP
+           These are the names of the SSP services that Z80s and 6809s,
+           respectively, use as their default "Debug service".  They apply
+           to these services to be debugged.  The GYP either connects clients
+           to <GID>-<MC>-DEBUG users, or, if there are none of those, it
+           debugs the appicant itself - writing a dump of its registers to the
+           LOGGER WTO service.
+
+

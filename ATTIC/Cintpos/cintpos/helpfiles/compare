@@ -1,0 +1,35 @@
+*command
+**
+COMPARE command
+Form:           COMPARE "file1/a,file2/a,to/k,opt/k"
+Purpose:        To compare two sequential character files
+Author:         DSC (Dale Strickland-Clark)
+Specification:
+    The COMPARE command checks two sequential character files for altered,
+    inserted or deleted lines.
+    Two modes are available;  difference mode produces a printout of the
+    necessary to change the first file into the second.
+    COMPARE options:
+    The default options are:  D L- V+ X- M25 W135 P32767 R5
+        B   Do not output verification messages
+        D   Set differences mode.
+        E   Set edit mode.
+        L+  Check for the equality of line lengths.
+        L-  Do not check for equal line lengths.
+        Mn  Search for up to n mismatching lines (see below).
+        Pn  Set printer limit of n (prevents an excessive number of differences)
+        Rn  Require n (>0) lines to restore equality after mismatch (see below)
+        V+  Verify in normal format.  Not allowed in edit mode.
+        V-  Do not verify in normal format. Not allowed in edit mode.
+        Wn  Truncate all lines after n (>0) characters
+        X+  Verify in hexadecimal.  Not allowed in edit mode.
+        X-  Do not verify in hex.  Not allowed in edit mode.
+        Z$  Change the terminating character to $.  Only allowed in edit mode.
+    After a mismatch, COMPARE requires the R setting no. of lines to
+    consider it has found a match again; it will move on the M setting
+    no. of lines beforegiving up.
+Examples:
+    COMPARE A B
+    COMPARE file1 file2 OPT e TO edits
+
+

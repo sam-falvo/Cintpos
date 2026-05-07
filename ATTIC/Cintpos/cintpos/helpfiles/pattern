@@ -1,0 +1,67 @@
+*source
+*program
+*bcpl
+A BCPL source for MR's pattern matching algorithm can be found in
+                 SYS:G.PATTERN
+and included in a BCPL program using the directive:
+                 GET "pattern"
+Use HELP PATTERN ALL for a full description of the algorithm used.
+*spec
+*all ..
+The specification for MR's pattern matching algorithm is in
+the file MR10.PRINT:PATTERN on Phoenix.
+**
+PATTERN MATCHING:
+     The patern matching algorithm used in the EX command
+     available to BCPL programs (see HELP PATTERN BCPL)
+     uses the following syntactic representation of a
+     regular expression.
+
+         <exp>  ::=  <prim>[<prim>][/<prim>[<prim>]]
+
+         <prim> ::=  ( <exp> ) | #<prim> | ? | % | <ch>
+
+         <ch>   ::=  '<any character> |
+                     <any non special character>
+
+         In the syntactic notation used above, square brackets
+     are used to denote zero or more abitrary repetitions of the
+     syntactic items enclosed.  The syntactic category <any
+     character> denotes any character available on the machine
+     and the syntactic category <any non special character>
+     denotes all the characters contained in <any character>
+     excepting ', (, ), ?, %, # and /.
+
+         <ch> is the simplest form of match item in a regular
+     expression and will only be matched by the specified
+     character occurring in the subject string.  The item ? will
+     match any character.  The item % will match the null string.
+     The item #<prim> will match a sequence of zero or more words
+     each of which satisfies the pattern <prim>.  The
+     construction <prim1> <prim2> matches a sequence of two
+     consective words where the first word is matched by <prim1>
+     and the second is matched by <prim2>.  The character slash
+     is used to denote alternation and so the construction
+     <prim1>/<prim2> is matched by any word which satisfies
+     either <prim1> or <prim2>.  Parentheses may be used anywhere
+     to override the natural grouping within the regular
+     expression.  The following table gives some example patterns
+     together with a selection of matching strings.
+
+
+              ----------------------------------------
+             |  Pattern  |  Example matching strings  |
+             |-----------|----------------------------|
+             |  A/B      |  A       B                 |
+             |  A#BC     |  AC      ABC      ABBC     |
+             |  A#(B/C)D |  AD      ABD      ABCD     |
+             |  A?B      |  AXB     AYB      AAB      |
+             |  A#?B     |  AB      AXXB     AX.AB    |
+             |  '?#?'#   |  ?#      ?AB#     ??##     |
+             |  A(B/%)#C |  A       ABC      ACCC     |
+              ----------------------------------------
+
+      For a full description of the pattern matching algorithm use
+      HELP PATTERN ALL.
+
+

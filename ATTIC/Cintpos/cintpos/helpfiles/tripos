@@ -1,0 +1,47 @@
+*command #H command
+*ibm #H 3081
+*3081 #H 3081
+*phoenix #H 3081
+*ibm3081 #H 3081
+*370 #H 3081
+*mail #H triposmail
+**
+TRIPOS
+
+TRIPOS is the name of this operating system.
+It is a portable operating system which runs on a variety of minicomputers.
+It can be executed on the allocatable machines in the Processor Bank.
+
+For a general introduction see the file TRIPOS.PRINT.TRIDOC on Phoenix.
+
+There are several variants of TRIPOS available from the Resource Manager
+at present (10.07.84). These include:
+
+   TRIPOS       - the version normally used by lab members
+   MACE-TRIPOS  - ditto (68000s only)
+   S-TRIPOS     - the version normally used by CST and Diploma students
+   FS-TRIPOS    - a restricted version which does not use the filing machine
+   MICRO-TRIPOS - (LSI4s only) a cut-down version giving more space
+
+MACE-TRIPOS will only run on 68000s - it is a similar version to TRIPOS
+except that it utilizes the special 6809 ring interface that 68000s have
+(called a MACE) more thoroughly.  The effect is that byte streams are faster.
+
+S-TRIPOS knows about a different set of users to the others - but in general
+anyone that can use TRIPOS etc. can use S-TRIPOS (although not vice versa)
+There is a rather more limited set of commands available on S-TRIPOS.
+
+FS-TRIPOS can only be used by those with FULL access to the operating sytem
+(i.e. the TRIPOS MANAGER and one or two others).  It is very much slower than
+TRIPOS, because it cannot take advantage of the caching that the FILING
+MACHINE has.  Also its filing system is completely unprotected.
+
+MICRO-TRIPOS can be used (in desperation!) to get more space on an LSI4.
+It has no DEBUG task, no ring services task, minimal filing system cache,
+no names in compiled code, etc ...
+
+TRIPOS runs a several different kinds of machine including
+   68000s  LSI4s  Novas  PDP11s  8086s  and  16032s
+Only 68000s and LSI4s are to be found in the processor bank.
+
+

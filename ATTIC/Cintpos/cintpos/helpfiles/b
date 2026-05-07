@@ -1,0 +1,159 @@
+*balfour ..
+*bp ..
+*bp: ..
+*laserwriter ..
+BALFOUR PRINTER
+
+The Balfour LaserWriter is a high resolution laser printer.  It can be used as
+a line printer via the device BP:title.
+The printer page size is 92 characters by 73 lines.
+
+*balfour ..
+*bp
+*bp:
+*laserwriter ..
+*cbalfour
+*lcbalfour
+*lbalfour
+The PRINT and LIST commands (q.v.) with option BALFOUR provide a convenient
+means of printing files on the Balfour LaserWriter. Option CBALFOUR (Compact
+Balfour) causes a small font (half normal size) to be used, allowing a large
+amount of text to be fitted on a page. Option LBALFOUR (Landscape Balfour)
+causes the text to be printed in Landscape mode (width greater than height),
+and LCBALFOUR also makes it compact.
+
+*balfour ..
+Bitmaps can be sent via the stream BSP:BALFOUROUT/title.
+
+*balfour ..
+*balfour:
+*laserwriter ..
+GCODE can be sent to the Balfour printer by using the GC2PS program
+
+*balfour
+*laserwriter
+
+See the note on the top of the machine for details of other services offered.
+See also HELP PRINTER for more general info on printing.
+*banner #H #HCH %
+*message #H #HCH %
+%start
+%startup
+%initial
+%heading
+%*
+The Banner printed out during the logon sequence is typed from file
+SYS:INFO.INIT-MESSAGE
+%
+*bbc
+For information on transferring files to/from BBC micros, use
+HELP FILE TRANSFER.
+
+For other local info on BBC micros, try the MICRO filespace on Phoenix.
+*bcplxref
+BCPLXREF COMMAND
+Form:           BCPLXREF  "FROM/A,TO,OPT/K"
+Purpose:        To produce a cross reference listing of identifiers
+                in a BCPL source program.
+Authors:        MR JJG BJK CGG
+Source:         :com.bcpl.bcplxref
+Specification:
+   TO can be used to specify an output file.  By default, output
+goes to the current output stream.  The OPT parameter gives a
+pattern that selects which identifiers to cross reference.  The only
+special character in the pattern is * which will match any string
+of zero or more characters.
+
+Example:        BCPLXREF PROG TO :T.0
+*bd #H bigdisc
+*bd: #H bigdisc
+*bigdisc: #H bigdisc
+*bit #H #HCH %
+%bucket
+The stream name NIL: can be used to open streams which behave as infinite
+sinks for output, or infinite sources of ENDSTREAMCH on input.
+*boot #H #HCH %
+*bootserver #H #HCH %
+%bootserver
+%server
+%Z80
+RING BOOT SERVER
+
+Once upon a time this service was provided by a PDP11 called Mick.  This
+has now demised, and is being replaced by a server called HOBNAIL!
+
+The interface to this has not yet been finalised.  See SA for current state.
+%tripos
+Tripos machines are usually booted by the Ancilla machine at the request
+of the Resource and Session Managers.  See HELP SESSION MANAGER for more info.
+%*
+There are various booting procedures for machines around the ring.  See HELP
+SESSION MANAGER for info on booting a Tripos, HELP BOOTSERVER for info
+about the booting service for Z80 machines etc.
+%
+*bsinfo
+The BSINFO command may be used on systems with BJK's BSP handler to give
+information about Ring byte streams currently open.  Note that Mace and Rex
+Tripos systems do not use this handler, so the command will be ineffective.
+
+BSINFO TRACE turns byte stream tracing on/off. (Note that will have an effect
+only if the tracing code is compiled into the BSP handler task).
+
+If the BSP handler task is not resident, then BSINFO KILL will cause it to
+commit suicide when it next has no byte streams open.
+*bsp
+*stream
+BSP stands for Byte Stream Protocol. This is a protocol used to provide
+a bi-directional byte stream between two machines on the data ring. For
+a description of the protocol, see the document "Ring Byte Stream Protocol
+Specification" in the Titan Room documentation file.
+
+This protocol has now been standardised as the JNT protocol "CR82".  This
+is essentially a superset of Cambridge BSP.  Try HELP CR82 for info on this.
+
+On Tripos, the stream names BSP: CR82: and AUTHBSP: (q.v.) can be used
+for opening byte streams.
+*bsp:
+BSP: DEVICE
+
+The stream name "BSP:service" can be used to open a byte stream pair to the
+ring service called "service". The main result from calling FINDINPUT or
+FINDOUTPUT on such a name will be a stream in the requested direction; RESULT2
+will contain the other half of the stream pair. See the Phoenix file
+TRIPOS.ALL.SPEC:RINGSW for more details.
+*bsplib #H sourcelib
+*bugs
+Use HELP TROUBLE to report bugs in the HELP system.
+*buildfaulttable #H #HCH %
+%command
+%*
+Form:           BUILDFAULTTABLE "FROM,FAULTFILE/K,INFODIR/K,TRACE/S"
+Purpose:        To construct the fault table in :INFO.FAULT-TABLE
+                from the text file :INFO.FAULTS
+Source:         :com.bcpl.buildfaulttable
+Author:         MFR
+Specification:
+
+   The text file FROM (default sys:info.faults) is read to discover the text
+message associated with each fault code, and this information is written to
+the output file as described below.
+
+   This command should be run whenever :INFO.FAULTS is altered.
+
+   The name of the faults output file (which is of special format to be
+read by the FAULT procedure (q.v.)) is constructed by concatenating the
+given INFODIR (default sys:info) and the FAULTFILE (default faults-table).
+If INFODIR is not null and does not end with ':' then a '.' is placed after it.
+
+   The most useful key is INFODIR, which allows access to the faults table
+using a profile assignment, rather then having direct access to sys:
+e.g. if "info:" is "sys:info" then "buildfaulttable infodir info:" should work.
+
+   If the TRACE key is given then each line is verified as it is written.
+%
+*bulletin #H triposmail
+*byteget #H byte
+*byteput #H byte
+*bye #H logoff
+
+

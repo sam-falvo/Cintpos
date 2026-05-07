@@ -1,0 +1,41 @@
+*command
+**
+RENUMBER command
+Form:           AJW.RENUMBER "FROM/a,MANIFEST=NAME/a,TO/k"
+
+Purpose:        To renumber global declarations in a header file.
+
+Author:         AJW after CEB after DWS
+Restriction:    ******* This command will only run under AJW-Tripos ******
+
+Specification:
+
+  As it passes through the file, it replaces every occurrence of
+        MANIFEST+<number>
+with    MANIFEST+<new number>,
+where <new-number> starts at zero and is incremented each time it is used.
+  The effect is to reassign offsets from the same manifest name in increasing
+order down the length of the file.  It is particularly useful after some new
+global declarations have been edited into a header file, or the existing ones
+reordered.
+  MANIFEST may be in mixed case in the file.  There must be no spaces betwixt
+MANIFEST and +, although the number may be preceded by leading spaces and tabs.
+Substitution takes place withoug regard to strings or comments.
+  If no outputfile is given then it will attempt to write the updated version
+back to the inputfile, preserving the old input file as t:RENUMBER-BACKUP.
+
+
+Bugs:
+  If a tab is encountered betwixt the manifest and the number it is converted
+into a space without a murmer.
+  The name of the backup file isn't task-specific.
+
+Examples:
+        ajw.renumber bcp.thing GBASE
+        ajw.renumber bcp.thing name=WombatBase to t:new
+
+ ******** Warning:  this command will only run under AJW-TRIPOS ********
+ ******** Warning:  this command will only run under AJW-TRIPOS ********
+ ******** Warning:  this command will only run under AJW-TRIPOS ********
+
+

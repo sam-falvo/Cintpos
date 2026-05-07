@@ -1,0 +1,10 @@
+*procedure
+**
+WRITEN
+      To write out a number.
+      writen ( n )
+      The number 'n' is written to  the  currently  selected
+output  stream  in  a  field  that  is just wide enough. The
+routine is simply a call of writed ( n, 0 ) ( q.v. ).
+
+

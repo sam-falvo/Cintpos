@@ -1,0 +1,27 @@
+*command
+**
+STATUS command
+Form:           STATUS  "TASK,FULL/S,SEGS/S,TCB/S,CLI=ALL/S"
+Purpose:        To print information about the tasks currently in
+                existence.
+Author:         BJK
+Specification:
+       STATUS alone lists the numbers of the tasks, indicating whether
+    each is waiting, suspended, running, interrupted, held and/or
+    broken, and whether its work queue is empty.
+       TASK specifies a task number: only information about that task is
+    produced.  Otherwise information is printed about all tasks.
+       FULL = SEGS + TCB + CLI
+       SEGS prints the names of the BCPL sections on each task's segment
+    list.
+       TCB prints information about the priority, stacksize, and global
+    vector size of each task.
+       CLI identifies Command Language Interpreter tasks, and prints the
+    section name(s) of the currently loaded command (if any).
+       By default the CLI option is taken as specified.
+
+Example:        STATUS
+                STATUS 4 FULL
+                STATUS TCB
+
+

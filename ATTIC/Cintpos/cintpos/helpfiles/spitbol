@@ -1,0 +1,117 @@
+*spec #N ..
+*documentation #N ..
+*bug #N ..
+*all ..
+** ..
+SPITBOL Command
+Form:           JPB:68000-OBJ.SPITBOL "from/a,to,stack,heap,debug/s"
+Purpose:        An implementation of Macro-SPITBOL version 4.2
+Authors:        Robert Dewar (Illinois)
+                Tony McCann (Leeds)
+                JPB
+Specification:
+
+This is an implemetation of Macro-SPITBOL, a portable version of SPITBOL,
+which in turn is a semi-compiler for the string handling language
+SNOBOL4. The current version is based on a very early tape of version
+4.2, and has many known mistakes (see HELP SPITBOL BUGS). The arguments
+have the following meanings.
+
+   FROM  - This file is associated with the SPITBOL variable INPUT.
+
+   TO    - This file is associated with the SPITBOL variable OUTPUT. It
+           defaults to the terminal, which is assumed to be an unpaged
+           device of width 80 characters. If sent to a file, the output
+           will be set for a line-printer type device, with page headings.
+
+   STACK - This is the number of WORDS of stack available to SPITBOL.
+           Default 5000 words.
+
+   HEAP  - This is the number of WORDS of heap available to SPITBOL.
+           Default 20000 words.
+
+   DEBUG - For implementers only.
+
+It is hoped to obtain a more reliable version in early September 1985, at
+which point the operating system interface may be extended to allow more
+interesting features (notably calling of BCPL routines). Until this time
+bug reports will be welcome, but are unlikely to be fixed unless they are
+extremely dire.
+
+*all #N ..
+*bug #N ..
+*spec #N ..
+*documentation #N ..
+**
+See HELP SPITBOL SPEC for documentation
+
+*spec
+*documentation
+*all ..
+*bug #N ..
+SPITBOL documentation
+
+The file SPEC.SPITBOL on the 3081 contains a description of a version of
+Macro-SPITBOL version 4.1, which is very similar to version 4.2 used
+under TRIPOS.
+
+The major differences are:
+
+   1. ENDFILE takes two arguments. The second is currently ignored.
+
+   2. -CASEIG and -NOCASEIG are introduced to ignore (or not ignore) the
+      case of identifiers. The default is -NOCASEIG.
+
+   3. The following control cards are removed: -DOUBLE, -DUMP, -ERRORS,
+      -EXECUTE, -NOERRORS, -NOEXECUTE, -NOOPT, -NOPRINT, -OPTIMISE,
+      -PRINT and -SINGLE
+
+   4. The following functions are removed: ARG, FIELD, ITEM, LOCAL and
+      REWIND.
+
+   5. The keywords &ABEND and &CODE are removed.
+
+   6. On return from a spitbol error RESULT2 is set to &ERRTYPE + 7000,
+      with an RC of 20. These may be looked up with the FAULT command.
+
+   7. The function SET is added for random access files. N.B. this
+      feature is not yet supported.
+
+   8. Error numbers have changed.
+
+   9. Default input record length is 160 chars.
+
+  10. Functions CTI and ITC are provided to convert characters to ASCII
+      and back.
+
+  11. LOAD and EXIT are not yet implemented.
+
+  12. There is no handling of break keys yet.
+
+*bug
+*all
+SPITBOL bugs
+
+The following is a list of known bugs in version 4.2 under TRIPOS.
+
+   1. If sending output to a file the first five or more characters of
+      the title are overwritten by the page number
+
+   2. INPUT and OUTPUT do not work with a null second argument.
+
+   3. DUPL treats a negative second argument as a very large positive
+      argument. This won't cause a catastrophic collapse, but can make
+      for several tons of line printer output. You have been warned.
+
+   4. TRACE and/or pattern matching has an exceedingly obscure bug in
+      somewhere. This only causes problems in extremely obscure test
+      programs.
+
+I believe the translator and OS interface to now be correct. These are
+bugs in the SPITBOL source as supplied. I have taken out the worst of
+such bugs and do not propose to remove further ones unless they are very
+serious. However I should like to hear about any new bugs found, so I can
+pass a list on to the original implementors. Bugs should be reported to
+JPB.
+
+

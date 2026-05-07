@@ -1,0 +1,12 @@
+*procedure
+**
+WRITEHEX
+      To write out a number in hexadecimal format.
+      writehex ( n, w )
+      The number 'n' is written to  the  currently  selected
+output  stream  in  hexadecimal  format  in  a  field of 'w'
+spaces. If the field is not wide enough then only the lowest
+order 'w' digits are written. Otherwise the number is right-
+justified in the field and padded with zeroes.
+
+

@@ -1,0 +1,41 @@
+*task
+The ALARM command can be activated directly as a task.  Its startup packet
+should contain a time string in the format hh[:mm[:ss]] in PKT.ARG1 and a
+message string in PKT.ARG2.  The message may be set to zero if not required.
+It is not possible to specify the activation of a further asynchronous
+ALARM task when using direct activation.
+*callseg
+The ALARM command may be activated from a program by using CALLSEG:
+
+    result := callseg(sys:c.alarm, 1, time, message, async.flag)
+
+TIME is a string with format hh[:mm[:ss]].  MESSAGE may be set to zero if
+a user message is not required.  ASYNC.FLAG if set TRUE causes a separate
+task to be set up to perform the timing.  If FALSE then the program will
+not return until the specified time.  The RESULT will be zero on success
+or non-zero on failure, with a reason code in RESULT2.  If a call with
+ASYNC.FLAG TRUE is successful then RESULT2 will contain the new task's id.
+**
+ALARM Command
+Form:           ALARM "time=at/a,message,async=fork/s"
+Purpose:        To print a message at a specified time
+Specification:
+                A time is specified in the form hh[:mm[:ss]] (where [..]
+denotes an optional item).  The message is optional, and must be enclosed
+in double quotes if it contains spaces.  At the specified time 10 bells
+will be sent at .1 second intervals to the console, followed by a message
+giving the time and including the user's message (if any).  A B-break causes
+premature termination, an E-break prints the info leaving the alarm set.
+
+The program is synchronous by default: it will not finish until the
+specified time, however if the switch ASYNC is set it will set up a task
+(in fact another instantiation of itself) to perform the timing.  The same
+effect can be achieved by RUNning the command, but this carries an extra
+store penalty of a CLI and its data structures.
+
+See also HELP ALARM CALLSEG or TASK for other methods of activation.
+
+Examples:   ALARM 11:00 "Coffee time!" ASYNC
+            RUN ALARM 17:55 "Opening time - stopping!!!"; WAIT 5 MINS; FINISH
+
+

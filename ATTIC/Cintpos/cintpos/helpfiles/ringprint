@@ -1,0 +1,106 @@
+*command
+**
+RINGPRINT command
+Form:           RINGPRINT  "File,Opt/k,To=Printer/k,Heading/k,Image/k"
+Purpose:        To print a file over the Ring
+Author:         CGG
+Specification:
+
+        Prints the file given by the 'File' keyword either to LP: (the default
+    printer) or to the one specified by PRINTER.  If FILE is not given then
+    a list of files is read from the terminal.  The options for PRINTER
+    keyword are as follows:
+
+                MOND       -  MP:  the printer in the MOND terminal room
+                TITAN      -  TP:  the printer in the TITAN room
+                CANON      -  CP:  the CANON laser printer in the TITAN room
+                CCANON     -  CP:  ditto but with twice as many lines/page
+                DEFAULT    -  LP:  the default printer device
+
+    alternatively any device name similar to LP: (i.e. which supports the
+    syntax <device><heading>) can be used here although in this case the
+    default characteristics of the printer (such as its page width) will have
+    to be set up using the OPT keyword.  The BSP: or AUTHBSP: devices can
+    also be used with a service name string ending with slash ("/").
+    
+        If a file name for the IMAGE key word is given the file will be
+    formatted for the given printer, but will actually be sent to this file.
+
+        Options specified by the OPT keyword are as follows:
+
+        N      : causes the listing to include line numbers.
+        Q      : supresses the verification of file names when printing.
+        P      : causes the file(s) to which it refers to be preceeded by a
+                 page throw.
+        S      : causes a spooling device (e.g. SLP:) to be used instead of
+                 the normal device names.  When these devices have been
+                 have been in use for a time this option will be set by
+                 default.
+        W<n>   : Sets the maximum line length of the printer to <n>.  If one
+                 of the above PRINTER names has been used, or no PRINTER has
+                 been specified a sensible default will be chosen.  Otherwise
+                 a default choice of 80 columns is made.
+        O<n>   : The printout will normally be centered assuming the page
+                 width given above, unless this option is specified.  It sets
+                 the number of spaces to be printed before each line of
+                 output (i.e. the page's offset from the left hand margin).
+
+        Switch options can be unset by following them with a minus sign (-).
+
+        The name of the file printed will normally be appended to the line
+    printer banner - however an alternative heading can be given using the
+    HEADING keyword.
+
+        Many files may be printed without reopening a stream to the printer.
+    If the FILE begins with the character ',' (comma) it is taken as a file
+    containing names of other files, one on each line.  Each line in
+    such a file must conform to the RDARGS string:
+
+                          "File,Opt,Q/s"
+
+    where the key words have the same meaning as described above for that
+    particular file.  Files so included may also begin with a comma and
+    list files to be included.  There is currently a limit of 25 for the
+    total number of files printed.  All of the files are opened before they
+    are printed out - causing a slight delay but ensuring that each file does
+    actually exist before any of them are printed.  If a line includes the
+    Q switch no more lines from the file will be read.  If an OPT keyword is
+    given but not a FILE keyword a list of files is taken from the terminal.
+    BREAK B can be used at any time to abort the accumulation of a file list -
+    no printing occurs.
+    
+        When the files are being printed BREAK B (<CTRL B>) will terminate
+    the printing and BREAK E (<CTRL E>) will print out how far RINGPRINT has
+    got.
+
+        Note that a list of files are prompted for from the TERMINAL stream
+    not from the current input stream.  Thus files cannot be taken from a
+    list layed out in the succeeding lines of a command file.  Use the file
+    name ",HERE:q" to achieve this effect.
+
+        The BCPL characters '*N', '*E', '*C', '*P', and '*T' are catered for.
+
+Examples:
+
+        RINGPRINT file OPT n PRINTER mond
+        RINGPRINT widefile OPT o0p
+        RINGPRINT file1
+        RINGPRINT file2 HEADING "this is my file 2"
+        RINGPRINT ,list-of-files OPT no30 HEADING "my files"
+                {where "list-of-files" is a file containing:
+                 "file1
+                  file2 o90
+                  ,file3 OPT p
+                  file4 OPT n-
+                  ,file5 o0n-"}
+        RUN RINGPRINT ,list-of-files OPT q IMAGE file-list
+        RINGPRINT TO canon OPT s
+                {the user is then prompted for a list of files to spool
+                 to the CANON printer which can be terminated using Q}
+        RINGPRINT ,here:q OPT n
+                {the files to be output are read from successive lines of
+                 the current input stream (e.g. from a command file) -
+                 terminated by a line containing only Q.  No prompting is
+                 given}
+       
+

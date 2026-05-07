@@ -1,0 +1,121 @@
+*example #H #HCH +
+*command #H #HCH +
+*interpreter #H #HCH +
+*interpreting #H #HCH +
+*interpreter #H #HCH +
+*icint #H #HCH +
++example #N ..
++* ..
+INTCODE Interpreter
+Form:           :INTCODE.LSI4-OBJ.ICINT     "Prog/a,Data,Ver,Opt/k"
+                :INTCODE.68000-OBJ.ICINT    "Prog/a,Data,Ver,Opt/k"
+Purpose:        To interpret INTCODE produced by the BCPL compiler.
+Author:         MR + ammendments by CGG
+Specification:
+        PROG specifies a list of files from which Intcode is to be taken
+    separated by commas.  Normally these will include the compiled program
+    and any libraries required (use HELP INTCODE LIBRARIES for more
+    information).
+        DATA specifies a file from which input is initially to be taken.  The
+    current input stream to the interpreter is used by default.
+        VER specifies a file to which verification output is to be generated.
+    This includes the initial heading and any debugging output.
+        OPT specifies a list of options separated by commas, spaces or
+    slashes.  These can be any of the following:
+
+                S<n>   -  Set the size of the interpreted program's stack
+                          to <n> (default is 2000).
+                G<n>   -  Set the size of the interpreted program's global
+                          vector to <n> (default 350).
+                D<n>   -  Turn on debugging at level <n>.  The levels are as
+                          follows (there is no debugging by default):
+                                0  trace procedure calls
+                                1  trace procedure returns as well
+                                2  list all jumps (conditional or otherwise)
+                                   as well
+                                3  list the interpretation of every command as
+                                   well
+
+        The interpreter first "assembles" the INTCODE into the storeage
+    available by virtue of the S option and then interprets the program so
+    generated.  Jumps out of store and stack overflow are detected and reported
+    and tracing output is generated if requested.  The number of instructions
+    executed is reported when the interpreted program has run to completion.
+    This version of the interpreter is not very efficient -- it is primarily
+    for use when bootstrapping a new BCPL compiler.  It executes code between
+    50 and 200 times as slowly as compiled code.
+
+        When compiling for the interpreter it is important to ensure that the
+    BCPL compiler is aware that the interpreter is using 2 words of save space
+    for each procedure on its stack.  This is the same as the default on an
+    LSI4 version of TRIPOS but not on 68000s (where the value is 3).  Therefore
+    the S option to the BCPL command should be used (use HELP BCPL OPTIONS for
+    more information).
+
+        The use of CTRL-B during any stage will abort the assembly or running
+    of the interpreter.  CTRL-D will enter a simple INTCODE debugger.
+
+Example:
++example ..
+EXAMPLE use of INTCODE INTERPRETER
+
++*
+        The following demonstrates the compilation and execution of a simple
+    BCPL program on the INTCODE interpreter.
+
+  > INPUT prog
+  GET "SYS:INTCODE.BCPL.LIBHDR"
+
+  LET start() BE writes("Hello*N")
+  /*
+  > BCPL prog ic-prog MC intcode OPT s2
+  Tree space 10000
+  Tree size 1003
+  Intcode CG (February 1982)
+  Program size = 13 words
+  > :INTCODE.68000-OBJ.ICINT ic-prog,:intcode.ic-obj.mlib,:intcode.ic-obj.blib
+  ICINT: Intcode Interpreter Entered
+  ICINT: program size = 1541 words, store for stack = 459
+  Hello
+  ICINT: execution cycles = 130, return code = 0
+  >
++
+*library
+*libraries
+*mlib
+*blib
+INTCODE LIBRARIES
+
+        There are two standard INTCODE libraries available.  MLIB in
+    SYS:INTCODE.IC-OBJ.MLIB contains handwritten INTCODE routines that
+    the interpreter expects to be available - it must, therefore, almost
+    always be available.  BLIB in SYS:INTCODE.IC-OBJ.BLIB contains a number
+    of compiled BCPL routines (such as RDARGS and WRITEF) that are normally
+    available under TRIPOS.  Not all of TRIPOS BLIB (use HELP BLIB for more
+    information) is represented in this library -- it is therfore advisable
+    to use a version of LIBHDR which defines only the procedures available
+    in this library.  Such a LIBHDR is available in SYS:INTCODE.BCPL.LIBHDR
+    List this file for the definitive list of the procedures available
+    when using MLIB and BLIB together.
+
+        Libraries are included in the input to the interpreter by listing
+    them (in any order) with the main compiled intcode file separated by
+    commas.  See HELP ICINT EXAMPLE for more information.  See HELP INTCODE
+    INTERPRETER for details of the interpreting command.
+*spec #N ..
+** ..
+INTCODE
+
+        Intcode is a simple BCPL assembly code that can be produced by the
+    BCPL command (use HELP BCPL COMMAND and HELP BCPL MC for information).
+    There are facilities for its interpretation available in the SYS:INTCODE
+    directory (use HELP ICINT COMMAND for more information).  In addition
+    there are some INTCODE libraries available (use HELP INTCODE LIBRARIES).
+    For an example of how to use the INTCODE system use HELP ICINT EXAMPLE.
+
+**
+        Intcode is described in the leaflet "Bootstrapping the BCPL
+    compiler using INTCODE" by M. Richards available from the Computer
+    Lab's bookshop.
+
+

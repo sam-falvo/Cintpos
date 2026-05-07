@@ -1,0 +1,12 @@
+*procedure
+**
+WRITES
+      To write a string.
+      writes ( string )
+      The string is written to the currently selected output
+stream,  character  by  character,  using the wrch routine (
+q.v. ). If the stream is interactive then newline,  newpage,
+carriage return, or buffer flushing ( '*E' ) characters will
+cause the output buffer to be flushed.
+
+

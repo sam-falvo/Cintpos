@@ -1,0 +1,21 @@
+* ***- #H break
+* break #H break
+*command
+**
+Form:           PROMPT  "PROMPT,RING/S"
+Purpose:        To change the prompt in the current CLI.
+Author:         RDE (RING keyword by NJO)
+Specification:
+   If no parameter is given, then the prompt is reset to the
+standard string ("> ").
+   If RING is specified, then the prompt is set to the standard ring prompt
+for this machine: "{machine name}-%n> ".
+   Otherwise, the prompt is set to the supplied string.  The CLI
+uses WRITEF to output the prompt, with arguments task id, hours, and
+minutes (of time of day), so the string may usefully contain WRITEF
+substitution sequences.
+Example:        PROMPT
+                PROMPT "%n> "
+                PROMPT RING
+
+

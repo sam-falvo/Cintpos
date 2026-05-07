@@ -1,0 +1,88 @@
+*6809 #H z80
+*z80 #H z80
+*all ..
+*commands
+DEBUG COMMANDS
+
+      Commands      ________
+
+      B<i>    set/delete Breakpoint or list all
+      C       Continue/release task
+      C<i>    Continue after breakpoint
+      E       trace Environment
+        B     non-interactive Backtrace
+        D     Down one level
+        L     set stack level to current value
+        N     Next coroutine
+        S     set Stack base to current value
+        T     Top of stack
+        U     Up to top of current coroutine
+        V     Verify current level
+      H       Hold task
+      I       BCPL Indirection
+      J       machine address indirection
+      N       Next location
+      P<name> Put current value into <name>
+      Q       Quit
+      S<i>    Select task
+      T<i>    Type contents of <i> locations
+      U<e>    Update current location with <e>
+      X...    eXecute function (up to 4 <i>s as args)
+      Z       enter bootstrap (if available)
+      $       set style
+        C     characters
+        D     decimal
+        F     function
+        O     octal
+        U     unsigned decimal
+        X     hexadecimal
+      /       open current location
+      =       type current value
+      
+*spec #N ..
+*all
+*command
+DEBUG COMMAND
+
+Form:           DEBUG
+Purpose:        To load DEBUG as a command.  (Useful when resident
+                DEBUG is not accessible - e.g. from a second
+                console, or when logged-in from a remote machine).
+Author:         ARA
+Specification:
+        Note that this command is normally resident and running as task
+    two.  Thus @S02 can be used to select it.
+        Use HELP DEBUG COMMANDS for explanation of commands.
+        Use HELP DEBUG ALL for full documentation.
+Example:        DEBUG
+
+*spec
+DEBUG spec is on the IBM in TRIPOS.ALL.SPEC:DEBUG
+(Use HELP DOCUMENTATION for a full list of IBM documentation)
+*remote
+REMOTE DEBUG COMMAND for 68000s
+
+Form:           IDW:68000-OBJ.REMOTE-DEBUG  "MACHINE/A"
+Purpose:        To debug a crashed 68000 whose console stream has been lost.
+Author:         IDW
+Specification:
+
+   The crashed machine should first be loaded with the pseudo system reset
+using a reasonably long timeout period to ensure it is not lost.  This
+command may then be run on another 68000.  It provides an interface very
+similar to local debug.
+**
+DEBUG is available as a resident task (usually task 2) in most Tripos
+systems. You can make use of it at any time by directing console input
+to the DEBUG task (using Control-S in the normal way). In this way you can
+inspect other tasks while they are still running.
+
+A description of DEBUG is to be found in TRIPOS.ALL.SPEC:DEBUG on Phoenix.
+
+Use: HELP DEBUG COMMANDS  for a summary of commands
+     HELP DEBUG COMMAND   for details of the DEBUG command (non-resident form)
+     HELP DEBUG REMOTE    to debug one (dead) 68000 remotely from another
+     HELP Z80 DEBUG  )
+     HELP 6809 DEBUG )    to find out about other debuggers
+
+

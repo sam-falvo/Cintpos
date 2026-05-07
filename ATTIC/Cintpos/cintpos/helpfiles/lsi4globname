@@ -1,0 +1,352 @@
+*globsize
+*0
+globsize:0
+*start
+*1
+start:1        ||        start(pkt)
+*stop
+*2
+stop:2         ||        stop(code)
+*3
+*4
+*5
+*6
+*7
+*8
+*9
+|| globals 3 to 9 are machine dependent.
+||     g3        is used for stack checking
+||     g4 - g7   software mul, div/rem, lshift, rshift
+*result2
+*10
+result2:10
+*returncode
+*11
+returncode:11
+*stackbase
+*12
+stackbase:12
+*tcb
+*13
+tcb:13
+*taskid
+*14
+taskid:14
+*getbyte
+*byteget
+*15
+getbyte:15     || ch  := getbyte(v, i)
+byteget:15     || = getbyte on LSI4
+*putbyte
+*byteput
+*16
+putbyte:16     ||        putbyte(v, i, ch)
+byteput:16     || = putbyte on LSI4
+*level
+*17
+level:17       || p   := level()
+*longjump
+*18
+longjump:18    ||        longjump(p, l)
+*muldiv
+*19
+muldiv:19      || res := muldiv(a, b, c)
+*aptovec
+*20
+aptovec:20     || res := aptovec(fn, upb)
+*sardch
+*21
+sardch:21      || ch  := sardch()
+*sawrch
+*22
+sawrch:22      ||        sawrch(ch)
+*createco
+*23
+createco:23    || co  := createco(fn, stsize)
+*deleteco
+*24
+deleteco:24    ||        deleteco(co)
+*callco
+*25
+callco:25      || arg := callco(co, arg)
+*cowait
+*26
+cowait:26      || arg := cowait(arg)
+*resumeco
+*27
+resumeco:27    || arg := resumeco(co, arg)
+*globin
+*28
+globin:28      || res := globin(seg)
+*getvec
+*29
+getvec:29      || v   := getvec(upb)
+*freevec
+*30
+freevec:30     ||        freevec(v)
+*createdev
+*31
+createdev:31   || id  := createdev(dcb)
+*deletedev
+*32
+deletedev:32   || dcb := deletedev(id)
+*createtask
+*33
+createtask:33  || id  := createtask(seglist, stsize, pri)
+*deletetask
+*34
+deletetask:34  || res := deletetask(id)
+*changepri
+*35
+changepri:35   || res := changepri(id, pri)
+*setflags
+*36
+setflags:36    || res := setflags(id, flags)
+*testflags
+*37
+testflags:37   || res := testflags(flags)
+*abort
+*38
+abort:38       ||        abort(code, arg)
+*hold
+*39
+hold:39        || res := hold(id)
+*release
+*40
+release:40     || res := release(id)
+*taskwait
+*41
+taskwait:41    || pkt := taskwait()
+*qpkt
+*42
+qpkt:42        || res := qpkt(pkt)
+*dqpkt
+*43
+dqpkt:43       || res := dqpkt(id, pkt)
+*packstring
+*44
+packstring:44  || res := packstring(v, s)
+*unpackstring
+*45
+unpackstring:45 ||       unpackstring(s, v)
+*endtask
+*46
+endtask:46     ||        endtask(seg)
+*delay
+*47
+delay:47       || res := delay(ticks)
+*sendpkt
+*48
+sendpkt:48     || res := sendpkt(link, id, type, res1, res2, ... args)
+*returnpkt
+*49
+returnpkt:49   || res := returnpkt(pkt, res1, res2)
+*initio
+*50
+initio:50      ||        initio()
+*currentdir
+*51
+currentdir:51
+*cis
+*52
+cis:52
+*cos
+*53
+cos:53
+*rdch
+*54
+rdch:54        || ch  := rdch()
+*unrdch
+*55
+unrdch:55      || res := unrdch()
+*wrch
+*56
+wrch:56        ||        wrch(ch)
+*readwords
+*57
+readwords:57   || res := readwords(v, n)
+*writewords
+*58
+writewords:58  ||        writewords(v, n)
+*findinput
+*59
+findinput:59   || scb := findinput(name)
+*findoutput
+*60
+findoutput:60  || scb := findoutput(name)
+*selectinput
+*61
+selectinput:61 ||        selectinput(scb)
+*selectoutput
+*62
+selectoutput:62||        selectoutput(scb)
+*endread
+*63
+endread:63     ||        endread()
+*endwrite
+*64
+endwrite:64    ||        endwrite()
+*input
+*65
+input:65       || scb := input()
+*output
+*66
+output:66      || scb := output()
+*readn
+*67
+readn:67       || n   := readn()
+*newline
+*68
+newline:68     ||        newline()
+*writed
+*69
+writed:69      ||        writed(n, d)
+*writen
+*70
+writen:70      ||        writen(n)
+*writehex
+*71
+writehex:71    ||        writehex(n, d)
+*writeoct
+*72
+writeoct:72    ||        writeoct(n, d)
+*writes
+*73
+writes:73      ||        writes(string)
+*writef
+*74
+writef:74      ||        writef(format, ..args..)
+*capitalch
+*75
+capitalch:75   || ch  := capitalch(ch)
+*compch
+*76
+compch:76      || res := compch(ch1, ch2)
+*compstring
+*77
+compstring:77  || res := compstring(s1, s2)
+*rdargs
+*78
+rdargs:78      || res := rdargs(keys, v, upb)
+*rditem
+*79
+rditem:79      || res := rditem(v, upb)
+*findarg
+*80
+findarg:80     || res := findarg(keys, item)
+*loadseg
+*81
+loadseg:81     || seg := loadseg(name)
+*unloadseg
+*82
+unloadseg:82   ||        unloadseg(seg)
+*callseg
+*83
+callseg:83     || res := callseg(name,  ... args)
+*tidyup
+*84
+tidyup:84      || User redefinable task tidy up routine
+*datstring
+*85
+datstring:85   || v   := datstring(v)
+*datstamp
+*86
+datstamp:86    || v   := datstamp(v)
+*87
+*88
+*89
+Globals 87, 88 and 89 reserved
+*deleteobj
+*90
+deleteobj:90   || res := deleteobj(name)
+*renameobj
+*renamefile
+*91
+renameobj:91   || res := renameobj(name1, name2)
+*deletefile
+*90
+deletefile:90
+*findupdate
+*92
+findupdate:92  || scb := findupdate(name)
+*endstream
+*93
+endstream:93   ||        endstream(scb)
+*get2bytes
+*94
+get2bytes:94   || wrd := get2bytes(v, wordoffset)
+*put2bytes
+*95
+put2bytes:95   ||        put2bytes(v, wordoffset, word)
+*96
+*97
+*98
+*99
+Globals 96 to 99 reserved
+*pktwait
+*100
+pktwait:100    || pkt := pktwait(dest, pkt)
+*devicetask
+*102
+devicetask:102
+*//devicename
+*103
+//devicename:103
+*fault
+*104
+fault:104
+*consoletask
+*105
+consoletask:105
+*splitname
+*107
+splitname:107
+*locateobj
+*108
+locateobj:108
+*freeobj
+*109
+freeobj:109    ||        freedir(dir)
+*110
+*111
+Globals 110 and 111 reserved
+*findobj
+*112
+findobj:112
+*copydir
+*113
+copydir:113    || res := copyobj ( obj )
+*note
+*114
+note:114       || res := note(scb, v)
+*point
+*115
+point:115      || res := point(scb, v)
+*116
+*117
+*118
+*119
+*120
+*121
+*122
+Globals 116 to 122 reserved
+*locatedir
+*123
+locatedir:123  || dir := locatedir(name)
+*124
+Global 124 reserved
+*createdir
+*125
+createdir:125  || res := createdir(name)
+*126
+*127
+*128
+*129
+*130
+*131
+*132
+|| Globals 126-132 reserved for linking loader
+
+|| Globals 133-149 defined in CLIHDR
+
+

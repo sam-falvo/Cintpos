@@ -1,0 +1,227 @@
+*mace #H tripos
+*mace-tripos #H tripos
+*machine #H #HCH %
+%type "info:This machine is of type %K*N"
+%name "info:This machine is %M*N"
+%*
+The Tripos system has been ported to a large number of machines (eg. PDP11,
+Nova, 8086, 32016) but the ring system runs on LSI4 and 68000 systems only.
+Various configurations are available however, and the Session Manager
+command LIST ATTR will show those which can be requested.
+
+The directory :machines holds machines' temporary files.  See HELP
+TEMPORARY FILES.
+%
+*Maclaren
+Yawn ....
+*macro-spitbol #H spitbol
+*mailbox #H triposmail
+*mailserver #H ringmail
+*make #H #HCH %
+%command
+Form:           make [options] [object]
+Purpose:        To maintain program groups.
+Author:         UNIX programme transported and modified to cope
+                with Tripos incompatabilities by DRM.
+Source code:    somewhere in DRM's filespace.
+Description:
+
+Make takes a description of the interdependencies of a group of programmes and
+uses the 'last modified' information from the file system decide which of them
+needs recompiling in order to bring 'object' up to date, and issues the
+appropriate commands.  If 'object' is not present 'all' is assumed.
+
+The command is essentially the same as the UNIX make command, and as such does
+not use RDARGS and is only available on 68000s.
+
+For a full explanation of the structure of the description file, see manual
+entry on UNIX.
+
+Brief description of some options:
+
+-f FILE         The interdependency description is normally taken to be in a 
+                file called 'makefile' in the current directory; if the -f
+                option is present, the description is read from FILE.
+
+-t              Instead of issuing commands to update the files, just touch
+                them, that is, change their 'last modified' date.
+
+
+DIFFERENCES:
+
+1) Because tripos uses : as part of filenames, the separator character for
+   rules is ~
+2) Tripos doesn't have a convention for .o and .c etc suffixes, so the
+   .SUFFIXES command has been replaced by a .PREFIXES command.
+3) Parameter substitution may be reiterated, so that $(a.$b) makes sense.
+
+Hence a tripos description file might look like:
+
+a = algol68c
+o = object.
+e = environ.
+A68C = a68c MC 68000-32 Heap 30000
+settosame = bigdisc:jf.object-modules.68000.settosame
+
+.PREFIXES~ $o. $a.
+
+$a.$o.~ 
+        $(A68C) $< envout $(e)new-$* obj $@ 
+        @$(settosame) $(e)new-$* $(e)$*
+
+all~ load:prog
+
+load:prog~ $o.master $o.subthing
+        lked with linkfile to load:prog library sys:a68c.68000.lib.mod32
+
+$o.master~ $a.master
+
+$o.subthing~ $a.subthing $(e)master
+%*
+The Unix 'make' command has been ported to Tripos.  See HELP MAKE COMMAND
+for information on this.  It is not widely used yet.  However command
+sequences for particular groups of programs are fairly easy to knock up
+using the Rex language.  Some system program directories have a make
+command sequence (either a Rex or a C command) to rebuild them.
+%
+*mapname #H map
+*mapstore #H map
+*matrices #H matrix
+*mayflower
+The Mayflower kernel is an experimental operating system built to support
+research into distributed systems.  In particular it provides an environment
+for strictly type checked Remote Procedure Call in a locally extended version
+of the CLU language.  Currently Mayflower runs on Motorola 68000 systems and
+the CLU can be run on a 68000 under Mayflower or a VAX under UNIX BSD4.2.
+
+See HELP CLU for more info on the CLU language.
+
+Please send electronic mail to mayflower-request@cl for further information
+about Mayflower or CLU.
+*mcname ..
+The machine name is available in a number of ways.  In a program it can be
+found as string in the rootnode e.g.:
+       machine.name := rootnode!rtn.info!rtninfo.ring!ri.myname
+                         The header ringhdr is needed for these manifests.
+*mctype ..
+The machine type is available in a number of ways.  In a program it can be
+found as string in the rootnode e.g.:
+       machine.type := rootnode!rtn.info!info.mctype
+*mcname ..
+*mctype ..
+In a command sequence a key is provided in the IF command - see HELP IF.
+It may be inserted into a pseudo-file using the INFO: device - see HELP INFO:.
+It is available as a preset variable in the REX language - see the REX spec.
+
+*mcname "info:The name of this machine is %M*N"
+*mctype "info:The type of this machine is %K*N"
+*mc68000 #H 68000
+*me #H user
+*memory
+*heap
+MEMORY
+
+The MAP command shows the amount of available memory, MAP PIC shows the
+store allocated pictorially (for further details use HELP MAP COMMAND).
+
+On TRIPOS storage is arranged as a list of allocated and available blocks.
+There is no provision for store compaction.  Allocation and de-allocation
+are managed via the library routines GETVEC and FREEVEC - use
+HELP PROCEDURE GETVEC and HELP PROCEDURE FREEVEC for more information.
+
+TRIPOS runs on several different machines, with different storeage
+configurations.  Memory protection is, in general, not used, although TRIPOS
+on 8086es uses partitioning of code and data.  The maximum storeage available
+on PDP11s and NOVAs is 32K or 24K (on some PDP11s) bytes.  On LSI4s it is
+128K bytes and 68000s vary from 256K bytes upwards.
+*memwait
+Form:           MEMWAIT  "MEM/A"
+Purpose:        To hold up execution of a command sequence until at
+                least <MEM> words of memory are likely to be available.
+Author:         CGG
+
+Availibility:   *** This command is only available on LSI4s ***
+
+Specification:
+   Ctrl/B break abandons the wait.
+Example:        MEMWAIT 12000
+*mercator
+MERCATOR is the machine which provides the ring map service. The command
+MAPNAME allows map entries to be looked up from Tripos.
+*message #H #HCH %
+%banner #H banner
+%day #H banner
+%initial #H banner
+%initialisation #H banner
+%initialization #H banner
+%machine #H wto
+%operator #H wto
+%sending #H send
+%send #H send
+%startup #H banner
+%wto #H wto
+%+ #H mail
+%*
+See HELP MAIL for the mail system, WTO for sending messages to other
+machines' consoles, BANNER for the initial startup message.
+%
+*micro-tripos #H tripos
+*mkinit
+On Tripos an initialsation sequence is set up by creating a 'T' type command
+sequence (see HELP T COMMAND) in your home directory called "init-sequence".
+This will be obeyed at logon.
+*mod
+The message of the day is held in the file "sys:info.init-message".  For
+information on what has happened to the system recently, see MAIL TRIPOS
+or HELP NEW xxx.
+*modula #H modula2
+*mond
+Output may be sent to the Mond printer by opening a stream to
+the device MP: (q.v.).
+*month #H dat
+*move
+*mv
+The Tripos equivalent to the Unix mv command, which renames files, is
+called RENAME!  See HELP FILE COMMANDS for info on it and other file commands.
+*mp #H printer
+*mp: #H printer
+*msg #H message
+*mt #H tape
+*mt: #H tape
+*muldiv
+MULDIV Procedure
+
+RESULT := MULDIV( A, B, C )
+
+RESULT is set to the value (A*B) / C.
+The value of MULDIV lies in the fact that the intermediate result (A*B) is
+held to double precision (i.e. in 2 BCPL words), enabling some calculations
+that would otherwise be difficult to perform without arithmetic overflow.
+*mvs
+MVS is the operating system used on the IBM 3081.
+
+See HELP CS for information on how to transfer files between Tripos and MVS.
+*myname #H user
+*m68000 #H 68000
+*m68k #H 68000
+*m68kasm #H asm68
+*m68kda
+*disassembler
+*disasm
+M68KDA command
+Form:           M68KDA  "FROM/A,TO/K"
+Purpose:        To disassemble a 68000 object module
+Author:         IDW
+
+Specification:
+    FROM is the name of a 68000 object module, as produced by the 68000 BCPL
+compiler or assembler.
+    TO is the name of the file to which the disassembled output is sent.
+If this is omitted, then the output is sent to the current output stream.
+
+Examples:       M68KDA  obj.program
+                M68KDA  object-module  TO  disassembled-listing
+
+N.B.  The M68KDA command will only run on a 68000 processor.
+
+

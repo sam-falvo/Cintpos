@@ -1,0 +1,83 @@
+*commands #N ..
+*+
+*all            :otherpacks.pack3.labusers.wrs.ws-help
+*short          :otherpacks.pack3.labusers.wrs.ws-short-sheet
+*quick          :otherpacks.pack3.labusers.wrs.ws-short-sheet
+*summary        :otherpacks.pack3.labusers.wrs.ws-short-sheet
+*new            :otherpacks.pack3.labusers.wrs.ws-new
+*recent         :otherpacks.pack3.labusers.wrs.ws-new
+*version        :otherpacks.pack3.labusers.wrs.ws-new
+*history        :otherpacks.pack3.labusers.wrs.ws-history
+*history    #H  :otherpacks.pack3.labusers.wrs.ws-info
+*buglist        :otherpacks.pack3.labusers.wrs.ws-buglist
+*bug            :otherpacks.pack3.labusers.wrs.ws-buglist
+*suggestion     :otherpacks.pack3.labusers.wrs.ws-buglist
+*lsi4           :otherpacks.pack3.labusers.wrs.ed-restrictions
+*ws-recovery #H ws-recover
+*ws-recover  #H ws-recover
+*recovery    #H ws-recover
+*recover     #H ws-recover
+*editor
+*edit
+*command
+WS command
+Form:           WS    "from/a,to/k,0/s,1/s,2/s,3/s,*
+                      *browse/s,bbc/s,init/k,noinit/s,*
+                      *inits/k,find/k,line/k,cifer"
+                (just go WS FILENAME)
+Purpose:        To edit a file (or some files).
+Author:         WRS
+Specification:
+
+    WS is a full screen text editor. It runs on 68000s and on LSI4s,
+but the LSI4 version is cut down and less helpful - the 68000 one is
+recommended for beginners. It runs on Cifers or on BBC Computers.
+
+    This text editor is based on MicroPro WordStar (available on CP/M
+machines) and is EASY TO USE.  It is not necessary to learn dozens of new
+commands because the information that you want, and the commands
+available, are always on the screen. Once you know the menus you can
+switch them off through the 'help' menu (^J), leaving more room for your
+text on the screen.
+
+    Main features:
+        Rewind not necessary - wind forwards or backwards in text as required
+        Menu driven, easy to learn and use - friendly.
+        Tried and tested layout of keyboard commands, copied from WordStar.
+        Insert mode or replace mode for text entry.
+        Powerful block, column block, find and replace commands.
+        'Undelete' key - makes catastophic accidents less painful
+        Automatic indentation for entry of structured program source.
+        Split screen - edit or examine two files at once,
+          or a file and a tripos CLI session.
+        programmable keys and keyboard macros
+        Use any screen mode on a BBC terminal
+        escape to TRIPOS possible in the middle of edits
+
+    Calling the editor:
+        FROM        is the file to be edited
+        TO          is the file to edit to - the default is back to FROM
+        BROWSE      does not allow the file to be changed
+        0, 1, 2, 3  initial help level - default is 3, most helpful
+        BBC,CIFER   specify terminal type - Tripos usually knows anyway
+        FIND string         find this string on entry to the editor
+        LINE no             start editing at this line
+        INITS string        obey this string on entry to the editor
+        NOINIT              do NOT obey file "home:ws-init" on entry
+    Only FROM and TO are of interest to the first-time user.
+
+    Backup files are kept in T:EDIT-BACKUP
+
+For more information:
+        HELP WS SHORT     --  short list of commands (quick reference sheet)
+        HELP WS ALL       --  complete documentation (about 500 lines)
+        HELP WS NEW       --  recent version info and changes
+        HELP WS HISTORY   --  complete version history (quite long)
+        HELP WS BUGLIST   --  current bugs
+        HELP WS LSI4      --  restrictions in LSI4 version
+*globals
+WS needs nearly 500 globals, so you should execute the command
+  GLOBALS 500
+before running WS in the standard CLI.
+
+

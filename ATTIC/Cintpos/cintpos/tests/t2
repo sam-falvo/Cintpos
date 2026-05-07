@@ -1,0 +1,44 @@
+# Data for the test harness
+
+# Specify the lines
+
+# L <line number> [S <tcp address>] 
+#                    [C <tcp address>]
+#                    [P <protocol>]
+
+#L  0 C tcp:localhost:7000
+#L 81 C tcp:localhost:7001          P errors
+#L  3 S tcp::9911 P bcr
+
+
+
+#L 99 C tcp:localhost:9099  # ErrorsM99
+L599 C tcp:localhost:9599  # ErrorsS599
+#L100 C tcp:localhost:9100  # Report100
+L 81 C tcp:localhost:9081  # Brd81
+#L  7 C tcp:localhost:9007 P bcr  # Bcr07
+#L 10 C tcp:localhost:9010 P interrogation  # Interrogation10
+#L  1 C tcp:localhost:9001 P brd  # Brd01
+#L  3 C tcp:localhost:9003 P protterm  # Protterm03
+#L  4 C tcp:localhost:9004 P brd  # Brd04
+#L  5 C tcp:localhost:9005 P brd  # Brd05
+#L 12 C tcp:localhost:9012 P brd  # Brd12
+#L 70 S tcp::7000 P "cli"  # Cli7000
+#L 71 S tcp::7001 P cli  # Cli7001
+
+# specify timed events
+
+# T mins:secs.msecs L <line number> D <text>
+
+T 0:24        L 81   D "a report*n"
+#T 0:21.312    L 99   D "an error message*n"
+#T 13         L 7     D "xxx*n"
+#T 8          L 7     D "aaa*n"
+T 5          L 81    D "yyy*n"
+T 15         L 599   D "zzz*n"
+
+T 0:05        L81   D "echo hello0*n"
+T 0:10        L81   D "wait 7; echo hello1*n"
+T 0:15        L81   D "echo hello2*n"
+T 0:20        L81   D "echo hello3*n"
+

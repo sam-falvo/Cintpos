@@ -1,0 +1,66 @@
+*init
+   Specifying the INIT switch has two effects:  (i) any user provided init
+routine is executed, and (ii) automatic alarm setting is enabled (see HELP
+ALARM).
+
+   To use the facility provided for obeying a user's intialisation code as
+part of the DIARY program a routine should be written defining the
+global UG as a procedure.  A copy of the code of DIARY should be taken and
+the user procedure appended to it.  The user's code will then be obeyed if
+the program is executed with the INIT key set.  For example:
+
+GET "libhdr"
+
+GLOBAL $( init: ug $)
+
+LET init() BE writes("Hello!*N")
+
+   This feature saves the time taken to load the user's initialisation code
+as a separate program within the init sequence.
+*+
+Form:           DIARY "FOR=DATE,ELIST=EVENTLIST/K,TO/K,INIT"
+Purpose:        To scan a list of events and print out relevant ones
+Author:         NJO
+Specification:
+                The EVENTLIST file, given by the keyed parameter which
+defaults to "home:eventlist", is opened and read.  Each line is interpreted
+as a date followed by a message.  If the date of the event matches the date
+for which the diary is required then the rest of the line is printed out.
+The next day's events, overdue events and Sunday's events on a Friday are
+also produced.  By default the diary is produced for the day on which the
+program is run, but the parameter DATE may be used to give other days.
+Output is sent to TO, which defaults to the console.
+
+   The date in the file is delimited by a space, and any further spaces
+before the start of the message are ignored.  Dates in the file or on the
+command line are of standard Tripos format:
+
+            (i)    dd-mmm-yy     e.g.  29-nov-84
+            (ii)   weekday name  e.g.  thursday
+            (iii)  relative day  e.g.  yesterday
+
+   Day names in the file allow the possibility of repeated daily and weekly
+events.  A day name in the file is taken relative to any explicit DATE, and
+is always considered as being on the specified day or in the future.  A day
+name given as a DATE is in the future.
+
+   Specifying the INIT switch has two effects:  (i) any user provided init
+routine is executed, and (ii) automatic alarm setting is enabled (see below).
+See HELP DIARY INIT for more information on the init routine.
+
+   If a message line (after the date spec) starts with '*' then the line is
+not printed out.  This has two purposes:  (i) messages can be commented out,
+and (ii) alarms can be set with no message being printed.
+
+   If a message line (after the date, and '*' if any) starts with a time, in
+the form dd:dd, where d is a decimal digit, and the date is that for which
+the diary is being run, and the INIT switch is set then an alarm task will
+be set up and passed the given time with the rest of the line as message.
+(See HELP ALARM for information on the ALARM task.)  Note that the time is
+not checked for a sensible value until it reaches ALARM, so e.g. 98:76 will
+produce an ALARM error message!
+**
+There is a DIARY command on Tripos to print imminent events found in an
+event list file.  See HELP DIARY for more information.
+
+

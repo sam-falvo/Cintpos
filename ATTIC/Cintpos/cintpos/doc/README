@@ -1,0 +1,281 @@
+The Cintpos Portable Operating System
+(Revised 25 Jan 2012)
+
+
+************************ IMPORTANT **********************************
+
+   Before installing Cintpos, read this README file and remember
+   to edit the Makefile and set the environment variables POSROOT,
+   POSPATH, POSHDRS, POSSCRIPTS and PATH as described below. Note
+   that the single threaded BCPL system Cintsys must be fully
+   installed before attempting to install Cintpos.
+
+*********************************************************************
+
+
+
+
+This README file (residing in cintpos/doc/README) briefly describes
+the Cintpos System and explains how to install it from its standard
+distribution via my home page whose URL is:
+
+http://www.cl.cam.ac.uk/users/mr.
+
+Cintpos is a version of the Tripos Portable Operating System developed
+and used in Cambridge over the period 1977 to 1987. It was originally
+intended as a simple multi-tasking system for a single user and was
+first implemented on machines such as the PDP 11, the Data General
+Nova, the Computer Automation LSI/4 and the Motorala 68000. The
+current version is called Cintpos and uses BCPL's Cintcode byte stream
+interpretive code. Cintcode was originally a 16-bit abstract machine
+for BCPL but was later extended to become a 32-bit abstract machine.
+More recently an interrupt mechanism was added so that it could
+support the multi-tasking and device handling of Cintpos. Even though
+the system interpretive, it runs many times faster on modern machines
+than it did, in native code, on its original hardware.
+
+Its main advantages stem from the simplicity and portability of the system
+which hopefully will allow programs written for it to still be runnable
+with little or no change 20 to 50 years from now.
+
+An important application of the system is in process control where
+the controller is a potentially large multi-tasking set of programs
+controlling some system via many TCP/IP connections. Cintpos is an
+excellent demonstration of the advantages of both coroutines and
+tasks (threads) to control large real-time process control systems.
+
+LICENCE
+
+The Cintpos system is freely available for private and educational use.
+Other use is probably free but needs my permission.
+
+There is of course no guarantee that the system is bug free or safe
+to use for any purpose whatsoever.
+
+
+Cintpos Distribution
+
+If you install the system send me an e-mail message (to
+mr@cl.cam.ac.uk) so I can keep a record of who is interested in it.
+
+For this distribution to work, you must already have the Cintcode BCPL
+System installed. Remember to set the shell variables PATH, BCPLROOT,
+BCPLPATH, BCPLHDRS and BCPLSCRIPTS as described in the BCPL
+distribution README file.
+
+Edit the file cintpos/Makefile for the architecture of your machine
+and the location you have chosen for the Cintpos root directory.  The
+distribution version of Makefile is for Linux machines.  The files
+MakefileCygwin and MakefileMacOSX are versions of Makefile for Cygwin
+and MacOSX, but may still need further editing on your system.
+
+Linux Installation of Cintpos
+
+This section describes how to install Cintpos on an IBM PC running
+Linux.
+
+1) First install the BCPL Cintcode system which is obtainable from my
+home page, remembering to set the PATH, BCPLROOT, BCPLPATH, BCPLHDRS
+and BCPLSCRIPTS environment variables properly.
+
+2) Choose a suitable directory to hold the Cintpos system, change
+to that directory and copy cintpos.tgz into it. E.g:
+
+        cd $(HOME)
+        cp <cintpos.tgz> cintpos.tgz
+        ls -l cintpos.tgz
+
+BEWARE: The size of cintpos.tgz should be about 3,148,288 bytes. If it
+is much larger that this your browser may have silently unzipped it
+but kept the .tgz extensions.
+
+3) Look at the contents of cintpos.tgz by typing:
+
+        tar ztf cintpos.tgz
+
+If cintpos.tgz was automatically 'unzipped', try the following
+instead:
+
+        tar tf cintpos.tgz
+
+You will see that all this file it contains are in the directory
+Cintpos.
+
+Now extract all these files using the appropriate choice of:
+
+        tar zxvf cintpos.tgz
+or
+        tar xvf cintpos.tgz
+
+This will create the directories Cintpos, Cintpos/cintpos,
+Cintpos/posprogs and fill them with useful material.
+
+3) Change directory to Cintpos/cintpos. Eg:
+
+        cd Cintpos/cintpos
+ 
+5) Setup then environment variables: POSROOT, POSPATH, POSHDRS,
+POSSCRIPTS and PATH.
+
+It is necessary to set the environment variables POSROOT, POSPATH and
+POSHDRS. On my machine I do this using the following three lines included
+in my .profile file:
+
+export POSROOT=$HOME/distribution/Cintpos/cintpos
+export POSPATH=$POSROOT/cin
+export POSHDRS=$POSROOT/g
+export POSSCRIPTS=$POSROOT/s
+
+
+POSPATH gives the directory or directories where compiled standard
+commands can be found. POSPATH, POSHDRS and POSSCRIPTS give the
+directories where the BCPL compiled programs, the header files and the
+command-command scripts are located.
+
+
+The directory containing cintpos command (an executable) should be
+added to your PATH variable so that it can be called from anywhere.
+This could be done by:
+
+export PATH=$PATH:$POSROOT/bin
+
+6) Now re-build the Cintpos system by typing:
+
+cd $POSROOT
+make clean     -- remove unwanted files, if any
+make           -- recompiles and builds the system the system
+
+If this succeeded in calling ./bin/cintpos but failed to enter the Cintpos
+system successfully, type typing:
+
+cintpos -f
+
+or 
+
+cintpos -f -v
+
+This will generate trace information about the booting process which should
+help to diagnose the problem.
+
+If the system enters correctly you should see a prompt such as:
+
+Cintpos System (14 Jan 2012)
+0.000 1>
+
+Now test the system by typing:
+
+c compall      -- re-compiles everything
+
+This will generate a lot of output and leave you with a Cintpos
+prompt. Command such as the following should work:
+
+echo hello
+bcpl com/echo.b to junk
+junk hello
+status
+
+7) To leave from Cintpos, type: 
+
+logout   or  ctrl-c
+
+If all that work well done you now have a usable Cintpos system with a
+basic set of commands. A draft manual for the system can be found via
+my home page. This is currently being substantially revised.
+
+
+Current state of the implementation
+
+The initially loaded system has six tasks
+
+    1 The CLI
+    2 The DEBUG task
+    3 The console handler (COHAND)
+    4 The file handler (FH0)
+    5 The mailbox handler (MBXHAND)
+    6 The TCP/IP handler (TCPHAND)
+
+Most of the kernel functions have been implemented, notably
+
+   qpkt, taskwait, hold, release, testflags, setflags,
+   createtask, deletetask, globin, getvec, freevec,
+   changepri
+
+The console handler and debug tasks work. The CLI works loading
+commands without the use of the file-handler.  The file-handler task
+provides the ability to read, write, delete and rename unix files.
+Random access to files is also available.
+
+Most commands now work, for example:
+
+   echo, map, status, wait, logout, stack, type,
+   bcpl, alarm, break, enlarge, prompt, time,
+   run, newcli, bounce, send, dat, date, c,
+   delete, rename, changepri, record, playback,
+   playfast, playtime, hold, unhold.
+
+
+Try the following script:
+
+echo hello
+type com/bounce.b
+c bc bounce
+status
+run bounce
+status
+type com/send.b
+c bc send
+send 7 100000
+send instrs
+run send instrs
+map pic
+run send 7 100000000
+status
+abort
+s8.,,,
+s7.,,,
+gt100
+c
+logout
+
+
+Alternatively, try:
+
+playback records/demo
+
+or
+
+playback records/rec1979
+
+
+With the environment variables set correctly you should be able to
+do program development in another directory. Try the following:
+
+cd ../posprogs/demos      -- Get into the demos directory
+ls                        -- list its files
+cintpos                   -- Enter Cintpos
+type queens.b             -- Type the n queens program
+c b queens                -- Compile it
+queens                    -- Run
+logout                    -- Exit from Cintpos
+
+
+The BCPL compiler has a cross-referencing facility that I find very
+useful. Have a look at entry xref in Cintpos/cintpos/Makefile and
+the files xrefdata and fnrtdefs.
+
+
+BEWARE: This distribution is not really ready for release yet and
+contains many bugs. It will be repeatedly updated in the coming months.
+
+Enjoy,
+
+
+
+
+Martin Richards
+     (mr@cl.cam.ac.uk, http://www.cl.cam.ac.uk/users/mr)
+Computer Laboratory
+William Gates Building
+JJ Thompson Avenue
+Cambridge CB3 0FD
+UK                                                       25 Jan 2012

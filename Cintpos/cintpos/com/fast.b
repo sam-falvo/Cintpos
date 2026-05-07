@@ -1,0 +1,12 @@
+SECTION "FAST"
+
+GET "libhdr"
+
+LET start() = VALOF 
+{ LET val = -1
+   
+  sys(Sys_setcount, val)     // Select the slow or fast interpreter.
+
+  writef("%s interpreter selected*n", val=-1 -> "Fast", "Slow")
+  RESULTIS 0
+}

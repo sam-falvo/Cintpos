@@ -1,0 +1,24 @@
+**
+Using Floppy Discs from Tripos
+
+There are two LSI4s in the processor bank with floppy disc drives. You can
+use the machine attribute FLOPPIES to ask the Session manager for one.  E.g.
+
+SM>  SYS TRIPOS MCATTR FLOPPIES
+
+To mount a Tripos format floppy disc, use the MOUNT command:
+
+MOUNT DF0:        [for drive 0; use DF1: for drive 1]
+
+After the disc is mounted, files on it can be accessed as DF0:filename
+Use the DISMOUNT command to dismount a disc.
+
+Non-TRIPOS discs
+----------------
+It is possible to read 8" floppy discs in RT11 format on the processor bank.
+BJK has a program to do this.
+
+To read or write floppy discs in BBC micro or Torch CPN formats, use the
+PHX terminal emulator, and the Tripos commands TOBBC and FROMBBC (q.v.).
+
+

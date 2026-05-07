@@ -1,0 +1,50 @@
+*udn #H cudn
+*unique #H #HCH %
+%identifier #H
+%id #H
+*uid #H #HCH %
+%edit #H uidedit
+%permanent #H puid
+%puid #H puid
+%temporary #H tuid
+%tuid #H tuid
+%tpuid #H tpuid
+%authority #H auty
+%auty #H auty
+%authentity #H auty
+%uidset #H uidset
+%set #H uidset
+%*
+UID stands for Unique IDentifier.  In the ring system the term is usually
+applied to UIDs belonging to the file server or to the authentication
+system.  See HELP FILESERVER for brief information on that.  Authentication
+UIDs are usually used in groups called UIDSETs.  See HELP UIDSET for more
+information.  UIDs of various sorts are used for internal object
+representation in some operating systems (but not Tripos!).  See the detailed
+spec. of these systems for information.
+%
+*undefglobal
+*undefglobval
+The CLI resets all user globals to the value CLI.UNDEFGLOBVAL (global 135)
+between commands. On most implementations of Tripos, all undefined globals
+have the same value. However, on 68000s the global number is encoded into the
+'undefined' value, so undefined globals in a CLI will all appear to be global
+135.
+*undoworld
+UNDOWORLD was a program for producing a readable printout of a world for
+the game FANTASY.  It was archived to tape long ago ...
+*unloadseg
+UNLOADSEG Procedure
+
+UNLOADSEG( SEGMENT )
+
+UNLOADSEG unloads a code segment (i.e. a linked list of one or more BCPL 
+sections).  Code segments are used in task segment lists, and are the data
+structures produced by calls of LOADSEG.
+*unset #H Shell-Commands
+*userauth
+The authentity USER is used for validating logged-on users in the ring
+authentication system. See HELP AUTHENTICATION for more information.
+*userlib #H sourcelib
+
+

@@ -1,0 +1,55 @@
+*access
+**
+ACCESS MATRICES
+
+In the filing machine version of the TRIPOS filing system each entry in a
+directory for an object has an associated access matrix.  This appears to
+be a string with four main parts - the V, X, Y, and Z parts respectively
+separated by the slash character.  If you have V access to the entry you
+will have the access given by the first part of the matrix, X access the
+second, and so on.  Your access may, in fact, be represented by a combination
+of the parts - if you have both X and Y access for example.
+
+Whatever the object the entry refers to the appearance of the any of the
+characters D,A,U have the following meaning.  They refer to the entry itself
+rather than the object that it references.
+
+                D - this entry can be deleted (i.e. DELETE will work!)
+                A - the access matrix for this entry can be changed
+                    (using the ALTER command)
+                U - this entry can be updated (i.e. it can be deleted by
+                    RENAMEing or ALIASing another file on top of it)
+                    U ONLY APPLIES TO FILES
+
+If the object refered to by the entry is a directory the appearance of any
+of the characters C,F,V,X,Y,Z have these meainings:
+
+        C - you may create new file or directiory entries in this directory
+        F - you may create new file entries in this directory
+        V - you have "V access" to all the entries in this directory
+        X - you have "X access" to all the entries in this directory
+        Y - you have "Y access" to all the entries in this directory
+        Z - you have "Z access" to all the entries in this directory
+
+Lastly if the object refered to by the entry is a file the characters E,R,W
+mean:
+
+                E - this file can be executed as a program
+                R - you may read this file
+                W - you may write to this file
+
+In point of fact E access above is not checked anywhere and so is currently
+meaningless on TRIPOS.  Another point of interest is the fact that the
+filing system guarantees never to generate an object whose access matrix
+does not include at least D or A access (since such objects could never be
+removed from the filing system!).
+
+The default access matrices, given to newly created entries, are:
+
+        for FILES               /DAURW/ARW/RW/R
+        for DIRECTORIES         /ACV/ACX/CY/Z
+
+(The slashes "/" delimit the access given to those with V,X,Y and Z access
+ respectively to the directory containing the entry).
+
+

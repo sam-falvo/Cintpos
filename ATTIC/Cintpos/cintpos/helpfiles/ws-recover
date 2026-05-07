@@ -1,0 +1,54 @@
+**
+WS Recovery
+From:           JPB:68000-OBJ.WS-RECOVER "machine/a,task/a,file1/a,file2"
+Purpose:        Recovery of editor text from crashed machines
+Author:         JPB
+Specification:
+
+The days of lost text following a filing machine crash during editing
+with WS are now over. This program will attempt to recover the text being
+edited from a dead machine. In the event of a machine crashing during
+editing, take the following steps:
+
+   1. If your machine is in imminent danger of timing out prevent it from
+      doing so by going to the session manager and loading the RESET
+      system, viz.
+
+         sysdesc RESET 30 30 -m <mcname>
+
+   2. Grab a new 68000.
+
+   3. Run the WS-recover command to retrieve your text.
+
+The meanings of the arguments are as follows:
+
+MACHINE - The name of the crashed machine.
+
+TASK    - The task which was running Worcester at the time of the crash.
+
+FILE1   - The file in which the text of the current window will be
+          dumped. If you had only one window this is all you need. Note
+          that if you were editing a very large file parts of it may well
+          be in the end of the original file, or in temporary files of
+          the form:
+
+             WS-<number>-<number>
+
+          You will need to join the relevant bits together by hand.
+
+FILE2   - If you were editing with a second window and specify this
+          argument then ws-recover will attempt to put the inactive
+          window contents into this file. The same provisos with respect
+          to very large files apply.
+
+I believe this command to be relatively harmless, but it may have unknown
+bugs. In particular it may lose a character or two at the start, end, or
+cursor position in the file. Until I can check up with WRS on the
+internal workings of WS I cannot guarantee to get this right. Files with
+characters with the parity set, or delete characters (i.e. ASCII 127 -
+255) will find these characters stripped out. If you get the TASK
+argument wrong you may end up with junk in FILE1 and FILE2, or a rude
+message, but I hope nothing worse. The same may happen if you specify the
+wrong machine (although it won't affect the machine).
+
+

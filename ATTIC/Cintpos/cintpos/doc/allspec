@@ -1,0 +1,5248 @@
+
+
+                              ABSLINK
+                              _______
+                    The TRIPOS absolute linker
+                    __________________________
+         The TRIPOS absolute linker is used to build an
+      absolute object file representing the contents of the
+      store of a TRIPOS memory space, which can then be
+      loaded and started by the bootstrap loader, or run as
+      a mapped task.  It is invoked as the command
+           ABSLINK   "FROM/A,TO/A,MAP/K,OPT/K"
+      The FROM argument should be the name of a file of
+      directives for the linker describing the object file
+      to be built, and the TO argument should be the name of
+      the required object file.
+      The MAP keyword may be used to obtain a map of the
+      system, in which case it should be followed by a
+      suitable filename for the mapping output.
+      The OPT keyword may be used to supply options;
+             Wn  sets the workspace size
+             F   specifies full map output
+             O   map values to be octal machine addresses
+             X   map values to be hex hacnine addresses
+         The basic action of the linker is to mimic the
+      operation of LOADSEG in allocating store, loading code,
+      and performing relocation, to load all the required
+      segments, then to build the rootnode and other data
+      structures required.  Store is allocated in blocks
+      starting from the top of available memory, each block
+      being constructed to look exactly like one obtained by
+      a call of GETVEC.  The block list is then completed by
+      a single free block extending from the bottom of memory
+      containing the remaining free store, and the absolute
+      store then written out.  Any segments used for system
+      initialisation and then thrown away may be placed at
+      the bottom of the allocated area, so that when they are
+      freed the user will have a single contiguous lump of
+      free store.  Absolute store - typically the rootnode
+      and any machine dependent data areas, such as page
+      zero, is overlaid; any non zero words will overwrite
+      previously loaded words, but zeros will not overwrite,
+      so that overlapping absolute hunks may be assembled
+      correctly.
+
+                                 1
+
+
+         The linker operates in two phases: firstly it reads
+      the directive file, checking for syntax errors and
+      building a tree structure representing the directives;
+      then it reads the required code segment files and
+      writes out the object file.
+         The directive file consists of a number of
+      directives, each terminated by a semicolon.  Layout
+      characters - space, tab, and newline - are ignored
+      except within strings, after '$', or where they
+      terminate words or numbers.  The character '|'
+      indicates a comment, causing the rest of the line to
+      be ignored.  Numbers are a string of digits, possibly
+      with a leading '-', or '#', or '#X', to denote a
+      negative, octal, or hexadecimal number.  Words are a
+      string of letters, digits, '#', '-', '$', or any other
+      characters without special meanings, not beginning with
+      a digit or '#', '-', or '$'.  Strings are a string of
+      characters not including newline delimited by '"'s; the
+      usual escape combinations '*E', '*N', '*"' are allowed.
+       <value>     ::= <number>
+                   ::= <name>
+                   ::= <string>
+                   ::= ( <value> ? , <value> ?* )
+                   ::= <structref>
+      When a string is encountered a GETVECed vector is
+      created for it and its value is the BCPL address of the
+      vector.  Similarly a bracketed list is used to
+      construct a vector containing the specified values, and
+      its value is the address of the vector.
+       <directive> ::= MCADDRINC <number>
+      This defines the ratio of machine addresses to BCPL
+      addresses;  defaults to that of the host machine.
+       <directive> ::= ABSMIN <number>
+                   ::= ABSMAX <number>
+      These define the limits of the absolute store; defaults
+      to 0 - 255.
+       <directive> ::= RELMIN <number>
+                   ::= RELMAX <number>
+      These define the limits or the relocatable store, i.e.
+      the store chain for GETVEC. One should be even, the
+      other odd;  defaults to 256 - 64K-1.
+                                 2
+
+
+       <directive> ::= ROOT <number> <value> ? , <value> ?*
+      This defines a root node at address <number> containing
+      the specified values.
+       <directive> ::= SEG <name> <file> ? , <file> ?*
+                   ::= INITSEG <name> <file> ? , <file> ?*
+       <name>      ::= <word>
+       <file>      ::= <word>
+                   ::= <string>
+      These define a code segment to be loaded and declare
+      <name> to have as value the BCPL address of the first
+      relocatable hunk.
+       <directive> ::= NAME <name> = <value>
+      This declares <name> to have as value <value>.  The
+      form <name> = <name> is illegal.
+       <directive> ::= STRUCT <name>( <structmem>
+                          ? , <structmem> ?* )
+       <structmem> ::= <value>
+                   ::= <structtag> ? <value> ?
+       <structtag> ::= $<word>
+       <structref> := <name>( <structtag> <value>
+                          ? , <structtag> ,value> ?* )
+      The STRUCT directive declares a structure template,
+      that will be used, each time it is referenced, to
+      create a vector containing the values specified in its
+      definition merged with those specified when it is
+      referenced.  The tags must be given in the correct
+      sequence, and any that are omitted must have been given
+      a default value in its definition.
+         As an example the directives used to link an
+      unmapped TRIPOS system for a PDP11/45 with an RK05 disc
+      is given.
+      | Unmapped TRIPOS system for PDP11/45
+      mcaddrinc    2;
+      absmin       0;
+      absmax     159;
+      relmin     160;
+      relmax   28671;
+      seg lib1    sys.obj.klib,sys.obj.mlib;
+      seg lib2    sys.obj.blib,sys.obj.iolib;
+      seg cli     sys.obj.cli;
+                                 3
+
+
+      seg abort   sys.obj.abort;
+      seg cohand  sys.obj.cohand;
+      seg fihand  sys.obj.fihand;
+      initseg cli-init     sys.obj.cli-init;
+      initseg cohand-init  sys.obj.cohand-init;
+      initseg fihand-init  sys.obj.fihand-init;
+      struct tcb($link, $id, $pri 100, 0, 12, 0,
+                 $stack 100, $seglist, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0);
+      name task1 = tcb($link     0, $id 1, $pri 1000,
+                       $stack 165, $seglist (4, lib1, lib2,
+                                       cli-init, cli));
+      name task2 = tcb($link task1, $id 2, $pri 2000,
+                       $stack  10, $seglist (3, lib1, lib2,
+                                       abort));
+      name task4 = tcb($link task2, $id 4, $pri 4000,
+                       $stack  50, $seglist (4, lib1, lib2,
+                                       fihand, fihand-init));
+      name task3 = tcb($link task4, $id 3, $pri 5000,
+                       $stack 265, $seglist (4, lib1, lib2,
+                                       cohand, cohand-init));
+      name tasktab = (20, task1, task2, task3, task4,
+                      0, 0, 0, 0, 0, 0, 0, 0,
+                      0, 0, 0, 0, 0, 0, 0, 0);
+      seg dev-1 sys.obj.clock-driver;
+      seg dev-2 sys.obj.dk-driver;
+      seg dev-3 sys.obj.console-driver;
+      name devtab = (10, dev-1, dev-2, dev-3,
+                     0, 0, 0, 0, 0, 0, 0);
+      name info = ( "PDP11",
+                     0,
+                     3,
+                     (5, cohand, fihand, 0, 0, 0),
+                     (5, 1, 1, 0, 0, 0),
+                     (10, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0)
+                  );
+      root 148 tasktab, devtab, task3, task1,
+               160, task2, 0, 0, 0, 0, 28, info, 0;
+
+                                 4
+
+
+
+
+
+
+                TRIPOS BCPL ( BLIB ) LIBRARY
+                ____________________________
+                        AUGUST 1980
+                        ___________
+
+
+                    COMPUTER LABORATORY
+                    ___________________
+                  UNIVERSITY OF CAMBRIDGE
+                  _______________________
+
+
+
+
+
+
+
+
+
+Documentation               -1-                 BLIB Library
+
+
+
+                         CAPITALCH
+
+      To convert a character to upper case.
+
+      ch2 := capitalch ( ch )
+
+      If the character 'ch' is any of a, b,...., z then  the
+result is the upper case version of that character ( ie., A,
+B,...., Z respectively ). Otherwise the result is  just  the
+character.
+
+
+
+
+
+
+
+
+
+
+BLIB Library                -2-                Documentation
+
+
+
+                           COMPCH
+
+      To compare two characters irrespective of case.
+
+      res := compch ( ch1, ch2 )
+
+      The two characters are upper case  if  required  (  by
+calls  of capitalch ( q.v. ) ), and then lexically compared.
+If ch1 occurs before ch2 in the ordering used on the machine
+then  the  result is negative; if they are the same then the
+result is zero; if ch1 occurs after ch2 then the  result  is
+positive.
+
+
+
+
+
+
+
+
+
+Documentation               -3-                 BLIB Library
+
+
+
+                         COMPSTRING
+
+      To lexically compare two strings.
+
+      res := compstring ( s1, s2 )
+
+      The  two  strings  are  lexically  compared  with  the
+characters  upper  cased.   If s1 occurs lexically before s2
+then the result will be negative; if they are the same  then
+the  result  will  be  zero;  if s1 occurs after s2 then the
+result will be positive.
+
+
+
+
+
+
+
+
+
+
+BLIB Library                -4-                Documentation
+
+
+
+                           DELAY
+
+      To cause a task to be delayed for a given time.
+
+      res := delay ( ticks )
+
+      A packet is sent  to  the  timer  with  the  specified
+number of ticks.
+      The result is the value of the pkt.res1 field  of  the
+packet  when  it  returns  from  the  timer, and the result2
+global will be set to the pkt.res2 value.
+
+
+
+
+
+
+
+
+
+
+Documentation               -5-                 BLIB Library
+
+
+
+                          ENDREAD
+
+      The currently selected input stream is closed.
+
+      endread ()
+
+      The currently selected input stream is closed.  If  no
+stream is selected then endread has no effect.
+
+
+
+
+
+
+
+
+
+
+
+
+BLIB Library                -6-                Documentation
+
+
+
+                         ENDSTREAM
+
+      A specified input or output stream is closed.
+
+      endstream ( stream )
+
+      The specified stream, which should be the result os  a
+call of findinput ( q.v. ) or findoutput ( q.v. ) is closed.
+If the stream is zero then endstream has no effect.
+
+
+
+
+
+
+
+
+
+
+
+Documentation               -7-                 BLIB Library
+
+
+
+                          ENDTASK
+
+      To cause a task to end.
+
+      endtask ( seg )
+
+      If the specified segment is non-zero then it  will  be
+unloaded.  The deletetask kernel primitive is then called to
+delete the task.  If this should return  then  endtask  will
+abort  with  code  180;   continuing  the abort will cause a
+return from endtask.
+
+
+
+
+
+
+
+
+
+
+BLIB Library                -8-                Documentation
+
+
+
+                          ENDWRITE
+
+      The currently selected output stream is closed.
+
+      endwrite ()
+
+      The currently selected output  stream  is  closed.  If
+there is no selected stream then endwrite has no effect.
+
+
+
+
+
+
+
+
+
+
+
+
+Documentation               -9-                 BLIB Library
+
+
+
+                           FAULT
+
+      To convert an error code to an explanatory message.
+
+      fault ( code )
+
+      The object code "sys:c.fault" is called using  callseg
+(  q.v.  ).  The  explanatory message will be written to the
+currently selected output stream.
+
+
+
+
+
+
+
+
+
+
+
+BLIB Library                -10-               Documentation
+
+
+
+                          FINDARG
+
+      To search for an item in a string.
+
+      res := findarg ( keys, string )
+
+      The string is compared with the items  in  the  string
+'keys' to see if there is a match. If there is then a number
+corresponding to the item in 'keys' is returned as a  result
+(  first  item  being  numbered  zero  ),  otherwise  -1  is
+returned.
+      The    'keys'    string    should    have   the   form
+"item1,item2,...,itemn".
+
+      Examples :
+
+      findarg ( "DP0:,DP1:,SYS:", "DP1:" )
+      res <- 1
+      findarg ( "DP0:,DP1:,SYS:", "FS4" )
+      res <- -1
+
+
+
+Documentation               -11-                BLIB Library
+
+
+
+                         FINDINPUT
+
+      To find and open an input stream.
+
+      s := findinput ( name )
+
+      A unique identifier is returned which  refers  to  the
+stream  of  the  given  name.   The name should be a string,
+while the result is a non-zero value.
+      If  the  stream  cannot  be  found  or opened then the
+result will be zero, and the  result2  global  will  usually
+contain an error code indicating a reason for this failure.
+      The result may subsequently  be  used  in  a  call  of
+selectinput ( q.v. ) to select the stream.
+
+
+
+
+
+
+
+
+BLIB Library                -12-               Documentation
+
+
+
+                         FINDOUTPUT
+
+      To find and open an output stream.
+
+      s := findoutput ( name )
+
+      A unique identifier is returned which  refers  to  the
+stream.  The  name should be a string, and the result a non-
+zero value.
+      If the stream cannot be opened then the result will be
+zero, and the result2 global will usually contain a code in-
+dicating a specific reason for the failure.
+      The result may be subsequently be  used  in  calls  of
+selectoutput ( q.v. ) to select the stream for output.
+
+
+
+
+
+
+
+
+Documentation               -13-                BLIB Library
+
+
+
+                           INITIO
+
+      To initialise input-output globals.
+
+      initio ()
+
+      The current input and output stream globals are set to
+zero.  The  current directory global is set to zero, and the
+consoletask global is set to  the  default  console  handler
+task ( manifest task.consolehandler ).
+
+
+
+
+
+
+
+
+
+
+BLIB Library                -14-               Documentation
+
+
+
+                           INPUT
+
+      To determine the currently selected input stream.
+
+      stream := input ()
+
+      The input routine yields the identifier  of  the  cur-
+rently  selected input stream ( originally yielded by a call
+of findinput ( q.v. ) and selected by selectinput (  q.v.  )
+). If there is no current stream then the result is zero.
+
+
+
+
+
+
+
+
+
+
+Documentation               -15-                BLIB Library
+
+
+
+                          LOADSEG
+
+      To load a load module into memory.
+
+      res := loadseg ( file )
+
+      The file should be  a  load  module  consisting  of  a
+series  of  interspersed 'relocatable hunk' and 'relocation'
+blocks ( manifest types t.hunk and t.reloc )  terminated  by
+an end ( t.end ) block. These are scatter loaded into memory
+in a series of getvec'ed blocks, chained together  on  their
+first words. The end of the chain is indicated by a zero.
+      In the event of an error ( ubnrecongnised block  type,
+relocation  offsets outside hunk limits, no end block ) then
+any blocks loaded will be unloaded, the result2  global  set
+to 121, and a false ( zero ) result will be reutrned. In the
+envent of the file not being found the result is zero.
+      If the module is correctly loaded then the result will
+be a pointer at the beginning of the list of  blocks,  which
+may be used at the argument to the 'globin' routine.
+
+
+
+
+BLIB Library                -16-               Documentation
+
+
+
+                          NEWLINE
+
+      To write a newline to the current output stream.
+
+      newline ()
+
+      A  newline  character  is  written  to  the  currently
+selected output stream. The routine is simply a call of wrch
+( '*N' ).
+
+
+
+
+
+
+
+
+
+
+
+Documentation               -17-                BLIB Library
+
+
+
+                           OUTPUT
+
+      To identify the currently selected output stream.
+
+      stream := output ()
+
+      The output routine yields the identifier of  the  cur-
+rently selected output stream ( originally yielded by a call
+of findoutput ( q.v. ) and selected by selectoutput ( q.v. )
+). If there is no current output stream then the result will
+be zero.
+
+
+
+
+
+
+
+
+
+
+BLIB Library                -18-               Documentation
+
+
+
+                            PACK
+
+      To pack the characters in a vector into a string.
+
+      size := pack ( vector, string )
+
+      The zero element of  the  vector  should  contain  the
+number of characters to be packed; this is anded with a mask
+of 255 ( =#XFF ) to prevent the string being longer than 255
+characters.
+      The specified numbers of characters  are  then  packed
+into the string such that
+      vector ! i -> string % i
+etc.  The  length  is  inserted, and any unused bytes in the
+last word of the string are set to zero. The string and vec-
+tor  may  be coincident ( ie., @vector = @string ), but they
+may not otherwise overlap.
+      The result is the number of words used in the string.
+
+
+
+
+
+Documentation               -19-                BLIB Library
+
+
+
+                          PKTWAIT
+
+      To wait for a packet to be sent to the task.
+
+      pkt := pktwait ()
+
+      The pktwait routine calls taskwait  to  wait  for  the
+next  packet to be sent to the task, and returns this packet
+as its result.
+      The  purpose  of  having  this  routine  is  to  allow
+redefinition of the exact funtion of taskwait without having
+to  lose  the  taskwait  primitive.  All  BLIB routines call
+pktwait rather then taskwait.
+
+
+
+
+
+
+
+
+BLIB Library                -20-               Documentation
+
+
+
+                            RDCH
+
+      To read the next character from the currently selected
+input stream.
+
+      ch := rdch ()
+
+      A call of rdch yields the next sequential character of
+the currently selected input stream, unless that  stream  is
+exhausted,  in which case the end-of-stream character ( end-
+streamch ) is returned.
+
+
+
+
+
+
+
+
+
+
+Documentation               -21-                BLIB Library
+
+
+
+                           RDITEM
+
+      To read an item from the input stream.
+
+      res := rditem ( vec, size )
+
+      An item is read from the input stream (  normally  the
+command  line  ) and placed in the vector 'vec' as a string.
+Unused bytes in the vector are set to zeroes.
+      The  result is -2 if an equal symbol is encountered, 0
+for the '*N', '*E', and endstreamch characters, 1 if an  un-
+quoted  string  is found, 2 if a quoted string occurs, or -1
+in the event of an error ( the item is too big for the  vec-
+tor; 'size' should be the size of 'vec' in words ).
+      All strings, quoted  or  unquoted,  are  teminated  by
+'*N', '*E', and endstreamch characters. Unquoted strings are
+also terminated by ';', '=', and space.
+
+      Examples :
+      DP0: INIT :L.FH-INIT-X
+      vec <- "DP0:"
+      "BSP:PRINT/ TEST " ; SET
+
+BLIB Library                -22-               Documentation
+
+
+      vec <- "BSP:PRINT/ TEST "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Documentation               -23-                BLIB Library
+
+
+
+                           READN
+
+      To read a number from the current input stream.
+
+      n := readn ()
+
+      Characters are read from the currently selected  input
+stream until one is found that is not a space, a newline, or
+a tab character.  Unless it is a digit or a plus  or  minius
+sign  the  result  is  zero and the result2 global is set to
+minus one and the character is unread ( unrdch ).
+      A  number  is  then read comprising a following conti-
+gious string of digits.  There is no chack for numeric over-
+flow.  The  number  is terminated by the first non-digit en-
+countered, and this character  unread.  The  result  is  the
+number, and the result2 global is set to zero.
+      Note that a plus or minus sign which is  not  followed
+by a digit will be read as zero.
+
+
+
+
+
+BLIB Library                -24-               Documentation
+
+
+
+                         RETURNPKT
+
+      To return a packet to its sender.
+      res := returnpkt ( pkt, res1, res2 )
+
+      The res1 and res2 values are set into the pkt.res1 and
+pkt.res2 fields of the packet, and the  packet  then  trans-
+mitted using the qpkt primitive.  The result of returnpkt is
+the result of the call of qpkt.
+
+
+
+
+
+
+
+
+
+
+
+Documentation               -25-                BLIB Library
+
+
+
+                        SELECTINPUT
+
+  To select a stream for input.
+
+      res := selectinput ( stream )
+
+      The stream, which should be the result of  a  call  of
+findinput  (  q.v.  ) is selected and made the current input
+stream. A true result is returned.
+      If the stream is not valid then the routine will abort
+with code 186.  Continuing the abort will cause  the  stream
+to  be  selected  anyway;  however this is likely to lead to
+fatal consequences later.
+
+
+
+
+
+
+
+
+BLIB Library                -26-               Documentation
+
+
+
+                        SELECTOUTPUT
+
+      A stream is selected for output.
+
+      res := selectoutput ( stream )
+
+      The specified stream, which should be the result of  a
+call  of  findoutput ( q.v. ), is selected and made the cur-
+rent output stream. A true result is returned.
+      If the stream is not valid then the routine will abort
+with code 187. If this abort is continued  then  the  stream
+will  be  selected anyway; however this is likely to lead to
+fatal consequences later.
+
+
+
+
+
+
+
+
+Documentation               -27-                BLIB Library
+
+
+
+                          SENDPKT
+
+      A packet is transmitted, and its return awaited.
+
+      res := sendpkt ( link, id, type, r1, r2, a1,..., a6 )
+
+      The packet which makes up the argument is  sent  using
+qpkt, and pktwait called to await its return.
+      If the call of qpkt fails  then  sendpkt  aborts  with
+code  181; continuing the abort causes a return from sendpkt
+with an undefined result.
+      Unless the call of pktwait yields the same packet that
+was transmitted, sendpkt aborts with  code  182;  continuing
+this abort causes it to await the next packet.
+      If the packet is transmitted and  received  correctly,
+then  the  result  is the value of the pkt.res1 field of the
+packet, and the result2 global is set to the pkt.res2 value.
+
+
+
+
+
+
+BLIB Library                -28-               Documentation
+
+
+
+                           SPLIT
+
+      To split a string on the first  occurance  of  a  par-
+ticular character.
+
+      pos := split ( prefix, ch, string, ptr )
+
+      The  string  'string'  is split on the character 'ch',
+except that all characters before that  indicated  by  'ptr'
+are  ignored.  The  substring  up  to  but not including the
+character 'ch ' is  put  into  'prefix'.  The  result  is  a
+pointer  at  the first character after 'ch', or zero if 'ch'
+is not found. If the prefix part of  the  string  is  longer
+than thirty characters then those after the first thirty are
+ignored.
+      Examples :
+      split ( pfx, ':', "sys:c.echo", 0 )
+      pfx <- "sys"
+      res <- 5
+      split ( pfx, ':', "bsp:print/sys:boggle", 5 )
+      pfx <- "print/sys"
+      res <- 15
+
+Documentation               -29-                BLIB Library
+
+
+
+                        UNPACKSTRING
+
+      To unpack the length count and characters in a  string
+into a vector, one to a word.
+
+      unpackstring ( string, vector )
+
+      The  length  and characters in the string are unpacked
+one to a word into the vector, such that
+          string % 0 -> vector ! 0
+etc. The string and vector may be coincident ( ie.,  @string
+= @vector ) but they may not otherwise overlap.
+
+
+
+
+
+
+
+
+
+BLIB Library                -30-               Documentation
+
+
+
+                           UNRDCH
+
+      To push a character back into the  currently  selected
+input   stream  so  that  the  next  rdch  will  yield  that
+character.
+
+      res := unrdch ()
+
+      The last character read is pushed back into  the  cur-
+rently  selected  input steam ( ie., the steam is backspaced
+by one character ). The routine returns a true result unless
+an  attempt is made to move past the buffer origin, in which
+case the result is false and unrdch has no effect  (  unless
+the stream is exhausted, in which case it is true anyway ).
+      The implementation of unrdch and rdch is such that  it
+is always possible to perform at least one unrdch.
+
+
+
+
+
+
+Documentation               -31-                BLIB Library
+
+
+
+                            WRCH
+
+      To write a character to the currently selected  output
+steam.
+
+      wrch ( ch )
+
+      The  character  is  written  to the currently selected
+output stream.
+      If  the  output  steam is interactive then writing the
+characters '*N' ( newline ), '*P' ( newpage ), '*C'  (  car-
+riage return ), or '*E' ( empty buffer ) will cause the out-
+put buffer to be flushed and output.
+
+
+
+
+
+
+
+
+BLIB Library                -32-               Documentation
+
+
+
+                           WRITED
+
+      To write a number to the current output  stream  is  a
+given field width.
+
+      writed ( n, w )
+
+      The  number  'n'  is written in a field of 'w' spaces,
+except that if the field is not wide enough then it will  be
+expanded  to  the necessary size.  The number will be right-
+justified in the field, and the field will  be  padded  with
+blanks.
+
+
+
+
+
+
+
+
+
+Documentation               -33-                BLIB Library
+
+
+
+                           WRITEF
+
+      To write out formated data.
+
+      writef ( format, a, b,..., k )
+
+      The  'format'  is  a  string.  This  is  written   out
+character  by  character  as for writes ( q.v. ) except that
+when a percent ( % ) character is encountered, the next item
+from  'a',  'b', etc., is taken, and written out in a format
+dependant on the character or characters directly  following
+the %.
+      The options are as follows :
+     %S  Write argument as a string.
+     %Tn   Write arguement as  a  string  in  a  field  of n
+places.
+         n should be 0,...., 9, A,......
+     %C  Write argument as a character.
+     %On   Write argument in octal in a field of n places.
+         n should be 0,...., 9, A,......
+     %Xn  Write as for %O but in hexadecimal.
+     %In  Write as for %O but in decimal.
+     %N  Write in decimal.
+     %Un  Write as for %O but in unsigned decimal.
+
+BLIB Library                -34-               Documentation
+
+
+      For the cases of writing in a given field  width,  the
+truncation  and padding schemes are as for the corresponding
+direct routines ( ie., writet ( q.v. ), writeoct (  q.v.  ),
+etc. ).
+      If the character following the % is  not  one  of  the
+above  then that character is written out. Hence to output a
+% the string 'format' should contain %%.
+      Note  that strings that are written out ( %S and %Tn )
+are not processed for percent symbols.
+
+
+
+
+
+
+
+
+
+
+
+
+Documentation               -35-                BLIB Library
+
+
+
+                          WRITEHEX
+
+      To write out a number in hexadecimal format.
+
+      writehex ( n, w )
+
+      The number 'n' is written to  the  currently  selected
+output  stream  in  hexadecimal  format  in  a  field of 'w'
+spaces. If the field is not wide enough then only the lowest
+order 'w' digits are written. Otherwise the number is right-
+justified in the field and padded with zeroes.
+
+
+
+
+
+
+
+
+
+
+BLIB Library                -36-               Documentation
+
+
+
+                           WRITEN
+
+      To write out a number.
+
+      writen ( n )
+
+      The number 'n' is written to  the  currently  selected
+output  stream  in  a  field  that  is just wide enough. The
+routine is simply a call of writed ( n, 0 ) ( q.v. ).
+
+
+
+
+
+
+
+
+
+
+
+Documentation               -37-                BLIB Library
+
+
+
+                          WRITEOCT
+
+      To write out a number in octal format.
+
+      writeoct ( n, w )
+
+      The speccation of this  routine  is  exactly  that  of
+writehex ( q.v. ), except that octal format is used.
+
+
+
+
+
+
+
+
+
+
+
+
+BLIB Library                -38-               Documentation
+
+
+
+                           WRITES
+
+      To write a string.
+
+      writes ( string )
+
+      The string is written to the currently selected output
+stream,  character  by  character,  using the wrch routine (
+q.v. ). If the stream is interactive then newline,  newpage,
+carriage return, or buffer flushing ( '*E' ) characters will
+cause the output buffer to be flushed.
+
+
+
+
+
+
+
+
+
+
+Documentation               -39-                BLIB Library
+
+
+
+                           WRITET
+
+      To write a string in a field of given width.
+
+      writet ( string, w )
+
+      The string is written to the currently selected output
+stream  in  a  field  of  'w' spaces. If the field is insuf-
+ficiently wide then it is expanded as  necessary,  otherwise
+the  string  is left-justified in the field and the field is
+padded with blanks.
+
+
+
+
+
+
+
+
+
+
+BLIB Library                -40-               Documentation
+
+
+
+                           WRITEU
+
+      To write out a number in unsigned decimal format.
+
+      writeu ( n, w )
+
+      The number 'n' is written to  the  currently  selected
+output  stream  in unsigned decimal format in a field of 'w'
+spaces. If the field is not wide enough then it will be  ex-
+panded,  otherwise the number will be right-justified in the
+field and the field will be padded with blanks.
+
+
+
+
+
+
+
+
+
+
+Documentation               -41-                BLIB Library
+
+
+
+
+
+
+
+
+                      TRIPOS Data Structures
+                      ______________________
+                           Brian Knight
+                          September 1979
+
+
+
+
+
+
+             (C) Copyright 1979 TRIPOS Research Group
+            University of Cambridge Computer Laboratory
+                       Corn Exchange Street
+                             Cambridge
+                              CB2 3QG
+
+
+
+
+                             Contents
+                             ________
+                1  Introduction
+                2  The Root Node
+                3  The Task Table
+                4  Task Control Blocks
+                5  The TCB List; Task Scheduling
+                6  The Device Table
+                7  Device Drivers
+                8  Packets
+                9  Work Queues
+                10 Store Allocation
+                11 Stream Control Blocks
+
+
+
+
+
+
+
+
+
+      TRIPOS                    -1-           Data Structures
+
+
+                          1  Introduction
+                          _______________
+          The data structures described below are those which
+      are machine independent.  Except where otherwise
+      stated, all pointers are BCPL pointers; the value zero
+      is usually used as a null pointer (e.g. to mark the end
+      of chains).  In the box diagrams, each cell represents
+      one machine word.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      TRIPOS                    -2-           Data Structures
+
+
+                         2  The Root Node
+                         ________________
+           +-----------+
+           |  TASKTAB -+--> Pointer to the task table
+           |           |
+           |-----------|
+           |  DEVTAB  -+--> Pointer to the device table
+           |           |
+           |-----------|
+           |  TCBLIST -+--> Pointer to the TCB of the
+           |           |    highest priority task
+           |-----------|
+           |  CRNTASK -+--> Pointer to the TCB of the
+           |           |    task currently running
+           |-----------|
+           |  BLKLIST -+--> Pointer to the block list
+           |           |    for storage allocation
+           |-----------|
+           |  DEBTASK -+--> M/c address of TCB of DEBUG task.
+           |           |    Used by kernel on traps, etc.
+           |-----------|
+           |   DAYS    |    since start of 1978
+           |           |
+           |-----------|
+           |   MINS    |    since midnight
+           |           |
+           |-----------|
+           |   TICKS   |    clock ticks in current minute
+           |           |
+           |-----------|
+           |   CLKWQ  -+--> Pointer to the first packet on
+           |           |    the clock work queue
+           |-----------|
+           |  MEMSIZE  |    memory size in units of 1K words
+           |           |
+           |-----------|
+           |   INFO   -+--> Pointer to vector of extra
+           |           |    (implementation dependent) info
+           |-----------|
+           |  KSTART  -+--> M/c address of kernel entry
+           |           |    point (used by bootstrap)
+           |-----------|
+           | entry     |
+           | points of |    Implementation dependent
+           | kernel    |
+           | m/c code  |
+           | routines  |
+           | used by   |
+           | device    |
+           | drivers   |
+           +-----------+
+      TRIPOS                    -3-           Data Structures
+
+
+          The root node is the central point from which all
+      the system structures in store can be found.  It is a
+      vector containing pointers to the main chains and
+      tables.  The position in store of the root node is
+      fixed on any given machine.  Unfortunately, it is not
+      practical to use the same address on all machines;
+      instead, it is given as the manifest constant ROOTNODE
+      in the standard BCPL library header for each machine.
+          The first part has a machine independent format.
+      It is followed by some addresses of kernel entry points
+      for such operations as saving and restoring registers
+      on interrupts, and entering the task selector.  These
+      are needed by device drivers which may be dynamically
+      loaded, so must be in fixed store locations.
+
+      BLKLIST
+      _______
+          This points to the start of the area from which
+      store is allocated by GETVEC.  For details of the
+      format of store blocks, see section 10.
+
+      DAYS, MINS and TICKS
+      ____________________
+          The clock interrupt routine maintains the date and
+      time in these three words.  DAYS is the number of days
+      since the start of 1978 (i.e. 1st Jan 1798 is day 0).
+      MINS is the number of minutes since midnight.  TICKS
+      is the number of clock ticks since the last minute
+      boundary.  The time is updated at an implementation
+      dependent frequency given by the manifest constant
+      TICKSPERSECOND.
+
+      INFO
+      ____
+          The INFO field is provided so that extra
+      information may be made available from the root node
+      without making any change to root node format.  For
+      example, it may point to a vector containing details
+      of machine type, the machine name as a string, and/or
+      the identities of particular non-resident tasks.
+
+      TRIPOS                    -4-           Data Structures
+
+
+      KSTART
+      ______
+          This value is assembled into the rootnode, and is
+      the means by which the bootstrap finds the kernel entry
+      point after loading the system into store.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      TRIPOS                    -5-           Data Structures
+
+
+                         3  The Task Table
+                         _________________
+      TASKTAB ->+------------+
+                | UPPERBOUND |    Maximum valid table offset
+                |------------|
+                |           -+--> Pointer to TCB of task 1
+                |------------|
+                |           -+--> Pointer to TCB of task 2
+                |------------|
+                |            |
+                /            /
+                /            /
+                |            |
+                |------------|
+                |           -+--> Pointer to the TCB of
+                +------------+    task UPPERBOUND
+          This table enables a task control block to be found
+      from its corresponding task id.  Unused elements
+      contain zero.
+
+
+
+
+
+
+
+
+
+
+      TRIPOS                    -6-           Data Structures
+
+
+                      4  Task Control Blocks
+                      ______________________
+        -->+--------------+
+           |     LINK    -+--> Points to the TCB of next
+           |              |    highest priority
+           |--------------|
+           |    TASKID    |    The task's identity
+           |              |    (a positive integer)
+           |--------------|
+           |   PRIORITY   |    (a positive integer)
+           |              |
+           |--------------|
+           |    WORKQ    -+--> Points to the first packet
+           |              |    on the task's work queue
+           |--------------|
+           |    STATE     |    The task state (see below)
+           |              |
+           |--------------|
+           |    FLAGS     |    The break flags
+           |              |
+           |--------------|
+           |  STACKSIZE   |    Upperbound of the store block
+           |              |    for BCPL stack & global vector
+           |--------------|
+           |   SEGLIST   -+--> Points to the code segments
+           |              |    for the task
+           |--------------|
+           |  GLOBALBASE -+--> Points to global zero
+           |              |
+           |--------------|
+           |  STACKBASE  -+--> Pointer to base of root stack
+           |              |
+           |--------------|
+           |              |
+           /              /
+                               Save area
+           /              /
+           |              |
+           |--------------|
+          Each task in the system has a task control block
+      (TCB) which contains information relating to the task.
+      There are two parts to a TCB.  The first part is
+      machine independent, and contains information used by
+      the operating system for controlling the task.  The
+      second part contains the save area used to hold the
+      machine registers, program counter, and processor
+      status, when a task suspends itself or is interrupted.
+      Its format is necessarily machine dependent.
+
+      TRIPOS                    -7-           Data Structures
+
+
+      The Task State
+      ______________
+          This is held in the least significant 4 bits of the
+      state field.  All the remaining bits are zero.  The
+      significance of each bit is as follows:-
+        0001: Packet bit.
+                  If this bit is set, the task has at least
+              one packet on its work queue.  If clear, then
+              the work queue is empty.
+        0010: Held bit.
+                  This bit is set when the task is in held
+              state.  It means that the task will not be
+              selected for running, even though it might
+              otherwise be eligible.  Its primary purpose is
+              as a debugging aid.
+        0100: Wait bit.
+                  This is set when the task has called
+              TASKWAIT, and is waiting for a packet to
+              arrive.  The task will not run while its work
+              queue is empty.
+        1000: Interrupted bit.
+                  When this bit is set, the task has been
+              interrupted.  The task will run again when the
+              interrupt service routine is complete, and any
+              higher priority tasks it may have activated are
+              once again held up.
+        1100: Dead state.
+                  Note that this bit pattern would otherwise
+              be invalid, as a waiting task could not be
+              interrupted, and an interrupted task could not
+              call TASKWAIT.  It indicates that the task is
+              dead or dormant, with no BCPL stack or global
+              vector.  The only other TCB fields which are
+              valid are the LINK, PRIORITY, STACKSIZE, and
+              SEGLIST.
+          All of the 16 possible bit patterns are valid.
+      This means that the the task selector can rapidly
+      decide how to deal with a task, by using the state to
+      index a table of routine addresses.
+
+
+      TRIPOS                    -8-           Data Structures
+
+
+      FLAGS
+      _____
+          These also indicate states of the task, but do not
+      affect scheduling, and so live in a separate word.
+      They are set and tested by using the kernel primitives
+      SETFLAGS and TESTFLAGS.  They are useful as a cheap
+      signal between tasks, and are used to implement break.
+          The console handler responds to typed characters
+      ctrl/B,C,D and E by setting flags #B0001 to #B1000
+      respectively in the currently selected task.
+      Conventionally, the #B0001 flag is recognised by
+      commands and causes them to finish.  Flag #B0010 is
+      inspected by the CLI between commands, and causes
+      termination of command sequences.
+
+      SEGLIST
+      _______
+          This pointer leads to all the program sections
+      which comprise the code of the task.  The TCB pointer
+      addresses a vector, each element of which either points
+      to a chain of BCPL sections, or is zero.
+      SEGLIST
+            |
+            ?
+         +-----+
+         | UPB |    Upperbound of vector
+         |-----|
+         |    -+-->
+         |-----|
+         |    -+-->+---------+   +---------+   +---------+
+         |-----|   |        -+-->|        -+-->|    0    |
+         |     |   |---------|   |---------|   |---------|
+         /     /   |         |   |         |   |         |
+                   |   One   |   |         |   |         |
+         /     /   |   BCPL  |   |         |   |         |
+         |     |   | section |   |         |   |         |
+         |-----|   |         |   |         |   |         |
+         |  0  |   +---------+   +---------+   +---------+
+         |-----|
+         |  0  |  (i.e. unused)
+         |-----|
+         |    -+-->
+         |-----|
+          Conventionally, the first two pointers are used for
+      the machine code and BCPL resident libraries.
+      TRIPOS                    -9-           Data Structures
+
+
+      TRIPOS BCPL Section Format
+      __________________________
+           +-----------------+
+           |     LENGTH      | in words
+           |-----------------|
+           |     SECWORD     | (For MAPSTORE - optional)
+           |-----------------|
+           |  SECTION  NAME  | as a BCPL string (optional)
+           |                 |
+           /                 /
+                Compiled
+                  code
+           /                 /
+           |                 |
+           |-----------------|
+           |        0        |
+           |-----------------|
+           |  GLOBAL NUMBER  |
+           |-----------------|
+           |     OFFSET      |
+           |-----------------|
+           |                 |
+           /                 /
+           /                 /
+           |                 |
+           |-----------------|
+           |  GLOBAL NUMBER  |
+           |-----------------|
+           |     OFFSET      |
+           |-----------------|
+           |  GLOBAL NUMBER  |
+           |-----------------|
+           |     OFFSET      |
+           |-----------------|
+           |     H.R.G.      | Highest Referenced Global
+           |-----------------|
+          The diagram shows the standard layout of a BCPL
+      section for use under TRIPOS.  The length field gives
+      the total number of words in the section (including
+      itself).  The name follows immediately - its length
+      need not be fixed, since it is a BCPL string.  The end
+      of the section contains the information needed to set
+      up the global vector.  The last word is the highest
+      global number referenced in the section.  This is
+      preceded by a list of word pairs, giving the numbers
+      of globals defined, and the word offsets in the section
+      of the corresponding routines.  The list is terminated
+      by a word containing zero.
+      TRIPOS                   -10-           Data Structures
+
+
+                          5  The TCB list
+                          _______________
+          As well as being addressed by the task table, the
+      TCBs are linked into a chain, for the benefit of the
+      scheduler.  The TCBLIST field of the root node points
+      to the TCB of highest priority, whose link field points
+      to the TCB of next highest priority.  The chain links
+      all the TCBs in order of decreasing priority, ending
+      with that of the idle task, which has a priority of
+      zero, and link of zero.  No two tasks may have the same
+      priority, so the correct chain order is well defined.
+          The scheduling rule is very simple: the highest
+      priority task which is free to run is the one that
+      should be running.  A task is free to run if it is not
+      held, and, if it is waiting or dead, its work queue is
+      not empty.  Whenever the task selector is entered, it
+      is handed the TCB of the highest priority task which
+      might be runnable.  If it cannot run this task, it just
+      chains down the TCB list until it finds one that it can
+      run.  The idle task is always free to run, so the task
+      selector cannot fall off the end of the chain.
+
+
+
+
+
+
+
+
+
+
+      TRIPOS                   -11-           Data Structures
+
+
+                        6  The Device Table
+                        ___________________
+      DEVTAB->+------------+
+              | UPPERBOUND |    Maximum valid table offset
+              |------------|
+              |            |    (unused)
+              |------------|
+              |           -+--> Pointer to DCB of device -2
+              |------------|
+              |           -+--> Pointer to DCB of device -3
+              |------------|
+              |            |
+              /            /
+              /            /
+              |            |
+              |------------|
+              |           -+--> Pointer to DCB of
+              |------------|    device -UPPERBOUND
+          This table is used to find the device control block
+      from the corresponding device id.  Unused locations
+      contain zero.  Device ids are negative integers; the
+      value -1 is used for the clock.
+
+
+
+
+
+
+
+
+
+      TRIPOS                   -12-           Data Structures
+
+
+                         7  Device Drivers
+                         _________________
+             DCB                   Driver
+      -->+-----------+         +-----------+
+         |   LINK   -+-------->|     0     |
+         |-----------|         |-----------|
+         | DEVICE ID |         |   INIT   -+--+
+         |-----------|         |-----------|  |
+         |  WORK Q   |         |  UNINIT  -+--+--+
+         |-----------|         |-----------|  |  |
+         |   START  -+-----+   |           |<-+  |
+         |-----------|     |   |           |     |
+         |   STOP   -+--+  |   |           |<----+
+         |-----------|  |  +-->|   code    |
+         |           |  |      |    of     |
+         |  machine  |  +----->|  driver   |
+         | dependent |         |           |
+         |           |         |           |
+         | includes  |         |           |
+         | pointer to|         |           |
+         | interrupt |         |           |
+         | routine  -+-------->|           |
+         | in driver |         |           |
+         |           |         |           |
+         +-----------+         |           |
+                               |           |
+                               |           |
+                               |           |
+                               +-----------+
+          A device consists of a device control block (DCB)
+      which points to a device driver.  In practice, the
+      assembled code of devices is often stored as two
+      concatenated object modules, so that this link is
+      automatically established when they are loaded by
+      LOADSEG.  However, as there are no backward pointers,
+      a driver may be shared by several DCBs.
+          As the way in which peripherals are controlled
+      varies considerably between machines and types of
+      device, only the first few words of DCBs and drivers
+      have a machine independent format.  Also, as most of
+      the fields are accessed only from the machine code
+      written drivers and kernel primitives, all pointers
+      except the link and work queue are machine addresses.
+
+
+      TRIPOS                   -13-           Data Structures
+
+
+          A driver contains five machine code subroutines
+      called from outside:
+      INIT:  Called by CREATEDEV when the device is created.
+             It sets up the pointers to the START, STOP and
+             INT(errupt) routines in the DCB, and performs
+             any action necessary to initialise the device
+             (such as setting up the interrupt vector).
+      UNINIT: Called by DELETEDEV.  Performs any action
+             necessary to uninitialise the device (often
+             nothing).
+      START: Called by QPKT when putting a packet on a
+             previously empty work queue.  Should initiate
+             the action requested in the packet.
+      STOP:  Called by DQPKT when removing the head packet
+             from the work queue.  Should cancel the action
+             currently in progress.
+      INT:   The interrupt routine.  It is called in a way
+             which makes the address of the corresponding DCB
+             available.  Usually, the interrupt indicates
+             that the last action is complete or has failed,
+             so the INT routine puts a return code in the
+             head packet, sends it back, and initiates the
+             action requested by the next packet (if any).
+
+
+
+
+
+
+
+
+      TRIPOS                   -14-           Data Structures
+
+
+                            8  Packets
+                            __________
+          Under TRIPOS, all communication between tasks,
+      device drivers, and the timer, is performed by sending
+      packets.  A packet is a vector of at least two words.
+      The first two words are used by the system; any further
+      words are available for data.  The conventional format
+      is as follows:-
+
+        -->+-----------+
+           |   LINK   -+--> To next packet on work queue
+           |-----------|
+           | DEVTASKID |    Identifies destination or sender
+           |-----------|
+           |   TYPE    |    Packet type or action
+           |-----------|
+           |   RES1    |    First result
+           |-----------|
+           |   RES2    |    Second result
+           |-----------|
+           |   ARG1    |    First argument
+           |-----------|
+           |   ARG2    |    Second argument
+           |-----------|
+           |   ARG3    |    Third argument
+           |   etc.    |
+           |           |
+
+          The LINK field is used when the packet is on a work
+      queue.  It points to the first packet to arrive after
+      the current one, or contains zero if this one is on the
+      end of the queue.  Whenever a packet is not queued, the
+      link should contain the value of the manifest constant
+      NOTINUSE.
+          Before QPKT is called to send a packet, the
+      DEVTASKID field should be set to indicate the
+      destination.  Values less than or equal to -2 indicate
+      devices, -1 means the clock, and values greater than
+      zero refer to tasks.  The value zero is invalid.  As
+      QPKT sends the packet, it overwrites this field with
+      the identity of the sender.  In practice, packets are
+      nearly always returned to their senders, so it is
+      useful to have this field altered automatically.
+          By convention, the third word is used to specify
+      the type or requested action of the packet.  The two
+      result fields are in general not looked at by the
+      TRIPOS                   -15-           Data Structures
+
+
+      receiver of the packet, but are used to return results
+      or error codes.  The number and format of the arguments
+      are entirely up to the users of the packet.  The
+      arguments and type field should not be overwritten by
+      the receiver, so that the packet can reused without
+      modification by the sender.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      TRIPOS                   -16-           Data Structures
+
+
+      Packets to Device Drivers
+      _________________________
+      Single Character Devices
+      ________________________
+          The single character devices have only one function
+      each, so there is no need for a function code in a
+      packet sent to them.
+      Input:
+           +-----------+
+           |   LINK   -+-->
+           |-----------|
+           | DEVTASKID |
+           |-----------|
+           |   TYPE    |
+           |-----------|
+           | I/P CHAR  |
+           |-----------|
+           |   RES2    |  (normally unused)
+           +-----------+
+
+      Output:
+           +-----------+
+           |   LINK   -+-->
+           |-----------|
+           | DEVTASKID |
+           |-----------|
+           |   TYPE    |
+           |-----------|
+           |   RES1    |
+           |-----------|
+           |   RES2    |
+           |-----------|
+           | O/P CHAR  |
+           +-----------+
+
+
+
+
+      TRIPOS                   -17-           Data Structures
+
+
+      Disc packets
+      ____________
+           +-----------+
+           |   LINK   -+-->
+           |-----------|
+           | DEVTASKID |
+           |-----------|
+      TYPE |  ACTION   |    Requested device action
+           |-----------|
+      RES1 |  STATUS   |    Return code from driver
+           |-----------|
+      RES2 |  ERRCODE  |    More info on error
+           |-----------|
+      ARG1 |  BUFFER  -+--> Points to buffer in store
+           |-----------|
+      ARG2 | WORDCOUNT |    Size of transfer
+           |-----------|
+      ARG3 |   DRIVE   |    Disc drive number
+           |-----------|
+      ARG4 | CYLINDER  |    Cylinder address
+           |-----------|
+      ARG5 |  SURFACE  |    Surface address
+           |-----------|
+      ARG6 |  SECTOR   |    Sector address
+           +-----------+
+          A packet sent to the disc driver must have values
+      set in all the ARG fields.  The action codes are given
+      as the manifest constants ACT.READ, ACT.WRITE and
+      ACT.SEEK.
+          When the requested action is a read, WORDCOUNT
+      words are read from the specified disc address to the
+      store buffer.  For a write, WORDCOUNT words are copied
+      from the buffer to the disc block.  The STATUS field
+      is used to indicate errors.  If the transfer is
+      successful, it is set to 0; any other value means that
+      an error occurred.
+
+
+
+
+      TRIPOS                   -18-           Data Structures
+
+
+      Timer Packets
+      _____________
+           +-----------+
+           |   LINK   -+-->
+           |-----------|
+           |    -1     |    Timer ID
+           |-----------|
+           |   TYPE    |
+           |-----------|
+      RES1 |           |    (corrupted by clock)
+           |-----------|
+      RES2 |           |
+           |-----------|
+      ARG1 |   DELAY   |    Requested delay
+           +-----------+
+          In packets to the timer, the requested delay in
+      clock ticks is placed in the ARG1 field.  After this
+      number of ticks have occurred, the packet will come
+      back.  Note that the requested delay is not
+      overwritten, so the packet can immediately be returned
+      to the timer for another delay of the same length.
+
+
+
+
+
+
+
+
+
+
+      TRIPOS                   -19-           Data Structures
+
+
+                          9  Work Queues
+                          ______________
+          Packets are not moved in store; when they are
+      "sent", they are simply linked into a chain called a
+      work queue.  Tasks and devices process packets in the
+      order in which they arrive, so a new packet is linked
+      on the end of the work queue.  Packets are removed from
+      the head of the queue, which is addressed by a field
+      in the TCB or DCB.
+          The timer's work queue is different, in that the
+      packets are chained in order of increasing time value.
+      This is for efficiency reasons: on each clock
+      interrupt, the service routine must check whether any
+      packets have expired.  With the ordered queue, the head
+      packet must expire first, so usually is the only one
+      that has to be inspected.  If several packets contain
+      the same time, then they will be adjacent in the queue.
+      QPKT does the job of linking a new packet into the
+      correct place.
+          The head of the clock work queue is in the root
+      node.
+
+
+
+
+
+
+
+
+
+
+      TRIPOS                   -20-           Data Structures
+
+
+                        10 Store Allocation
+                        ___________________
+          Blocks of store are allocated and freed by the
+      kernel primitives GETVEC and FREEVEC.  Store is
+      allocated from an area which starts at the address
+      given by the BLKLIST field of the root node.  This area
+      is divided into contiguous blocks, which each consist
+      of an even number of words.  The first word of each
+      block is used both to indicate the length of the block
+      (and hence the start of the next), and to record
+      whether or not the block is allocated.  As all block
+      lengths are even, the least significant bit of the
+      length is not needed, and so this is used to indicate
+      allocation:
+      Free block:
+           +----------------+
+           |      n       |1|
+           |----------------|
+           |                |
+           |                |
+           |   2n-1 words   |
+           |                |
+           |                |
+           +----------------+
+      Allocated block:
+           +----------------+
+           |      n       |0|
+           |----------------|
+           |                |
+           |                |
+           |   2n-1 words   |
+           |                |
+           |                |
+           +----------------+
+          The end of the block list is marked by a word
+      containing zero.
+
+
+
+      TRIPOS                   -21-           Data Structures
+
+
+                     11 Stream Control Blocks
+                     ________________________
+          Stream control blocks (SCBs) are created and
+      returned by the BLIB functions FINDINPUT and
+      FINDOUTPUT, and may be used as arguments to SELECTINPUT
+      and SELECTOUTPUT.
+          Their format is as follows:
+           +-----------+
+           |   LINK    |    (unused)
+           |-----------|
+           |    ID     |    direction of stream
+           |-----------|
+           |   TYPE    |    handler id / whether interactive
+           |-----------|
+           |    BUF   -+--> Pointer to buffer
+           |-----------|
+           |    POS    |    current char pos in buffer
+           |-----------|
+           |    END    |    size of buffer in chars
+           |-----------|
+           |   FUNC1   |    function called by REPLENISH
+           |-----------|
+           |   FUNC2   |    function called by DEPLETE
+           |-----------|
+           |   FUNC3   |    called by ENDREAD/ENDWRITE
+           |-----------|
+           |   ARG1    |
+           |-----------|    use of these arguments depends
+           |   ARG2    |    on type of stream
+           +-----------+
+          ID can take one of two values: ID.INSCB for an
+      input stream, or ID.OUTSCB for an output stream.
+          TYPE is negative for an interactive stream, or
+      positive for a non-interactive stream.  ABS TYPE is the
+      task id of the handler for the stream.
+          FUNC1 is the routine which fetches a new input
+      buffer.
+          FUNC2 is the routine which sends off an output
+      buffer.
+          FUNC3 closes the stream.
+
+      TRIPOS                   -22-           Data Structures
+
+
+
+                               DEBUG
+                               _____
+         The DEBUG task in TRIPOS provides a means for the
+      user to monitor and modify the code or data of any
+      other task in the system, or of the kernel or device
+      drivers.  It has facilities for debugging user
+      programs, and also for handling aborts, whether they
+      occurr in a task which is regarded as a user program,
+      or one of the standard system tasks.  Some parts are
+      necessarily machine dependent, as DEBUG can operate at
+      the level of the machine instructions, but the list of
+      available commands should be almost identical in all
+      implementations.
+         DEBUG can run in either of two modes: as a TRIPOS
+      task communicating with the user via the console
+      handler in the normal way, or in standalone mode with
+      machine interrupts turned off driving the console
+      keyboard and output device directly.  Standalone mode
+      is entered while handling an abort or breakpoint, so
+      that the normal operation of TRIPOS is suspended.
+      DEBUG is also entered after CTRL/A is keyed on the
+      console; the console handler calls ABORT to enter DEBUG
+      in standalone mode, passing the taskid of the broken
+      task to DEBUG as an argument.  It is also possible to
+      enter DEBUG in standalone mode by restarting the
+      machine at the kernel standalone restart address - this
+      is for debugging after a system crash.
+      Location Names and the Current Expression
+      _________________________________________
+         Store locations are referenced through names, a name
+      being a single letter followed by an argument, e.g.
+      'G100' means global variable 100 of the selected task,
+      'A1200' means absolute store location 1200, 'L1' means
+      local variable 1 - the second argument on the BCPL
+      stack frame which must have previously been set up by
+      one of the 'E' commands (qv.).  The registers may be
+      referenced by 'R' - but only after an abort or
+      breakpoint - and TCB locations by 'W'.  'Y' refers to
+      absolute store, suppressing address checking; normally
+      all storage references are checked to ensure that they
+      are within the limits of the memory and are not
+      breakpoints; this feature allows access to memory
+      mapped status registers etc.. Ten variables V0 - V9 are
+      available for workspace or to hold temporary results.
+         DEBUG maintains a current expression, which consists
+      of the last expression typed that was not a command
+      argument.  It is reset whenever an unexpected operand
+                                 1
+
+
+      is typed and modified whenever a dyadic operator is
+      typed followed by an operand.  The command '=' types
+      the value of the current expression, so, for example,
+      the sequence '3+4=-1' types 7 then 6.  Certain commands
+      reference the current location; these are only valid
+      when the current expression is in the form of a name.
+      Examining and Updating Named Locations
+      ______________________________________
+         The command '/' will cause the current location to
+      be opened, and the value it contains to be typed.  The
+      command 'N' will select the next consecutive location
+      and open it.  'T' will type the contents of successive
+      locations starting with the current location; it should
+      be followed by an argument to indicate the number of
+      locations to be typed.  'I' and 'J' perform BCPL and
+      machine address indirection through the current value
+      and open the resulting location.
+         The style in which values are typed may be set by
+      the '$' command:  '$C' prints two ASCII characters,
+      '$F' attempts to print a function name, otherwise it
+      prints in decimal, '$D' prints in decimal, '$X' prints
+      in hexadecimal, '$O' in octal, and '$U' in unsigned
+      decimal; the initial style is '$F'.  If the style is
+      set immediately after a '=' command or while a location
+      is open then it is only set temporarily, the value is
+      typed and the style reverts to the old style when the
+      location is closed.
+         The command 'U' can be used to update the current
+      location, if it has been opened; it should be followed
+      by an expression representing the required new value.
+      A newline or any command other than '$', '=', 'U' will
+      cause the location to be closed; any other command that
+      does not open a new location will cause the style to
+      revert.  Alternatively, a location may be updated with
+      the current value by the 'P' command followed by the
+      name of the location to be updated.
+      Task Selection Aborts and Breakpoints
+      _____________________________________
+         The task which is to be debugged may be selected by
+      the 'S' command, which should be followed by an
+      argument representing the appropiate taskid.  Initially
+      the foreground task is selected, but after an abort or
+      breakpoint the appropiate task is selected
+      automatically.  DEBUG locates the TCB of the required
+      task and thus obtains the global vector base, and the
+      stack pointer (unless it is available in the saved
+                                 2
+
+
+      registers after an abort or breakpoint) for the 'E'
+      command.  If an abort or breakpoint occurrs while
+      inside a kernel routine, device driver, or the idle
+      task then the current task is considered to have been
+      task 0 and no task selection takes place.
+         The commands 'C' and 'H' may be used while TRIPOS
+      is running to release or hold the currently selected
+      task, but they have a different interpretation whilst
+      in standalone mode: 'C' means leave standalone mode and
+      continue - after a breakpoint it expects an argument
+      specifying the number of times the broken instruction
+      is to be executed before trapping again, with 0 or 1
+      meaning once;  'H' means leave standalone mode and hold
+      the task that aborted, executed a breakpoint, or was
+      broken.
+         Breakpoints may be set by the 'B' command, which
+      should be followed by an argument in the range 1-9
+      indicating the number of the breakpoint to be set.  If
+      the current expression is a named location then it is
+      assumed to be a function, and thus contain the machine
+      address of the location where the breakpoint is to be
+      set; DEBUG will check that this is a valid BCPL entry
+      point.  If the current expression is not a name then
+      it is assumed to be the BCPL address of the breakpoint
+      - some implementations will only allow breakpoints to
+      be set on function entries.  'B0' lists all the
+      breakpoints and '0B<i>' deletes breakpoint <i>.
+      Breakpoints are ignored while the DEBUG task is
+      running, and are unset temporarily when DEBUG is
+      entered in standalone mode, so it is quite safe to
+      breakpoint library routines used by DEBUG itself.
+      Environment Tracing
+      ___________________
+         The environment, or stack level, in which local
+      variables are referred to may be set up by the 'E'
+      command.  After 'E' the following sub-commands are
+      accepted:
+       'B' do a non-interactive backtrace
+       'L' set the stack pointer to the current value
+       'S' set the stack base to the current value
+       'N' go to next coroutine stack
+       'T' go to the top of the outermost active coroutine
+      stack;  the stack base is obtained from the global
+      vector and the stack pointer from the registers if
+      available, otherwise from the value saved in the TCB
+      at the last interrupt or kernel call
+       'U' go up to the top of the current stack
+       'D' go down one level on the current stack, or to the
+                                 3
+
+
+      top of the next coroutine stack;  this generates the
+      next line of the backtrace.
+       'V' verify the current stack level
+       Escape is ignored; control reverts to the normal
+      command interpreter at the next newline, or at the end
+      of a non-interactive backtrace.  When a new stack
+      pointer or stack base is selected it is verified by
+      typing the appropiate line of backtrace output.
+      Miscellaneous Commands
+      ______________________
+         The 'X' command executes a BCPL callable function,
+      using DEBUG's global vector and stack.  The current
+      expression should be the function to be called, as for
+      the 'B' command.  It may be followed by up to 4
+      arguments, separated by spaces.  The current expression
+      is set to the result.
+         The 'Z' command enters the bootstrap loader to
+      reload the system; it is only available on machines
+      with a suitable program callable bootstrap.
+      Loading Overlays
+      ________________
+         In some systems DEBUG will be permanently resident,
+      and all the facilities described will be permanently
+      available.  in systems where store is more limited, the
+      full DEBUG can be loaded when required, as follows:
+         The root DEBUG task prompts, each time the user
+      types newline, with ": ". If the user types any other
+      character the file ":L.DEBUG-x" is called, where x is
+      the character the user typed.  The standard overlays
+      available are - DEBUG-D, the full DEBUG, which remains
+      loaded until 'Q' is typed, and prompts with "* ",
+      DEBUG-E, for environment tracing only, which accepts
+      commands 'B', 'D', 'N', 'T', 'U' and operates similarly
+      to the same letters following 'E' in the full DEBUG,
+      and DEBUG-M, a minimal version, which remains loaded
+      until the next newline and recognises only 'A', 'G',
+      'C', 'H', 'N', 'P', 'S', 'T', 'U', '=', '/', monadic
+      '-', and digits.
+         In standalone mode overlays cannot be loaded or
+      unloaded.  Commands 'C', 'H', 'Z' (if available on the
+      machine) are always available, and any others in the
+      overlay loaded, with the exception of DEBUG-E which
+      does not operate in standalone mode.
+
+                                 4
+
+
+      Expression Syntax
+      _________________
+      <e>          ::= <e><dyadicop><i>
+                   ::= <i>
+      <i>          ::= <monadicop><i>
+                   ::= (<e>)
+                   ::= @<name> | '<char>
+                   ::= <name> | <number>
+      <dyadicop>   ::= + | - | * | % | ? | < | > | & | | | !
+      <monadicop>  ::= + | - | !
+      <name>       ::= <nameletter><i>
+      <nameletter> ::= A | G | L | R | V | W
+      <char>       ::= any character
+      <number>     ::= <digit>* | #<digit>* | #X<hexdigit>*
+      <digit>      ::= any digit
+      <hexdigit>   ::= <digit> | A | B | C | D | E | F
+         Spaces are ignored and lower case letters treated
+      as upper case, except after ' or spaces after '@' and
+      within numbers.  Null <i>s have value zero.
+      Operators
+      _________
+      +       addition, positive
+      -       subtraction, negative
+      *       multiplication
+      %       division
+      ?       remainder
+      <       shift left
+      >       shift right
+      &       logical AND
+      |       logical OR
+      !       subscription, indirection
+      @<name> yields address of <name>
+      '<char> yields value of char
+         All dyadic operators are also commands; they have
+      the effect of modifying the current value.
+      Names
+      _____
+      A<i>    Absolute store location <i>
+      G<i>    Global variable <i>
+      L<i>    Local variable <i>
+      R<i>    Register <i>
+      V<i>    Variable <i>
+      W<i>    TCB location <i>
+      Y<i>    store location <i> (suppress checking)
+                                 5
+
+
+      Commands
+      ________
+      B<i>    set/delete Breakpoint or list all
+      C       Continue/release task
+      C<i>    Continue after breakpoint
+      E       trace Environment
+        B     non-interactive Backtrace
+        D     Down one level
+        L     set stack level to current value
+        N     Next coroutine
+        S     set Stack base to current value
+        T     Top of stack
+        U     Up to top of current coroutine
+        V     Verify current level
+      H       Hold task
+      I       BCPL Indirection
+      J       machine address indirection
+      N       Next location
+      P<name> Put current value into <name>
+      Q       Quit
+      S<i>    Select task
+      T<i>    Type contents of <i> locations
+      U<e>    Update current location with <e>
+      X...    eXecute function (up to 4 <i>s as args)
+      Z       enter bootstrap (if available)
+      $       set style
+        C     characters
+        D     decimal
+        F     function
+        O     octal
+        U     unsigned decimal
+        X     hexadecimal
+      /       open current location
+      =       type current value
+         Except in standalone mode, commands are not
+      transmitted by the console handler until escape (or
+      altmode) or newline is keyed.  In standalone mode
+      rubout will cause a partially typed command to be
+      ignored.
+
+
+
+
+                                 6
+
+
+
+                               EDIT
+                               ____
+                         The TRIPOS editor
+                         _________________
+         EDIT is a sequential editor that moves through a
+      document and edits it line by line.  It invoked by the
+      command
+           EDIT      "FROM/A,TO,WITH/K,VER/K,OPT/K"
+      The FROM file must be specified; the TO file is
+      optional.  EDIT commands are read from the file WITH,
+      which defaults to the command input stream, and
+      verification and error messages are sent to the file
+      VER, which defaults to the command output stream.  EDIT
+      operates in one of two modes:
+          EDIT A TO B
+      reads the file A copying its contents with any edits
+      made directly to the file B.
+          EDIT A
+      edits the file A to a temporary file, which is then
+      renamed to the original file when editing is finished.
+         The editor bufers a limited number of lines within
+      store.  It is not possible to move further back,
+      however it is possible to rewind - the rest of the
+      input is copied to the output, and the output then
+      reopened for input.  In the EDIT A case, this means
+      that after a rewind the editor is working from a
+      temporary file to a temporary file; on successive
+      rewinds the files T:EDIT-Tnn-WORK1 and -WORK2 are used
+      as input and output alternately.  When the editor is
+      wound up, the original input is renamed as
+      T:EDIT-BACKUP, and the appropiate work file renamed to
+      the input file; the other work file is deleted.  In the
+      EDIT A TO B case, after a rewind this becomes EDIT B.
+      Note that it is possible to edit A to B regardless of
+      which devices the files A and B are on, but EDIT A will
+      only succeed if A is on the same device as the
+      temporary directory, otherwise the rename will fail and
+      the output will be left in a temporary file with the
+      original file untouched.
+         The OPT keyword allows options to be specified:
+               Pn  specifies the maximum number of previous
+      lines
+                   to be buffered in store - default 20
+               Wn  specifies maximum line width - default 120
+
+                                 1
+
+
+      Commands.  Edit commands are single letters, double
+      _________
+      letters, or single characters.  More than one command
+      may be given on a single command line, and commands
+      need not be separated by spaces or other delimiters.
+      Some commands accept numeric arguments, which may be
+      either an integer or the characters '.' or '*', which
+      denote the current line or the end of the document
+      respectively.  Other commands accept character strings
+      as arguments; the next character after the command
+      letter(s) is read as a delimiter, then all characters
+      up to the next occurrence of the delimiter as the first
+      argment, then a second argument if required by the
+      command.  Delimiters occurring at the end of the line
+      may be omitted.  Some commands take file names as
+      arguments, which should be preceeded by space(s) and
+      terminated by spaces or end of line.  Any command,
+      except one that changes the command input or is
+      followed by in-line insertion material, or rewind, may
+      be preceeded by a repeat count indicating that it is
+      to be obeyed that number of times in succession.  A
+      group of commands, which must be all on the same line,
+      may be enclosed in brackets and preceeded by a repeat
+      count.  A count of zero indicates indefinite
+      repetition, or until the end of document is reached.
+      Verification and Error Handling.  Automatic
+      ________________________________
+      verification of edits is provided.  Each line of input
+      that is modified is verified before it is output, and
+      at the end of a line of commands the current line is
+      verified if it has been changed since it was last
+      verified.  The editor is initially in verify mode if
+      the original edit command stream was interactive,
+      otherwise verification is turned off.  Verification
+      consists of typing the line number, followed by '.' or
+      '*' to indicate the current line or the end of the
+      document respectively, and on the next line the
+      contents of the current line, with tabs expanded and
+      non-printing characters converted to '?'s.  A command
+      is provided to verify the case of letters, for use with
+      upper case only printers, and the position of tabs and
+      non-printing characters etc..  At the end of a line of
+      commands, if the current command input is interactive
+      and the current line is unchanged, then a blank line
+      is output to prompt the user for the next command line.
+      If in-line insertion material is expected then
+      automatic verification is suppressed to avoid
+      interfering with the typing of input.
+         If an error is detected the current line of commands
+      is abandoned.  Unless the command stream is interactive
+      the command line is verified with a marker indicating
+                                 2
+
+
+      where the error was detected.  An error message is
+      output and successive command streams are closed until
+      an interactive stream is reached, otherwise editing is
+      abandoned without further copying and the output file
+      is not renamed.  Break is treated in a similar manner,
+      the message **BREAK is output and control returns to
+      an interactive level if possible, otherwise editing is
+      abandoned.  The case where the input is exhausted
+      within a repeat count of zero is treated specially, so
+      that repeated commands can be written to scan the
+      entire file without error, in that it causes the
+      current line of commands to be abandoned but is not
+      otherwise treated as an error.
+      Editing by Line Number.  Each line in the input may be
+      _______________________
+      referenced by its line number.  Commands are available
+      to delete insert or replace single lines or blocks of
+      lines.  Initially the editor is positioned at line zero
+      of the document, and none of the text has been read;
+      moving to the next line causes the first line of the
+      document to be read in to become line 1, the new
+      current line.  lines before the current line that are
+      still in store may be referenced by number, but any
+      that were created by insertions etc. and do not
+      corespond to lines in the source do not have numbers
+      and so cannot be thus referenced.  If the source is
+      rewound then the editor is reinitialised to line zero,
+      and if any lines were inserted or deleted in the
+      previous pass then all subsequent lines are effectively
+      renumbered; the '=' command may be used to reset the
+      line numbering if required.
+      Editing by Context.  The alternative way of indicating
+      ___________________
+      a particular line is to search for a given context.
+      Searching starts from the current line to find the
+      first line containing the required context.  A context
+      is a character string which may be specified either to
+      be at the start of the line or anywhere in the line.
+      A number of commands are available to insert and delete
+      strings within the current line.  By default all string
+      matching is performed with letters forced to upper
+      case; this feature may be switched off if desired.
+      Global Exchanges.  A number of global exchanges may be
+      _________________
+      set up, which cause every occurrence of a given string
+      in the input as it is read to be replaced by another
+      string.  Global exchanges are performed on each input
+      line in the order in which they were defined; when a
+      new global is defined it cancells any previous global
+                                 3
+
+
+      for that string, and immediately performs the exchange
+      on the current line and all lines ahead of it that have
+      already bean read into store.  All globals are
+      cancelled on a rewind.
+      The Character Pointer indicates the current position
+      _____________________
+      within the current line.  All context searches operate
+      to the right of the character pointer, which is reset
+      to the beginning of the line when a new line is read
+      in.  The position of the pointer is indicated when the
+      line is verified, unless it is at the left hand margin.
+      A number of commands are available to move or step on
+      the character pointer and to delete or modify the first
+      character to its right.
+      Carriage Control Characters.  The characters *C, *E,
+      ____________________________
+      *N, *P are recognised as carriage control characters,
+      in that they terminate a line of input.  The carriage
+      control character is not regarded as part of the input
+      line, but is stored with it and may be inspected or
+      updated if desired.  It is possible for a line to have
+      no carriage control character, this is so in the case
+      of any characters right at the end of the document
+      after the last control character; these characters are
+      referred to as line *, which initially has no control
+      character.  Normal files end with a control character
+      so this line is empty and is not apparent.  In a
+      similar way line zero is an empty line at the beginning
+      of the file, with no control character, that preceeds
+      the contents of the file.
+      Line Truncation.  The editor will handle input lines
+      ________________
+      of up to the specified maximum width; if an input line
+      is longer, or if it is expanded too far it is
+      truncated;  a message is given but normal error
+      handling does not take place.  By default, trailing
+      spaces are removed from the end of both input and
+      output lines; a switch is provided to cause trailing
+      spaces to be preserved.
+      File Selection.  The current source and output streams
+      _______________
+      may be switched by the S and O commands respectively.
+      The editor maintains lists of files other than the
+      primary input and output open for input and open for
+      output, so that if a file already open is selected
+      again for input or output then reading or writing
+      continues from the same point in the file.  The CF
+      command can be used to explicitly close a file if
+                                 4
+
+
+      required.  On a windup or rewind the rest of the
+      current input is copied to the current output, then
+      both are closed, but it is recomended that the primary
+      input and output be reselected beforehand to avoid
+      confusion.  The special filename "#" is interpreted to
+      mean the primary input or output as appropiate, which
+      is assumed if no argument is given.  File name
+      comparison is done by comparing the text strings, so
+      if directory or device names are included they should
+      be quoted in each reference to the same file.  Source
+      file selection causes the next line read into store to
+      be read from the current position in the new source;
+      all lines allready in store remain but lose their
+      numbers.  Output file selection causes all lines in
+      store before the current line to be output to the old
+      output, then the new file is selected.  The command
+      input may be switched by the C command; this causes the
+      contents of the specified file to be obeyed before the
+      rest of the line of commands in the original file.
+      Nesting of C commands is allowed; C with no argument
+      will cause the command stream to revert to the previous
+      stream.  Exhaustion of all command streams will cause
+      the editor to wind up.
+
+
+
+
+
+
+
+
+
+
+                                 5
+
+
+      List of Commands
+      ________________
+         A/s/t/     After string s insert string t
+         B/s/t/     Before string s insert string t
+         C file     obey Commands from file
+         CC/N/      set Carriage Control to *N (or C,E,P)
+         CC//       clear Carriage Control
+         CC/?/      query Carriage Control
+         CF file    Close File
+         CL         Concatenate next Line to current
+         Dn m       Delete line n (to m if m present)
+         DF/s/      Delete Find. delete from current to
+                    line before line beginning with s
+         DL/s/      Delete Locate. delete from current to
+                    line before line containing s
+         DT/s/      Delete all characters in current line
+                    up To but not including s
+         DG/s/      Delete Global for s
+         DG//       Delete all Globals
+         E/s/t/     Exchange s replacing it by t
+         F/s/       Find line beginning with s
+         G/s/t/     Globally exchange s replacing by t
+         Hn         Halt at line n - refuse to go beyond
+                    n until reset. * = end of file
+         In         Insert before line n the following
+                    command lines terminated by a line
+                    containing onl the letter Z
+         In file    Insert before n the contents of file
+         L/s/       Locate line containing s
+         Mn         Move to line n
+         N          Next line
+         O file     select Output to file
+         P          move to Previous line
+         PA/s/      Point After. set character pointer to
+                    after s
+         PB/s/      Point Before
+         Q          Quit immediately no copying or rename
+         Rn m       Replace lines n (to m if m present)
+                    by following lines terminated by Z
+         Rn m file  Replace n (to m) by contents of file
+         S file     select Source from file
+         SA/s/      Split current line After s
+         SB/s/      Split current line Before s
+         Tn         Type n lines from current. * = to end
+         TLn        Type with Line numbers
+         TN         Type Next page - for VDUs
+         TP         Type Previous page - for VDUs
+         TR+/-      set/clear TRailing spaces preserved
+         U+/-       set/clear Uppercase string matching
+         V+/-       set/clear Verify mode
+         W          Windup. copy rest (rename) and exit
+                                 6
+
+
+         Z/s/       change terminator for I,R from Z to s
+         *          rewind
+         +n         move on n lines through source
+         -n         move on n lines deleting them
+         =n         renumber current line as n
+         ?          verify current line
+         !          expanded verify. underline upper
+                    case, mark tabs, non-printing
+                    characters in hex
+         '          repeat last explicit A,B,E,DL,DF,DT,
+                    PA,PB command
+         "          equivalent to N'
+         &          repeat last explicit F,L,DF,DL
+                    command
+         |          ignore rest of command line
+         >          step character pointer on one
+         <          reset character pointer to left margin
+         :          set character pointer to end of line
+         #          delete next character
+         $          force next character to lower case
+                    and step pointer
+         %          force upper case, step pointer
+         _          force to space, step pointer
+
+
+
+
+
+
+
+
+
+
+                                 7
+
+
+
+
+
+
+
+
+                       TRIPOS File Structure
+                       _____________________
+                      The TRIPOS Disc Editor
+                      ______________________
+                           Brian Knight
+                          September 1979
+
+
+
+
+
+
+             (C) Copyright 1979 TRIPOS Research Group
+            University of Cambridge Computer Laboratory
+                       Corn Exchange Street
+                             Cambridge
+                              CB2 3QG
+
+
+
+      Introduction
+      ____________
+          This document describes the format of TRIPOS disc
+      files.  The second part is a guide to the disc editor
+      program DISCED which can be used to inspect and patch
+      disc blocks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      TRIPOS                    -1-            File Structure
+
+
+      File Structure
+      ______________
+          The TRIPOS file handler uses a disc which is
+      formatted with blocks of equal size.  It provides an
+      indefinitely deep hierarchy of directories, where each
+      directory may contain other directories and/or files.
+      The structure is a pure tree - i.e. loops are not
+      allowed.
+          The root of the tree is the Root Block, which is
+      at a fixed place on the disc.  This is like any other
+      directory, except that it has no parent, and its
+      secondary type is different.  The name of the disc is
+      stored in the name field of the root block.
+          Each block which is part of the filing system
+      contains a checksum.  This is set so that the sum
+      (ignoring overflow) of all the words of the block is
+      zero.
+
+
+
+
+
+
+
+
+
+
+
+      TRIPOS                    -2-            File Structure
+
+
+      Root Block
+      __________
+              +-----------+
+            0 |  T.SHORT  |    type
+              |-----------|
+            1 |     0     |    header key
+              |-----------|
+            2 |     0     |    highest seq num
+              |-----------|
+            3 |  HT SIZE  |    = blocksize-56
+              |-----------|
+            4 |     0     |
+              |-----------|
+            5 | CHECKSUM  |
+              |-----------|
+            6 |           |
+              |           |
+              |           |
+              |           |
+              |   hash    |
+              |   table   |
+              |           |
+              |           |
+              |           |
+      SIZE-51 |           |
+              |-----------|
+      SIZE-50 |           |
+              |   info    |    (unused)
+      SIZE-24 |           |
+              |-----------|
+      SIZE-23 |   DAYS    |    Creation date and time
+              |-----------|
+      SIZE-22 |   MINS    |
+              |-----------|
+      SIZE-21 |   TICKS   |
+              |-----------|
+      SIZE-20 |           |
+              |           |
+              |   DISC    |    as a BCPL string
+              |   NAME    |    of <= 30 characters
+              |           |
+              |           |
+              |-----------|
+      SIZE-4  |     0     |    hash chain
+              |-----------|
+      SIZE-3  |     0     |    parent directory
+              |-----------|
+      SIZE-2  | INFO BITS |    (unused)
+              |-----------|
+      SIZE-1  |  ST.ROOT  |    secondary type
+              +-----------+
+      TRIPOS                    -3-            File Structure
+
+
+      User directory blocks
+      _____________________
+              +-----------+
+            0 |  T.SHORT  |    type
+              |-----------|
+            1 |  OWN KEY  |    header key
+              |-----------|
+            2 |     0     |    highest seq num
+              |-----------|
+            3 |     0     |
+              |-----------|
+            4 |     0     |
+              |-----------|
+            5 | CHECKSUM  |
+              |-----------|
+            6 |           |
+              |           |
+              |           |
+              |           |
+              |   hash    |
+              |   table   |
+              |           |
+              |           |
+              |           |
+      SIZE-51 |           |
+              |-----------|
+      SIZE-50 |           |
+              |   info    |    (unused)
+      SIZE-24 |           |
+              |-----------|
+      SIZE-23 |   DAYS    |    Creation date and time
+              |-----------|
+      SIZE-22 |   MINS    |
+              |-----------|
+      SIZE-21 |   TICKS   |
+              |-----------|
+      SIZE-20 |           |
+              |           |
+              | DIRECTORY |    as a BCPL string
+              |   NAME    |    of <= 30 characters
+              |           |
+              |           |
+              |-----------|
+      SIZE-4  | HASHCHAIN |    next with same hash value
+              |-----------|
+      SIZE-3  |   PARENT  |    parent directory
+              |-----------|
+      SIZE-2  | INFO BITS |    (unused)
+              |-----------|
+      SIZE-1  |ST.USERDIR |    secondary type
+              +-----------+
+      TRIPOS                    -4-            File Structure
+
+
+          User directory blocks are identified by having type
+      T.SHORT and secondary type ST.USERDIRECTORY.  The six
+      information words at the start of the block also
+      indicate the block's own key (i.e. block number) as a
+      consistency check, and the size of the hash table.  The
+      50 information words at the end of the block contain
+      the date and time of creation, the name of the
+      directory, a pointer to the next file or directory on
+      the hash chain, and a pointer to the directory above.
+          A file or sub-directory is found as follows:
+      firstly, a hash function is applied to its name.  This
+      yields an offset in the hash table, which is the key
+      of the first block on a chain linking those with the
+      same hash value (or zero if there are none).  The block
+      with this key is read, and its name compared with the
+      required name.  If it does not match, then the next
+      block on the chain is read, and so on.
+
+
+
+
+
+
+
+
+
+
+
+      TRIPOS                    -5-            File Structure
+
+
+      File Header Block
+      _________________
+              +-----------+
+            0 |  T.SHORT  |    type
+              |-----------|
+            1 |  OWN KEY  |    header key
+              |-----------|
+            2 |HIGHEST SEQ|    = number of data blocks
+              |-----------|
+            3 | DATA SIZE |
+              |-----------|
+            4 | FIRST DATA|    First data block
+              |-----------|
+            5 | CHECKSUM  |
+              |-----------|
+            6 |           |
+              |   last    |    last data of file can be
+              |   data    |    stored here if there is room
+              |           |
+              |-----------|
+              |-----------|
+              |           |
+              | DATA BLK 3|
+              | DATA BLK 2|    list of data block keys
+      SIZE-51 | DATA BLK 1|
+              |-----------|
+      SIZE-50 |           |
+              |   info    |    (unused)
+      SIZE-24 |           |
+              |-----------|
+      SIZE-23 |   DAYS    |    Creation date and time
+              |-----------|
+      SIZE-22 |   MINS    |
+              |-----------|
+      SIZE-21 |   TICKS   |
+              |-----------|
+      SIZE-20 |           |
+              |           |
+              |   FILE    |    as a BCPL string
+              |   NAME    |    of <= 30 characters
+              |           |
+              |           |
+              |-----------|
+      SIZE-4  | HASHCHAIN |    next with same hash value
+              |-----------|
+      SIZE-3  |  PARENT   |    parent directory
+              |-----------|
+      SIZE-2  | INFO BITS |    (unused)
+              |-----------|
+      SIZE-1  |  ST.FILE  |    secondary type
+              +-----------+
+      TRIPOS                    -6-            File Structure
+
+
+          Each terminal file starts with a file header block,
+      which has type T.SHORT, and secondary type ST.FILE.
+      The start and end of the block contain name, time and
+      redundancy information similar to that in a directory
+      block.  The body of the file consists of Data blocks
+      with sequence numbers from 1 upwards.  The addresses
+      of these blocks are stored in consecutive words
+      downwards from offset size-51 in the block.  In
+      general, the space for this list will not all be used,
+      and the last data block will not be full.  In this
+      case, it may be possible to use the header as the last
+      data block as well.  If this is done, then the data is
+      stored from offset 6 upwards and its size is given in
+      offset 3.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      TRIPOS                    -7-            File Structure
+
+
+      Data Block
+      __________
+              +-----------+
+            0 |  T.DATA   |    type
+              |-----------|
+            1 |  HEADER   |    header key
+              |-----------|
+            2 |  SEQ NUM  |    sequence number
+              |-----------|
+            3 | DATA SIZE |
+              |-----------|
+            4 | NEXT DATA |    next data block
+              |-----------|
+            5 | CHECKSUM  |
+              |-----------|
+            6 |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |   DATA    |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+              |           |
+      SIZE-1  +-----------+
+      TRIPOS                    -8-            File Structure
+
+
+          Data blocks contain only six words of filing system
+      information.  This is the type (T.DATA), a pointer to
+      the file header block, the sequence number of the data
+      block, the number of words of data, a pointer to the
+      next data block, and the checksum.  Normally, all data
+      blocks except the last will be full (i.e. have size =
+      blocksize-6).  The last data block has a forward
+      pointer of zero.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      TRIPOS                    -9-            File Structure
+
+
+                  DISCED - The TRIPOS disc editor
+                  _______________________________
+          The disc editor is invoked by the command DISCED.
+      It allows blocks to be read from disc, inspected and
+      patched in core, and written back.  It has some
+      knowledge of the filing system structure, so can print
+      information about blocks in words, calculate hash
+      values from filenames, and set checksums.  It uses the
+      same block numbering scheme as the filing system.
+          As the disc editor is frequently used just for
+      inspecting blocks, it is by default in a mode in which
+      it will refuse to write to the disc.
+          The file handler includes sufficient redundant
+      information in blocks that is usually not difficult to
+      repair a broken disc - e.g. left in an odd state as the
+      result of a system crash.  For example, headers and
+      directories contain their own disc addresses, and data
+      block chains are recorded both in the links and as a
+      list in the header.  The header blocks of deleted files
+      have a 'deleted' bit set in the type field, but all the
+      information is preserved.
+          DISCED commands are all single characters,
+      sometimes with arguments.  The next page contains a
+      complete list.
+
+
+
+
+
+
+
+
+      TRIPOS                   -10-               Disc Editor
+
+
+      TRIPOS Disc Editor
+      __________________
+      Commands available:
+      B n         Set logical block number base to n
+      C n         Print n characters from current offset
+      D n         Select disc drive n
+      G ?n?       Get block n from disc (default: current
+                  block number)
+      H name      Calculate hash value of name
+      I           Print block information
+      K           Check block checksum (& correct if wrong)
+      L ?lwb upb? Locate words which match Value under Mask
+                  (lwb & upb restrict the search)
+      M n         Set Mask (for L & N commands) to n
+      N ?lwb upb? Locate words which do not match Value
+                  under Mask
+      P n         Put block in store to block n on disc
+                  (default: current block number)
+      R           Print block number of Root Block
+      Q           Quit (do not write to disc)
+      S char      Set printing Style:
+                  char = C -> characters
+                         S -> string
+                         O -> octal
+                         X -> hex
+                         D -> decimal
+      T lwb upb   Type range of offsets in block
+      V n         Set Value for L & N commands
+      W           Windup (=PQ)
+      X           Invert write protect state
+      Y n         Set cYlinder base to n
+      Z           Zero all words of buffer
+      number      Set current word offset in block
+      =           Print values set in program
+      / ?n?       Print word at current offset
+                  ?or update value to n?
+      'chars'     Put chars at current offset
+      "chars"     Put string at current offset
+          Numbers can start with # or #X to indicate octal
+      or hex.  Strings can include BCPL string escapes (*N
+      etc.).
+          The current block is that from the last G or P
+      command.  It is the offset from the logical block
+      number base.
+
+
+      TRIPOS                   -11-               Disc Editor
+
+
+              TRIPOS Kernel Primitives Specification
+                      TRIPOS Research Project
+                  University Computer Laboratory
+                       Corn Exchange Street
+                             Cambridge
+                              England
+                              CB2 3QG
+
+
+
+
+                    TRIPOS Kernel Specification
+                    ___________________________
+         This  document  presents the specification of Kernel
+      primitives  in  release  1  of  TRIPOS.   All  standard
+      implementations   guarantee   that  routines  described
+      herein will be available and  that  they  fulfil  these
+      specifications.
+                                               Paul Bond
+                                               May 1978
+
+
+
+
+
+
+
+                                -1-
+
+              TRIPOS Kernel Primitives Specification
+                             Contents
+                             ________
+         Routines are described in alphabetical  order.   The
+      complete list of Kernel primitives is:
+
+      rtn              ABORT(CODE, ARG)
+      fn   RESULT   := CHANGEPRI(TASKID, NEWPRIORITY)
+      fn   DEVID    := CREATEDEV(DCB)
+      fn   TASKID   := CREATETASK(SEGMENTLIST,
+                            STACKSIZE, PRIORITY)
+      fn   DCB      := DELETEDEV(DEVID)
+      fn   RESULT   := DELETETASK(TASKID)
+      fn   RESULTID := DQPKT(ID, PACKET)
+      rtn              FREEVEC(VECTOR)
+      fn   VECTOR   := GETVEC(UPPERBOUND)
+      fn   RESULT   := HOLD(TASKID)
+      fn   RESULT   := QPKT(PACKET)
+      fn   RESULT   := RELEASE(TASKID)
+      fn   RESULT   := SETFLAGS(TASKID, MASK)
+      fn   PACKET   := TASKWAIT()
+      fn   RESULT   := TESTFLAGS(MASK)
+
+         Appendices A & B contain a summary  of  error  codes
+      and abort codes used by the Kernel.
+
+
+
+                                -2-
+
+              TRIPOS Kernel Primitives Specification
+      Introduction
+      ____________
+         An  error return is normally indicated by a function
+      returning the  value  0.   There  are  few  exceptions.
+      Those  that  exist  are  due  to the need to return the
+      value 0 as a meaningful result.
+         Functions which  return  in  error  set  RESULT2  to
+      indicate  further  the  type  of error detected.  These
+      codes are global to all routines.
+         Error codes allocated for use  by  the  Kernel,  M/C
+      library and BLIB lie in the range 100-199.
+         Error  codes used by the Kernel and their associated
+      texts may be found in appendix A.
+         The effects listed under 'Side effects' do not occur
+      in  the  event  of  an  error  return (unless otherwise
+      specified).
+         Various manifest constants and offsets are mentioned
+      in this document.
+         NOTINUSE (=-1)  is  a  packet  link  value  used  to
+      indicate  that  the  packet  is not present on any work
+      queue.
+         PKT.LINK (=0) is the  packet  offset  used  to  link
+      packets of a given work queue together.
+         PKT.ID  (=1)  is  the  packet  offset indicating the
+      destination/sender's task or device id.
+         PKT.TYPE (=2) is the packet offset used to  indicate
+      the purpose for which the given packet has been sent.
+         PKT.RES1  (=3)  and PKT.RES2 (=4) are packet offsets
+      which hold, by convention, result values.
+         PKT.ARG1 (=5), PKT.ARG2 (=6) etc. are packet offsets
+      commonly used to pass arguments to the destination task
+      or device.
+
+
+                                -3-
+
+              TRIPOS Kernel Primitives Specification
+      ABORT(CODE, ARG)
+         Abort the issuing task.
+      Arguments:
+      __________
+      CODE
+         An indication of the reason for the abort.
+      ARG
+         May be used to pass additional information.
+      Notes:
+      ______
+         See the documentation on DEBUG for further details.
+
+
+
+
+
+
+
+
+
+
+
+                                -4-
+
+              TRIPOS Kernel Primitives Specification
+      RESULT := CHANGEPRI(TASKID, NEWPRIORITY)
+         Change the priority of a task.
+      Arguments:
+      __________
+      TASKID
+         The task id. of  the  task  which  is  to  have  its
+      priority changed.
+      NEWPRIORITY
+         The priority that the specified task is to adopt.
+         Must  be  strictly  positive  and  distinct from any
+      existing task priority other than that of the specified
+      task.
+      Normal return:
+      ______________
+      RESULT?=0
+         The task's priority has been changed.
+      Error return:
+      _____________
+      RESULT=0, possible errors are:
+         RESULT2=101, Invalid id.
+         RESULT2=102, Invalid priority.
+      Side effects:
+      _____________
+         May cause a change of current task.
+      Related routines:
+      _________________
+         CREATETASK
+         DELETETASK
+
+
+
+                                -5-
+
+              TRIPOS Kernel Primitives Specification
+      DEVID := CREATEDEV(DCB)
+         Create a device.
+      Arguments:
+      __________
+      DCB
+         A skeleton device control block  for  the  specified
+      type of device.
+         DCB!0  must  point  to  the  device  driver  section
+      containing initialisation code.
+      Normal return:
+      ______________
+      DEVID?=0
+         The id. of the created device.
+      Error return:
+      _____________
+      RESULT=0, possible errors are:
+         RESULT2=104, Device table full.
+         RESULT2=106, Failure to initialise device.
+      Side effects:
+      _____________
+         An  entry  for  the specified device is put into the
+      device table.
+         The device is initialised.
+      Related routines:
+      _________________
+         DELETEDEV
+
+
+
+
+                                -6-
+
+              TRIPOS Kernel Primitives Specification
+      TASKID := CREATETASK(SEGMENTLIST, STACKSIZE, PRIORITY)
+         Create a task.
+      Arguments:
+      __________
+      SEGMENTLIST
+         A list of segments headed by an entry count.
+         Entries  in  the  list  may  be 0 indicating that no
+      segment exists for that entry.
+         SEGMENTLIST may be 0 if no segment list is provided.
+      STACKSIZE
+         The size of the root stack upon activation.
+      PRIORITY
+         The priority of the new task.
+         Must be strictly  positive  and  distinct  from  any
+      existing task priority.
+      Normal return:
+      ______________
+      TASKID?=0
+         The id. of the newly created task.
+      Error return:
+      _____________
+      TASKID=0, possible errors are:
+         RESULT2=102, Invalid priority.
+         RESULT2=103, Insufficient free store.
+         RESULT2=105, Task table full.
+      Related routines:
+      _________________
+         CHANGEPRI
+         DELETETASK
+      Notes:
+      ______
+         If a segment list is present it  is  copied  into  a
+      GETVEC'ed vector.
+         The TCB is allocated from the free store area.
+         The  segment  list  (at  task activation) is used to
+      initialise  global  slots.   A  segment   list   should
+      therefore  exist at task activation and segments should
+                                -7-
+
+              TRIPOS Kernel Primitives Specification
+      consist of a chained list of BCPL-format sections.
+         Note that the creation of a task  is  distinct  from
+                       ________
+      its  activation,  which occurs when a task receives its
+           ___________
+      first packet and which might occur some time after  the
+      task  was  created.   Sufficient  free  store  must  be
+      available at  the  time  of  task  activation  for  the
+      allocation  of  a  global  vector  and  a  root  stack.
+      Otherwise, the task will abort.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                -8-
+
+              TRIPOS Kernel Primitives Specification
+      DCB := DELETEDEV(DEVID)
+         Delete a device.
+      Arguments:
+      __________
+      DEVID
+         The id. of the device to be deleted.
+      Normal return:
+      ______________
+      DCB?=0
+         The specified device has been successfully deleted.
+      Error return:
+      _____________
+      RESULT=0, possible errors are:
+         RESULT2=101, Invalid id.
+         RESULT2=107, Work queue not empty.
+      Side effects:
+      _____________
+         The device entry will be  removed  from  the  device
+      table.
+      Related routines:
+      _________________
+         CREATEDEV
+      Notes:
+      ______
+         The device work queue must be empty.
+         The DCB is not FREEVEC'ed.
+
+
+
+
+                                -9-
+
+              TRIPOS Kernel Primitives Specification
+      RESULT := DELETETASK(TASKID)
+         Delete a task.
+      Arguments:
+      __________
+      TASKID
+         The id. of the task to be deleted.
+      Normal return:
+      ______________
+      RESULT?=0
+         The given task has been deleted.
+      Error return:
+      _____________
+      RESULT=0, possible errors are:
+         RESULT2=101, Invalid id.
+         RESULT2=108, Task not deletable.
+      Side effects:
+      _____________
+         The task's entry in the task table is removed.
+         The task's entry in the TCB chain is removed.
+         The task's segment list is FREEVEC'ed (if any).
+         The task's TCB is FREEVEC'ed.
+      Related routines:
+      _________________
+         CHANGEPRI
+         CREATETASK
+      Notes:
+      ______
+         The  task  must  be  dead,  not  held  and   without
+      packet(s).
+         However, the issuing task may delete  itself  if  it
+      has an empty work queue.
+
+
+                               -10-
+
+              TRIPOS Kernel Primitives Specification
+      RESULTID := DQPKT(ID, PACKET)
+         Remove a packet from  a  given  work  queue  or  the
+      issuing task's work queue.
+      Arguments:
+      __________
+      ID
+         The id. of a task or device whose work queue will be
+      searched first for the packet.
+      PACKET
+         The sought packet.
+      Normal return:
+      ______________
+      RESULTID?=0
+         The  id.  of the task or device whose work queue was
+      found to contain the sought packet.
+      Error return:
+      _____________
+      RESULTID=0, possible errors are:
+         RESULT2=101, Invalid id.
+         RESULT2=109, Packet not found.
+      Side effects:
+      _____________
+         The packet will have been dequeued.
+         PACKET!0 will be set to NOTINUSE.
+         PACKET!1 will be set to ID if the packet  was  found
+      on  a  work  queue other than that of the issuing task.
+      Otherwise, it will be left unaltered.
+      Related routines:
+      _________________
+         QPKT
+         TASKWAIT
+      Notes:
+      ______
+         Packets may always be dequeued from devices.
+         Dequeueing a device packet may involve  an  implicit
+      device reset.
+                               -11-
+
+              TRIPOS Kernel Primitives Specification
+      FREEVEC(VECTOR)
+         Return a vector (if  supplied)  to  the  free  store
+      area.
+      Arguments:
+      __________
+      VECTOR
+         A pointer to a vector allocated by GETVEC.
+      Abort condition:
+      ________________
+         An attempt to free a vector which does not appear to
+      have  been  allocated by GETVEC results in the aborting
+      of the issuing task.
+      Related routines:
+      _________________
+         GETVEC
+      Notes:
+      ______
+         A call of  FREEVEC(0)  is  permissible  and  has  no
+      effect.
+
+
+
+
+
+
+
+                               -12-
+
+              TRIPOS Kernel Primitives Specification
+      VECTOR := GETVEC(UPPERBOUND)
+         Allocate a vector of the  indicated  size  from  the
+      free store area.
+      Arguments:
+      __________
+      UPPERBOUND
+         The upperbound (unsigned) of the required vector.
+      Normal return:
+      ______________
+      VECTOR?=0
+         The vector has been allocated successfully.
+      Error return:
+      _____________
+      VECTOR=0, error is:
+         RESULT2=103, Insufficient free store.
+      Related routines:
+      _________________
+         FREEVEC
+      Notes:
+      ______
+         It is permissable to allocate vectors of 32k or more
+      on a 16-bit machine, although this is  not  recommended
+      as a matter of programming style.
+         It is possible that corruption  of  the  free  store
+      area  might be detected by the call. If this is so then
+      a system abort will occur.
+
+
+
+
+                               -13-
+
+              TRIPOS Kernel Primitives Specification
+      RESULT := HOLD(TASKID)
+         Place a task into a held state.
+      Arguments:
+      __________
+      TASKID
+         The id. of the task to be placed into a held state.
+      Normal return:
+      ______________
+      RESULT/=0
+         The specified task  has  been  placed  into  a  held
+      state, having been formerly not held.
+      RESULT=0, with:
+         RESULT2=110, Task already held.
+      Error return:
+      _____________
+      RESULT=0, error is:
+         RESULT2=101, Invalid id.
+      Side effects:
+      _____________
+         May cause a change of current task.
+      Related routines:
+      _________________
+         RELEASE
+      Notes:
+      ______
+         A task may hold itself.
+
+
+
+                               -14-
+
+              TRIPOS Kernel Primitives Specification
+      RESULT := QPKT(PACKET)
+         Append a packet to the work queue of  the  specified
+      task  or  device,  or  inserts  it into the appropriate
+      place on the timer work queue.
+      Arguments:
+      __________
+      PACKET
+         A TRIPOS packet.
+         PACKET!0 must be NOTINUSE.
+         PACKET!1 indicates the destination  id.,  >0  for  a
+      task, =-1 for the timer, <-1 for a device.
+         Contents of other offsets have application dependent
+      information (see below for the timer).
+      Normal return:
+      ______________
+      RESULT?=0
+         The packet was queued successfully.
+      Error return:
+      _____________
+      RESULT=0, error is:
+         RESULT2=101, Invalid id.
+      Abort condition:
+      ________________
+         PACKET!0 not NOTINUSE.
+      Side effects:
+      _____________
+         PACKET!0 will be set to a value ?=NOTINUSE.
+         PACKET!1 will be set to the issuing task's id.
+         May cause a change of current task.
+      Related routines:
+      _________________
+         DQPKT
+         TASKWAIT
+
+                                              contd. overleaf
+                               -15-
+
+              TRIPOS Kernel Primitives Specification
+      Notes:
+      ______
+      Packets sent to the timer:
+      __________________________
+         Offset PKT.ARG1 represents the requested  delay  (in
+      clock timer units, unsigned).
+         A delay of X ticks means that  the  packet  will  be
+      returned to the issuing task's work queue after a delay
+      of between X-1 and X clock timer units.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                               -16-
+
+              TRIPOS Kernel Primitives Specification
+      RESULT := RELEASE(TASKID)
+         Place a task into a non-held state.
+      Arguments:
+      __________
+      TASKID
+         The id. of the task to be  placed  into  a  non-held
+      state.
+      Normal return:
+      ______________
+      RESULT?=0
+         The  specified  task  has  been placed in a non-held
+      state.
+      Error return:
+      _____________
+      RESULT=0, error is:
+         RESULT2=101, Invalid id.
+      Side effects:
+      _____________
+         May cause a change of current task.
+      Related routines:
+      _________________
+         HOLD
+
+
+
+
+
+
+                               -17-
+
+              TRIPOS Kernel Primitives Specification
+      RESULT := SETFLAGS(TASKID, MASK)
+         Set selected task flags of a given task.
+      Arguments:
+      __________
+      TASKID
+         The id. of the task whose flags are to be set.
+      MASK
+         A  mask  indicating  which flags are to be set.  A 1
+      indicates selection, 0 otherwise.
+      Normal return:
+      ______________
+      RESULT?=0
+         The specified flags have been set.
+      Error return:
+      _____________
+      RESULT=0, error is:
+         RESULT2=101, Invalid id.
+      Related routines:
+      _________________
+         TESTFLAGS
+
+
+
+
+
+
+
+                               -18-
+
+              TRIPOS Kernel Primitives Specification
+      PACKET := TASKWAIT()
+         Return the earliest packet sent to the task, or  the
+      next  packet  to  be sent to the task (if the task work
+      queue is empty).
+      Arguments:
+      __________
+         None.
+      Normal return:
+      ______________
+         PACKET points to a TRIPOS packet.
+         PACKET!0 will be NOTINUSE.
+         PACKET!1 will be set to the sender's id.
+      Side effects:
+      _____________
+         May cause a change of current task.
+      Related routines:
+      _________________
+         DQPKT
+         QPKT
+
+
+
+
+
+
+
+                               -19-
+
+              TRIPOS Kernel Primitives Specification
+      RESULT := TESTFLAGS(MASK)
+         Discover the state of a  selection  of  the  issuing
+      task's task flags.
+      Arguments:
+      __________
+      MASK
+         The  selection of flags to be tested.  A 1 indicates
+      selection, 0 otherwise.
+      Normal return:
+      ______________
+      RESULT=TRUE
+         At least one of the selected flags was set.  RESULT2
+      holds the result of ANDing the contents of the flagword
+      (prior to testing), with MASK.
+      RESULT=FALSE
+         None of the selected flags was set.
+      Side effects:
+      _____________
+         All selected flags will be cleared.
+         Note the setting of RESULT2 as data.
+      Related routines:
+      _________________
+         SETFLAGS
+
+
+
+
+
+
+                               -20-
+
+              TRIPOS Kernel Primitives Specification
+                            Appendix A
+                            __________
+      Kernel RESULT2 error code summary:
+      __________________________________
+           RESULT2     Error text & explanation.
+             101       INVALID ID.
+                        The   task  ?or  device?  id.
+                        presented     as     argument
+                        referred  to  a  non-existent
+                        task ?or device?.
+             102       INVALID PRIORITY.
+                        The   priority  presented  as
+                        argument   was   either   not
+                        strictly  positive or already
+                        existed.
+             103       INSUFFICIENT FREE STORE.
+                        An  explicit or implicit call
+                        of GETVEC requested a  vector
+                        whose  size  was greater than
+                        that  of  the  largest  block
+                        available  in  the free store
+                        area.
+             104       DEVICE TABLE FULL.
+                        The    maximum    permissible
+                        number  of  devices   already
+                        exists.   (Solution: increase
+                        the  size   of   the   device
+                        table).
+             105       TASK TABLE FULL.
+                        The    maximum    permissible
+                        number   of   tasks   already
+                        exists.  (Solution:  increase
+                        the size of the task table).
+             106       FAILURE TO INITIALISE DEVICE.
+                        The skeleton  device  control
+                        block    specified   a   non-
+                        existent   device   OR    the
+                        (valid)  device  could not be
+                        initialised.
+                               -21-
+
+              TRIPOS Kernel Primitives Specification
+             107       WORK QUEUE NOT EMPTY.
+                        The quoted device  still  had
+                        packets on its work queue.
+             108       TASK NOT DELETABLE.
+                        The  current  task   can   be
+                        deleted   only  if  its  work
+                        queue is empty.  Other  tasks
+                        must  be  dead,  not held and
+                        without packet(s) in order to
+                        be deleted.
+             109       PACKET NOT FOUND.
+                        The specified packet was  not
+                        found  on  the  work queue(s)
+                        explicitly   or    implicitly
+                        searched by the routine.
+             110       TASK ALREADY HELD.
+                        An attempt was made to hold a
+                        task  that  was  already in a
+                        held state.
+
+
+
+
+
+
+
+
+
+
+                               -22-
+
+              TRIPOS Kernel Primitives Specification
+                            Appendix B
+                            __________
+      Kernel abort code summary:
+      __________________________
+             Code      Abort text & explanation.
+             199       INVALID QPKT.
+                        An attempt was made to QPKT a
+                        packet  whose packet link was
+                        not NOTINUSE. (Common  cause:
+                        failure   to  initialise  the
+                        packet  or  overwriting   the
+                        immediately         preceding
+                        location(s)).
+             198       INVALID FREEVEC.
+                        An attempt was made to free a
+                        vector that did not appear to
+                        have  been GETVEC'ed. (Common
+                        cause:  overwriting past  the
+                        end    of   the   immediately
+                        preceding free store block).
+             197       FREE STORE AREA CORRUPT.
+                        Corruption  of the free store
+                        area  is   usually   detected
+                        within a call of GETVEC. More
+                        specifically the  free  store
+                        chain  has  been  found to be
+                        inconsistent. This results in
+                        a system abort rather than an
+                        abort of  the  issuing  task.
+                        (Common  cause:   overwriting
+                        outside  the  bounds   of   a
+                        GETVEC'ed  vector,  often due
+                        to stack overflow).
+             196       INSUFFICIENT  FREE  STORE  FOR
+                        TASK ACTIVATION.
+                        There  is  insufficient  free
+                        store  to  allocate  a global
+                        vector  and  stack  for   the
+                        specified task.
+
+
+                               -23-
+
+
+
+
+
+
+                     THE MOUNT COMMAND
+                     _________________
+
+                      MIKE RICHARDSON
+                      _______________
+                       SEPTEMBER 1980
+                       ______________
+
+
+            Copyright (C) Tripos Research Group
+        University of Cambridge Computer Laboratory
+
+
+
+
+
+
+
+
+Specification               -1-                        Mount
+
+
+
+      This document describes the new implementation of  the
+mount  command  for  loading new devices and handlers into a
+TRIPOS system. The program and method used are based on that
+by Adrian Aylward.
+      The mount command uses a file ( "sys:info.mount" )  to
+provide  the  necessary  information  about a new device and
+handler, and two vectors attached  to  the  info  vector  to
+record loaded devices and handlers, their locations, and use
+counts. By means of the  latter,  sharing  of  code  is  im-
+plemented.
+
+                    Information vectors
+                    ___________________
+      The  command  makes use of two information vectors for
+devices and handlers, which are attached to theinfo vector.
+      The  devices  and  handlers are assigned numbers which
+represent offsets into the vectors. The entry is then either
+zero,  if  the device or handler is not loaded, or otherwise
+points at a three word vector.
+      The first word is the TRIPOS device number for devices
+( unused for handlers ), the second a pointer  at  the  code
+segments ( unused for devices ), and the third a use count.
+
+                        Driving File
+                        ____________
+Mount                       -2-                Specification
+
+
+      The driving file consists of a  series  of  specifica-
+tions in the form
+      <device> <specification> ;
+      where device is a string of characters followed  by  a
+colon,  in  the normal manner, for example "DF1:" or "MT2:".
+The  specification  then  describes  first  the  device   or
+devices, and then the handler.
+                          Devices
+                          _______
+      Devices are either resident or  non-resident.  In  the
+former  case, the device part of the specification takes the
+form
+      driver res devs <device list>
+      where   the  device  list  is  a  series  of  numbers,
+separated by spaces. The first of these  is  the  number  of
+devices  (  currently one or two ) and the other numbers are
+the offsets into the info device vector of the device entry.
+The  device numbers will be passed to the handler when it is
+started.
+      Where the devices are non-resident, then the form is
+      driver nonres devs <device list> file <file list>
+      The device list is as before. If the device or devices
+are  loaded already then they will be shared. Note that this
+
+Specification               -3-                        Mount
+
+
+is not just code-sharing, but actual sharing of the  device.
+If not then they are dynamically loaded and created, and en-
+tries inserted into the device information vector,  the  ob-
+ject modules being taken from the specified file or files.
+                          Handlers
+                          ________
+      The second  half  of  the  specification  is  for  the
+handler, and has the form
+      handler res <description>
+      in the case of resident handlers, or
+      handler nonres file <file> <description>
+      for non-resident handlers.
+      The number is the offset into the handler  information
+vector for code sharing. File is the object module file that
+holds the handler, while the description  contains  informa-
+tion needed to start the handler.
+      This has the form
+      hand <number>
+      init <init file>
+      pri  <priority> stack <stack size>
+      unit <unit number> env   <environment vector>
+      mode <mode list>
+      The   init   file  is  the  file  which  contains  the
+
+Mount                       -4-                Specification
+
+
+initialisation code, or "$"  if  there  is  none.  When  the
+handler  segment  list  is constructed, segments one and two
+are MLIB/KLIB and BLIB, segment three is  the  handler  code
+itself, and segment four is the initialisation code, if any.
+      The handler number is the offset into the handler  in-
+formation  vector of the entry for the handler. The priority
+is the approximate priority at which the handler should run,
+and  the  stack  size  is  that of the root stack.  The unit
+number is supplied to the  handler  when  it  is  activated,
+whicle  the  environment  vector  is  a  series  of numbers,
+separated by commas, that are also passed to the handler.
+      The  mode  list is a list of words. If a value is sup-
+plied as the mode to the command ( eg., mount  df1:  read  )
+then  it  is matched against the list, and the mode value in
+the startup packet to the handler set to the number  of  the
+word in the list. If no mode is given then the mode defaults
+to one.
+                          Example
+                          _______
+      The following is a full example.
+df1: dev  nonres devs 2 2 3
+                 file sys:d.dfreader sys:d.dfwriter
+     hand nonres file sys:l.df-mu-handler
+                 hand 6
+                 init sys:l.df-mu-init
+                 pri  500  stack 140
+Specification               -5-                        Mount
+
+
+                 unit 1
+                 env  10,1,1,4,56,256,8,3
+                 mode update read validate
+     ;
+
+                          Startup
+                          _______
+      The  handler is activated with a startup packet, which
+contains the following information.
+(..i)  arg1  -  a  pointer  at  the device vector, in which,
+starting  at  offset  zero  are  placed  the  TRIPOS  device
+numbers.
+(.ii) arg2 - the unit number on the device.
+(iii) arg3 - a pointer at the environment vector, in  which,
+starting  at  offset  zero  are  placed the entries from the
+'env' item in the driving file.
+(.iv) arg4 - the startup mode
+
+                          Dismount
+                          ________
+
+      The  associated  'dismount'  command  uses  the   same
+driving  file,  and unloads devices and handlers if they are
+non-resident, and are no longer in use.
+
+Mount                       -6-                Specification
+
+
+
+
+
+
+
+
+                    TRIPOS Ring Software
+                    ____________________
+                        Brian Knight
+                       December 1980
+
+
+
+
+
+
+          (C) Copyright 1980 TRIPOS Research Group
+        University of Cambridge Computer Laboratory
+                    Corn Exchange Street
+                         Cambridge
+                          CB2 3QG
+
+
+
+
+
+
+
+                          Contents
+                          ________
+
+      1 Introduction
+      2 Ring System Components
+      3 Ring Device Drivers
+      4 Ring Handler Task
+      5 Ring Services Task
+      6 Byte Stream Protocol Handler Task
+      7 Single Shot Protocol
+      8 Use of the Name Lookup Server
+      9 File Transfer
+      10 Some useful commands
+
+
+
+
+
+
+TRIPOS                      -1-                Ring Software
+
+
+                      1   Introduction
+                      ________________
+    This document describes the interfaces to the Cambridge
+Data Ring provided under TRIPOS for the various protocols
+in general use.
+    Programs which use the ring should GET the BCPL header
+file "RINGHDR", which contains manifests for offsets in ring
+basic blocks and TRIPOS packets, plus various masks and code
+values.  Manifest constants referred to below are to be
+found in this header.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TRIPOS                      -2-                Ring Software
+
+
+                 2   Ring System Components
+                 __________________________
+    The software components fall into five main groups:
+  (1) Ring device drivers (written in assembler)
+  (2) Ring system tasks:-  Ring Handler
+                           BSP Handler
+                           Ring Services
+  (3) Source libraries:- commonly used routines which
+        can be included in ring programs.
+  (4) Ring services:- programs loaded by the ring
+        services task to provide particular services.
+  (5) Commands:- to start and stop the system tasks,
+        provide information on the ring,
+        transfer files, and access ring services.
+
+                  3   Ring Device Drivers
+                  _______________________
+    All communication with the ring is done using two device
+drivers - an independent transmitter and receiver.  These
+accept packets requesting transfer of a vector of 16-bit
+words to/from a given station.  As the only routing
+information is that provided by the hardware station
+addresses, these drivers must only be used directly by one
+task within a machine at once.  In general, user programs
+and system programs (other than the ring handler) never send
+packets to these devices.
+
+
+
+
+
+
+TRIPOS                      -3-                Ring Software
+
+
+                   4   Ring Handler Task
+                   _____________________
+    The ring handler task provides a 'basic block' interface
+to the data ring.  It acts as a multiplexor, allowing
+several tasks to use the ring independently.  It is normally
+the only task in the system to send packets to the ring
+device drivers.  It also provides timeouts on both reception
+and transmission of blocks, and retry on transmission
+errors.
+    The format of a basic block (Systems Research Group
+Project Note RDHW 27.10.78) is as follows:-
+
+             4 bits 2 bits    10 bits
+            +------+------+-----------+
+            | 1001 | type |  count    |  Header packet
+            |-------------------------|
+            |flags |   port number    |  Route packet
+            |-------------------------|
+            |                         |
+            |                         |
+            |                         |
+            |      (count + 1)        |
+            |      data packets       |
+            |                         |
+            |                         |
+            |                         |
+            |                         |
+            |                         |
+            |-------------------------|
+            |        checksum         |
+            +-------------------------+
+    The header packet contains a fixed pattern, a 2-bit type
+code, and the length of the block.  Possible block types are
+00, meaning a block with checksum, and 01, meaning a block
+with zero checksum.  The handler accepts either type, but
+always sends type 00.  The second packet contains a 12-bit
+port number, which is used to direct the block to the right
+task within the machine.  The flag bits are not used at
+present.  The checksum is an end around carry sum of all the
+other packets in the block (or zero for blocks of type 01).
+
+
+
+TRIPOS                      -4-                Ring Software
+
+
+Starting and Stopping the Handler
+_________________________________
+    The ring handler is started by the command LOADRINGHAND.
+This command loads and creates the transmitter and receiver
+devices, and creates the ring handler task, unless it was
+already running.
+    The command RHINFO KILL is used to make the handler
+delete itself, abandoning any outstanding requests.  Thus
+any program which uses the handler should be killed first.
+    In TRIPOS systems using the Data Ring File Server for
+their filing system, the ring handler is a resident part of
+the system, so does not need to be loaded, and does not
+respond to RHINFO KILL.
+
+Locating the Handler
+____________________
+The task number of the ring handler is stored in a ring
+information vector which hangs from the root node 'info'
+vector, at the offset given by the manifest constant
+RTNINFO.RING.  The task number of the ring handler is found
+as follows:
+   rh.task := rootnode ! rtn.info ! rtninfo.ring !
+              ri.rhtaskid
+    If the value is zero, then the handler is not running.
+
+
+
+
+
+
+
+
+TRIPOS                      -5-                Ring Software
+
+
+Transmission and Reception
+__________________________
+    Calls to the ring handler requesting transmission or
+reception of basic blocks use the following packet format:
+  Field  RINGHDR Manifest
+                          +----------+
+  Link                    |   LINK   |
+                          |----------|
+  ID                      |    ID    |
+                          |----------|
+  Type                    |  ACTION  |
+                          |----------|
+  Res1                    |   RES1   |
+                          |----------|
+  Res2                    |   RES2   |
+                          |----------|
+  Arg1   rhpkt.buff       |  BUFFER -+-> User's buffer
+                          |----------|
+  Arg2   rhpkt.size       |   SIZE   | of buffer
+                          |----------|
+  Arg3   rhpkt.station    |  STATION |
+                          |----------|
+  Arg4   rhpkt.port       |   PORT   |
+                          |----------|
+  Arg5   rhpkt.lifetime   | LIFETIME | in ticks
+                          +----------+ (reception)
+                                       (  only   )
+
+
+
+
+
+
+
+
+TRIPOS                      -6-                Ring Software
+
+
+Transmission
+____________
+    To transmit data in basic block(s), a packet is sent to
+the handler giving the address of a buffer containing the
+data, the number of data words, and the station and route
+code to which it should be sent.  The data is transmitted
+in a single basic block, or a series of blocks if there is
+too much for one.
+    The packet is returned with a result indicating whether
+the transmission succeeded, and if not, how it failed.  The
+buffer is available for re-use when the packet returns.
+    The transmission is abandoned if the destination goes
+'unselected' during a basic block, ignores any packet, or
+is 'busy' for more than a timeout period.  If the station
+is 'unselected' at the start of the block, then the
+transmission request is put to the back of the queue, and
+retried several times.
+
+
+
+
+
+
+
+
+
+
+
+
+TRIPOS                      -7-                Ring Software
+
+
+Transmission Packet Format
+__________________________
+    The action requesting transmission is ACT.TX, which
+causes the supplied data to be sent to the given station on
+the given port in one or more basic blocks.
+  pkt.type:      ACT.TX
+  rhpkt.buff:    Buffer containing data
+  rhpkt.size:    Number of words of data (>= 1)
+  rhpkt.station: Destination station
+  rhpkt.port:    Destination port
+    On return there is a status code in pkt.res1.  Possible
+codes are as follows:-
+  txst.accepted:     Whole block accepted
+  txst.busy:         Timeout while busy
+  txst.unsel.in.blk: Went unselected during block
+  txst.unsel.hdr:    Unselected for 1st packet
+  txst.ignored:      Packet ignored
+  txst.ring.error:   Ring error
+  txst.bad.dest:     Invalid destination address
+
+
+
+
+
+
+
+
+
+
+TRIPOS                      -8-                Ring Software
+
+
+Reception
+_________
+    Two modes of reception are provided, to receive a single
+basic block, or to receive a specified quantity of data in
+one or more basic blocks.  The requests are given a lifetime
+by the user: if the data has not arrived within that time,
+then the request is cancelled, and the packet sent back.
+    The handler's normal state is waiting for a valid block
+header packet to arrive from any station.  When one appears,
+it receives the rest of the block, listening to only the
+source station of the header.  If the rest does not arrive
+within a timeout period, if the checksum is invalid, there
+is no request which it satisfies, or it is too big for a
+request which it otherwise satisfies, then the block is
+discarded.  Otherwise, a user request packet is returned
+with the data from the block in its buffer.
+    Outstanding requests may be cancelled, in which case the
+packets are 'dropped', so that the user task does not have
+to use repeated TASKWAITs to get them back.  The link and
+ID field of each packet is set so that QPKT will send it
+back to the ring handler.
+
+
+
+
+
+
+
+
+
+
+TRIPOS                      -9-                Ring Software
+
+
+Reception Packet Formats
+________________________
+ACT.RX.BB
+    Receive a single basic block from the specified ring
+station on the given port, and put the data in the supplied
+buffer.  The station may be 255, meaning 'anywhere'.  Blocks
+which are too big for the supplied buffer will be thrown
+away.
+  pkt.type:        ACT.RX.BB
+  rhpkt.buffer:    User's buffer for data
+  rhpkt.size:      Size of buffer in words
+  rhpkt.station:   Source ring station
+  rhpkt.port:      Port number
+  rhpkt.lifetime:  Lifetime of request (ticks)
+    On return, both result fields are set:
+  pkt.res1:        Number of data words received
+                   (Zero if timeout occurred)
+  pkt.res2:        Actual source station
+                   (Only useful if specified
+                   station was 255)
+
+ACT.RX.CHAIN:
+    As ACT.RX.BB, except that the data may arrive in more
+than one basic block.  The request is satisfied only when
+exactly the specified amount of data has arrived.
+
+ACT.CANCEL.RX:
+    Cancel all outstanding reception requests for the given
+port number and ring source.  The corresponding TRIPOS
+packets held by the handler are simply dequeued, but not
+returned.
+  pkt.type:      ACT.CANCEL.RX
+  rhpkt.station: Source ring station
+  rhpkt.port:    Port number
+    No results.
+
+
+TRIPOS                      -10-               Ring Software
+
+
+Port Allocation
+_______________
+    When requesting a response from a remote machine, there
+is a need to be able to quote an unused port number for it
+to use.  The ring handler provides a centralised mechanism
+for dynamic allocation and freeing of ports, and for
+reserving fixed ports.  Port numbers are allocated
+cyclically, to maximise the time before each is reused.
+Packet Formats
+______________
+
+ACT.FINDFREEPORT - Find an unused port number for reception,
+               and reserve it.
+    No arguments.
+    pkt.Res1:  Port number
+
+ACT.RESERVEPORT - Reserve the specified port number for
+               reception, and indicate whether it was
+               already reserved.
+    pkt.Arg1:  Port number
+    pkt.Res1:  TRUE if not previously reserved,
+               FALSE otherwise.
+
+ACT.RELEASEPORT - Release the given reception port number.
+               Any reception requests outstanding on this
+               port are cancelled.
+    pkt.Arg1:  Port number
+    No results
+
+
+
+
+TRIPOS                      -11-               Ring Software
+
+
+                   5   Ring Services Task
+                   ______________________
+    The ring services task is used to load and start
+programs which are activated by basic blocks containing SSP
+or BSP OPEN requests received from the ring.  It should be
+started by the command
+     LOADRINGSERV
+    The task issues a reception request to the ring handler
+to receive a basic block on a fixed port number from any
+station.  When a basic block arrives on this port, it is
+inspected to see if it looks like an SSP (Single Shot
+Protocol) or BSP OPEN request (by examining the first data
+word).  If it doesn't, then the block is ignored.
+Otherwise, the function code (third data word) is read, and
+the driving file scanned to find the corresponding filename.
+This file is loaded, a task made from it, and an initial
+packet sent to start it.  The initial packet contains the
+following arguments:-
+    pkt.Arg1: The data part of the received basic
+              block (which the activated task
+              should FREEVEC after use).
+    pkt.Arg2: The number of data words in the
+              received block.
+    pkt.Arg3: The station from which it came
+    pkt.Arg4: The port word of the block.
+    pkt.Arg5: The task number of the ring handler
+    This initial packet should be returned as soon as
+possible.  The new task should inspect the contents of the
+basic block, and proceed with whatever service it provides.
+    The driving file is "sys:info.ring-services".  Each line
+consists of a function code number followed by the
+corresponding filename, the nameserver name of the service,
+and flags indicating the type of service.
+
+
+
+TRIPOS                      -12-               Ring Software
+
+
+    If the basic block received is an SSP or OPEN block, but
+the corresponding task cannot be provided (e.g. because
+there is no entry for it in the driving file, or task
+creation fails), then an SSP reply (=OPENACK) block is with
+a standard ring return code is transmitted back.  If the
+task is successfully created, then it is its job to reply.
+    The task may be killed by using crtl/D break, but will
+go away automatically if the ring handler is killed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TRIPOS                      -13-               Ring Software
+
+
+           6   Byte Stream Protocol Handler Task
+           _____________________________________
+    The BSP Handler task implements the Byte Stream Protocol
+defined in the document by M.A.Johnson (June 1979).  It
+enables an input/output pair of byte streams to be opened
+via the ring, which provide an error-free channel with flow
+control.  The task will set up and manage an arbitrary
+number of byte stream pairs.
+
+Initiating a Byte Stream Connection
+___________________________________
+    In order to initiate a connection, you must know the
+name of a ring service to which you wish to connect.  In
+TRIPOS, a BSP open is performed using the normal BCPL
+routines FINDINPUT or FINDOUTPUT with the pseudo-device
+"BSP:".  The BSP handler task will be dynamically loaded if
+it was not already running.  The input or output stream (as
+appropriate to the call) is returned, and the other stream
+of the pair is placed in RESULT2:
+Thus, use either:
+      instr  := findinput("BSP:<service name>")
+      outstr := result2
+or:
+      outstr := findoutput("BSP:<service name>")
+      instr  := result2
+    If the stream cannot be opened, then the result is zero,
+and a fault code is in result2.
+    It is possible to include a string in the user parameter
+area of the BSP OPEN block sent, by including it after the
+service name, separated from it by a slash.  This facility
+is used by the read and write services, and by the printer
+service (where the string is the document title).  For
+example, this can be used in a command such as:
+  EX :C TO BSP:PRINT/Commands
+
+Providing a BSP service
+_______________________
+    In order to provide a BSP service, a program should be
+written which can be activated by the Ring Services Task.
+Normally, it will find itself running when a BSP OPEN
+request arrives via the ring.  It should check that the
+request is indeed an OPEN, respond with an OPENACK block,
+and set up the local end of the byte stream pair.
+    A routine for doing this is provided in the library
+TRIPOS                      -14-               Ring Software
+
+
+BSPLIB (see "Extra Stream Control Routines" below).  It is
+used as follows:
+    RES := BSP.OPENACK(OPEN.BLOCK, SIZE, SOURCE,
+                       @INSTR, @OUTSTR)
+    OPEN.BLOCK is the data part of the ring basic block
+which activated the service.  It is FREEVECed by the
+routine.
+    SIZE is the number of words in OPEN.BLOCK.
+    SOURCE is the station number of the sender of OPEN.BLOCK
+    INSTR and OUTSTR are the variables which are to hold the
+input and output stream pointers respectively.
+    If RES is TRUE, then OPEN.BLOCK was a BSP OPEN, the
+OPENACK block has been successfully transmitted, the BSP
+handler loaded if necessary, the local end of the stream
+created, and INSTR and OUTSTR updated.
+    If RES is FALSE, the connection could not be completed;
+RESULT2 contains the fault code.  If possible, an OPENACK
+block has been sent with a non-zero return code.  (The fault
+may be, for instance, that transmission of the OPENACK
+itself failed).
+
+Stream Interface
+________________
+    The input and output streams created by either of the
+means described above may then be used as arguments to
+SELECTINPUT/SELECTOUTPUT, and used as normal BCPL byte
+streams, via RDCH and WRCH.
+    If the BSP connection is closed down from the other end,
+then the local streams become as if connected to the pseudo-
+device "NIL:" - i.e. the output stream is an infinite sink,
+and the input stream is an infinite source of ENDSTREAMCH.
+
+
+
+
+TRIPOS                      -15-               Ring Software
+
+
+Closing the streams
+___________________
+    To close BSP streams, the routines ENDREAD and ENDWRITE
+are used as normal.  Only one of these should be called, as
+either will break the BSP connection, and so end the other
+stream of the pair.
+    ENDREAD causes a BSP CLOSE command to be transmitted,
+which will forcibly close down the streams.  ENDWRITE causes
+the last buffer to be sent (even if empty), with the 'close
+request' and 'force transmission' flags set.  This will
+result in the byte streams dying only when the other end has
+processed all the data sent.
+
+Unloading the Handler
+_____________________
+    The BSP handler may be killed by using the command
+BSINFO KILL.  This causes the handler to go away when it
+next has no streams open.
+
+
+
+
+
+
+
+
+
+
+
+TRIPOS                      -16-               Ring Software
+
+
+Extra stream control routines
+_____________________________
+    When using byte streams to a remote machine, some extra
+actions are required which are not normally necessary for
+a stream to a local file or device.  A library is provided
+containing routines to perform these operations.  It is most
+easily used as a BCPL header file, by including the
+following directives at the head of a program:
+    GET "libhdr"
+    GET "ringhdr"
+    GET "iohdr"
+    GET "sys:ring.bcpl.bsplib"
+    Routines defined in BSPLIB are as follows:
+BSP.FORCEOUT()
+    This forces the current buffer to be transmitted with
+the 'force transmission' flag set.
+BSP.TEST.INPUT()
+    This returns TRUE if a call of RDCH would return
+immediately (with a character or ENDSTREAMCH), or FALSE if
+it would have to wait for input to arrive.  This enables a
+sequential task to respond to asynchronous input while
+writing to the output stream.
+BSP.TEST.RESET(SCB)
+    This returns TRUE if there has been a reset on the byte
+stream pair of which SCB is one half, and FALSE otherwise.
+If there has been a reset, then the buffers used by RDCH and
+WRCH are cleared so that all data in transit before the
+reset was noticed is lost.  Note that a byte stream reset
+can cause a dummy character to appear on the input stream,
+to force a return from RDCH.  If this function is used to
+test the input stream, it should be called just after RDCH,
+and if there has been a reset, that result from RDCH should
+be ignored.
+
+BSP.RESET(SCB)
+    This resets the byte stream pair of which SCB is one
+half.
+
+TRIPOS                      -17-               Ring Software
+
+
+Tracing
+_______
+    The current BSP handler has a tracing facility, which
+displays the commands in every basic block sent or received.
+The trace option is initially disabled, and is enabled or
+disabled by successive calls of the command BSINFO TRACE.
+
+Inspecting the state of streams
+_______________________________
+    The command BSINFO may be used to inspect the state of
+byte streams.  It prints the task number of the BSP handler,
+and information on the states and sequence numbers of each
+open stream pair.
+
+
+
+
+
+
+
+
+
+
+
+
+
+TRIPOS                      -18-               Ring Software
+
+
+                  7   Single Shot Protocol
+                  ________________________
+    Many ring services are called using the Single Shot
+Protocol (Systems Research Group Project Note by N.J.Ody
+19.4.79).  In this protocol, one basic block is sent to
+request a service, and one is received in reply.  The first
+three data words of the blocks are treated specially.
+SSP request
+___________
+  word  +-----------+
+     0  |  #X6C00   | fixed value (CODE.SSPREQ)
+        |-----------|
+     1  |REPLY PORT | reply expected on this port
+        |-----------|
+     2  | FUNC CODE | part of service's ring address
+        |-----------|
+     3+ |           |
+        |  service  |
+        | dependent |
+        | arguments |
+        |           |
+        +-----------+
+
+SSP reply
+_________
+  word  +-----------+
+     0  |  #X6500   | fixed value (CODE.SSPREPLY)
+        |-----------|
+     1  | PORT or 0 | port for rest of conversation
+        |-----------|                     (if any)
+     2  |RETURN CODE| zero iff successful
+        |-----------|
+     3+ |           |
+        |   reply   |
+        |   data    |
+        |           |
+        +-----------+
+    A function for performing SSP calls is provided in the
+BCPL source library SSPLIB, which is designed to be used as
+a header file.  For example:
+    GET "libhdr"
+    GET "ringhdr"
+    GET "sys:ring.bcpl.ssplib"
+
+
+TRIPOS                      -19-               Ring Software
+
+
+    An SSP call to a service whose name is in the nameserver
+can be done as follows:
+    RES := SSP(SERVICE.NAME, TXBUFF, TXWORDS,
+               RXBUFF, RXWORDS, NSVEC, FUNC)
+    The result is TRUE if the call succeeds; otherwise it
+is FALSE and RESULT2 contains an error code.
+    SERVICE.NAME is a string giving the text name of the
+required service.
+    TXBUFF is a buffer which will form the data part of the
+transmitted basic block, and is TXWORDS long.  The arguments
+for the service call should start at offset BB.SSP.ARGS (=
+3), leaving room for the three SSP words to be filled in at
+the beginning.
+    RXBUFF is a buffer for the data part of the reply basic
+block, and is RXWORDS long.  After the call, it will contain
+the whole reply, including the three SSP words at the
+beginning.
+    NSVEC is a vector with upperbound of at least 3.  The
+results of the nameserver lookup are returned in it, in the
+usual format (see section 8 below).
+    FUNC is used only if the nameserver lookup yields a ring
+address with the 'no function code' flag set, and is written
+to the function field of the SSP request block.  Otherwise
+it is ignored.
+    The same function can be used to call a service whose
+ring address is already known, avoiding the nameserver
+lookup.  ?In particular, the name lookup service is called
+in this way?.  The form is as follows:
+    RES := SSP(0, TXBUFF, TXWORDS, RXBUFF, RXWORDS,
+               ?, FUNC, STATION, PORT)
+    STATION, PORT and FUNC are the station number, port
+number and function code for the service.
+
+
+
+
+TRIPOS                      -20-               Ring Software
+
+
+             8   Use of the Name Lookup Server
+             _________________________________
+Looking up service names
+________________________
+    One machine on the ring implements a name lookup
+service, converting the text name of a service or machine
+into a ring station address, port number, function code, and
+some flags indicating the protocol to be used.  (Systems
+Research Group Project Note N.J.Ody 20.4.1979).
+    To look up a name in the name server, include the
+library SSPLIB in your program, and then use:-
+    RES := LOOKUP.NAME(NAME.STRING, NSVEC)
+    RES = TRUE indicates that the lookup was successful, and
+that NSVEC (which should have upperbound >= 3) contains the
+following information:-
+    NSVEC ! NSV.MACHINE.ID: ring station address
+    NSVEC ! NSV.FLAGS:      flags
+    NSVEC ! NSV.PORT:       port number
+    NSVEC ! NSV.FUNC:       function code
+    RINGHDR contains manifests for the protocol codes and
+flag bits which can be found in the flag word:
+    NSV.FLAGS.PMASK    mask for protocol code
+    NSV.FLAGS.BSP      BSP open service
+    NSV.FLAGS.SSP      SSP service
+    NSV.FLAGS.NOFUNC   No function code given
+    NSV.FLAGS.SLOW     Service may be slow to reply
+                       (i.e. > about 5 seconds)
+
+Reverse Lookup
+______________
+    A facility is provided for writing the text name of a
+machine given its ring address, by using the reverse lookup
+facility of the name server.  This is useful when the remote
+machine has called the local one and an operator message is
+wanted.  Include SSPLIB and use:
+    WRITE.MACHINE.NAME(STATION.NUMBER)
+    The name is written to the current output stream with
+no delimiting spaces.  If the machine name is not known, or
+lookup fails, then "Station <number>" is written.  Station
+number 255 is called "anywhere".
+
+TRIPOS                      -21-               Ring Software
+
+
+Adding names
+____________
+    Names may be added to the nameserver by using:
+  res := callseg("sys:l.nameserver-addname",
+                 name, flags, port, function)
+    Res = TRUE indicates that the name was successfully
+added.  If res = FALSE then result2 will contain a fault
+code indicating why the addition failed (e.g. name already
+exists, illegal character).
+    The name will be set up referring to the machine which
+installed it.
+
+Deleting Names
+______________
+    To delete a name from the nameserver, use:
+  res := callseg("sys:l.nameserver-delname", name)
+    Res is TRUE if deletion worked.  Note that deletion of
+machine names, and names of services on other machines is
+not allowed.
+
+
+
+
+
+
+
+
+
+TRIPOS                      -22-               Ring Software
+
+
+Nameserver Commands
+___________________
+ADDNAME       "NAME/A,FLAGS/A,PORT/A,FUNC"
+    Adds the given name to the nameserver, with the supplied
+flags, port, and function code.  If the function code is
+omitted, then the 'no function code' flag is set.
+    Possible values for the FLAGS argument are:
+    ssp
+    slow-ssp
+    bsp
+    slow-bsp
+
+DELNAME       "NAME/A"
+    Deletes the given name from the nameserver.
+
+SETNAMES      "FROM"
+    This takes a file in the format accepted by RINGSERV,
+and puts the names of all the services in the nameserver,
+deleting the old version of each name first.  The default
+FROM is "sys:info.ring-services".
+
+LISTNAMES     "TO"
+    This lists the entire nameserver table.
+LOOKUP        "NAME/A"
+    Prints the ring address of NAME.
+
+
+
+
+
+TRIPOS                      -23-               Ring Software
+
+
+                     9   File Transfer
+                     _________________
+    Files can be transferred to other machines on the ring
+using a protocol superimposed on a byte stream connection.
+Files may be treated as characters or as a sequence of
+uninterpreted bytes.  Characters files are sent as a
+sequence of records in a machine-independent format,
+allowing transfer between machines that store text files in
+different ways or different codes.
+The command to transmit a file is:
+    GIVEFILE  "FROM/A,TO=MACHINE/A,AS/A,BINARY/S"
+    FROM is the local name of the file.  TO is the name of
+the destination machine.  AS is the filename to be used on
+the remote machine.  BINARY is a switch indicating that the
+file should be sent as a sequence of bytes, rather than
+being treated as a text file.
+    The command to fetch a file is:
+    TAKEFILE  "FILE/A,FROM=MACHINE/A,AS/A,SERVICE/K"
+    FILE is the name of the file on the FROM machine.  AS
+is the local filename to be used.  The service to which the
+byte streams are connected is that with name
+"<SERVICE>-<MACHINE>".  The default value of SERVICE is
+"GIVEFILE".
+    Where the remote machine is one with typed files, the
+format in which the file is sent depends on whether or not
+it is considered to be a text file.  Machines with untyped
+files may provide binary transfer as a different service
+name - hence the provision of a SERVICE keyword.
+
+Streams to remote files
+_______________________
+    TRIPOS provides ring services which allow remote files
+to be read and written in a similar way to local files,
+using the "BSP:" pseudo-device.  The data is transmitted as
+a series of uninterpreted bytes, so this system can only be
+used between machines with the same character code and the
+same view of streams.
+
+
+TRIPOS                      -24-               Ring Software
+
+
+    The filename is sent in the BSP OPEN block, and so is
+included after a slash in the "BSP:" name.  E.g.:-
+    TYPE BSP:READ-LSI4/:G.RINGHDR
+    EX :C TO BSP:WRITE-NOVA/T:COMMANDS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TRIPOS                      -25-               Ring Software
+
+
+                  10  Some Useful Commands
+                  ________________________
+RPROD     "MC/A,PORT,CLOSE,BOOT"
+    Sends a basic block containing one data packet to the
+specified machine, and reports on whether it was accepted.
+By default, the value of the data is #X1234 (to stop the
+checksum looking like a header).  CLOSE causes it to be set
+to a BSP CLOSE command, so it can be used to encourage
+errant byte streams to go away.  BOOT sets the data to the
+value which will cause a crashed PDP11 TRIPOS system to
+reboot.
+
+RSTATUS
+    Sends a basic block (on port 1) to each ring address in
+turn, and reports on all those for which the block is not
+'ignored'.  This is an easy way of discovering which
+machines are 'alive'.
+
+RHINFO    "KILL/S"
+    Prints information about outstanding reception requests,
+reserved ports, and bad or unwanted blocks received.  KILL
+causes the ring handler task to finish.
+
+
+
+
+
+
+
+
+TRIPOS                      -26-               Ring Software
+
+
+
+                              SYSLINK
+                              _______
+                     The TRIPOS system linker
+                     ________________________
+         The TRIPOS system linker program is used to build
+      an absolute object file representing the contents of
+      the store of a TRIPOS system, which can then be loaded
+      and started by the bootstrap loader.  It is invoked as
+      the command
+           SYSLINK   "FROM/A,TO/A,MAP/K,OPT/K"
+      The FROM argument should be the name of a file of
+      commands for the linker describing the system to be
+      built, and the TO argument should be the name of the
+      required object file.  The MAP keyword may be used to
+      obtain a map of the system, in which case it should be
+      followed by a suitable filename for the mapping output.
+      The OPT keyword may be used to supply options; the
+      letter 'W' followed by an integer specifies the
+      workspace size, and 'F' specifies full map output,
+      rather than the abbreviated form given by default.
+         The basic action of the linker is to mimic the
+      operation of LOADSEG in allocating store, loading code,
+      and performing relocation, to load all the required
+      segments, then to build and link together the segment
+      lists, TCBs and task table.  A similar action is then
+      performed for the device table, DCBs, and device
+      drivers.  Store is allocated in blocks starting from
+      the top of available memory, each block being
+      constructed to look exactly like one obtained by a call
+      of GETVEC.  The block list is then completed by a
+      single free block extending from the bottom of memory
+      containing the remaining free store, and the rootnode
+      then written out.  Any segments used for system
+      initialisation and then thrown away may be placed at
+      the bottom of the allocated area, so that when they are
+      freed the user will have a single contiguous lump of
+      free store.  Absolute store - the rootnode and any
+      machine dependent data areas, such as page zero, is
+      overlaid; any non zero words will overwrite previously
+      loaded words, but zeros will not overwrite, so that
+      overlapping absolute hunks may be assembled correctly.
+         The linker operates in three phases: firstly it
+      reads the command file, checking for syntax errors and
+      building a tree structure representing the
+                                 1
+
+
+      declarations; secondly it scans the tree checking the
+      validity and consistency of the declarations; thirdly
+      it reads the required code segment files etc. and
+      writes out the object file.
+         The syntax for the command file is as follows:
+      <commandfile>
+          ::= <declaration>; ?<declaration>;?*
+      <declaration>
+          ::= <star><declaration>
+          ::= <segment-declaration>
+          ::= TASKTAB <number>
+          ::= <task-declaration>
+          ::= <driver-declaration>
+          ::= <DCB-declaation>
+          ::= DEVTAB <number>
+          ::= <device-declaration>
+          ::= ABSMIN <number>
+          ::= ABSMAX <number>
+          ::= TCBSIZE <number>
+          ::= STOREMIN <number>
+          ::= STOREMAX <number>
+          ::= MCADDRINC <number>
+      <segment-declaration>
+          ::= SEGMENT <name> <name-list>
+      <task-declaration>
+          ::= TASK <number>
+                  ?PRIORITY <number> | STACK <number>?*
+                  SEGMENTS <name-list>
+      <driver-declaration>
+          ::= DRIVER <name> <name-list>
+      <DCB-declaration>
+          ::= DCB <name> <name-list>
+      <device-declaration>
+          ::= DEVICE <number>
+                  ?DCB <name>?*
+                  DRIVER <name>
+      <name-list>
+          ::= ?<name>?, <name>?*?
+      Layout characters - space, tab, and newline are
+      ignored, except that they terminate names and numbers.
+      <star> is the character '*'.  <number> is a string of
+                                 2
+
+
+      one or more digits, which may be preceeded by '#' or
+      '#X' to denote an octal or hexadecimal number.  <name>
+      is a string of one or more characters, except layout
+      characters, ';', ',', and not starting with a digit.
+      SEG is allowed as an abbreviation for SEGMENT, SEGS for
+      SEGMENTS, PRI for PRIORITY, and DEV for DEVICE.
+         A segment declaration declares a segment name and
+      causes the following name list to be interpreted as a
+      list of names of files, the contents of which are
+      loaded and linked together to form the segment, which
+      will be included in the segment list of all tasks the
+      declarations of which reference the segment name.  A
+      '*' preceeding the declaration indicates that the
+      segment is an initialisation segment.  A TASKTAB
+      declaration sets the size of the task table; otherwise
+      a default of 10 is assumed.  A TASK declaration causes
+      a TCB and segment list to be built and inserted into
+      the task table and linked into the appropiate position
+      on the priority chain; tasks of equal priority are
+      linked in the order in which they are declared.  The
+      number following TASK is the taskid; PRIORITY and STACK
+      set the priority and stack size, with defaults of 1000
+      and 100.  The list following SEGMENTS is a list of the
+      names of the segments to be included in its segment
+      list - these must be declared in segment declarations.
+      Note that null entries may be obtained by declarng a
+      null segment.  A '*' before a task declaration
+      indicates the initial task, which will be sent a dummy
+      packet by the kernel initialisation code to start the
+      system.  A driver declaration declares a device driver
+      name and causes the appropiate files to be loaded.  A
+      DCB declaration declares a DCB name and associates it
+      with the following name list, but a new copy of the DCB
+      will be loaded for each device declaration that
+      references it, since DCBs cannot be shared between
+      devices, unlike device drivers.  A DEVTAB declaration
+      sets the size of the device table, default 10.  A
+      device declaration causes the DCB to be loaded, entered
+      in the device table, and linked to its driver; the
+      number following DEVICE is the devid (without the -
+      sign).  The DCB should consist of exactly one object
+      hunk, and the driver of at least one hunk, so that
+      device initialisation can be performed when the kernel
+      is started.  The declarations ABSMIN and ABSMAX define
+      the limits of absolute store, which is to be overlaid;
+      these default to ROOTNODE and ROOTNODE+RTN.UPB as
+      declared in LIBHDR.  STOREMIN and STOREMAX define the
+      limits of available memory, TCBSIZE the upper bound of
+      a TCB, and MCADDRINC the factor by which BCPL addresses
+      must be multiplied to obtain machine addresses; the
+                                 3
+
+
+      defaults for these are the values declared in LIBHDR.
+         A straightforward example of linking for the
+      standard system follows
+      SET TRIPOS
+      SYSLINK SYS-DECLS TO SYS-ABS MAP SYS-MAP
+      where the file TRIPOS.SYS-DECLS contains
+       SEG    LIB1    KLIB,MLIB;
+       SEG    LIB2    BLIB;
+       SEG    CLI     CLI;
+       SEG    DEBUG   DEBUG;
+       SEG    COHAND  COHAND;
+       SEG    FIHAND  FIHAND;
+      *SEG    CLINIT  CLI-INIT;
+      *SEG    FHINIT  FIHAND-INIT;
+      TASKTAB 20;
+      *TASK 1 PRI 1000 STACK 160 SEGS LIB1,LIB2,CLI,CLINIT;
+       TASK 2 PRI 2000 STACK 130 SEGS LIB1,LIB2,DEBUG;
+       TASK 3 PRI 3000 STACK 200 SEGS LIB1,LIB2,COHAND;
+       TASK 4 PRI 4000 STACK 120 SEGS LIB1,LIB2,FIHAND,FHINIT;
+       DRIVER RDRIV  RDRIV;
+       DRIVER PDRIV  PDRIV;
+       DRIVER DKDRIV DKDRIV;
+       DCB DISK     DKDCB;
+       DCB KEYBOARD CKDCB;
+       DCB PRINTER  CPDCB;
+      DEVTAB 20;
+       DEV 2 DCB DISK     DRIVER DKDRIV;
+       DEV 3 DCB KEYBOARD DRIVER RDRIV;
+       DEV 4 DCB PRINTER  DRIVER PDRIV;
+      In this example the entire system is loaded by the
+      system linker;  it is quite possible to link a version
+      of the system containing only the filing system task
+      and disc device which loads the rest of the system
+      dynamically - this is more flexible when updating
+      components of the system or reconfiguring it, but has
+      the disadvantage of requiring more time to bootstrap
+      and of making the storage allocation less neat,
+      possibly causing fragmentation problems.
+                                 4
+

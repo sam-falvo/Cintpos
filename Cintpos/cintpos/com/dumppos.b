@@ -217,8 +217,9 @@ AND dumprootnode() BE
   writef("  klib       %10i*n", mem(rtn_klib+rootnode))
   writef("  abortcode  %10i*n", mem(rtn_abortcode+rootnode))
   writef("  context    %10i*n", mem(rtn_context+rootnode))
-  writef("  lastp      %10i*n", mem(rtn_lastp+rootnode))
-  writef("  lastg      %10i*n", mem(rtn_lastg+rootnode))
+  writef("  sysp       %10i*n", mem(rtn_sysp+rootnode))
+  writef("  sysg       %10i*n", mem(rtn_sysg+rootnode))
+  writef("  sysst      %10i*n", mem(rtn_sysst+rootnode))
   writef("  days       %10i*n", mem(rtn_days+rootnode))
   writef("  msecs      %10i*n", mem(rtn_msecs+rootnode))
   writef("  idletcb    %10i*n", mem(rtn_idletcb+rootnode))
@@ -548,7 +549,7 @@ AND wrcortns(tcb) BE
   { TEST cptr=cont(gptr+g_currco)
     THEN TEST 1<=mem(rootnode+rtn_context)<=2 & // SIGINT or SIGSEGV
               mem(rootnode+rtn_crntask)=tcb
-         THEN pptr := mem(rootnode+rtn_lastp)
+         THEN pptr := mem(rootnode+rtn_sysp)
          ELSE pptr := mem(regs+r_p)>>2
     ELSE pptr := cont(cptr+co_pptr)>>2
 

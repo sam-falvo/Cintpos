@@ -1,0 +1,30 @@
+*command
+**
+UPDATE COMMAND
+
+Form:           update FROM/A,TO/A,SAFE/S,QUIET/S
+Purpose:        To update all the files that have been changed since the
+                last time the program was run
+Author:         RSC
+Specification:
+
+        update takes the two directories and compares the last access times
+of all files of a similar name, then if the file in the FROM  directory has
+a more recent date than the file in the TO directory the file is copied over.
+        The program will recurse down the tree structure creating any
+directories required. If the SAFE flag is given then it will just print out what
+it would have done without doing any copying or creating. The QUIET flag turns
+off all messages.
+
+Examples:
+
+        update home:src bd:back
+        update island.vp island:voiceprovider safe
+
+Bugs:
+        The filing machine seems to have hicups every so often and sends the
+names of the files in a directory twice.
+
+        The program does not check for looped directories...
+
+

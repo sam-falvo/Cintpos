@@ -204,13 +204,13 @@ AND tester(FLT fx, FLT fy, FLT fz, v1, v2) BE
   ft(123.0+321.0-400.0, 44.0)  // 4
 
   testno := 5
-sawritef("testno=%n*n", testno)
-sawritef("i0=%n i1=%n i2=%n*n", i0, i1, i2)
-sawritef("f0=%14e f1=%13e f2=%13e fx=%13.2f fy=%13.2f*n", f0, f1, f2, fx, fy)
-abort(1000)
+//sawritef("testno=%n*n", testno)
+//sawritef("i0=%n i1=%n i2=%n*n", i0, i1, i2)
+//sawritef("f0=%14e f1=%13e f2=%13e fx=%13.2f fy=%13.2f*n", f0, f1, f2, fx, fy)
+//abort(1000)
   t(fx = 0.0, TRUE)       // 5
-sawritef("testno=%n Calling ft(%13e = %13e, %n)   fy=0.0=%n*n", testno, fy, 0.0, FALSE, fy=0.0)
-abort(1003)
+//sawritef("testno=%n Calling ft(%13e = %13e, %n)   fy=0.0=%n*n", testno, fy, 0.0, FALSE, fy=0.0)
+//abort(1003)
   ft(fy = 0.0, FALSE)
 //sawritef("testno=%n Calling ft(%13e, %13e)*n", testno, !(@y+i0), 1.0)
   ft(!(@fy+i0), 1.0)

@@ -1,0 +1,81 @@
+*ibm #H 370
+*ibm370 #H 370
+*ibm370/165 #H 370
+*icint #H intcode
+*ic #H intcode
+*idmap #H map
+*idvec
+Form:           IDVEC  "ADDRESS/A"
+Purpose:        To try to identify the vector at the given address.
+Author:         BJK
+Specification:
+
+   The given address is rounded up to make it odd if necessary, as
+all vectors delivered by GETVEC have odd addresses.
+
+   The program may be invoked from another program by using CALLSEG.
+ e.g.  callseg("sys:c.idvec", unidentified.vector)
+
+Example:        IDVEC 10445
+*iebupdte
+IEBUPDTE is the wonderfully meaningful name that IBM give to their format
+for concatenated text files.  Tripos commands CS PACK and CS UNPACK use
+this format, which is compatible with the Phoenix program FILEPDS.
+*image
+The TAB and PRINT commands will both perform line imaging.  See HELP TAB and
+HELP PRINT for further information.
+*income #H accounting
+*info #H #HCH %
+%vector
+The info vector is a vector hanging from the rootnode (q.v.) containing
+system-specific information.  The offset of the pointer in the rootnode,
+and the standardly defined fields are defined in :g.libhdr.  Several of
+the entries are themselves vectors.
+%*
+Try HELP DOCUMENTATION for where to get general system information.
+There is also a filespace SYS:INFO which contains system information files,
+a system data structure called the INFO VECTOR - see HELP on this, and
+a pseudo-device INFO:.
+%
+*inhibit #H accounting
+*inhibition #H accounting
+*inhibited #H accounting
+*initialise-floppy
+Form:           C INITIALISE-FLOPPY  "NAME/A,DRIVE/A/K"
+Purpose:        To initialise a floppy disc to contain an empty
+                filing system.
+Author:         PB
+Source:         :s.initialise-floppy
+Specification:
+   Mount floppy in drive <x>, then type:
+ C INITIALISE-FLOPPY NAME Paul-A DRIVE <x>
+Example:        C INITIALISE-FLOPPY NAME Paul-B DRIVE 0
+*initio
+INITIO
+      To initialise input-output globals.
+      initio ()
+      The current input and output stream globals are set to
+zero.  The  current directory global is set to zero, and the
+consoletask global is set to  the  default  console  handler
+task ( manifest task.consolehandler ).
+*interpret #H language
+*interpreter #H language
+*interpreting #H language
+*interrupt
+*interrupted
+A Tripos task is in INTERRUPTED state when a packet is sent to a higher
+priority task, causing it to become active.  The interrupted task is
+resumed as soon as the higher priority task suspends itself.
+*infoterm
+The ring INFOTERM service can be used to find out the ring name of the terminal
+from which it is invoked.  Use:
+
+C INFOTERM
+
+after a terminal concentrator "Monitor >" prompt.
+*initialisation #H init-sequence
+*iohdr
+IOHDR is the name of the header contain all information dealing with
+Input/Output.  The source is in "sys:g.iohdr".
+
+

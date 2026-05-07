@@ -1,0 +1,14 @@
+*procedure
+**
+SELECTOUTPUT
+      A stream is selected for output.
+      res := selectoutput ( stream )
+      The specified stream, which should be the result of  a
+call  of  findoutput ( q.v. ), is selected and made the cur-
+rent output stream. A true result is returned.
+      If the stream is not valid then the routine will abort
+with code 187. If this abort is continued  then  the  stream
+will  be  selected anyway; however this is likely to lead to
+fatal consequences later.
+
+

@@ -1,0 +1,13 @@
+*tail
+COMMAND TAIL
+
+Form:           tail file/A,length/K,to
+Purpose:        Print out the last few characters of a file
+Author:         RSC
+Specification:
+
+        Tail prints out the last few characters of a file, the default is 200
+but may be changed with the LENGTH argument. If the TO option is specified
+then to output will be placed in the file given.
+
+

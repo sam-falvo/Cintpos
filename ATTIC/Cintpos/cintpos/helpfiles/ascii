@@ -1,0 +1,739 @@
+*characters ..
+*+ ..
+*all ..
+TYPED CHARACTERS
+
+There are a number of entries in HELP dealing with different aspects of the
+entry of characters to the TERMINAL etc.  Briefly these are as follows:
+
+    HELP TERMINAL ESCAPE    about the terminal concentrator's use of the
+                            @ character
+    HELP CONTROL CHARS      about the meaning of various control characters
+                            to TRIPOS
+    HELP VTP BREAK          about the replies to the "***-" prompt that
+                            arrises when a VTP break is sent to TRIPOS
+    HELP UDN                about how to force useful characters through
+                            to TRIPOS if you are on UDN
+    HELP BREAK HANDLING     about the different ways of interrupting a
+                            TRIPOS program
+
+ASCII CHARACTER CODE
+
+ASCII (American Standard Code for Information Interchange) is the name of
+the character code used on most operating sytems.  Its biggest rival is the
+EBCDIC code used by IBM.  TRIPOS normally uses ASCII.  It has many varients,
+but in general it conforms to the following (the top bit is normally
+reserved for parity).
+
+*all #N ..
+*+
+Use HELP ASCII ALL for a complete list of all the ASCII characters or
+    HELP ASCII DIGITS or
+    HELP ASCII BRACKETS or
+    HELP ASCII CAPITALS or
+    HELP ASCII CONTROLS or
+    HELP ASCII <character> or
+    HELP ASCII <name of character> or
+    HELP ASCII <two hex digits> to get information on particular characters.
+** #H #FULL #TCH "*E"
+
+** ..
+ASCII CHARACTERS:
+
+  Char   Hex     Comments
+  ------------------------------------
+*NUL
+*00
+*Null
+*control ..
+*all ..
+  NUL    00      Null
+*SOH
+*01
+*Heading
+*control ..
+*all ..
+  SOH    01      Start of Heading
+*STX
+*02
+*Text
+*control ..
+*all ..
+  STX    02      Start of Text
+*ETX
+*03
+*control ..
+*all ..
+  ETX    03      End of Text
+*EOT
+*04
+*control ..
+*all ..
+  EOT    04      End of Transmission
+*ENQ
+*05
+*control ..
+*Enquire
+*all ..
+  ENQ    05      Enquire
+*ACK
+*06
+*Acknowledge
+*control ..
+*all ..
+  ACK    06      Acknowledge
+*BEL
+*07
+*Bell
+*control ..
+*all ..
+  BEL    07      Bell
+*BS
+*08
+*Backspace
+*control ..
+*all ..
+  BS     08      Backspace
+*HT
+*09
+*Tab ..
+*control ..
+*all ..
+  HT     09      Horizontal Tab
+*LF
+*0A
+*Linefeed
+*control ..
+*all ..
+  LF     0A      Line Feed
+*VT
+*0B
+*Tab
+*control ..
+*all ..
+  VT     0B      Vertical Tab
+*FF
+*0C
+*Formfeed
+*control ..
+*all ..
+  FF     0C      Form Feed
+*CR
+*0D
+*Carriage
+*Return
+*CR
+*control ..
+*all ..
+  CR     0D      Carriage Return
+*SO
+*0E
+*control ..
+*all ..
+  SO     0E      Shift Out
+*SI
+*0F
+*control ..
+*all ..
+  SI     0F      Shift In
+*DLE
+*10
+*control ..
+*all ..
+  DLE    10      Data Link Escape
+*DC1
+*11
+*control ..
+*all ..
+  DC1    11      Device Control 1
+*DC2
+*12
+*control ..
+*all ..
+  DC2    12      Device Control 2
+*DC3
+*13
+*control ..
+*all ..
+  DC3    13      Device Control 3
+*DC4
+*14
+*control ..
+*all ..
+  DC4    14      Device Control 4
+*NAK
+*15
+*control ..
+*all ..
+  NAK    15      Negative Acknowledge
+*SYN
+*16
+*Idle
+*control ..
+*all ..
+  SYN    16      Synchronous Idle
+*ETB
+*17
+*control ..
+*all ..
+  ETB    17      End Transmission Blk
+*CAN
+*18
+*Cancel
+*control ..
+*all ..
+  CAN    18      Cancel
+*EM
+*19
+*control ..
+*all ..
+  EM     19      End of Medium
+*SUB
+*1A
+*Substitute
+*control ..
+*all ..
+  SUB    1A      Substitute
+*ESC
+*1B
+*Escape
+*control ..
+*all ..
+  ESC    1B      Escape
+*FS
+*1C
+*File
+*control ..
+*all ..
+  FS     1C      File Separator
+*GS
+*1D
+*Group
+*control ..
+*all ..
+  GS     1D      Group Separator
+*RS
+*1E
+*Record
+*control ..
+*all ..
+  RS     1E      Record Separator
+*US
+*1F
+*Unit
+*control
+*all ..
+  US     1F      Unit Separator
+*" "
+*20
+*Space
+*all ..
+         20      Space
+*!
+*21
+*Exclamation
+*pling
+*all ..
+  !      21      Exclamation Mark
+*"*""
+*22
+*Quotation
+*quote
+*all ..
+  "      22      Quotation Marks
+*#
+*23
+*Hash
+*number
+*all ..
+  #      23      Hash
+*$
+*24
+*Dollar
+*all ..
+  $      24      Dollar
+*%
+*25
+*Percent
+*all ..
+  %      25      Percent
+*&
+*26
+*Ampersand
+*and
+*all ..
+  &      26      Ampersand
+*'
+*27
+*Apostrophe
+*quote
+*all ..
+  '      27      Apostrophe
+*(
+*28
+*Parenthesis ..
+*bracket ..
+*all ..
+  (      28      Left Parenthesis
+*)
+*29
+*Parenthesis
+*bracket ..
+*all ..
+  )      29      Right Parenthesis
+*"* "
+*2A
+*Asterisk
+*star
+*all ..
+  *      2A      Asterisk
+*"+ "
+*2B
+*Plus
+*all ..
+  +      2B      Plus sign
+*,
+*2C
+*Comma
+*all ..
+  ,      2C      Comma
+*-
+*2D
+*Minus
+*all ..
+  -      2D      Minus sign
+*.
+*2E
+*Period
+*stop
+*all ..
+  .      2E      Period
+*/
+*2F
+*Slash
+*all ..
+  /      2F      Slash
+*0
+*30
+*zero
+*nothing
+*nought
+*all ..
+*digits ..
+  0      30      Digit zero
+*1
+*31
+*one
+*all ..
+*digits ..
+  1      31      Digit one
+*2
+*32
+*two
+*all ..
+*digits ..
+  2      32      Digit two
+*3
+*33
+*three
+*digits ..
+*all ..
+  3      33      Digit three
+*4
+*34
+*four
+*all ..
+*digits ..
+  4      34      Digit four
+*5
+*35
+*five
+*all ..
+*digits ..
+  5      35      Digit five
+*6
+*36
+*six
+*all ..
+*digits ..
+  6      36      Digit six
+*7
+*37
+*seven
+*all ..
+*digits ..
+  7      37      Digit seven
+*8
+*38
+*eight
+*all ..
+*digits ..
+  8      38      Digit eight
+*9
+*39
+*nine
+*all ..
+*digits
+  9      39      Digit nine
+*:
+*3A
+*Colon
+*all ..
+  :      3A      Colon
+*";"
+*3B
+*Semicolon
+*all ..
+  ;      3B      Semicolon
+*<
+*3C
+*Less
+*all ..
+  <      3C      Less than
+*"="
+*3D
+*Equal
+*all ..
+  =      3D      Equals
+*>
+*3E
+*Greater
+*all ..
+  >      3E      Greater than
+*"?"
+*3F
+*Question
+*query
+*all ..
+  ?      3F      Question Mark
+*@
+*40
+*Commercial
+*at
+*all ..
+  @      40      Commercial at
+*A
+*41
+*capitals ..
+*all ..
+  A      41      Capital A
+*B
+*42
+*capitals ..
+*all ..
+  B      42      Capital B
+*C
+*43
+*capitals ..
+*all ..
+  C      43      Capital C
+*D
+*44
+*capitals ..
+*all ..
+  D      44      Capital D
+*E
+*45
+*capitals ..
+*all ..
+  E      45      Capital E
+*F
+*46
+*capitals ..
+*all ..
+  F      46      Capital F
+*G
+*47
+*capitals ..
+*all ..
+  G      47      Capital G
+*H
+*48
+*capitals ..
+*all ..
+  H      48      Capital H
+*I
+*49
+*capitals ..
+*all ..
+  I      49      Capital I
+*J
+*4A
+*capitals ..
+*all ..
+  J      4A      Capital J
+*K
+*4B
+*capitals ..
+*all ..
+  K      4B      Capital K
+*L
+*4C
+*capitals ..
+*all ..
+  L      4C      Capital L
+*M
+*4D
+*capitals ..
+*all ..
+  M      4D      Capital M
+*N
+*4E
+*capitals ..
+*all ..
+  N      4E      Capital N
+*O
+*4F
+*capitals ..
+*all ..
+  O      4F      Capital O
+*P
+*50
+*capitals ..
+*all ..
+  P      50      Capital P
+*Q
+*51
+*capitals ..
+*all ..
+  Q      51      Capital Q
+*R
+*52
+*capitals ..
+*all ..
+  R      52      Capital R
+*S
+*53
+*capitals ..
+*all ..
+  S      53      Capital S
+*T
+*54
+*capitals ..
+*all ..
+  T      54      Capital T
+*U
+*55
+*capitals ..
+*all ..
+  U      55      Capital U
+*V
+*56
+*capitals ..
+*all ..
+  V      56      Capital V
+*W
+*57
+*capitals ..
+*all ..
+  W      57      Capital W
+*X
+*58
+*capitals ..
+*all ..
+  X      58      Capital X
+*Y
+*59
+*capitals ..
+*all ..
+  Y      59      Capital Y
+*Z
+*5A
+*capitals
+*all ..
+  Z      5A      Capital Z
+*[
+*5B
+*bracket ..
+*all ..
+  [      5B      Left bracket
+*\
+*5C
+*slant
+*slash
+*all ..
+  \      5C      Reverse slant
+*]
+*5D
+*bracket ..
+*all ..
+  ]      5D      Right bracket
+*^
+*5E
+*Circumflex
+*up
+*all ..
+  ^      5E      Circumflex
+*_
+*5F
+*Underline
+*underscore
+*all ..
+  _      5F      Underline
+*`
+*60
+*Grave
+*all ..
+  `      60      Grave accent
+*a
+*61
+*
+*all ..
+  a      61      Small A
+*b
+*62
+*all ..
+  b      62      Small B
+*c
+*63
+*all ..
+  c      63      Small C
+*d
+*64
+*all ..
+  d      64      Small D
+*e
+*65
+*all ..
+  e      65      Small E
+*f
+*66
+*all ..
+  f      66      Small F
+*g
+*67
+*all ..
+  g      67      Small G
+*h
+*68
+*all ..
+  h      68      Small H
+*i
+*69
+*all ..
+  i      69      Small I
+*j
+*6A
+*all ..
+  j      6A      Small J
+*k
+*6B
+*all ..
+  k      6B      Small K
+*l
+*6C
+*all ..
+  l      6C      Small L
+*m
+*6D
+*all ..
+  m      6D      Small M
+*n
+*6E
+*all ..
+  n      6E      Small N
+*o
+*6F
+*all ..
+  o      6F      Small O
+*p
+*70
+*all ..
+  p      70      Small P
+*q
+*71
+*all ..
+  q      71      Small Q
+*r
+*72
+*all ..
+  r      72      Small R
+*s
+*73
+*all ..
+  s      73      Small S
+*t
+*74
+*all ..
+  t      74      Small T
+*u
+*75
+*all ..
+  u      75      Small U
+*v
+*76
+*all ..
+  v      76      Small V
+*w
+*77
+*all ..
+  w      77      Small W
+*x
+*78
+*all ..
+  x      78      Small X
+*y
+*79
+*all ..
+  y      79      Small Y
+*z
+*7A
+*all ..
+  z      7A      Small Z
+*{
+*7B
+*brace ..
+*bracket ..
+*all ..
+  {      7B      Left brace
+*|
+*7C
+*bar
+*or
+*all ..
+  |      7C      Vertical bar
+*}
+*7D
+*brace
+*bracket
+*all ..
+  }      7D      Right brace
+*~
+*7E
+*Tilde
+*twiddle
+*all ..
+  ~      7E      Tilde
+*DEL
+*7F
+*Delete
+*rubout
+*all ..
+  DEL    7F      Delete
+*+ #N ..
+*all #N ..
+**
+  ???    ??      ??????
+  ------------------------------------
+
+Couldn't find the ASCII character you asked for.  Try HELP ASCII ALL
+**
+  ------------------------------------
+*at
+*@
+*escape
+
+Use HELP TERMINAL ESCAPE for information about the @ character used in part
+of an escape sequence.  Use HELP VTP BREAK for information about escaping to
+the terminal concentrator.
+*control
+
+For the effect that control characters have on the TRIPOS operating system
+use HELP CONTROL CHARACTERS
+*dle
+*10
+
+For information about how DLE is used when communicating to the UDN use
+HELP UDN
+
+

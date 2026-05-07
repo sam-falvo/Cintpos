@@ -1,0 +1,15 @@
+*command
+**
+Form:           RSWAIT  "DEVICE,QUIET/S"
+Purpose:        To wait until file handler restart has finished for
+                DEVICE (e.g. to hold up an init-sequence which
+                creates files).
+Authors:        RDE BJK PB
+Specification:
+   Default device is SYS:
+   Ctrl/B break will cause RSWAIT to abandon its wait.
+   QUIET suppresses the warning message which is otherwise issued.
+Example:        RSWAIT
+                RSWAIT DF1:
+
+

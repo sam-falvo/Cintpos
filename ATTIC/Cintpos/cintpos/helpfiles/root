@@ -1,0 +1,78 @@
+*node
+*rootnode
+*rtn.tasktab
+*rtn.devtab 
+*rtn.tcblist
+*rtn.crntask
+*rtn.blklist
+*rtn.debtask
+*rtn.days   
+*rtn.mins   
+*rtn.ticks  
+*rtn.clwkq  
+*rtn.memsize
+*rtn.info   
+*rtn.kstart 
+ROOT NODE
+
+The root node is the central point from which all the system structures
+in store can be found.  It is a vector containing pointers to the main
+chains and tables.  The position in store of the root node is fixed on
+any given machine.  Unfortunately, it is not practical to use the same
+address on all machines; instead, it is given as the manifest constant
+ROOTNODE in the standard BCPL library header for each machine. The first
+part has a machine independent format. It is followed by some addresses
+of kernel entry points for such operations as saving and restoring
+registers on interrupts, and entering the task selector.  These are
+needed by device drivers which may be dynamically loaded, so must be in
+fixed store locations.
+
+The manifest constants RTN.xxxx in LIBHDR give the offsets of various
+fields in ROOTNODE:
+
+   rtn.tasktab    pointer to task table
+   rtn.devtab     pointer to device table
+   rtn.tcblist    tcb priority queue
+   rtn.crntask    pointer to current task tcb
+   rtn.blklist    free store block list
+   rtn.debtask    pointer to debug task tcb
+   rtn.days       )
+   rtn.mins       )time since 1st Jan 1978
+   rtn.ticks      )
+   rtn.clwkq      work queue for clock
+   rtn.memsize    memory size in 1K word units
+   rtn.info       pointer at info vector
+   rtn.kstart     kernel entry address
+
+See TRIPOS.ALL.SPEC:DATASTR on Phoenix for details of Tripos data structures.
+*library
+*lib
+*rootlib
+*rootlib:
+There is a library ":l.rootlib", which if loaded, enables users' root
+directories to be found easily, no matter which pack the directory may be
+on.  The whole system is based on directory assignments.  When an assigned
+name is used (e.g. idw:fred), then the name "idw" is looked up in the
+assignments list.  If it is not there, then the MAP service is interrogated
+to see if "idw" is a user, and if so, where his root directory is.  Once
+found, the assignment "idw:" is added to the assignments list, and from
+then on acts as though it had been set up by the "assign" command.
+
+This library is now built in to most of the normal Tripos systems.
+
+Examples:
+
+      library :l.rootlib                 Loads the library
+      library cancel rootlib             Unloads the library
+
+      set idw:                           Go to idw's root directory
+      ex idw:68000-obj                   Examine idw's 68000-obj directory
+      type idw:init-sequence             Type idw's init sequence
+*+
+Data structures in the Tripos system are hung from a vector known as the
+ROOTNODE.  See HELP ROOTNODE for info on this.
+
+The root of the filing system is called "SYS:", and Z access (see HELP ACCESS)
+can be obtained to the filing system in this way.
+
+

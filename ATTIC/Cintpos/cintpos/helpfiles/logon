@@ -1,0 +1,94 @@
+*banner #H banner
+*command
+**
+LOGON command:
+Form:           LOGON   "Name,PW=Password,NP=NewPW,Timeout/k,Service/k,*
+                        *CHECK/S,SET/S,MAKE/S,KILL/S,*
+                        *Sys/s,As=Auty/k,Using=Priv/k"
+Purpose:        To use either the USERAUTH or SYSAUTH ring services.
+Author:         CGG
+Specification:
+
+        One of [CHECK | SET | MAKE | KILL] can be specified:
+
+        Any arguments not given on the command line are prompted for by
+        the program from the terminal (as distinct from the currently
+        selected input stream).
+
+        On ring terminals (and over networks with proper reflection handling)
+        passwords which are prompted for are read without reflection.
+        Thus this is preferred to specifying data on the command line.
+        
+        IF no switch is given then:
+            Name and PW are used to obtain a UID SET for the user.  This UID
+            SET is put into the FRIDGE which is cleared beforehand.
+
+        CHECK:
+            Name and PW are used to check that that password matches the user
+            with that name.  If Name is not given on the command line and
+            someone is loged on the name of the loged on user is taken.
+
+        SET:
+            Name and PW are checked and - if they match the password for Name
+            is changed to NewPW.  Even if NewPW is specified on the command line
+            it must be verified from the terminal.  (This is to guard against
+            user's having their password changed to something of which they have
+            no knowlege).
+
+        MAKE:
+            Name and PW are inserted into the password tables.  If there is
+            already an entry for Name then its password will be changed,
+            otherwise a new Name and Password pair will be entered.  The FRIDGE
+            is searched for the PRIVILEGE PWPRIV for this entry.  The service
+            requires this privilege to be valid.
+
+        KILL:
+            The entry in the password table for Name is deleted.  The FRIDGE
+            is searched for the PRIVILEGE PWPRIV for this entry.  The service
+            requires this privilege to be valid.
+
+        Passwords must consist of the characters 'A'..'Z', '0'..'9', '.','-'
+        or '*'.  Only the first eight are significant and cases are equated.
+        Only trailing blanks in the password are legal.
+
+        The SERVICE key can be used to select the service to which the
+        request is to be sent.  If it is not given then if SYS is given 
+        SYSAUTH will be used otherwise USERAUTH will.  If SERVICE is given
+        AUTY and PRIV may have to be specified.  AUTY is the authentity
+        that the service generates UID sets under, and PRIV is the privilege
+        necessary for the MAKE and KILL operations (instead if PWPRIV).
+
+        For information about the program which logs a user on to TRIPOS
+        use HELP COMMAND START.
+
+Examples:
+
+    LOGON cgg secret
+        logs 'cgg' onto TRIPOS with the password 'secret'
+
+    LOGON CHECK cgg secret
+        checks that cgg's password is 'secret'
+
+    LOGON MAKE bjk newpassword
+        makes bjk's password 'newpassw'
+
+    LOGON KILL bjk
+        removes bjk's password from the password list
+
+    LOGON SET cgg secret newpassword
+    Verify new password: newpassword
+        changes cgg's password to 'newpassw'
+
+    LOGON CHECK SYS rsx rsxproof
+        checks that the password for the RSX system is 'rsxproof'
+
+    LOGON cgg alienpw SERVICE anotheruserauth AS alienuserauty
+        logs the user on to the "anotheruserauth" service which generates
+        UID sets under the "alienuserauty" authentity
+
+    LOGON MAKE newalien secret SERVICE anotheruserauth USING alienpwpriv  
+        creates a new user in the "anotheruserauth" service using
+        possession of a UID set for the "alienpwpriv" privilege as
+        authentication
+   
+

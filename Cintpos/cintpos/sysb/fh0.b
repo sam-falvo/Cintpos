@@ -17,8 +17,8 @@ LET start ( init_pkt ) BE
 //sawritef("FH0: Received pkt %n type %n*n", pkt, type)
     SWITCHON type INTO
     { CASE Action_findinput: 
-           //sawritef("FH0: findinput scb %n file %s*n",
-           //                         pkt!pkt_arg1, pkt!pkt_arg3)
+//           sawritef("FH0: findinput scb %n file %s*n",
+//                                    pkt!pkt_arg1, pkt!pkt_arg3)
            fh0findinput(pkt, pkt!pkt_arg1,  // scb
                              pkt!pkt_arg3,  // name
                              pkt!pkt_arg4,  // currentdir
@@ -51,7 +51,7 @@ LET start ( init_pkt ) BE
       CASE Action_closeinoutput:
       CASE Action_close:
          { LET scb = pkt!pkt_arg1
-           //sawritef("FH0: close scb %n*n", scb)
+//           sawritef("FH0: close scb %n*n", scb)
            fh0endfn(pkt, scb)
            LOOP
          }
@@ -160,30 +160,38 @@ AND trfilename(name, currdir, filename) BE
 }
 
 AND fh0findinput(pkt, scb, name, currdir, path) BE
-{ LET fp, buf, res1, res2 = 0, 0, 1, 0
+{ LET fp, fp1 = 0, 0
+  LET buf = 0
+  LET res1, res2 = 1, 0
   LET filesize = 0
   LET filename = VEC 50
+//  sawritef("fh0findinput: calling trfilename*n")
   trfilename(name, currdir, filename)
 
 //sawritef("FH0: fh0findinput calling sys_openread %s %s*n",
 //          filename, path->path,"null")
+//sawritef("FH0: calling openread %s path=%n*n", filename, path)
+	  
   // open the file for input
-  fp := sys(Sys_openread, filename, path)  // MR 8/5/03
-  IF fp=0 DO
-  { res1, res2 := 0, 100
+  UNLESS sys(Sys_openread, filename, path, @fp) DO // MR 18/03/2021
+  {
+    //sawritef("FH0: openread %s failed*n", filename)
+    res1, res2 := 0, 100
     GOTO ret
   }
+//sawritef("FH0: calling filesize(%n)*n", @fp)
 
-  filesize :=sys(Sys_filesize, fp)
+  filesize :=sys(Sys_filesize, @fp)         // MR 18/03/2021
+//sawritef("FH0: filesize => %n*n", filesize)
 
   // allocate a buffer
   buf := getvec(buflen/bytesperword)
   IF buf=0 DO
-  { sys(Sys_close, fp) // First close the file
+  { sys(Sys_close, @fp) // First close the file
     res1, res2 := 0, 101
     GOTO ret
   }
-//sawritef("FH0: fh0findinput scb %n fp %n buf %n*n", scb, fp, buf)
+//sawritef("FH0: fh0findinput scb=%n @fp=%n buf=%n*n", scb, @fp, buf)
     
   scb!scb_type    := scbt_file
   scb!scb_task    := taskid
@@ -192,6 +200,7 @@ AND fh0findinput(pkt, scb, name, currdir, path) BE
   scb!scb_wrfn    := 0  // An input stream cannot be depleted
   scb!scb_endfn   := fh0closefn
   scb!scb_fd      := fp
+  scb!scb_fd1     := fp1
   scb!scb_bufend  := buflen
   scb!scb_write   := FALSE   // No data waiting to be written
   scb!scb_blength := buflen  // MR 15/3/02
@@ -201,6 +210,7 @@ AND fh0findinput(pkt, scb, name, currdir, path) BE
 //sawritef("fh0findinput: lblock=%n*n", scb!scb_lblock)
 
   // Initialise the buffer by reading the first block
+//  sawritef("Calling fh0getbuf*n")
   fh0getbuf(scb)
   res2 := result2
 
@@ -212,7 +222,9 @@ ret:
 
 AND fh0findoutput(pkt, scb, name, currdir) BE
 { // Open a file stream for write or append
-  LET fp, buf, res1, res2 = 0, 0, 1, 0
+  LET fp, fp1 = 0, 0
+  LET buf = 0
+  LET res1, res2 = 1, 0
   LET filename = VEC 50
   LET openop = scb!scb_id=id_appendscb -> Sys_openappend, Sys_openwrite
 
@@ -220,8 +232,7 @@ AND fh0findoutput(pkt, scb, name, currdir) BE
 
   // open the file for output
 //sawritef("fh0findoutput: pkt=%n filename=%s*n", pkt, filename)
-  fp := sys(openop, filename)
-  UNLESS fp DO
+  UNLESS sys(openop, filename, @fp)
   { res1, res2 := 0, 100
     GOTO ret
   }
@@ -229,12 +240,12 @@ AND fh0findoutput(pkt, scb, name, currdir) BE
   // allocate a buffer
   buf := getvec(buflen/bytesperword)
   UNLESS buf DO
-  { sys(Sys_close, fp) // First close the file
+  { sys(Sys_close, @fp) // First close the file
     res1, res2 := 0, 101
     GOTO ret
   }
 
-//sawritef("FH0: fh0findoutput scb=%n  fp=%n  buf=%n*n", scb, fp, buf)
+//sawritef("FH0: fh0findoutput scb=%n  @fp=%n  buf=%n*n", scb, @fp, buf)
 
   scb!scb_type    := scbt_file
   scb!scb_task    := taskid
@@ -243,6 +254,7 @@ AND fh0findoutput(pkt, scb, name, currdir) BE
   scb!scb_wrfn    := fh0wrfn
   scb!scb_endfn   := fh0closefn
   scb!scb_fd      := fp
+  scb!scb_fd1     := fp1
   scb!scb_bufend  := buflen
   scb!scb_write   := FALSE   // No data waiting to be written
   scb!scb_blength := buflen
@@ -262,30 +274,31 @@ ret:
 }
 
 AND fh0findinoutput(pkt, scb, name, currdir) BE
-{ LET fp, buf, res1, res2 = 0, 0, 1, 0
+{ LET fp, fp1 = 0, 0
+  LET buf = 0
+  LET res1, res2 = 1, 0
   LET filesize = 0
   LET filename = VEC 50
   trfilename(name, currdir, filename)
 
   // open the file for input and output
-  fp := sys(Sys_openreadwrite, filename)
-//sawritef("FH0: open %s in inout mode => %n*n", filename, fp)
-  UNLESS fp DO
-  { res1, res2 := 0, 100
+  UNLESS sys(Sys_openreadwrite, filename, @fp)
+  { //sawritef("FH0: open %s in inout mode => %n*n", filename, @fp)
+    res1, res2 := 0, 100
     GOTO ret
   }
 
-  filesize :=sys(Sys_filesize, fp)
+  filesize :=sys(Sys_filesize, @fp)
 
   // allocate a buffer
   buf := getvec(buflen/bytesperword)
   UNLESS buf DO
-  { sys(Sys_close, fp) // First close the file
+  { sys(Sys_close, @fp) // First close the file
     res1, res2 := 0, 101
     GOTO ret
   }
 //sawritef("FH0: buflen = %n*n", buflen)
-//sawritef("FH0: fh0findinoutput scb %n  %n  buf %n*n", scb, fp, buf)
+//sawritef("FH0: fh0findinoutput scb=%n  @fp=%n  buf %n*n", scb, @fp, buf)
 
   scb!scb_type    := scbt_file
   scb!scb_task    := taskid
@@ -294,6 +307,7 @@ AND fh0findinoutput(pkt, scb, name, currdir) BE
   scb!scb_wrfn    := fh0wrfn
   scb!scb_endfn   := fh0closefn
   scb!scb_fd      := fp
+  scb!scb_fd1     := fp1
   scb!scb_bufend  := buflen
   scb!scb_write   := FALSE   // No data waiting to be written
   scb!scb_blength := buflen  // MR 15/3/02
@@ -375,7 +389,7 @@ AND fh0endfn(pkt, scb) BE
 { //LET id = scb!scb_id
 //sawritef("FH0: fh0endfn scb %n*n", scb)
   IF scb!scb_write DO fh0putbuf(scb)
-  sys(Sys_close, scb!scb_fd)
+  sys(Sys_close, @scb!scb_fd)
   //freevec(scb!scb_buf) // Freed by endstream
   qpkt(pkt)
 }
@@ -481,7 +495,7 @@ AND fh0putbuf(scb) = VALOF
 
   IF end<=0 RESULTIS TRUE       // Nothing in buffer to write
 //sawritef("FH0: putbuf seeking offset %n (block %n)*n", offset, block)
-  UNLESS sys(Sys_seek, scb!scb_fd, offset) RESULTIS FALSE
+  UNLESS sys(Sys_seek, @scb!scb_fd, offset) RESULTIS FALSE
 //sawritef("FH0: putbuf write %n bytes at offset %n*n", end, offset)
 
   // The size of a file can only change when writing its last block
@@ -489,7 +503,7 @@ AND fh0putbuf(scb) = VALOF
   IF block = scb!scb_lblock DO scb!scb_ldata := end
 
 //sawritef("FH0: putbuf write block %n*n", block)
-  RESULTIS sys(Sys_write, scb!scb_fd, scb!scb_buf, end) >= 0
+  RESULTIS sys(Sys_write, @scb!scb_fd, scb!scb_buf, end) >= 0
 }
 
 // fh0getbuf reads a block into the scb's buffer.
@@ -500,18 +514,18 @@ AND fh0putbuf(scb) = VALOF
 //      it returns FALSE
 
 AND fh0getbuf(scb) = VALOF
-{ LET fd      = scb!scb_fd
+{ LET fdptr   = @scb!scb_fd
   LET block   = scb!scb_block
   LET offset  = buflen*block    // MR 29/7/02
   LET end     = ? 
 
 //sawritef("FH0: fh0getbuf seeking start of block %n (offset %n)*n", block, offset)
-  UNLESS sys(Sys_seek, fd, offset) RESULTIS FALSE
-//sawritef("FH0: fh0getbuf file position now %n*n", sys(Sys_tell, fd))
+  UNLESS sys(Sys_seek, fdptr, offset) RESULTIS FALSE
+//sawritef("FH0: fh0getbuf file position now %n*n", sys(Sys_tell, fdptr))
 
 //sawritef("FH0: fh0getbuf calling sys_read*n", block, offset)
 //sawritef("FH0: fh0getbuf read block %n*n", block)
-  end := sys(Sys_read, fd, scb!scb_buf, buflen)
+  end := sys(Sys_read, fdptr, scb!scb_buf, buflen)
 //sawritef("FH0: fh0getbuf read => %n*n", end)
 //sawritef("FH0: fh0getbuf block=%n lblock=%n ldata=%n*n",
 //               block, scb!scb_lblock, scb!scb_ldata)

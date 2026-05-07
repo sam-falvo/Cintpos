@@ -1,0 +1,37 @@
+**
+ANONYMOUS DIRECTORIES
+
+     Client systems may request the creation of one or more "ANONYMOUS"
+directories, by using the commands currently in :mike.m68k-c.anon (or lsi4-c).
+This takes two arguments. The first is an assignment name which will be set
+up, and the second is the name of any object in the filing system. The command
+will cause the creation of a directory on the same pack as the named object,
+and assign the specified name to it. For example:
+
+     :mike.m68k-c.anon x: home:bcpl
+     :mike.m68k-c.anon x: fred.wombat    // anonymous directory X: on same pack
+                                         // as object fred.wombat
+     :mike.m68k-c.anon x:                // .... on same pack as current dir.
+
+     These may be removed by ":mike.m68k-c.anon delete x:", etc.
+     Anonymous directories have the following advantages:
+(..i) Directory searching within the anonymous directory is an in-store
+      operation in the filing machine and is thus extremely fast.
+(.ii) Empty files are created in advance for use in anonymous directories, so
+      that logical file creation (ie., findoutput or findupdate) is fast.
+(iii) Rename, especially within an anonymous directory, is much faster than a
+      rename in conventional directories.
+     There is, of course, a disadvantage:
+(.iv) If a client machine crashes, then the anonymous directories associated
+      with that client session WILL BE TOTALLY AND IRRETRIEVABLY LOST. You have
+      been warned.
+     Finally, the (current) limitations are:
+(..v) Anonymous directories are only available on packs 3, 5 and 10 and
+(.vi) There is a limit of one hundred anonymous directory objects on each pack,
+      to be shared between all clients (so don't be greedy!!)
+(vii) ALIAS is not permitted in any context where anonymous directory entries
+      are involved. However, rename in any combination works.
+
+     Comments to MFR.
+
+

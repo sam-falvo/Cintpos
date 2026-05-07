@@ -1,0 +1,35 @@
+**
+     The pseudo-device here: provides in-stream files in much the same manner
+as here datasets on the IBM. For example:
+     copy here:% to wombat
+     some text ...
+     %
+     The stream is introduced by here:<char> where <char> is any character.
+Input will then be taken from the same input stream, until a line beginning
+with the single character <char> is encountered. If the program closes the
+stream before <char> is encountered, then input will be skipped up to such a
+line.
+     Only "rdch" is supported; use of readwords will return zero words read.
+If the program reads the current input stream then such reads will be mixed
+up with reads through here: - thus:
+     edit here:% to wombat
+     text ....
+     %
+     will give unpredictable results, as "text ...." may be swallowed by edit
+either as source file or as commands.
+     Note that here: starts from the point just after the input taken by
+"rdargs" so that:
+     copy here:% to wombat ; type wombat
+     more text ...
+     %
+     will result in the file "wombat" containing two lines, "type wombat", and
+"more text ....".
+     Typically, here: is useful in command files, for example with ringprint:
+     ringprint ,here:% to canon opt n
+     file1
+     .....
+     filen
+     %
+     For more specific details contact Mike Richardson (mfr/mfr2)
+
+

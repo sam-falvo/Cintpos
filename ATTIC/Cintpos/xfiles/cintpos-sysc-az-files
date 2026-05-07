@@ -1,0 +1,9 @@
+cintpos/sysc/cinterp.c
+cintpos/sysc/cintpos.c
+cintpos/sysc/cintpos.h
+cintpos/sysc/devices.c
+cintpos/sysc/INT.h
+cintpos/sysc/kblib.c
+cintpos/sysc/mkint-h.c
+cintpos/sysc/nullrastlib.c
+

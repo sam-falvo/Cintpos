@@ -28,8 +28,9 @@ LET start() = VALOF
     rc := 20
     GOTO exit
   }
-
+//writef("Calling findinput*n")
   inputstream := findinput(argv!0)
+//writef("findinput => %n*n", inputstream)
   UNLESS inputstream DO { writef("Can*'t open %s*n", argv!0)
                           rc := 20
                           GOTO exit

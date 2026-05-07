@@ -1,0 +1,100 @@
+*operation ..
+*byteget
+BYTEGET
+
+  BYTEGET is a BCPL library routine for extracting one byte from a string (or
+any other vector of bytes).
+
+  BYTE := BYTEGET( V, OFFSET )
+
+sets BYTE to the value of the BYTE at byte offset OFFSET in vector V.
+
+The difference between BYTEGET and GETBYTE (or '%') is that BYTEGET accesses
+the bytes in a machine-independent order. It always treats the most significant
+byte in a word as being the one at lowest offset in that word.  It is
+advisable always to use BYTEGET when extracting byte data from blocks received
+from the data ring, in order to make programs portable between different types
+of machine.
+
+[Note that GETBYTE and % tend to be implemented to use the 'natural' byte
+ordering for a machine, which may or may not be the same as the BYTEGET order.]
+*operation ..
+
+*operation ..
+*byteput
+BYTEPUT
+
+  BYTEPUT is a BCPL library routine for inserting one byte into a string (or
+any other vector of bytes).
+
+  BYTEPUT( V, OFFSET, BYTE )
+
+writes BYTE to byte offset OFFSET in vector V.
+
+The difference between BYTEPUT and PUTBYTE (or '%') is that BYTEPUT accesses
+the bytes in a machine-independent order. It always treats the most significant
+byte in a word as being the one at lowest offset in that word.  It is
+advisable always to use BYTEPUT when inserting byte data into blocks to be
+transmitted on the data ring, in order to make programs portable between
+different types of machine.
+
+[Note that PUTBYTE and % tend to be implemented to use the 'natural' byte
+ordering for a machine, which may or may not be the same as the BYTEPUT order.]
+*operation ..
+
+*operation ..
+*getbyte
+GETBYTE
+
+  GETBYTE is a BCPL library routine for extracting one byte from a string (or
+any other vector of bytes).
+
+  BYTE := GETBYTE( V, OFFSET )
+
+sets BYTE to the value of the BYTE at byte offset OFFSET in vector V.
+
+Many BCPL compilers provide a language extension in the form of the operator
+'%' which does the job of both GETBYTE and PUTBYTE. E.g.:
+
+  A := B%C  has the same effect as   A := GETBYTE( B, C )
+*operation ..
+
+*operation ..
+*putbyte
+PUTBYTE
+
+  PUTBYTE is a BCPL library routine for inserting one byte into a string (or
+any other vector of bytes).
+
+  PUTBYTE( V, OFFSET, BYTE )
+
+writes BYTE to byte offset OFFSET in vector V.
+
+Many BCPL compilers provide a language extension in the form of the operator
+'%' which does the job of both GETBYTE and PUTBYTE. E.g.:
+
+  A%B := C  has the same effect as   PUTBYTE( A, B, C )
+*operation ..
+
+*operation
+*percent
+*%
+'%' is the symbol used for the BCPL byte indexing operator.
+
+  a := b % c    is equivalent to   c := getbyte(b, c)
+  a % b := c    is equivalent to   putbyte(a, b, c)
+*stream #H bsp
+*+ ..
+A byte is usually used to mean a group of 8 bits, referred to as an "octet"
+in more formal protocol descriptions.  See HELP BSP for Byte Stream Protocol.
+
+**
+*get
+*put
+BCPL has several functions for dealing with bytes in store:  the "%" operator,
+and functions GETBTYE, PUTBYTE, BYTEGET and BYTEPUT.  See help on each of
+these.  The last two operate in a machine independent order.
+
+See HELP BYTE OPERATIONS for info on all these.
+
+

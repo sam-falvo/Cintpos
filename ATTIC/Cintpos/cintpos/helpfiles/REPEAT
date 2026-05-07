@@ -1,0 +1,14 @@
+*command
+**
+Form:           command1; command2; . . . . ; REPEAT
+Purpose:        To cause a line of commands to be repeatedly
+                executed.
+Author:         PB
+Specification:
+   The action of REPEAT is to 'unread' the command line it occurs
+in, and then return control to the CLI.  Thus the commands before
+REPEAT on the line will be repeatedly performed.
+   REPEAT does nothing if the ctrl/D break flag is set.
+Example:        STATUS; WAIT 5; REPEAT
+
+

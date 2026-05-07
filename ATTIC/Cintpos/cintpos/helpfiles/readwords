@@ -1,0 +1,45 @@
+*procedure
+**
+READWORDS
+        To read a vector directly from the currently selected input.
+
+        RESULT := READWORDS(VECTOR, N)
+
+        Reads in the next 'n' words into vector 'v' from the currently selected
+input stream.  Note that READWORDS cannot be used in conjunction with RDCH since
+RDCH will do its own buffering.
+
+Arguments:
+
+VECTOR:    a vector large enough to hold N words
+N:         the number of words to be read from the currently selected input
+           stream
+
+Normal Return:
+
+RESULT=N
+           N words will have been read into VECTOR!0 to VECTOR!(N-1)
+RESULT=0, RESULT2=0
+           Stream exhausted
+RESULT<0
+           Stream exhausted after reading [ABS RESULT] words read into
+           VECTOR!0 to VECTOR!((ABS RESULT)-1).
+
+Error Return:
+
+0<=RESULT<N
+           An error was detected after reading RESULT words into VECTOR!0
+           to VECTOR!(RESULT-1).  Consult the relevant documentation for
+           interpretation of the RESULT2 code.  (use HELP FAULT COMMAND)
+
+Abort Condition:
+
+        The detection of extermely serious errors may result in a system
+abort (e.g. if a disc is discovered to be inconsistent).
+
+Notes:
+
+        When reading disc files a 'stream exhausted' condition will always
+be returned on reading the last word of a file.
+
+

@@ -1,8 +1,16 @@
 // Standard BCPL header for both Cintsys and Cintpos
 
-// Modified by Martin Richards (c) 15 May 2013
+// Modified by Martin Richards (c) 2 Sep 2019
 
 /*
+21/07/2020
+The default global vector size is now 2000 since most machines
+nowdays have plenty of memory.
+
+22/08/2019
+The thread and cvp fields have been modified to allow devices.c
+to store 64 bit addresses even when the BCPL word length is 32 bits.
+
 11/02/04 MR
 Added binwrch, removed packstring, unpackstring and dqpkt
 21/10/02 MR
@@ -10,15 +18,15 @@ Made compatible with libhdr of the standard BCPL distribution
 */
 
 MANIFEST {
-// Uncomment one of the following lines if using a compiler that does not
-// implement BITSPERBCPLWORD as a  reserved word.
+// For implementions for which BITSPERBCPLWORD is not a reserved word,
+// uncomment one of the following lines.
 //BITSPERBCPLWORD = 32
 //BITSPERBCPLWORD = 64
 
 B2Wsh = 1 + BITSPERBCPLWORD/32  // =2 for 32- bit implementations
                                 // =3 for 64-bit implementations
-ON64 = BITSPERBCPLWORD=64 // Used by programs designed to run on both
-                          // 32 and 64 bit systems.
+ON64 = BITSPERBCPLWORD=64       // Used by programs designed to run
+                                // on both 32 and 64 bit systems.
 }
 
 // All that follows is the same for both 32- and 64-bit Cintcode systems.
@@ -36,7 +44,8 @@ currco:              7
 colist:              8
 rootnode:            9  // For compatibility with native BCPL
 result2:            10
-returncode:         11
+tempval:            11  // A memory location used by native code
+                        // floating point operations.
 cis:                12
 cos:                13
 currentdir:         14
@@ -51,7 +60,7 @@ initco:             22
 startco:            23
 globin:             24
 getvec:             25
-rdargs2:            26   // MR 19/11/2014
+rdargs2:            26   // MR 19/11/2014  allowing double length arg format
 freevec:            27
 abort:              28
 sysabort:           29
@@ -152,12 +161,12 @@ setbulk:           122
 stackfree:         123  // Returns the number of free stack locations
 settimeoutact:     124
 deleteself:        125
-codewrch:          126 // Write an extended character in UTF8 or GB2312 format
+codewrch:          126  // Write an extended character in UTF8 or GB2312 format
 randseed:          127
-delay:             128 // delay(msecs)
-delayuntil:        129 // delayuntil(days, msecs)
-findappend:        130 // Added 18/01/11
-memoryfree:        131 // Returns the amount of free and used memory.
+delay:             128  // delay(msecs)
+delayuntil:        129  // delayuntil(days, msecs)
+findappend:        130  // Added 18/01/11
+memoryfree:        131  // Returns the amount of free and used memory.
 
 //##### CLI uses globals 132 - 149 #####
 
@@ -166,7 +175,11 @@ cli_init:          133  // Not used
 cli_result2:       134
 cli_data:          135  // CLI dependent data  MR 10/7/03
 cli_commanddir:    136
-cli_returncode:    137
+cli_returncode:    137  // This holds the returncode of the most
+                        // recently executed command. It can be
+			// inspected by commands such as if and why,
+			// and may also be passed back to the
+			// enclosing operating system shell.
 cli_commandname:   138
 cli_faillevel:     139
 cli_prompt:        140
@@ -174,14 +187,17 @@ cli_standardinput: 141
 cli_currentinput:  142
 cli_commandfile:   143  // Name of temporary command file used in
                         // command-commands
-cli_status:        144  // Contains the CLI status flags
+cli_status:        144  // Contains the CLI status flags such as
+                        // clibit_noprompt, clibit_comcom or clibit_maincli
+
 cli_preloadlist:   145
 cli_currentoutput: 146
-cli_defaultstack:  147
+cli_defaultstack:  147  // The coroutine stack size of the next cli command.
 cli_standardoutput:148
-cli_module:        149
+cli_module:        149  // The code segment of the currently executing
+                        // command, if any.
 
-//##### Cintpos uses globals 150 - 199 #####
+//##### Cintpos uses globals 150 - 179 #####
 
 srchwk:            150
 tcb:               151
@@ -192,7 +208,7 @@ changepri:         155
 setflags:          156
 testflags:         157
 hold:              158
-unhold:            159;  release:           159
+unhold:            159;  release: 159
 taskwait:          160
 qpkt:              161
 endtask:           162
@@ -204,17 +220,20 @@ returnpkt:         169
 consoletask:       171
 createdev:         172
 deletedev:         173
-fault:             174
+
 set_process_name:  175
 
 peercom:           179
 
+// More globals used by both cintsys and syspos
+
 writee:            180 // Write a floating point number in exponential form
 setvec:            181 // (v, n, a1,..,a16) Copy values into v
+fault:             182
  
 // Globals 190-199 are variables not reset between CLI commands
 current_language:  190 // Potentially used by get_text when converting
-                       // an error number to text.
+                       // error numbers to text.
 }
 
 MANIFEST {
@@ -244,18 +263,19 @@ t_end64   = 2002
 t_bhunk   = 3000 // A hunk in binary
 t_bhunk64 = 4000 // A hunk in binary for 64-bit Cintcode
 
-globword  = #xFFFFFFFF8F8F0000  // MR 7/9/2006 (for 64-bit version)
+globword  = #xFFFFFFFF8F8F0000  // MR 7/9/2006 (for 32 and 64-bit versions)
 stackword = #xFFFFFFFFABCD1234
 deadcode  = #xFFFFFFFFDEADC0DE
 sectword  = #x000000000000FDDF
 entryword = #x000000000000DFDF
 
 // Important global variable numbers
-g_globsize = 0
-g_sys      = 3
-g_currco   = 7
-g_colist   = 8
-g_rootnode = 9
+g_globsize =  0
+g_sys      =  3
+g_currco   =  7
+g_colist   =  8
+g_rootnode =  9
+g_result2  = 10
 
 g_memsize  = 14
 g_keyboard = 20
@@ -283,7 +303,7 @@ rtn_devtab
 rtn_tcblist
 rtn_crntask
 rtn_blklist
-rtn_tallyv
+rtn_tallyv         // 5
 
 rtn_clkintson
 rtn_lastch         // For sadebug polling input
@@ -320,9 +340,9 @@ rtn_context        // Context of DUMP.mem
                    // 5 dump caused by non zero user fault code
                    // 6 dump requestested from standalone debug
 
-rtn_lastp          // Latest setting of p pointer at SIGINT or SIGSEGV
-rtn_lastg          // Latest setting of p pointer at SIGINT or SIGSEGV
-rtn_lastst         // Latest setting of st
+rtn_sysp           // Latest setting of p pointer at SIGINT or SIGSEGV
+rtn_sysg           // Latest setting of p pointer at SIGINT or SIGSEGV
+rtn_sysst          // Latest setting of st
                    // st = 0    in a user task, interrupts enabled
                    // st = 1    in BOOT,        interrupts disabled
                    // st = 2    in KLIB,        interrupts disabled
@@ -364,6 +384,7 @@ rtn_icount         // Used by cinterp to enter polling code about
                    // 50 times per second.
 
 rtn_joystickfd     // The joystick fd
+rtn_joystickfd1    // The joystick fd second word
 rtn_joybuttoncount // The number of joystick buttons
 rtn_joyaxiscount   // The number of joystick axes
 rtn_joycurrbuttons // The bit pattern of currently pressed buttons
@@ -375,6 +396,15 @@ rtn_joyaxis3       // The value of axis3
 rtn_joyaxis4       // The value of axis4
 rtn_joyaxis5       // The value of axis5
 rtn_joyaxis6       // The value of axis6
+
+rtn_hostaddsize    // Size in bits of a machine address on the
+                   // host machine
+
+rtn_gvecsize       // The upper bound of global vectors from now on.
+                   // The default is now 2000.
+		   // It can be set by the -g option in cinsys
+		   // or by a user progtam.
+		   // Added 28/12/2019
 
 rtn_upb = 80       // Leave some unused entries
 
@@ -448,7 +478,10 @@ Sys_sdl             =  66  // MR 30/05/12 SDL features
 Sys_gl              =  67  // MR 12/01/14 OpenGL features
 Sys_ext             =  68  // MR 14/04/14 EXT user extension features
 Sys_joy             =  69  // MR 22/01/18 Joystick features
-
+Sys_settracing      =  70  // MR 26/02/20 Set settracing
+Sys_getbuildno      =  71  // MR 03/02/21 Get the current build number
+                           //    such as bld_linux or bld_RaspiSDL.
+                           // It also returns the build flags in result2.
 
 bootregs = 11 // Registers used to enter the function start in boot.b
 cliregs  = 21 // Registers used by BOOT to start the CLI
@@ -458,6 +491,40 @@ saveregs = 31 // Registers of an interrupt enabled user program at
               // are only valid when the interrupt service routine is
               // active. In this state register st=3.
 isrregs  = 41 // Registers for the Cintpos interrupt service routine
+
+// Build numbers, more will be added later.
+// Their values mus agree with those in cintsys.h
+// Build numbers are returned by sys(Sys_getbuildno)
+bld_unknown               =  0
+bld_linux                 =  1
+bld_linuxSDL              =  2
+bld_linuxSDL2             =  3
+bld_linuxGL               =  4
+bld_linuxSDLGL            =  5
+bld_linuxSDL2GL           =  6
+
+bld_Raspi                 = 21
+bld_RaspiSDL              = 22
+bld_RaspiSDL2             = 23
+bld_RaspiSDLGL            = 24
+bld_RaspiSDL2GL           = 25
+
+bld_MacOSX                = 31
+bld_MacOSXSDL             = 32
+bld_MacOSXSDL2            = 33
+bld_MacOSXSDLGL           = 34
+bld_MacOSXSDL2GL          = 35
+
+bld_VmsVax                = 41
+bld_Win32                 = 42
+bld_CYGWIN32              = 43
+
+
+//Build flags
+bldf_sound     =  1
+bldf_callc     =  1<<1
+bldf_joystick  =  1<<2
+
 
 id_inscb	= #x81  // MR 21/10/02
 id_outscb	= #x82  // MR 21/10/02
@@ -490,6 +557,7 @@ scb_ldata          // Bytes in last block of a disc file
 scb_blength        // Length of a disc block in bytes (typically 4096)
 scb_reclen         // Record length in bytes for some files
 scb_fd             // File or mailbox descriptor MR 18/4/02
+scb_fd1            // File or mailbox descriptor, second word
 scb_timeout        // The stream timeout value in milli-seconds MR 26/3/02
                    // = 0  means no time out is to be applied
                    // =-1  only transfer data that is immediately possible
@@ -535,19 +603,21 @@ fl_ldexp
 fl_log
 fl_log10
 
-fl_pow=36 // 36
+fl_pow=36  //=36
 fl_sqrt
 fl_ceil
 fl_floor
-fl_modf   //=40   Invoke the C function modf to extract the
-          //      fractional and integer parts of a floating
-          //      point number
+fl_modf    //=40   Invoke the C function modf to extract the
+           //      fractional and integer parts of a floating
+           //      point number
 
-fl_N2F      // =41 Convert scaled fixed point to floating
-fl_F2N      //     Convert floating point to scaled fixed point
-fl_radius2  //     Return the distance from the origin to point(x,y)
-fl_radius3  //     Return the distance from the origin to point(x,y,z)
-
+fl_N2F     // =41 Convert scaled fixed point to floating
+fl_F2N     //     Convert floating point to scaled fixed point
+fl_radius2 //     Return the distance from the origin to point(x,y)
+fl_radius3 //     Return the distance from the origin to point(x,y,z)
+fl_64to32  // =45 Convert from 64 to 32 bit floating point. Only
+           //     used when running on 64 bit BCPL. Needed for the
+	   //     OpenGL interface.
 // Unicode encodings
 UTF8 = -1
 GB2312 = -2
@@ -560,7 +630,7 @@ cli_module_gn    =  149
 cli_initialstack =  50000       // Changed 21/5/2001
 cli_initialfaillevel = return_hard
 
-// cli_state flags
+// cli_status flags
 clibit_noprompt  =  #b000000001  // Don't output a prompt
 clibit_eofdel    =  #b000000010  // Delete this task if EOF received
 clibit_comcom    =  #b000000100  // Currently execution a command-command
@@ -616,29 +686,30 @@ tcb_namebase    = 19 // Space for upto 15 chars of task name
 
 tcb_upb = tcb_namebase + 15/bytesperword + 1
 
-// The DCB structure
+// The DCB structure -- Only used by Cintpos
 Dcb_type    =  0   // Device type: clk, ttyin, ttyout, fileop, tcpdev, etc
 Dcb_devid   =  1   // The device id (<0)
 Dcb_wkq     =  2   // The device work queue
 Dcb_op      =  3   // op  set by devcommand
 Dcb_arg     =  4   // arg set by devcommand
-Dcb_threadp =  5   // M/C address of location holding the thread id
-Dcb_cvp     =  6   // M/C address of its condition variable. It is
-                   // signalled when the wkq has another packet for
-                   // the device to process and flag is set to zero.
-                   // This is used with irq_mutex 
-Dcb_intson  =  7   // TRUE if the device may generate interrupts
-Dcb_irq     =  8   // TRUE if the device has a packet to return
-Dcb_flag    =  9   // =1 if the device has requested and interrupt
+Dcb_irq     =  5   // TRUE if the device has a packet to return
+Dcb_intson  =  6   // TRUE if the device may generate interrupts
+Dcb_flag    =  7   // =1 if the device has requested an interrupt
                    // =0 after the interrupt request has been removed from
                    // the fifo and the corresponding pkt dequeued from the
                    // wkq. This field is protected by irq_mutex
-Dcb_var0    = 10   // Variables (currently not) used by some devices
-Dcb_var1    = 11
-Dcb_var2    = 12
-Dcb_var3    = 13
-Dcb_var4    = 14
-Dcb_upb
+Dcb_var0    =  8   // Variables (currently not) used by some devices
+Dcb_var1    =  9
+Dcb_var2    = 10
+Dcb_var3    = 11
+Dcb_var4    = 12
+
+Dcb_threadp = 14   // M/C address of location holding the thread id
+Dcb_cvp     = 16   // M/C address of its condition variable. It is
+                   // signalled when the wkq has another packet for
+                   // the device to process and flag is set to zero.
+                   // This is used with irq_mutex 
+Dcb_upb     = 17
 
 // Device types
 Devt_clk     = 1
@@ -654,7 +725,7 @@ Devc_start     = 3
 Devc_stop      = 4
 Devc_setintson = 5
 
-// Standard task numbers
+// Standard task numbers in Cintpos
 Task_cli            =     1
 Task_debug          =     2
 Task_consolehandler =     3
@@ -683,10 +754,10 @@ Ass_type  = 3
 Ass_dev   = 4
 Ass_name  = 5
 
-g_grfbase = 400 // Number of the first global in the Graphics library
-g_sndbase = 400 // Number of the first global in the Sound library
+g_grbase  = 450 // Number of the first global in the Graphics library
 g_sdlbase = 450 // Number of the first global in the SDL library
 g_glbase  = 450 // Number of the first global in the GL library
+g_sndbase = 450 // Number of the first global in the Sound library
 g_extbase = 950 // Number of the first global in the EXT library
 }
 

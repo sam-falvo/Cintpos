@@ -1,0 +1,199 @@
+* terminal
+SSE currently runs on CIFERs or N7009s, but may be exctended to others.
+* find #H #HCH=+
+* f #H #HCH=+
+* search #H #HCH=+
+* locate #H #HCH=+
+* l #H #HCH=+
+* after #H #HCH=+
+* a #H #HCH=+
+* before #H #HCH=+
+* b #H #HCH=+
+* exchange #H #HCH=+
+* e #H #HCH=+
+* qualifier #H #HCH=+
+* delimiter #H #HCH=+
++qualifier
++/
+Find, Exchange, After, Before qualifiers are:
+B, E    the string should occur at the Beginning, End of a line
+S       Strip leading and trailing spaces from lines for the comparison
+P       the string should Precisely match the line
+W       the string should occur as a Word
+U       the string and text should be Uppercased for the comparison
+H       Here - consider only the current line
+F       position the cursor at the Front of the string found, not the end
++delimiter
++slash
++delim
+Valid Find, Exchange, After, Before delimiters are: /.+?-:!*,'"
++syntax
++*
+The find command has the general syntax
+    F q/string/                 or    F q&
+and the exchange, after and before commands the general syntax
+    a q/string1/string2/        or    a q&      or      a q/string1/&
+where
+    q   is a set (possibly empty) of qualifiers - see help FIND QUALIFIERS
+    /   is a delimiter (see help FIND DELIMITERS)
+    a   is A for AFTER, B for BEFORE or E for EXCHANGE
+    &   means 'use the same string(s) as last time'
++
+*file #H #HCH=+
+*move #H #HCH=+
+*movement #H #HCH=+
+*insert #H #HCH=+
+*load #H #HCH=+
+*output #H #HCH=+
+*copy #H #HCH=+
++insert
++load
++from
++in
+The syntax of the Load command is
+L q/file/
+The only valid qualifier is D - delete file after loading it.
+If no file is specified,  then an anonymous file is loaded.
++output
++copy
++send
++out
++to
+The syntax of the Move and Copy commands is
+m q/file/
+where m is M for MOVE or C for COPY.
+The only valid qualifiers are A - append to the file, and N - discard.
+N may only be used with anonymous files, and causes the lines to be discarded.
+If no file is specified,  then an anonymous file is written to.
+The first line moved is the line that the cursor is on when the command is
+issued.  The last line is the line that the cursor is on when a delimit
+command is issued.  Delimit is either command dot (.) or immediate
+command dot (see help page).
++*
+For information about how to move text into a file use HELP SSE INSERT,
+for information about how to move text out of a file use HELP SSE COPY
++
+*comment
+*remark
+*//
+*|
+Comments may occur in SSE command lines after the vertical bar character (|).
+* command #H #HCH=+
+* immediate #H #HCH=+
+* control #H #HCH=+
+* menu #H #HCH=+
++control
+Control commands are single CONTROL keys that are acted upon immediately.
+CTRL-A,B        Upper, lower case the character over the cursor
+CTRL-C          Enter or leave COMMAND mode
+CTRL-D,U        Move cursor vertically DOWN, UP
+CTRL-E,F        Delete from cursor to END, FRONT of line
+CTRL-G          Generate a copy of the current line
+CTRL-L          Delete the whole current LINE
+CTRL-N,P        Switch this line with the NEXT, PREVIOUS one
+CTRL-O          Obey the current command line
+CTRL-Q          QUIT if no edits have been done
+CTRL-R          REWIND - return to the top of the document
+CTRL-S,T        Skip forwards to the next, previous word
+CTRL-V          Switch the command lines
+CTRL-W          Windup
+CTRL-Y          Move cursor to end of screen
+CTRL-Z          Windup and exit
+CTRL-^          Rubout the character over the cursor
+CTRL-\          Change character above cursor to space
+CLEAR           Reshow the screen,
+ENTER           (cifer 2632)    Enter immediate mode
+SENDLINE        (cifer 2605)    Enter immediate mode
+ESCAPE          (newbury)       Enter immediate mode
++immediate
++menu
+Immediate commands are mainly from the keypad.
+On Newburys they must be typed after ESCAPE.
+1, 2    Move screen left, right
+4, 5    Move screen up,   down
+3       Extend immediate mode.  Further immediate commands do not need ESCAPE
+6, 7    Move to bottom, top of buffer
+8, 9    Perform last FIND, EXCHANGE-like command again
+0       Load and delete an anonymous file
+.       Start or end an anonymous move command
+
+Alphabetic immediate commands are decoded via your MENU file (or HOME:SSE-MENU
+if no menu file is quoted) into a command line. Each line of a menu file starts
+with a command letter: the rest of the line is the corresponding command
+line for SSE.
++normal
++*
+CONTROL-C enters and leaves command mode.  CONTROL-O obeys the current line.
+F q/text1/      Find next occurrence of text1 (help FIND QUALIFIERS).
+A q/str1/str2/  After the next occurrence of text1 place text2. (likewise E,B)
+C, M /file/     Copy lines to file, Move lines to file
+L /file/        Load lines from file (see help FILE COMMANDS for L/C/M).
+D, U            Move cursor vertically down, up
+numberG         Goto line with given number. (No number goes to end of file)
+H, @ rest       Do a HELP SSE 'rest' (likewise ?), send 'rest' to a CLI
+I               Insert a newline at the cursor,
+K               Delete from cursor to end of file
+N, O            Abandon outstanding MOVE or COPY, Obey the other command line
+Q               Quit.  Stop and abandon any edits that have been done
+R               Rewind.  Return to the top of the document
+numberT, V      Move current line to n'th on screen, Show verify page
+W, Z, P         Windup, Windup and exit, Windup and print
+numberX,numberY Set movement for horizontal(X) or vertical(Y) immediate commands
+-, +, <, >      Like cursor up, down, left, right
+^               Dispatch next character from command line as equivalent control
+%, $, #, _      Uppercase, lowercase, delete, force to space character
+
+    For further information about commands use
+        HELP SSE CONTROL COMMANDS       - for info on CONTROL commands
+        HELP SSE IMMEDIATE COMMANDS     - for info on IMMEDIATE commands
++
+*help #H #HCH=+
++page sys:info.sse-help
++file
++spec
++*
+The SSE help file page is kept in SYS:INFO.SSE-HELP
+The HELP information on SSE is kept in SYS:HELP.SSE
++
+*command
+**
+SSE command
+Form:           SSE   "FROM,TO,MENU/K,,BROWSE/S,OPT/K"
+Purpose:        To screen edit a file
+Authors:        AJW  DWS  PB
+Specification:
+        Edits the file given by the FROM keyword to the file given by the TO
+    keyword.  If FROM is not given a new file is created and edited to TO.
+    If TO is not given then FROM is edited to itself. If TO already exists, then
+    on windup an attempt is made to rename it as T:EDIT-BACKUP. IF THIS FAILS,
+    THE OLD VERSION IS LOST, so do not rely on this feature.
+        If the BROWSE switch is used no alterations to the file are allowed to
+    the file during editing.
+        The MENU key word is used to specify a file which contains a set of
+    pre-defined SSE commands for use whilst editing. If this is not given then
+    the menu file defaults to "HOME:sse-menu" in the currently set directory.
+        The unkeyed parameter ( between MENU and BROWSE ) is not used and is
+    included only for future compatability with the SSE server.
+        For information about the commands available use HELP SSE COMMANDS.
+        NOTE: this command can only be used at a cursor addressable
+              Newbury or Cifer terminal at present.
+        For further information try:
+
+    HELP SSE CONTROL COMMANDS       | for the effects of control keys
+    HELP SSE NORMAL  COMMANDS       | for commands in command lines
+    HELP SSE IMMEDIATE COMMANDS     | for commands after typing ESCAPE
+    HELP SSE FIND COMMAND
+    HELP SSE FIND QUALIFIERS
+    HELP SSE FIND DELIMITERS
+    HELP SSE FILE COMMANDS          | for inserting or sending output to files
+
+        Otherwise see the documentation folder:
+            ("SSE - A Screen Editor" by John Wilkes and Dave Singer).
+
+Examples:
+
+    SSE myfile                                  myfile onto itself
+    SSE TO newfile                              creates newfile
+    SSE infofile BROWSE                         looks at infofile
+
+

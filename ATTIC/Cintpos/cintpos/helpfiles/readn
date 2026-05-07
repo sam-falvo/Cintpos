@@ -1,0 +1,19 @@
+*procedure
+**
+READN
+      To read a number from the current input stream.
+      n := readn ()
+      Characters are read from the currently selected  input
+stream until one is found that is not a space, a newline, or
+a tab character.  If it is'nt a digit `+' or `-', the result
+is zero, the result2 global is set to -1,  the  character is
+`unread' using unrdch.
+      Any subsequent contiguous digits form the number.  The
+number is terminated by the first non-digit encountered, and
+this character is unread.  When readn succeeds,  the  result
+is the number read, and the result2 global is set to 0.
+      Note that a plus or minus sign which is  not  followed
+by a digit will be read as zero.  No check is made for over-
+flow while reading the number.
+
+

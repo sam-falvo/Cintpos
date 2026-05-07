@@ -1,0 +1,7 @@
+cintpos/sysb/debug.b
+cintpos/sysb/dlib.b
+cintpos/sysb/fh0.b
+cintpos/sysb/idle.b
+cintpos/sysb/klib.b
+cintpos/sysb/mbxhand.b
+cintpos/sysb/tcphand.b

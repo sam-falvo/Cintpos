@@ -1,0 +1,13 @@
+sysc/cintpos.c
+sysc/cintpos.h
+sysc/cinterp.c
+sysc/devices.c
+g/libhdr.h
+sysb/boot.b
+sysb/idle.b
+sysb/klib.b
+sysb/cli.b
+sysb/cli_init.b
+com/testtr.b
+com/clktest.b
+

@@ -1,0 +1,58 @@
+*standard #H standard
+*folder ..
+The documentation folder is to be found in the TITAN ROOM above the
+hardware work bench and to the rightmost end.
+*folder
+*drawer ..
+*draw ..
+Duplicate copies of documents from the documentation folder are found
+in the documentation draw.
+*draw
+*drawer
+The documentation draw is found in the filing cabinet in the TITAN ROOM
+just behind CAP.
+*system
+*new
+*tripos
+*+
+DOCUMENTATION
+
+Where further documentation exists for some help request its location
+can normally be found using
+                HELP <help request> SPEC
+and can sometimes be read using
+                HELP <help request> ALL
+
+Some system documentation is available on TRIPOS in the directory
+SYS:INFO.SPEC - the information files in SYS:INFO are generally used on
+an automatic basis by system programs.
+
+For information about documentation standards use
+                HELP DOCUMENTATION STANDARDS
+
+A short precis of recent events on TRIPOS can be found using MESSAGE TRIPOS
+with more detailed information available from HELP NEW <keyword>.
+
+Information can also be found in the following files on the 370:
+
+TRIPOS.ALL.SPEC members BLIB     BCPL library routines
+                        DATASTR  TRIPOS data structures
+                        DEBUG    commands to DEBUG
+                        EDIT     TRIPOS editor
+                        FILESTR  structure of disc files
+                        KERNPRIM Tripos kernel primitive routines
+                        MOUNT    the MOUNT command
+                        RINGSW   data ring software
+                        SYSLINK  TRIPOS system linker
+
+TRIPOS.PRINT.COMMSPEC   Specifications of commands
+TRIPOS.PRINT.LKEDSPEC   Spec of LSI4 TRIPOS link editor
+TRIPOS.PRINT.TRIDOC     General description of TRIPOS
+TRIPOS.FH3.SPEC         Spec of disc filing system
+TRIPOS.PDP11.WRITEUP    Description of the PDP11 TRIPOS kernel
+
+The information given by the HELP command can generally be found in the
+files of the directory SYS:HELP.  Use HELP <args> #TRACE to find the file in
+which any particular information is held.
+
+

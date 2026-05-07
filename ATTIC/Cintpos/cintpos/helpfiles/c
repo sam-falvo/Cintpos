@@ -1,0 +1,567 @@
+*c #H #HCH %
+%command
+C COMMAND
+Form:           C command-file args
+Purpose:        To execute a file of commands with argument substitution.
+Author:         RDE
+Specification:
+     The command-file contains commands that are executed by the Command
+Line Interpreter.  Any line starting with a dot ('.') is a directive to
+the C processor.  The directives are as follows:
+
+        .KEY }              RDARGS format string
+        .K   }              This specifies the format of the arguments
+        .DOT     ch         Change dot character to ch
+        .BRA     ch         Change bra character to ch
+        .KET     ch         Change ket character to ch
+        .DOL    }
+        .DOLLAR }ch         Change default-char to ch
+        .DEF keyword value  Give default value to parameter.
+                            The value may be delimited by spaces, or by
+                            double quotes (") if it contains spaces or
+                            BCPL string escapes (*", *N, etc.).
+        .<space>            Comment line
+        .<newline>          Blank comment line
+
+     Before execution, the contents of the file are scanned for any items
+enclosed by BRA and KET characters ('<' and '>' by default).  Such items
+may consist of a keyword or a keyword and default value to be used it the
+keyword is unset (separated by '$').  Thus <ANIMAL> will be replaced by
+the value associated with the keyword ANIMAL, while <ANIMAL$WOMBAT> will
+be replaced by the value of ANIMAL if it has one, and otherwise will
+default to WOMBAT.
+
+     Note that the T command can be used to execute command sequences which
+do not require any parameter substitution (use HELP T COMMAND for further
+information).  Also note the REX language available under REX-Tripos, which
+is much faster and more powerful than C-type sequences.
+
+     The REFLECT command can be used whilst debugging command files - it
+does the paramter substitution and echo's the resulting file rather than
+executing it (use HELP REFLECT COMMAND for more information).
+
+Example:
+        C list myfile
+
+        where the file "LIST" contains -
+
+        .K filename/a
+        RUN RINGPRINT <filename> OPT n; ECHO "Printing of <filename> complete"
+%*
+   The 'C' command is used to execute command sequences on Tripos.  See
+HELP C COMMAND for more info, and HELP COMMAND SEQUENCES for info about the
+sequences themselves.
+
+   Note that the 'T' command can be used to execute command sequences which
+do not require any parameter substitution (use HELP T COMMAND for further
+information).  Also note the REX language available under REX-Tripos, which
+is much faster and more powerful than C-type sequences.
+
+   For information about the C LANGUAGE see HELP LANGUAGES.
+%
+*cache #H #HCH %
+%fm
+Under a Tripos system using the filing machine, files are cached in two
+places:  the local machine and the filing machine.  The local cache does
+not usually give trouble, but the filing machine cache occasionally gets
+knotted.  The filing machine PROBE facility (:sys.fm.68000-obj.probe) can
+be used to issue the commands FLUSH CACHE and FLUSH MAP.
+%*
+Programs may be cached in store using the PRELOAD facility.  Files may
+be loaded into the CORE: in-store filing system.  See HELP on these.
+See HELP CACHE FM for info on the Tripos Filing Machine cache.
+%
+*calculator
+Resident DEBUG can be used as a simple calculator for evaluating integer
+expressions, and converting numbers to different bases.
+*call:
+CALL:
+
+The pseudo-device CALL: has two purposes:-
+
+ (1)  It allows pre-release testing of programs intended for installation in
+      directory :H without actually putting them there.
+ (2)  It can be used to call users' private pseudo-devices.
+
+Opening a stream  to  "CALL:filename/args"  has  the same effect as would be
+achieved  by  opening  "lastcomp:args"  if  the program  were  in  the  file
+:H.lastcomp. ("Lastcomp" is the last component  of the filename.) The string
+"lastcomp:args" is passed to the called program as its fourth argument.
+
+Example:
+
+A new version of the device LP: could be tested as follows:-
+
+TYPE :G.LIBHDR TO CALL::BRIAN.LSI4-OBJ.TEST-LP/LIBHDR
+
+*callco #H coroutine
+*cambridge #H #HCH %
+%hex #H chex
+%network #H ring
+%ring #H ring
+%model #H ring
+%
+*canon ..
+*cp ..
+*cp: ..
+CANON PRINTER
+
+The Canon printer is a high resolution laser printer.  It can be used as a
+line printer via the device CP:title.  The spooled stream SCP:title is a
+preferred alternative.  The printer page size is 97 characters by 99 lines.
+
+*canon ..
+*cp ..
+*cp: ..
+*ccanon ..
+The PRINT and LIST commands (q.v.) with option CANON provide a convenient
+means of printing files on the Canon printer. Option CCANON (Compact CANON)
+causes a small font (quarter normal size) to be used, allowing a large amount
+of text to be fitted on a page.
+*canon ..
+
+Bitmaps can be sent via the stream SCBM:title.
+
+*canon ..
+*canon: ..
+GCODE can be sent to the CANON printer via the devices CANON: (immediate
+output) or SCANON: (spooled).
+*canon ..
+*ccanon
+*cp
+*cp:
+*canon:
+
+Note that direct CANON streams (CANON: and CP:) are rather critical on
+timing:  if no data is sent for a while the stream will be timed out.
+In particular this can occur with PRINT in CCANON mode, and with GCAL sent
+direct to CANON:.  An intermediate file should be used in these cases.
+*canon
+
+See the note on the top of the machine for details of other services offered.
+See also HELP PRINTER for more general info on printing.
+*cap #H #HCH %
+%computer
+%file
+%machine
+CAP is a laboratory built CAPability machine connected to the ring.
+It can be used from TRIPOS in the following ways:
+
+        a) files can be transferred to CAP
+                - use HELP GIVEFILE COMMAND for more information
+        b) files can be transferred from CAP
+                - use HELP TAKEFILE COMMAND for more information
+        c) a CAP session may be obtained
+                - use HELP STAR COMMAND for more information
+
+CAP will accept ring authentication if you are a CAP user and you have
+given your approval (use HELP AUTHENTICATION for more information).  Use
+HELP LOGON on CAP for information about how to "give your approval".
+%+
+See HELP CAP MACHINE for info on the CAP computer.
+
+For capitalising characters use the procedure CAPITALCH.  See HELP on this.
+%
+*capitalch
+CAPITALCH
+      Procedure to convert a character to upper case.
+
+      ch2 := capitalch ( ch )
+
+      If the character 'ch' is any of a, b,...., z then  the result is the
+upper case version of that character ( ie., A, B,...., Z respectively ).
+Otherwise the result is just the character.
+*casech
+Form:           CASECH  "FROM/A,TO/A,DICT/K,U/S,L/S,A/S"
+Purpose:        To alter the letter case of identifiers in a BCPL
+                source.
+Authors:        JJG BJK
+Source:         :com.bcpl.casech
+Specification:
+   The FROM file is copied to the TO file, with the specified
+changes made to the cases of identifiers.  BCPL reserved words are
+forced to upper case.
+  U = force all identifiers to upper case (default)
+  L = force all identifiers to lower case
+  A = force all letters to upper case
+   A dictionary of mixed case 'spellings' can be supplied with the
+DICT keyword.  The dictionary file can be a BCPL source.
+Example:        CASECH PROG TO LCPROG L
+*caxu
+CAXU is the name of the machine providing a transport level gateway service
+between the ring and the JANET X25 network.
+
+There is at present no documentation on its detailed internal workings,
+but sources to remake the existing system can be found on the tape IDW226.
+Note that the compiler and linker can only be run on an LSI4, as they have
+16 bit dependencies.  The program CONVERT86 will convert a system image
+into the form to send to the boot server, and ULOAD86 will load into the
+gateway machine directly.
+
+See HELP X25 GATEWAY for info on accessing the gateway service.
+*char #H Shell-Commands
+*character #H ascii
+*chkl #H spell
+*chkw #H spell
+*cl #H Shell-Commands
+*clihdr
+CLIHDR is the BCPL header files containing manifests and globals associated
+with the command language interpreter (CLI).  It is in the file :G.CLIHDR.
+*cliinit #H cli
+*cli-init #H cli
+*clist #H Shell-Commands
+*clock
+Each TRIPOS machine has a real time clock, which is always device -1.  The
+clock interrupts "tickspersecond" times each second (usally 50).  For details
+as to the current time, use one of the following commands:
+
+    DAT          Prints date and time according to the TRIPOS machine
+    RINGDAT      Prints date and time according to the ring DAT service
+
+    DATE         Interrogate or set the date
+    TIME         Interrogate or set the time
+*close #H open
+*clu #H language
+*cobol #H language
+*code #H #HCH %
+%id #N ..
+%return #H rc
+*codeid #H #HCH %
+%command
+CODEID command
+
+Form:           CODEID  "SERVICE/A,FULL=FULLNAME/S"
+Purpose:        To interrogate the codeid function of another machine
+Author:         NJO
+Source:         :com.ring.bcpl.codeid
+Specification:
+
+The service name is used to construct the name of a codeid service.  This is
+done by adding the prefix "codeid-" to the part of the given name after the
+domain name (e.g. "CAMB*") if any.  This is not done if the FULL switch is
+set.
+
+An SSP call (q.v.) is then made to that service, and the resulting ID string
+and version number of the remote service printed out.
+
+Example:
+
+         CODEID nsvr.r
+%spec
+%specification
+%block
+The codeid service is accessed by a simple SSP (q.v.) request containing
+no data.  The service name should by convention be "codeid-<name>", where
+<name> is a mnemonic for the machine or service to which it applies.
+
+The data part of the reply contains a 2 byte integer version number and
+a text string in the following format:
+
+    Byte 0 - 1:   Integer version number (byte 0 is m.s. byte)
+             2:   Length of the text string
+          3 up:   Further bytes of the string
+
+The version number is recommended to start at 100 decimal, and to advance
+by 1 on minor revisions and fixes, and to the next multiple of 100 on any
+significant change.  It should not exceed 32767.
+
+The string should not exceed 80 bytes in length.  It is recommended that it
+contains:  <name of code> V<major version>.<minor version> - <date>
+               e.g.  "Nameserver V2.14 - 10 Nov 1982"
+%id
+%*
+The CODEID facility is a standard way of prodding a machine in order to
+(a)  see if it is alive, and/or
+(b)  see what code version is running in it.
+
+See HELP CODEID COMMAND for info on the Tripos command to prod the service,
+and HELP CODEID SPEC for the specification of the service.
+%
+*cohand
+COHAND is short for CONsole HANDler, and is the name of the Tripos task which
+does just that.  On ring systems, COHAND is replaced by RMVTHAND, which is
+the ReMote Virtual Terminal HANDler.
+*comdir #H set
+*compch
+COMPCH
+      Procedure to compare two characters irrespective of case.
+
+      res := compch ( ch1, ch2 )
+
+      The two characters are upper case if required  (by calls of capitalch
+(q.v.)), and then lexically compared.  If ch1 occurs before ch2 in the
+ordering used on the machine then the result is negative; if they are the
+same then the result is zero;  if ch1 occurs after ch2 then the result is
+positive.
+*complain
+*complaint
+If you know to whom a complaint should be directed send that person a
+message using SEND.  Otherwise to make a general complaint use HELP TROUBLE -
+it will prompt you for text.
+*compile #H language
+*compiler #H language
+*compstring
+COMPSTRING
+      Procedure to lexically compare two strings.
+
+      res := compstring ( s1, s2 )
+
+      The two strings are lexically compared with the characters upper cased.
+If s1 occurs lexically before s2 then the result will be negative; if they
+are the same then the result will be zero;  if s1 occurs after s2 then the
+result will be positive.
+*concat
+*concat:
+*concatenate
+*concatenation
+  This pseudo-device allows a single input stream to be constructed from
+a number of other streams. For example:
+
+     bcp concat:header+source to object
+
+        will concatenate the files "header" and "source" (in that order) and
+present them as input to the compiler.
+
+  The individual streams are handled as interactive or otherwise as
+appropriate, hence in:
+
+     edit wombat with concat:*+edits to wombat
+
+        will read commands interactively from the terminal as they are entered;
+once this stream is closed the stream will become non-interactive.
+
+  See HELP JOIN or HELP APPEND for information about concatenating files.
+*concentrator #H terminal
+*concprod #H #HCH %
+%program ..
+CONCPROD program
+
+Form:           sys:ring.termconc.<mctype>-obj.concprod
+                       "CONC/A,INFO/S,BOOT/S,STATS/S,CLEAR/S,TO/K,MESSAGE/K"
+Purpose:        To access the remote control facilities of a terminal conc.
+Author:         NJO
+Source:         sys:ring.termconc.bcpl.concprod
+Specification:
+
+This program sends an SSP to the remote control interface of the specified
+concentrator, reads the reply and formats it appropriately.
+%sequence ..
+CONCPROD rex command sequence
+
+Form:           sys:ring.termconc.rex.concprod
+                       "CONC/A,INFO/S,BOOT/S,STATS/S,CLEAR/S,TO/K,MESSAGE/K"
+Purpose:        To access the remote control facilities of a terminal conc.
+Author:         NJO
+Specification:
+
+The first parameter is a list of concentrator names (without the ".vdu")
+separated by commas (e.g. titan,rhea).  The command sequence appends ".vdu"
+to each name and calls the concprod program with the given parameters.
+%program ..
+%sequence
+
+The most useful functions are probably the BOOT switch and the MESSAGE key.
+BOOT will cause the concentrator to reboot (from the boot server), but only
+of no line is marked "in use".  MESSAGE allows a "message of the day" to
+be set remotely (as for the local 'M' command).
+
+TO allows the output to be filed, useful with the statistics given in response
+to the STATS switch.  CLEAR clears the statistics counts.
+%program
+
+The program is conveniently used via the REX sequence REX.CONCPROD (q.v.).
+%*
+Concprod is a program which accesses the remote control facilities of the
+terminal concentrator (q.v.).  It is a bcpl program.  See HELP CONCPROD
+PROGRAM for info.  However it is more conveniently accessed via a REX
+sequence, see HELP CONCPROD SEQUENCE for this.
+%
+*conditional #H #HCH %
+%assembler
+%assembly
+The 68000 assembler supports conditional assembly.  See HELP 68000 ASSEMBLER
+for more information.
+%compiler
+%compilation
+The BCP and TBCPL compilers support conditional compilation.  See HELP BCP
+and HELP TBCPL for more information.
+%tags
+Conditional tags in BCPL are of the form:
+
+     $<name
+
+     blah blah blah
+
+     $>name
+%+ ..
+Try HELP IF for conditional commands in command sequences.
+%*
+HELP only has information on conditional ASSEMBLY, COMPILATION and TAGS.
+%
+*connect #H star
+*connection #H star
+*connecting #H star
+*consoletask
+CONSOLETASK is a BCPL global variable used by Tripos to hold the task id
+of the console handler to which a task is attached. Its value is copied by
+RUN, NEWCLI, etc., to ensure that all tasks which a user creates will talk
+to his terminal.  Opening a stream to * will call the handler specified by
+CONSOLETASK. (Note that Tripos is usually run with only one terminal
+attached, so CONSOLETASK will have the same value in all tasks.)
+*convert
+To convert OCODE             see HELP OCC
+To convert GCODE             see HELP GCC
+To convert ASCII to EBCDIC   see RSX.SPEC:DERAIL on the 370
+*copy
+COPY Command
+Form:           COPY  "FROM/A,TO/A,WORDS/S,CHARS/S"
+Purpose:        To copy a file from one place to another.
+Authors:        RDE ARA
+Specification:
+
+   WORDS specifies that the copy should be done by READWORDS/WRITEWORDS,
+and CHARS that it should be done by RDCH/WRCH.  The default is WORDS if
+both files are on disc, CHARS otherwise.
+
+Example:        COPY FILE1 FILE2
+*copydir
+*copyobj
+COPYOBJ PROCEDURE (COPYDIR is an alias)
+
+RESULT := COPYOBJ(LOCK)
+
+Make a copy a filing system lock.
+LOCK is a filing system lock on a directory or file obtained by an earlier
+call of LOCATEOBJ or COPYOBJ. A copy of this lock is made and returned.
+
+RESULT=0 indicates that the call failed; RESULT2 holds an error code.
+
+This routine is most useful for copying directory locks - for example to
+give a new task the same currently set directory as its parent.
+*core
+*core:
+CORE: Device
+
+   CORE: is a pseudo-device which maintains in-memory files. All the normal
+file operations are implemented. The amount of space used is adjusted
+dynamically, but may lead to fragmentation. 'Discinfo' will give the amount of
+space allocated (in 256 word blocks).
+
+   To load and unload the handler use the commands:
+
+      mount core:       // mounts it
+   dismount core:       // dismounts it !
+
+   Alternatively, the core handler will be dynamically loaded in response
+to an attempt to open a stream for input or output.
+
+   For further information contact Dave Milway.
+*cowait #H coroutine
+*count #H #HCH %
+%line #H spell
+%
+*cpu
+The CPU command indicates the proportion of CPU time being used. However, it
+is of limited use on processor bank machines because of the difficulty in
+seeing the displayed results!
+
+The OBSERVE command allows one to investigate the amount of CPU time being
+used by individual tasks and procedures.
+*cr82
+This is an abbreviation for the "Cambridge Ring 82 Protocol Specifications"
+prepared by the Joint Network Team, and is an enhancement of Cambridge BSP.
+It has been embodied as a British Standard for Ring usage.  See the "orange
+books" for more information, copies should be found in the library.
+
+A library exists to support the creation of CR82 connections, see HELP CR82LIB
+and there is a device CR82: which allows the creation of Tripos streams to
+or from a CR82-supporting service.
+*cr82lib #H sourcelib
+*cr82:
+This is a pseudo-device which allows CR82 based ring services to appear
+as Tripos streams.  The string "CR82:<service name>" may be passed as the
+argument to findinput or findoutput, and will return a byte stream of the
+appropriate direction as the result, if successful.  The "other half" of the
+byte stream will be returned in RESULT2.
+
+Examples:
+
+     In a program:
+           output.bs := findoutput("CR82:test-service")
+           input.bs  := result2
+
+     As a command:
+           type cr82:read-black/myfile
+           copy my-message cr82:write-brown/*
+*crash
+If you have crashed your machine, your first recourse is to DEBUG (task 2)
+if the terminal stream is still intact.  If the machine is completely wiped
+out then your still in with a chance if it's a 68000.  You can load the
+pseudo system RESET into it to give yourself a bit of time:  connect to SM
+and go SYSDESC RESET 15 15 -M <your machine>.  Then get another 68000 and
+use REMOTE DEBUG.  See HELP on DEBUG and REMOTE DEBUG.
+
+If your machine was lost while you were using the WS editor, then you may
+be able to recover the in-store buffer using WS-RECOVER, see HELP.
+
+Any temporary files you had created should still be in existence.  If you
+cannot log back into the same machine you can access them via
+  :machines.<machine name>.t
+*create #H #HCH %
+%device
+%dev
+The procedure CREATEDEV is used to set up Tripos devices.  See HELP on this
+for more information.
+%+ #H file
+*createco #H coroutine
+*createdev
+DEVID := CREATEDEV(DCB)   Create a device.
+
+Arguments:
+
+DCB
+   A skeleton device control block for the specified type of device.  DCB!0
+must point to the device driver section containing initialisation code.
+
+Normal return:
+
+DEVID\=0    The id. of the created device.
+
+Error return:
+
+RESULT=0, possible errors are:
+
+   RESULT2=104, Device table full.
+   RESULT2=106, Failure to initialise device.
+
+Side effects:
+
+   An entry for the specified device is put into the device table.  The
+device is initialised.
+
+Related routines:
+
+   DELETEDEV
+*createdir
+CREATEDIR Command
+Form:           CREATEDIR  "/A"
+Purpose:        To create a directory.
+Author:         PB
+Specification:
+   The directory with the given name is created.
+Example:        CREATEDIR BCPL
+                CREATEDIR DF1:T
+*createtask #H task
+*credit #H accounting
+*csm
+CSM (or C SM) typed at the terminal concentrator will establish a connection
+to the Session Manager machine.  See HELP SESSION MANAGER for info on this.
+*ctrl #H control
+*currentdir
+CURRENTDIR is a BCPL global variable used by Tripos to hold a lock on a task's
+current working directory. This is the directory in which unqualified file
+names are looked up.
+
+The SET command can be used to change CURRENTDIR.
+
+

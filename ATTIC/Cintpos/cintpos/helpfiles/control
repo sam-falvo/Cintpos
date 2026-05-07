@@ -1,0 +1,56 @@
+*a
+CTRL/A is used by a stand-alone (non-ring) Tripos to cause an abort and stop
+the system for debugging.  It has no effect on ring Tripos.
+
+The character CTRL/A typed at the terminal concentrator causes the following
+character to be marked as for the attention if the virtual terminal handler
+in the host, where it may have special effects.  In particular it is used to
+escape in the Tripos CTRL/D attention signal, see HELP BREAK HANDLING.
+*b #H break
+*c #H break
+*d
+CTRL/D is a standard character for terminating an input line without moving
+the cursor.  The terminal concentrator uses it in this way.  It is also used
+as an attention character by Tripos, see HELP BREAK.  To get a CTRL/D to
+Tripos from the terminal concentrator type CTRL/A, CTRL/D.
+*e #H break
+*f #H console
+*p
+CTRL/P is a standard character used to escape in a command to a terminal
+handler machine.  It is followed by commands most of which are single letters
+e.g. 'E' to turn on/off reflection.  See the terminal concentrator help
+page (H command) for info on those CTRL/P escapes it supports.
+*s #H console
+*t #H console
+**
+CONTROL CHARACTERS
+
+For a list of codes used for ASCII control characters use HELP ASCII CONTROLS.
+
+The virtual terminal handler in processor bank versions of TRIPOS takes
+special action on the following control characters (if they are directed to
+the terminal handler - see below):
+
+  Control B, C, D, E  set Tripos attention flags.  See HELP BREAK HANDLING.
+  Control F, S, T     are commands to the console.  See HELP CONSOLE.
+
+When a VDU concentrator terminal is being used, most of these control
+characters will be directed to the terminal handler by default.  A control
+character can be directed explicitly to the terminal handler by preceding
+it with Control A:  this must be done to get Control D through.
+
+In order to type in a control character destined for the end program, '@X'
+should be used to escape in the hex value (e.g. '@X05' for Control E).
+Use HELP TERMINAL ESCAPE for more information.
+
+When the terminal is connected via the UDN, the default is the other way round -
+i.e. control characters will normally be directed to the final program rather
+than the terminal handler.  In order to send a control character to the
+terminal handler, you must cause it to be at the end of a record by forcing
+transmission. For example, to send Control S, you type the following:
+
+  <Control P>  <Control S>  <Control P>  T
+
+Use HELP UDN for further examples of university data network use.
+
+

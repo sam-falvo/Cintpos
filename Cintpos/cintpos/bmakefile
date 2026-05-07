@@ -1,10 +1,10 @@
-% This is a bmake makefile to rebuild the Cintpos system,
-% create a cross reference listing in xrefdata,
-% encode using xcencode all the source files of Cintpos into a file
-% called posxfiles/cintpos.xc
-% or expand posxfiles/cintpos.xc1 using xcdecode.
+% This is a bmake makefile to rebuild the Cintpos system.
 
-% Last modified by Martin Richards (c) March 2012
+% It can create the cross reference listing xrefdata.
+% It can encode all the source files of Cintpos into posxfiles/cintpos.xc
+% It can expand posxfiles/cintpos.xc1 using xcdecode.
+
+% Last modified by Martin Richards (c) 20 March 2019.
 
 helpinfo
 <<

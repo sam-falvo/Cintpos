@@ -1,0 +1,117 @@
+*spec #H #HCH=+
+*proposed #H #HCH=+
+*standard #H #HCH=+
++spec
++*
+BCPL STANDARD spec is in the TRIPOS file space on the 370.
++
+*procedure #H procedure
+*source #H directory
+*library #H blib
+*libraries #H blib
+*proc #H procedure
+*heading #H libhdr
+*libhdr #H libhdr
+*header #H libhdr
+*get #H libhdr
+*cross #H bcplxref
+*xref #H bcplxref
+*global #H global
+*interpret #H intcode
+*interpreting #H intcode
+*interpreter #H intcode
+*intcode #H intcode
+*opt #N ..
+*option #N ..
+*mc #N ..
+*command ..
+** ..
+Form:           BCPL  "FROM,TO,OCODE/K,MC/K,CHARCODE/K,VER/K,OPT/K"
+Purpose:        To compile a BCPL program
+Authors:        MR ARA RDE
+Specification:
+   If FROM is specified, then the front end is called to generate
+intermediate code.  If TO is specified, then the code generator is
+called to translate the intermediate code into object code.  If
+OCODE is specified, then the given file is used for the intermediate
+code, otherwise a temporary file is used and is deleted at the end
+of the compilation.
+   Setting any combination of FROM, TO and OCODE will result in the
+expected activity - if just OCODE and TO are specified, for example,
+the ocode in OCODE will be code generated into TO.
+
+*mc
+*all ..
+BCPL MC CODE GENERATORS
+   The MC parameter can be used to specify alternative code generators.
+Possible options here are:
+         MC = LSI4         LSI4 code generator
+         MC = NOVA         NOVA code generator
+         MC = PDP11        PDP11 code generator
+         MC = MC68000      MC68000 code generator
+         MC = INTCODE      INTCODE (portable BCPL assembly language)
+                           code generator (use HELP INTCODE)
+         MC = OLD          the last default code generator
+
+    Note that if you compile for a machine other than your home machine
+the S option may have to be used to override the default for the current
+machine.  In general the save space for procedures on most machines will
+be 2 so the option OPT S2 will be appropriate.  However the default for
+a 68000, (also on CAP and on the IBM) is OPT S3.
+*opt #N ..
+*option #N ..
+*all #N ..
+** ..
+   The MC option can be used to specify alternative code generators - use
+HELP BCPL MC for more information.
+*opt #N ..
+*option #N ..
+** ..
+   CHARCODE may be used to specify a character translation file for
+bootstrapping.  The format is 128 three-digit octal integers,
+separated by tab, space, or newline.
+   VER specifies an output stream for messages.
+
+*opt
+*option
+*all ..
+BCPL OPTIONS
+   OPT specifies options.  Each option starts with a letter, and
+some have integer arguments.  A slash (/) indicates the end of front
+end options, and subsequent ones are passed to the code generator.
+
+   Front end options:
+ T   print AE tree         default: FALSE
+ Sn  set savespace size                 2 on LSI4, 3 on 68000
+                                        (use HELP BCPL MC for further info)
+ Ln  set tree space                 10000
+ Dn  set declaration space           1800
+
+   Code Generator options:
+ C   include stack checking code    FALSE
+ L   list object module             FALSE
+ N   no names in code               FALSE
+ O   alternative object module format FALSE
+ P   profile counts                 FALSE
+ K   call counts                    FALSE
+ R   restricted instruction set     FALSE
+ Wn  set workspace size              5000
+ X   ( spare flags for machine)     FALSE
+ Y   ( dependent options      )     FALSE
+ An  ( Spare numbers          )         0
+ Bn  (                        )         0
+
+*all #N ..
+** ..
+   OPT specifies options both to the front end and to the code generator.
+Use HELP BCPL OPT for more information.
+**
+
+For information about the BCPL standard use HELP BCPL STANDARD.
+For all the information about the BCPL command use HELP BCPL ALL.
+
+Examples:       BCPL prog-source TO prog
+                BCPL OCODE prog-ocode TO prog
+                BCPL prog-source prog-intcode MC intcode OPT s2
+
+

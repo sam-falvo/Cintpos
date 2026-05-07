@@ -1,0 +1,39 @@
+*klib
+*procedure
+PACKET := TASKWAIT()
+   Return the earliest packet sent to the task, or  the
+next  packet  to  be sent to the task (if the task work
+queue is empty).
+Arguments:
+
+   None.
+Normal return:
+
+   PACKET points to a TRIPOS packet.
+   PACKET!0 will be NOTINUSE.
+   PACKET!1 will be set to the sender's id.
+Side effects:
+
+   May cause a change of current task.
+Related routines:
+
+   DQPKT
+   QPKT
+*command
+TASKWAIT COMMAND
+Form:           TASKWAIT   "task/a,echo/k"
+Author:         MFR
+Purpose:        To wait for another task to finish
+Specification:
+        This command does not complete until task number <task> ends.
+    When this eventually occurs the text keyed with argument "echo"
+    is printed.
+Examples:
+        TASKWAIT 1 echo "system ending"
+        TASKWAIT 8
+** #I taskwait
+TASKWAIT is the name of both a TRIPOS command and a KLIB PROCEDURE.
+For information about the command type COMMAND and for information
+about the procedure type PROCEDURE.  Type <CR> to exit HELP.
+
+
