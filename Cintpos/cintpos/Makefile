@@ -76,7 +76,7 @@
 SSHPUB = ely.cl.cam.ac.uk:public_html
 
 # The BCPL cintcode directory
-BCPL = $(HOME)/distribution/BCPL/cintcode
+#BCPL = $(HOME)/distribution/BCPL/cintcode
 
 # The following for armgcc under cygwin
 #GP2XCC = /cygdrive/c/devkitGP2X/bin/arm-linux-gcc -O3 -static -DforGP2X
@@ -245,23 +245,23 @@ filesfromBCPL:	\
 	com/bcplcgcin.b \
 	sysc/soundfn.c
 
-g/libhdr.h:	$(BCPL)/cintcode/g/libhdr.h
-	cp $(BCPL)/cintcode/g/libhdr.h g/libhdr.h
+g/libhdr.h:	$(BCPLROOT)/g/libhdr.h
+	cp $(BCPLROOT)/g/libhdr.h g/libhdr.h
 
-com/bcpl.b:	$(BCPL)/com/bcpl.b
-	cp $(BCPL)/com/bcpl.b com/bcpl.b
+com/bcpl.b:	$(BCPLROOT)/com/bcpl.b
+	cp $(BCPLROOT)/com/bcpl.b com/bcpl.b
 
-com/bcplfe.b:	$(BCPL)/com/bcplfe.b
-	cp $(BCPL)/com/bcplfe.b com/bcplfe.b
+com/bcplfe.b:	$(BCPLROOT)/com/bcplfe.b
+	cp $(BCPLROOT)/com/bcplfe.b com/bcplfe.b
 
-com/bcplcgcin.b:	$(BCPL)/com/bcplcgcin.b
-	cp $(BCPL)/com/bcplcgcin.b com/bcplcgcin.b
+com/bcplcgcin.b:	$(BCPLROOT)/com/bcplcgcin.b
+	cp $(BCPLROOT)/com/bcplcgcin.b com/bcplcgcin.b
 
-g/bcplfecg.h:	$(BCPL)/g/bcplfecg.h
-	cp $(BCPL)/g/bcplfecg.h g/bcplfecg.h
+g/bcplfecg.h:	$(BCPLROOT)/g/bcplfecg.h
+	cp $(BCPLROOT)/g/bcplfecg.h g/bcplfecg.h
 
-sysc/soundfn.c:	$(BCPL)/cintcode/sysc/soundfn.c
-	cp $(BCPL)/cintcode/sysc/soundfn.c sysc/soundfn.c
+sysc/soundfn.c:	$(BCPLROOT)/sysc/soundfn.c
+	cp $(BCPLROOT)/sysc/soundfn.c sysc/soundfn.c
 
 all:	$(ENDER) \
 	bin/mconn \
@@ -344,8 +344,8 @@ sysc/INT.h:	sysc/mkint-h.c
 	./mkint-h >sysc/INT.h
 	rm -f mkint-h
 
-sysc/mkint-h.c:	$(BCPL)/sysc/mkint-h.c
-	cp $(BCPL)/sysc/mkint-h.c sysc/mkint-h.c
+sysc/mkint-h.c:	$(BCPLROOT)/../natbcpl/sysc/mkint-h.c
+	cp $(BCPLROOT)/../natbcpl/sysc/mkint-h.c sysc/mkint-h.c
 
 bin/mconn:	obj/mconn.o obj/kblib.o
 	$(CC) -o bin/mconn obj/mconn.o obj/kblib.o
@@ -353,8 +353,8 @@ bin/mconn:	obj/mconn.o obj/kblib.o
 obj/mconn.o:	sysc/mconn.c sysc/INT.h
 	$(CC) -o obj/mconn.o -c sysc/mconn.c
 
-sysc/mconn.c:	$(BCPL)/sysc/mconn.c
-	cp $(BCPL)/sysc/mconn.c sysc/mconn.c
+sysc/mconn.c:	$(BCPLROOT)/sysc/mconn.c
+	cp $(BCPLROOT)/sysc/mconn.c sysc/mconn.c
 
 
 

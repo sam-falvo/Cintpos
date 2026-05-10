@@ -73,7 +73,7 @@ extern pthread_cond_t irq_cv;
 
 extern int tracing;
 extern BCPLWORD memupb;
-UBCPLWORD memupbb;
+// UBCPLWORD memupbb;
 
 extern BCPLWORD *tallyv;
 extern BCPLWORD tallylim;
