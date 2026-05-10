@@ -1,0 +1,33 @@
+// mushdr.mus
+$get!sonichdr;%
+%$get!gshdr;%
+%$get!hp107hdr;%
+
+%$get!pianohdr;% Turn all instruments into pianos
+
+$def!:|:!\colon_barline_colon;%
+$def!|:!\barline_colon;%
+$def!:|!\colon_barline;%
+
+$def!fff!\vol(95);%
+$def!ff!\vol(90);%
+$def!f!\vol(80);%
+$def!mf!\vol(70);%
+$def!mp!\vol(50);%
+$def!p!\vol(40);%
+$def!pp!\vol(30);%
+$def!ppp!\vol(25);%
+$def!pppp!\vol(15);%
+$def!ppppp!\vol(5);%
+
+$def!l10!\legato(100);%
+$def!l9!\legato(90);%
+$def!l8!\legato(80);%
+$def!l7!\legato(70);%
+$def!l6!\legato(60);%
+$def!l5!\legato(50);%
+$def!l4!\legato(40);%
+$def!l3!\legato(30);%
+$def!l2!\legato(20);%
+$def!l1!\legato(10);%
+

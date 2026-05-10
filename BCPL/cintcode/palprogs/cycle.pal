@@ -1,0 +1,23 @@
+let Cycle A = valof
+{  let n, i = Order A, 1
+   and T = nil
+   in
+   if n=0 then res false;
+  
+L: T := T aug ( A i < i -> n+1 !
+                A i > n -> n+1 !
+		$ A i );
+        i := i + 1;
+	if i<n then goto L;
+
+M: i := i+1;
+N: i, T i := T i, n;
+   if i < n hen goto N;
+   if i = n then res true;
+   n := n + 1;
+   if n > 0 then goto M;
+   res false
+}
+in
+Test Cycle;
+Write '*nAll done.*n'

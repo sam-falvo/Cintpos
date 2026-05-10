@@ -1,0 +1,13 @@
+//#ifdef GL_ES
+//precision mediump float;
+//#endif
+
+varying   vec4 g_vVSColor;
+
+void main()
+{ vec4 Col = g_vVSColor;
+  //if ((g_vVSColor.r<100.0) && (g_vVSColor.g<100.0) && (g_vVSColor.b<100.0))
+  //{ Col.r = 0.5;
+  //}
+  gl_FragColor = Col;
+}

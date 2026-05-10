@@ -1,0 +1,35 @@
+# One way to set the BCPLROOT, BCPLPATH, BCPLHDRS, BCPLSCRIPTS
+# and PATH environment variables for the BCPL Cintcode and
+# Cintpos systems. It can be used, possibly with minor edits,
+# on most Linux and Cygwin systems.
+
+# Add a line similar to the following near the end of the
+# file .bashrc which should be in your home directory.
+
+# . /home/mr10/distribution/cintcode/os/linux/setbcplenv
+
+# The following are for 32 bit BCPL
+export BCPLROOT=$HOME/distribution/BCPL/cintcode
+export BCPLPATH=$BCPLROOT/cin
+export BCPLHDRS=$BCPLROOT/g
+export BCPLSCRIPTS=$BCPLROOT/s
+
+# The following are for 64 bit BCPL
+export BCPL64ROOT=$HOME/distribution/BCPL/cintcode
+export BCPL64PATH=$BCPL64ROOT/cin64
+export BCPL64HDRS=$BCPL64ROOT/g
+export BCPL64SCRIPTS=$BCPL64ROOT/s
+
+# The following are for 32 bit Cintpos
+export POSROOT=$HOME/distribution/Cintpos/cintpos
+export POSPATH=$POSROOT/cin
+export POSHDRS=$POSROOT/g
+export POSSCRIPTS=$POSROOT/s
+
+export PATH=$BCPLROOT/bin:$POSROOT/bin:$PATH
+
+# Note that BCPLROOT and POSROOT must be the absolute filenames.
+
+
+# MR
+# 21 Nov 2018

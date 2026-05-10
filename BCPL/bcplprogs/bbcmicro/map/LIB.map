@@ -1,0 +1,1041 @@
+Before calling findsections
+fcounter=0 notfcounter=0 mcounter=0 notmcounter=0
+codevsize-fcounter-notfcounter=1330
+codevsize-mcounter-notmcounter=1330
+
+Calling findsections
+
+    0: 03E9 MC    Section     size   322 bytes
+
+  326: 03EA Reloc Section     size    26 bytes
+//   330: Applying relocation type 0 address 60
+Updated word at 64 with value 279
+//   332: Applying relocation type 0 address 78
+Updated word at 82 with value 279
+//   334: Applying relocation type 0 address 89
+Updated word at 93 with value 291
+//   336: Applying relocation type 0 address 98
+Updated word at 102 with value 279
+//   338: Applying relocation type 0 address 123
+Updated word at 127 with value 249
+//   340: Applying relocation type 0 address 126
+Updated word at 130 with value 279
+//   342: Applying relocation type 0 address 177
+Updated word at 181 with value 129
+//   344: Applying relocation type 0 address 221
+Updated word at 225 with value 129
+//   346: Applying relocation type 0 address 251
+Updated word at 255 with value 279
+//   348: Applying relocation type 0 address 273
+Updated word at 277 with value 51
+//   350: Applying relocation type 0 address 297
+Updated word at 301 with value 311
+//   352: Applying relocation type 0 address 302
+Updated word at 306 with value 312
+//   354: Applying relocation type 0 address 307
+Updated word at 311 with value 313
+  324: Max global number 200
+  320: G200 =    24   VDU
+
+  356: 03E8 CODE  Section     size    30 bytes
+  388: Max global number 128
+  384: G128 =   372   SOUND
+
+  390: 03E8 CODE  Section     size    54 bytes
+  446: Max global number 129
+  442: G129 =   406   ENVELOPE
+
+  448: 03E8 CODE  Section     size    40 bytes
+  490: Max global number 121
+  486: G112 =   464   TIME
+
+  492: 03E8 CODE  Section     size    34 bytes
+  528: Max global number 201
+  524: G201 =   508   ADVAL
+
+  530: 03E8 CODE  Section     size    84 bytes
+  616: Max global number 47
+  612: G047 =   582   RESUMECO
+  608: G043 =   554   CALLCO
+
+  618: 03E8 CODE  Section     size    88 bytes
+  708: Max global number 94
+  704: G024 =   634   ENDPROG
+
+  710: 03E9 MC    Section     size   126 bytes
+
+  840: 03EA Reloc Section     size     2 bytes
+//   844: Applying relocation type 0 address 34
+Updated word at 748 with value 761
+  838: Max global number 219
+  834: G218 =   760   BACKMVBY
+  830: G219 =   734   BACKMOVE
+
+  846: 03E8 CODE  Section     size    72 bytes
+  920: Max global number 116
+  916: G116 =   862   VDUINFO
+
+  922: 03E8 CODE  Section     size    44 bytes
+  968: Max global number 77
+  964: G077 =   938   TESTSTR
+
+  970: 03E8 CODE  Section     size    42 bytes
+ 1014: Max global number 93
+ 1010: G093 =   986   WRITEOCT
+
+ 1016: 03E8 CODE  Section     size    46 bytes
+ 1064: Max global number 94
+ 1060: G040 =  1032   WRITET
+
+ 1066: 03E8 CODE  Section     size    48 bytes
+ 1116: Max global number 88
+ 1112: G041 =  1082   WRITEU
+
+ 1118: 03E8 CODE  Section     size    90 bytes
+ 1210: Max global number 89
+ 1206: G089 =  1134   WRITEDB
+
+ 1212: 03E8 CODE  Section     size    32 bytes
+ 1246: Max global number 30
+ 1242: G030 =  1228   STACKSIZE
+
+ 1248: 03E8 CODE  Section     size    76 bytes
+ 1326: Max global number 127
+ 1322: G127 =  1264   APTOVEC
+After calling findsections
+fcounter=18 notfcounter=237 mcounter=0 notmcounter=255
+codevsize-fcounter-notfcounter=1075
+codevsize-mcounter-notmcounter=1075
+
+Calling findnames
+
+Finding section, needs and entry names
+    4: SECTION Name: VDU    
+  534: SECTION Name: CORTNS 
+  714: SECTION Name: BACKMOV
+After calling findnames
+fcounter=19 notfcounter=457 mcounter=0 notmcounter=476
+codevsize-fcounter-notfcounter=854
+codevsize-mcounter-notmcounter=854
+
+Calling scancode
+
+After calling scancode
+fcounter=317 notfcounter=921 mcounter=189 notmcounter=1043
+codevsize-fcounter-notfcounter=92
+codevsize-mcounter-notmcounter=98
+
+Calling findnotf
+
+After calling findnotf
+fcounter=317 notfcounter=1007 mcounter=189 notmcounter=1043
+codevsize-fcounter-notfcounter=6
+codevsize-mcounter-notmcounter=98
+
+Calling findstrings
+
+After calling findstrings
+fcounter=317 notfcounter=1007 mcounter=189 notmcounter=1067
+codevsize-fcounter-notfcounter=6
+codevsize-mcounter-notmcounter=74
+About to call dumpcode()
+
+//     0: 03E9 00A1                MHUNK    size=161
+//     4: FDDF                     Section name: VDU    
+//     6: 07 56 44 55 20 20 20 20
+
+//    14: DFDF                     Entry name: VDU    
+//    16: 07 56 44 55 20 20 20 20
+
+//    24: GLOBAL ENTRY             G200 VDU
+//    24: 0D        CODE1          
+//    25: A5 04       LDA      4
+//    27: 0A          ASL      A
+//    28: 85 54       STA     84
+//    30: A5 05       LDA      5
+//    32: 2A          ROL      A
+//    33: 85 55       STA     85
+//    35: A9 08       LDA   #  8
+//    37: 85 5C       STA     92
+//    39: 06 52       ASL     82
+//    41: 26 53       ROL     83
+//    43: A0 00       LDY   #  0
+//    45: B1 52       LDA  ( 82),Y
+//    47: 85 59       STA     89
+//    49: 84 58       STY     88
+
+//    51: L00051:
+//    51: A9 00       LDA   #  0
+//    53: 85 56       STA     86
+//    55: 85 57       STA     87
+//    57: 85 5B       STA     91
+//    59: 85 5A       STA     90
+//    61: 85 5D       STA     93
+
+//    63: L00063:
+//    63: 20 17 01    JSR    279
+//    66: 90 01       BCC     69
+//    68: 60          RTS
+
+//    69: L00069:
+//    69: C9 20       CMP   # 32
+//    71: F0 F6       BEQ     63
+//    73: C9 26       CMP   # 38
+//    75: F0 34       BEQ    129
+//    77: C9 23       CMP   # 35
+//    79: D0 0E       BNE     95
+//    81: 20 17 01    JSR    279
+//    84: C9 58       CMP   # 88
+//    86: F0 29       BEQ    129
+//    88: C9 78       CMP   #120
+//    90: F0 25       BEQ    129
+
+//    92: L00092:
+//    92: 4C 23 01    JMP    291
+
+//    95: L00095:
+//    95: C6 5A       DEC     90
+//    97: C9 2D       CMP   # 45
+//    99: D0 07       BNE    108
+//   101: 20 17 01    JSR    279
+//   104: C6 5D       DEC     93
+//   106: D0 1A       BNE    134
+
+//   108: L00108:
+//   108: C9 25       CMP   # 37
+//   110: D0 16       BNE    134
+//   112: A4 5C       LDY     92
+//   114: B1 54       LDA  ( 84),Y
+//   116: 85 56       STA     86
+//   118: C8          INY
+//   119: B1 54       LDA  ( 84),Y
+//   121: 85 57       STA     87
+//   123: C8          INY
+//   124: 84 5C       STY     92
+//   126: 4C F9 00    JMP    249
+
+//   129: L00129:
+//   129: 20 17 01    JSR    279
+//   132: B0 5F       BCS    229
+
+//   134: L00134:
+//   134: 38          SEC
+//   135: E9 30       SBC   # 48
+//   137: 30 58       BMI    227
+//   139: C9 0A       CMP   # 10
+//   141: 90 12       BCC    161
+//   143: E9 11       SBC   # 17
+//   145: C9 06       CMP   #  6
+//   147: 90 06       BCC    155
+//   149: E9 20       SBC   # 32
+//   151: C9 06       CMP   #  6
+//   153: B0 48       BCS    227
+
+//   155: L00155:
+//   155: 24 5A       BIT     90
+//   157: 30 BD       BMI     92
+//   159: 69 0A       ADC   # 10
+
+//   161: L00161:
+//   161: C6 5B       DEC     91
+//   163: 24 5A       BIT     90
+//   165: 30 10       BMI    183
+//   167: A2 03       LDX   #  3
+
+//   169: L00169:
+//   169: 06 56       ASL     86
+//   171: 26 57       ROL     87
+//   173: CA          DEX
+//   174: 10 F9       BPL    169
+//   176: 05 56       ORA     86
+//   178: 85 56       STA     86
+//   180: 4C 81 00    JMP    129
+
+//   183: L00183:
+//   183: 48          PHA
+//   184: A2 02       LDX   #  2
+
+//   186: L00186:
+//   186: 06 56       ASL     86
+//   188: 26 57       ROL     87
+//   190: E0 02       CPX   #  2
+//   192: D0 06       BNE    200
+//   194: A5 57       LDA     87
+//   196: 48          PHA
+//   197: A5 56       LDA     86
+//   199: 48          PHA
+
+//   200: L00200:
+//   200: CA          DEX
+//   201: 10 EF       BPL    186
+//   203: 18          CLC
+//   204: 68          PLA
+//   205: 65 56       ADC     86
+//   207: 85 56       STA     86
+//   209: 68          PLA
+//   210: 65 57       ADC     87
+//   212: 85 57       STA     87
+//   214: 18          CLC
+//   215: 68          PLA
+//   216: 65 56       ADC     86
+//   218: 85 56       STA     86
+//   220: 90 A3       BCC    129
+//   222: E6 57       INC     87
+//   224: 4C 81 00    JMP    129
+
+//   227: L00227:
+//   227: C6 58       DEC     88
+
+//   229: L00229:
+//   229: 24 5B       BIT     91
+//   231: 10 3A       BPL    291
+//   233: 24 5D       BIT     93
+//   235: 10 0C       BPL    249
+//   237: A2 FE       LDX   #254
+//   239: 38          SEC
+
+//   240: L00240:
+//   240: A9 00       LDA   #  0
+//   242: F5 58       SBC   88,X
+//   244: 95 58       STA   88,X
+//   246: E8          INX
+//   247: 30 F7       BMI    240
+
+//   249: L00249:
+//   249: A5 56       LDA     86
+//   251: 20 EE FF    JSR  $FFEE
+
+//   254: L00254:
+//   254: 20 17 01    JSR    279
+//   257: B0 11       BCS    276
+//   259: C9 20       CMP   # 32
+//   261: F0 F7       BEQ    254
+//   263: C9 2C       CMP   # 44
+//   265: F0 09       BEQ    276
+//   267: C9 3B       CMP   # 59
+//   269: D0 14       BNE    291
+//   271: A5 57       LDA     87
+//   273: 20 EE FF    JSR  $FFEE
+
+//   276: L00276:
+//   276: 4C 33 00    JMP     51
+
+//   279: L00279:
+//   279: A4 58       LDY     88
+//   281: C4 59       CPY     89
+//   283: B0 05       BCS    290
+//   285: C8          INY
+//   286: B1 52       LDA  ( 82),Y
+//   288: 84 58       STY     88
+
+//   290: L00290:
+//   290: 60          RTS
+
+//   291: L00291:
+//   291: A9 DA       LDA   #218
+//   293: A2 00       LDX   #  0
+//   295: A0 00       LDY   #  0
+//   297: 20 F4 FF    JSR  $FFF4
+//   300: AD 37 01    LDA    311
+//   303: 85 06       STA      6
+//   305: AD 38 01    LDA    312
+//   308: 85 07       STA      7
+//   310: 60          RTS
+//   311: 39
+//   312: 01
+//   313: 60
+//   314: 72
+//   315: 24
+//   316: 17
+//   317: 7B
+
+//   318: 0000      Ginit end mark
+//   320: 00C8 0014 Init  G200 = 24  VDU
+//   324: 00C8      Highest Global  G200 VDU
+//   326: 03EA       DATA   1002   accessed by LL or SL     Marks:   notf notm relocword
+//   328: 0D
+//   329: 00
+//   330: 003C       DATA     60   accessed by LL or SL     Marks:   notf notm relbdy
+//   332: 004E       DATA     78   accessed by LL or SL     Marks:   notf notm relbdy
+//   334: 0059       DATA     89   accessed by LL or SL     Marks:   notf notm relbdy
+//   336: 0062       DATA     98   accessed by LL or SL     Marks:   notf notm relbdy
+//   338: 007B       DATA    123   accessed by LL or SL     Marks:   notf notm relbdy
+//   340: 007E       DATA    126   accessed by LL or SL     Marks:   notf notm relbdy
+//   342: 00B1       DATA    177   accessed by LL or SL     Marks:   notf notm relbdy
+//   344: 00DD       DATA    221   accessed by LL or SL     Marks:   notf notm relbdy
+//   346: 00FB       DATA    251   accessed by LL or SL     Marks:   notf notm relbdy
+//   348: 0111       DATA    273   accessed by LL or SL     Marks:   notf notm relbdy
+//   350: 0129       DATA    297   accessed by LL or SL     Marks:   notf notm relbdy
+//   352: 012E       DATA    302   accessed by LL or SL     Marks:   notf notm relbdy
+//   354: 0133       DATA    307   accessed by LL or SL     Marks:   notf notm relbdy
+
+//   356: 03E8 000F                MHUNK    size=15
+//   360: 00
+//   361: 00
+
+//   362: DFDF                     Entry name: SOUND  
+//   364: 07 53 4F 55 4E 44 20 20
+
+//   372: GLOBAL ENTRY             G128 SOUND
+//   372: 11           L1          
+//   373: 56          LSH          
+//   374: A9          SP9          
+//   375: 17           L7          
+//   376: A8          SP8          
+//   377: 0E 0F        LM    15    
+//   379: 24 79       K4G   121    G121 CALLBYTE
+//   381: 7B          RTN          
+
+//   382: 0000      Ginit end mark
+//   384: 0080 000C Init  G128 = 372  SOUND
+//   388: 0080      Highest Global  G128 SOUND
+
+//   390: 03E8 001B                MHUNK    size=27
+//   394: 00
+//   395: 00
+
+//   396: DFDF                     Entry name: ENVELOP
+//   398: 07 45 4E 56 45 4C 4F 50
+
+//   406: GLOBAL ENTRY             G129 ENVELOPE
+//   406: 40 05       LLP     5    
+//   408: A4          SP4          
+//   409: 10           L0          
+//   410: AC         SP12          
+//   411: BA 8A         J   423    
+
+//   413: L00413:
+//   413: 8C         LP12          
+//   414: D6         RVP3          
+//   415: B8          ATC          
+//   416: AD         SP13          
+//   417: 84          LP4          
+//   418: 8C         LP12          
+//   419: B7         PBYT          
+//   420: 11           L1          
+//   421: CC         AP12          
+//   422: AC         SP12          
+
+//   423: L00423:
+//   423: 8C         LP12          
+//   424: 60 0D         L    13    
+//   426: 9C 71       JLE   413    
+//   428: 84          LP4          
+//   429: 11           L1          
+//   430: 56          LSH          
+//   431: A0 11        SP    17    
+//   433: 18           L8          
+//   434: B0         SP16          
+//   435: 0E 0F        LM    15    
+//   437: 2C 79      K12G   121    G121 CALLBYTE
+//   439: 7B          RTN          
+
+//   440: 0000      Ginit end mark
+//   442: 0081 000C Init  G129 = 406  ENVELOPE
+//   446: 0081      Highest Global  G129 ENVELOPE
+
+//   448: 03E8 0014                MHUNK    size=20
+//   452: 00
+//   453: 00
+
+//   454: DFDF                     Entry name: TIME   
+//   456: 07 54 49 4D 45 20 20 20
+
+//   464: GLOBAL ENTRY             G112 TIME
+//   464: 40 04       LLP     4    
+//   466: A3          SP3          
+//   467: 83          LP3          
+//   468: 11           L1          
+//   469: 56          LSH          
+//   470: AC         SP12          
+//   471: 11           L1          
+//   472: AB         SP11          
+//   473: 0E 0F        LM    15    
+//   475: 27 79       K7G   121    G121 CALLBYTE
+//   477: E3         L0P3          
+//   478: 61 FF 7F     LW 32767    
+//   481: 58          AND          
+//   482: 7B          RTN          
+//   483: D0          NOP          
+
+//   484: 0000      Ginit end mark
+//   486: 0070 000C Init  G112 = 464  TIME
+//   490: 0079      Highest Global  G121 CALLBYTE
+
+//   492: 03E8 0011                MHUNK    size=17
+//   496: 00
+//   497: 00
+
+//   498: DFDF                     Entry name: ADVAL  
+//   500: 07 41 44 56 41 4C 20 20
+
+//   508: GLOBAL ENTRY             G201 ADVAL
+//   508: 60 FF         L   255    
+//   510: 58          AND          
+//   511: A8          SP8          
+//   512: B5          XCH          
+//   513: 18           L8          
+//   514: 57          RSH          
+//   515: A9          SP9          
+//   516: 60 80         L   128    
+//   518: 24 23       K4G    35    G035 OPSYS
+//   520: 7B          RTN          
+//   521: D0          NOP          
+
+//   522: 0000      Ginit end mark
+//   524: 00C9 000C Init  G201 = 508  ADVAL
+//   528: 00C9      Highest Global  G201 ADVAL
+
+//   530: 03E8 002A                MHUNK    size=42
+//   534: FDDF                     Section name: CORTNS 
+//   536: 07 43 4F 52 54 4E 53 20
+
+//   544: DFDF                     Entry name: CALLCO 
+//   546: 07 43 41 4C 4C 43 4F 20
+
+//   554: GLOBAL ENTRY             G043 CALLCO
+//   554: F3         L1P3          
+//   555: 1E 84      JEQ0   561    
+//   557: 60 6E         L   110    
+//   559: 25 17       K5G    23    G023 ABORT
+
+//   561: L00561:
+//   561: 30 16        LG    22    G022 CURRCO
+//   563: DD        ST1P3          
+//   564: 83          LP3          
+//   565: 31 16        SG    22    G022 CURRCO
+//   567: A9          SP9          
+//   568: 84          LP4          
+//   569: 25 20       K5G    32    G032
+//   571: 7B          RTN          
+
+//   572: DFDF                     Entry name: RESUMEC
+//   574: 07 52 45 53 55 4D 45 43
+
+//   582: GLOBAL ENTRY             G047 RESUMECO
+//   582: 2E 16       L1G    22    G022 CURRCO
+//   584: A5          SP5          
+//   585: 10           L0          
+//   586: 30 16        LG    22    G022 CURRCO
+//   588: 95          ST1          
+//   589: F3         L1P3          
+//   590: 1E 84      JEQ0   596    
+//   592: 60 6F         L   111    
+//   594: 26 17       K6G    23    G023 ABORT
+
+//   596: L00596:
+//   596: 85          LP5          
+//   597: DD        ST1P3          
+//   598: 83          LP3          
+//   599: 31 16        SG    22    G022 CURRCO
+//   601: AA         SP10          
+//   602: 84          LP4          
+//   603: 26 20       K6G    32    G032
+//   605: 7B          RTN          
+
+//   606: 0000      Ginit end mark
+//   608: 002B 0014 Init  G043 = 554  CALLCO
+//   612: 002F 0030 Init  G047 = 582  RESUMECO
+//   616: 002F      Highest Global  G47 RESUMECO
+
+//   618: 03E8 002C                MHUNK    size=44
+//   622: 00
+//   623: 00
+
+//   624: DFDF                     Entry name: ENDPROG
+//   626: 07 45 4E 44 50 52 4F 47
+
+//   634: GLOBAL ENTRY             G024 ENDPROG
+//   634: 1E A4      JEQ0   672    
+//   636: 24 49       K4G    73    G073 INPUT
+//   638: A4          SP4          
+//   639: 5A A3       LLL   676    "/K"
+//   641: 25 42       K5G    66    G066 FINDINPUT
+//   643: A5          SP5          
+//   644: 1E 9A      JEQ0   672    
+//   646: 26 4F       K6G    79    G079 SELECTINPUT
+//   648: 5A 9E       LLL   680    "*nEND PROGRAM? (Y/N) "
+//   650: 26 5E       K6G    94    G094 WRITES
+//   652: 26 4C       K6G    76    G076 RDCH
+//   654: A6          SP6          
+//   655: 27 52       K7G    82    G082 WRCH
+//   657: 27 54       K7G    84    G084 NEWLINE
+//   659: 86          LP6          
+//   660: 27 3B       K7G    59    G059 CAPCH
+//   662: 60 59         L    89    
+//   664: 1C 86       JEQ   672    
+//   666: 27 47       K7G    71    G071 ENDREAD
+//   668: 84          LP4          
+//   669: 27 4F       K7G    79    G079 SELECTINPUT
+//   671: 7B          RTN          
+
+//   672: L00672:
+//   672: 10           L0          
+//   673: 24 02       K4G     2    G002 STOP
+//   675: 7B          RTN          
+
+//   676: 02 String: "/K"
+//   676: 02 2F 4B 
+
+//   680: 14 String: "*nEND PROGRAM? (Y/N) "
+//   680: 14 0A 45 4E 44 20 50 52 4F 47 52 41 4D 3F 20 28 
+//   696: 59 2F 4E 29 20 
+
+//   702: 0000      Ginit end mark
+//   704: 0018 000C Init  G024 = 634  ENDPROG
+//   708: 005E      Highest Global  G94 WRITES
+
+//   710: 03E9 003F                MHUNK    size=63
+//   714: FDDF                     Section name: BACKMOV
+//   716: 07 42 41 43 4B 4D 4F 56
+
+//   724: DFDF                     Entry name: BACKMOV
+//   726: 07 42 41 43 4B 4D 4F 56
+
+//   734: GLOBAL ENTRY             G219 BACKMOVE
+//   734: 0D        CODE1          
+//   735: 06 52       ASL     82
+//   737: 26 53       ROL     83
+//   739: 06 54       ASL     84
+//   741: 26 55       ROL     85
+//   743: 06 56       ASL     86
+//   745: 26 57       ROL     87
+//   747: 4C F9 02    JMP    761
+
+//   750: DFDF                     Entry name: BACKMVB
+//   752: 07 42 41 43 4B 4D 56 42
+
+//   760: GLOBAL ENTRY             G218 BACKMVBY
+//   760: 0D        CODE1          
+
+//   761: L00761:
+//   761: 18          CLC
+//   762: A5 52       LDA     82
+//   764: 65 56       ADC     86
+//   766: 85 52       STA     82
+//   768: A5 53       LDA     83
+//   770: 65 57       ADC     87
+//   772: 85 53       STA     83
+//   774: 18          CLC
+//   775: A5 54       LDA     84
+//   777: 65 56       ADC     86
+//   779: 85 54       STA     84
+//   781: A5 55       LDA     85
+//   783: 65 57       ADC     87
+//   785: 85 55       STA     85
+//   787: A5 57       LDA     87
+//   789: 30 24       BMI    827
+//   791: A0 FF       LDY   #255
+//   793: E6 57       INC     87
+
+//   795: L00795:
+//   795: C6 53       DEC     83
+//   797: C6 55       DEC     85
+//   799: C6 57       DEC     87
+//   801: F0 0B       BEQ    814
+
+//   803: L00803:
+//   803: B1 52       LDA  ( 82),Y
+//   805: 91 54       STA  ( 84),Y
+//   807: 88          DEY
+//   808: C0 FF       CPY   #255
+//   810: D0 F7       BNE    803
+//   812: F0 ED       BEQ    795
+
+//   814: L00814:
+//   814: A5 56       LDA     86
+//   816: F0 09       BEQ    827
+
+//   818: L00818:
+//   818: B1 52       LDA  ( 82),Y
+//   820: 91 54       STA  ( 84),Y
+//   822: 88          DEY
+//   823: C6 56       DEC     86
+//   825: D0 F7       BNE    818
+
+//   827: L00827:
+//   827: 60          RTS
+
+//   828: 0000      Ginit end mark
+//   830: 00DB 0014 Init  G219 = 734  BACKMOVE
+//   834: 00DA 002E Init  G218 = 760  BACKMVBY
+//   838: 00DB      Highest Global  G219 BACKMOVE
+//   840: 03EA       DATA   1002   accessed by LL or SL     Marks:   notf notm relocword
+//   842: 01
+//   843: 00
+//   844: 0022       DATA     34   accessed by LL or SL     Marks:   notf notm relbdy
+
+//   846: 03E8 0024                MHUNK    size=36
+//   850: 00
+//   851: 00
+
+//   852: DFDF                     Entry name: VDUINFO
+//   854: 07 56 44 55 49 4E 46 4F
+
+//   862: GLOBAL ENTRY             G116 VDUINFO
+//   862: 60 87         L   135    
+//   864: 24 23       K4G    35    G035 OPSYS
+//   866: 18           L8          
+//   867: 57          RSH          
+//   868: A4          SP4          
+//   869: 11           L1          
+//   870: 83          LP3          
+//   871: 3C 84       JNE   877    
+//   873: 5A 87       LLL   882    
+//   875: BA 82         J   879    
+
+//   877: L00877:
+//   877: 5A 93       LLL   898    
+
+//   879: L00879:
+//   879: D7         RVP4          
+//   880: 7B          RTN          
+//   881: D0          NOP          
+
+//   882: 0020       DATA     32    Operand of LLL
+//   884: 20
+//   885: 00
+//   886: 20
+//   887: 00
+//   888: 19
+//   889: 00
+//   890: 20
+//   891: 00
+//   892: 20
+//   893: 00
+//   894: 19
+//   895: 00
+//   896: 19
+//   897: 00
+
+//   898: 0050       DATA     80    Operand of LLL
+//   900: 28
+//   901: 00
+//   902: 14
+//   903: 00
+//   904: 50
+//   905: 00
+//   906: 28
+//   907: 00
+//   908: 14
+//   909: 00
+//   910: 28
+//   911: 00
+//   912: 28
+//   913: 00
+
+//   914: 0000      Ginit end mark
+//   916: 0074 000C Init  G116 = 862  VDUINFO
+//   920: 0074      Highest Global  G116 VDUINFO
+
+//   922: 03E8 0016                MHUNK    size=22
+//   926: 00
+//   927: 00
+
+//   928: DFDF                     Entry name: TESTSTR
+//   930: 07 54 45 53 54 53 54 52
+
+//   938: GLOBAL ENTRY             G077 TESTSTR
+//   938: 30 0A        LG    10    G010
+//   940: 78          RV4          
+//   941: 18           L8          
+//   942: 56          LSH          
+//   943: A4          SP4          
+//   944: 30 09        LG     9    G009
+//   946: 78          RV4          
+//   947: 60 FF         L   255    
+//   949: 58          AND          
+//   950: 84          LP4          
+//   951: 59           OR          
+//   952: 83          LP3          
+//   953: 58          AND          
+//   954: 31 0F        SG    15    G015 RESULT2
+//   956: 3E 81      JNE0   959    
+//   958: 1B         FHOP          
+
+//   959: L00959:
+//   959: 0F          LM1          
+//   960: 7B          RTN          
+//   961: D0          NOP          
+
+//   962: 0000      Ginit end mark
+//   964: 004D 000C Init  G077 = 938  TESTSTR
+//   968: 004D      Highest Global  G77 TESTSTR
+
+//   970: 03E8 0015                MHUNK    size=21
+//   974: 00
+//   975: 00
+
+//   976: DFDF                     Entry name: WRITEOC
+//   978: 07 57 52 49 54 45 4F 43
+
+//   986: GLOBAL ENTRY             G093 WRITEOCT
+//   986: 84          LP4          
+//   987: 11           L1          
+//   988: 9C 8A       JLE  1000    
+//   990: 83          LP3          
+//   991: 13           L3          
+//   992: 57          RSH          
+//   993: A8          SP8          
+//   994: 0F          LM1          
+//   995: C4          AP4          
+//   996: A9          SP9          
+//   997: 88          LP8          
+//   998: 25 5D       K5G    93    G093 WRITEOCT
+
+//  1000: L01000:
+//  1000: 17           L7          
+//  1001: 83          LP3          
+//  1002: 58          AND          
+//  1003: E0 30         A    48    
+//  1005: 25 52       K5G    82    G082 WRCH
+//  1007: 7B          RTN          
+
+//  1008: 0000      Ginit end mark
+//  1010: 005D 000C Init  G093 = 986  WRITEOCT
+//  1014: 005D      Highest Global  G93 WRITEOCT
+
+//  1016: 03E8 0017                MHUNK    size=23
+//  1020: 00
+//  1021: 00
+
+//  1022: DFDF                     Entry name: WRITET 
+//  1024: 07 57 52 49 54 45 54 20
+
+//  1032: GLOBAL ENTRY             G040 WRITET
+//  1032: 25 5E       K5G    94    G094 WRITES
+//  1034: 83          LP3          
+//  1035: 10           L0          
+//  1036: B6         GBYT          
+//  1037: 84          LP4          
+//  1038: B5          XCH          
+//  1039: 55          SUB          
+//  1040: A6          SP6          
+//  1041: 11           L1          
+//  1042: A5          SP5          
+//  1043: BA 87         J  1052    
+
+//  1045: L01045:
+//  1045: 60 20         L    32    
+//  1047: 27 52       K7G    82    G082 WRCH
+//  1049: 11           L1          
+//  1050: C5          AP5          
+//  1051: A5          SP5          
+
+//  1052: L01052:
+//  1052: 85          LP5          
+//  1053: 86          LP6          
+//  1054: 9C 75       JLE  1045    
+//  1056: 7B          RTN          
+//  1057: D0          NOP          
+
+//  1058: 0000      Ginit end mark
+//  1060: 0028 000C Init  G040 = 1032  WRITET
+//  1064: 005E      Highest Global  G94 WRITES
+
+//  1066: 03E8 0018                MHUNK    size=24
+//  1070: 00
+//  1071: 00
+
+//  1072: DFDF                     Entry name: WRITEU 
+//  1074: 07 57 52 49 54 45 55 20
+
+//  1082: GLOBAL ENTRY             G041 WRITEU
+//  1082: 11           L1          
+//  1083: 57          RSH          
+//  1084: 15           L5          
+//  1085: 35          DIV          
+//  1086: A5          SP5          
+//  1087: 1E 88      JEQ0  1097    
+//  1089: 0F          LM1          
+//  1090: C4          AP4          
+//  1091: AA         SP10          
+//  1092: 85          LP5          
+//  1093: 26 58       K6G    88    G088 WRITED
+//  1095: 11           L1          
+//  1096: A4          SP4          
+
+//  1097: L01097:
+//  1097: 1A          L10          
+//  1098: 85          LP5          
+//  1099: 34          MUL          
+//  1100: 83          LP3          
+//  1101: B5          XCH          
+//  1102: 55          SUB          
+//  1103: 84          LP4          
+//  1104: AA         SP10          
+//  1105: B5          XCH          
+//  1106: 26 58       K6G    88    G088 WRITED
+//  1108: 7B          RTN          
+//  1109: D0          NOP          
+
+//  1110: 0000      Ginit end mark
+//  1112: 0029 000C Init  G041 = 1082  WRITEU
+//  1116: 0058      Highest Global  G88 WRITED
+
+//  1118: 03E8 002D                MHUNK    size=45
+//  1122: 00
+//  1123: 00
+
+//  1124: DFDF                     Entry name: WRITEDB
+//  1126: 07 57 52 49 54 45 44 42
+
+//  1134: GLOBAL ENTRY             G089 WRITEDB
+//  1134: F3         L1P3          
+//  1135: 3E 87      JNE0  1144    
+//  1137: 18           L8          
+//  1138: A8          SP8          
+//  1139: E3         L0P3          
+//  1140: 24 58       K4G    88    G088 WRITED
+//  1142: BA 89         J  1153    
+
+//  1144: L01144:
+//  1144: 14           L4          
+//  1145: A8          SP8          
+//  1146: F3         L1P3          
+//  1147: 24 58       K4G    88    G088 WRITED
+//  1149: E3         L0P3          
+//  1150: 5A 8C       LLL  1164    
+//  1152: 04           K4          
+
+//  1153: L01153:
+//  1153: 7B          RTN          
+
+//  1154: DFDF                     Entry name: WRITE4 
+//  1156: 07 57 52 49 54 45 34 20
+
+//  1164: L01164:
+
+//  1164: 40 05       LLP     5    
+//  1166: A4          SP4          
+//  1167: 13           L3          
+//  1168: AA         SP10          
+//  1169: BA 8E         J  1185    
+
+//  1171: L01171:
+//  1171: 83          LP3          
+//  1172: 1A          L10          
+//  1173: 36          REM          
+//  1174: E0 30         A    48    
+//  1176: 8A         LP10          
+//  1177: 99         STP4          
+//  1178: 83          LP3          
+//  1179: 1A          L10          
+//  1180: 35          DIV          
+//  1181: A3          SP3          
+//  1182: 0F          LM1          
+//  1183: CA         AP10          
+//  1184: AA         SP10          
+
+//  1185: L01185:
+//  1185: 8A         LP10          
+//  1186: BE 6F      JGE0  1171    
+//  1188: 10           L0          
+//  1189: AA         SP10          
+//  1190: BA 87         J  1199    
+
+//  1192: L01192:
+//  1192: 8A         LP10          
+//  1193: D7         RVP4          
+//  1194: 2B 52      K11G    82    G082 WRCH
+//  1196: 11           L1          
+//  1197: CA         AP10          
+//  1198: AA         SP10          
+
+//  1199: L01199:
+//  1199: 8A         LP10          
+//  1200: 13           L3          
+//  1201: 9C 75       JLE  1192    
+//  1203: 7B          RTN          
+
+//  1204: 0000      Ginit end mark
+//  1206: 0059 000C Init  G089 = 1134  WRITEDB
+//  1210: 0059      Highest Global  G89 WRITEDB
+
+//  1212: 03E8 0010                MHUNK    size=16
+//  1216: 00
+//  1217: 00
+
+//  1218: DFDF                     Entry name: STACKSI
+//  1220: 07 53 54 41 43 4B 53 49
+
+//  1228: GLOBAL ENTRY             G030 STACKSIZE
+//  1228: 30 16        LG    22    G022 CURRCO
+//  1230: 78          RV4          
+//  1231: 40 03       LLP     3    
+//  1233: 55          SUB          
+//  1234: 33 16        AG    22    G022 CURRCO
+//  1236: E1 F0 FF     AW   -16    
+//  1239: 7B          RTN          
+
+//  1240: 0000      Ginit end mark
+//  1242: 001E 000C Init  G030 = 1228  STACKSIZE
+//  1246: 001E      Highest Global  G30 STACKSIZE
+
+//  1248: 03E8 0026                MHUNK    size=38
+//  1252: 00
+//  1253: 00
+
+//  1254: DFDF                     Entry name: APTOVEC
+//  1256: 07 41 50 54 4F 56 45 43
+
+//  1264: GLOBAL ENTRY             G127 APTOVEC
+//  1264: 40 03       LLP     3    
+//  1266: B3           S3          
+//  1267: A5          SP5          
+//  1268: C4          AP4          
+//  1269: D1           A1          
+//  1270: A6          SP6          
+//  1271: 17           L7          
+//  1272: C5          AP5          
+//  1273: BC 83       JGE  1278    
+//  1275: 17           L7          
+//  1276: C5          AP5          
+//  1277: A6          SP6          
+
+//  1278: L01278:
+//  1278: 30 16        LG    22    G022 CURRCO
+//  1280: 78          RV4          
+//  1281: 33 16        AG    22    G022 CURRCO
+//  1283: E1 F0 FF     AW   -16    
+//  1286: 86          LP6          
+//  1287: BC 84       JGE  1293    
+//  1289: 60 7B         L   123    
+//  1291: 27 17       K7G    23    G023 ABORT
+
+//  1293: L01293:
+//  1293: 14           L4          
+//  1294: C6          AP6          
+//  1295: 84          LP4          
+//  1296: B5          XCH          
+//  1297: 94           ST          
+//  1298: 85          LP5          
+//  1299: 86          LP6          
+//  1300: 97          ST3          
+//  1301: 83          LP3          
+//  1302: 86          LP6          
+//  1303: 96          ST2          
+//  1304: F5         L1P5          
+//  1305: 86          LP6          
+//  1306: 95          ST1          
+//  1307: E5         L0P5          
+//  1308: 86          LP6          
+//  1309: 94           ST          
+//  1310: 86          LP6          
+//  1311: 85          LP5          
+//  1312: 94           ST          
+//  1313: 83          LP3          
+//  1314: 11           L1          
+//  1315: 56          LSH          
+//  1316: 85          LP5          
+//  1317: 95          ST1          
+//  1318: 85          LP5          
+//  1319: 7B          RTN          
+
+//  1320: 0000      Ginit end mark
+//  1322: 007F 000C Init  G127 = 1264  APTOVEC
+//  1326: 007F      Highest Global  G127 APTOVEC
+//  1328: 03E0                  END
+
+
+No unclassified bytes

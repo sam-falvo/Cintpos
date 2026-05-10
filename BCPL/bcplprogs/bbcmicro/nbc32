@@ -1,0 +1,7 @@
+.k file/a,opt
+echo "bbcbcpl nonames com16/<file>.b to ncin16/<file>  <opt>"
+bbcbcpl nonames com16/<file>.b to ncin16/<file>  <opt>
+echo ""
+
+
+

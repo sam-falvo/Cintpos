@@ -1,0 +1,7 @@
+.k file/a,opt
+echo "mapcode bbccin/bcplrom hints hints/bcplrom.hints <opt>"
+"mapcode"  bbccin/bcplrom  hints hints/bcplrom.hints <opt>
+echo ""
+
+
+

@@ -1,0 +1,82 @@
+%hp107hdr.mus
+% Instrument definitions for the Microsoft GS Wavetable SW Synth
+
+% HP107e Instrument table
+
+%    1  Grand Piano1
+%    2  Mellow Piano1
+%    3  Honky-tonk
+%    4  Mellow Piano2
+%    5  Grand Piano2
+%    6  Detuned Piano2
+%    7  Rock Piano
+%    8  E.Piano1
+%    9  E.Piano2
+%   10  Vibraphone
+%   11  Morning Lite
+%   12  Celesta
+%   13  E.Grand
+%   14  Harpsichord1
+%   15  Nylon Guitar
+%   16  Harp
+%   17  Coupled Harpsichord
+%   18  Harpsichord2
+%   19  Church Organ1
+%   20  Rotary Organ
+%   21  Theatre Organ
+%   22  Accordian
+%   23  Church Organ2
+%   24  Nason Flute8
+%   25  Lower organ
+%   26  Strings1
+%   27  Jazz Scat
+%   28  Orchestra
+%   29  Choir
+%   30  Strings2
+%   31  Voice Oohs
+%   32  Glittery Pad
+%   33  Accoustic Bass
+%   34  Figured Bass + Cymbal
+%   35  Fingered Bass
+%   36  Vox Bass
+
+$def!instr!<%
+  \instrumentname "#1"
+  \bank(#2 $eval!#3+((#4-1)R7);)
+  \patch $eval!(#4-1)&127;
+>;
+
+$def!nonvarvol!;
+$def!piano!<$nonvarvol; $instr!piano!1!1!1;>;
+%$def!piano!<$nonvarvol; $instr!piano!2!3!23;>;
+
+$def!harpsichord!<$nonvarvol; $instr!harpsichord!1!1!11;>;
+
+$def!harp!<$nonvarvol; $instr!harp!1!1!16;>;
+
+$def!organ!<\varvol $instr!organ!1!1!25;>;
+
+$def!flute!<\varvol $instr!flute!1!1!24;>;
+
+$def!oboe!<\varvol $instr!oboe!1!1!22;>;
+
+$def!clarinet!<\varvol $instr!clarinet!1!1!25;>;
+
+$def!trumpet!<\varvol $instr!horn!1!1!31;>;
+
+$def!horn!<\varvol $instr!horn!1!1!24;>;
+
+$def!bassoon!<\varvol $instr!bassoon!1!1!25;>;
+
+$def!tuba!<\varvol $instr!tuba!1!1!25;>;
+
+$def!violin!<\varvol $instr!violin!1!1!25;>;
+
+$def!viola!<\varvol $instr!viola!1!1!26;>;
+
+$def!cello!<\varvol $instr!cello!1!1!33;>;
+
+$def!doublebass!<\varvol $instr!doublebass!1!1!33;>;
+
+
+

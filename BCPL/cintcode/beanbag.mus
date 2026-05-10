@@ -1,0 +1,784 @@
+
+$get!mushdr;
+
+$def!conductor-part!%
+<
+ \conductor (
+    \name "conductor"
+    \title  "Bean Bag"
+    \composer "Herb Alpert"
+    \arranger "Arr. by John Edney"
+        
+  \timesig(4 4)
+  %\keysig(ees\major)
+  %s1\tempo 160 |
+  %s1 |
+%  $rep!50!s1 |
+%  $rep!2!s1 |
+   s1 ||
+)
+>;
+
+$def!trumpet1-part!
+< \part (
+  \name "trumpet1"
+  $trumpet;
+  \transposition(bes)
+
+    %  |        |        |        |        |        |        |       |
+    4c1 ||
+%    |  r2                                  r8       b\v80    cis     b
+%    |  dis4              cis8     b~       b        a4               gis8~
+%    |  gis      b4.                        r8       b4               cis8
+%    |  b4                a                 gis8     fis4             e8~
+/*
+% 5
+    |  e        gis4              b,8~     b2
+    |  r4                dis'8    cis      b        a4               gis8~
+    |  gis      cis4.                      r8       b4\v70           cis8
+    |  b4                a                 gis8     fis4             e8~
+    |  e4                r                 r8       b'\v70   cis4
+% 10
+    |  r4                dis8\v80 cis      b        a4               gis8~
+    | gis b4. r8 b4 cis8
+    | b4 a gis8 fis4 e8~
+    | e gis4 b,8~ b2
+    | r4 dis'8\v60 cis b a4 gis8~
+% 15
+    | gis cis4. r8 b4 cis8
+    | b4 a8 gis~ gis fis e4
+    | r1
+    | e'4 e8 e fis e4 e8~
+    | e cis4. r8 cis d dis
+% 20
+    | e4 e8 e fis e4.
+    | e2 e,4 r
+    %| e2\glissando e,4 r
+    | fis'4 fis8 fis gis fis4 fis8~
+    | fis dis4. r8 dis e f
+    | fis4 e dis8 cis4 b8~
+% 25
+    | b4 r r2
+    | r4 dis8 cis b a4 gis8~
+    | gis8 b4. r8 b4 cis8
+    | b4 a gis8 fis4 e8~
+    | e gis4 b,8~ b2
+% 30
+    | r4 dis'8 cis b a4 gis8~
+    | gis cis4. r8 b4 cis8
+    | b4 a8 gis~ gis fis e4
+% DC
+    | r2 r8 b'\v80 cis b
+    | dis4 cis8 b~ b a4 gis8~
+% 35
+    | gis b4. r8 b4 cis8
+    | b4 a gis8 fis4 e8~
+    | e gis4 b,8~ b2
+    | r4 dis'8 cis b a4 gis8~
+    | gis cis4. r8 b4\v60 cis8
+% CODA
+% 40
+    | b4\v80 a gis8 fis4 e8~
+    | e2 r 
+    || r4 e'8\v80 d c bes4 a8~
+    | a c4. r8 c4 d8
+    | c4 bes a8 g4 f8~
+    | f a4 c,8~ c2
+    | r4 e'8 d c bes4 a8~
+    | a d4. r8 c4 d8
+    | c4 bes8 a~ a g f4
+    | r2 r8 c'4 d8
+    | c4 bes8 a~ a g f4\v50
+    | r2 r8 c'4\v80 d8
+    | c4 bes8 a~ a g f4\v(90 50 50)
+*/
+    ||
+)
+>;
+
+$def!trumpet2-part!
+< \part (
+  \name "trumpet2"
+  $trumpet;
+  \transposition(bes)
+
+    | r2 r8 fis\v80 fis fis
+    | fis4 dis8 dis~ dis e4 b8~
+%    | b e4. r8 b4 cis8
+%    | b4 fis' e8 dis4 b8~
+%  5
+/*
+    | b e4 b8~ b2
+    | r4 dis8 cis b b4 b8~
+    | b dis4. r8 b'4\v60 cis8
+    | b4 a gis8 fis4 e8~
+    | e4 r r8 e e4
+% 10
+    | r4 dis8 cis b b4 b8~
+    | b e4. r8 b4 cis8
+    | b4 fis' e8 dis4 b8~
+    | b e4 b8\v70 b2
+    | r4 dis8\v60 cis b b4 b8~
+% 15
+    | b dis4. r8 b'4 cis8
+    | b4 a8 gis~ gis fis e4\v(90 *)
+    | r1
+    | fis2\v80 fis4. a8~
+    | a a4. r2
+% 20
+    | gis1
+    | a2 a,4 r
+    | ais'2 ais4. b8~
+    | b b4. r2
+    | ais4 gis fis8 e4 dis8~
+% 25
+    | dis4 r r2
+    | r4 b'8\v70 a gis fis4 e8~
+    | e gis4. r8 b4 cis8
+    | b4 a gis8 fis4 e8~
+    | e e4 b8~ b2
+% 30
+    | r4 b'8 a gis fis4 f8~
+    | f8 gis4. r8 b4 cis8
+    | b4 a8 gis~ gis fis e4
+% DC
+    | r2 r8 fis\v80 fis fis
+    | fis4 dis8 dis~ dis e4 b8~
+% 35
+    | b e4. r8 b4 cis8
+    | b4 fis' e8 dis4 b8~
+    | b e4 b8~ b2
+    | r4 dis8 cis b b4 b8~
+    | b dis4. r8 b'4\v60 cis8
+% CODA
+% 40
+    | b4\v80 a gis8 fis4 e8~
+    | e2 r
+    || r4 c'8\v80 bes a g4 f8~
+    | f a4. r8 c4 d8
+    | c4 bes a8 g4 f8~
+    | f a4 c,8~ c2
+    | r4 c'8 bes a g4 fis8~
+    | fis fis4. r8 c'4 d8
+    | c4 bes8 a~ a g f4
+    | r2 r8 c'\v81 d8 r %%%%%%%%%%%%%%%%%%%%%%%%%
+    | c4 bes8 a~ a g f4\v60
+    | r2 r8 c'4\v80 d8
+    | c4 bes8 a~ a g f4\v(90 *)
+*/
+    ||
+)
+>;
+
+$def!trumpet3-part!
+< \part (
+  \name "trumpet3"
+  $trumpet;
+  \transposition(bes)
+
+    | r2 r8 b\v80 a b
+    | b4 a8 gis~ gis fis4 e8~
+    | e gis4. r8 b4 cis8
+    | b4 a gis8 fis4 e8~
+%  5
+    | e gis4 b,8~ b2
+    | r4 b'8 a gis fis4 f8~
+    | f f4. r8 b4\v60 cis8
+
+    | b4 a gis8 fis4 e8~
+    | e4 r r8 b'8 cis4
+% 10
+    | r4 b8\v80 a gis fis4 e8~
+    | e gis4. r8 b4 cis8
+    | b4 a gis8 fis4 e8~
+    | e gis4 b,8~ b2\v81
+    | r4 b'8 a gis fis4 f8~
+% 15
+    | f f4. r8 b4 cis8
+    | b4 a8 gis~ gis fis e4\v(90 *)
+    | r1
+    | e'4\v80 e8 e fis e4 e8~
+    | e cis4. r8 cis d dis
+%20
+    | e4 e8 e fis e4.
+    | g,2 g,4 r
+    | fis''4 fis8 fis gis fis4 fis8~
+    | fis dis4. r8 dis e f
+    | fis4 e dis8 cis4 b8~
+% 25
+    | b4 r r2
+    | r4 dis8\v70 cis b a4 gis8~
+    | gis b4. r8 b4 cis8
+    | b4 a gis8 fis4 e8~
+    | e gis4 b8 b,2
+% 30
+    | r4 dis'8 cis b a4 gis8~
+    | gis cis4. r8 b4 cis8
+    | b4 a8 gis~ gis fis e4
+% DC
+    | r2 r8 b'\v80 a b
+    | b4 a8 gis~ gis fis4 e8~
+% 35
+    | e gis4. r8 b4 cis8
+    | b4 a gis8 fis4 e8~
+    | e gis4 b,8~ b2
+    | r4 b'8 a gis fis4 f8~
+    | f f4. r8 b4\v60 cis8
+% CODA
+% 40
+    | b4\v80 a gis8 fis4 e8~
+    | e2 r
+    || r4 e'8\v80 d c bes4 a8~
+    | a c4. r8 c4 d8
+    | c4 bes a8 g4 f8~
+    | f a4 c,8~ c2
+    | r4 e'8 d c bes4 a8~
+    | a d4. r8 c4 d8
+    | c4 bes8 a~ a g f4
+    | r2 r8 c'4\v81 d8
+    | c4 bes8 a~ a g f4\v60
+    | r2 r8 c'4\v80 d8
+    | c4 bes8 a~ a g f4\v(90 *)
+    ||
+)
+>;
+
+$def!horn1-part!
+< \part (
+  \name "horn1"
+  $horn;
+  \transposition(f,)
+
+    | r1
+    | e4.\v80 e8 e4. e8
+    | e2 r
+    | e e8 d4 d8~
+%  5
+    | d cis4 cis8~ cis2
+    | e e4. e8~
+    | e2 r
+
+    | fis\v60 e8 d4 cis8~
+    | cis4 r r2
+% 10
+    | e2\v80 e4. e8~
+    | e2 r
+    | e e8 d4 d8~
+    | d cis4 cis8~ cis2\v81
+    | e2\v70 e4. e8~
+% 15
+    | e2 r
+    | d4. d8~ d4 cis\v(90 *)
+    | r1
+    | a4\v80 a8 a b a4 a8~
+    | a fis4. r8 fis g gis
+% 20
+    | a4 a8 a b a4.
+    | d2 d,4 r
+    | b'4 b8 b cis b4 b8~
+    | b gis4. r8 gis a bes
+    | b4 a gis8 fis4 e8~
+% 25
+    | e4 r r2
+    | r4 gis8\v70 fis e d4 cis8~
+    | cis e4. r8 e4 fis8
+    | e4 d cis8 b4 a8~
+    | a cis4 e8~ e2
+% 30
+    | r4 gis8 fis e d4 cis8~
+    | cis fis4. r8 e4 fis8
+    | e4 d8 cis8~ cis b a4
+% DC
+    | r1
+    | e''4.\v80 e8 e4. e8
+% 35
+    | e2 r
+    | e e8 d4 d8~
+    | d cis4 cis8~ cis2
+    | e e4. e8~
+    | e2 r
+% CODA
+% 40
+    | fis2 e8 d4 cis8~
+    | cis2 r
+    || f2 f4. f8~
+    | f2 r8 f4 g8
+    | f4 ees d8 c4 bes8~
+    | bes d4 f,8~ f2
+    | r4 a8 g f ees4 d8~
+    | d a'4. r8 f'4 g8
+    | f4 ees8 d~ d c bes4
+    | r2 r8 f'4\v81 g8
+    | f4 ees8 d~ d c bes4\v60
+    | r2 r8 f'4\v80 g8
+    | f4 ees8 d~ d c bes4\v(90 *)
+    ||
+)
+>;
+
+$def!horn2-part!
+< \part (
+  \name "horn2"
+  $horn;
+  \transposition(f,)
+
+    | r1
+    | e4.\v80 e8 e4. e8
+    | e2 r
+    | e e8 d4 d8~
+%  5
+    | d cis4 cis8~ cis2
+    | e e4. e8~
+    | e2 r
+
+    | fis\v60 e8 d4 cis8~
+    | cis4 r r2
+% 10
+    | e2\v80 e4. e8~
+    | e2 r
+    | e e8 e4 e8~
+    | e e4 e8 e2\v81
+    | e\v70 e4. e8~
+%15
+    | e2 r
+    | fis4. e8~ e4 e\v(90 *)
+    | r1
+    | g2\v80 g4. a8~
+    | a a4. r2
+% 20
+    | g1
+    | a2 a,4 r
+    | a'4 a8 a a a4 gis8~
+    | gis e4. r2
+    | b'4 fis dis8 dis4 e8~
+% 25
+    | e4 r r2
+    | e2\v70 e4. a,8~
+    | a2 r2
+    | e' e8 d4 cis8~
+    | cis a4 cis8~ cis2
+% 30
+    | e e4. e8~
+    | e2 r
+    | fis4. gis8~ gis4 e
+% DC
+    | r1
+    | e4.\v80 e8 e4. e8
+% 35
+    | e2 r
+    | e e8 d4 d8~
+    | d cis4 cis8~ cis2
+    | e e4. e8~
+    | e2 r
+% CODA
+% 40
+    | fis2 e8 e4 e8~
+    | e2 r
+    || f2 f4. f8~
+    | f2 r
+    | f2 f8 f4 f8~
+% 45
+    | f f4 d8~ d2
+    | f4 f f f
+    | g2 r
+    | g4. d8~ d4 d
+    | bes d\v81 f g
+% 50
+    | g4. d8~ d4 d\v60
+    | bes d f g\v80
+    | g4. d8~ d4 bes\v(90 *)
+    ||
+)
+>;
+
+$def!horn3-part!
+< \part (
+  \name "horn3"
+  $horn;
+  \transposition(f,)
+
+    | r1
+    | b4. b8 b4. cis8
+    | cis2 r
+    | b gis8 gis4 a8~
+%  5
+    | a a4 a8~ a2
+    | b b4. ais8~
+    | ais2 r2
+
+    | b\v60 b8 b4 a8~
+    | a4 r r2
+% 10
+    | b b4. a8~
+    | a2 r
+    | b gis8 gis4 a8~
+    | a a4 a8~ a2\v81
+    | b2\v70 b4. ais8~
+% 15
+    | ais2 r
+    | b4. gis8~ gis4 a4\v(90 *)
+    | r1
+    | e2\v80 e4. fis8~
+    | fis d4. r2
+% 20
+    | cis'1
+    | bes2 bes,4 r
+    | b'4 b8 b cis b4 b8~
+    | b gis4. r8 gis a bes
+    | b4 a gis8 fis4 e8~
+% 25
+    | e4 r r2
+    | r4 gis8\v70 fis e d4 cis8~
+    | cis e4. r8 e4 fis8
+    | e4 d cis8 b4 a8~
+    | a cis4 e8~ e2
+% 30
+    | r4 gis8 fis e d4 cis8~
+    | cis fis4. r8 e4 fis8
+    | e4 d8 cis8~ cis b a4
+% DC
+    | r1
+    | b'4. b8 b4. cis8
+% 35
+    | cis2 r
+    | b gis8 gis4 a8~
+    | a a4 a8~ a2
+    | b b4. ais8~
+    | ais2 r2
+% CODA
+% 40
+    | b2 b8 b4 a8~
+    | a2 r
+    || c2 c4. bes8~
+    | bes2 r
+    | f4 a bes8 c4 bes8~
+    | bes bes4 f8~ f2
+    | r4 a8 g f ees4 d8~
+    | d a'4. r8 f'4 g8
+    | f4 ees8 d~ d c bes4
+    | r2 r8 f'4\v81 g8
+    | f4 ees8 d~ d c bes4\v60
+    | r2 r8 f'4\v80 g8
+    | f4 ees8 d~ d c bes4\v(90 *)
+
+    ||
+)
+>;
+
+$def!trombone1-part!
+< \part (
+  \name "trombone1"
+  $trombone;
+
+    | r1
+    | 4cis4.\v80 cis8 cis4. a8
+    | a2 r
+    | cis a8 g4 fis8~
+%  5
+    | fis d4 fis8~ fis2
+    | cis' cis4. b8~
+    | b2 r
+
+    | b\v60 a8 g4 fis8~
+    | fis4 r r2
+% 10
+    | cis'\v80 cis4. a8~
+    | a2 r2
+    | cis a8 a4 fis8~
+    | fis d4 fis8\v81 fis2
+    | cis'2\v70 cis4. b8~
+% 15
+    | b2 r
+    | e4. e8~ e4 d\v(90 *)
+    | d, fis a b
+    | d\v80 d8 d e d4 d8~
+    | d b4. r8 b c cis
+% 20
+    | d4 d8 d e d4.
+    | d2 d,4 r
+    | e'4 e8 e fis e4 e8~
+    | e cis4. r8 cis d ees
+    | e4 d cis8 b4 a8~
+% 25
+    | a4 r r2
+    | r4 cis8\v70 b a g4 fis8~
+    | fis a4. r8 a4 b8
+    | a4 g fis8 e4 d8~
+    | d d4 a8~ a2
+% 30
+    | r4 cis'8 b a g4 fis8~
+    | fis b4. r8 a4 b8
+    | a4 g8 fis~ fis e d4
+% DC
+    | r1
+    | cis'4.\v80 cis8 cis4. a8
+% 35
+    | a2 r
+    | cis a8 g4 fis8~
+    | fis d4 fis8~ fis2
+    | cis' cis4. b8~
+    | b2 r
+% CODA
+% 40
+    | b2 a8 g4 fis8~
+    | fis2 r
+    || d'2 d4. bes8~
+    | bes2 r8 bes4 c8
+    | bes4 aes g8 f4 ees8~
+    | ees g4 bes8~ bes2
+    | r4 d8 c bes a4 g8~
+    | g c4. r8 bes4 c8
+    | bes4 aes8 g~ g f ees4
+    | ees2 r8 bes'4\v81 c8
+    | bes4 aes8 g~ g f ees4\v60
+    | ees2 r8 bes'4\v80 c8
+    | bes4 aes8 g~ g f ees4\v(90 *) 
+
+
+    ||
+)
+>;
+
+$def!trombone2-part!
+< \part (
+  \name "trombone2"
+  $trombone;
+
+    | r1
+    | 3e4.\v80 e8 e4. fis8
+    | fis2 r
+    | e e8 e4 d8~
+%  5
+    | d d4 d8~ d2
+    | e e4. e8~
+    | e2 r
+
+    | e\v70 e8 e4 d8~
+    | d4 r r2
+% 10
+    | e\v80 e4. fis8~
+    | fis2 r
+    | e e8 e4 d8~
+    | d d4 d8~ d2\v81
+    | e\v70 e4. ees8~
+% 15
+    | ees2 r
+    | g4. g8~ g4 fis
+    | d fis a b
+    | c2\v80 c4. d8
+    | d d4. r2
+% 20
+    | c1
+    | b2 b,4 r
+    | gis'4 gis8 gis fis gis4 a8~
+    | a a4. r2
+    | gis4 gis gis8 gis4 e8~
+% 25
+    | e4 r r2
+    | r4 a8\v70 g fis e4 d8~
+    | d fis4. r8 a4 b8
+    | a4 g fis8 e4 d8~
+    | d d4 a8~ a2
+% 30
+    | r4 a'8 g fis e4 ees8~
+    | ees fis4. r8 a4 b8
+    | a4 g8 fis~ fis e d4
+% DC
+    | r1
+    | e4.\v80 e8 e4. fis8
+% 35
+    | fis2 r
+    | e e8 e4 d8~
+    | d d4 d8~ d2
+    | e e4. e8~
+    | e2 r
+% CODA
+% 40
+    | e2\v80 e8 e4 d8~
+    | d2 r
+    || bes'2\v80 bes4. bes8~
+    | bes2 r
+    | f2 g8 f4 ees8~
+% 45
+    | ees ees4 ees8~ ees2
+    | f2 r8 f4 e8~
+    | e2 r
+    | f4. bes,8~ bes4 ees
+    | ees2 r
+% 50
+    | f4.\v81 bes,8~ bes4 ees\v60
+    | ees2 r
+    | f4. bes,8~ bes4 ees\v(90 *)
+
+    ||
+)
+>;
+
+$def!trombone3-part!
+< \part (
+  \name "trombone3"
+  $trombone;
+
+    | r1
+    | 3a4\v80 a4 a4 a4
+    | d,2 r
+    | a' a4 a
+%  5
+    | d,2. d4
+    | a' a a a
+    | b2 r
+
+    | e,\v60 a4 a
+    | d, r r2
+% 10
+    | a'4\v80 a a a
+    | d,2 r
+    | a' a4 a
+    | d,2.\v81 d4
+    | a'4\v70 a a a
+% 15
+    | b2 r
+    | e,4. a8~ a4 fis\v(90 *)
+    | d fis a b
+    | d2\v80 d,4 d
+    | g2 r
+% 20
+    | d1
+    | g2 g,4 r
+    | b'2 b4. cis8~
+    | cis a4. r2
+    | b gis4. a8~
+% 25
+    | a4 a b c
+    | a2\v70 a4. d,8~
+    | d2 r
+    | a' a8 g4 fis8~
+    | fis d4 fis8~ fis2
+% 30
+    | a2 a4. a8~
+    | a2 r
+    | b4. cis8~ cis4 a
+% DC
+    | r1
+    | a4\v80 a4 a4 a4
+% 35
+    | d,2 r
+    | a' a4 a
+    | d,2. d4
+    | a' a a a
+    | b2 r
+%CODA
+% 40
+    | e,2\v80 a4 a
+    | d,2 r
+    || bes2\v80 bes4. bes8~
+    | bes2 r
+    | bes'2 bes4 bes
+% 45
+    | ees,2. ees4
+    | bes'4 bes bes bes
+    | c2 r
+    | f,4. bes,8~ bes4 ees
+    | ees g, bes c
+% 50
+    | f,4. bes8~ bes4 ees
+    | ees g, bes c
+    | f,4. bes8~ bes4 ees\v(90 *)
+
+    ||
+)
+>;
+
+$def!tuba-part!
+< \part (
+  \name "tuba3"
+  $tuba;
+
+    | r1
+    | 2a4\v80 a4 a4 a4
+    | d,2 r
+    | a' a4 a
+%  5
+    | d,2. d4
+    | a'4 a a a
+    | b2 r
+
+    | e,\v70 a4 a
+    | d, r r2
+% 10
+    | a'4\v80 a a a
+    | d2 r
+    | a a4 a
+    | d,2. d4\v81
+    | a'\v70 a a a
+% 15
+    | b2 r
+    | e,4. a8~ a4 d,\v(90 *)
+    | d fis a b
+    | d2\v80 d,4 d
+    | g2 r
+% 20
+    | d1
+    | g2 g,4 r
+    | e'2 e4 e
+    | a2 r
+    | e2 e4 e
+% 25
+    | a\v81 a b c
+    | a\v70 a a a
+    | d,2 r
+    | a' a4 a
+    | d,2. d4
+% 30
+    | a' a a a
+    | b2 r
+    | e,4. a8~ a4 d,
+% DC
+    | r1
+    | a'4\v80 a4 a4 a4
+% 35
+    | d,2 r
+    | a' a4 a
+    | d,2. d4
+    | a'4 a a a
+    | b2 r
+% CODA
+% 40
+    | e,2\v80 a4 a
+    | d,2 r
+    || bes'4\v80 bes bes bes
+    | bes,2 r
+    | bes' bes4 bes
+% 45
+    | ees,2. ees4
+    | bes'4 bes bes bes
+    | c2 r
+    | f,4. bes8~ bes4 ees,
+    | ees g bes\v81 c
+% 50
+    | f,4. bes8~ bes4 ees,\v60
+    | ees g bes c
+    | f,4. bes8~ bes4 ees,\v(90 *)
+
+    ||
+)
+>;
+
+
+\score "Beanbag" [
+
+$conductor-part;
+
+$trumpet1-part;
+/*
+$trumpet2-part;
+$trumpet3-part;
+$horn1-part;
+$horn2-part;
+$horn3-part;
+$trombone1-part;
+$trombone2-part;
+$trombone3-part;
+$tuba-part;
+*/
+]

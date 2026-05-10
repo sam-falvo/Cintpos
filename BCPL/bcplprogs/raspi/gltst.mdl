@@ -1,0 +1,225 @@
+// This file holds the specification of a model used by gltst.b
+// It models a coloured cube somewhat modified to look like a
+// missile with ailerons, elevator and rudder.
+
+// .mdl files are normally created by program but this one
+// written by hand written.
+
+// Implemented by Martin Richards (c) June 2014
+
+// Modified to use the new .mdl format 10 May 2020
+
+// OpenGL uses the right hand convention for world coordinates.
+
+// With your right hand, point north with your first finger, point west
+// with your second finger and point upwards with your thumb. These
+// correspond to the directions of the first, second and third components
+// of a right handed coordinate system.
+ 
+// The coordinate systems in this program use the same convention.
+
+
+// Real world coordinates
+
+// n is towards the north
+// w is towards the west
+// h is upwards
+
+// Screen coordinates
+
+// x to the right
+// y upwards
+// z orthogonal to x and y towards the viewer, so
+//   negative z is into the screen.
+
+// The model is at the origin in real world coordinates
+// with the direction of thrust pointing north
+// direction of the left wing pointing west
+// and the direction of lift being up.
+
+// Vertices are represented by 8 floating point values
+//        n w l  r g b  k d
+
+//    k = 0.0   fixed surface
+//    k = 1.0   rudder         d is the distance from the rudder hinge
+//    k = 2.0   elevator       d is the distance from the elevator hinge
+//    k = 3.0   left aileron   d is the distance from the aileron hinge
+//    k = 4.0   right aileron  d is the distance from the aileron hinge
+//    k = 5.0   a point on the ground, d=0
+
+
+// Syntax
+
+// vs n        Allocate the vertex vector with upb n.
+// is n        Allocate the index vector with upb n.
+// ds n        Allocate the display vector with upb n.
+
+// x n         Set the x component of a vertex
+// y n         Set the y component of a vertex
+// z n         Set the z component of a vertex
+
+// r n         Set the r colour component of a vertex
+// g n         Set the g colour component of a vertex
+// b n         Set the b colour component of a vertex
+
+// k n         Set the k component of a vertex
+// d n         Set the d component of a vertex
+
+// All the above directives set floating point values.
+
+// i n         Set an entry in the index vertex
+
+// t m n offset  Set an item [mode,n,offset] in the display vector.
+//                      mode is the mode to use eg GL_TRIANGLES as defined
+//                           in g/glmanifests.h
+//                      n is the number of index values to use and offset
+//                           is the starting position in the index vector.
+
+
+// Start of the model. The dimensions are in feet.
+
+vs 384 // 48*8  48 vertices each with 8 attributes values
+
+// yellow
+
+x+10.000 y+5.000 z-5.000 r1.0 g1.0 b0.0 k0.0 d0.0 //  0  front left  bottom 
+x+10.000 y-5.000 z-5.000 r1.0 g1.0 b0.0 k0.0 d0.0 //  1  front right bottom
+x-10.000 y-5.000 z-5.000 r1.0 g1.0 b0.0 k0.0 d0.0 //  2  back  right bottom
+x-10.000 y+5.000 z-5.000 r1.0 g1.0 b0.0 k0.0 d0.0 //  3  back  left  bottom
+
+// green
+
+x+10.000 y-5.000 z-5.000 r0.5 g1.0 b0.0 k0.0 d0.0 //  4  front right bottom
+x+10.000 y-5.000 z+5.000 r0.5 g1.0 b0.0 k0.0 d0.0 //  5  front right top
+x-10.000 y-5.000 z+5.000 r0.5 g1.0 b0.0 k0.0 d0.0 //  6  back  right top
+x-10.000 y-5.000 z-5.000 r0.5 g1.0 b0.0 k0.0 d0.0 //  7  back  right bottom
+
+
+// light blue
+
+x+10.000 y-5.000 z+5.000 r0.2 g0.4 b1.0 k0.0 d0.0 //  8  front right top
+x+10.000 y+5.000 z+5.000 r0.2 g0.4 b1.0 k0.0 d0.0 //  9  front left  top
+x-10.000 y+5.000 z+5.000 r0.2 g0.4 b1.0 k0.0 d0.0 // 10  back  left  top
+x-10.000 y-5.000 z+5.000 r0.2 g0.4 b1.0 k0.0 d0.0 // 11  back  right top
+
+// red
+
+x+10.000 y+5.000 z-5.000 r1.0 g0.0 b0.0 k0.0 d0.0 // 12  front left  bottom
+x-10.000 y+5.000 z-5.000 r1.0 g0.0 b0.0 k0.0 d0.0 // 13  back  left  bottom
+x-10.000 y+5.000 z+5.000 r1.0 g0.0 b0.0 k0.0 d0.0 // 14  back  left  top
+x+10.000 y+5.000 z+5.000 r1.0 g0.0 b0.0 k0.0 d0.0 // 15  front left  top
+
+// Rudder
+
+// black
+
+x-10.000  y0.000 z-5.000 r0.0 g0.0 b0.0 k0.0 d0.0 // 16  back  middle bottom
+x-10.000  y0.000 z+5.000 r0.0 g0.0 b0.0 k0.0 d0.0 // 17  back  middle top
+x-12.500  y0.000 z+5.000 r0.0 g0.0 b0.0 k1.0 d2.5 // 18  end   middle top
+x-12.500  y0.000 z-5.000 r0.0 g0.0 b0.0 k1.0 d2.5 // 19  end   middle bottom
+
+// Elevator
+
+// white
+
+x-10.000 y+5.000 z+0.000 r1.0 g1.0 b1.0 k0.0 d0.0 // 20  back  left  middle
+x-10.000 y-5.000 z+0.000 r1.0 g1.0 b1.0 k0.0 d0.0 // 21  back  right middle
+x-13.000 y-5.000 z+0.000 r1.0 g1.0 b1.0 k2.0 d3.0 // 22  end   right middle
+x-13.000 y+5.000 z+0.000 r1.0 g1.0 b1.0 k2.0 d3.0 // 23  end   left  middle
+
+// Left Aileron
+
+// gray
+
+x+10.000 y+5.000 z 0.000 r0.3 g0.3 b0.3 k0.0 d0.0 // 24  back  left  middle
+x+10.000 y+9.000 z 0.000 r0.3 g0.3 b0.3 k0.0 d0.0 // 25  back  fleft middle
+x +7.500 y+9.000 z 0.000 r0.3 g0.3 b0.3 k3.0 d2.5 // 26  end   fleft middle
+x +7.500 y+5.000 z 0.000 r0.3 g0.3 b0.3 k3.0 d2.5 // 27  end   left  middle
+
+// Right Aileron
+
+// gray
+
+x+10.000 y-5.000 z 0.000 r0.3 g0.3 b0.3 k0.0 d0.0 // 28  back  right  middle
+x+10.000 y-9.000 z 0.000 r0.3 g0.3 b0.3 k0.0 d0.0 // 29  back  right  middle
+x +7.500 y-9.000 z 0.000 r0.3 g0.3 b0.3 k4.0 d2.5 // 30  end   right  middle
+x +7.500 y-5.000 z 0.000 r0.3 g0.3 b0.3 k4.0 d2.5 // 31  end   right  middle
+
+// nose top
+
+// blue gray
+
+x 10.000 y 5.000 z 5.000 r0.3 g0.3 b0.8 k0.0 d0.0 // 32  front left   top
+x 10.000 y-5.000 z 5.000 r0.3 g0.3 b0.8 k0.0 d0.0 // 33  front right  top
+x 40.000 y-2.500 z 2.500 r0.3 g0.3 b0.8 k0.0 d0.0 // 34  nose  right  top
+x 40.000 y 2.500 z 2.500 r0.3 g0.3 b0.8 k0.0 d0.0 // 35  nose  left   top
+
+// nose left
+
+// red gray
+
+x 10.000 y 5.000 z 5.000 r0.8 g0.3 b0.3 k0.0 d0.0 // 36  front left   top
+x 10.000 y 5.000 z-5.000 r0.8 g0.3 b0.3 k0.0 d0.0 // 37  front left   bottom
+x 40.000 y 2.500 z-2.500 r0.8 g0.3 b0.3 k0.0 d0.0 // 38  nose  left   bottom
+x 40.000 y 2.500 z 2.500 r0.8 g0.3 b0.3 k0.0 d0.0 // 39  nose  left   top
+
+// nose right
+
+// green gray
+
+x 10.000 y-5.000 z 5.000 r0.3 g0.8 b0.3 k0.0 d0.0 // 40  front right  top
+x 10.000 y-5.000 z-5.000 r0.3 g0.8 b0.3 k0.0 d0.0 // 41  front right  bottom
+x 40.000 y-2.500 z-2.500 r0.3 g0.8 b0.3 k0.0 d0.0 // 42  nose  right  low
+x 40.000 y-2.500 z 2.500 r0.3 g0.8 b0.3 k0.0 d0.0 // 43  nose  right  high
+
+// nose bottom
+
+// yellow gray
+
+x 10.000 y 5.000 z-5.000 r0.3 g0.8 b0.8 k0.0 d0.0 // 44  front left   bottom
+x 10.000 y-5.000 z-5.000 r0.3 g0.8 b0.8 k0.0 d0.0 // 45  front right  bottom
+x 40.000 y-2.500 z-2.500 r0.3 g0.8 b0.8 k0.0 d0.0 // 46  nose  right  low
+x 40.000 y 2.500 z-2.500 r0.3 g0.8 b0.8 k0.0 d0.0 // 47  nose  left   low
+
+// We will draw the to missile using a triangle strip for its
+// main body followed by triangles for th control surfaces.
+// Note that some of the triangles in the triangle strip are null.
+
+
+
+is 62   // Number of 16--bit unsigned integers in the index array.
+
+// Triangle strips at 0
+   i0  i3  i1  i2         //  0   yellow base
+   i2
+   i7  i4  i6  i5         //  5   green right side
+   i5
+   i8 i11  i9 i10         // 10   blue top
+  i10
+  i14 i15 i13 i12         // 15   red left
+  i12
+  i44 i45 i47 i46         // 20   yellow gray nose bottom
+  i42
+  i42 i43 i41 i40         // 25   green gray nose right
+  i40
+  i33 i34 i32 i35         // 30   blue gray nose top
+  i35
+  i39 i38 i36 i37         // 35   red gray nose left
+
+// Triangles starting at index position 39
+  i16 i17 i18   i16 i18 i19 // 39 Black rudder
+  i20 i21 i22   i20 i22 i23 // 45 white elevator
+  i24 i25 i26   i24 i26 i27 // 51 gray left aileron
+  i28 i29 i30   i28 i30 i31 // 57 gray right aileron
+                            // 63
+
+// The entire image could have been drawn using one display item
+// specifying a single triangle strip, but, as a demonstration, we use
+// two display items are used here. The first is a triangle strip and
+// the second just specifies indevidual triangles.
+
+ds 5       // The number of display items.
+t 5 39  0  // The missile body as a triangle strip.
+t 4 24 39  // The control surfaces as triangles.
+
+

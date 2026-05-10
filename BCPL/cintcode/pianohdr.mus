@@ -1,0 +1,16 @@
+// pianohdr.mus     Make all instruments into pianos
+$def!harpsichord!<$piano;>;
+$def!flute!<$piano;>;
+$def!oboe!<$piano;>;
+$def!clarinet!<$piano;>;
+$def!horn!<$piano;>;
+$def!bassoon!<$piano;>;
+$def!tuba!<$piano;>;
+
+$def!violin!<$piano;>;
+$def!viola!<$piano;>;
+$def!cello!<$piano;>;
+$def!doublebass!<$piano;>;
+
+
+

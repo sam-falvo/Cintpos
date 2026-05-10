@@ -1,0 +1,17 @@
+This directory will hold demonstration programs that illustrate how
+the new pattern matching features of BCPL can be used. These programs
+will be edited versions of demostration programs originally
+implemented in the MCPL.
+
+The programs in directory untestedare currently under development.
+
+The programs in this derectory seem to work. Thes programs are;
+
+coins.b
+fib.b
+splay.b
+match.b
+turing.b
+triangle.b
+
+MR 09/07/2022

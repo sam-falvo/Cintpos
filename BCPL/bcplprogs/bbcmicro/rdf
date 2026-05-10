@@ -1,0 +1,7 @@
+.k file/a,opt
+echo "mapcode rcin16/<file> hints rhints/<file>.hints to rmap/<file>.map <opt>"
+"mapcode"  rcin16/<file>  hints rhints/<file>.hints to rmap/<file>.map <opt>
+echo ""
+
+
+

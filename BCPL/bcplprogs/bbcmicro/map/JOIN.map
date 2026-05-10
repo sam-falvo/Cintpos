@@ -1,0 +1,364 @@
+Before calling findsections
+fcounter=0 notfcounter=0 mcounter=0 notmcounter=0
+codevsize-fcounter-notfcounter=506
+codevsize-mcounter-notmcounter=506
+
+Calling findsections
+
+    0: 03E8 CODE  Section     size   500 bytes
+  502: Max global number 122
+  498: G122 =    14   TRAPSTART
+After calling findsections
+fcounter=1 notfcounter=13 mcounter=0 notmcounter=14
+codevsize-fcounter-notfcounter=492
+codevsize-mcounter-notmcounter=492
+
+Calling findnames
+
+Finding section, needs and entry names
+    4: SECTION Name: JOIN   
+After calling findnames
+fcounter=1 notfcounter=23 mcounter=0 notmcounter=24
+codevsize-fcounter-notfcounter=482
+codevsize-mcounter-notmcounter=482
+
+Calling scancode
+
+After calling scancode
+fcounter=212 notfcounter=171 mcounter=0 notmcounter=382
+codevsize-fcounter-notfcounter=123
+codevsize-mcounter-notmcounter=124
+
+Calling findnotf
+
+After calling findnotf
+fcounter=212 notfcounter=294 mcounter=0 notmcounter=382
+codevsize-fcounter-notfcounter=0
+codevsize-mcounter-notmcounter=124
+
+Calling findstrings
+
+After calling findstrings
+fcounter=212 notfcounter=294 mcounter=0 notmcounter=492
+codevsize-fcounter-notfcounter=0
+codevsize-mcounter-notmcounter=14
+About to call dumpcode()
+
+//     0: 03E8 00FA                MHUNK    size=250
+//     4: FDDF                     Section name: JOIN   
+//     6: 07 4A 4F 49 4E 20 20 20
+
+//    14: GLOBAL ENTRY             G122 TRAPSTART
+//    14: 23 4A       K3G    74    G074 OUTPUT
+//    16: 39 E3       SL$   220    
+//    18: 10           L0          
+//    19: 39 E2       SL$   222    
+//    21: 39 E2       SL$   224    
+//    23: 60 6E         L   110    
+//    25: 23 1A       K3G    26    G026 GETVEC
+//    27: 39 E0       SL$   218    
+//    29: 60 1F         L    31    
+//    31: 23 1A       K3G    26    G026 GETVEC
+//    33: 39 DE       SL$   216    
+//    35: 5B DE      LLL$   210    
+//    37: 31 05        SG     5    G005 ABORTLABEL
+//    39: 23 1B       K3G    27    G027 LEVEL
+//    41: 31 06        SG     6    G006 ABORTLEVEL
+//    43: 3B D8       LL$   218    
+//    45: 1E 84      JEQ0    51    
+//    47: 3B D7       LL$   216    
+//    49: 3E 85      JNE0    56    
+
+//    51: L00051:
+//    51: 30 0F        LG    15    G015 RESULT2
+//    53: 5B D6      LLL$   306    
+//    55: 03           K3          
+
+//    56: L00056:
+//    56: 3B D2       LL$   218    
+//    58: A7          SP7          
+//    59: 60 6E         L   110    
+//    61: A8          SP8          
+//    62: 5B D3      LLL$   226    "FROM/A,,,,,,,,,,,,AS=TO/A/K"
+//    64: 23 61       K3G    97    G097 RDARGS
+//    66: 3E 85      JNE0    73    
+//    68: 60 0B         L    11    
+//    70: 5B CE      LLL$   306    
+//    72: 03           K3          
+
+//    73: L00073:
+//    73: 3B C9       LL$   218    
+//    75: 5B CD      LLL$   350    
+//    77: 03           K3          
+//    78: 3B C7       LL$   218    
+//    80: E0 0C         A    12    
+//    82: 74           RV          
+//    83: 23 43       K3G    67    G067 FINDOUTPUT
+//    85: 39 C2       SL$   224    
+//    87: 3E 8E      JNE0   103    
+//    89: 3A FF        LL   218    
+//    91: E0 0C         A    12    
+//    93: 74           RV          
+//    94: A7          SP7          
+//    95: 30 0F        LG    15    G015 RESULT2
+//    97: A8          SP8          
+//    98: 5B C3      LLL$   254    "Cannot open %s for output"
+//   100: 5B C3      LLL$   330    
+//   102: 03           K3          
+
+//   103: L00103:
+//   103: 3A F7        LL   224    
+//   105: 23 50       K3G    80    G080 SELECTOUTPUT
+//   107: 10           L0          
+//   108: A3          SP3          
+//   109: BA D5         J   196    
+
+//   111: L00111:
+//   111: 3A E9        LL   218    
+//   113: D6         RVP3          
+//   114: A4          SP4          
+//   115: 3E 82      JNE0   119    
+//   117: BA D2         J   201    
+
+//   119: L00119:
+//   119: 84          LP4          
+//   120: 25 42       K5G    66    G066 FINDINPUT
+//   122: 38 E2        SL   222    
+//   124: 3E 8A      JNE0   136    
+//   126: 84          LP4          
+//   127: A9          SP9          
+//   128: 30 0F        LG    15    G015 RESULT2
+//   130: AA         SP10          
+//   131: 5B B4      LLL$   280    "Cannot open %s for input"
+//   133: 5B B2      LLL$   330    
+//   135: 05           K5          
+
+//   136: L00136:
+//   136: 3A D4        LL   222    
+//   138: 25 4F       K5G    79    G079 SELECTINPUT
+
+//   140: L00140:
+//   140: 60 20         L    32    
+//   142: A9          SP9          
+//   143: 3A C7        LL   216    
+//   145: 25 6A       K5G   106    G106 READWORDS
+//   147: A5          SP5          
+//   148: AA         SP10          
+//   149: 3A C1        LL   216    
+//   151: 26 6D       K6G   109    G109 WRITEWORDS
+//   153: 85          LP5          
+//   154: 60 20         L    32    
+//   156: BC 82       JGE   160    
+//   158: BA 93         J   179    
+
+//   160: L00160:
+//   160: 10           L0          
+//   161: 60 FF         L   255    
+//   163: B6         GBYT          
+//   164: 60 7F         L   127    
+//   166: 9C 89       JLE   177    
+//   168: 60 7E         L   126    
+//   170: 26 23       K6G    35    G035 OPSYS
+//   172: 61 F9 03     LW  1017    
+//   175: 26 17       K6G    23    G023 ABORT
+
+//   177: L00177:
+//   177: BA 59         J   140    
+
+//   179: L00179:
+//   179: 25 4B       K5G    75    G075 RDBIN
+//   181: A5          SP5          
+//   182: 0F          LM1          
+//   183: 1C 83       JEQ   188    
+//   185: 85          LP5          
+//   186: 26 51       K6G    81    G081 WRBIN
+
+//   188: L00188:
+//   188: 25 47       K5G    71    G071 ENDREAD
+//   190: 10           L0          
+//   191: 38 9D        SL   222    
+//   193: 11           L1          
+//   194: C3          AP3          
+//   195: A3          SP3          
+
+//   196: L00196:
+//   196: 83          LP3          
+//   197: 60 0B         L    11    
+//   199: 9C 26       JLE   111    
+
+//   201: L00201:
+//   201: 23 48       K3G    72    G072 ENDWRITE
+//   203: 10           L0          
+//   204: 38 92        SL   224    
+//   206: 5A E2       LLL   306    
+//   208: 03           K3          
+//   209: D0          NOP          
+
+//   210: 30 04        LG     4    G004 ABORTCODE
+//   212: 5A DC       LLL   306    
+//   214: 03           K3          
+//   215: 7B          RTN          
+
+//   216: 0000       DATA      0    Operand of LL SL
+
+//   218: 0000       DATA      0    Operand of LL SL
+
+//   220: 0000       DATA      0    Operand of LL SL
+
+//   222: 0000       DATA      0    Operand of LL SL
+
+//   224: 0000       DATA      0    Operand of LL SL
+
+//   226: 1B String: "FROM/A,,,,,,,,,,,,AS=TO/A/K"
+//   226: 1B 46 52 4F 4D 2F 41 2C 2C 2C 2C 2C 2C 2C 2C 2C 
+//   242: 2C 2C 2C 41 53 3D 54 4F 2F 41 2F 4B 
+
+//   254: 19 String: "Cannot open %s for output"
+//   254: 19 43 61 6E 6E 6F 74 20 6F 70 65 6E 20 25 73 20 
+//   270: 66 6F 72 20 6F 75 74 70 75 74 
+
+//   280: 18 String: "Cannot open %s for input"
+//   280: 18 43 61 6E 6E 6F 74 20 6F 70 65 6E 20 25 73 20 
+//   296: 66 6F 72 20 69 6E 70 75 74 
+
+//   306: L00306:
+
+//   306: 3A 2A        LL   222    
+//   308: 1E 82      JEQ0   312    
+//   310: 24 47       K4G    71    G071 ENDREAD
+
+//   312: L00312:
+//   312: 3A 26        LL   224    
+//   314: 1E 82      JEQ0   318    
+//   316: 24 48       K4G    72    G072 ENDWRITE
+
+//   318: L00318:
+//   318: 3A 1A        LL   218    
+//   320: 24 19       K4G    25    G025 FREEVEC
+//   322: 3A 14        LL   216    
+//   324: 24 19       K4G    25    G025 FREEVEC
+//   326: 83          LP3          
+//   327: 24 02       K4G     2    G002 STOP
+//   329: 7B          RTN          
+
+//   330: L00330:
+
+//   330: 3A 10        LL   220    
+//   332: 26 50       K6G    80    G080 SELECTOUTPUT
+//   334: 84          LP4          
+//   335: AA         SP10          
+//   336: 83          LP3          
+//   337: 26 5A       K6G    90    G090 WRITEF
+//   339: 26 54       K6G    84    G084 NEWLINE
+//   341: 3A 09        LL   224    
+//   343: 26 50       K6G    80    G080 SELECTOUTPUT
+//   345: 85          LP5          
+//   346: 5A 56       LLL   306    
+//   348: 06           K6          
+//   349: 7B          RTN          
+
+//   350: L00350:
+
+//   350: 60 0C         L    12    
+//   352: D6         RVP3          
+//   353: 12           L2          
+//   354: A8          SP8          
+//   355: B5          XCH          
+//   356: 24 3C       K4G    60    G060
+//   358: A4          SP4          
+//   359: 30 0C        LG    12    G012
+//   361: 10           L0          
+//   362: B6         GBYT          
+//   363: 11           L1          
+//   364: 57          RSH          
+//   365: A5          SP5          
+//   366: 26 1A       K6G    26    G026 GETVEC
+//   368: A6          SP6          
+//   369: 3E 85      JNE0   376    
+//   371: 30 0F        LG    15    G015 RESULT2
+//   373: 5A 3B       LLL   306    
+//   375: 08           K8          
+
+//   376: L00376:
+//   376: 11           L1          
+//   377: C5          AP5          
+//   378: AD         SP13          
+//   379: 86          LP6          
+//   380: AC         SP12          
+//   381: 30 0C        LG    12    G012
+//   383: 28 24       K8G    36    G036 MOVE
+//   385: 10           L0          
+//   386: A8          SP8          
+//   387: BA A9         J   430    
+
+//   389: L00389:
+//   389: 88          LP8          
+//   390: D6         RVP3          
+//   391: 3E 82      JNE0   395    
+//   393: BA A8         J   435    
+
+//   395: L00395:
+//   395: 88          LP8          
+//   396: D6         RVP3          
+//   397: 11           L1          
+//   398: AD         SP13          
+//   399: B5          XCH          
+//   400: 29 3C       K9G    60    G060
+//   402: A7          SP7          
+//   403: 84          LP4          
+//   404: 3C 95       JNE   427    
+//   406: 86          LP6          
+//   407: AD         SP13          
+//   408: 30 0C        LG    12    G012
+//   410: 29 5F       K9G    95    G095 COMPSTRING
+//   412: 3E 8D      JNE0   427    
+//   414: 86          LP6          
+//   415: 29 19       K9G    25    G025 FREEVEC
+//   417: 10           L0          
+//   418: AD         SP13          
+//   419: 60 0B         L    11    
+//   421: AE         SP14          
+//   422: 5A 90       LLL   440    "SAME FILE FOR INPUT AND OUTPUT"
+//   424: 5A 20       LLL   330    
+//   426: 09           K9          
+
+//   427: L00427:
+//   427: 11           L1          
+//   428: C8          AP8          
+//   429: A8          SP8          
+
+//   430: L00430:
+//   430: 88          LP8          
+//   431: 60 0B         L    11    
+//   433: 9C 52       JLE   389    
+
+//   435: L00435:
+//   435: 86          LP6          
+//   436: 28 19       K8G    25    G025 FREEVEC
+//   438: 7B          RTN          
+//   439: D0          NOP          
+
+//   440: 1E String: "SAME FILE FOR INPUT AND OUTPUT"
+//   440: 1E 53 41 4D 45 20 46 49 4C 45 20 46 4F 52 20 49 
+//   456: 4E 50 55 54 20 41 4E 44 20 4F 55 54 50 55 54 
+
+//   472: FF04          Resolving word => 220
+//   474: FF04          Resolving word => 222
+//   476: FF04          Resolving word => 224
+//   478: FEFC          Resolving word => 218
+//   480: FEF8          Resolving word => 216
+//   482: FEF0          Resolving word => 210
+//   484: FF4E          Resolving word => 306
+//   486: FEFC          Resolving word => 226
+//   488: FF76          Resolving word => 350
+//   490: FF14          Resolving word => 254
+//   492: FF5E          Resolving word => 330
+//   494: FF2A          Resolving word => 280
+
+//   496: 0000      Ginit end mark
+//   498: 007A 000A Init  G122 = 14  TRAPSTART
+//   502: 007A      Highest Global  G122 TRAPSTART
+//   504: 03E0                  END
+
+
+No unclassified bytes

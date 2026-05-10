@@ -1,0 +1,15 @@
+.k arg
+
+# c bc64 break "<arg>"
+c bc64 fcmpltest "<arg>"
+c bc64 fltcmpltest "<arg>"
+# c bc64 help "<arg>"
+c bc64 pal75 "<arg>"
+c bc64 playmus "<arg>"
+# c bc64 sial-alpha "<arg>"
+# c bc64 sial-arm "<arg>"
+# c bc64 sial-armvfpv2 "<arg>"
+# c bc64 sial-vax "<arg>"
+c bc64 swtest "<arg>"
+c bc64 tstfloat "<arg>"
+c bc64 xcmpltest "<arg>"

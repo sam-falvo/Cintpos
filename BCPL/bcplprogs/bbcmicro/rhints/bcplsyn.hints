@@ -1,0 +1,187 @@
+START:1;STOP:2;STARTINIT:3;MCRESULT:11;RESULT2:15;ABORT:23;FREEVEC:25
+GETVEC:26;LEVEL:27;LONGJUMP:28;MAXVEC:29;CALL:31;OPSYS:35;MOVE:36;MULDIV:37
+TRAP:38;COMPCH:42;CALLCO:43;COWAIT:44;CREATECO:45;DELETECO:46;RESUMECO:47
+CNSLINSTR:52;CNSLOUTSTR:53;CAPCH:59;DELFILE:64;FINDINPUT:66;FINDOUTPUT:67
+RENAME:70;ENDREAD:71;ENDWRITE:72;INPUT:73;OUTPUT:74;RDBIN:75;RDCH:76
+TESTSTR:77;READN:78;SELECTINPUT:79;SELECTOUTPUT:80;WRBIN:81;WRCH:82
+UNRDCH:83;NEWLINE:84;NEWPAGE:85;WRITED:88;WRITEF:90;WRITEHEX:91;WRITEN:92
+WRITES:94;COMPSTRING:95;FINDARG:96;RDARGS:97;RDITEM:98;SPLIT:99;GLOBIN:100
+GLOBUNIN:101;LOADSEG:104;READWORDS:106;TESTFLAGS:108;WRITEWORDS:109
+RANDOM:111;TIME:112;MODE:115;RUNPROG:118;CALLBYTE:121;SAVE:123;FILETOVEC:125
+VECTOFILE:126;SOUND:128;ENVELOPE:129;READVEC:168;READ:169;VDU:200;ADVAL:201
+SAVEVEC:204
+
+MAXGLOB:0;ABORTCODE:4;ABORTLABEL:5;ABORTLEVEL:6;STOREFILES:16;STREAMCHAIN:17
+SYSINDEX:18;TRAPSTACK:19;MAINSTACK:20;LASTERROR:21;CURRCO:22;ENDPROG:24
+STACKSIZE:30;CLIINSTR:33;ENDTRAP:34;FSTYPE:39;WRITET:40;WRITEU:41;HEAP:48
+HEAPEND:54;ERRORSTREAM:58;COMMON2:62;COMMON3:63;DELXFILE:65;FINDXINPUT:68
+FINDXOUTPUT:69;WRITEA:86;WRITEBA:87;WRITEDB:89;WRITEOCT:93;EXTSFILE:102
+UNLOADSEG:105;LINKEDFILES:114;VDUINFO:116;LIBBASE:117;TRAPSTART:122
+APTOVEC:127;CONTPRG:149;COLIST:166;ERRORMSG:202;SHUFFLE:203;FAULTROUTINE:205
+TIDYSTATE:208;MOVEBYTE:213;BACKMVBY:218;BACKMOVE:219
+
+FINDFILE:60
+FINDSTFILE:148
+
+rc:250
+
+maxoption:255
+err.p:256
+err.l:257
+
+blk:259
+
+nametable:265
+getv:266
+wordv:267
+gett:268
+chbuf:269
+
+sourcestream:286
+ch:287
+linecount:288
+reportcount:289
+
+blkt:292
+blkp:293
+
+nextsymb:400
+
+lookupword:401
+declsyswords:402
+
+rch:403
+wrchbuf:404
+rdtag:405
+performget:406
+readnumber:407
+rdstrch:408
+
+newvec:409
+list1:410
+list2:411
+list3:412
+list4:413
+list5:414
+list6:415
+synreport:416
+
+rdblockbody:417
+rdseq:418
+rdcdefs:419
+rdsect:420
+rnamelist:421
+rname:422
+ignore:423
+checkfor:424
+
+rbexp:425
+rexp:426
+rexplist:427
+rdef:428
+
+rbcom:429
+rcom:430
+makelist:431
+compstring:432
+
+symb:450
+decval:451
+wordnode:452
+wordv:453
+chbuf:454
+chcount:455
+nlpending:456
+nulltag:457
+getv:458
+getp:459
+nametable:460
+rec.p:461
+rec.l:462
+skipnode:463
+listp:464
+blklist:466
+
+zeronode:295
+smallnumber:296
+
+
+#t 59 s.get
+#t 68 s.lsect      Case '{'
+#t 77 s.rsect      Case '}'
+#t 86 s.lsect      Case '$'
+#t 89 s.rsect
+#t 92 s.setcond
+#t 95 s.lcond
+#t 98 s.rcond
+#t 101 s.lsect
+#t 104 s.rsect
+#t 107 s.lsect
+#t 110 s.rsect
+#t 117 multichar
+#t 128 s.lsect
+#t 134 s.rsect
+#t 138 '$'
+#t 152 op
+#t 154 '<'
+#t 164 op
+#t 162 s.rcond
+#t 184 s.setcond
+#t 186 op
+#t 189 s.true
+#t 194 s.false
+#t 197 s.true
+#t 222 s.lparen         Cases '[' and '('
+#t 228 s.rparen         Cases ']' and ')'
+#t 234 radix            Case '#'
+#t 238 '0'
+#t 244 '7'
+#t 254 'B'
+#t 258 'O'
+#t 262 'X'
+#t 293 s.number
+#t 297 '?'
+#t 297 Case '?'
+#t 303 Case '+'
+#t 309 Case ','
+
+#t 343 Case '%'
+#t 349 Case '*'
+#t 355 Case '|'
+#t 374 '*n'
+#t 379 '*c'
+#t 384 '*p'
+#t 389 endstreamch
+#t 394 s.logand         Case '/'
+#t 421 '*'
+#t 429 '/'
+
+#c 4072        // 4072 is an address assigned to rec.l
+
+#f 1000 multichar
+
+#w 1248 1368   // A table in declsyswords in SYN2
+//#w 1884 1888
+
+#t 2078 value
+#t 2081 d
+#t 2095 value
+#t 2112 LET value(ch) =
+#t 2352 LET readoctalorhex(radix,digits) =
+#t 2355 i
+#t 2362 value
+#t 2524 reclab:
+#t 2528 LET rdsectionorneeds() =
+
+#t 3839 a
+#t 3842 ptr
+#t 3843 op
+
+#t 4111 rec
+#t 4154 Label rec:
+#t 4703 s.vecap
+#t 4709 s.rv changed to s.vecap
+#t 4712 s.byteap
+
+
+

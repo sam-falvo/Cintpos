@@ -1,0 +1,2960 @@
+AA M:0 DEF dnaplot.b[369] AA=0
+AA M:0 MAN dnaplot.b[1212] setangles(AA,deg2rad( 0.000),f0,f0)
+AA M:0 MAN dnaplot.b[1238] currpair:=AA
+AA M:0 MAN dnaplot.b[2361] FOR XY=AA TO TT DO..
+AA M:0 MAN dnaplot.b[2408] FOR XY=AA TO TT DO..
+AA M:0 MAN dnaplot.b[2428] FOR XY=AA TO TT DO..
+AC M:1 DEF dnaplot.b[369] AC=
+AC M:1 MAN dnaplot.b[1213] setangles(AC,deg2rad( 0.000),f0,f0)
+AG M:2 DEF dnaplot.b[369] AG=
+AG M:2 MAN dnaplot.b[1214] setangles(AG,deg2rad( 0.000),f0,f0)
+AT M:3 DEF dnaplot.b[369] AT=
+AT M:3 MAN dnaplot.b[1215] setangles(AT,deg2rad( 0.000),f0,f0)
+Ass_dev M:4 DEF libhdr.h[754] Ass_dev=4
+Ass_dir M:2 DEF libhdr.h[752] Ass_dir=2
+Ass_link M:0 DEF libhdr.h[750] Ass_link=0
+Ass_name M:5 DEF libhdr.h[755] Ass_name=5
+Ass_task M:1 DEF libhdr.h[751] Ass_task=1
+Ass_type M:3 DEF libhdr.h[753] Ass_type=3
+B2Wsh M:2 DEF libhdr.h[26] B2Wsh=1+32/32
+B2Wsh M:2 MAN libhdr.h[244] bytesperword=1<<B2Wsh
+CA M:4 DEF dnaplot.b[369] CA=
+CA M:4 MAN dnaplot.b[1217] setangles(CA,deg2rad( 0.000),f0,f0)
+CC M:5 DEF dnaplot.b[369] CC=
+CC M:5 MAN dnaplot.b[1218] setangles(CC,deg2rad( 0.000),f0,f0)
+CG M:6 DEF dnaplot.b[369] CG=
+CG M:6 MAN dnaplot.b[1219] setangles(CG,deg2rad( 0.000),f0,f0)
+CT M:7 DEF dnaplot.b[369] CT=
+CT M:7 MAN dnaplot.b[1220] setangles(CT,deg2rad( 0.000),f0,f0)
+CloseObj M:1 DEF libhdr.h[294] CloseObj=1
+ColourNoLoc G:225 DEF dnaplot.b[203] ColourNoLoc=
+ColourNoLoc G:225 LG dnaplot.b[1423]
+    sys(Sys_gl,gl_EnableVertexAttribArray,ColourNoLoc)
+ColourNoLoc G:225 LG dnaplot.b[1424]
+    sys(Sys_gl,gl_VertexData,ColourNoLoc,1,4,3)
+ColourNoLoc G:225 LG dnaplot.b[1670]
+    sys(Sys_gl,gl_DisableVertexAttribArray,ColourNoLoc)
+ColourNoLoc G:225 SG dnaplot.b[2000]
+    ColourNoLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vColourNo")
+Compileshader G:310 DEF dnaplot.b[338] Compileshader=
+Compileshader G:310 FN dnaplot.b[2013]
+    LET Compileshader(prog,isVshader,filename)=..
+Compileshader G:310 LG dnaplot.b[1978]
+    Vshader:=Compileshader(glprog,TRUE,"dnapl'ader.sdr")
+Compileshader G:310 LG dnaplot.b[1984]
+    Fshader:=Compileshader(glprog,FALSE,"dnapl'ader.sdr")
+Dcb_arg M:4 DEF libhdr.h[694] Dcb_arg=4
+Dcb_cvp M:16 DEF libhdr.h[708] Dcb_cvp=16
+Dcb_devid M:1 DEF libhdr.h[691] Dcb_devid=1
+Dcb_flag M:7 DEF libhdr.h[697] Dcb_flag=7
+Dcb_intson M:6 DEF libhdr.h[696] Dcb_intson=6
+Dcb_irq M:5 DEF libhdr.h[695] Dcb_irq=5
+Dcb_op M:3 DEF libhdr.h[693] Dcb_op=3
+Dcb_threadp M:14 DEF libhdr.h[707] Dcb_threadp=14
+Dcb_type M:0 DEF libhdr.h[690] Dcb_type=0
+Dcb_upb M:17 DEF libhdr.h[712] Dcb_upb=17
+Dcb_var0 M:8 DEF libhdr.h[701] Dcb_var0=8
+Dcb_var1 M:9 DEF libhdr.h[702] Dcb_var1=9
+Dcb_var2 M:10 DEF libhdr.h[703] Dcb_var2=10
+Dcb_var3 M:11 DEF libhdr.h[704] Dcb_var3=11
+Dcb_var4 M:12 DEF libhdr.h[705] Dcb_var4=12
+Dcb_wkq M:2 DEF libhdr.h[692] Dcb_wkq=2
+Devc_create M:1 DEF libhdr.h[722] Devc_create=1
+Devc_destroy M:2 DEF libhdr.h[723] Devc_destroy=2
+Devc_setintson M:5 DEF libhdr.h[726] Devc_setintson=5
+Devc_start M:3 DEF libhdr.h[724] Devc_start=3
+Devc_stop M:4 DEF libhdr.h[725] Devc_stop=4
+Devt_clk M:1 DEF libhdr.h[715] Devt_clk=1
+Devt_fileop M:4 DEF libhdr.h[718] Devt_fileop=4
+Devt_tcpdev M:5 DEF libhdr.h[719] Devt_tcpdev=5
+Devt_ttyin M:2 DEF libhdr.h[716] Devt_ttyin=2
+Devt_ttyout M:3 DEF libhdr.h[717] Devt_ttyout=3
+Fshader G:223 DEF dnaplot.b[199] Fshader=
+Fshader G:223 SG dnaplot.b[1984]
+    Fshader:=Compileshader(glprog,FALSE,"dnapl'ader.sdr")
+GA M:8 DEF dnaplot.b[369] GA=
+GA M:8 MAN dnaplot.b[1222] setangles(GA,deg2rad( 0.000),f0,f0)
+GB2312 M:-2 DEF libhdr.h[623] GB2312=-2
+GC M:9 DEF dnaplot.b[369] GC=
+GC M:9 MAN dnaplot.b[1223] setangles(GC,deg2rad( 0.000),f0,f0)
+GG M:10 DEF dnaplot.b[369] GG=
+GG M:10 MAN dnaplot.b[1224] setangles(GG,deg2rad( 0.000),f0,f0)
+GL_BLEND M:3042 DEF glmanifests.h[17] GL_BLEND=3042
+GL_BLEND M:3042 MAN gl.b[155] sys(Sys_gl,gl_Enable,GL_BLEND)
+GL_COLOR_BUFFER_BIT M:16384 DEF glmanifests.h[15]
+    GL_COLOR_BUFFER_BIT=16384
+GL_DEPTH_BUFFER_BIT M:256 DEF glmanifests.h[16] GL_DEPTH_BUFFER_BIT=256
+GL_DEPTH_TEST M:2929 DEF glmanifests.h[6] GL_DEPTH_TEST=2929
+GL_DEPTH_TEST M:2929 MAN dnaplot.b[1643]
+    sys(Sys_gl,gl_Enable,GL_DEPTH_TEST)
+GL_LESS M:513 DEF glmanifests.h[7] GL_LESS=513
+GL_LESS M:513 MAN dnaplot.b[1645] sys(Sys_gl,gl_DepthFunc,GL_LESS)
+GL_LINES M:1 DEF glmanifests.h[9] GL_LINES=1
+GL_LINE_LOOP M:2 DEF glmanifests.h[11] GL_LINE_LOOP=2
+GL_LINE_STRIP M:3 DEF glmanifests.h[10] GL_LINE_STRIP=3
+GL_ONE_MINUS_SRC_ALPHA M:771 DEF glmanifests.h[19]
+    GL_ONE_MINUS_SRC_ALPHA=771
+GL_ONE_MINUS_SRC_ALPHA M:771 MAN gl.b[154]
+    sys(Sys_gl,gl_BlendFunc,GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA)
+GL_POINTS M:0 DEF glmanifests.h[8] GL_POINTS=0
+GL_SRC_ALPHA M:770 DEF glmanifests.h[18] GL_SRC_ALPHA=770
+GL_SRC_ALPHA M:770 MAN gl.b[154]
+    sys(Sys_gl,gl_BlendFunc,GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA)
+GL_TRIANGLES M:4 DEF glmanifests.h[12] GL_TRIANGLES=4
+GL_TRIANGLE_FAN M:6 DEF glmanifests.h[14] GL_TRIANGLE_FAN=6
+GL_TRIANGLE_STRIP M:5 DEF glmanifests.h[13] GL_TRIANGLE_STRIP=5
+GL_VERTEX_ARRAY M:32884 DEF glmanifests.h[4] GL_VERTEX_ARRAY=32884
+GL_VERTEX_SHADER M:35633 DEF glmanifests.h[5] GL_VERTEX_SHADER=35633
+GT M:11 DEF dnaplot.b[369] GT=
+GT M:11 MAN dnaplot.b[1225] setangles(GT,deg2rad( 0.000),f0,f0)
+IndexBuffer G:259 DEF dnaplot.b[258] IndexBuffer=
+IndexBuffer G:259 LG dnaplot.b[1393] IF IndexBuffer DO ..
+IndexBuffer G:259 LG dnaplot.b[1394]
+    writef("Delet'ffer %n*n",IndexBuffer)
+IndexBuffer G:259 LG dnaplot.b[1395]
+    sys(Sys_gl,gl_DeleteBuffer,IndexBuffer)
+IndexBuffer G:259 SG dnaplot.b[1249] IndexBuffer:=0
+IndexBuffer G:259 SG dnaplot.b[1438]
+    IndexBuffer:=sys(Sys_gl,gl_GenIndexBuffer,...,...)
+InitObj M:0 DEF libhdr.h[293] InitObj=0
+MatrixLoc G:226 DEF dnaplot.b[206] MatrixLoc=
+MatrixLoc G:226 LG dnaplot.b[1632]
+    sys(Sys_gl,gl_UniformMatrix4fv,MatrixLoc,glprog,projectionMatrix)
+MatrixLoc G:226 SG dnaplot.b[2006]
+    MatrixLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"matrix")
+ON64 M:0 DEF libhdr.h[28] ON64=32=64
+ON64 M:0 MAN gl.b[235] IF ON64 DO ..
+State_dead M:12 DEF libhdr.h[741] State_dead=12
+State_hold M:2 DEF libhdr.h[738] State_hold=2
+State_int M:8 DEF libhdr.h[740] State_int=8
+State_pkt M:1 DEF libhdr.h[737] State_pkt=1
+State_wait M:4 DEF libhdr.h[739] State_wait=4
+Sys_buttons M:56 DEF libhdr.h[465] Sys_buttons=56
+Sys_callc M:59 DEF libhdr.h[468] Sys_callc=59
+Sys_callnative M:53 DEF libhdr.h[462] Sys_callnative=53
+Sys_close M:16 DEF libhdr.h[428] Sys_close=16
+Sys_cputime M:30 DEF libhdr.h[441] Sys_cputime=30
+Sys_datstamp M:44 DEF libhdr.h[453] Sys_datstamp=44
+Sys_delay M:57 DEF libhdr.h[466] Sys_delay=57
+Sys_deletefile M:17 DEF libhdr.h[429] Sys_deletefile=17
+Sys_devcom M:43 DEF libhdr.h[452] Sys_devcom=43
+Sys_dumpmem M:52 DEF libhdr.h[461] Sys_dumpmem=52
+Sys_ext M:68 DEF libhdr.h[479] Sys_ext=68
+Sys_filemodtime M:31 DEF libhdr.h[442] Sys_filemodtime=31
+Sys_filesize M:46 DEF libhdr.h[455] Sys_filesize=46
+Sys_flt M:63 DEF libhdr.h[473] Sys_flt=63
+Sys_flt M:63 MAN dnaplot.b[1727] sys(Sys_flt,fl_sqrt,ptn*ptn+ptw*ptw)
+Sys_flt M:63 MAN dnaplot.b[1826]
+    bankangle:=FIX rad2deg(sys(Sys_flt,...))
+Sys_flt M:63 MAN dnaplot.b[1828]
+    climbangle:=FIX rad2deg(sys(Sys_flt,...))
+Sys_flt M:63 MAN dnaplot.b[1829] heading:=FIX rad2deg(sys(Sys_flt,...))
+Sys_flt M:63 MAN dnaplot.b[2424] FIX rad2deg(sys(Sys_flt,fl_atan2,y,x))
+Sys_flt M:63 MAN dnaplot.b[642] bn#:=sys(Sys_flt,fl_atan2,mlw,mlh)
+Sys_flt M:63 MAN dnaplot.b[643] c#:=sys(Sys_flt,fl_cos,bn)
+Sys_flt M:63 MAN dnaplot.b[643] s#:=sys(Sys_flt,fl_sin,bn)
+Sys_flt M:63 MAN dnaplot.b[656] bw#:=sys(Sys_flt,fl_atan2,...,mlh)
+Sys_flt M:63 MAN dnaplot.b[657] c#:=sys(Sys_flt,fl_cos,bw)
+Sys_flt M:63 MAN dnaplot.b[657] s#:=sys(Sys_flt,fl_sin,bw)
+Sys_flt M:63 MAN dnaplot.b[670] bh#:=sys(Sys_flt,fl_atan2,...,mtn)
+Sys_flt M:63 MAN dnaplot.b[671] c#:=sys(Sys_flt,fl_cos,bh)
+Sys_flt M:63 MAN dnaplot.b[671] s#:=sys(Sys_flt,fl_sin,bh)
+Sys_flt M:63 MAN dnaplot.b[703] sys(Sys_flt,fl_cos,at)
+Sys_flt M:63 MAN dnaplot.b[703] sys(Sys_flt,fl_sin,at)
+Sys_flt M:63 MAN dnaplot.b[704] sys(Sys_flt,fl_cos,aw)
+Sys_flt M:63 MAN dnaplot.b[704] sys(Sys_flt,fl_sin,aw)
+Sys_flt M:63 MAN dnaplot.b[705] sys(Sys_flt,fl_cos,al)
+Sys_flt M:63 MAN dnaplot.b[705] sys(Sys_flt,fl_sin,al)
+Sys_flt M:63 MAN dnaplot.b[730] sys(Sys_flt,fl_cos,angle)
+Sys_flt M:63 MAN dnaplot.b[731] sys(Sys_flt,fl_sin,angle)
+Sys_flt M:63 MAN dnaplot.b[753] sys(Sys_flt,fl_cos,angle)
+Sys_flt M:63 MAN dnaplot.b[754] sys(Sys_flt,fl_sin,angle)
+Sys_flt M:63 MAN dnaplot.b[782] sys(Sys_flt,fl_cos,angle)
+Sys_flt M:63 MAN dnaplot.b[783] sys(Sys_flt,fl_sin,angle)
+Sys_flt M:63 MAN gl.b[189] sys(Sys_flt,fl_sqrt,x*x+y*y)
+Sys_flt M:63 MAN gl.b[191] sys(Sys_flt,fl_sqrt,x*x+y*y+z*z)
+Sys_flt M:63 MAN gl.b[235] RESULTIS sys(Sys_flt,fl_64to32,x)
+Sys_freevec M:22 DEF libhdr.h[434] Sys_freevec=22
+Sys_getbuildno M:71 DEF libhdr.h[482] Sys_getbuildno=71
+Sys_getpid M:51 DEF libhdr.h[460] Sys_getpid=51
+Sys_getprefix M:33 DEF libhdr.h[444] Sys_getprefix=33
+Sys_getsysval M:48 DEF libhdr.h[457] Sys_getsysval=48
+Sys_gettrval M:62 DEF libhdr.h[472] Sys_gettrval=62
+Sys_getvec M:21 DEF libhdr.h[433] Sys_getvec=21
+Sys_gl M:67 DEF libhdr.h[478] Sys_gl=67
+Sys_gl M:67 MAN dnaplot.b[1391] sys(Sys_gl,gl_DeleteBuffer,VertexBuffer)
+Sys_gl M:67 MAN dnaplot.b[1395] sys(Sys_gl,gl_DeleteBuffer,IndexBuffer)
+Sys_gl M:67 MAN dnaplot.b[1399]
+    VertexBuffer:=sys(Sys_gl,gl_GenVertexBuffer,...,...)
+Sys_gl M:67 MAN dnaplot.b[1411]
+    sys(Sys_gl,gl_EnableVertexAttribArray,VertexLoc)
+Sys_gl M:67 MAN dnaplot.b[1412]
+    sys(Sys_gl,gl_VertexData,VertexLoc,3,4,0)
+Sys_gl M:67 MAN dnaplot.b[1423]
+    sys(Sys_gl,gl_EnableVertexAttribArray,ColourNoLoc)
+Sys_gl M:67 MAN dnaplot.b[1424]
+    sys(Sys_gl,gl_VertexData,ColourNoLoc,1,4,3)
+Sys_gl M:67 MAN dnaplot.b[1438]
+    IndexBuffer:=sys(Sys_gl,gl_GenIndexBuffer,...,...)
+Sys_gl M:67 MAN dnaplot.b[1545]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+Sys_gl M:67 MAN dnaplot.b[1599]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+Sys_gl M:67 MAN dnaplot.b[1621]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+Sys_gl M:67 MAN dnaplot.b[1632]
+    sys(Sys_gl,gl_UniformMatrix4fv,MatrixLoc,glprog,projectionMatrix)
+Sys_gl M:67 MAN dnaplot.b[1637]
+    sys(Sys_gl,gl_ClearColour, 0.100, 0.200, 0.200, 1.000)
+Sys_gl M:67 MAN dnaplot.b[1639] sys(Sys_gl,gl_ClearBuffer)
+Sys_gl M:67 MAN dnaplot.b[1643] sys(Sys_gl,gl_Enable,GL_DEPTH_TEST)
+Sys_gl M:67 MAN dnaplot.b[1645] sys(Sys_gl,gl_DepthFunc,GL_LESS)
+Sys_gl M:67 MAN dnaplot.b[1657] sys(Sys_gl,gl_SwapBuffers)
+Sys_gl M:67 MAN dnaplot.b[1669]
+    sys(Sys_gl,gl_DisableVertexAttribArray,VertexLoc)
+Sys_gl M:67 MAN dnaplot.b[1670]
+    sys(Sys_gl,gl_DisableVertexAttribArray,ColourNoLoc)
+Sys_gl M:67 MAN dnaplot.b[1690] sys(Sys_gl,gl_Quit)
+Sys_gl M:67 MAN dnaplot.b[1968] glprog:=sys(Sys_gl,gl_MkProg)
+Sys_gl M:67 MAN dnaplot.b[1989]
+    UNLESS sys(Sys_gl,gl_LinkProgram,glprog) DO ..
+Sys_gl M:67 MAN dnaplot.b[1996] sys(Sys_gl,gl_UseProgram,glprog)
+Sys_gl M:67 MAN dnaplot.b[1999]
+    VertexLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vVertex")
+Sys_gl M:67 MAN dnaplot.b[2000]
+    ColourNoLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vColourNo")
+Sys_gl M:67 MAN dnaplot.b[2006]
+    MatrixLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"matrix")
+Sys_gl M:67 MAN dnaplot.b[2046]
+    shader:=sys(Sys_gl,isVshader->gl_CompileVshader,gl_CompileFshader,prog,buf)
+Sys_gl M:67 MAN dnaplot.b[2104]
+    sys(Sys_gl,gl_DrawElements,mode,size,4*offset)
+Sys_gl M:67 MAN dnaplot.b[2145] sys(Sys_gl,gl_Quit)
+Sys_gl M:67 MAN gl.b[106] sys(Sys_gl,gl_Init)
+Sys_gl M:67 MAN gl.b[137] screenxsize:=sys(Sys_gl,gl_MkScreen,title,...)
+Sys_gl M:67 MAN gl.b[145] sys(Sys_gl,gl_GetError,mes)
+Sys_gl M:67 MAN gl.b[154]
+    sys(Sys_gl,gl_BlendFunc,GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA)
+Sys_gl M:67 MAN gl.b[155] sys(Sys_gl,gl_Enable,GL_BLEND)
+Sys_gl M:67 MAN gl.b[216] sys(Sys_gl,gl_pollevent,@eventtype)
+Sys_globin M:24 DEF libhdr.h[436] Sys_globin=24
+Sys_graphics M:34 DEF libhdr.h[445] Sys_graphics=34
+Sys_inc M:55 DEF libhdr.h[464] Sys_inc=55
+Sys_incdcount M:65 DEF libhdr.h[475] Sys_incdcount=65
+Sys_interpret M:7 DEF libhdr.h[420] Sys_interpret=7
+Sys_intflag M:28 DEF libhdr.h[439] Sys_intflag=28
+Sys_joy M:69 DEF libhdr.h[480] Sys_joy=69
+Sys_loadseg M:23 DEF libhdr.h[435] Sys_loadseg=23
+Sys_lockirq M:41 DEF libhdr.h[450] Sys_lockirq=41
+Sys_muldiv M:26 DEF libhdr.h[438] Sys_muldiv=26
+Sys_openappend M:19 DEF libhdr.h[431] Sys_openappend=19
+Sys_openread M:14 DEF libhdr.h[426] Sys_openread=14
+Sys_openreadwrite M:47 DEF libhdr.h[456] Sys_openreadwrite=47
+Sys_openwrite M:15 DEF libhdr.h[427] Sys_openwrite=15
+Sys_platform M:54 DEF libhdr.h[463] Sys_platform=54
+Sys_pollsardch M:64 DEF libhdr.h[474] Sys_pollsardch=64
+Sys_putsysval M:49 DEF libhdr.h[458] Sys_putsysval=49
+Sys_quit M:0 DEF libhdr.h[413] Sys_quit=0
+Sys_read M:12 DEF libhdr.h[424] Sys_read=12
+Sys_renamefile M:18 DEF libhdr.h[430] Sys_renamefile=18
+Sys_rti M:1 DEF libhdr.h[414] Sys_rti=1
+Sys_sardch M:10 DEF libhdr.h[422] Sys_sardch=10
+Sys_saveregs M:2 DEF libhdr.h[415] Sys_saveregs=2
+Sys_sawrch M:11 DEF libhdr.h[423] Sys_sawrch=11
+Sys_sdl M:66 DEF libhdr.h[477] Sys_sdl=66
+Sys_seek M:38 DEF libhdr.h[447] Sys_seek=38
+Sys_setcount M:-1 DEF libhdr.h[412] Sys_setcount=-1
+Sys_setprefix M:32 DEF libhdr.h[443] Sys_setprefix=32
+Sys_setraster M:29 DEF libhdr.h[440] Sys_setraster=29
+Sys_setst M:3 DEF libhdr.h[416] Sys_setst=3
+Sys_settracing M:70 DEF libhdr.h[481] Sys_settracing=70
+Sys_settrcount M:61 DEF libhdr.h[471] Sys_settrcount=61
+Sys_shellcom M:50 DEF libhdr.h[459] Sys_shellcom=50
+Sys_sound M:58 DEF libhdr.h[467] Sys_sound=58
+Sys_tally M:6 DEF libhdr.h[419] Sys_tally=6
+Sys_tell M:39 DEF libhdr.h[448] Sys_tell=39
+Sys_tracing M:4 DEF libhdr.h[417] Sys_tracing=4
+Sys_trpush M:60 DEF libhdr.h[470] Sys_trpush=60
+Sys_unloadseg M:25 DEF libhdr.h[437] Sys_unloadseg=25
+Sys_unlockirq M:42 DEF libhdr.h[451] Sys_unlockirq=42
+Sys_waitirq M:40 DEF libhdr.h[449] Sys_waitirq=40
+Sys_watch M:5 DEF libhdr.h[418] Sys_watch=5
+Sys_write M:13 DEF libhdr.h[425] Sys_write=13
+TA M:12 DEF dnaplot.b[369] TA=
+TA M:12 MAN dnaplot.b[1227] setangles(TA,deg2rad( 0.000),f0,f0)
+TC M:13 DEF dnaplot.b[369] TC=
+TC M:13 MAN dnaplot.b[1228] setangles(TC,deg2rad( 0.000),f0,f0)
+TG M:14 DEF dnaplot.b[369] TG=
+TG M:14 MAN dnaplot.b[1229] setangles(TG,deg2rad( 0.000),f0,f0)
+TT M:15 DEF dnaplot.b[369] TT=
+TT M:15 MAN dnaplot.b[1230] setangles(TT,deg2rad( 0.000),f0,f0)
+TT M:15 MAN dnaplot.b[2361] FOR XY=AA TO TT DO..
+TT M:15 MAN dnaplot.b[2408] FOR XY=AA TO TT DO..
+TT M:15 MAN dnaplot.b[2428] FOR XY=AA TO TT DO..
+Task_cli M:1 DEF libhdr.h[729] Task_cli=1
+Task_consolehandler M:3 DEF libhdr.h[731] Task_consolehandler=3
+Task_debug M:2 DEF libhdr.h[730] Task_debug=2
+Task_filehandler M:4 DEF libhdr.h[732] Task_filehandler=4
+Task_mbxhandler M:5 DEF libhdr.h[733] Task_mbxhandler=5
+Task_tcphandler M:6 DEF libhdr.h[734] Task_tcphandler=6
+UTF8 M:-1 DEF libhdr.h[622] UTF8=-1
+VertexBuffer G:258 DEF dnaplot.b[256] VertexBuffer=
+VertexBuffer G:258 LG dnaplot.b[1389] IF VertexBuffer DO ..
+VertexBuffer G:258 LG dnaplot.b[1390]
+    writef("Delet'ffer %n*n",VertexBuffer)
+VertexBuffer G:258 LG dnaplot.b[1391]
+    sys(Sys_gl,gl_DeleteBuffer,VertexBuffer)
+VertexBuffer G:258 LG dnaplot.b[1402]
+    writef("dnapl'ffer=%n*n",VertexBuffer)
+VertexBuffer G:258 SG dnaplot.b[1248] VertexBuffer:=0
+VertexBuffer G:258 SG dnaplot.b[1399]
+    VertexBuffer:=sys(Sys_gl,gl_GenVertexBuffer,...,...)
+VertexLoc G:224 DEF dnaplot.b[202] VertexLoc=
+VertexLoc G:224 LG dnaplot.b[1411]
+    sys(Sys_gl,gl_EnableVertexAttribArray,VertexLoc)
+VertexLoc G:224 LG dnaplot.b[1412]
+    sys(Sys_gl,gl_VertexData,VertexLoc,3,4,0)
+VertexLoc G:224 LG dnaplot.b[1669]
+    sys(Sys_gl,gl_DisableVertexAttribArray,VertexLoc)
+VertexLoc G:224 SG dnaplot.b[1999]
+    VertexLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vVertex")
+Vshader G:222 DEF dnaplot.b[198] Vshader=
+Vshader G:222 SG dnaplot.b[1978]
+    Vshader:=Compileshader(glprog,TRUE,"dnapl'ader.sdr")
+XY2str G:303 DEF dnaplot.b[330] XY2str=
+XY2str G:303 FN dnaplot.b[2477] LET XY2str(XY)=..
+XY2str G:303 LG dnaplot.b[1172]
+    writef("%s an'f %7.1f*n",XY2str(XY),rad2deg(av!0),rad2deg(av!1),rad2deg(av!2))
+XY2str G:303 LG dnaplot.b[1174] writef("%s matrix",XY2str(XY))
+XY2str G:303 LG dnaplot.b[2410]
+    writef("%s %9'f %9.6f*n",XY2str(XY),rad2deg(av!0),rad2deg(av!1),rad2deg(av!2))
+XY2str G:303 LG dnaplot.b[2462]
+    writef("doinc'e=%7.3f*n",val,XY2str(currpair),axis2ch(curraxis),av!curraxis)
+XY2str G:303 LG dnaplot.b[2472]
+    writef("?%s%c'6.3f   *n",XY2str(currpair),axis2ch(curraxis),v!curraxis,incrementdegrees)
+abort G:28 DEF libhdr.h[65] abort=28
+abort G:28 LG dnaplot.b[1104] abort(1278)
+abort G:28 LG dnaplot.b[1665] abort(1007)
+abort G:28 LG dnaplot.b[1898] abort(1009)
+abort G:28 LG dnaplot.b[2516] abort(5578)
+abort G:28 LG dnaplot.b[384] abort(999)
+abort G:28 LG dnaplot.b[423] abort(999)
+abort G:28 LG dnaplot.b[439] abort(6666)
+abort G:28 LG gl.b[223] abort(999)
+abort G:28 LG gl.b[363] abort(999)
+abort G:28 LG gl.b[371] abort(999)
+abort G:28 LG gl.b[387] abort(999)
+abort G:28 LG gl.b[412] abort(999)
+abort G:28 LG gl.b[418] abort(999)
+abort G:28 LG gl.b[435] abort(999)
+abort G:28 LG gl.b[442] abort(999)
+abort G:28 LG gl.b[503] abort(999)
+abort G:28 LG gl.b[534] abort(999)
+abort G:28 LG gl.b[931] abort(999)
+alloc2dvecs F:34 LF gl.b[942] alloc2dvecs()
+alloc2dvecs F:34 RT gl.b[923] LET alloc2dvecs()BE..
+angle F:144 FN dnaplot.b[2419] LET angle(FLT x,FLT y)=..
+anglesfilename G:206 DEF dnaplot.b[178] anglesfilename=
+anglesfilename G:206 LG dnaplot.b[1279] IF anglesfilename DO ..
+anglesfilename G:206 LG dnaplot.b[1279] rdangles(anglesfilename)
+anglesfilename G:206 SG dnaplot.b[1265] anglesfilename:="angles"
+anglesfilename G:206 SG dnaplot.b[1270] anglesfilename:=argv!1
+anglesv G:271 DEF dnaplot.b[281] anglesv=
+anglesv G:271 LG dnaplot.b[1153] XYav:=anglesv!XY
+anglesv G:271 LG dnaplot.b[1170] anglesv!XY
+anglesv G:271 LG dnaplot.b[1203] anglesv!XY:=av
+anglesv G:271 LG dnaplot.b[2362] anglesv!XY
+anglesv G:271 LG dnaplot.b[2409] anglesv!XY
+anglesv G:271 LG dnaplot.b[2433] anglesv!XY
+anglesv G:271 LG dnaplot.b[2460] anglesv!currpair
+anglesv G:271 LG dnaplot.b[2471] anglesv!currpair
+anglesv G:271 LG dnaplot.b[574] anglesv!XY
+anglesv G:271 LG dnaplot.b[590] anglesv!YX
+anglesv G:271 LG dnaplot.b[696] anglesv!XY
+anglesv G:271 SG dnaplot.b[1189] anglesv:=newvec(15)
+appendstream G:66 DEF libhdr.h[103] appendstream=66
+axis2ch G:297 DEF dnaplot.b[323] axis2ch=
+axis2ch G:297 FN dnaplot.b[2501] LET axis2ch(axis)=..
+axis2ch G:297 LG dnaplot.b[2462]
+    writef("doinc'e=%7.3f*n",val,XY2str(currpair),axis2ch(curraxis),av!curraxis)
+axis2ch G:297 LG dnaplot.b[2472]
+    writef("?%s%c'6.3f   *n",XY2str(currpair),axis2ch(curraxis),v!curraxis,incrementdegrees)
+bankangle G:247 DEF dnaplot.b[247] bankangle=
+bankangle G:247 LG dnaplot.b[1834]
+    writef("?%4.2'       ?",platformn,platformw,platformh,heading,climbangle,...)
+bankangle G:247 SG dnaplot.b[1355] bankangle:=0
+bankangle G:247 SG dnaplot.b[1826]
+    bankangle:=FIX rad2deg(sys(Sys_flt,...))
+binrdch G:39 DEF libhdr.h[76] binrdch=39
+binwrch G:42 DEF libhdr.h[79] binwrch=42
+bitsperbyte M:8 DEF libhdr.h[245] bitsperbyte=8
+bitsperbyte M:8 MAN libhdr.h[246] bitsperword=bitsperbyte*bytesperword
+bitsperword M:32 DEF libhdr.h[246] bitsperword=bitsperbyte*bytesperword
+bitsperword M:32 MAN libhdr.h[248] minint=1<<bitsperword-1
+bld_CYGWIN32 M:43 DEF libhdr.h[520] bld_CYGWIN32=43
+bld_MacOSX M:31 DEF libhdr.h[512] bld_MacOSX=31
+bld_MacOSXSDL M:32 DEF libhdr.h[513] bld_MacOSXSDL=32
+bld_MacOSXSDL2 M:33 DEF libhdr.h[514] bld_MacOSXSDL2=33
+bld_MacOSXSDL2GL M:35 DEF libhdr.h[516] bld_MacOSXSDL2GL=35
+bld_MacOSXSDLGL M:34 DEF libhdr.h[515] bld_MacOSXSDLGL=34
+bld_Raspi M:21 DEF libhdr.h[506] bld_Raspi=21
+bld_RaspiSDL M:22 DEF libhdr.h[507] bld_RaspiSDL=22
+bld_RaspiSDL2 M:23 DEF libhdr.h[508] bld_RaspiSDL2=23
+bld_RaspiSDL2GL M:25 DEF libhdr.h[510] bld_RaspiSDL2GL=25
+bld_RaspiSDLGL M:24 DEF libhdr.h[509] bld_RaspiSDLGL=24
+bld_VmsVax M:41 DEF libhdr.h[518] bld_VmsVax=41
+bld_Win32 M:42 DEF libhdr.h[519] bld_Win32=42
+bld_linux M:1 DEF libhdr.h[499] bld_linux=1
+bld_linuxGL M:4 DEF libhdr.h[502] bld_linuxGL=4
+bld_linuxSDL M:2 DEF libhdr.h[500] bld_linuxSDL=2
+bld_linuxSDL2 M:3 DEF libhdr.h[501] bld_linuxSDL2=3
+bld_linuxSDL2GL M:6 DEF libhdr.h[504] bld_linuxSDL2GL=6
+bld_linuxSDLGL M:5 DEF libhdr.h[503] bld_linuxSDLGL=5
+bld_unknown M:0 DEF libhdr.h[498] bld_unknown=0
+bldf_callc M:2 DEF libhdr.h[525] bldf_callc=1<<1
+bldf_joystick M:4 DEF libhdr.h[526] bldf_joystick=1<<2
+bldf_sound M:1 DEF libhdr.h[524] bldf_sound=1
+blklist G:216 DEF dnaplot.b[190] blklist=
+blklist G:216 LG dnaplot.b[1681] WHILE blklist DO ..
+blklist G:216 LG dnaplot.b[1682] blklist
+blklist G:216 LG dnaplot.b[387] v!0:=blklist
+blklist G:216 SG dnaplot.b[1180] blklist:=0
+blklist G:216 SG dnaplot.b[1683] blklist:=!blk
+blklist G:216 SG dnaplot.b[388] blklist:=v
+blkp G:217 DEF dnaplot.b[191] blkp=
+blkp G:217 LG dnaplot.b[373] blkp
+blkp G:217 LG dnaplot.b[376] IF blkp>=blkt DO ..
+blkp G:217 SG dnaplot.b[1180] blkp:=0
+blkp G:217 SG dnaplot.b[374] blkp:=p+n+1
+blkp G:217 SG dnaplot.b[391] blkp:=p+n+1
+blkt G:218 DEF dnaplot.b[192] blkt=
+blkt G:218 LG dnaplot.b[376] IF blkp>=blkt DO ..
+blkt G:218 SG dnaplot.b[1180] blkt:=0
+blkt G:218 SG dnaplot.b[389] blkt:=v+blkupb
+blkupb M:1000000 DEF dnaplot.b[366] blkupb=1000000
+blkupb M:1000000 MAN dnaplot.b[377] getvec(blkupb)
+blkupb M:1000000 MAN dnaplot.b[379] UNLESS v&n<blkupb DO ..
+blkupb M:1000000 MAN dnaplot.b[389] blkt:=v+blkupb
+bootregs M:11 DEF libhdr.h[486] bootregs=11
+bytesperword M:4 DEF libhdr.h[244] bytesperword=1<<B2Wsh
+bytesperword M:4 MAN gl.b[109] LET mes=VEC 256/bytesperword
+bytesperword M:4 MAN gl.b[127] LET mes=VEC 256/bytesperword
+bytesperword M:4 MAN gl.b[628] LET s=VEC 256/bytesperword
+bytesperword M:4 MAN gl.b[865] LET s=VEC 256/bytesperword
+bytesperword M:4 MAN libhdr.h[246] bitsperword=bitsperbyte*bytesperword
+bytesperword M:4 MAN libhdr.h[247] mcaddrinc=bytesperword
+bytesperword M:4 MAN libhdr.h[572]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+bytesperword M:4 MAN libhdr.h[687]
+    tcb_upb=tcb_namebase+15/bytesperword+1
+callco G:19 DEF libhdr.h[56] callco=19
+callseg G:107 DEF libhdr.h[145] callseg=107
+capitalch G:96 DEF libhdr.h[134] capitalch=96
+capitalch G:96 LG dnaplot.b[859] capitalch(rdch())
+ch G:474 DEF gl.h[102] ch=
+ch G:474 LG gl.b[478] SWITCHON ch INTO..
+ch G:474 LG gl.b[480] error("line 'del file",lineno,ch)
+ch G:474 LG gl.b[489] UNTIL ch=10|ch=endstreamch DO ..
+ch G:474 LG gl.b[501] UNLESS ch=115 DO ..
+ch G:474 LG gl.b[517] TEST ch=115 THEN .. ELSE ..
+ch G:474 LG gl.b[521] TEST ch=115 THEN .. ELSE ..
+ch G:474 SG gl.b[323] ch:=rdch()
+ch G:474 SG gl.b[481] ch:=rdch()
+ch G:474 SG gl.b[489] ch:=rdch()
+ch G:474 SG gl.b[496] ch:=rdch()
+ch G:474 SG gl.b[500] ch:=rdch()
+ch G:474 SG gl.b[506] ch:=rdch()
+ch G:474 SG gl.b[509] ch:=rdch()
+ch G:474 SG gl.b[510] ch:=rdch()
+ch G:474 SG gl.b[511] ch:=rdch()
+ch G:474 SG gl.b[512] ch:=rdch()
+ch G:474 SG gl.b[513] ch:=rdch()
+ch G:474 SG gl.b[514] ch:=rdch()
+ch G:474 SG gl.b[515] ch:=rdch()
+ch G:474 SG gl.b[516] ch:=rdch()
+ch G:474 SG gl.b[517] ch:=rdch()
+ch G:474 SG gl.b[520] ch:=rdch()
+ch G:474 SG gl.b[521] ch:=rdch()
+ch G:474 SG gl.b[524] ch:=rdch()
+ch G:474 SG gl.b[537] ch:=rdch()
+changeco G:6 DEF libhdr.h[42] changeco=6
+changepri G:155 DEF libhdr.h[207] changepri=155
+checkfor F:12 RT gl.b[472] LET checkfor(tok,mess)BE..
+cis G:12 DEF libhdr.h[49] cis=12
+clear_words G:115 DEF libhdr.h[153] clear_words=115
+clh FG:257 DEF dnaplot.b[253] FLT clh=
+clh FG:257 LG dnaplot.b[1539]
+    mat4set(workMatrix,ctn,cwn,cln, 0.000,ctw,...)
+clh FG:257 SG dnaplot.b[1509] clh#:=plh
+cli_commanddir G:136 DEF libhdr.h[177] cli_commanddir=136
+cli_commandfile G:143 DEF libhdr.h[188] cli_commandfile=143
+cli_commandname G:138 DEF libhdr.h[183] cli_commandname=138
+cli_currentinput G:142 DEF libhdr.h[187] cli_currentinput=142
+cli_currentoutput G:146 DEF libhdr.h[194] cli_currentoutput=146
+cli_data G:135 DEF libhdr.h[176] cli_data=135
+cli_defaultstack G:147 DEF libhdr.h[195] cli_defaultstack=147
+cli_faillevel G:139 DEF libhdr.h[184] cli_faillevel=139
+cli_init G:133 DEF libhdr.h[174] cli_init=133
+cli_initialfaillevel M:10 DEF libhdr.h[631]
+    cli_initialfaillevel=return_hard
+cli_initialstack M:50000 DEF libhdr.h[630] cli_initialstack=50000
+cli_module G:149 DEF libhdr.h[197] cli_module=149
+cli_module_gn M:149 DEF libhdr.h[629] cli_module_gn=149
+cli_preloadlist G:145 DEF libhdr.h[193] cli_preloadlist=145
+cli_prompt G:140 DEF libhdr.h[185] cli_prompt=140
+cli_result2 G:134 DEF libhdr.h[175] cli_result2=134
+cli_returncode G:137 DEF libhdr.h[178] cli_returncode=137
+cli_standardinput G:141 DEF libhdr.h[186] cli_standardinput=141
+cli_standardoutput G:148 DEF libhdr.h[196] cli_standardoutput=148
+cli_status G:144 DEF libhdr.h[190] cli_status=144
+cli_tallyflag G:132 DEF libhdr.h[173] cli_tallyflag=132
+clibit_comcom M:4 DEF libhdr.h[636] clibit_comcom=4
+clibit_endcli M:256 DEF libhdr.h[642] clibit_endcli=256
+clibit_eofdel M:2 DEF libhdr.h[635] clibit_eofdel=2
+clibit_maincli M:8 DEF libhdr.h[637] clibit_maincli=8
+clibit_mbxcli M:64 DEF libhdr.h[640] clibit_mbxcli=64
+clibit_newcli M:16 DEF libhdr.h[638] clibit_newcli=16
+clibit_noprompt M:1 DEF libhdr.h[634] clibit_noprompt=1
+clibit_runcli M:32 DEF libhdr.h[639] clibit_runcli=32
+clibit_tcpcli M:128 DEF libhdr.h[641] clibit_tcpcli=128
+clihook G:4 DEF libhdr.h[40] clihook=4
+climbangle G:246 DEF dnaplot.b[246] climbangle=
+climbangle G:246 LG dnaplot.b[1834]
+    writef("?%4.2'       ?",platformn,platformw,platformh,heading,climbangle,...)
+climbangle G:246 SG dnaplot.b[1354] climbangle:=0
+climbangle G:246 SG dnaplot.b[1828]
+    climbangle:=FIX rad2deg(sys(Sys_flt,...))
+cliregs M:21 DEF libhdr.h[487] cliregs=21
+cln FG:255 DEF dnaplot.b[253] FLT cln=
+cln FG:255 LG dnaplot.b[1539]
+    mat4set(workMatrix,ctn,cwn,cln, 0.000,ctw,...)
+cln FG:255 SG dnaplot.b[1509] cln#:=pln
+closesdl1 F:19 RT gl.b[658] LET closesdl1()BE..
+clw FG:256 DEF dnaplot.b[253] FLT clw=
+clw FG:256 LG dnaplot.b[1539]
+    mat4set(workMatrix,ctn,cwn,cln, 0.000,ctw,...)
+clw FG:256 SG dnaplot.b[1509] clw#:=plw
+co_c M:5 DEF libhdr.h[291] co_c=
+co_fn M:3 DEF libhdr.h[289] co_fn=
+co_list M:2 DEF libhdr.h[288] co_list=
+co_parent M:1 DEF libhdr.h[287] co_parent=
+co_pptr M:0 DEF libhdr.h[286] co_pptr=0
+co_size M:4 DEF libhdr.h[290] co_size=
+codewrch G:126 DEF libhdr.h[164] codewrch=126
+col_black FG:323 DEF dnaplot.b[360] FLT col_black=
+col_black FG:323 LG dnaplot.b[1071]
+    drawTriangle(vsxv,isxv,@rx0,@lx1,@lx0,col_black)
+col_black FG:323 LG dnaplot.b[1072]
+    drawTriangle(vsxv,isxv,@rx0,@lx1,@rx1,col_black)
+col_black FG:323 SG dnaplot.b[1186] col_black#:= 5.000
+col_white FG:322 DEF dnaplot.b[359] FLT col_white=
+col_white FG:322 SG dnaplot.b[1185] col_white#:= 4.000
+colist G:8 DEF libhdr.h[44] colist=8
+colourkey G:484 DEF gl.h[116] colourkey=
+colourkey G:484 LG gl.b[845] UNLESS currcolour=colourkey DO ..
+colourkey G:484 SG gl.b[665] colourkey:=col
+compch G:97 DEF libhdr.h[135] compch=97
+compstring G:98 DEF libhdr.h[136] compstring=98
+concatstr G:280 DEF dnaplot.b[306] concatstr=
+concatstr G:280 FN dnaplot.b[447] LET concatstr(s1,s2,s3)=..
+concatstr G:280 LG dnaplot.b[1953]
+    screenxsize:=glMkScreen(concatstr("Genom'm file: ",...),1500,700)
+consoletask G:171 DEF libhdr.h[220] consoletask=171
+copy_bytes G:116 DEF libhdr.h[154] copy_bytes=116
+copy_words G:114 DEF libhdr.h[152] copy_words=114
+copydir G:79 DEF libhdr.h[116] copydir=79
+copyobj G:75 DEF libhdr.h[112] copyobj=75
+copystring G:99 DEF libhdr.h[137] copystring=99
+cos G:13 DEF libhdr.h[50] cos=13
+cos G:13 LG dnaplot.b[2168] deplete(cos)
+cos G:13 LG dnaplot.b[2175] deplete(cos)
+cos G:13 LG dnaplot.b[2182] deplete(cos)
+cos G:13 LG dnaplot.b[2189] deplete(cos)
+cos G:13 LG dnaplot.b[2380] deplete(cos)
+cos G:13 LG dnaplot.b[2474] deplete(cos)
+cowait G:20 DEF libhdr.h[57] cowait=20
+createco G:17 DEF libhdr.h[54] createco=17
+createdev G:172 DEF libhdr.h[221] createdev=172
+createdir G:82 DEF libhdr.h[119] createdir=82
+createtask G:153 DEF libhdr.h[205] createtask=153
+crossprodV3 F:154 LF dnaplot.b[2540] crossprodV3(p,q,r)
+crossprodV3 F:154 LF dnaplot.b[2553] crossprodV3(r,p,q)
+crossprodV3 F:154 RT dnaplot.b[2562] LET crossprodV3(p,q,r)BE..
+cth FG:251 DEF dnaplot.b[251] FLT cth=
+cth FG:251 LG dnaplot.b[1539]
+    mat4set(workMatrix,ctn,cwn,cln, 0.000,ctw,...)
+cth FG:251 SG dnaplot.b[1507] cth#:=pth
+ctn FG:249 DEF dnaplot.b[251] FLT ctn=
+ctn FG:249 LG dnaplot.b[1539]
+    mat4set(workMatrix,ctn,cwn,cln, 0.000,ctw,...)
+ctn FG:249 LLG dnaplot.b[1520] rotate3l(@ctn,FLOAT direction*pi/ 4.000)
+ctn FG:249 LLG dnaplot.b[1523] rotate3w(@ctn,pi/ 4.000)
+ctn FG:249 LLG dnaplot.b[1527] rotate3w(@ctn,-pi/ 4.000)
+ctn FG:249 SG dnaplot.b[1507] ctn#:=ptn
+ctw FG:250 DEF dnaplot.b[251] FLT ctw=
+ctw FG:250 LG dnaplot.b[1539]
+    mat4set(workMatrix,ctn,cwn,cln, 0.000,ctw,...)
+ctw FG:250 SG dnaplot.b[1507] ctw#:=ptw
+curraxis G:317 DEF dnaplot.b[350] curraxis=
+curraxis G:317 LG dnaplot.b[2196] setcurraxis((curraxis+1) MOD 3)
+curraxis G:317 LG dnaplot.b[2461] av!curraxis#:=av!curraxis#+val
+curraxis G:317 LG dnaplot.b[2462]
+    writef("doinc'e=%7.3f*n",val,XY2str(currpair),axis2ch(curraxis),av!curraxis)
+curraxis G:317 LG dnaplot.b[2472]
+    writef("?%s%c'6.3f   *n",XY2str(currpair),axis2ch(curraxis),v!curraxis,incrementdegrees)
+curraxis G:317 SG dnaplot.b[1239] curraxis:=0
+curraxis G:317 SG dnaplot.b[2454] curraxis:=axis
+currco G:7 DEF libhdr.h[43] currco=7
+currcolour G:483 DEF gl.h[115] currcolour=
+currcolour G:483 LG gl.b[812] currcolour
+currcolour G:483 LG gl.b[845] UNLESS currcolour=colourkey DO ..
+currcolour G:483 LG gl.b[849] pxlv!(pxlxsize*y+x):=currcolour
+currcolour G:483 SG gl.b[663] currcolour:=col
+current_language G:190 DEF libhdr.h[235] current_language=190
+currentdir G:14 DEF libhdr.h[51] currentdir=14
+currpair G:316 DEF dnaplot.b[349] currpair=
+currpair G:316 LG dnaplot.b[2460] anglesv!currpair
+currpair G:316 LG dnaplot.b[2462]
+    writef("doinc'e=%7.3f*n",val,XY2str(currpair),axis2ch(curraxis),av!curraxis)
+currpair G:316 LG dnaplot.b[2466] setrotationmatrix(currpair)
+currpair G:316 LG dnaplot.b[2467] prpair(currpair)
+currpair G:316 LG dnaplot.b[2471] anglesv!currpair
+currpair G:316 LG dnaplot.b[2472]
+    writef("?%s%c'6.3f   *n",XY2str(currpair),axis2ch(curraxis),v!curraxis,incrementdegrees)
+currpair G:316 SG dnaplot.b[1238] currpair:=AA
+currpair G:316 SG dnaplot.b[2447] currpair:=incrementstate*4+letno
+currx G:481 DEF gl.h[113] currx=
+currx G:481 LG gl.b[669] moveto(currx+dx,curry+dy)
+currx G:481 LG gl.b[672] currx
+currx G:481 LG gl.b[695] drawto(currx+dx,curry+dy)
+currx G:481 LG gl.b[701] write_ch_slice(currx,curry+11-line,ch,line)
+currx G:481 LG gl.b[702] currx:=currx+9
+currx G:481 LG gl.b[707] currx
+currx G:481 SG gl.b[1011] currx:=x0
+currx G:481 SG gl.b[1070] currx:=x0
+currx G:481 SG gl.b[1141] currx:=x0
+currx G:481 SG gl.b[649] currx:=0
+currx G:481 SG gl.b[668] currx:=x
+currx G:481 SG gl.b[686] currx:=x
+currx G:481 SG gl.b[698] currx:=10
+currx G:481 SG gl.b[702] currx:=currx+9
+currx G:481 SG gl.b[842] currx:=cx
+currx G:481 SG gl.b[999] currx:=x0
+curry G:482 DEF gl.h[114] curry=
+curry G:482 LG gl.b[669] moveto(currx+dx,curry+dy)
+curry G:482 LG gl.b[672] curry
+curry G:482 LG gl.b[695] drawto(currx+dx,curry+dy)
+curry G:482 LG gl.b[698] curry:=curry-14
+curry G:482 LG gl.b[701] write_ch_slice(currx,curry+11-line,ch,line)
+curry G:482 LG gl.b[707] curry
+curry G:482 SG gl.b[1011] curry:=y0
+curry G:482 SG gl.b[1070] curry:=y0
+curry G:482 SG gl.b[1141] curry:=y0
+curry G:482 SG gl.b[649] curry:=0
+curry G:482 SG gl.b[668] curry:=y
+curry G:482 SG gl.b[686] curry:=y
+curry G:482 SG gl.b[698] curry:=curry-14
+curry G:482 SG gl.b[842] curry:=cy
+curry G:482 SG gl.b[999] curry:=y0
+cwh FG:254 DEF dnaplot.b[252] FLT cwh=
+cwh FG:254 LG dnaplot.b[1539]
+    mat4set(workMatrix,ctn,cwn,cln, 0.000,ctw,...)
+cwh FG:254 SG dnaplot.b[1508] cwh#:=pwh
+cwn FG:252 DEF dnaplot.b[252] FLT cwn=
+cwn FG:252 LG dnaplot.b[1539]
+    mat4set(workMatrix,ctn,cwn,cln, 0.000,ctw,...)
+cwn FG:252 SG dnaplot.b[1508] cwn#:=pwn
+cww FG:253 DEF dnaplot.b[252] FLT cww=
+cww FG:253 LG dnaplot.b[1539]
+    mat4set(workMatrix,ctn,cwn,cln, 0.000,ctw,...)
+cww FG:253 SG dnaplot.b[1508] cww#:=pww
+dat_to_strings G:110 DEF libhdr.h[148] dat_to_strings=110
+datstamp G:109 DEF libhdr.h[147] datstamp=109
+datstring G:108 DEF libhdr.h[146] datstring=108
+deadcode M:#xDEADC0DE DEF libhdr.h[268] deadcode=-#x21523F22
+debug G:208 DEF dnaplot.b[181] debug=
+debug G:208 LG dnaplot.b[1086] IF debug DO ..
+debug G:208 LG dnaplot.b[1313] IF debug DO ..
+debug G:208 LG dnaplot.b[1455] IF debug DO ..
+debug G:208 LG dnaplot.b[1495] IF debug DO ..
+debug G:208 LG dnaplot.b[1511] IF debug DO ..
+debug G:208 LG dnaplot.b[1573] IF debug DO ..
+debug G:208 LG dnaplot.b[1601] IF debug DO ..
+debug G:208 LG dnaplot.b[1623] IF debug DO ..
+debug G:208 LG dnaplot.b[1662] IF debug DO ..
+debug G:208 LG dnaplot.b[2230] TEST debug THEN .. ELSE ..
+debug G:208 LG dnaplot.b[2506] IF debug DO ..
+debug G:208 LG dnaplot.b[2527] IF debug DO ..
+debug G:208 LG dnaplot.b[2534] IF debug DO ..
+debug G:208 LG dnaplot.b[2541] IF debug DO ..
+debug G:208 LG dnaplot.b[2548] IF debug DO ..
+debug G:208 LG dnaplot.b[2554] IF debug DO ..
+debug G:208 LG dnaplot.b[436] IF FALSE&debug DO ..
+debug G:208 SG dnaplot.b[1273] debug:=argv!4
+debug G:208 SG dnaplot.b[2230] debug:=FALSE
+debug G:208 SG dnaplot.b[2231] debug:=TRUE
+deg2rad G:301 DEF dnaplot.b[327] deg2rad=
+deg2rad G:301 FN dnaplot.b[2055] LET deg2rad(FLT degrees)=..
+deg2rad G:301 LG dnaplot.b[1157] an#:=deg2rad(readflt())
+deg2rad G:301 LG dnaplot.b[1158] aw#:=deg2rad(readflt())
+deg2rad G:301 LG dnaplot.b[1159] ah#:=deg2rad(readflt())
+deg2rad G:301 LG dnaplot.b[1212] setangles(AA,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1213] setangles(AC,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1214] setangles(AG,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1215] setangles(AT,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1217] setangles(CA,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1218] setangles(CC,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1219] setangles(CG,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1220] setangles(CT,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1222] setangles(GA,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1223] setangles(GC,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1224] setangles(GG,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1225] setangles(GT,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1227] setangles(TA,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1228] setangles(TC,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1229] setangles(TG,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1230] setangles(TT,deg2rad( 0.000),f0,f0)
+deg2rad G:301 LG dnaplot.b[1243]
+    incrementradians#:=deg2rad(incrementdegrees)
+deg2rad G:301 LG dnaplot.b[2275]
+    incrementradians#:=deg2rad(incrementdegrees)
+deg2rad G:301 LG dnaplot.b[2281]
+    incrementradians#:=deg2rad(incrementdegrees)
+delay G:128 DEF libhdr.h[166] delay=128
+delay G:128 LG dnaplot.b[1689] delay(50)
+delayuntil G:129 DEF libhdr.h[167] delayuntil=129
+deleteco G:18 DEF libhdr.h[55] deleteco=18
+deletedev G:173 DEF libhdr.h[222] deletedev=173
+deletefile G:76 DEF libhdr.h[113] deletefile=76
+deleteself G:125 DEF libhdr.h[163] deleteself=125
+deletetask G:154 DEF libhdr.h[206] deletetask=154
+deplete G:43 DEF libhdr.h[80] deplete=43
+deplete G:43 LG dnaplot.b[2168] deplete(cos)
+deplete G:43 LG dnaplot.b[2175] deplete(cos)
+deplete G:43 LG dnaplot.b[2182] deplete(cos)
+deplete G:43 LG dnaplot.b[2189] deplete(cos)
+deplete G:43 LG dnaplot.b[2380] deplete(cos)
+deplete G:43 LG dnaplot.b[2474] deplete(cos)
+direction G:248 DEF dnaplot.b[249] direction=
+direction G:248 LG dnaplot.b[1518] IF 1<=direction&direction<=7 DO ..
+direction G:248 LG dnaplot.b[1520]
+    rotate3l(@ctn,FLOAT direction#*pi#/ 4.000)
+direction G:248 LG dnaplot.b[1522] IF direction=8 DO ..
+direction G:248 LG dnaplot.b[1526] IF direction=9 DO ..
+direction G:248 LG dnaplot.b[1574] writef("Camer'tion %n*n",direction)
+direction G:248 LG dnaplot.b[2237]
+    writef("ptn=%'tion=%n*n",ptn,ptw,pth,prtdot,direction)
+direction G:248 SG dnaplot.b[1357] direction:=0
+direction G:248 SG dnaplot.b[1500] direction:=tstdirection
+direction G:248 SG dnaplot.b[2225] direction:=ch-48
+displayv G:276 DEF dnaplot.b[297] displayv=
+displayv G:276 LG dnaplot.b[1100] FOR i=1 TO displayv!0-1 BY 3 DO..
+displayv G:276 LG dnaplot.b[1101]
+    writef(" %i5 'i5  %i5*n",displayv!i,displayv!(i+1),displayv!(i+2))
+displayv G:276 LG dnaplot.b[1678] IF displayv DO ..
+displayv G:276 LG dnaplot.b[1678] freevec(displayv)
+displayv G:276 LG dnaplot.b[2096] FOR p=1 TO displayv!0 BY 3 DO..
+displayv G:276 LG dnaplot.b[2097] @displayv!p
+displayv G:276 SG dnaplot.b[1083] displayv:=dvec
+doincrement G:298 DEF dnaplot.b[324] doincrement=
+doincrement G:298 LG dnaplot.b[2267] doincrement(incrementradians)
+doincrement G:298 LG dnaplot.b[2270] doincrement(#-incrementradians)
+doincrement G:298 RT dnaplot.b[2459] LET doincrement(FLT val)BE..
+done G:219 DEF dnaplot.b[194] done=
+done G:219 LG dnaplot.b[1365] UNTIL done DO ..
+done G:219 SG dnaplot.b[1332] done:=FALSE
+done G:219 SG dnaplot.b[2165] done:=TRUE
+drawTriangle G:292 DEF dnaplot.b[318] drawTriangle=
+drawTriangle G:292 LG dnaplot.b[1005]
+    drawTriangle(vsxv,isxv,@rx0,@lx1,@lx0, 4.000)
+drawTriangle G:292 LG dnaplot.b[1006]
+    drawTriangle(vsxv,isxv,@rx0,@lx1,@rx1, 4.000)
+drawTriangle G:292 LG dnaplot.b[1033]
+    drawTriangle(vsxv,isxv,@lx,@rx,@nx,letno2colno(X))
+drawTriangle G:292 LG dnaplot.b[1071]
+    drawTriangle(vsxv,isxv,@rx0,@lx1,@lx0,col_black)
+drawTriangle G:292 LG dnaplot.b[1072]
+    drawTriangle(vsxv,isxv,@rx0,@lx1,@rx1,col_black)
+drawTriangle G:292 LG dnaplot.b[935]
+    drawTriangle(vsxv,isxv,@ax,@bx,@cx, 0.000)
+drawTriangle G:292 LG dnaplot.b[939]
+    drawTriangle(vsxv,isxv,@ax,@bx,@cx, 0.000)
+drawTriangle G:292 LG dnaplot.b[944]
+    drawTriangle(vsxv,isxv,@ax,@bx,@cx, 1.000)
+drawTriangle G:292 LG dnaplot.b[948]
+    drawTriangle(vsxv,isxv,@ax,@bx,@cx, 1.000)
+drawTriangle G:292 LG dnaplot.b[953]
+    drawTriangle(vsxv,isxv,@ax,@bx,@cx, 4.000)
+drawTriangle G:292 LG dnaplot.b[957]
+    drawTriangle(vsxv,isxv,@ax,@bx,@cx, 4.000)
+drawTriangle G:292 LG dnaplot.b[962]
+    drawTriangle(vsxv,isxv,@ax,@bx,@cx, 5.000)
+drawTriangle G:292 LG dnaplot.b[966]
+    drawTriangle(vsxv,isxv,@ax,@bx,@cx, 5.000)
+drawTriangle G:292 LG dnaplot.b[973]
+    drawTriangle(vsxv,isxv,@ax,@bx,@ex, 0.000)
+drawTriangle G:292 LG dnaplot.b[974]
+    drawTriangle(vsxv,isxv,@bx,@cx,@ex, 2.000)
+drawTriangle G:292 LG dnaplot.b[975]
+    drawTriangle(vsxv,isxv,@cx,@dx,@ex, 1.000)
+drawTriangle G:292 LG dnaplot.b[976]
+    drawTriangle(vsxv,isxv,@dx,@ax,@ex, 3.000)
+drawTriangle G:292 LG dnaplot.b[990]
+    drawTriangle(vsxv,isxv,@ax,@bx,@cx, 1.000)
+drawTriangle G:292 LG dnaplot.b[991]
+    drawTriangle(vsxv,isxv,@px,@qx,@rx, 2.000)
+drawTriangle G:292 RT dnaplot.b[2059]
+    LET drawTriangle(vsxv,isxv,a,b,c,colno)BE..
+drawTriangle G:292 RT dnaplot.b[811]
+    LET drawTriangle(vsxv,isxv,a,b,c,colno)BE..
+drawby G:492 DEF gl.h[126] drawby=
+drawby G:492 RT gl.b[695] LET drawby(dx,dy)BE..
+drawch G:503 DEF gl.h[139] drawch=
+drawch G:503 LG gl.b[621] drawch(s%i)
+drawch G:503 LG gl.b[859] drawch(s%i)
+drawch G:503 RT gl.b[697] LET drawch(ch)BE..
+drawcircle G:501 DEF gl.h[136] drawcircle=
+drawcircle G:501 RT gl.b[1144] LET drawcircle(x0,y0,radius)BE..
+drawf G:502 DEF gl.h[138] drawf=
+drawf G:502 RT gl.b[862] LET drawf(x,y,form,a,b,c,d,...)BE..
+drawfillcircle F:42 RT gl.b[1180] LET drawfillcircle(x0,y0,radius)BE..
+drawfillrect G:498 DEF gl.h[133] drawfillrect=
+drawfillrect G:498 RT gl.b[1002] LET drawfillrect(x0,y0,x1,y1)BE..
+drawfillrndrect G:499 DEF gl.h[134] drawfillrndrect=
+drawfillrndrect G:499 RT gl.b[1073]
+    LET drawfillrndrect(x0,y0,x1,y1,radius)BE..
+drawfilltriangle G:495 DEF gl.h[130] drawfilltriangle=
+drawfstr G:509 DEF gl.h[146] drawfstr=
+drawfstr G:509 LG gl.b[867] drawfstr%0:=0
+drawfstr G:509 LG gl.b[871] drawstr(x,y,drawfstr)
+drawfstr G:509 LG gl.b[875] drawfstr%0+1
+drawfstr G:509 LG gl.b[876] drawfstr%strlen:=ch
+drawfstr G:509 LG gl.b[877] drawfstr%0:=strlen
+drawfstr G:509 SG gl.b[866] drawfstr:=s
+drawmodel G:299 DEF dnaplot.b[325] drawmodel=
+drawmodel G:299 LG dnaplot.b[1655] drawmodel()
+drawmodel G:299 RT dnaplot.b[2093] LET drawmodel()BE..
+drawpoint G:493 DEF gl.h[127] drawpoint=
+drawpoint G:493 LG gl.b[1009] drawpoint(x,y)
+drawpoint G:493 LG gl.b[1027] drawpoint(x,ymin)
+drawpoint G:493 LG gl.b[1028] drawpoint(x,ymax)
+drawpoint G:493 LG gl.b[1031] drawpoint(xmin,y)
+drawpoint G:493 LG gl.b[1032] drawpoint(xmax,y)
+drawpoint G:493 LG gl.b[1043] drawpoint(xmax,ymin+r)
+drawpoint G:493 LG gl.b[1044] drawpoint(xmin,ymin+r)
+drawpoint G:493 LG gl.b[1045] drawpoint(xmax,ymax-r)
+drawpoint G:493 LG gl.b[1046] drawpoint(xmin,ymax-r)
+drawpoint G:493 LG gl.b[1060] drawpoint(xmax-r+x,ymax-r+y)
+drawpoint G:493 LG gl.b[1061] drawpoint(xmin+r-x,ymax-r+y)
+drawpoint G:493 LG gl.b[1062] drawpoint(xmax-r+x,ymin+r-y)
+drawpoint G:493 LG gl.b[1063] drawpoint(xmin+r-x,ymin+r-y)
+drawpoint G:493 LG gl.b[1064] drawpoint(xmax-r+y,ymax-r+x)
+drawpoint G:493 LG gl.b[1065] drawpoint(xmin+r-y,ymax-r+x)
+drawpoint G:493 LG gl.b[1066] drawpoint(xmax-r+y,ymin+r-x)
+drawpoint G:493 LG gl.b[1067] drawpoint(xmin+r-y,ymin+r-x)
+drawpoint G:493 LG gl.b[1087] drawpoint(x,y)
+drawpoint G:493 LG gl.b[1088] drawpoint(x,y)
+drawpoint G:493 LG gl.b[1100] drawpoint(xmax,ymin+r)
+drawpoint G:493 LG gl.b[1101] drawpoint(xmin,ymin+r)
+drawpoint G:493 LG gl.b[1102] drawpoint(xmax,ymax-r)
+drawpoint G:493 LG gl.b[1103] drawpoint(xmin,ymax-r)
+drawpoint G:493 LG gl.b[1117] drawpoint(xmax-r+x,ymax-r+y)
+drawpoint G:493 LG gl.b[1118] drawpoint(xmin+r-x,ymax-r+y)
+drawpoint G:493 LG gl.b[1119] drawpoint(xmax-r+x,ymin+r-y)
+drawpoint G:493 LG gl.b[1120] drawpoint(xmin+r-x,ymin+r-y)
+drawpoint G:493 LG gl.b[1121] drawpoint(xmax-r+y,ymax-r+x)
+drawpoint G:493 LG gl.b[1122] drawpoint(xmin+r-y,ymax-r+x)
+drawpoint G:493 LG gl.b[1123] drawpoint(xmax-r+y,ymin+r-x)
+drawpoint G:493 LG gl.b[1124] drawpoint(xmin+r-y,ymin+r-x)
+drawpoint G:493 LG gl.b[1128] drawpoint(fx,ymax-r+x)
+drawpoint G:493 LG gl.b[1129] drawpoint(fx,ymin+r-x)
+drawpoint G:493 LG gl.b[1135] drawpoint(fx,ymax-r+y)
+drawpoint G:493 LG gl.b[1136] drawpoint(fx,ymin+r-y)
+drawpoint G:493 LG gl.b[1152] drawpoint(x0,y0+radius)
+drawpoint G:493 LG gl.b[1153] drawpoint(x0,y0-radius)
+drawpoint G:493 LG gl.b[1154] drawpoint(x0+radius,y0)
+drawpoint G:493 LG gl.b[1155] drawpoint(x0-radius,y0)
+drawpoint G:493 LG gl.b[1169] drawpoint(x0+x,y0+y)
+drawpoint G:493 LG gl.b[1170] drawpoint(x0-x,y0+y)
+drawpoint G:493 LG gl.b[1171] drawpoint(x0+x,y0-y)
+drawpoint G:493 LG gl.b[1172] drawpoint(x0-x,y0-y)
+drawpoint G:493 LG gl.b[1173] drawpoint(x0+y,y0+x)
+drawpoint G:493 LG gl.b[1174] drawpoint(x0-y,y0+x)
+drawpoint G:493 LG gl.b[1175] drawpoint(x0+y,y0-x)
+drawpoint G:493 LG gl.b[1176] drawpoint(x0-y,y0-x)
+drawpoint G:493 LG gl.b[1189] drawpoint(x0,y0+radius)
+drawpoint G:493 LG gl.b[1190] drawpoint(x0,y0-radius)
+drawpoint G:493 LG gl.b[1191] drawpoint(x,y0)
+drawpoint G:493 LG gl.b[1205] drawpoint(x0+x,y0+y)
+drawpoint G:493 LG gl.b[1206] drawpoint(x0-x,y0+y)
+drawpoint G:493 LG gl.b[1207] drawpoint(x0+x,y0-y)
+drawpoint G:493 LG gl.b[1208] drawpoint(x0-x,y0-y)
+drawpoint G:493 LG gl.b[1209] drawpoint(x0+y,y0+x)
+drawpoint G:493 LG gl.b[1210] drawpoint(x0-y,y0+x)
+drawpoint G:493 LG gl.b[1211] drawpoint(x0+y,y0-x)
+drawpoint G:493 LG gl.b[1212] drawpoint(x0-y,y0-x)
+drawpoint G:493 LG gl.b[1215] drawpoint(fx,y0+x)
+drawpoint G:493 LG gl.b[1216] drawpoint(fx,y0-x)
+drawpoint G:493 LG gl.b[1222] drawpoint(fx,y0+y)
+drawpoint G:493 LG gl.b[1223] drawpoint(fx,y0-y)
+drawpoint G:493 LG gl.b[684] drawpoint(x,y)
+drawpoint G:493 LG gl.b[828] drawpoint(x+0,y)
+drawpoint G:493 LG gl.b[829] drawpoint(x+1,y)
+drawpoint G:493 LG gl.b[830] drawpoint(x+2,y)
+drawpoint G:493 LG gl.b[831] drawpoint(x+3,y)
+drawpoint G:493 LG gl.b[832] drawpoint(x+4,y)
+drawpoint G:493 LG gl.b[833] drawpoint(x+5,y)
+drawpoint G:493 LG gl.b[834] drawpoint(x+6,y)
+drawpoint G:493 LG gl.b[835] drawpoint(x+7,y)
+drawpoint G:493 LG gl.b[992] drawpoint(x,ymin)
+drawpoint G:493 LG gl.b[993] drawpoint(x,ymax)
+drawpoint G:493 LG gl.b[996] drawpoint(xmin,y)
+drawpoint G:493 LG gl.b[997] drawpoint(xmax,y)
+drawpoint G:493 RT gl.b[845] LET drawpoint(x,y)BE..
+drawquad G:500 DEF gl.h[135] drawquad=
+drawquad G:500 RT gl.b[978] LET drawquad(x1,y1,x2,y2,x3,y3,x4,y4)BE..
+drawrect G:496 DEF gl.h[131] drawrect=
+drawrect G:496 RT gl.b[984] LET drawrect(x0,y0,x1,y1)BE..
+drawrndrect G:497 DEF gl.h[132] drawrndrect=
+drawrndrect G:497 RT gl.b[1014] LET drawrndrect(x0,y0,x1,y1,radius)BE..
+drawstr G:508 DEF gl.h[145] drawstr=
+drawstr G:508 LG gl.b[871] drawstr(x,y,drawfstr)
+drawstr G:508 RT gl.b[857] LET drawstr(x,y,s)BE..
+drawstring G:506 DEF gl.h[142] drawstring=
+drawstring G:506 LG gl.b[634] drawstring(x,y,plotfstr)
+drawstring G:506 RT gl.b[619] LET drawstring(x,y,s)BE..
+drawto G:491 DEF gl.h[125] drawto=
+drawto G:491 LG gl.b[695] drawto(currx+dx,curry+dy)
+drawto G:491 LG gl.b[970] drawto(rightxv!y,y)
+drawto G:491 RT gl.b[671] LET drawto(x1,y1)BE..
+drawtriangle G:494 DEF gl.h[129] drawtriangle=
+drawtriangle G:494 LG gl.b[980] drawtriangle(x1,y1,x2,y2,x3,y3)
+drawtriangle G:494 LG gl.b[981] drawtriangle(x2,y2,x3,y3,x4,y4)
+drawtriangle G:494 RT gl.b[938] LET drawtriangle(x1,y1,x2,y2,x3,y3)BE..
+drawwrch G:504 DEF gl.h[140] drawwrch=
+drawwrch G:504 LG gl.b[868] wrch:=drawwrch
+drawwrch G:504 RT gl.b[874] LET drawwrch(ch)BE..
+endread G:60 DEF libhdr.h[97] endread=60
+endstream G:62 DEF libhdr.h[99] endstream=62
+endstream G:62 LG dnaplot.b[1131] endstream(instream)
+endstream G:62 LG dnaplot.b[1144] endstream(instream)
+endstream G:62 LG dnaplot.b[2041] endstream(instream)
+endstream G:62 LG dnaplot.b[2051] endstream(ramstream)
+endstream G:62 LG dnaplot.b[2413] endstream(outstream)
+endstream G:62 LG dnaplot.b[865] endstream(instream)
+endstream G:62 LG gl.b[467] endstream(instream)
+endstreamch M:-1 DEF libhdr.h[251] endstreamch=-1
+endstreamch M:-1 MAN dnaplot.b[1126] .. REPEATUNTIL ch=10|ch=endstreamch
+endstreamch M:-1 MAN dnaplot.b[1128] UNLESS ch=endstreamch DO ..
+endstreamch M:-1 MAN dnaplot.b[1130] CASE endstreamch:.. 
+endstreamch M:-1 MAN dnaplot.b[1143] CASE endstreamch:.. 
+endstreamch M:-1 MAN dnaplot.b[2034] IF ch=endstreamch DO ..
+endstreamch M:-1 MAN dnaplot.b[863] CASE endstreamch:.. 
+endstreamch M:-1 MAN dnaplot.b[871] UNTIL ch=10|ch=endstreamch DO ..
+endstreamch M:-1 MAN gl.b[484] CASE endstreamch:.. 
+endstreamch M:-1 MAN gl.b[489] UNTIL ch=10|ch=endstreamch DO ..
+endtask G:162 DEF libhdr.h[214] endtask=162
+endwrite G:61 DEF libhdr.h[98] endwrite=61
+entryword M:57311 DEF libhdr.h[270] entryword=57311
+error F:8 LF gl.b[228] error("Numbe'expected")
+error F:8 LF gl.b[317] error("Troub' file %s",filename)
+error F:8 LF gl.b[417] error("Too m'vupb=%n*n",dpos,dvupb)
+error F:8 LF gl.b[457] error("One o' missing")
+error F:8 LF gl.b[480] error("line 'del file",lineno,ch)
+error F:8 LF gl.b[533] error("Bad f't number")
+error F:8 RT gl.b[218] LET error(mes,a,b,c)BE..
+eventa1 G:463 DEF gl.h[83] eventa1=
+eventa2 G:464 DEF gl.h[84] eventa2=
+eventa2 G:464 LG dnaplot.b[2149] eventa2
+eventa3 G:465 DEF gl.h[85] eventa3=
+eventa4 G:466 DEF gl.h[86] eventa4=
+eventa5 G:467 DEF gl.h[87] eventa5=
+eventtype G:462 DEF gl.h[82] eventtype=
+eventtype G:462 LG dnaplot.b[2137] SWITCHON eventtype INTO..
+eventtype G:462 LLG gl.b[216] sys(Sys_gl,gl_pollevent,@eventtype)
+f0 FG:203 DEF dnaplot.b[174] FLT f0=
+f0 FG:203 LG dnaplot.b[1204] av!0#:=f0
+f0 FG:203 LG dnaplot.b[1204] av!1#:=f0
+f0 FG:203 LG dnaplot.b[1204] av!2#:=f0
+f0 FG:203 LG dnaplot.b[1205] mat3set(mv,f1,f0,f0,f0,f1,...)
+f0 FG:203 LG dnaplot.b[1212] setangles(AA,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1213] setangles(AC,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1214] setangles(AG,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1215] setangles(AT,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1217] setangles(CA,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1218] setangles(CC,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1219] setangles(CG,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1220] setangles(CT,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1222] setangles(GA,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1223] setangles(GC,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1224] setangles(GG,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1225] setangles(GT,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1227] setangles(TA,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1228] setangles(TC,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1229] setangles(TG,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1230] setangles(TT,deg2rad( 0.000),f0,f0)
+f0 FG:203 LG dnaplot.b[1846] f0
+f0 FG:203 LG dnaplot.b[593] f0
+f0 FG:203 LG dnaplot.b[596] f0
+f0 FG:203 LG dnaplot.b[597] f0
+f0 FG:203 LG dnaplot.b[598] f0
+f0 FG:203 LG dnaplot.b[647] mat3set(tm,f1,f0,f0,f0,c,...)
+f0 FG:203 LG dnaplot.b[661] mat3set(tm,c,f0,#-s,f0,f1,...)
+f0 FG:203 LG dnaplot.b[661] mat3set(tm,c,f0,-s,f0,f1,...)
+f0 FG:203 LG dnaplot.b[675] mat3set(tm,c,s,f0,#-s,c,...)
+f0 FG:203 LG dnaplot.b[675] mat3set(tm,c,s,f0,-s,c,...)
+f0 FG:203 LG dnaplot.b[708] mat3set(mv,f1,f0,f0,f0,cost,...)
+f0 FG:203 LG dnaplot.b[711] mat3set(m,cosw,f0,#-sinw,f0,f1,...)
+f0 FG:203 LG dnaplot.b[711] mat3set(m,cosw,f0,-sinw,f0,f1,...)
+f0 FG:203 LG dnaplot.b[715] mat3set(m,cosl,sinl,f0,#-sinl,cosl,...)
+f0 FG:203 LG dnaplot.b[715] mat3set(m,cosl,sinl,f0,-sinl,cosl,...)
+f0 FG:203 LG dnaplot.b[741] mat3set(tm,f1,f0,f0,f0,c,...)
+f0 FG:203 LG dnaplot.b[764] mat3set(tm,c,f0,#-s,f0,f1,...)
+f0 FG:203 LG dnaplot.b[764] mat3set(tm,c,f0,-s,f0,f1,...)
+f0 FG:203 LG dnaplot.b[793] mat3set(tm,c,s,f0,#-s,c,...)
+f0 FG:203 LG dnaplot.b[793] mat3set(tm,c,s,f0,-s,c,...)
+f0 FG:203 LG dnaplot.b[907] f0
+f0 FG:203 LG dnaplot.b[913] f0
+f0 FG:203 LG dnaplot.b[914] f0
+f0 FG:203 LG dnaplot.b[915] f0
+f0 FG:203 LG dnaplot.b[996] f0
+f0 FG:203 LG dnaplot.b[997] f0
+f0 FG:203 LG dnaplot.b[998] f0
+f0 FG:203 LG dnaplot.b[999] f0
+f0 FG:203 SG dnaplot.b[1183] f0#:= 0.000
+f1 FG:204 DEF dnaplot.b[175] FLT f1=
+f1 FG:204 LG dnaplot.b[1205] mat3set(mv,f1,f0,f0,f0,f1,...)
+f1 FG:204 LG dnaplot.b[647] mat3set(tm,f1,f0,f0,f0,c,...)
+f1 FG:204 LG dnaplot.b[661] mat3set(tm,c,f0,#-s,f0,f1,...)
+f1 FG:204 LG dnaplot.b[675] mat3set(tm,c,s,f0,#-s,c,...)
+f1 FG:204 LG dnaplot.b[708] mat3set(mv,f1,f0,f0,f0,cost,...)
+f1 FG:204 LG dnaplot.b[711] mat3set(m,cosw,f0,#-sinw,f0,f1,...)
+f1 FG:204 LG dnaplot.b[715] mat3set(m,cosl,sinl,f0,#-sinl,cosl,...)
+f1 FG:204 LG dnaplot.b[741] mat3set(tm,f1,f0,f0,f0,c,...)
+f1 FG:204 LG dnaplot.b[764] mat3set(tm,c,f0,#-s,f0,f1,...)
+f1 FG:204 LG dnaplot.b[793] mat3set(tm,c,s,f0,#-s,c,...)
+f1 FG:204 LG dnaplot.b[913] f1
+f1 FG:204 LG dnaplot.b[914] f1
+f1 FG:204 LG dnaplot.b[915] f1
+f1 FG:204 SG dnaplot.b[1184] f1#:= 1.000
+fault G:182 DEF libhdr.h[232] fault=182
+fillpxlplane F:29 RT gl.b[853] LET fillpxlplane(col)BE..
+fin F:160 LAB dnaplot.b[1672] fin:IF genomev DO ..
+fin F:160 LF dnaplot.b[1296] GOTO fin
+fin F:207 LAB dnaplot.b[2009] fin:RESULTIS 0
+fin F:207 LF dnaplot.b[1948] GOTO fin
+findappend G:130 DEF libhdr.h[168] findappend=130
+findarg G:104 DEF libhdr.h[142] findarg=104
+findinoutput G:50 DEF libhdr.h[87] findinoutput=50
+findinoutput G:50 LG dnaplot.b[2022] findinoutput("RAM:")
+findinput G:48 DEF libhdr.h[85] findinput=48
+findinput G:48 LG dnaplot.b[1113] findinput(filename)
+findinput G:48 LG dnaplot.b[2023] findinput(filename)
+findinput G:48 LG dnaplot.b[853] filename->findinput(filename),0
+findinput G:48 LG gl.b[294] findinput(filename)
+findoutput G:49 DEF libhdr.h[86] findoutput=49
+findoutput G:49 LG dnaplot.b[2401] outstream:=findoutput(filename)
+findstream G:52 DEF libhdr.h[89] findstream=52
+findupdate G:51 DEF libhdr.h[88] findupdate=51
+fl_64to32 M:45 DEF libhdr.h[618] fl_64to32=
+fl_64to32 M:45 MAN gl.b[235] RESULTIS sys(Sys_flt,fl_64to32,x)
+fl_F2N M:42 DEF libhdr.h[615] fl_F2N=
+fl_N2F M:41 DEF libhdr.h[614] fl_N2F=
+fl_abs M:5 DEF libhdr.h[585] fl_abs=
+fl_acos M:20 DEF libhdr.h[590] fl_acos=20
+fl_add M:9 DEF libhdr.h[587] fl_add=
+fl_asin M:21 DEF libhdr.h[591] fl_asin=
+fl_atan M:22 DEF libhdr.h[592] fl_atan=
+fl_atan2 M:23 DEF libhdr.h[593] fl_atan2=
+fl_atan2 M:23 MAN dnaplot.b[1826]
+    bankangle:=FIX rad2deg(sys(Sys_flt,...))
+fl_atan2 M:23 MAN dnaplot.b[1828]
+    climbangle:=FIX rad2deg(sys(Sys_flt,...))
+fl_atan2 M:23 MAN dnaplot.b[1829] heading:=FIX rad2deg(sys(Sys_flt,...))
+fl_atan2 M:23 MAN dnaplot.b[2424] FIX rad2deg(sys(Sys_flt,fl_atan2,y,x))
+fl_atan2 M:23 MAN dnaplot.b[642] bn#:=sys(Sys_flt,fl_atan2,mlw,mlh)
+fl_atan2 M:23 MAN dnaplot.b[656] bw#:=sys(Sys_flt,fl_atan2,...,mlh)
+fl_atan2 M:23 MAN dnaplot.b[670] bh#:=sys(Sys_flt,fl_atan2,...,mtn)
+fl_avail M:0 DEF libhdr.h[583] fl_avail=0
+fl_ceil M:38 DEF libhdr.h[608] fl_ceil=
+fl_cos M:24 DEF libhdr.h[594] fl_cos=
+fl_cos M:24 MAN dnaplot.b[643] c#:=sys(Sys_flt,fl_cos,bn)
+fl_cos M:24 MAN dnaplot.b[657] c#:=sys(Sys_flt,fl_cos,bw)
+fl_cos M:24 MAN dnaplot.b[671] c#:=sys(Sys_flt,fl_cos,bh)
+fl_cos M:24 MAN dnaplot.b[703] sys(Sys_flt,fl_cos,at)
+fl_cos M:24 MAN dnaplot.b[704] sys(Sys_flt,fl_cos,aw)
+fl_cos M:24 MAN dnaplot.b[705] sys(Sys_flt,fl_cos,al)
+fl_cos M:24 MAN dnaplot.b[730] sys(Sys_flt,fl_cos,angle)
+fl_cos M:24 MAN dnaplot.b[753] sys(Sys_flt,fl_cos,angle)
+fl_cos M:24 MAN dnaplot.b[782] sys(Sys_flt,fl_cos,angle)
+fl_cosh M:27 DEF libhdr.h[597] fl_cosh=
+fl_div M:7 DEF libhdr.h[586] fl_div=
+fl_eq M:13 DEF libhdr.h[588] fl_eq=
+fl_exp M:30 DEF libhdr.h[600] fl_exp=
+fl_fix M:4 DEF libhdr.h[585] fl_fix=
+fl_float M:3 DEF libhdr.h[585] fl_float=
+fl_floor M:39 DEF libhdr.h[609] fl_floor=
+fl_frexp M:31 DEF libhdr.h[601] fl_frexp=
+fl_ge M:18 DEF libhdr.h[588] fl_ge=
+fl_gr M:16 DEF libhdr.h[588] fl_gr=
+fl_ldexp M:32 DEF libhdr.h[602] fl_ldexp=
+fl_le M:17 DEF libhdr.h[588] fl_le=
+fl_log M:33 DEF libhdr.h[603] fl_log=
+fl_log10 M:34 DEF libhdr.h[604] fl_log10=
+fl_ls M:15 DEF libhdr.h[588] fl_ls=
+fl_mk M:1 DEF libhdr.h[584] fl_mk=
+fl_mod M:8 DEF libhdr.h[586] fl_mod=
+fl_modf M:40 DEF libhdr.h[610] fl_modf=
+fl_mul M:6 DEF libhdr.h[586] fl_mul=
+fl_ne M:14 DEF libhdr.h[588] fl_ne=
+fl_neg M:12 DEF libhdr.h[587] fl_neg=
+fl_pos M:11 DEF libhdr.h[587] fl_pos=
+fl_pow M:36 DEF libhdr.h[606] fl_pow=36
+fl_radius2 M:43 DEF libhdr.h[616] fl_radius2=
+fl_radius3 M:44 DEF libhdr.h[617] fl_radius3=
+fl_sin M:25 DEF libhdr.h[595] fl_sin=
+fl_sin M:25 MAN dnaplot.b[643] s#:=sys(Sys_flt,fl_sin,bn)
+fl_sin M:25 MAN dnaplot.b[657] s#:=sys(Sys_flt,fl_sin,bw)
+fl_sin M:25 MAN dnaplot.b[671] s#:=sys(Sys_flt,fl_sin,bh)
+fl_sin M:25 MAN dnaplot.b[703] sys(Sys_flt,fl_sin,at)
+fl_sin M:25 MAN dnaplot.b[704] sys(Sys_flt,fl_sin,aw)
+fl_sin M:25 MAN dnaplot.b[705] sys(Sys_flt,fl_sin,al)
+fl_sin M:25 MAN dnaplot.b[731] sys(Sys_flt,fl_sin,angle)
+fl_sin M:25 MAN dnaplot.b[754] sys(Sys_flt,fl_sin,angle)
+fl_sin M:25 MAN dnaplot.b[783] sys(Sys_flt,fl_sin,angle)
+fl_sinh M:28 DEF libhdr.h[598] fl_sinh=
+fl_sqrt M:37 DEF libhdr.h[607] fl_sqrt=
+fl_sqrt M:37 MAN dnaplot.b[1727] sys(Sys_flt,fl_sqrt,ptn*ptn+ptw*ptw)
+fl_sqrt M:37 MAN gl.b[189] sys(Sys_flt,fl_sqrt,x*x+y*y)
+fl_sqrt M:37 MAN gl.b[191] sys(Sys_flt,fl_sqrt,x*x+y*y+z*z)
+fl_sub M:10 DEF libhdr.h[587] fl_sub=
+fl_tan M:26 DEF libhdr.h[596] fl_tan=
+fl_tanh M:29 DEF libhdr.h[599] fl_tanh=
+fl_unmk M:2 DEF libhdr.h[584] fl_unmk=
+flag_a M:1 DEF libhdr.h[743] flag_a=1<<0
+flag_b M:2 DEF libhdr.h[744] flag_b=1<<1
+flag_c M:4 DEF libhdr.h[745] flag_c=1<<2
+flag_d M:8 DEF libhdr.h[746] flag_d=1<<3
+flag_e M:16 DEF libhdr.h[747] flag_e=1<<4
+format G:457 DEF gl.h[74] format=
+freeobj G:78 DEF libhdr.h[115] freeobj=78
+freevec G:27 DEF libhdr.h[64] freevec=27
+freevec G:27 LG dnaplot.b[1430] freevec(vertexv)
+freevec G:27 LG dnaplot.b[1442] freevec(indexv)
+freevec G:27 LG dnaplot.b[1673] freevec(genomev)
+freevec G:27 LG dnaplot.b[1676] freevec(vertexv)
+freevec G:27 LG dnaplot.b[1677] freevec(indexv)
+freevec G:27 LG dnaplot.b[1678] freevec(displayv)
+freevec G:27 LG dnaplot.b[1685] freevec(blk)
+freevec G:27 LG dnaplot.b[434] freevec(v)
+freevec G:27 LG gl.b[659] freevec(leftxv)
+freevec G:27 LG gl.b[660] freevec(rightxv)
+fromfilename G:205 DEF dnaplot.b[177] fromfilename=
+fromfilename G:205 LG dnaplot.b[1286] genomev:=rdGenome(fromfilename)
+fromfilename G:205 LG dnaplot.b[1295]
+    writef("Faile'file %s*n",fromfilename)
+fromfilename G:205 LG dnaplot.b[1317]
+    writef("Start'ome: %s*n",fromfilename=0->"test data",fromfilename)
+fromfilename G:205 LG dnaplot.b[1953]
+    screenxsize:=glMkScreen(concatstr("Genom'm file: ",...),1500,700)
+fromfilename G:205 SG dnaplot.b[1263] fromfilename:="seq1"
+fromfilename G:205 SG dnaplot.b[1264] fromfilename:="seq045512"
+fromfilename G:205 SG dnaplot.b[1268] fromfilename:=argv!0
+g_colist M:8 DEF libhdr.h[276] g_colist=8
+g_currco M:7 DEF libhdr.h[275] g_currco=7
+g_extbase M:950 DEF libhdr.h[761] g_extbase=950
+g_glbase M:450 DEF libhdr.h[759] g_glbase=450
+g_glbase M:450 MAN gl.h[57] glInit=g_glbase
+g_globsize M:0 DEF libhdr.h[273] g_globsize=0
+g_grbase M:450 DEF libhdr.h[757] g_grbase=450
+g_keyboard M:20 DEF libhdr.h[281] g_keyboard=20
+g_memsize M:14 DEF libhdr.h[280] g_memsize=14
+g_result2 M:10 DEF libhdr.h[278] g_result2=10
+g_rootnode M:9 DEF libhdr.h[277] g_rootnode=9
+g_screen M:21 DEF libhdr.h[282] g_screen=21
+g_sdlbase M:450 DEF libhdr.h[758] g_sdlbase=450
+g_sndbase M:450 DEF libhdr.h[760] g_sndbase=450
+g_sys M:3 DEF libhdr.h[274] g_sys=3
+genomeradius FG:320 DEF dnaplot.b[356] FLT genomeradius=
+genomeradius FG:320 LG dnaplot.b[1017] x#+genomeradius#*swx
+genomeradius FG:320 LG dnaplot.b[1018] y#+genomeradius#*swy
+genomeradius FG:320 LG dnaplot.b[1019] z#+genomeradius#*swz
+genomeradius FG:320 LG dnaplot.b[1021] x#-genomeradius#*swx
+genomeradius FG:320 LG dnaplot.b[1022] y#-genomeradius#*swy
+genomeradius FG:320 LG dnaplot.b[1023] z#-genomeradius#*swz
+genomeradius FG:320 LG dnaplot.b[1050] x#+genomeradius#*swx
+genomeradius FG:320 LG dnaplot.b[1051] y#+genomeradius#*swy
+genomeradius FG:320 LG dnaplot.b[1052] z#+genomeradius#*swz
+genomeradius FG:320 LG dnaplot.b[1054] x#-genomeradius#*swx
+genomeradius FG:320 LG dnaplot.b[1055] y#-genomeradius#*swy
+genomeradius FG:320 LG dnaplot.b[1056] z#-genomeradius#*swz
+genomeradius FG:320 LG dnaplot.b[1062] x1#+genomeradius#*swx
+genomeradius FG:320 LG dnaplot.b[1063] y1#+genomeradius#*swy
+genomeradius FG:320 LG dnaplot.b[1064] z1#+genomeradius#*swz
+genomeradius FG:320 LG dnaplot.b[1066] x1#-genomeradius#*swx
+genomeradius FG:320 LG dnaplot.b[1067] y1#-genomeradius#*swy
+genomeradius FG:320 LG dnaplot.b[1068] z1#-genomeradius#*swz
+genomeradius FG:320 LG dnaplot.b[996] genomeradius
+genomeradius FG:320 LG dnaplot.b[997] #-genomeradius
+genomeradius FG:320 LG dnaplot.b[998] genomeradius
+genomeradius FG:320 LG dnaplot.b[999] #-genomeradius
+genomeradius FG:320 SG dnaplot.b[1233] genomeradius#:= 0.950
+genomeradius FG:320 SG dnaplot.b[1235] genomeradius#:= 0.250
+genomesep FG:321 DEF dnaplot.b[357] FLT genomesep=
+genomesep FG:321 LG dnaplot.b[1029] nx#:=x#+genomesep#*stx
+genomesep FG:321 LG dnaplot.b[1030] ny#:=y#+genomesep#*sty
+genomesep FG:321 LG dnaplot.b[1031] nz#:=z#+genomesep#*stz
+genomesep FG:321 SG dnaplot.b[1234] genomesep#:= 0.340
+genomesep FG:321 SG dnaplot.b[1236] genomesep#:= 1.000
+genomev G:273 DEF dnaplot.b[284] genomev=
+genomev G:273 LG dnaplot.b[1014] FOR i=1 TO genomev!0 DO..
+genomev G:273 LG dnaplot.b[1025] genomev!i
+genomev G:273 LG dnaplot.b[1037] IF i=genomev!0 DO ..
+genomev G:273 LG dnaplot.b[1041] Y:=genomev!(i+1)
+genomev G:273 LG dnaplot.b[1288] UNLESS genomev DO ..
+genomev G:273 LG dnaplot.b[1294] UNLESS genomev DO ..
+genomev G:273 LG dnaplot.b[1298] genomev!i:=v!i
+genomev G:273 LG dnaplot.b[1314] genomev!0
+genomev G:273 LG dnaplot.b[1319] genomev!i
+genomev G:273 LG dnaplot.b[1673] IF genomev DO ..
+genomev G:273 LG dnaplot.b[1673] freevec(genomev)
+genomev G:273 SG dnaplot.b[1286] genomev:=rdGenome(fromfilename)
+genomev G:273 SG dnaplot.b[1293] genomev:=getvec(v!0)
+get_record G:71 DEF libhdr.h[108] get_record=71
+get_text G:93 DEF libhdr.h[131] get_text=93
+get_textblib G:93 DEF libhdr.h[130] get_textblib=93
+getevent G:461 DEF gl.h[80] getevent=
+getevent G:461 FN gl.b[216] LET getevent()=..
+getevent G:461 LG dnaplot.b[2137] WHILE getevent() DO ..
+getlogname G:118 DEF libhdr.h[156] getlogname=118
+getremipaddr G:54 DEF libhdr.h[91] getremipaddr=54
+getvec G:25 DEF libhdr.h[62] getvec=25
+getvec G:25 LG dnaplot.b[1293] genomev:=getvec(v!0)
+getvec G:25 LG dnaplot.b[377] getvec(blkupb)
+getvec G:25 LG dnaplot.b[417] getvec(newupb)
+getvec G:25 LG gl.b[342] vv:=getvec(vvupb)
+getvec G:25 LG gl.b[384] iv:=getvec(ivupb)
+getvec G:25 LG gl.b[398] dv:=getvec(dvupb)
+getvec G:25 LG gl.b[926] leftxv:=getvec(upb)
+getvec G:25 LG gl.b[927] rightxv:=getvec(upb)
+getword G:32 DEF libhdr.h[69] getword=32
+glAPIno G:451 DEF gl.h[58] glAPIno=
+glAPIno G:451 LG dnaplot.b[1945] writef("glAPIno=%n*n",glAPIno)
+glAPIno G:451 LG dnaplot.b[1946] UNLESS glAPIno DO ..
+glAPIno G:451 SG dnaplot.b[1944] glAPIno:=glInit()
+glCallBackfnv G:455 DEF gl.h[68] glCallBackfnv=
+glEndEventLoop G:453 DEF gl.h[62] glEndEventLoop=
+glInit G:450 DEF gl.h[57] glInit=g_glbase
+glInit G:450 FN gl.b[104] LET glInit()=..
+glInit G:450 LG dnaplot.b[1944] glAPIno:=glInit()
+glMainEventLoop G:452 DEF gl.h[61] glMainEventLoop=
+glMkScreen G:468 DEF gl.h[90] glMkScreen=
+glMkScreen G:468 FN gl.b[119] LET glMkScreen(title,xsize,ysize)=..
+glMkScreen G:468 LG dnaplot.b[1953]
+    screenxsize:=glMkScreen(concatstr("Genom'm file: ",...),1500,700)
+glRadius2 G:470 DEF gl.h[92] glRadius2=
+glRadius2 G:470 FN gl.b[189] LET glRadius2(FLT x,FLT y)=..
+glRadius3 G:471 DEF gl.h[94] glRadius3=
+glRadius3 G:471 FN gl.b[191] LET glRadius3(FLT x,FLT y,FLT z)=..
+glRadius3 G:471 LG dnaplot.b[2505] glRadius3(v!0,v!1,v!2)
+glSetPerspective G:469 DEF gl.h[91] glSetPerspective=
+glSetPerspective G:469 LG dnaplot.b[1616]
+    glSetPerspective(workMatrix, 1.000,screenaspect, 0.200, 5000.000)
+glSetPerspective G:469 LG dnaplot.b[1863]
+    glSetPerspective(m,fov,aspect,n,f)
+glSetPerspective G:469 RT gl.b[165]
+    LET glSetPerspective(mat4,FLT fovy,FLT aspect,FLT n,FLT f)BE..
+gl_BindAttribLocation M:20 DEF gl.h[180] gl_BindAttribLocation=20
+gl_BindTexture M:64 DEF gl.h[211] gl_BindTexture=64
+gl_BlendFunc M:61 DEF gl.h[207] gl_BlendFunc=61
+gl_BlendFunc M:61 MAN gl.b[154]
+    sys(Sys_gl,gl_BlendFunc,GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA)
+gl_Clear M:40 DEF gl.h[204] gl_Clear=40
+gl_ClearBuffer M:23 DEF gl.h[183] gl_ClearBuffer=23
+gl_ClearBuffer M:23 MAN dnaplot.b[1639] sys(Sys_gl,gl_ClearBuffer)
+gl_ClearColour M:22 DEF gl.h[182] gl_ClearColour=22
+gl_ClearColour M:22 MAN dnaplot.b[1637]
+    sys(Sys_gl,gl_ClearColour, 0.100, 0.200, 0.200, 1.000)
+gl_CompileFshader M:9 DEF gl.h[169] gl_CompileFshader=9
+gl_CompileFshader M:9 MAN dnaplot.b[2046]
+    shader:=sys(Sys_gl,isVshader->gl_CompileVshader,gl_CompileFshader,prog,buf)
+gl_CompileVshader M:8 DEF gl.h[168] gl_CompileVshader=8
+gl_CompileVshader M:8 MAN dnaplot.b[2046]
+    shader:=sys(Sys_gl,isVshader->gl_CompileVshader,gl_CompileFshader,prog,buf)
+gl_DeleteBuffer M:60 DEF gl.h[206] gl_DeleteBuffer=60
+gl_DeleteBuffer M:60 MAN dnaplot.b[1391]
+    sys(Sys_gl,gl_DeleteBuffer,VertexBuffer)
+gl_DeleteBuffer M:60 MAN dnaplot.b[1395]
+    sys(Sys_gl,gl_DeleteBuffer,IndexBuffer)
+gl_DeleteShader M:12 DEF gl.h[172] gl_DeleteShader=12
+gl_DeleteTextures M:63 DEF gl.h[210] gl_DeleteTextures=63
+gl_DepthFunc M:28 DEF gl.h[192] gl_DepthFunc=28
+gl_DepthFunc M:28 MAN dnaplot.b[1645] sys(Sys_gl,gl_DepthFunc,GL_LESS)
+gl_Disable M:27 DEF gl.h[191] gl_Disable=27
+gl_DisableVertexAttribArray M:32 DEF gl.h[196]
+    gl_DisableVertexAttribArray=32
+gl_DisableVertexAttribArray M:32 MAN dnaplot.b[1669]
+    sys(Sys_gl,gl_DisableVertexAttribArray,VertexLoc)
+gl_DisableVertexAttribArray M:32 MAN dnaplot.b[1670]
+    sys(Sys_gl,gl_DisableVertexAttribArray,ColourNoLoc)
+gl_DrawElements M:30 DEF gl.h[194] gl_DrawElements=30
+gl_DrawElements M:30 MAN dnaplot.b[2104]
+    sys(Sys_gl,gl_DrawElements,mode,size,4*offset)
+gl_Enable M:26 DEF gl.h[190] gl_Enable=26
+gl_Enable M:26 MAN dnaplot.b[1643] sys(Sys_gl,gl_Enable,GL_DEPTH_TEST)
+gl_Enable M:26 MAN gl.b[155] sys(Sys_gl,gl_Enable,GL_BLEND)
+gl_EnableVertexAttribArray M:31 DEF gl.h[195]
+    gl_EnableVertexAttribArray=31
+gl_EnableVertexAttribArray M:31 MAN dnaplot.b[1411]
+    sys(Sys_gl,gl_EnableVertexAttribArray,VertexLoc)
+gl_EnableVertexAttribArray M:31 MAN dnaplot.b[1423]
+    sys(Sys_gl,gl_EnableVertexAttribArray,ColourNoLoc)
+gl_GenIndexBuffer M:34 DEF gl.h[198] gl_GenIndexBuffer=34
+gl_GenIndexBuffer M:34 MAN dnaplot.b[1438]
+    IndexBuffer:=sys(Sys_gl,gl_GenIndexBuffer,...,...)
+gl_GenTextures M:62 DEF gl.h[209] gl_GenTextures=62
+gl_GenVertexBuffer M:33 DEF gl.h[197] gl_GenVertexBuffer=33
+gl_GenVertexBuffer M:33 MAN dnaplot.b[1399]
+    VertexBuffer:=sys(Sys_gl,gl_GenVertexBuffer,...,...)
+gl_GetAttribLocation M:10 DEF gl.h[170] gl_GetAttribLocation=10
+gl_GetAttribLocation M:10 MAN dnaplot.b[1999]
+    VertexLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vVertex")
+gl_GetAttribLocation M:10 MAN dnaplot.b[2000]
+    ColourNoLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vColourNo")
+gl_GetError M:4 DEF gl.h[163] gl_GetError=4
+gl_GetError M:4 MAN gl.b[145] sys(Sys_gl,gl_GetError,mes)
+gl_GetUniformLocation M:11 DEF gl.h[171] gl_GetUniformLocation=11
+gl_GetUniformLocation M:11 MAN dnaplot.b[2006]
+    MatrixLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"matrix")
+gl_Init M:1 DEF gl.h[160] gl_Init=1
+gl_Init M:1 MAN gl.b[106] sys(Sys_gl,gl_Init)
+gl_LinkProgram M:14 DEF gl.h[174] gl_LinkProgram=14
+gl_LinkProgram M:14 MAN dnaplot.b[1989]
+    UNLESS sys(Sys_gl,gl_LinkProgram,glprog) DO ..
+gl_LoadModel M:19 DEF gl.h[179] gl_LoadModel=19
+gl_M4mulM4 M:24 DEF gl.h[184] gl_M4mulM4=24
+gl_M4mulM4 M:24 MAN dnaplot.b[1545]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+gl_M4mulM4 M:24 MAN dnaplot.b[1599]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+gl_M4mulM4 M:24 MAN dnaplot.b[1621]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+gl_M4mulV M:36 DEF gl.h[200] gl_M4mulV=36
+gl_MkProg M:7 DEF gl.h[167] gl_MkProg=7
+gl_MkProg M:7 MAN dnaplot.b[1968] glprog:=sys(Sys_gl,gl_MkProg)
+gl_MkScreen M:5 DEF gl.h[164] gl_MkScreen=5
+gl_MkScreen M:5 MAN gl.b[137]
+    screenxsize:=sys(Sys_gl,gl_MkScreen,title,...)
+gl_PrimitiveRestartIndex M:38 DEF gl.h[202] gl_PrimitiveRestartIndex=38
+gl_Quit M:3 DEF gl.h[162] gl_Quit=3
+gl_Quit M:3 MAN dnaplot.b[1690] sys(Sys_gl,gl_Quit)
+gl_Quit M:3 MAN dnaplot.b[2145] sys(Sys_gl,gl_Quit)
+gl_ScreenSize M:37 DEF gl.h[201] gl_ScreenSize=37
+gl_SetFltScale M:2 DEF gl.h[161] gl_SetFltScale=2
+gl_SwapBuffers M:6 DEF gl.h[165] gl_SwapBuffers=6
+gl_SwapBuffers M:6 MAN dnaplot.b[1657] sys(Sys_gl,gl_SwapBuffers)
+gl_TexImage2D M:65 DEF gl.h[212] gl_TexImage2D=65
+gl_Uniform1f M:15 DEF gl.h[175] gl_Uniform1f=15
+gl_Uniform2f M:16 DEF gl.h[176] gl_Uniform2f=16
+gl_Uniform3f M:17 DEF gl.h[177] gl_Uniform3f=17
+gl_Uniform4f M:18 DEF gl.h[178] gl_Uniform4f=18
+gl_UniformMatrix4fv M:21 DEF gl.h[181] gl_UniformMatrix4fv=21
+gl_UniformMatrix4fv M:21 MAN dnaplot.b[1632]
+    sys(Sys_gl,gl_UniformMatrix4fv,MatrixLoc,glprog,projectionMatrix)
+gl_UseProgram M:13 DEF gl.h[173] gl_UseProgram=13
+gl_UseProgram M:13 MAN dnaplot.b[1996] sys(Sys_gl,gl_UseProgram,glprog)
+gl_VertexAttribPointer M:35 DEF gl.h[199] gl_VertexAttribPointer=35
+gl_VertexData M:29 DEF gl.h[193] gl_VertexData=29
+gl_VertexData M:29 MAN dnaplot.b[1412]
+    sys(Sys_gl,gl_VertexData,VertexLoc,3,4,0)
+gl_VertexData M:29 MAN dnaplot.b[1424]
+    sys(Sys_gl,gl_VertexData,ColourNoLoc,1,4,3)
+gl_pollevent M:25 DEF gl.h[186] gl_pollevent=25
+gl_pollevent M:25 MAN gl.b[216] sys(Sys_gl,gl_pollevent,@eventtype)
+gl_test M:39 DEF gl.h[203] gl_test=39
+glh FG:270 DEF dnaplot.b[272] FLT glh=
+gln FG:268 DEF dnaplot.b[272] FLT gln=
+globin G:24 DEF libhdr.h[61] globin=24
+globsize G:0 DEF libhdr.h[36] globsize=0
+globword M:#x8F8F0000 DEF libhdr.h[266] globword=-#x70710000
+glprog G:221 DEF dnaplot.b[197] glprog=
+glprog G:221 LG dnaplot.b[1632]
+    sys(Sys_gl,gl_UniformMatrix4fv,MatrixLoc,glprog,projectionMatrix)
+glprog G:221 LG dnaplot.b[1971] IF glprog<0 DO ..
+glprog G:221 LG dnaplot.b[1978]
+    Vshader:=Compileshader(glprog,TRUE,"dnapl'ader.sdr")
+glprog G:221 LG dnaplot.b[1984]
+    Fshader:=Compileshader(glprog,FALSE,"dnapl'ader.sdr")
+glprog G:221 LG dnaplot.b[1989]
+    UNLESS sys(Sys_gl,gl_LinkProgram,glprog) DO ..
+glprog G:221 LG dnaplot.b[1996] sys(Sys_gl,gl_UseProgram,glprog)
+glprog G:221 LG dnaplot.b[1999]
+    VertexLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vVertex")
+glprog G:221 LG dnaplot.b[2000]
+    ColourNoLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vColourNo")
+glprog G:221 LG dnaplot.b[2006]
+    MatrixLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"matrix")
+glprog G:221 SG dnaplot.b[1968] glprog:=sys(Sys_gl,gl_MkProg)
+glw FG:269 DEF dnaplot.b[272] FLT glw=
+gth FG:264 DEF dnaplot.b[270] FLT gth=
+gtn FG:262 DEF dnaplot.b[270] FLT gtn=
+gtw FG:263 DEF dnaplot.b[270] FLT gtw=
+gwh FG:267 DEF dnaplot.b[271] FLT gwh=
+gwn FG:265 DEF dnaplot.b[271] FLT gwn=
+gww FG:266 DEF dnaplot.b[271] FLT gww=
+heading G:245 DEF dnaplot.b[245] heading=
+heading G:245 LG dnaplot.b[1831] IF heading<0 DO ..
+heading G:245 LG dnaplot.b[1831] heading:=360+heading
+heading G:245 LG dnaplot.b[1834]
+    writef("?%4.2'       ?",platformn,platformw,platformh,heading,climbangle,...)
+heading G:245 SG dnaplot.b[1353] heading:=0
+heading G:245 SG dnaplot.b[1829] heading:=FIX rad2deg(sys(Sys_flt,...))
+heading G:245 SG dnaplot.b[1831] heading:=360+heading
+hold G:158 DEF libhdr.h[210] hold=158
+id_appendscb M:132 DEF libhdr.h[532] id_appendscb=132
+id_inoutscb M:131 DEF libhdr.h[531] id_inoutscb=131
+id_inscb M:129 DEF libhdr.h[529] id_inscb=129
+id_outscb M:130 DEF libhdr.h[530] id_outscb=130
+incrementdegrees FG:312 DEF dnaplot.b[343] FLT incrementdegrees=
+incrementdegrees FG:312 LG dnaplot.b[1243]
+    incrementradians#:=deg2rad(incrementdegrees)
+incrementdegrees FG:312 LG dnaplot.b[2274]
+    incrementdegrees#:= 0.500#*incrementdegrees
+incrementdegrees FG:312 LG dnaplot.b[2275]
+    incrementradians#:=deg2rad(incrementdegrees)
+incrementdegrees FG:312 LG dnaplot.b[2276]
+    writef("*nincr's=%9.6f*n",incrementdegrees)
+incrementdegrees FG:312 LG dnaplot.b[2280]
+    incrementdegrees#:= 2.000#*incrementdegrees
+incrementdegrees FG:312 LG dnaplot.b[2281]
+    incrementradians#:=deg2rad(incrementdegrees)
+incrementdegrees FG:312 LG dnaplot.b[2282]
+    writef("*nincr's=%9.6f*n",incrementdegrees)
+incrementdegrees FG:312 LG dnaplot.b[2436]
+    av!a#+incrementdegrees#*r#/ 1000000.000
+incrementdegrees FG:312 LG dnaplot.b[2472]
+    writef("?%s%c'6.3f   *n",XY2str(currpair),axis2ch(curraxis),v!curraxis,incrementdegrees)
+incrementdegrees FG:312 SG dnaplot.b[1241] incrementdegrees#:= 0.063
+incrementdegrees FG:312 SG dnaplot.b[2274]
+    incrementdegrees#:= 0.500#*incrementdegrees
+incrementdegrees FG:312 SG dnaplot.b[2280]
+    incrementdegrees#:= 2.000#*incrementdegrees
+incrementing G:315 DEF dnaplot.b[347] incrementing=
+incrementradians FG:313 DEF dnaplot.b[344] FLT incrementradians=
+incrementradians FG:313 LG dnaplot.b[2267] doincrement(incrementradians)
+incrementradians FG:313 LG dnaplot.b[2270]
+    doincrement(#-incrementradians)
+incrementradians FG:313 SG dnaplot.b[1243]
+    incrementradians#:=deg2rad(incrementdegrees)
+incrementradians FG:313 SG dnaplot.b[2275]
+    incrementradians#:=deg2rad(incrementdegrees)
+incrementradians FG:313 SG dnaplot.b[2281]
+    incrementradians#:=deg2rad(incrementdegrees)
+incrementstate G:314 DEF dnaplot.b[346] incrementstate=
+incrementstate G:314 LG dnaplot.b[2169]
+    TEST incrementstate<0 THEN .. ELSE ..
+incrementstate G:314 LG dnaplot.b[2176]
+    TEST incrementstate<0 THEN .. ELSE ..
+incrementstate G:314 LG dnaplot.b[2183]
+    TEST incrementstate<0 THEN .. ELSE ..
+incrementstate G:314 LG dnaplot.b[2190]
+    TEST incrementstate<0 THEN .. ELSE ..
+incrementstate G:314 LG dnaplot.b[2447] currpair:=incrementstate*4+letno
+incrementstate G:314 SG dnaplot.b[1245] incrementstate:=-1
+incrementstate G:314 SG dnaplot.b[2158] incrementstate:=-1
+incrementstate G:314 SG dnaplot.b[2170] incrementstate:=0
+incrementstate G:314 SG dnaplot.b[2177] incrementstate:=1
+incrementstate G:314 SG dnaplot.b[2184] incrementstate:=2
+incrementstate G:314 SG dnaplot.b[2191] incrementstate:=3
+incrementstate G:314 SG dnaplot.b[2448] incrementstate:=-1
+indexp G:277 DEF dnaplot.b[300] indexp=
+indexp G:277 LG dnaplot.b[2069] pushval(isxv,indexp)
+indexp G:277 LG dnaplot.b[2070] indexp:=indexp+1
+indexp G:277 LG dnaplot.b[2078] pushval(isxv,indexp)
+indexp G:277 LG dnaplot.b[2079] indexp:=indexp+1
+indexp G:277 LG dnaplot.b[2087] pushval(isxv,indexp)
+indexp G:277 LG dnaplot.b[2088] indexp:=indexp+1
+indexp G:277 LG dnaplot.b[821] pushval(isxv,indexp)
+indexp G:277 LG dnaplot.b[822] indexp:=indexp+1
+indexp G:277 LG dnaplot.b[830] pushval(isxv,indexp)
+indexp G:277 LG dnaplot.b[831] indexp:=indexp+1
+indexp G:277 LG dnaplot.b[839] pushval(isxv,indexp)
+indexp G:277 LG dnaplot.b[840] indexp:=indexp+1
+indexp G:277 SG dnaplot.b[2070] indexp:=indexp+1
+indexp G:277 SG dnaplot.b[2079] indexp:=indexp+1
+indexp G:277 SG dnaplot.b[2088] indexp:=indexp+1
+indexp G:277 SG dnaplot.b[822] indexp:=indexp+1
+indexp G:277 SG dnaplot.b[831] indexp:=indexp+1
+indexp G:277 SG dnaplot.b[840] indexp:=indexp+1
+indexp G:277 SG dnaplot.b[918] indexp:=0
+indexv G:275 DEF dnaplot.b[294] indexv=
+indexv G:275 LG dnaplot.b[1095] FOR i=1 TO indexv!0 DO..
+indexv G:275 LG dnaplot.b[1097] writef(" %i5",indexv!i)
+indexv G:275 LG dnaplot.b[1438]
+    IndexBuffer:=sys(Sys_gl,gl_GenIndexBuffer,...,...)
+indexv G:275 LG dnaplot.b[1442] freevec(indexv)
+indexv G:275 LG dnaplot.b[1677] IF indexv DO ..
+indexv G:275 LG dnaplot.b[1677] freevec(indexv)
+indexv G:275 SG dnaplot.b[1082] indexv:=ivec
+indexv G:275 SG dnaplot.b[1444] indexv:=0
+initImageWindow G:300 DEF dnaplot.b[326] initImageWindow=
+initImageWindow G:300 FN dnaplot.b[1942] LET initImageWindow()=..
+initImageWindow G:300 LG dnaplot.b[1328] initImageWindow()
+initco G:22 DEF libhdr.h[59] initco=22
+initio G:46 DEF libhdr.h[83] initio=46
+initsdl1 F:17 FN gl.b[644] LET initsdl1()=..
+input G:58 DEF libhdr.h[95] input=58
+input G:58 LG dnaplot.b[1255] stdin:=input()
+input G:58 LG dnaplot.b[2018] input()
+input G:58 LG gl.b[293] input()
+instrcount G:121 DEF libhdr.h[159] instrcount=121
+intflag G:119 DEF libhdr.h[157] intflag=119
+isrregs M:41 DEF libhdr.h[493] isrregs=41
+klibregs M:21 DEF libhdr.h[488] klibregs=21
+leftxv G:485 DEF gl.h[118] leftxv=
+leftxv G:485 LG gl.b[659] IF leftxv DO ..
+leftxv G:485 LG gl.b[659] freevec(leftxv)
+leftxv G:485 LG gl.b[902] IF leftxv!y>x DO ..
+leftxv G:485 LG gl.b[902] leftxv!y:=x
+leftxv G:485 LG gl.b[928] UNLESS leftxv&rightxv DO ..
+leftxv G:485 LG gl.b[935] leftxv!y:=upb
+leftxv G:485 LG gl.b[942] UNLESS leftxv DO ..
+leftxv G:485 LG gl.b[969] moveto(leftxv!y,y)
+leftxv G:485 LG gl.b[972] leftxv!y:=pxlysize-1
+leftxv G:485 SG gl.b[646] leftxv:=0
+leftxv G:485 SG gl.b[926] leftxv:=getvec(upb)
+letno2ch G:281 DEF dnaplot.b[307] letno2ch=
+letno2ch G:281 FN dnaplot.b[456] LET letno2ch(letno)=..
+letno2ch G:281 LG dnaplot.b[1321] wrch(letno2ch(letno))
+letno2colno F:20 FN dnaplot.b[466] LET letno2colno(letno)=..
+letno2colno F:20 LF dnaplot.b[1033]
+    drawTriangle(vsxv,isxv,@lx,@rx,@nx,letno2colno(X))
+level G:15 DEF libhdr.h[52] level=15
+lex G:473 DEF gl.h[101] lex=
+lex G:473 LG gl.b[229] lex()
+lex G:473 LG gl.b[327] lex()
+lex G:473 LG gl.b[337] lex()
+lex G:473 LG gl.b[359] lex()
+lex G:473 LG gl.b[381] lex()
+lex G:473 LG gl.b[396] lex()
+lex G:473 LG gl.b[422] lex()
+lex G:473 LG gl.b[431] lex()
+lex G:473 LG gl.b[474] lex()
+lex G:473 RT gl.b[477] LET lex()BE..
+lexval G:477 DEF gl.h[105] lexval=
+lexval G:477 LG gl.b[227] lexval
+lexval G:477 SG gl.b[531] lexval:=readflt()
+lineno G:475 DEF gl.h[103] lineno=
+lineno G:475 LG gl.b[220] writef("ERROR'ine %n: ",lineno)
+lineno G:475 LG gl.b[330] writef("line 'el file*n",lineno)
+lineno G:475 LG gl.b[480] error("line 'del file",lineno,ch)
+lineno G:475 LG gl.b[493] lineno:=lineno+1
+lineno G:475 SG gl.b[314] lineno:=1
+lineno G:475 SG gl.b[493] lineno:=lineno+1
+loadmodel G:472 DEF gl.h[97] loadmodel=
+loadmodel G:472 FN gl.b[239] LET loadmodel(filename,modelv)=..
+loadseg G:105 DEF libhdr.h[143] loadseg=105
+locatedir G:80 DEF libhdr.h[117] locatedir=80
+locateobj G:81 DEF libhdr.h[118] locateobj=81
+longjump G:16 DEF libhdr.h[53] longjump=16
+mat3mulmmm G:284 DEF dnaplot.b[310] mat3mulmmm=
+mat3mulmmm G:284 LG dnaplot.b[1045] mat3mulmmm(matrixv!XY,m,m)
+mat3mulmmm G:284 LG dnaplot.b[648] mat3mulmmm(tm,m,m)
+mat3mulmmm G:284 LG dnaplot.b[662] mat3mulmmm(tm,m,m)
+mat3mulmmm G:284 LG dnaplot.b[676] mat3mulmmm(tm,m,m)
+mat3mulmmm G:284 LG dnaplot.b[712] mat3mulmmm(m,mv,mv)
+mat3mulmmm G:284 LG dnaplot.b[716] mat3mulmmm(m,mv,mv)
+mat3mulmmm G:284 LG dnaplot.b[744] mat3mulmmm(tm,m,m)
+mat3mulmmm G:284 LG dnaplot.b[771] mat3mulmmm(tm,m,m)
+mat3mulmmm G:284 LG dnaplot.b[796] mat3mulmmm(tm,m,m)
+mat3mulmmm G:284 RT dnaplot.b[483] LET mat3mulmmm(m,p,q)BE..
+mat3mulmvv G:285 DEF dnaplot.b[311] mat3mulmvv=
+mat3mulmvv G:285 RT dnaplot.b[516] LET mat3mulmvv(m,p,q)BE..
+mat3set G:283 DEF dnaplot.b[309] mat3set=
+mat3set G:283 LG dnaplot.b[1205] mat3set(mv,f1,f0,f0,f0,f1,...)
+mat3set G:283 LG dnaplot.b[647] mat3set(tm,f1,f0,f0,f0,c,...)
+mat3set G:283 LG dnaplot.b[661] mat3set(tm,c,f0,#-s,f0,f1,...)
+mat3set G:283 LG dnaplot.b[675] mat3set(tm,c,s,f0,#-s,c,...)
+mat3set G:283 LG dnaplot.b[708] mat3set(mv,f1,f0,f0,f0,cost,...)
+mat3set G:283 LG dnaplot.b[711] mat3set(m,cosw,f0,#-sinw,f0,f1,...)
+mat3set G:283 LG dnaplot.b[715] mat3set(m,cosl,sinl,f0,#-sinl,cosl,...)
+mat3set G:283 LG dnaplot.b[741] mat3set(tm,f1,f0,f0,f0,c,...)
+mat3set G:283 LG dnaplot.b[764] mat3set(tm,c,f0,#-s,f0,f1,...)
+mat3set G:283 LG dnaplot.b[793] mat3set(tm,c,s,f0,#-s,c,...)
+mat3set G:283 RT dnaplot.b[476] LET mat3set(m,a0,a1,a2,a3,a4,a5,...)BE..
+mat4mulmvv F:24 LF dnaplot.b[1847] mat4mulmvv(m,@x,@mx)
+mat4mulmvv F:24 LF dnaplot.b[1932] mat4mulmvv(m,p1,p2)
+mat4mulmvv F:24 RT dnaplot.b[539] LET mat4mulmvv(m,p,q)BE..
+mat4set G:287 DEF dnaplot.b[313] mat4set=
+mat4set G:287 LG dnaplot.b[1481]
+    mat4set(projectionMatrix, 1.000, 0.000, 0.000, 0.000, 0.000,...)
+mat4set G:287 LG dnaplot.b[1539]
+    mat4set(workMatrix,ctn,cwn,cln, 0.000,ctw,...)
+mat4set G:287 LG dnaplot.b[1594]
+    mat4set(workMatrix, 0.000, 0.000,#- 1.000, 0.000,...,...)
+mat4set G:287 RT dnaplot.b[2570]
+    LET mat4set(m,a0,a1,a2,a3,a4,a5,...)BE..
+mat4tst F:131 RT dnaplot.b[1844]
+    LET mat4tst(m,FLT x,FLT y,FLT z,FLT w)BE..
+matrixv G:272 DEF dnaplot.b[282] matrixv=
+matrixv G:272 LG dnaplot.b[1045] mat3mulmmm(matrixv!XY,m,m)
+matrixv G:272 LG dnaplot.b[1171] matrixv!XY
+matrixv G:272 LG dnaplot.b[1203] matrixv!XY:=mv
+matrixv G:272 LG dnaplot.b[575] matrixv!XY
+matrixv G:272 LG dnaplot.b[591] matrixv!YX
+matrixv G:272 LG dnaplot.b[697] matrixv!XY
+matrixv G:272 SG dnaplot.b[1190] matrixv:=newvec(15)
+maxint M:#x7FFFFFFF DEF libhdr.h[249] maxint=minint-1
+maxy G:488 DEF gl.h[121] maxy=
+maxy G:488 LG gl.b[905] IF maxy<y DO ..
+maxy G:488 LG gl.b[965] FOR y=miny TO maxy DO..
+maxy G:488 SG gl.b[650] maxy:=0
+maxy G:488 SG gl.b[905] maxy:=y
+maxy G:488 SG gl.b[948] maxy:=-1
+mcaddrinc M:4 DEF libhdr.h[247] mcaddrinc=bytesperword
+memoryfree G:131 DEF libhdr.h[169] memoryfree=131
+minint M:#x80000000 DEF libhdr.h[248] minint=1<<bitsperword-1
+minint M:#x80000000 MAN libhdr.h[249] maxint=minint-1
+miny G:487 DEF gl.h[120] miny=
+miny G:487 LG gl.b[904] IF miny>y DO ..
+miny G:487 LG gl.b[965] FOR y=miny TO maxy DO..
+miny G:487 SG gl.b[650] miny:=0
+miny G:487 SG gl.b[904] miny:=y
+miny G:487 SG gl.b[948] miny:=pxlysize
+mkGenomeModel G:294 DEF dnaplot.b[320] mkGenomeModel=
+mkGenomeModel G:294 FN dnaplot.b[887] LET mkGenomeModel()=..
+mkGenomeModel G:294 LG dnaplot.b[1379] mkGenomeModel()
+modelchanged G:318 DEF dnaplot.b[351] modelchanged=
+modelchanged G:318 LG dnaplot.b[1373] WHILE modelchanged DO ..
+modelchanged G:318 SG dnaplot.b[1376] modelchanged:=FALSE
+modelchanged G:318 SG dnaplot.b[2464] modelchanged:=TRUE
+modelchanged G:318 SG dnaplot.b[720] modelchanged:=TRUE
+moveby G:490 DEF gl.h[124] moveby=
+moveby G:490 RT gl.b[669] LET moveby(dx,dy)BE..
+moveto G:489 DEF gl.h[123] moveto=
+moveto G:489 LG gl.b[620] moveto(x,y)
+moveto G:489 LG gl.b[669] moveto(currx+dx,curry+dy)
+moveto G:489 LG gl.b[858] moveto(x,y)
+moveto G:489 LG gl.b[969] moveto(leftxv!y,y)
+moveto G:489 RT gl.b[668] LET moveto(x,y)BE..
+muldiv G:5 DEF libhdr.h[41] muldiv=5
+newline G:84 DEF libhdr.h[121] newline=84
+newline G:84 LG dnaplot.b[1103] newline()
+newline G:84 LG dnaplot.b[1176] newline()
+newline G:84 LG dnaplot.b[1322] newline()
+newline G:84 LG dnaplot.b[1324] newline()
+newline G:84 LG dnaplot.b[1363] newline()
+newline G:84 LG dnaplot.b[1691] newline()
+newline G:84 LG dnaplot.b[1924] newline()
+newline G:84 LG dnaplot.b[2134] newline()
+newline G:84 LG dnaplot.b[2236] newline()
+newline G:84 LG dnaplot.b[2252] newline()
+newline G:84 LG dnaplot.b[2455] newline()
+newline G:84 LG dnaplot.b[2530] newline()
+newline G:84 LG dnaplot.b[2537] newline()
+newline G:84 LG dnaplot.b[2544] newline()
+newline G:84 LG dnaplot.b[2551] newline()
+newline G:84 LG dnaplot.b[2557] newline()
+newline G:84 LG dnaplot.b[875] newline()
+newline G:84 LG gl.b[222] newline()
+newpage G:120 DEF libhdr.h[158] newpage=120
+newvec G:278 DEF dnaplot.b[304] newvec=
+newvec G:278 FN dnaplot.b[372] LET newvec(n)=..
+newvec G:278 LG dnaplot.b[1189] anglesv:=newvec(15)
+newvec G:278 LG dnaplot.b[1190] matrixv:=newvec(15)
+newvec G:278 LG dnaplot.b[1193] projectionMatrix:=newvec(15)
+newvec G:278 LG dnaplot.b[1194] workMatrix:=newvec(15)
+newvec G:278 LG dnaplot.b[1201] newvec(2)
+newvec G:278 LG dnaplot.b[1202] newvec(8)
+note G:63 DEF libhdr.h[100] note=63
+notinuse M:-1 DEF libhdr.h[645] notinuse=-1
+nxt F:66 LAB gl.b[325] nxt:lex()
+output G:59 DEF libhdr.h[96] output=59
+output G:59 LG dnaplot.b[1256] stdout:=output()
+output G:59 LG dnaplot.b[2019] output()
+output G:59 LG dnaplot.b[380] output()
+packstring G:30 DEF libhdr.h[67] packstring=30
+pathfindinput G:53 DEF libhdr.h[90] pathfindinput=53
+peercom G:179 DEF libhdr.h[226] peercom=179
+pi FG:202 DEF dnaplot.b[173] FLT pi=
+pi FG:202 LG dnaplot.b[1520] rotate3l(@ctn,FLOAT direction#*pi#/ 4.000)
+pi FG:202 LG dnaplot.b[1523] rotate3w(@ctn,pi#/ 4.000)
+pi FG:202 LG dnaplot.b[1527] rotate3w(@ctn,#-pi#/ 4.000)
+pi FG:202 LG dnaplot.b[2055] degrees#*pi#/ 180.000
+pi FG:202 LG dnaplot.b[2057] radians#* 180.000#/pi
+pi FG:202 SG dnaplot.b[1182] pi#:= 3.142
+pkt_a1 M:5 DEF libhdr.h[654] pkt_a1=5
+pkt_a2 M:6 DEF libhdr.h[655] pkt_a2=6
+pkt_a3 M:7 DEF libhdr.h[656] pkt_a3=7
+pkt_a4 M:8 DEF libhdr.h[657] pkt_a4=8
+pkt_a5 M:9 DEF libhdr.h[658] pkt_a5=9
+pkt_a6 M:10 DEF libhdr.h[659] pkt_a6=10
+pkt_arg1 M:5 DEF libhdr.h[654] pkt_arg1=5
+pkt_arg2 M:6 DEF libhdr.h[655] pkt_arg2=6
+pkt_arg3 M:7 DEF libhdr.h[656] pkt_arg3=7
+pkt_arg4 M:8 DEF libhdr.h[657] pkt_arg4=8
+pkt_arg5 M:9 DEF libhdr.h[658] pkt_arg5=9
+pkt_arg6 M:10 DEF libhdr.h[659] pkt_arg6=10
+pkt_devid M:1 DEF libhdr.h[650] pkt_devid=1
+pkt_devtaskid M:1 DEF libhdr.h[650] pkt_devtaskid=1
+pkt_id M:1 DEF libhdr.h[650] pkt_id=1
+pkt_link M:0 DEF libhdr.h[649] pkt_link=0
+pkt_op M:2 DEF libhdr.h[651] pkt_op=2
+pkt_r1 M:3 DEF libhdr.h[652] pkt_r1=3
+pkt_r2 M:4 DEF libhdr.h[653] pkt_r2=4
+pkt_res1 M:3 DEF libhdr.h[652] pkt_res1=3
+pkt_res2 M:4 DEF libhdr.h[653] pkt_res2=4
+pkt_taskid M:1 DEF libhdr.h[650] pkt_taskid=1
+pkt_type M:2 DEF libhdr.h[651] pkt_type=2
+platformh FG:229 DEF dnaplot.b[230] FLT platformh=
+platformh FG:229 LG dnaplot.b[1473]
+    platformh#:=platformh#+(...#+...#+plh#*platformldot)#/ 100.000
+platformh FG:229 LG dnaplot.b[1481]
+    mat4set(projectionMatrix, 1.000, 0.000, 0.000, 0.000, 0.000,...)
+platformh FG:229 LG dnaplot.b[1496]
+    writef("The p' %7.4f)*n",platformn,platformw,platformh)
+platformh FG:229 LG dnaplot.b[1834]
+    writef("?%4.2'       ?",platformn,platformw,platformh,heading,climbangle,...)
+platformh FG:229 LG dnaplot.b[2327] pth#:=#-platformh
+platformh FG:229 SG dnaplot.b[1340] platformh#:= 0.000
+platformh FG:229 SG dnaplot.b[1341] platformh#:= 0.000
+platformh FG:229 SG dnaplot.b[1473]
+    platformh#:=platformh#+(...#+...#+plh#*platformldot)#/ 100.000
+platformh FG:229 SG dnaplot.b[2368] platformh#:= 0.000
+platformldot FG:232 DEF dnaplot.b[234] FLT platformldot=
+platformldot FG:232 LG dnaplot.b[1467]
+    platformn#:=platformn#+(...#+...#+pln#*platformldot)#/ 100.000
+platformldot FG:232 LG dnaplot.b[1470]
+    platformw#:=platformw#+(...#+...#+plw#*platformldot)#/ 100.000
+platformldot FG:232 LG dnaplot.b[1473]
+    platformh#:=platformh#+(...#+...#+plh#*platformldot)#/ 100.000
+platformldot FG:232 LG dnaplot.b[1834]
+    writef("?%4.2'       ?",platformn,platformw,platformh,heading,climbangle,...)
+platformldot FG:232 LG dnaplot.b[2216]
+    platformldot#:=platformldot#+ 0.050
+platformldot FG:232 LG dnaplot.b[2220]
+    platformldot#:=platformldot#- 0.050
+platformldot FG:232 SG dnaplot.b[1345] platformldot#:= 0.000
+platformldot FG:232 SG dnaplot.b[2216]
+    platformldot#:=platformldot#+ 0.050
+platformldot FG:232 SG dnaplot.b[2220]
+    platformldot#:=platformldot#- 0.050
+platformn FG:227 DEF dnaplot.b[228] FLT platformn=
+platformn FG:227 LG dnaplot.b[1467]
+    platformn#:=platformn#+(...#+...#+pln#*platformldot)#/ 100.000
+platformn FG:227 LG dnaplot.b[1481]
+    mat4set(projectionMatrix, 1.000, 0.000, 0.000, 0.000, 0.000,...)
+platformn FG:227 LG dnaplot.b[1496]
+    writef("The p' %7.4f)*n",platformn,platformw,platformh)
+platformn FG:227 LG dnaplot.b[1834]
+    writef("?%4.2'       ?",platformn,platformw,platformh,heading,climbangle,...)
+platformn FG:227 LG dnaplot.b[2325] ptn#:=#-platformn
+platformn FG:227 SG dnaplot.b[1340] platformn#:=#- 2822.000
+platformn FG:227 SG dnaplot.b[1341] platformn#:=#- 700.000
+platformn FG:227 SG dnaplot.b[1467]
+    platformn#:=platformn#+(...#+...#+pln#*platformldot)#/ 100.000
+platformn FG:227 SG dnaplot.b[2366] platformn#:= 0.000
+platformtdot FG:230 DEF dnaplot.b[232] FLT platformtdot=
+platformtdot FG:230 LG dnaplot.b[1467]
+    platformn#:=platformn#+(...#+...#+pln*platformldot)#/ 100.000
+platformtdot FG:230 LG dnaplot.b[1470]
+    platformw#:=platformw#+(...#+...#+plw*platformldot)#/ 100.000
+platformtdot FG:230 LG dnaplot.b[1473]
+    platformh#:=platformh#+(...#+...#+plh*platformldot)#/ 100.000
+platformtdot FG:230 LG dnaplot.b[1834]
+    writef("?%4.2'       ?",platformn,platformw,platformh,heading,climbangle,...)
+platformtdot FG:230 LG dnaplot.b[2200]
+    platformtdot#:=platformtdot#+ 0.050
+platformtdot FG:230 LG dnaplot.b[2204]
+    platformtdot#:=platformtdot#- 0.050
+platformtdot FG:230 SG dnaplot.b[1343] platformtdot#:= 10.000
+platformtdot FG:230 SG dnaplot.b[2200]
+    platformtdot#:=platformtdot#+ 0.050
+platformtdot FG:230 SG dnaplot.b[2204]
+    platformtdot#:=platformtdot#- 0.050
+platformw FG:228 DEF dnaplot.b[229] FLT platformw=
+platformw FG:228 LG dnaplot.b[1470]
+    platformw#:=platformw#+(...#+...#+plw#*platformldot)#/ 100.000
+platformw FG:228 LG dnaplot.b[1481]
+    mat4set(projectionMatrix, 1.000, 0.000, 0.000, 0.000, 0.000,...)
+platformw FG:228 LG dnaplot.b[1496]
+    writef("The p' %7.4f)*n",platformn,platformw,platformh)
+platformw FG:228 LG dnaplot.b[1834]
+    writef("?%4.2'       ?",platformn,platformw,platformh,heading,climbangle,...)
+platformw FG:228 LG dnaplot.b[2326] ptw#:=#-platformw
+platformw FG:228 SG dnaplot.b[1340] platformw#:= 0.000
+platformw FG:228 SG dnaplot.b[1341] platformw#:= 0.000
+platformw FG:228 SG dnaplot.b[1470]
+    platformw#:=platformw#+(...#+...#+plw#*platformldot)#/ 100.000
+platformw FG:228 SG dnaplot.b[2367] platformw#:= 0.000
+platformwdot FG:231 DEF dnaplot.b[233] FLT platformwdot=
+platformwdot FG:231 LG dnaplot.b[1467]
+    platformn#:=platformn#+(...#+...#+pln*platformldot)#/ 100.000
+platformwdot FG:231 LG dnaplot.b[1470]
+    platformw#:=platformw#+(...#+...#+plw*platformldot)#/ 100.000
+platformwdot FG:231 LG dnaplot.b[1473]
+    platformh#:=platformh#+(...#+...#+plh*platformldot)#/ 100.000
+platformwdot FG:231 LG dnaplot.b[1834]
+    writef("?%4.2'       ?",platformn,platformw,platformh,heading,climbangle,...)
+platformwdot FG:231 LG dnaplot.b[2208]
+    platformwdot#:=platformwdot#+ 0.050
+platformwdot FG:231 LG dnaplot.b[2212]
+    platformwdot#:=platformwdot#- 0.050
+platformwdot FG:231 SG dnaplot.b[1344] platformwdot#:= 0.000
+platformwdot FG:231 SG dnaplot.b[2208]
+    platformwdot#:=platformwdot#+ 0.050
+platformwdot FG:231 SG dnaplot.b[2212]
+    platformwdot#:=platformwdot#- 0.050
+plh FG:244 DEF dnaplot.b[243] FLT plh=
+plh FG:244 LG dnaplot.b[1473]
+    platformh#:=platformh#+(...#+...#+plh#*platformldot)#/ 100.000
+plh FG:244 LG dnaplot.b[1509] clh#:=plh
+plh FG:244 LG dnaplot.b[2241]
+    writef("pln=%'t=%6.4f*n",pln,plw,plh,prldot)
+plh FG:244 SG dnaplot.b[1351] plh#:= 1.000
+plh FG:244 SG dnaplot.b[2333] plh#:= 1.000
+plh FG:244 SG dnaplot.b[2344] plh#:= 1.000
+pln FG:242 DEF dnaplot.b[243] FLT pln=
+pln FG:242 LG dnaplot.b[1467]
+    platformn#:=platformn#+(...#+...#+pln#*platformldot)#/ 100.000
+pln FG:242 LG dnaplot.b[1509] cln#:=pln
+pln FG:242 LG dnaplot.b[2241]
+    writef("pln=%'t=%6.4f*n",pln,plw,plh,prldot)
+pln FG:242 SG dnaplot.b[1351] pln#:= 0.000
+pln FG:242 SG dnaplot.b[2333] pln#:= 0.000
+pln FG:242 SG dnaplot.b[2344] pln#:= 0.000
+plotf G:510 DEF gl.h[148] plotf=
+plotf G:510 RT gl.b[624] LET plotf(x,y,form,a,b,c,d,...)BE..
+plotfstr G:511 DEF gl.h[149] plotfstr=
+plotfstr G:511 LG gl.b[630] plotfstr%0:=0
+plotfstr G:511 LG gl.b[634] drawstring(x,y,plotfstr)
+plotfstr G:511 LG gl.b[638] plotfstr%0+1
+plotfstr G:511 LG gl.b[639] plotfstr%strlen:=ch
+plotfstr G:511 LG gl.b[640] plotfstr%0:=strlen
+plotfstr G:511 SG gl.b[629] plotfstr:=s
+plotwrch G:507 DEF gl.h[143] plotwrch=
+plotwrch G:507 LG gl.b[631] wrch:=plotwrch
+plotwrch G:507 RT gl.b[637] LET plotwrch(ch)BE..
+plw FG:243 DEF dnaplot.b[243] FLT plw=
+plw FG:243 LG dnaplot.b[1470]
+    platformw#:=platformw#+(...#+...#+plw#*platformldot)#/ 100.000
+plw FG:243 LG dnaplot.b[1509] clw#:=plw
+plw FG:243 LG dnaplot.b[2241]
+    writef("pln=%'t=%6.4f*n",pln,plw,plh,prldot)
+plw FG:243 SG dnaplot.b[1351] plw#:= 0.000
+plw FG:243 SG dnaplot.b[2333] plw#:= 0.000
+plw FG:243 SG dnaplot.b[2344] plw#:= 0.000
+point G:64 DEF libhdr.h[101] point=64
+pollingch M:-3 DEF libhdr.h[253] pollingch=-3
+prldot FG:235 DEF dnaplot.b[239] FLT prldot=
+prldot FG:235 LG dnaplot.b[1460] rotate3(@ptn,prtdot,prwdot,prldot)
+prldot FG:235 LG dnaplot.b[2241]
+    writef("pln=%'t=%6.4f*n",pln,plw,plh,prldot)
+prldot FG:235 LG dnaplot.b[2286] prldot#:=prldot#- 0.000
+prldot FG:235 LG dnaplot.b[2287] IF prldot#<- 0.100 DO ..
+prldot FG:235 LG dnaplot.b[2292] prldot#:=prldot#+ 0.000
+prldot FG:235 LG dnaplot.b[2293] IF prldot#> 0.100 DO ..
+prldot FG:235 SG dnaplot.b[1361] prldot#:= 0.000
+prldot FG:235 SG dnaplot.b[1456] prldot#:=tstanglel
+prldot FG:235 SG dnaplot.b[2286] prldot#:=prldot#- 0.000
+prldot FG:235 SG dnaplot.b[2287] prldot#:=#- 0.100
+prldot FG:235 SG dnaplot.b[2292] prldot#:=prldot#+ 0.000
+prldot FG:235 SG dnaplot.b[2293] prldot#:= 0.100
+prmat3 G:286 DEF dnaplot.b[312] prmat3=
+prmat3 G:286 LG dnaplot.b[1513] prmat3(@ptn)
+prmat3 G:286 LG dnaplot.b[2529] prmat3(m)
+prmat3 G:286 LG dnaplot.b[2536] prmat3(m)
+prmat3 G:286 LG dnaplot.b[2543] prmat3(m)
+prmat3 G:286 LG dnaplot.b[2550] prmat3(m)
+prmat3 G:286 LG dnaplot.b[2556] prmat3(m)
+prmat3 G:286 RT dnaplot.b[2582] LET prmat3(m)BE..
+prmat4 G:288 DEF dnaplot.b[314] prmat4=
+prmat4 G:288 LG dnaplot.b[1864] prmat4(m)
+prmat4 G:288 RT dnaplot.b[2589] LET prmat4(m)BE..
+processevents G:311 DEF dnaplot.b[339] processevents=
+processevents G:311 LG dnaplot.b[1367] processevents()
+processevents G:311 RT dnaplot.b[2137] LET processevents()BE..
+projectionMatrix G:260 DEF dnaplot.b[261] projectionMatrix=
+projectionMatrix G:260 LG dnaplot.b[1481]
+    mat4set(projectionMatrix, 1.000, 0.000, 0.000, 0.000, 0.000,...)
+projectionMatrix G:260 LG dnaplot.b[1499]
+    tstprojectionmatrix(projectionMatrix)
+projectionMatrix G:260 LG dnaplot.b[1545]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+projectionMatrix G:260 LG dnaplot.b[1577]
+    tstprojectionmatrix(projectionMatrix)
+projectionMatrix G:260 LG dnaplot.b[1599]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+projectionMatrix G:260 LG dnaplot.b[1604]
+    tstprojectionmatrix(projectionMatrix)
+projectionMatrix G:260 LG dnaplot.b[1621]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+projectionMatrix G:260 LG dnaplot.b[1626]
+    tstprojectionmatrix(projectionMatrix)
+projectionMatrix G:260 LG dnaplot.b[1632]
+    sys(Sys_gl,gl_UniformMatrix4fv,MatrixLoc,glprog,projectionMatrix)
+projectionMatrix G:260 SG dnaplot.b[1193] projectionMatrix:=newvec(15)
+prpair G:290 DEF dnaplot.b[316] prpair=
+prpair G:290 LG dnaplot.b[1167] prpair(XY)
+prpair G:290 LG dnaplot.b[2467] prpair(currpair)
+prpair G:290 RT dnaplot.b[1169] LET prpair(XY)BE..
+prpairs G:289 DEF dnaplot.b[315] prpairs=
+prpairs G:289 RT dnaplot.b[1167] LET prpairs()BE..
+prtdot FG:233 DEF dnaplot.b[237] FLT prtdot=
+prtdot FG:233 LG dnaplot.b[1460] rotate3(@ptn,prtdot,prwdot,prldot)
+prtdot FG:233 LG dnaplot.b[2237]
+    writef("ptn=%'tion=%n*n",ptn,ptw,pth,prtdot,direction)
+prtdot FG:233 LG dnaplot.b[2310] prtdot#:=prtdot#- 0.000
+prtdot FG:233 LG dnaplot.b[2311] IF prtdot#<- 0.100 DO ..
+prtdot FG:233 LG dnaplot.b[2316] prtdot#:=prtdot#+ 0.000
+prtdot FG:233 LG dnaplot.b[2317] IF prtdot#> 0.100 DO ..
+prtdot FG:233 SG dnaplot.b[1361] prtdot#:= 0.000
+prtdot FG:233 SG dnaplot.b[1456] prtdot#:=tstanglet
+prtdot FG:233 SG dnaplot.b[2310] prtdot#:=prtdot#- 0.000
+prtdot FG:233 SG dnaplot.b[2311] prtdot#:=#- 0.100
+prtdot FG:233 SG dnaplot.b[2316] prtdot#:=prtdot#+ 0.000
+prtdot FG:233 SG dnaplot.b[2317] prtdot#:= 0.100
+prv4 G:304 DEF dnaplot.b[331] prv4=
+prv4 G:304 RT dnaplot.b[2597] LET prv4(v)BE..
+prwdot FG:234 DEF dnaplot.b[238] FLT prwdot=
+prwdot FG:234 LG dnaplot.b[1460] rotate3(@ptn,prtdot,prwdot,prldot)
+prwdot FG:234 LG dnaplot.b[2239]
+    writef("pwn=%'t=%6.4f*n",pwn,pww,pwh,prwdot)
+prwdot FG:234 LG dnaplot.b[2298] prwdot#:=prwdot#- 0.000
+prwdot FG:234 LG dnaplot.b[2299] IF prwdot#<- 0.100 DO ..
+prwdot FG:234 LG dnaplot.b[2304] prwdot#:=prwdot#+ 0.000
+prwdot FG:234 LG dnaplot.b[2305] IF prwdot#> 0.100 DO ..
+prwdot FG:234 SG dnaplot.b[1361] prwdot#:= 0.000
+prwdot FG:234 SG dnaplot.b[1456] prwdot#:=tstanglew
+prwdot FG:234 SG dnaplot.b[2298] prwdot#:=prwdot#- 0.000
+prwdot FG:234 SG dnaplot.b[2299] prwdot#:=#- 0.100
+prwdot FG:234 SG dnaplot.b[2304] prwdot#:=prwdot#+ 0.000
+prwdot FG:234 SG dnaplot.b[2305] prwdot#:= 0.100
+pth FG:238 DEF dnaplot.b[241] FLT pth=
+pth FG:238 LG dnaplot.b[1473]
+    platformh#:=platformh#+(...#+...#+plh*platformldot)#/ 100.000
+pth FG:238 LG dnaplot.b[1507] cth#:=pth
+pth FG:238 LG dnaplot.b[1713] pth
+pth FG:238 LG dnaplot.b[1717] pth
+pth FG:238 LG dnaplot.b[1823] wh2#:=#-pth#*wn1#+r*wh1
+pth FG:238 LG dnaplot.b[1828] climbangle:=FIX rad2deg(sys(Sys_flt,...))
+pth FG:238 LG dnaplot.b[2237]
+    writef("ptn=%'tion=%n*n",ptn,ptw,pth,prtdot,direction)
+pth FG:238 LG dnaplot.b[2329]
+    IF ptn#*ptn#+ptw#*ptw#+pth#*pth#< 1.000 DO ..
+pth FG:238 SG dnaplot.b[1349] pth#:= 0.000
+pth FG:238 SG dnaplot.b[2327] pth#:=#-platformh
+pth FG:238 SG dnaplot.b[2331] pth#:= 0.000
+pth FG:238 SG dnaplot.b[2342] pth#:= 0.000
+ptn FG:236 DEF dnaplot.b[241] FLT ptn=
+ptn FG:236 LG dnaplot.b[1467]
+    platformn#:=platformn#+(...#+...#+pln*platformldot)#/ 100.000
+ptn FG:236 LG dnaplot.b[1507] ctn#:=ptn
+ptn FG:236 LG dnaplot.b[1711] ptn
+ptn FG:236 LG dnaplot.b[1715] ptn
+ptn FG:236 LG dnaplot.b[1727] sys(Sys_flt,fl_sqrt,ptn#*ptn#+ptw*ptw)
+ptn FG:236 LG dnaplot.b[1815] wn1#:=(ptn#*pwn#+ptw*pww)#/r
+ptn FG:236 LG dnaplot.b[1816] ww1#:=(#-ptw#*pwn#+ptn#*pww)#/r
+ptn FG:236 LG dnaplot.b[1828] climbangle:=FIX rad2deg(sys(Sys_flt,...))
+ptn FG:236 LG dnaplot.b[1829] heading:=FIX rad2deg(sys(Sys_flt,...))
+ptn FG:236 LG dnaplot.b[2237]
+    writef("ptn=%'tion=%n*n",ptn,ptw,pth,prtdot,direction)
+ptn FG:236 LG dnaplot.b[2329]
+    IF ptn#*ptn#+ptw*ptw#+pth*pth#< 1.000 DO ..
+ptn FG:236 LG dnaplot.b[2338] pww#:=ptn
+ptn FG:236 LLG dnaplot.b[1446] standardiseM3(@ptn)
+ptn FG:236 LLG dnaplot.b[1460] rotate3(@ptn,prtdot,prwdot,prldot)
+ptn FG:236 LLG dnaplot.b[1513] prmat3(@ptn)
+ptn FG:236 LLG dnaplot.b[2348] standardiseM3(@ptn)
+ptn FG:236 SG dnaplot.b[1349] ptn#:= 1.000
+ptn FG:236 SG dnaplot.b[2325] ptn#:=#-platformn
+ptn FG:236 SG dnaplot.b[2331] ptn#:= 1.000
+ptn FG:236 SG dnaplot.b[2342] ptn#:= 0.000
+ptw FG:237 DEF dnaplot.b[241] FLT ptw=
+ptw FG:237 LG dnaplot.b[1470]
+    platformw#:=platformw#+(...#+...#+plw*platformldot)#/ 100.000
+ptw FG:237 LG dnaplot.b[1507] ctw#:=ptw
+ptw FG:237 LG dnaplot.b[1712] ptw
+ptw FG:237 LG dnaplot.b[1716] ptw
+ptw FG:237 LG dnaplot.b[1727] sys(Sys_flt,fl_sqrt,ptn#*ptn#+ptw#*ptw)
+ptw FG:237 LG dnaplot.b[1815] wn1#:=(ptn#*pwn#+ptw#*pww)#/r
+ptw FG:237 LG dnaplot.b[1816] ww1#:=(#-ptw#*pwn#+ptn*pww)#/r
+ptw FG:237 LG dnaplot.b[1829] heading:=FIX rad2deg(sys(Sys_flt,...))
+ptw FG:237 LG dnaplot.b[2237]
+    writef("ptn=%'tion=%n*n",ptn,ptw,pth,prtdot,direction)
+ptw FG:237 LG dnaplot.b[2329]
+    IF ptn#*ptn#+ptw#*ptw#+pth*pth#< 1.000 DO ..
+ptw FG:237 LG dnaplot.b[2337] pwn#:=#-ptw
+ptw FG:237 SG dnaplot.b[1349] ptw#:= 0.000
+ptw FG:237 SG dnaplot.b[2326] ptw#:=#-platformw
+ptw FG:237 SG dnaplot.b[2331] ptw#:= 0.000
+ptw FG:237 SG dnaplot.b[2342] ptw#:= 1.000
+pushval G:279 DEF dnaplot.b[305] pushval=
+pushval G:279 LG dnaplot.b[1076] pushval(@dupb,4)
+pushval G:279 LG dnaplot.b[1077] pushval(@dupb,ivec!0)
+pushval G:279 LG dnaplot.b[1078] pushval(@dupb,0)
+pushval G:279 LG dnaplot.b[2065] pushval(vsxv,a!0)
+pushval G:279 LG dnaplot.b[2066] pushval(vsxv,a!1)
+pushval G:279 LG dnaplot.b[2067] pushval(vsxv,a!2)
+pushval G:279 LG dnaplot.b[2068] pushval(vsxv,colno)
+pushval G:279 LG dnaplot.b[2069] pushval(isxv,indexp)
+pushval G:279 LG dnaplot.b[2074] pushval(vsxv,b!0)
+pushval G:279 LG dnaplot.b[2075] pushval(vsxv,b!1)
+pushval G:279 LG dnaplot.b[2076] pushval(vsxv,b!2)
+pushval G:279 LG dnaplot.b[2077] pushval(vsxv,colno)
+pushval G:279 LG dnaplot.b[2078] pushval(isxv,indexp)
+pushval G:279 LG dnaplot.b[2083] pushval(vsxv,c!0)
+pushval G:279 LG dnaplot.b[2084] pushval(vsxv,c!1)
+pushval G:279 LG dnaplot.b[2085] pushval(vsxv,c!2)
+pushval G:279 LG dnaplot.b[2086] pushval(vsxv,colno)
+pushval G:279 LG dnaplot.b[2087] pushval(isxv,indexp)
+pushval G:279 LG dnaplot.b[817] pushval(vsxv,a!0)
+pushval G:279 LG dnaplot.b[818] pushval(vsxv,a!1)
+pushval G:279 LG dnaplot.b[819] pushval(vsxv,a!2)
+pushval G:279 LG dnaplot.b[820] pushval(vsxv,colno)
+pushval G:279 LG dnaplot.b[821] pushval(isxv,indexp)
+pushval G:279 LG dnaplot.b[826] pushval(vsxv,b!0)
+pushval G:279 LG dnaplot.b[827] pushval(vsxv,b!1)
+pushval G:279 LG dnaplot.b[828] pushval(vsxv,b!2)
+pushval G:279 LG dnaplot.b[829] pushval(vsxv,colno)
+pushval G:279 LG dnaplot.b[830] pushval(isxv,indexp)
+pushval G:279 LG dnaplot.b[835] pushval(vsxv,c!0)
+pushval G:279 LG dnaplot.b[836] pushval(vsxv,c!1)
+pushval G:279 LG dnaplot.b[837] pushval(vsxv,c!2)
+pushval G:279 LG dnaplot.b[838] pushval(vsxv,colno)
+pushval G:279 LG dnaplot.b[839] pushval(isxv,indexp)
+pushval G:279 LG dnaplot.b[864] pushval(sxv,-1)
+pushval G:279 LG dnaplot.b[878] pushval(sxv,0)
+pushval G:279 LG dnaplot.b[879] pushval(sxv,1)
+pushval G:279 LG dnaplot.b[880] pushval(sxv,2)
+pushval G:279 LG dnaplot.b[881] pushval(sxv,3)
+pushval G:279 RT dnaplot.b[398] LET pushval(sxv,val)BE..
+put_record G:72 DEF libhdr.h[109] put_record=72
+putword G:33 DEF libhdr.h[70] putword=33
+pwh FG:241 DEF dnaplot.b[242] FLT pwh=
+pwh FG:241 LG dnaplot.b[1473]
+    platformh#:=platformh#+(...#+...#+plh*platformldot)#/ 100.000
+pwh FG:241 LG dnaplot.b[1508] cwh#:=pwh
+pwh FG:241 LG dnaplot.b[1721] pwh
+pwh FG:241 LG dnaplot.b[1725] pwh
+pwh FG:241 LG dnaplot.b[1817] wh1#:=pwh
+pwh FG:241 LG dnaplot.b[2239]
+    writef("pwn=%'t=%6.4f*n",pwn,pww,pwh,prwdot)
+pwh FG:241 SG dnaplot.b[1350] pwh#:= 0.000
+pwh FG:241 SG dnaplot.b[2332] pwh#:= 0.000
+pwh FG:241 SG dnaplot.b[2339] pwh#:= 0.000
+pwh FG:241 SG dnaplot.b[2343] pwh#:= 0.000
+pwn FG:239 DEF dnaplot.b[242] FLT pwn=
+pwn FG:239 LG dnaplot.b[1467]
+    platformn#:=platformn#+(...#+...#+pln*platformldot)#/ 100.000
+pwn FG:239 LG dnaplot.b[1508] cwn#:=pwn
+pwn FG:239 LG dnaplot.b[1719] pwn
+pwn FG:239 LG dnaplot.b[1723] pwn
+pwn FG:239 LG dnaplot.b[1815] wn1#:=(ptn#*pwn#+ptw*pww)#/r
+pwn FG:239 LG dnaplot.b[1816] ww1#:=(#-ptw#*pwn#+ptn*pww)#/r
+pwn FG:239 LG dnaplot.b[2239]
+    writef("pwn=%'t=%6.4f*n",pwn,pww,pwh,prwdot)
+pwn FG:239 LG dnaplot.b[2340] IF pwn#*pwn#+pww*pww#< 1.000 DO ..
+pwn FG:239 SG dnaplot.b[1350] pwn#:= 0.000
+pwn FG:239 SG dnaplot.b[2332] pwn#:= 0.000
+pwn FG:239 SG dnaplot.b[2337] pwn#:=#-ptw
+pwn FG:239 SG dnaplot.b[2343] pwn#:= 1.000
+pww FG:240 DEF dnaplot.b[242] FLT pww=
+pww FG:240 LG dnaplot.b[1470]
+    platformw#:=platformw#+(...#+...#+plw*platformldot)#/ 100.000
+pww FG:240 LG dnaplot.b[1508] cww#:=pww
+pww FG:240 LG dnaplot.b[1720] pww
+pww FG:240 LG dnaplot.b[1724] pww
+pww FG:240 LG dnaplot.b[1815] wn1#:=(ptn#*pwn#+ptw#*pww)#/r
+pww FG:240 LG dnaplot.b[1816] ww1#:=(#-ptw#*pwn#+ptn#*pww)#/r
+pww FG:240 LG dnaplot.b[2239]
+    writef("pwn=%'t=%6.4f*n",pwn,pww,pwh,prwdot)
+pww FG:240 LG dnaplot.b[2340] IF pwn#*pwn#+pww#*pww#< 1.000 DO ..
+pww FG:240 SG dnaplot.b[1350] pww#:= 1.000
+pww FG:240 SG dnaplot.b[2332] pww#:= 1.000
+pww FG:240 SG dnaplot.b[2338] pww#:=ptn
+pww FG:240 SG dnaplot.b[2343] pww#:= 0.000
+pxlrgba F:18 FN gl.b[655] LET pxlrgba(r,g,b,a)=..
+pxlv G:480 DEF gl.h[111] pxlv=
+pxlv G:480 LG gl.b[849] pxlv!(pxlxsize*y+x):=currcolour
+pxlv G:480 LG gl.b[854] FOR p=pxlv TO pxlxsize*pxlysize+pxlv-1 DO..
+pxlxsize G:478 DEF gl.h[109] pxlxsize=
+pxlxsize G:478 LG gl.b[848] IF 0<=x&x<pxlxsize&0<=y&y<pxlysize DO ..
+pxlxsize G:478 LG gl.b[849] pxlv!(pxlxsize*y+x):=currcolour
+pxlxsize G:478 LG gl.b[854] FOR p=pxlv TO pxlxsize*pxlysize+pxlv-1 DO..
+pxlysize G:479 DEF gl.h[110] pxlysize=
+pxlysize G:479 LG gl.b[848] IF 0<=x&x<pxlxsize&0<=y&y<pxlysize DO ..
+pxlysize G:479 LG gl.b[854] FOR p=pxlv TO pxlxsize*pxlysize+pxlv-1 DO..
+pxlysize G:479 LG gl.b[900] IF 0<=y&y<pxlysize DO ..
+pxlysize G:479 LG gl.b[924] pxlysize-1
+pxlysize G:479 LG gl.b[929] sawritef("Unabl'ize=%i3*n",pxlysize)
+pxlysize G:479 LG gl.b[948] miny:=pxlysize
+pxlysize G:479 LG gl.b[972] leftxv!y:=pxlysize-1
+qpkt G:161 DEF libhdr.h[213] qpkt=161
+rad2deg G:302 DEF dnaplot.b[328] rad2deg=
+rad2deg G:302 FN dnaplot.b[2057] LET rad2deg(FLT radians)=..
+rad2deg G:302 LG dnaplot.b[1172]
+    writef("%s an'f %7.1f*n",XY2str(XY),rad2deg(av!0),rad2deg(av!1),rad2deg(av!2))
+rad2deg G:302 LG dnaplot.b[1826]
+    bankangle:=FIX rad2deg(sys(Sys_flt,...))
+rad2deg G:302 LG dnaplot.b[1828]
+    climbangle:=FIX rad2deg(sys(Sys_flt,...))
+rad2deg G:302 LG dnaplot.b[1829] heading:=FIX rad2deg(sys(Sys_flt,...))
+rad2deg G:302 LG dnaplot.b[2410]
+    writef("%s %9'f %9.6f*n",XY2str(XY),rad2deg(av!0),rad2deg(av!1),rad2deg(av!2))
+rad2deg G:302 LG dnaplot.b[2424] FIX rad2deg(sys(Sys_flt,fl_atan2,y,x))
+ramstream P:10 LOC dnaplot.b[2022] LET ramstream=findinoutput("RAM:")
+randno G:34 DEF libhdr.h[71] randno=34
+randno G:34 LG dnaplot.b[2435] FLOAT (randno(#x1E8481)-1000000)
+randseed G:127 DEF libhdr.h[165] randseed=127
+rdGenome G:293 DEF dnaplot.b[319] rdGenome=
+rdGenome G:293 FN dnaplot.b[844] LET rdGenome(filename)=..
+rdGenome G:293 LG dnaplot.b[1286] genomev:=rdGenome(fromfilename)
+rdangles G:295 DEF dnaplot.b[321] rdangles=
+rdangles G:295 LG dnaplot.b[1279] rdangles(anglesfilename)
+rdangles G:295 RT dnaplot.b[1110] LET rdangles(filename)BE..
+rdargs G:102 DEF libhdr.h[140] rdargs=102
+rdargs G:102 LG dnaplot.b[1258]
+    UNLESS rdargs("FROM,'Y/s,-d/s",argv,50) DO ..
+rdargs2 G:26 DEF libhdr.h[63] rdargs2=26
+rdch G:38 DEF libhdr.h[75] rdch=38
+rdch G:38 LG dnaplot.b[1118] rdch()
+rdch G:38 LG dnaplot.b[1126] ch:=rdch()
+rdch G:38 LG dnaplot.b[1139] ch:=rdch()
+rdch G:38 LG dnaplot.b[2033] rdch()
+rdch G:38 LG dnaplot.b[2383] ch:=rdch()
+rdch G:38 LG dnaplot.b[2391] ch:=rdch()
+rdch G:38 LG dnaplot.b[859] capitalch(rdch())
+rdch G:38 LG dnaplot.b[872] ch:=rdch()
+rdch G:38 LG gl.b[323] ch:=rdch()
+rdch G:38 LG gl.b[481] ch:=rdch()
+rdch G:38 LG gl.b[489] ch:=rdch()
+rdch G:38 LG gl.b[496] ch:=rdch()
+rdch G:38 LG gl.b[500] ch:=rdch()
+rdch G:38 LG gl.b[506] ch:=rdch()
+rdch G:38 LG gl.b[509] ch:=rdch()
+rdch G:38 LG gl.b[510] ch:=rdch()
+rdch G:38 LG gl.b[511] ch:=rdch()
+rdch G:38 LG gl.b[512] ch:=rdch()
+rdch G:38 LG gl.b[513] ch:=rdch()
+rdch G:38 LG gl.b[514] ch:=rdch()
+rdch G:38 LG gl.b[515] ch:=rdch()
+rdch G:38 LG gl.b[516] ch:=rdch()
+rdch G:38 LG gl.b[517] ch:=rdch()
+rdch G:38 LG gl.b[520] ch:=rdch()
+rdch G:38 LG gl.b[521] ch:=rdch()
+rdch G:38 LG gl.b[524] ch:=rdch()
+rdch G:38 LG gl.b[537] ch:=rdch()
+rdflt32 F:10 FN gl.b[233] LET rdflt32()=..
+rdflt32 F:10 LF gl.b[376] vv!vpos:=rdflt32()
+rditem G:103 DEF libhdr.h[141] rditem=103
+rdnum F:9 FN gl.b[226] LET rdnum()=..
+rdnum F:9 LF gl.b[234] rdnum()
+rdnum F:9 LF gl.b[338] n:=FIX rdnum()
+rdnum F:9 LF gl.b[382] ivupb:=FIX rdnum()
+rdnum F:9 LF gl.b[397] dvupb:=FIX rdnum()
+rdnum F:9 LF gl.b[423] dv!(dpos+0):=FIX rdnum()
+rdnum F:9 LF gl.b[424] dv!(dpos+1):=FIX rdnum()
+rdnum F:9 LF gl.b[425] dv!(dpos+2):=FIX rdnum()
+rdnum F:9 LF gl.b[447] iv!ipos:=FIX rdnum()
+readflt G:74 DEF libhdr.h[111] readflt=74
+readflt G:74 LG dnaplot.b[1157] an#:=deg2rad(readflt())
+readflt G:74 LG dnaplot.b[1158] aw#:=deg2rad(readflt())
+readflt G:74 LG dnaplot.b[1159] ah#:=deg2rad(readflt())
+readflt G:74 LG gl.b[531] lexval:=readflt()
+readn G:83 DEF libhdr.h[120] readn=83
+readwords G:44 DEF libhdr.h[81] readwords=44
+recordnote G:70 DEF libhdr.h[107] recordnote=70
+recordpoint G:69 DEF libhdr.h[106] recordpoint=69
+release G:159 DEF libhdr.h[211] release=159
+renamefile G:77 DEF libhdr.h[114] renamefile=77
+result2 G:10 DEF libhdr.h[46] result2=10
+result2 G:10 LG dnaplot.b[1961] screenysize:=result2
+result2 G:10 LG gl.b[138] screenysize:=result2
+result2 G:10 LG gl.b[532] IF result2 DO ..
+result2 G:10 SG gl.b[157] result2:=screenysize
+resumeco G:21 DEF libhdr.h[58] resumeco=21
+ret F:65 LAB gl.b[466] ret:IF instream DO ..
+ret F:65 LF gl.b[332] GOTO ret
+ret F:65 LF gl.b[346] GOTO ret
+ret F:65 LF gl.b[365] GOTO ret
+ret F:65 LF gl.b[373] GOTO ret
+ret F:65 LF gl.b[389] GOTO ret
+ret F:65 LF gl.b[403] GOTO ret
+ret F:65 LF gl.b[414] GOTO ret
+ret F:65 LF gl.b[420] GOTO ret
+ret F:65 LF gl.b[437] GOTO ret
+ret F:65 LF gl.b[444] GOTO ret
+ret F:65 LF gl.b[459] GOTO ret
+returnFromCallback G:454 DEF gl.h[64] returnFromCallback=
+return_hard M:10 DEF libhdr.h[626] return_hard=10
+return_hard M:10 MAN libhdr.h[631] cli_initialfaillevel=return_hard
+return_ok M:0 DEF libhdr.h[628] return_ok=0
+return_severe M:20 DEF libhdr.h[625] return_severe=20
+return_soft M:5 DEF libhdr.h[627] return_soft=5
+returnpkt G:169 DEF libhdr.h[218] returnpkt=169
+rewindstream G:65 DEF libhdr.h[102] rewindstream=65
+rightxv G:486 DEF gl.h[119] rightxv=
+rightxv G:486 LG gl.b[660] IF rightxv DO ..
+rightxv G:486 LG gl.b[660] freevec(rightxv)
+rightxv G:486 LG gl.b[903] IF rightxv!y<x DO ..
+rightxv G:486 LG gl.b[903] rightxv!y:=x
+rightxv G:486 LG gl.b[928] UNLESS leftxv&rightxv DO ..
+rightxv G:486 LG gl.b[935] rightxv!y:=0
+rightxv G:486 LG gl.b[970] drawto(rightxv!y,y)
+rightxv G:486 LG gl.b[972] rightxv!y:=0
+rightxv G:486 SG gl.b[646] rightxv:=0
+rightxv G:486 SG gl.b[927] rightxv:=getvec(upb)
+rootnode G:9 DEF libhdr.h[45] rootnode=9
+rootnodeaddr M:100 DEF libhdr.h[298] rootnodeaddr=100
+rotate3 G:305 DEF dnaplot.b[332] rotate3=
+rotate3 G:305 LG dnaplot.b[1460] rotate3(@ptn,prtdot,prwdot,prldot)
+rotate3 G:305 RT dnaplot.b[799] LET rotate3(m,FLT at,FLT aw,FLT al)BE..
+rotate3l F:29 LF dnaplot.b[1520]
+    rotate3l(@ctn,FLOAT direction#*pi#/ 4.000)
+rotate3l F:29 LF dnaplot.b[807] rotate3l(m,al)
+rotate3l F:29 RT dnaplot.b[776] LET rotate3l(m,FLT angle)BE..
+rotate3t F:27 LF dnaplot.b[805] rotate3t(m,at)
+rotate3t F:27 RT dnaplot.b[724] LET rotate3t(m,FLT angle)BE..
+rotate3w F:28 LF dnaplot.b[1523] rotate3w(@ctn,pi#/ 4.000)
+rotate3w F:28 LF dnaplot.b[1527] rotate3w(@ctn,#-pi#/ 4.000)
+rotate3w F:28 LF dnaplot.b[806] rotate3w(m,aw)
+rotate3w F:28 RT dnaplot.b[747] LET rotate3w(m,FLT angle)BE..
+rtn_abortcode M:27 DEF libhdr.h[334] rtn_abortcode=
+rtn_adjclock M:33 DEF libhdr.h[352] rtn_adjclock=
+rtn_blib M:19 DEF libhdr.h[323] rtn_blib=
+rtn_blklist M:4 DEF libhdr.h[305] rtn_blklist=
+rtn_boot M:17 DEF libhdr.h[321] rtn_boot=
+rtn_boottrace M:39 DEF libhdr.h[367] rtn_boottrace=
+rtn_bptaddr M:9 DEF libhdr.h[312] rtn_bptaddr=
+rtn_bptinstr M:10 DEF libhdr.h[313] rtn_bptinstr=
+rtn_clkintson M:6 DEF libhdr.h[308] rtn_clkintson=
+rtn_clwkq M:12 DEF libhdr.h[316] rtn_clwkq=
+rtn_context M:28 DEF libhdr.h[335] rtn_context=
+rtn_crntask M:3 DEF libhdr.h[304] rtn_crntask=
+rtn_days M:40 DEF libhdr.h[370] rtn_days=
+rtn_dbgvars M:11 DEF libhdr.h[314] rtn_dbgvars=
+rtn_dcountv M:34 DEF libhdr.h[354] rtn_dcountv=
+rtn_devtab M:1 DEF libhdr.h[302] rtn_devtab=
+rtn_dumpflag M:25 DEF libhdr.h[331] rtn_dumpflag=
+rtn_envlist M:26 DEF libhdr.h[332] rtn_envlist=
+rtn_gvecsize M:63 DEF libhdr.h[403] rtn_gvecsize=
+rtn_hdrsvar M:37 DEF libhdr.h[363] rtn_hdrsvar=
+rtn_hostaddsize M:62 DEF libhdr.h[400] rtn_hostaddsize=
+rtn_icount M:48 DEF libhdr.h[383] rtn_icount=
+rtn_idletcb M:32 DEF libhdr.h[351] rtn_idletcb=
+rtn_info M:15 DEF libhdr.h[319] rtn_info=
+rtn_insadebug M:8 DEF libhdr.h[310] rtn_insadebug=
+rtn_intflag M:24 DEF libhdr.h[330] rtn_intflag=
+rtn_joyaxis0 M:55 DEF libhdr.h[392] rtn_joyaxis0=
+rtn_joyaxis1 M:56 DEF libhdr.h[393] rtn_joyaxis1=
+rtn_joyaxis2 M:57 DEF libhdr.h[394] rtn_joyaxis2=
+rtn_joyaxis3 M:58 DEF libhdr.h[395] rtn_joyaxis3=
+rtn_joyaxis4 M:59 DEF libhdr.h[396] rtn_joyaxis4=
+rtn_joyaxis5 M:60 DEF libhdr.h[397] rtn_joyaxis5=
+rtn_joyaxis6 M:61 DEF libhdr.h[398] rtn_joyaxis6=
+rtn_joyaxiscount M:52 DEF libhdr.h[389] rtn_joyaxiscount=
+rtn_joybuttoncount M:51 DEF libhdr.h[388] rtn_joybuttoncount=
+rtn_joybuttons M:54 DEF libhdr.h[391] rtn_joybuttons=
+rtn_joycurrbuttons M:53 DEF libhdr.h[390] rtn_joycurrbuttons=
+rtn_joystickfd M:49 DEF libhdr.h[386] rtn_joystickfd=
+rtn_joystickfd1 M:50 DEF libhdr.h[387] rtn_joystickfd1=
+rtn_keyboard M:20 DEF libhdr.h[324] rtn_keyboard=
+rtn_klib M:18 DEF libhdr.h[322] rtn_klib=
+rtn_lastch M:7 DEF libhdr.h[309] rtn_lastch=
+rtn_mc0 M:43 DEF libhdr.h[375] rtn_mc0=
+rtn_mc1 M:44 DEF libhdr.h[377] rtn_mc1=
+rtn_mc2 M:45 DEF libhdr.h[378] rtn_mc2=
+rtn_mc3 M:46 DEF libhdr.h[379] rtn_mc3=
+rtn_membase M:13 DEF libhdr.h[317] rtn_membase=
+rtn_memsize M:14 DEF libhdr.h[318] rtn_memsize=
+rtn_mins M:41 DEF libhdr.h[372] rtn_mins=rtn_msecs
+rtn_msecs M:41 DEF libhdr.h[371] rtn_msecs=
+rtn_msecs M:41 MAN libhdr.h[372] rtn_mins=rtn_msecs
+rtn_pathvar M:36 DEF libhdr.h[361] rtn_pathvar=
+rtn_rootvar M:35 DEF libhdr.h[359] rtn_rootvar=
+rtn_screen M:21 DEF libhdr.h[325] rtn_screen=
+rtn_scriptsvar M:38 DEF libhdr.h[365] rtn_scriptsvar=
+rtn_sys M:16 DEF libhdr.h[320] rtn_sys=
+rtn_sysg M:30 DEF libhdr.h[344] rtn_sysg=
+rtn_sysp M:29 DEF libhdr.h[343] rtn_sysp=
+rtn_sysst M:31 DEF libhdr.h[345] rtn_sysst=
+rtn_system M:47 DEF libhdr.h[381] rtn_system=
+rtn_tallyv M:5 DEF libhdr.h[306] rtn_tallyv=
+rtn_tasktab M:0 DEF libhdr.h[301] rtn_tasktab=0
+rtn_tcblist M:2 DEF libhdr.h[303] rtn_tcblist=
+rtn_ticks M:42 DEF libhdr.h[373] rtn_ticks=
+rtn_upb M:80 DEF libhdr.h[409] rtn_upb=80
+rtn_vecstatsv M:22 DEF libhdr.h[327] rtn_vecstatsv=
+rtn_vecstatsvupb M:23 DEF libhdr.h[328] rtn_vecstatsvupb=
+s_b M:7 DEF gl.h[241] s_b=
+s_b M:7 MAN gl.b[202] CASE s_b:.. 
+s_b M:7 MAN gl.b[356] CASE s_b:.. 
+s_b M:7 MAN gl.b[514] token:=s_b
+s_d M:9 DEF gl.h[243] s_d=
+s_d M:9 MAN gl.b[204] CASE s_d:.. 
+s_d M:9 MAN gl.b[358] CASE s_d:.. 
+s_d M:9 MAN gl.b[518] token:=s_d
+s_ds M:12 DEF gl.h[248] s_ds=
+s_ds M:12 MAN gl.b[209] CASE s_ds:.. 
+s_ds M:12 MAN gl.b[395] CASE s_ds:.. 
+s_ds M:12 MAN gl.b[517] token:=s_ds
+s_eof M:15 DEF gl.h[252] s_eof=
+s_eof M:15 MAN gl.b[213] CASE s_eof:.. 
+s_eof M:15 MAN gl.b[329] UNTIL token=s_eof DO ..
+s_eof M:15 MAN gl.b[451] CASE s_eof:.. 
+s_eof M:15 MAN gl.b[452] token:=s_eof
+s_eof M:15 MAN gl.b[485] token:=s_eof
+s_g M:6 DEF gl.h[240] s_g=
+s_g M:6 MAN gl.b[201] CASE s_g:.. 
+s_g M:6 MAN gl.b[355] CASE s_g:.. 
+s_g M:6 MAN gl.b[513] token:=s_g
+s_i M:11 DEF gl.h[246] s_i=
+s_i M:11 MAN gl.b[207] CASE s_i:.. 
+s_i M:11 MAN gl.b[430] CASE s_i:.. 
+s_i M:11 MAN gl.b[522] token:=s_i
+s_is M:10 DEF gl.h[245] s_is=
+s_is M:10 MAN gl.b[206] CASE s_is:.. 
+s_is M:10 MAN gl.b[380] CASE s_is:.. 
+s_is M:10 MAN gl.b[521] token:=s_is
+s_k M:8 DEF gl.h[242] s_k=
+s_k M:8 MAN gl.b[203] CASE s_k:.. 
+s_k M:8 MAN gl.b[357] CASE s_k:.. 
+s_k M:8 MAN gl.b[515] token:=s_k
+s_num M:14 DEF gl.h[251] s_num=
+s_num M:14 MAN gl.b[212] CASE s_num:.. 
+s_num M:14 MAN gl.b[228] UNLESS token=s_num DO ..
+s_num M:14 MAN gl.b[538] token:=s_num
+s_r M:5 DEF gl.h[239] s_r=
+s_r M:5 MAN gl.b[200] CASE s_r:.. 
+s_r M:5 MAN gl.b[354] CASE s_r:.. 
+s_r M:5 MAN gl.b[512] token:=s_r
+s_t M:13 DEF gl.h[249] s_t=
+s_t M:13 MAN gl.b[210] CASE s_t:.. 
+s_t M:13 MAN gl.b[409] CASE s_t:.. 
+s_t M:13 MAN gl.b[524] token:=s_t
+s_vs M:1 DEF gl.h[235] s_vs=1
+s_vs M:1 MAN gl.b[196] CASE s_vs:.. 
+s_vs M:1 MAN gl.b[334] CASE s_vs:.. 
+s_vs M:1 MAN gl.b[505] token:=s_vs
+s_x M:2 DEF gl.h[236] s_x=
+s_x M:2 MAN gl.b[197] CASE s_x:.. 
+s_x M:2 MAN gl.b[351] CASE s_x:.. 
+s_x M:2 MAN gl.b[509] token:=s_x
+s_y M:3 DEF gl.h[237] s_y=
+s_y M:3 MAN gl.b[198] CASE s_y:.. 
+s_y M:3 MAN gl.b[352] CASE s_y:.. 
+s_y M:3 MAN gl.b[510] token:=s_y
+s_z M:4 DEF gl.h[238] s_z=
+s_z M:4 MAN gl.b[199] CASE s_z:.. 
+s_z M:4 MAN gl.b[353] CASE s_z:.. 
+s_z M:4 MAN gl.b[511] token:=s_z
+sardch G:36 DEF libhdr.h[73] sardch=36
+saveregs M:31 DEF libhdr.h[489] saveregs=31
+sawrch G:37 DEF libhdr.h[74] sawrch=37
+sawritef G:95 DEF libhdr.h[133] sawritef=95
+sawritef G:95 LG gl.b[929] sawritef("Unabl'ize=%i3*n",pxlysize)
+scb_blength M:14 DEF libhdr.h[557] scb_blength=
+scb_block M:9 DEF libhdr.h[552] scb_block=
+scb_buf M:3 DEF libhdr.h[546] scb_buf=
+scb_buf M:3 MAN dnaplot.b[2044] buf:=ramstream!scb_buf
+scb_bufend M:11 DEF libhdr.h[554] scb_bufend=
+scb_encoding M:20 DEF libhdr.h[568] scb_encoding=
+scb_end M:5 DEF libhdr.h[548] scb_end=
+scb_endfn M:8 DEF libhdr.h[551] scb_endfn=
+scb_fd M:16 DEF libhdr.h[559] scb_fd=
+scb_fd1 M:17 DEF libhdr.h[560] scb_fd1=
+scb_id M:0 DEF libhdr.h[543] scb_id=0
+scb_lblock M:12 DEF libhdr.h[555] scb_lblock=
+scb_ldata M:13 DEF libhdr.h[556] scb_ldata=
+scb_maxnamelen M:31 DEF libhdr.h[541] scb_maxnamelen=31
+scb_maxnamelen M:31 MAN libhdr.h[572]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_name M:21 DEF libhdr.h[570] scb_name=
+scb_name M:21 MAN libhdr.h[572]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_nameeend M:28 DEF libhdr.h[572]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_pos M:4 DEF libhdr.h[547] scb_pos=
+scb_rdfn M:6 DEF libhdr.h[549] scb_rdfn=
+scb_reclen M:15 DEF libhdr.h[558] scb_reclen=
+scb_size M:29 DEF libhdr.h[575] scb_size=
+scb_size M:29 MAN libhdr.h[576] scb_upb=scb_size-1
+scb_task M:2 DEF libhdr.h[545] scb_task=
+scb_timeout M:18 DEF libhdr.h[561] scb_timeout=
+scb_timeoutact M:19 DEF libhdr.h[564] scb_timeoutact=
+scb_type M:1 DEF libhdr.h[544] scb_type=
+scb_upb M:28 DEF libhdr.h[576] scb_upb=scb_size-1
+scb_wrfn M:7 DEF libhdr.h[550] scb_wrfn=
+scb_write M:10 DEF libhdr.h[553] scb_write=
+scbt_console M:-1 DEF libhdr.h[537] scbt_console=-1
+scbt_file M:1 DEF libhdr.h[535] scbt_file=1
+scbt_mbx M:-2 DEF libhdr.h[538] scbt_mbx=-2
+scbt_net M:2 DEF libhdr.h[534] scbt_net=2
+scbt_ram M:0 DEF libhdr.h[536] scbt_ram=0
+scbt_tcp M:-3 DEF libhdr.h[539] scbt_tcp=-3
+screen G:456 DEF gl.h[73] screen=
+screenaspect FG:460 DEF gl.h[78] FLT screenaspect=
+screenaspect FG:460 LG dnaplot.b[1616]
+    glSetPerspective(workMatrix, 1.000,screenaspect, 0.200, 5000.000)
+screenaspect FG:460 SG gl.b[139]
+    screenaspect#:=FLOAT screenxsize#/FLOAT screenysize
+screenxsize G:458 DEF gl.h[76] screenxsize=
+screenxsize G:458 LG dnaplot.b[1962] UNLESS screenxsize DO ..
+screenxsize G:458 LG gl.b[139]
+    screenaspect#:=FLOAT screenxsize#/FLOAT screenysize
+screenxsize G:458 LG gl.b[144] UNLESS screenxsize>0 DO ..
+screenxsize G:458 LG gl.b[158] RESULTIS screenxsize
+screenxsize G:458 SG dnaplot.b[1953]
+    screenxsize:=glMkScreen(concatstr("Genom'm file: ",...),1500,700)
+screenxsize G:458 SG gl.b[132] screenxsize:=xsize
+screenxsize G:458 SG gl.b[137]
+    screenxsize:=sys(Sys_gl,gl_MkScreen,title,...)
+screenysize G:459 DEF gl.h[77] screenysize=
+screenysize G:459 LG gl.b[139]
+    screenaspect#:=FLOAT screenxsize#/FLOAT screenysize
+screenysize G:459 LG gl.b[157] result2:=screenysize
+screenysize G:459 SG dnaplot.b[1961] screenysize:=result2
+screenysize G:459 SG gl.b[132] screenysize:=ysize
+screenysize G:459 SG gl.b[138] screenysize:=result2
+sdle_active M:1 DEF gl.h[214] sdle_active=1
+sdle_arrowdown M:274 DEF gl.h[231] sdle_arrowdown=274
+sdle_arrowdown M:274 MAN dnaplot.b[2297] CASE sdle_arrowdown:.. 
+sdle_arrowleft M:276 DEF gl.h[233] sdle_arrowleft=276
+sdle_arrowleft M:276 MAN dnaplot.b[2309] CASE sdle_arrowleft:.. 
+sdle_arrowright M:275 DEF gl.h[232] sdle_arrowright=275
+sdle_arrowright M:275 MAN dnaplot.b[2315] CASE sdle_arrowright:.. 
+sdle_arrowup M:273 DEF gl.h[230] sdle_arrowup=273
+sdle_arrowup M:273 MAN dnaplot.b[2303] CASE sdle_arrowup:.. 
+sdle_joyaxismotion M:7 DEF gl.h[220] sdle_joyaxismotion=7
+sdle_joyballmotion M:8 DEF gl.h[221] sdle_joyballmotion=8
+sdle_joybuttondown M:10 DEF gl.h[223] sdle_joybuttondown=10
+sdle_joybuttonup M:11 DEF gl.h[224] sdle_joybuttonup=11
+sdle_joyhatmotion M:9 DEF gl.h[222] sdle_joyhatmotion=9
+sdle_keydown M:2 DEF gl.h[215] sdle_keydown=2
+sdle_keydown M:2 MAN dnaplot.b[2148] CASE sdle_keydown:.. 
+sdle_keyup M:3 DEF gl.h[216] sdle_keyup=3
+sdle_mousebuttondown M:5 DEF gl.h[218] sdle_mousebuttondown=5
+sdle_mousebuttonup M:6 DEF gl.h[219] sdle_mousebuttonup=6
+sdle_mousemotion M:4 DEF gl.h[217] sdle_mousemotion=4
+sdle_quit M:12 DEF gl.h[225] sdle_quit=12
+sdle_quit M:12 MAN dnaplot.b[2143] CASE sdle_quit:.. 
+sdle_syswmevent M:13 DEF gl.h[226] sdle_syswmevent=13
+sdle_userevent M:15 DEF gl.h[228] sdle_userevent=15
+sdle_videoresize M:14 DEF gl.h[227] sdle_videoresize=14
+sectword M:64991 DEF libhdr.h[269] sectword=64991
+selectinput G:56 DEF libhdr.h[93] selectinput=56
+selectinput G:56 LG dnaplot.b[1116] selectinput(instream)
+selectinput G:56 LG dnaplot.b[2031] selectinput(instream)
+selectinput G:56 LG dnaplot.b[2042] selectinput(oldin)
+selectinput G:56 LG dnaplot.b[2381] selectinput(stdin)
+selectinput G:56 LG dnaplot.b[857] selectinput(instream)
+selectinput G:56 LG gl.b[321] selectinput(instream)
+selectinput G:56 LG gl.b[468] selectinput(stdin)
+selectoutput G:57 DEF libhdr.h[94] selectoutput=57
+selectoutput G:57 LG dnaplot.b[2030] selectoutput(ramstream)
+selectoutput G:57 LG dnaplot.b[2040] selectoutput(oldout)
+selectoutput G:57 LG dnaplot.b[2407] selectoutput(outstream)
+selectoutput G:57 LG dnaplot.b[2414] selectoutput(stdout)
+selectoutput G:57 LG dnaplot.b[381] selectoutput(stdout)
+selectoutput G:57 LG dnaplot.b[383] selectoutput(out)
+sendpkt G:165 DEF libhdr.h[216] sendpkt=165
+set_process_name G:175 DEF libhdr.h[224] set_process_name=175
+setangles G:282 DEF dnaplot.b[308] setangles=
+setangles G:282 LG dnaplot.b[1162] setangles(XY,an,aw,ah)
+setangles G:282 LG dnaplot.b[1212] setangles(AA,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1213] setangles(AC,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1214] setangles(AG,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1215] setangles(AT,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1217] setangles(CA,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1218] setangles(CC,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1219] setangles(CG,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1220] setangles(CT,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1222] setangles(GA,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1223] setangles(GC,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1224] setangles(GG,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1225] setangles(GT,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1227] setangles(TA,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1228] setangles(TC,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1229] setangles(TG,deg2rad( 0.000),f0,f0)
+setangles G:282 LG dnaplot.b[1230] setangles(TT,deg2rad( 0.000),f0,f0)
+setangles G:282 RT dnaplot.b[568]
+    LET setangles(XY,FLT an,FLT aw,FLT ah)BE..
+setbit G:112 DEF libhdr.h[150] setbit=112
+setbulk G:122 DEF libhdr.h[160] setbulk=122
+setcolour F:20 RT gl.b[663] LET setcolour(col)BE..
+setcolourkey F:21 RT gl.b[665] LET setcolourkey(col)BE..
+setcurraxis G:306 DEF dnaplot.b[333] setcurraxis=
+setcurraxis G:306 LG dnaplot.b[2196] setcurraxis((curraxis+1) MOD 3)
+setcurraxis G:306 RT dnaplot.b[2453] LET setcurraxis(axis)BE..
+setcurrpair G:307 DEF dnaplot.b[334] setcurrpair=
+setcurrpair G:307 LG dnaplot.b[2171] setcurrpair(0)
+setcurrpair G:307 LG dnaplot.b[2178] setcurrpair(1)
+setcurrpair G:307 LG dnaplot.b[2185] setcurrpair(2)
+setcurrpair G:307 LG dnaplot.b[2192] setcurrpair(3)
+setcurrpair G:307 RT dnaplot.b[2446] LET setcurrpair(letno)BE..
+setflags G:156 DEF libhdr.h[208] setflags=156
+setinitstate G:308 DEF dnaplot.b[335] setinitstate=
+setinitstate G:308 LG dnaplot.b[1277] setinitstate()
+setinitstate G:308 RT dnaplot.b[1179] LET setinitstate()BE..
+setlims F:33 LF gl.b[961] setlims(x1,y1,x2,y2)
+setlims F:33 LF gl.b[962] setlims(x2,y2,x3,y3)
+setlims F:33 LF gl.b[963] setlims(x3,y3,x1,y1)
+setlims F:33 RT gl.b[880] LET setlims(x0,y0,x1,y1)BE..
+setlogname G:117 DEF libhdr.h[155] setlogname=117
+setrandomangles G:319 DEF dnaplot.b[354] setrandomangles=
+setrandomangles G:319 LG dnaplot.b[1281] setrandomangles()
+setrandomangles G:319 LG dnaplot.b[1284] setrandomangles()
+setrandomangles G:319 LG dnaplot.b[2355] setrandomangles()
+setrandomangles G:319 RT dnaplot.b[2428] LET setrandomangles()BE..
+setrecordlength G:68 DEF libhdr.h[105] setrecordlength=68
+setrotationmatrix G:291 DEF dnaplot.b[317] setrotationmatrix=
+setrotationmatrix G:291 LG dnaplot.b[2364] setrotationmatrix(XY)
+setrotationmatrix G:291 LG dnaplot.b[2442] setrotationmatrix(XY)
+setrotationmatrix G:291 LG dnaplot.b[2466] setrotationmatrix(currpair)
+setrotationmatrix G:291 LG dnaplot.b[583] setrotationmatrix(XY)
+setrotationmatrix G:291 LG dnaplot.b[685] setrotationmatrix(YX)
+setrotationmatrix G:291 RT dnaplot.b[695] LET setrotationmatrix(XY)BE..
+setseed G:35 DEF libhdr.h[72] setseed=35
+setseed G:35 LG dnaplot.b[1271] setseed(9)
+setseed G:35 LG dnaplot.b[1272] setseed(!argv!2)
+settimeout G:55 DEF libhdr.h[92] settimeout=55
+settimeoutact G:124 DEF libhdr.h[162] settimeoutact=124
+setvec G:181 DEF libhdr.h[231] setvec=181
+setvec G:181 LG gl.b[183]
+    setvec(mat4,16,fv#/aspect, 0.000, 0.000, 0.000,...)
+spacep G:214 DEF dnaplot.b[188] spacep=
+spacet G:215 DEF dnaplot.b[188] spacet=
+spacev G:213 DEF dnaplot.b[188] spacev=
+splitname G:47 DEF libhdr.h[84] splitname=47
+srchwk G:150 DEF libhdr.h[202] srchwk=150
+stackfree G:123 DEF libhdr.h[161] stackfree=123
+stackword M:#xABCD1234 DEF libhdr.h[267] stackword=-#x5432EDCC
+standardiseM3 F:153 LF dnaplot.b[1446] standardiseM3(@ptn)
+standardiseM3 F:153 LF dnaplot.b[2348] standardiseM3(@ptn)
+standardiseM3 F:153 RT dnaplot.b[2520] LET standardiseM3(m)BE..
+standardiseV3 G:296 DEF dnaplot.b[322] standardiseV3=
+standardiseV3 G:296 LG dnaplot.b[2533] standardiseV3(p)
+standardiseV3 G:296 LG dnaplot.b[2547] standardiseV3(r)
+standardiseV3 G:296 RT dnaplot.b[2503] LET standardiseV3(v)BE..
+start G:1 DEF libhdr.h[37] start=1
+start G:1 FN dnaplot.b[1252] LET start()=..
+startco G:23 DEF libhdr.h[60] startco=23
+stdin G:200 DEF dnaplot.b[170] stdin=ug
+stdin G:200 LG dnaplot.b[2381] selectinput(stdin)
+stdin G:200 SG dnaplot.b[1255] stdin:=input()
+stdout G:201 DEF dnaplot.b[171] stdout=
+stdout G:201 LG dnaplot.b[2414] selectoutput(stdout)
+stdout G:201 LG dnaplot.b[381] selectoutput(stdout)
+stdout G:201 SG dnaplot.b[1256] stdout:=output()
+stepping G:220 DEF dnaplot.b[195] stepping=
+stepping G:220 LG dnaplot.b[1449] IF stepping DO ..
+stepping G:220 LG dnaplot.b[2263] stepping:=~stepping
+stepping G:220 SG dnaplot.b[1333] stepping:=TRUE
+stepping G:220 SG dnaplot.b[2263] stepping:=~stepping
+stepstream G:67 DEF libhdr.h[104] stepstream=67
+stop G:2 DEF libhdr.h[38] stop=2
+str2numb G:101 DEF libhdr.h[139] str2numb=101
+string_to_dat G:111 DEF libhdr.h[149] string_to_dat=111
+string_to_number G:100 DEF libhdr.h[138] string_to_number=100
+sys G:3 DEF libhdr.h[39] sys=3
+sys G:3 LG dnaplot.b[1391] sys(Sys_gl,gl_DeleteBuffer,VertexBuffer)
+sys G:3 LG dnaplot.b[1395] sys(Sys_gl,gl_DeleteBuffer,IndexBuffer)
+sys G:3 LG dnaplot.b[1399]
+    VertexBuffer:=sys(Sys_gl,gl_GenVertexBuffer,...,...)
+sys G:3 LG dnaplot.b[1411]
+    sys(Sys_gl,gl_EnableVertexAttribArray,VertexLoc)
+sys G:3 LG dnaplot.b[1412] sys(Sys_gl,gl_VertexData,VertexLoc,3,4,0)
+sys G:3 LG dnaplot.b[1423]
+    sys(Sys_gl,gl_EnableVertexAttribArray,ColourNoLoc)
+sys G:3 LG dnaplot.b[1424] sys(Sys_gl,gl_VertexData,ColourNoLoc,1,4,3)
+sys G:3 LG dnaplot.b[1438]
+    IndexBuffer:=sys(Sys_gl,gl_GenIndexBuffer,...,...)
+sys G:3 LG dnaplot.b[1545]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+sys G:3 LG dnaplot.b[1599]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+sys G:3 LG dnaplot.b[1621]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+sys G:3 LG dnaplot.b[1632]
+    sys(Sys_gl,gl_UniformMatrix4fv,MatrixLoc,glprog,projectionMatrix)
+sys G:3 LG dnaplot.b[1637]
+    sys(Sys_gl,gl_ClearColour, 0.100, 0.200, 0.200, 1.000)
+sys G:3 LG dnaplot.b[1639] sys(Sys_gl,gl_ClearBuffer)
+sys G:3 LG dnaplot.b[1643] sys(Sys_gl,gl_Enable,GL_DEPTH_TEST)
+sys G:3 LG dnaplot.b[1645] sys(Sys_gl,gl_DepthFunc,GL_LESS)
+sys G:3 LG dnaplot.b[1657] sys(Sys_gl,gl_SwapBuffers)
+sys G:3 LG dnaplot.b[1669]
+    sys(Sys_gl,gl_DisableVertexAttribArray,VertexLoc)
+sys G:3 LG dnaplot.b[1670]
+    sys(Sys_gl,gl_DisableVertexAttribArray,ColourNoLoc)
+sys G:3 LG dnaplot.b[1690] sys(Sys_gl,gl_Quit)
+sys G:3 LG dnaplot.b[1727] sys(Sys_flt,fl_sqrt,ptn#*ptn#+ptw#*ptw)
+sys G:3 LG dnaplot.b[1826] bankangle:=FIX rad2deg(sys(Sys_flt,...))
+sys G:3 LG dnaplot.b[1828] climbangle:=FIX rad2deg(sys(Sys_flt,...))
+sys G:3 LG dnaplot.b[1829] heading:=FIX rad2deg(sys(Sys_flt,...))
+sys G:3 LG dnaplot.b[1968] glprog:=sys(Sys_gl,gl_MkProg)
+sys G:3 LG dnaplot.b[1989]
+    UNLESS sys(Sys_gl,gl_LinkProgram,glprog) DO ..
+sys G:3 LG dnaplot.b[1996] sys(Sys_gl,gl_UseProgram,glprog)
+sys G:3 LG dnaplot.b[1999]
+    VertexLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vVertex")
+sys G:3 LG dnaplot.b[2000]
+    ColourNoLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vColourNo")
+sys G:3 LG dnaplot.b[2006]
+    MatrixLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"matrix")
+sys G:3 LG dnaplot.b[2046]
+    shader:=sys(Sys_gl,isVshader->gl_CompileVshader,gl_CompileFshader,prog,buf)
+sys G:3 LG dnaplot.b[2104]
+    sys(Sys_gl,gl_DrawElements,mode,size,4*offset)
+sys G:3 LG dnaplot.b[2145] sys(Sys_gl,gl_Quit)
+sys G:3 LG dnaplot.b[2424] FIX rad2deg(sys(Sys_flt,fl_atan2,y,x))
+sys G:3 LG dnaplot.b[642] bn#:=sys(Sys_flt,fl_atan2,mlw,mlh)
+sys G:3 LG dnaplot.b[643] c#:=sys(Sys_flt,fl_cos,bn)
+sys G:3 LG dnaplot.b[643] s#:=sys(Sys_flt,fl_sin,bn)
+sys G:3 LG dnaplot.b[656] bw#:=sys(Sys_flt,fl_atan2,...,mlh)
+sys G:3 LG dnaplot.b[657] c#:=sys(Sys_flt,fl_cos,bw)
+sys G:3 LG dnaplot.b[657] s#:=sys(Sys_flt,fl_sin,bw)
+sys G:3 LG dnaplot.b[670] bh#:=sys(Sys_flt,fl_atan2,...,mtn)
+sys G:3 LG dnaplot.b[671] c#:=sys(Sys_flt,fl_cos,bh)
+sys G:3 LG dnaplot.b[671] s#:=sys(Sys_flt,fl_sin,bh)
+sys G:3 LG dnaplot.b[703] sys(Sys_flt,fl_cos,at)
+sys G:3 LG dnaplot.b[703] sys(Sys_flt,fl_sin,at)
+sys G:3 LG dnaplot.b[704] sys(Sys_flt,fl_cos,aw)
+sys G:3 LG dnaplot.b[704] sys(Sys_flt,fl_sin,aw)
+sys G:3 LG dnaplot.b[705] sys(Sys_flt,fl_cos,al)
+sys G:3 LG dnaplot.b[705] sys(Sys_flt,fl_sin,al)
+sys G:3 LG dnaplot.b[730] sys(Sys_flt,fl_cos,angle)
+sys G:3 LG dnaplot.b[731] sys(Sys_flt,fl_sin,angle)
+sys G:3 LG dnaplot.b[753] sys(Sys_flt,fl_cos,angle)
+sys G:3 LG dnaplot.b[754] sys(Sys_flt,fl_sin,angle)
+sys G:3 LG dnaplot.b[782] sys(Sys_flt,fl_cos,angle)
+sys G:3 LG dnaplot.b[783] sys(Sys_flt,fl_sin,angle)
+sys G:3 LG gl.b[106] sys(Sys_gl,gl_Init)
+sys G:3 LG gl.b[137] screenxsize:=sys(Sys_gl,gl_MkScreen,title,...)
+sys G:3 LG gl.b[145] sys(Sys_gl,gl_GetError,mes)
+sys G:3 LG gl.b[154]
+    sys(Sys_gl,gl_BlendFunc,GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA)
+sys G:3 LG gl.b[155] sys(Sys_gl,gl_Enable,GL_BLEND)
+sys G:3 LG gl.b[189] sys(Sys_flt,fl_sqrt,x#*x#+y#*y)
+sys G:3 LG gl.b[191] sys(Sys_flt,fl_sqrt,x#*x#+y#*y#+z#*z)
+sys G:3 LG gl.b[216] sys(Sys_gl,gl_pollevent,@eventtype)
+sys G:3 LG gl.b[235] RESULTIS sys(Sys_flt,fl_64to32,x)
+sysabort G:29 DEF libhdr.h[66] sysabort=29
+t_bhunk M:3000 DEF libhdr.h[263] t_bhunk=3000
+t_bhunk64 M:4000 DEF libhdr.h[264] t_bhunk64=4000
+t_end M:1002 DEF libhdr.h[259] t_end=1002
+t_end64 M:2002 DEF libhdr.h[262] t_end64=2002
+t_hunk M:1000 DEF libhdr.h[257] t_hunk=1000
+t_hunk64 M:2000 DEF libhdr.h[260] t_hunk64=2000
+t_reloc M:1001 DEF libhdr.h[258] t_reloc=1001
+t_reloc64 M:2001 DEF libhdr.h[261] t_reloc64=2001
+taskid G:152 DEF libhdr.h[204] taskid=152
+taskwait G:160 DEF libhdr.h[212] taskwait=160
+tcb G:151 DEF libhdr.h[203] tcb=151
+tcb_a M:11 DEF libhdr.h[676] tcb_a=tcb_regs
+tcb_active M:10 DEF libhdr.h[673] tcb_active=10
+tcb_b M:12 DEF libhdr.h[677] tcb_b=12
+tcb_c M:13 DEF libhdr.h[678] tcb_c=13
+tcb_count M:18 DEF libhdr.h[683] tcb_count=18
+tcb_flags M:5 DEF libhdr.h[668] tcb_flags=5
+tcb_g M:15 DEF libhdr.h[680] tcb_g=15
+tcb_gbase M:8 DEF libhdr.h[671] tcb_gbase=8
+tcb_link M:0 DEF libhdr.h[663] tcb_link=0
+tcb_namebase M:19 DEF libhdr.h[685] tcb_namebase=19
+tcb_namebase M:19 MAN libhdr.h[687]
+    tcb_upb=tcb_namebase+15/bytesperword+1
+tcb_p M:14 DEF libhdr.h[679] tcb_p=14
+tcb_pc M:17 DEF libhdr.h[682] tcb_pc=17
+tcb_pri M:2 DEF libhdr.h[665] tcb_pri=2
+tcb_regs M:11 DEF libhdr.h[675] tcb_regs=11
+tcb_regs M:11 MAN libhdr.h[676] tcb_a=tcb_regs
+tcb_sbase M:9 DEF libhdr.h[672] tcb_sbase=9
+tcb_seglist M:7 DEF libhdr.h[670] tcb_seglist=7
+tcb_st M:16 DEF libhdr.h[681] tcb_st=16
+tcb_state M:4 DEF libhdr.h[667] tcb_state=4
+tcb_stsiz M:6 DEF libhdr.h[669] tcb_stsiz=6
+tcb_taskid M:1 DEF libhdr.h[664] tcb_taskid=1
+tcb_upb M:23 DEF libhdr.h[687] tcb_upb=tcb_namebase+15/bytesperword+1
+tcb_wkq M:3 DEF libhdr.h[666] tcb_wkq=3
+tempval G:11 DEF libhdr.h[47] tempval=11
+testbit G:113 DEF libhdr.h[151] testbit=113
+testflags G:157 DEF libhdr.h[209] testflags=157
+tg M:190 DEF libhdr.h[241] tg=190
+timeoutch M:-2 DEF libhdr.h[252] timeoutch=-2
+tok2str F:6 FN gl.b[193] LET tok2str(tok)=..
+tok2str F:6 LF gl.b[473]
+    writef("ERROR's tok=%s",mess,tok2str(token),tok2str(tok))
+token G:476 DEF gl.h[104] token=
+token G:476 LG gl.b[228] UNLESS token=s_num DO ..
+token G:476 LG gl.b[329] SWITCHON token INTO..
+token G:476 LG gl.b[329] UNTIL token=s_eof DO ..
+token G:476 LG gl.b[472] UNLESS token=tok DO ..
+token G:476 LG gl.b[473]
+    writef("ERROR's tok=%s",mess,tok2str(token),tok2str(tok))
+token G:476 SG gl.b[452] token:=s_eof
+token G:476 SG gl.b[485] token:=s_eof
+token G:476 SG gl.b[505] token:=s_vs
+token G:476 SG gl.b[509] token:=s_x
+token G:476 SG gl.b[510] token:=s_y
+token G:476 SG gl.b[511] token:=s_z
+token G:476 SG gl.b[512] token:=s_r
+token G:476 SG gl.b[513] token:=s_g
+token G:476 SG gl.b[514] token:=s_b
+token G:476 SG gl.b[515] token:=s_k
+token G:476 SG gl.b[517] token:=s_ds
+token G:476 SG gl.b[518] token:=s_d
+token G:476 SG gl.b[521] token:=s_is
+token G:476 SG gl.b[522] token:=s_i
+token G:476 SG gl.b[524] token:=s_t
+token G:476 SG gl.b[538] token:=s_num
+tracing G:207 DEF dnaplot.b[180] tracing=
+tstanglel G:211 DEF dnaplot.b[185] tstanglel=
+tstanglel G:211 LG dnaplot.b[1456] prldot#:=tstanglel
+tstanglel G:211 SG dnaplot.b[1306] tstanglel#:= 0.030
+tstanglel G:211 SG dnaplot.b[1309] tstanglel#:= 0.000
+tstanglet G:209 DEF dnaplot.b[183] tstanglet=
+tstanglet G:209 LG dnaplot.b[1456] prtdot#:=tstanglet
+tstanglet G:209 SG dnaplot.b[1304] tstanglet#:= 0.010
+tstanglet G:209 SG dnaplot.b[1307] tstanglet#:= 0.000
+tstanglew G:210 DEF dnaplot.b[184] tstanglew=
+tstanglew G:210 LG dnaplot.b[1456] prwdot#:=tstanglew
+tstanglew G:210 SG dnaplot.b[1305] tstanglew#:= 0.020
+tstanglew G:210 SG dnaplot.b[1308] tstanglew#:= 0.000
+tstdirection G:212 DEF dnaplot.b[186] tstdirection=
+tstdirection G:212 LG dnaplot.b[1500] direction:=tstdirection
+tstdirection G:212 SG dnaplot.b[1310] tstdirection:=0
+tstfrustrum F:132 RT dnaplot.b[1853] LET tstfrustrum()BE..
+tstpoint F:134 LF dnaplot.b[1880] tstpoint(m, 0.500, 0.250,#- 1.000)
+tstpoint F:134 LF dnaplot.b[1881] tstpoint(m,#- 0.500, 0.250,#- 1.000)
+tstpoint F:134 LF dnaplot.b[1882] tstpoint(m,#- 0.500,#- 0.250,#- 1.000)
+tstpoint F:134 LF dnaplot.b[1883] tstpoint(m, 0.500,#- 0.250,#- 1.000)
+tstpoint F:134 LF dnaplot.b[1886] tstpoint(m, 5.000, 2.500,#- 10.000)
+tstpoint F:134 LF dnaplot.b[1887] tstpoint(m,#- 5.000, 2.500,#- 10.000)
+tstpoint F:134 LF dnaplot.b[1888]
+    tstpoint(m,#- 5.000,#- 2.500,#- 10.000)
+tstpoint F:134 LF dnaplot.b[1889] tstpoint(m, 5.000,#- 2.500,#- 10.000)
+tstpoint F:134 LF dnaplot.b[1892] tstpoint(m, 0.000, 0.000,#- 11.000)
+tstpoint F:134 LF dnaplot.b[1893] tstpoint(m, 0.000, 0.000,#- 0.300)
+tstpoint F:134 LF dnaplot.b[1894] tstpoint(m, 5.000, 0.000,#- 9.000)
+tstpoint F:134 LF dnaplot.b[1895] tstpoint(m,#- 5.000, 0.000,#- 9.000)
+tstpoint F:134 LF dnaplot.b[1896] tstpoint(m, 0.000, 2.500,#- 9.000)
+tstpoint F:134 LF dnaplot.b[1897] tstpoint(m, 0.000,#- 2.500,#- 9.000)
+tstpoint F:134 LF dnaplot.b[1914] tstpoint(m,#- 1.000, 1.000, 1.000)
+tstpoint F:134 LF dnaplot.b[1915] tstpoint(m,#- 1.000,#- 1.000, 1.000)
+tstpoint F:134 LF dnaplot.b[1916] tstpoint(m,#- 1.000,#- 1.000,#- 1.000)
+tstpoint F:134 LF dnaplot.b[1917] tstpoint(m,#- 1.000, 1.000,#- 1.000)
+tstpoint F:134 LF dnaplot.b[1919] tstpoint(m, 1.000, 1.000, 1.000)
+tstpoint F:134 LF dnaplot.b[1920] tstpoint(m, 1.000,#- 1.000, 1.000)
+tstpoint F:134 LF dnaplot.b[1921] tstpoint(m, 1.000,#- 1.000,#- 1.000)
+tstpoint F:134 LF dnaplot.b[1922] tstpoint(m, 1.000, 1.000,#- 1.000)
+tstpoint F:134 RT dnaplot.b[1927] LET tstpoint(m,FLT x,FLT y,FLT z)BE..
+tstprojectionmatrix F:133 LF dnaplot.b[1499]
+    tstprojectionmatrix(projectionMatrix)
+tstprojectionmatrix F:133 LF dnaplot.b[1577]
+    tstprojectionmatrix(projectionMatrix)
+tstprojectionmatrix F:133 LF dnaplot.b[1604]
+    tstprojectionmatrix(projectionMatrix)
+tstprojectionmatrix F:133 LF dnaplot.b[1626]
+    tstprojectionmatrix(projectionMatrix)
+tstprojectionmatrix F:133 RT dnaplot.b[1901]
+    LET tstprojectionmatrix(m)BE..
+ug M:200 DEF libhdr.h[242] ug=200
+ug M:200 MAN dnaplot.b[170] stdin=ug
+unhold G:159 DEF libhdr.h[211] unhold=159
+unloadseg G:106 DEF libhdr.h[144] unloadseg=106
+unpackstring G:31 DEF libhdr.h[68] unpackstring=31
+unrdch G:40 DEF libhdr.h[77] unrdch=40
+unrdch G:40 LG gl.b[529] unrdch()
+vertexv G:274 DEF dnaplot.b[291] vertexv=
+vertexv G:274 LG dnaplot.b[1090] FOR i=1 TO vertexv!0 DO..
+vertexv G:274 LG dnaplot.b[1092] writef(" %8.3f",vertexv!i)
+vertexv G:274 LG dnaplot.b[1399]
+    VertexBuffer:=sys(Sys_gl,gl_GenVertexBuffer,...,...)
+vertexv G:274 LG dnaplot.b[1430] freevec(vertexv)
+vertexv G:274 LG dnaplot.b[1676] IF vertexv DO ..
+vertexv G:274 LG dnaplot.b[1676] freevec(vertexv)
+vertexv G:274 SG dnaplot.b[1081] vertexv:=vvec
+vertexv G:274 SG dnaplot.b[1432] vertexv:=0
+workMatrix G:261 DEF dnaplot.b[264] workMatrix=
+workMatrix G:261 LG dnaplot.b[1539]
+    mat4set(workMatrix,ctn,cwn,cln, 0.000,ctw,...)
+workMatrix G:261 LG dnaplot.b[1545]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+workMatrix G:261 LG dnaplot.b[1594]
+    mat4set(workMatrix, 0.000, 0.000,- 1.000, 0.000,...,...)
+workMatrix G:261 LG dnaplot.b[1599]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+workMatrix G:261 LG dnaplot.b[1616]
+    glSetPerspective(workMatrix, 1.000,screenaspect, 0.200, 5000.000)
+workMatrix G:261 LG dnaplot.b[1621]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+workMatrix G:261 SG dnaplot.b[1194] workMatrix:=newvec(15)
+wranglesdata F:143 LF dnaplot.b[2258] wranglesdata()
+wranglesdata F:143 RT dnaplot.b[2374] LET wranglesdata()BE..
+wrch G:41 DEF libhdr.h[78] wrch=41
+wrch G:41 LG dnaplot.b[1321] wrch(letno2ch(letno))
+wrch G:41 LG dnaplot.b[2035] wrch(ch)
+wrch G:41 LG dnaplot.b[2038] wrch(0)
+wrch G:41 LG dnaplot.b[2168] wrch(ch)
+wrch G:41 LG dnaplot.b[2175] wrch(ch)
+wrch G:41 LG dnaplot.b[2182] wrch(ch)
+wrch G:41 LG dnaplot.b[2189] wrch(ch)
+wrch G:41 LG dnaplot.b[873] wrch(ch)
+wrch G:41 LG gl.b[627] wrch
+wrch G:41 LG gl.b[864] wrch
+wrch G:41 SG gl.b[631] wrch:=plotwrch
+wrch G:41 SG gl.b[633] wrch:=oldwrch
+wrch G:41 SG gl.b[868] wrch:=drawwrch
+wrch G:41 SG gl.b[870] wrch:=oldwrch
+wrcurrangle G:309 DEF dnaplot.b[336] wrcurrangle=
+wrcurrangle G:309 LG dnaplot.b[2450] wrcurrangle()
+wrcurrangle G:309 LG dnaplot.b[2456] wrcurrangle()
+wrcurrangle G:309 LG dnaplot.b[2465] wrcurrangle()
+wrcurrangle G:309 RT dnaplot.b[2470] LET wrcurrangle()BE..
+wrhelp F:141 LF dnaplot.b[1275] wrhelp()
+wrhelp F:141 LF dnaplot.b[2161] wrhelp()
+wrhelp F:141 RT dnaplot.b[2112] LET wrhelp()BE..
+write_ch_slice G:505 DEF gl.h[141] write_ch_slice=
+write_ch_slice G:505 LG gl.b[701]
+    write_ch_slice(currx,curry+11-line,ch,line)
+write_ch_slice G:505 RT gl.b[705] LET write_ch_slice(x,y,ch,line)BE..
+writed G:85 DEF libhdr.h[122] writed=85
+writee G:180 DEF libhdr.h[230] writee=180
+writef G:94 DEF libhdr.h[132] writef=94
+writef G:94 LG dnaplot.b[1089] writef("*nVertex data*n")
+writef G:94 LG dnaplot.b[1091] writef("*n%i3: ",i-1)
+writef G:94 LG dnaplot.b[1092] writef(" %8.3f",vertexv!i)
+writef G:94 LG dnaplot.b[1094] writef("*n*nIndex data*n")
+writef G:94 LG dnaplot.b[1096] writef("*n%i6: ",i-1)
+writef G:94 LG dnaplot.b[1097] writef(" %i5",indexv!i)
+writef G:94 LG dnaplot.b[1099] writef("*n*nDis'a items*n")
+writef G:94 LG dnaplot.b[1101]
+    writef(" %i5 'i5  %i5*n",displayv!i,displayv!(i+1),displayv!(i+2))
+writef G:94 LG dnaplot.b[1172]
+    writef("%s an'f %7.1f*n",XY2str(XY),rad2deg(av!0),rad2deg(av!1),rad2deg(av!2))
+writef G:94 LG dnaplot.b[1174] writef("%s matrix",XY2str(XY))
+writef G:94 LG dnaplot.b[1175] writef(" %5.3f",mv!i)
+writef G:94 LG dnaplot.b[1259] writef("Bad a'dnaplot*n")
+writef G:94 LG dnaplot.b[1295] writef("Faile'file %s*n",fromfilename)
+writef G:94 LG dnaplot.b[1317]
+    writef("Start'ome: %s*n",fromfilename=0->"test data",fromfilename)
+writef G:94 LG dnaplot.b[1374] writef("Build' angles*n")
+writef G:94 LG dnaplot.b[1390] writef("Delet'ffer %n*n",VertexBuffer)
+writef G:94 LG dnaplot.b[1394] writef("Delet'ffer %n*n",IndexBuffer)
+writef G:94 LG dnaplot.b[1402] writef("dnapl'ffer=%n*n",VertexBuffer)
+writef G:94 LG dnaplot.b[1496]
+    writef("The p' %7.4f)*n",platformn,platformw,platformh)
+writef G:94 LG dnaplot.b[1512] writef("The p'rix is:*n")
+writef G:94 LG dnaplot.b[1574] writef("Camer'tion %n*n",direction)
+writef G:94 LG dnaplot.b[1602] writef("After'dinates*n")
+writef G:94 LG dnaplot.b[1624] writef("proje'dinates*n")
+writef G:94 LG dnaplot.b[1625] writef("to GL'(x,y,z)*n")
+writef G:94 LG dnaplot.b[1834]
+    writef("?%4.2'       ?",platformn,platformw,platformh,heading,climbangle,...)
+writef G:94 LG dnaplot.b[1849]
+    writef("(%7.4' %7.4f)*n",x,y,z,mx#/mw,...,...)
+writef G:94 LG dnaplot.b[1861] writef("Testi'pective*n")
+writef G:94 LG dnaplot.b[1862] writef("fov=%'n=%6.4f*n",fov,aspect,n,f)
+writef G:94 LG dnaplot.b[1936]
+    writef("%6.2f'f %9.6f*n",x1,y1,z1,x2,y2,z2)
+writef G:94 LG dnaplot.b[1945] writef("glAPIno=%n*n",glAPIno)
+writef G:94 LG dnaplot.b[1947] writef("*nOpen'ailable*n")
+writef G:94 LG dnaplot.b[1963] writef("*nUnab' window*n")
+writef G:94 LG dnaplot.b[1972] writef("*nUnab'program*n")
+writef G:94 LG dnaplot.b[1990] writef("*ndnap'program*n")
+writef G:94 LG dnaplot.b[2025] writef("Compi'streams*n")
+writef G:94 LG dnaplot.b[2113] writef("*nComm'ummary*n*n")
+writef G:94 LG dnaplot.b[2114] writef("?    'lp info*n")
+writef G:94 LG dnaplot.b[2115] writef("Q        Quit*n")
+writef G:94 LG dnaplot.b[2116] writef("AA AC'se pair*n")
+writef G:94 LG dnaplot.b[2117] writef("N    'xt axis*n")
+writef G:94 LG dnaplot.b[2118] writef("F/f  'rd/back*n")
+writef G:94 LG dnaplot.b[2119] writef("L/l  't/right*n")
+writef G:94 LG dnaplot.b[2120] writef("U/u  'up/down*n")
+writef G:94 LG dnaplot.b[2121] writef("#/~  'd angle*n")
+writef G:94 LG dnaplot.b[2122] writef("|/\  't angle*n")
+writef G:94 LG dnaplot.b[2123] writef("Y    'les of *n")
+writef G:94 LG dnaplot.b[2124] writef("     'e pairs*n")
+writef G:94 LG dnaplot.b[2125] writef("H    ' origin*n")
+writef G:94 LG dnaplot.b[2126] writef("Z    'e pairs*n")
+writef G:94 LG dnaplot.b[2127] writef("</>  'about l*n")
+writef G:94 LG dnaplot.b[2128] writef("Up/Do'about w*n")
+writef G:94 LG dnaplot.b[2129] writef("Left/'about t*n")
+writef G:94 LG dnaplot.b[2130] writef("S    'altform*n")
+writef G:94 LG dnaplot.b[2131] writef("0 to 'latform*n")
+writef G:94 LG dnaplot.b[2132] writef("P    ' values*n")
+writef G:94 LG dnaplot.b[2133] writef("W nam'to file*n")
+writef G:94 LG dnaplot.b[2144] writef("QUIT*n")
+writef G:94 LG dnaplot.b[2237]
+    writef("ptn=%'tion=%n*n",ptn,ptw,pth,prtdot,direction)
+writef G:94 LG dnaplot.b[2239]
+    writef("pwn=%'t=%6.4f*n",pwn,pww,pwh,prwdot)
+writef G:94 LG dnaplot.b[2241]
+    writef("pln=%'t=%6.4f*n",pln,plw,plh,prldot)
+writef G:94 LG dnaplot.b[2276]
+    writef("*nincr's=%9.6f*n",incrementdegrees)
+writef G:94 LG dnaplot.b[2282]
+    writef("*nincr's=%9.6f*n",incrementdegrees)
+writef G:94 LG dnaplot.b[2379] writef("*nWrit'o file: ")
+writef G:94 LG dnaplot.b[2397] writef("*nThe 'its and*n")
+writef G:94 LG dnaplot.b[2398] writef("'/', ' or '**'*n")
+writef G:94 LG dnaplot.b[2403] writef("*nUnab'ile: %s*n",filename)
+writef G:94 LG dnaplot.b[2410]
+    writef("%s %9'f %9.6f*n",XY2str(XY),rad2deg(av!0),rad2deg(av!1),rad2deg(av!2))
+writef G:94 LG dnaplot.b[2415] writef("*nAngl'ile: %s*n",filename)
+writef G:94 LG dnaplot.b[2462]
+    writef("doinc'e=%7.3f*n",val,XY2str(currpair),axis2ch(curraxis),av!curraxis)
+writef G:94 LG dnaplot.b[2472]
+    writef("?%s%c'6.3f   *n",XY2str(currpair),axis2ch(curraxis),v!curraxis,incrementdegrees)
+writef G:94 LG dnaplot.b[2506] writef("stand'  %9.6f*n",v!0,v!1,v!2,r)
+writef G:94 LG dnaplot.b[2528] writef("stand'diseM3:*n")
+writef G:94 LG dnaplot.b[2535] writef("stand'daiseV3*n")
+writef G:94 LG dnaplot.b[2542] writef("stand'ossprod*n")
+writef G:94 LG dnaplot.b[2549] writef("stand'rdiseV3*n")
+writef G:94 LG dnaplot.b[2555] writef("stand'ossprod*n")
+writef G:94 LG dnaplot.b[2584] writef("( %9.'%9.5f )*n",m!0,m!3,m!6)
+writef G:94 LG dnaplot.b[2585] writef("( %9.'%9.5f )*n",m!1,m!4,m!7)
+writef G:94 LG dnaplot.b[2586] writef("( %9.'%9.5f )*n",m!2,m!5,m!8)
+writef G:94 LG dnaplot.b[2591]
+    writef("( %8.'%8.4f )*n",m!0,m!4,m!8,m!12)
+writef G:94 LG dnaplot.b[2592]
+    writef("( %8.'%8.4f )*n",m!1,m!5,m!9,m!13)
+writef G:94 LG dnaplot.b[2593]
+    writef("( %8.'%8.4f )*n",m!2,m!6,m!10,m!14)
+writef G:94 LG dnaplot.b[2594]
+    writef("( %8.'%8.4f )*n",m!3,m!7,m!11,m!15)
+writef G:94 LG dnaplot.b[2599] writef(" %8.4'f %8.4f*n",v!0,v!1,v!2,v!3)
+writef G:94 LG dnaplot.b[382] writef("*nSyst'failure*n")
+writef G:94 LG dnaplot.b[422] writef("More 'pushval*n")
+writef G:94 LG dnaplot.b[437]
+    writef("pushv'i6 p=%n*n",v,upb,newv,newupb,p)
+writef G:94 LG dnaplot.b[870] writef("Loadi'quence: ")
+writef G:94 LG gl.b[146] writef("Unabl'een: %s*n",mes)
+writef G:94 LG gl.b[220] writef("ERROR'ine %n: ",lineno)
+writef G:94 LG gl.b[221] writef(mes,a,b,c)
+writef G:94 LG gl.b[330] writef("line 'el file*n",lineno)
+writef G:94 LG gl.b[344] writef("Unabl' upb=%n*n",vvupb)
+writef G:94 LG gl.b[362] writef("Verte'located*n")
+writef G:94 LG gl.b[369] writef("Too m'vupb=%n*n",vpos,vvupb)
+writef G:94 LG gl.b[386] writef("Unabl' upb=%n*n",ivupb)
+writef G:94 LG gl.b[401] writef("Unabl' upb=%n*n",dvupb)
+writef G:94 LG gl.b[411] writef("Displ'located*n")
+writef G:94 LG gl.b[434] writef("Index'llocate*n")
+writef G:94 LG gl.b[441] writef("Too m'vupb=%n*n",ipos,ivupb)
+writef G:94 LG gl.b[473]
+    writef("ERROR's tok=%s",mess,tok2str(token),tok2str(tok))
+writef G:94 LG gl.b[502] writef("Bad v'rective*n")
+writef G:94 LG gl.b[632] writef(form,a,b,c,d,e,...)
+writef G:94 LG gl.b[869] writef(form,a,b,c,d,e,...)
+writeflt G:73 DEF libhdr.h[110] writeflt=73
+writehex G:87 DEF libhdr.h[124] writehex=87
+writen G:86 DEF libhdr.h[123] writen=86
+writeoct G:88 DEF libhdr.h[125] writeoct=88
+writes G:89 DEF libhdr.h[126] writes=89
+writet G:90 DEF libhdr.h[127] writet=90
+writeu G:91 DEF libhdr.h[128] writeu=91
+writewords G:45 DEF libhdr.h[82] writewords=45
+writez G:92 DEF libhdr.h[129] writez=92
+wrplatformangles F:130 LF dnaplot.b[1659] wrplatformangles()
+wrplatformangles F:130 RT dnaplot.b[1695] LET wrplatformangles()BE..

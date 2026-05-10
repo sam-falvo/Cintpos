@@ -1,0 +1,540 @@
+Before calling findsections
+fcounter=0 notfcounter=0 mcounter=0 notmcounter=0
+codevsize-fcounter-notfcounter=640
+codevsize-mcounter-notmcounter=640
+
+Calling findsections
+
+    0: 03E8 CODE  Section     size   634 bytes
+  636: Max global number 122
+  632: G122 =    24   TRAPSTART
+After calling findsections
+fcounter=1 notfcounter=13 mcounter=0 notmcounter=14
+codevsize-fcounter-notfcounter=626
+codevsize-mcounter-notmcounter=626
+
+Calling findnames
+
+Finding section, needs and entry names
+    4: SECTION Name: IO     
+After calling findnames
+fcounter=3 notfcounter=53 mcounter=0 notmcounter=56
+codevsize-fcounter-notfcounter=584
+codevsize-mcounter-notmcounter=584
+
+Calling scancode
+
+After calling scancode
+fcounter=258 notfcounter=243 mcounter=0 notmcounter=498
+codevsize-fcounter-notfcounter=139
+codevsize-mcounter-notmcounter=142
+
+Calling findnotf
+
+After calling findnotf
+fcounter=258 notfcounter=382 mcounter=0 notmcounter=498
+codevsize-fcounter-notfcounter=0
+codevsize-mcounter-notmcounter=142
+
+Calling findstrings
+
+After calling findstrings
+fcounter=258 notfcounter=382 mcounter=0 notmcounter=624
+codevsize-fcounter-notfcounter=0
+codevsize-mcounter-notmcounter=16
+About to call dumpcode()
+
+//     0: 03E8 013D                MHUNK    size=317
+//     4: FDDF                     Section name: IO     
+//     6: 07 49 4F 20 20 20 20 20
+
+//    14: DFDF                     Entry name: TRAPSTA
+//    16: 07 54 52 41 50 53 54 41
+
+//    24: GLOBAL ENTRY             G122 TRAPSTART
+//    24: 30 11        LG    17    G017 STREAMCHAIN
+//    26: A3          SP3          
+//    27: 5B EE      LLL$   368    "Input/Output Streams*n*n"
+//    29: 24 5E       K4G    94    G094 WRITES
+//    31: BB ED        J$   358    
+
+//    33: L00033:
+//    33: 83          LP3          
+//    34: 79          RV5          
+//    35: A4          SP4          
+//    36: FC         L4P3          
+//    37: A5          SP5          
+//    38: 10           L0          
+//    39: 60 FF         L   255    
+//    41: B6         GBYT          
+//    42: 60 7F         L   127    
+//    44: 9C 89       JLE    55    
+//    46: 60 7E         L   126    
+//    48: 26 23       K6G    35    G035 OPSYS
+//    50: 61 F9 03     LW  1017    
+//    53: 26 17       K6G    23    G023 ABORT
+
+//    55: L00055:
+//    55: 11           L1          
+//    56: 85          LP5          
+//    57: 58          AND          
+//    58: AB         SP11          
+//    59: 5B E0      LLL$   392    "%I5: %S "
+//    61: A9          SP9          
+//    62: 83          LP3          
+//    63: AA         SP10          
+//    64: 8B         LP11          
+//    65: 1E 84      JEQ0    71    
+//    67: 5B DD      LLL$   402    "In "
+//    69: BA 82         J    73    
+
+//    71: L00071:
+//    71: 5B DC      LLL$   406    "Out"
+
+//    73: L00073:
+//    73: AB         SP11          
+//    74: 89          LP9          
+//    75: 26 5A       K6G    90    G090 WRITEF
+//    77: BA A4         J   115    
+
+//    79: DEFAULT:
+
+//    79: L00079:
+//    79: 5B D9      LLL$   410    "??"
+//    81: BA B9         J   140    
+
+//    83: CASE 1:
+
+//    83: L00083:
+//    83: 5B D8      LLL$   414    "/K"
+//    85: BA B5         J   140    
+
+//    87: CASE 2:
+
+//    87: L00087:
+//    87: 5B D7      LLL$   418    "/C"
+//    89: BA B1         J   140    
+
+//    91: CASE 3:
+
+//    91: L00091:
+//    91: 5B D6      LLL$   422    "/P"
+//    93: BA AD         J   140    
+
+//    95: CASE 4:
+
+//    95: L00095:
+//    95: 5B D5      LLL$   426    "Errorstream"
+//    97: BA A9         J   140    
+
+//    99: CASE 5:
+
+//    99: L00099:
+//    99: 5B D4      LLL$   438    "/L"
+//   101: BA A5         J   140    
+
+//   103: CASE 6:
+
+//   103: L00103:
+//   103: 5B D3      LLL$   442    "/N"
+//   105: BA A1         J   140    
+
+//   107: CASE 7:
+
+//   107: L00107:
+//   107: 5B D2      LLL$   446    "/S."
+//   109: BA 9D         J   140    
+
+//   111: CASE 8:
+
+//   111: L00111:
+//   111: 5B D1      LLL$   450    "/F."
+//   113: BA 99         J   140    
+
+//   115: L00115:
+//   115: 84          LP4          
+//   116: 93          SWL          
+//   117: D0
+//   118: 0008        len =    8
+//   120: FFD7    default =>    79
+//   122: 0001       mink =     1
+//   124: FFD7      label =>    83
+//   126: FFD9      label =>    87
+//   128: FFDB      label =>    91
+//   130: FFDD      label =>    95
+//   132: FFDF      label =>    99
+//   134: FFE1      label =>   103
+//   136: FFE3      label =>   107
+//   138: FFE5      label =>   111
+
+//   140: L00140:
+//   140: 26 5E       K6G    94    G094 WRITES
+//   142: 18           L8          
+//   143: 84          LP4          
+//   144: 3C 88       JNE   154    
+//   146: 60 0B         L    11    
+//   148: C3          AP3          
+//   149: 5B D3      LLL$   544    
+//   151: 06           K6          
+//   152: BA A5         J   191    
+
+//   154: L00154:
+//   154: 17           L7          
+//   155: 84          LP4          
+//   156: 3C 88       JNE   166    
+//   158: 19           L9          
+//   159: D6         RVP3          
+//   160: 77          RV3          
+//   161: 5B CD      LLL$   544    
+//   163: 06           K6          
+//   164: BA 99         J   191    
+
+//   166: L00166:
+//   166: 11           L1          
+//   167: A6          SP6          
+//   168: 14           L4          
+//   169: 84          LP4          
+//   170: 3C 83       JNE   175    
+//   172: 17           L7          
+//   173: BA 82         J   177    
+
+//   175: L00175:
+//   175: 60 10         L    16    
+
+//   177: L00177:
+//   177: A7          SP7          
+//   178: BA 87         J   187    
+
+//   180: L00180:
+//   180: 60 20         L    32    
+//   182: 28 52       K8G    82    G082 WRCH
+//   184: 11           L1          
+//   185: C6          AP6          
+//   186: A6          SP6          
+
+//   187: L00187:
+//   187: 86          LP6          
+//   188: 87          LP7          
+//   189: 9C 75       JLE   180    
+
+//   191: L00191:
+//   191: 30 34        LG    52    G052 CNSLINSTR
+//   193: 83          LP3          
+//   194: 1C 84       JEQ   200    
+//   196: 30 35        LG    53    G053 CNSLOUTSTR
+//   198: 3C 84       JNE   204    
+
+//   200: L00200:
+//   200: 5B CE      LLL$   454    " Cmd"
+//   202: 26 5E       K6G    94    G094 WRITES
+
+//   204: L00204:
+//   204: 60 92         L   146    
+//   206: 33 0E        AG    14    G014
+//   208: 74           RV          
+//   209: 83          LP3          
+//   210: 1C 87       JEQ   219    
+//   212: 60 93         L   147    
+//   214: 33 0E        AG    14    G014
+//   216: 74           RV          
+//   217: 3C 84       JNE   223    
+
+//   219: L00219:
+//   219: 5B C5      LLL$   460    " Run"
+//   221: 26 5E       K6G    94    G094 WRITES
+
+//   223: L00223:
+//   223: 26 54       K6G    84    G084 NEWLINE
+//   225: 30 09        LG     9    G009
+//   227: 26 4F       K6G    79    G079 SELECTINPUT
+//   229: 30 0A        LG    10    G010
+//   231: 26 50       K6G    80    G080 SELECTOUTPUT
+//   233: 16           L6          
+//   234: 84          LP4          
+//   235: 1C F7       JEQ   356    
+//   237: 14           L4          
+//   238: 1C F4       JEQ   356    
+//   240: 18           L8          
+//   241: D6         RVP3          
+//   242: A6          SP6          
+//   243: 83          LP3          
+//   244: 7A          RV6          
+//   245: A7          SP7          
+//   246: 17           L7          
+//   247: D6         RVP3          
+//   248: A8          SP8          
+//   249: 5B B7      LLL$   466    "       "
+//   251: 29 5E       K9G    94    G094 WRITES
+//   253: 86          LP6          
+//   254: 3E 86      JNE0   262    
+//   256: 5B B5      LLL$   474    "0-length file"
+//   258: 29 5E       K9G    94    G094 WRITES
+//   260: BA DC         J   354    
+
+//   262: L00262:
+//   262: 86          LP6          
+//   263: AD         SP13          
+//   264: 5B B2      LLL$   488    "Buffer %I5: "
+//   266: 29 5A       K9G    90    G090 WRITEF
+//   268: 87          LP7          
+//   269: 88          LP8          
+//   270: 9C 82       JLE   274    
+//   272: D1           A1          
+//   273: A7          SP7          
+
+//   274: L00274:
+//   274: 0E 0A        LM    10    
+//   276: C7          AP7          
+//   277: A9          SP9          
+//   278: 0F          LM1          
+//   279: C7          AP7          
+//   280: AA         SP10          
+//   281: BA 9C         J   311    
+
+//   283: L00283:
+//   283: 89          LP9          
+//   284: 0F          LM1          
+//   285: BC 84       JGE   291    
+//   287: 60 2D         L    45    
+//   289: BA 8B         J   302    
+
+//   291: L00291:
+//   291: 0F          LM1          
+//   292: 89          LP9          
+//   293: 3C 84       JNE   299    
+//   295: 60 3E         L    62    
+//   297: BA 83         J   302    
+
+//   299: L00299:
+//   299: 86          LP6          
+//   300: 89          LP9          
+//   301: B6         GBYT          
+
+//   302: L00302:
+//   302: 85          LP5          
+//   303: AF         SP15          
+//   304: B5          XCH          
+//   305: 5B 9E      LLL$   586    
+//   307: 0B          K11          
+//   308: 11           L1          
+//   309: C9          AP9          
+//   310: A9          SP9          
+
+//   311: L00311:
+//   311: 89          LP9          
+//   312: 8A         LP10          
+//   313: 9C 60       JLE   283    
+//   315: 5B 9A      LLL$   502    "//"
+//   317: 29 5E       K9G    94    G094 WRITES
+//   319: 11           L1          
+//   320: 85          LP5          
+//   321: 58          AND          
+//   322: 1E 9E      JEQ0   354    
+//   324: 87          LP7          
+//   325: A9          SP9          
+//   326: 88          LP8          
+//   327: AA         SP10          
+//   328: BA 94         J   350    
+
+//   330: L00330:
+//   330: 86          LP6          
+//   331: 89          LP9          
+//   332: B6         GBYT          
+//   333: 85          LP5          
+//   334: AF         SP15          
+//   335: B5          XCH          
+//   336: 5B 8F      LLL$   586    
+//   338: 0B          K11          
+//   339: 89          LP9          
+//   340: 87          LP7          
+//   341: 55          SUB          
+//   342: 14           L4          
+//   343: 9C 82       JLE   347    
+//   345: BA 87         J   354    
+
+//   347: L00347:
+//   347: 11           L1          
+//   348: C9          AP9          
+//   349: A9          SP9          
+
+//   350: L00350:
+//   350: 89          LP9          
+//   351: 8A         LP10          
+//   352: 9C 68       JLE   330    
+
+//   354: L00354:
+//   354: 29 54       K9G    84    G084 NEWLINE
+
+//   356: L00356:
+//   356: E3         L0P3          
+//   357: A3          SP3          
+
+//   358: L00358:
+//   358: 83          LP3          
+//   359: 3F 85     JNE0$    33    
+//   361: 24 54       K4G    84    G084 NEWLINE
+//   363: 10           L0          
+//   364: 24 02       K4G     2    G002 STOP
+//   366: 7B          RTN          
+//   367: D0          NOP          
+
+//   368: 16 String: "Input/Output Streams*n*n"
+//   368: 16 49 6E 70 75 74 2F 4F 75 74 70 75 74 20 53 74 
+//   384: 72 65 61 6D 73 0A 0A 
+
+//   392: 08 String: "%I5: %S "
+//   392: 08 25 49 35 3A 20 25 53 20 
+
+//   402: 03 String: "In "
+//   402: 03 49 6E 20 
+
+//   406: 03 String: "Out"
+//   406: 03 4F 75 74 
+
+//   410: 02 String: "??"
+//   410: 02 3F 3F 
+
+//   414: 02 String: "/K"
+//   414: 02 2F 4B 
+
+//   418: 02 String: "/C"
+//   418: 02 2F 43 
+
+//   422: 02 String: "/P"
+//   422: 02 2F 50 
+
+//   426: 0B String: "Errorstream"
+//   426: 0B 45 72 72 6F 72 73 74 72 65 61 6D 
+
+//   438: 02 String: "/L"
+//   438: 02 2F 4C 
+
+//   442: 02 String: "/N"
+//   442: 02 2F 4E 
+
+//   446: 03 String: "/S."
+//   446: 03 2F 53 2E 
+
+//   450: 03 String: "/F."
+//   450: 03 2F 46 2E 
+
+//   454: 04 String: " Cmd"
+//   454: 04 20 43 6D 64 
+
+//   460: 04 String: " Run"
+//   460: 04 20 52 75 6E 
+
+//   466: 07 String: "       "
+//   466: 07 20 20 20 20 20 20 20 
+
+//   474: 0D String: "0-length file"
+//   474: 0D 30 2D 6C 65 6E 67 74 68 20 66 69 6C 65 
+
+//   488: 0C String: "Buffer %I5: "
+//   488: 0C 42 75 66 66 65 72 20 25 49 35 3A 20 
+
+//   502: 02 String: "//"
+//   502: 02 2F 2F 
+
+//   506: FF76          Resolving word => 368
+//   508: FF6A          Resolving word => 358
+//   510: FF8A          Resolving word => 392
+//   512: FF92          Resolving word => 402
+//   514: FF94          Resolving word => 406
+//   516: FF96          Resolving word => 410
+//   518: FF98          Resolving word => 414
+//   520: FF9A          Resolving word => 418
+//   522: FF9C          Resolving word => 422
+//   524: FF9E          Resolving word => 426
+//   526: FFA8          Resolving word => 438
+//   528: FFAA          Resolving word => 442
+//   530: FFAC          Resolving word => 446
+//   532: FFAE          Resolving word => 450
+
+//   534: DFDF                     Entry name: PRNAME 
+//   536: 07 50 52 4E 41 4D 45 20
+
+//   544: L00544:
+
+//   544: 10           L0          
+//   545: B6         GBYT          
+//   546: A4          SP4          
+//   547: 11           L1          
+//   548: A5          SP5          
+//   549: BA 90         J   567    
+
+//   551: L00551:
+//   551: 85          LP5          
+//   552: 84          LP4          
+//   553: 9C 84       JLE   559    
+//   555: 60 20         L    32    
+//   557: BA 83         J   562    
+
+//   559: L00559:
+//   559: 83          LP3          
+//   560: 85          LP5          
+//   561: B6         GBYT          
+
+//   562: L00562:
+//   562: 26 52       K6G    82    G082 WRCH
+//   564: 11           L1          
+//   565: C5          AP5          
+//   566: A5          SP5          
+
+//   567: L00567:
+//   567: 85          LP5          
+//   568: 60 0F         L    15    
+//   570: 9C 6B       JLE   551    
+//   572: 7B          RTN          
+//   573: D0          NOP          
+
+//   574: FFE2          Resolving word => 544
+
+//   576: DFDF                     Entry name: WRCHAR 
+//   578: 07 57 52 43 48 41 52 20
+
+//   586: L00586:
+
+//   586: 60 7F         L   127    
+//   588: 58          AND          
+//   589: A5          SP5          
+//   590: 60 20         L    32    
+//   592: BC 8F       JGE   609    
+//   594: 1A          L10          
+//   595: 85          LP5          
+//   596: 1C 84       JEQ   602    
+//   598: 60 0D         L    13    
+//   600: 3C 84       JNE   606    
+
+//   602: L00602:
+//   602: 60 2A         L    42    
+//   604: BA 82         J   608    
+
+//   606: L00606:
+//   606: 60 2E         L    46    
+
+//   608: L00608:
+//   608: A3          SP3          
+
+//   609: L00609:
+//   609: 83          LP3          
+//   610: 26 52       K6G    82    G082 WRCH
+//   612: 7B          RTN          
+//   613: D0          NOP          
+
+//   614: FF60          Resolving word => 454
+//   616: FF64          Resolving word => 460
+//   618: FF68          Resolving word => 466
+//   620: FF6E          Resolving word => 474
+//   622: FF7A          Resolving word => 488
+//   624: FFDA          Resolving word => 586
+//   626: FF84          Resolving word => 502
+//   628: FDAD          Resolving word => 33
+
+//   630: 0000      Ginit end mark
+//   632: 007A 0014 Init  G122 = 24  TRAPSTART
+//   636: 007A      Highest Global  G122 TRAPSTART
+//   638: 03E0                  END
+
+
+No unclassified bytes

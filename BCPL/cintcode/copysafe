@@ -1,0 +1,16 @@
+cp enderlit/syslib enderlit/syslibsafe
+cp enderlit/boot enderlit/bootsafe
+cp enderlit/blib enderlit/blibsafe
+cp enderlit/dlib enderlit/dlibsafe
+cp enderlit/cli enderlit/clisafe
+cp enderlit/abort enderlit/abortsafe
+cp enderlit/c enderlit/csafe
+
+cp enderbig/syslib enderbig/syslibsafe
+cp enderbig/boot enderbig/bootsafe
+cp enderbig/blib enderbig/blibsafe
+cp enderbig/dlib enderbig/dlibsafe
+cp enderbig/cli enderbig/clisafe
+cp enderbig/abort enderbig/abortsafe
+cp enderbig/c enderbig/csafe
+

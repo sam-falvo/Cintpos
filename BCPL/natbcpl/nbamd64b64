@@ -1,0 +1,6 @@
+.k dir/a,file/a,opt
+echo "bcpl2sial <dir>/<file>.b to sial/<file>.sial t64 noselst"
+bcpl2sial <dir>/<file>.b to sial/<file>.sial t64 noselst
+echo "sial-amd64b64 sial/<file>.sial to temps/<file>.s <opt>"
+sial-amd64b64 sial/<file>.sial to temps/<file>.s <opt>
+

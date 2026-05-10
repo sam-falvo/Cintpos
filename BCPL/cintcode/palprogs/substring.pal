@@ -1,0 +1,23 @@
+letEm S = S = ''
+in
+let Substring(a, b) =
+      f(a, b, true)
+      where rec f(x, y,B) =
+              Em x -> true !
+	      Em y -> false !
+	      Stem x = Stem y -> f(Stern x, Stern y, false) !
+	      B -> f(a, Stern b, true) !
+	      false
+in
+
+let Test(a, b) be
+  let Qu S = Q %Conc S %Conc Q
+  and N, Q = '*n', '^''
+  in
+  Write(Qu a, N, Qu b, N, '*t', Substring(a, b), N, N)
+in
+Test('', 'ab');
+Test('ab', '');
+Test('abcd', 'abcd');
+Test('ab', 'abcd');
+Write '*nAll done.*n'

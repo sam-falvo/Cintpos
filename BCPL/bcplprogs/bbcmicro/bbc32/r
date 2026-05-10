@@ -1,0 +1,4 @@
+.k file/a,opt
+echo "Running c1n32/<file> <opt>"
+cin32/<file> <opt>
+

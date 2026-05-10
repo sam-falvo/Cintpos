@@ -1,0 +1,51 @@
+// TUPLE  PAL   11/29/1967  17:04
+
+// PAL demonstration -- tuple-producing functions.
+
+// Last modified on 11/29/1967 at 16:30 by Evans
+
+// Copied from a program by Martin Richards
+
+let I x= x  //   the 'identity' function
+in
+
+let Tuple n = // The definition of Tuple is such that  Tuple 3 x y z
+              // makes a 3-tuple whose elements are x, y and z.
+  T n l
+  where rec T n =
+        n=0 -> I!
+	ll b a. T (n-1) (ll s. b s a)
+in
+
+lry Mode3 = Tuple 3
+in
+
+let H1 x y z = x
+and H2 x y z = y
+and H3 x y z = z
+in
+
+let A, B = Mode3 1 2 3, Mode3 4 5 6
+in
+
+let Outit(A, B) = (Print(A H1, A H2, A H3, B H1, B H2, B H3); Print{'*n') )
+in
+
+Outit(A, B);
+
+A H1, B H2 := 6, 9;
+
+Outit(A, B);
+
+let a, b, c = 1, 2, 3
+in
+
+let A,B = Mode3 a b c, Mode3 c b a
+in
+
+Outit(A, B);
+
+A H1 := 5;
+
+Outit(A, B)
+

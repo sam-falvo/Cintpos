@@ -1,0 +1,822 @@
+Before calling findsections
+fcounter=0 notfcounter=0 mcounter=0 notmcounter=0
+codevsize-fcounter-notfcounter=1226
+codevsize-mcounter-notmcounter=1226
+
+Calling findsections
+
+    0: 03E8 CODE  Section     size  1220 bytes
+ 1222: Max global number 109
+ 1218: G001 =    36   START
+ 1214: G003 =    14   STARTINIT
+After calling findsections
+fcounter=2 notfcounter=19 mcounter=0 notmcounter=21
+codevsize-fcounter-notfcounter=1205
+codevsize-mcounter-notmcounter=1205
+
+Calling findnames
+
+Finding section, needs and entry names
+    4: SECTION Name: NEEDCIN
+After calling findnames
+fcounter=2 notfcounter=29 mcounter=0 notmcounter=31
+codevsize-fcounter-notfcounter=1195
+codevsize-mcounter-notmcounter=1195
+
+Calling scancode
+
+After calling scancode
+fcounter=536 notfcounter=429 mcounter=0 notmcounter=963
+codevsize-fcounter-notfcounter=261
+codevsize-mcounter-notmcounter=263
+
+Calling findnotf
+
+After calling findnotf
+fcounter=536 notfcounter=682 mcounter=0 notmcounter=963
+codevsize-fcounter-notfcounter=8
+codevsize-mcounter-notmcounter=263
+
+Calling findstrings
+
+After calling findstrings
+fcounter=536 notfcounter=690 mcounter=0 notmcounter=1200
+codevsize-fcounter-notfcounter=0
+codevsize-mcounter-notmcounter=26
+About to call dumpcode()
+
+//     0: 03E8 0262                MHUNK    size=610
+//     4: FDDF                     Section name: NEEDCIN
+//     6: 07 4E 45 45 44 43 49 4E
+
+//    14: GLOBAL ENTRY             G003 STARTINIT
+//    14: 61 BC 02     LW   700    
+//    17: 7B          RTN          
+
+//    18: 10C2       DATA   4290    Operand of LL SL
+
+//    20: 0000       DATA      0    Operand of LL SL
+
+//    22: 0000       DATA      0    Operand of LL SL
+
+//    24: 1FC8       DATA   8136    Operand of LL SL
+
+//    26: 0058       DATA     88    Operand of LL SL
+
+//    28: 1364       DATA   4964    Operand of LL SL
+
+//    30: 2073       DATA   8307    Operand of LL SL
+
+//    32: 203A       DATA   8250    Operand of LL SL
+
+//    34: 0000       DATA      0    Operand of LL SL
+
+//    36: GLOBAL ENTRY             G001 START
+//    36: 40 04       LLP     4    
+//    38: A3          SP3          
+//    39: 5B EA      LLL$   352    "FROM/A,LIBRARY,AS=TO/A"
+//    41: A0 6A        SP   106    
+//    43: 40 6C       LLP   108    
+//    45: A0 6B        SP   107    
+//    47: 40 AF       LLP   175    
+//    49: A0 AE        SP   174    
+//    51: 5B E5      LLL$   376    "FILE %S - INVALID FORMAT"
+//    53: A1 77 01    SPW   375    
+//    56: 80 AE        LP   174    
+//    58: 38 62        SL    30    
+//    60: 81 77 01    LPW   375    
+//    63: 38 5B        SL    28    
+//    65: 11           L1          
+//    66: 38 56        SL    26    
+//    68: 10           L0          
+//    69: 38 5B        SL    34    
+//    71: 38 4F        SL    24    
+//    73: 83          LP3          
+//    74: 5B DB      LLL$   646    
+//    76: 21 78 01     KW   376    
+//    79: 30 4A        LG    74    G074 OUTPUT
+//    81: 21 78 01     KW   376    
+//    84: 38 3C        SL    18    
+//    86: 10           L0          
+//    87: 38 3B        SL    20    
+//    89: 38 3B        SL    22    
+//    91: 80 6B        LP   107    
+//    93: A1 7C 01    SPW   380    
+//    96: 60 41         L    65    
+//    98: A1 7D 01    SPW   381    
+//   101: 80 6A        LP   106    
+//   103: 30 61        LG    97    G097 RDARGS
+//   105: 21 78 01     KW   376    
+//   108: 3E 87      JNE0   117    
+//   110: 60 0B         L    11    
+//   112: 30 02        LG     2    G002 STOP
+//   114: 21 78 01     KW   376    
+
+//   117: L00117:
+//   117: 80 6B        LP   107    
+//   119: 5B FD      LLL$  1070    
+//   121: 21 78 01     KW   376    
+//   124: 80 6B        LP   107    
+//   126: 76          RV2          
+//   127: 38 1F        SL    32    
+//   129: 30 43        LG    67    G067 FINDOUTPUT
+//   131: 21 78 01     KW   376    
+//   134: 38 0E        SL    22    
+//   136: 3E 91      JNE0   155    
+//   138: 3A 14        LL    32    
+//   140: A1 7C 01    SPW   380    
+//   143: 30 0F        LG    15    G015 RESULT2
+//   145: A1 7D 01    SPW   381    
+//   148: 5B F0      LLL$   402    "CANNOT OPEN OUTPUT FILE %S"
+//   150: 5B F0      LLL$   688    
+//   152: 21 78 01     KW   376    
+
+//   155: L00155:
+//   155: 3B EE       LL$    22    
+//   157: 30 50        LG    80    G080 SELECTOUTPUT
+//   159: 21 78 01     KW   376    
+//   162: 80 6B        LP   107    
+//   164: 74           RV          
+//   165: 0F          LM1          
+//   166: A1 7C 01    SPW   380    
+//   169: B5          XCH          
+//   170: 5B E8      LLL$   720    
+//   172: 21 78 01     KW   376    
+//   175: 80 6B        LP   107    
+//   177: 75          RV1          
+//   178: 1E 91      JEQ0   197    
+//   180: 3B E4       LL$    34    
+//   182: 1E 8D      JEQ0   197    
+//   184: 80 6B        LP   107    
+//   186: 75          RV1          
+//   187: 10           L0          
+//   188: A1 7C 01    SPW   380    
+//   191: B5          XCH          
+//   192: 5B DD      LLL$   720    
+//   194: 21 78 01     KW   376    
+
+//   197: L00197:
+//   197: 61 E0 03     LW   992    
+//   200: 5B DB      LLL$  1062    
+//   202: 21 78 01     KW   376    
+//   205: 30 48        LG    72    G072 ENDWRITE
+//   207: 21 78 01     KW   376    
+//   210: 10           L0          
+//   211: 39 D2       SL$    22    
+//   213: 3B D5       LL$    18    
+//   215: 30 50        LG    80    G080 SELECTOUTPUT
+//   217: 21 78 01     KW   376    
+//   220: 3B D3       LL$    24    
+//   222: A1 78 01    SPW   376    
+//   225: 10           L0          
+//   226: A1 79 01    SPW   377    
+//   229: BA CC         J   307    
+
+//   231: L00231:
+//   231: 81 78 01    LPW   376    
+//   234: D2           A2          
+//   235: A1 7A 01    SPW   378    
+//   238: 81 78 01    LPW   376    
+//   241: 75          RV1          
+//   242: A1 7C 01    SPW   380    
+//   245: 11           L1          
+//   246: A1 7B 01    SPW   379    
+//   249: BA A9         J   292    
+
+//   251: L00251:
+//   251: 81 7A 01    LPW   378    
+//   254: 74           RV          
+//   255: 3E 95      JNE0   278    
+//   257: 81 7A 01    LPW   378    
+//   260: D1           A1          
+//   261: A1 81 01    SPW   385    
+//   264: 5B D2      LLL$   430    "SECTION %S NEED NOT SATISFIED*n"
+//   266: 30 5A        LG    90    G090 WRITEF
+//   268: 21 7D 01     KW   381    
+//   271: 81 79 01    LPW   377    
+//   274: D1           A1          
+//   275: A1 79 01    SPW   377    
+
+//   278: L00278:
+//   278: 81 7A 01    LPW   378    
+//   281: D5           A5          
+//   282: A1 7A 01    SPW   378    
+//   285: 81 7B 01    LPW   379    
+//   288: D1           A1          
+//   289: A1 7B 01    SPW   379    
+
+//   292: L00292:
+//   292: 81 7B 01    LPW   379    
+//   295: 81 7C 01    LPW   380    
+//   298: 9C 4F       JLE   251    
+//   300: 81 78 01    LPW   376    
+//   303: 74           RV          
+//   304: A1 78 01    SPW   376    
+
+//   307: L00307:
+//   307: 3B A4       LL$    34    
+//   309: 81 79 01    LPW   377    
+//   312: 3C 2D       JNE   231    
+//   314: 3B FF       LL$    26    
+//   316: A1 7E 01    SPW   382    
+//   319: 3B FD       LL$    32    
+//   321: A1 7F 01    SPW   383    
+//   324: 81 79 01    LPW   377    
+//   327: A1 80 01    SPW   384    
+//   330: 5B FF      LLL$   462    "%N word file %S created*n%N NEED(S) unsatisfied*n"
+//   332: 30 5A        LG    90    G090 WRITEF
+//   334: 21 7A 01     KW   378    
+//   337: 3B 95       LL$    34    
+//   339: 3E 83      JNE0   344    
+//   341: 10           L0          
+//   342: BA 82         J   346    
+
+//   344: L00344:
+//   344: 0E 02        LM     2    
+
+//   346: L00346:
+//   346: 30 02        LG     2    G002 STOP
+//   348: 21 78 01     KW   376    
+//   351: 7B          RTN          
+
+//   352: 16 String: "FROM/A,LIBRARY,AS=TO/A"
+//   352: 16 46 52 4F 4D 2F 41 2C 4C 49 42 52 41 52 59 2C 
+//   368: 41 53 3D 54 4F 2F 41 
+
+//   376: 18 String: "FILE %S - INVALID FORMAT"
+//   376: 18 46 49 4C 45 20 25 53 20 2D 20 49 4E 56 41 4C 
+//   392: 49 44 20 46 4F 52 4D 41 54 
+
+//   402: 1A String: "CANNOT OPEN OUTPUT FILE %S"
+//   402: 1A 43 41 4E 4E 4F 54 20 4F 50 45 4E 20 4F 55 54 
+//   418: 50 55 54 20 46 49 4C 45 20 25 53 
+
+//   430: 1E String: "SECTION %S NEED NOT SATISFIED*n"
+//   430: 1E 53 45 43 54 49 4F 4E 20 25 53 20 4E 45 45 44 
+//   446: 20 4E 4F 54 20 53 41 54 49 53 46 49 45 44 0A 
+
+//   462: 2F String: "%N word file %S created*n%N NEED(S) unsatisfied*n"
+//   462: 2F 25 4E 20 77 6F 72 64 20 66 69 6C 65 20 25 53 
+//   478: 20 63 72 65 61 74 65 64 0A 25 4E 20 4E 45 45 44 
+//   494: 28 53 29 20 75 6E 73 61 74 69 73 66 69 65 64 0A 
+
+//   510: FF62          Resolving word => 352
+//   512: FF78          Resolving word => 376
+//   514: 0084          Resolving word => 646
+
+//   516: L00516:
+
+//   516: 3B 3F       LL$    24    
+//   518: A6          SP6          
+
+//   519: L00519:
+//   519: 12           L2          
+//   520: C6          AP6          
+//   521: A7          SP7          
+//   522: 11           L1          
+//   523: A8          SP8          
+//   524: F6         L1P6          
+//   525: A9          SP9          
+//   526: BA A5         J   565    
+
+//   528: L00528:
+//   528: 11           L1          
+//   529: C7          AP7          
+//   530: AE         SP14          
+//   531: 83          LP3          
+//   532: 2A 5F      K10G    95    G095 COMPSTRING
+//   534: 3E 97      JNE0   559    
+//   536: 84          LP4          
+//   537: 3E 83      JNE0   542    
+//   539: 10           L0          
+//   540: BA D5         J   627    
+
+//   542: L00542:
+//   542: E7         L0P7          
+//   543: 1E 83      JEQ0   548    
+//   545: 85          LP5          
+//   546: BA CF         J   627    
+
+//   548: L00548:
+//   548: 0F          LM1          
+//   549: 87          LP7          
+//   550: 94           ST          
+//   551: 3B 2A       LL$    34    
+//   553: B1           S1          
+//   554: 39 29       SL$    34    
+//   556: 0F          LM1          
+//   557: BA C4         J   627    
+
+//   559: L00559:
+//   559: 15           L5          
+//   560: C7          AP7          
+//   561: A7          SP7          
+//   562: 11           L1          
+//   563: C8          AP8          
+//   564: A8          SP8          
+
+//   565: L00565:
+//   565: 88          LP8          
+//   566: 89          LP9          
+//   567: 9C 57       JLE   528    
+//   569: E6         L0P6          
+//   570: 3E 82      JNE0   574    
+//   572: BA 84         J   578    
+
+//   574: L00574:
+//   574: E6         L0P6          
+//   575: A6          SP6          
+//   576: BA 45         J   519    
+
+//   578: L00578:
+//   578: 84          LP4          
+//   579: 1E 86      JEQ0   587    
+//   581: 85          LP5          
+//   582: 3E 83      JNE0   587    
+//   584: 10           L0          
+//   585: BA A8         J   627    
+
+//   587: L00587:
+//   587: F6         L1P6          
+//   588: 60 14         L    20    
+//   590: 5C 8B       JLS   603    
+//   592: 60 65         L   101    
+//   594: 28 1A       K8G    26    G026 GETVEC
+//   596: A6          SP6          
+//   597: 5A AF       LLL   646    
+//   599: 08           K8          
+//   600: 12           L2          
+//   601: C6          AP6          
+//   602: A7          SP7          
+
+//   603: L00603:
+//   603: 84          LP4          
+//   604: 87          LP7          
+//   605: 94           ST          
+//   606: 84          LP4          
+//   607: 3E 85      JNE0   614    
+//   609: 3B 0D       LL$    34    
+//   611: D1           A1          
+//   612: 39 0C       SL$    34    
+
+//   614: L00614:
+//   614: 11           L1          
+//   615: C7          AP7          
+//   616: AC         SP12          
+//   617: 14           L4          
+//   618: AD         SP13          
+//   619: 83          LP3          
+//   620: 28 24       K8G    36    G036 MOVE
+//   622: F6         L1P6          
+//   623: D1           A1          
+//   624: 86          LP6          
+//   625: 95          ST1          
+//   626: 0F          LM1          
+
+//   627: L00627:
+//   627: 7B          RTN          
+
+//   628: 01BA          Resolving word => 1070
+//   630: FF1C          Resolving word => 402
+//   632: 0038          Resolving word => 688
+//   634: FD9C          Resolving word => 22
+//   636: 0054          Resolving word => 720
+//   638: FDA4          Resolving word => 34
+//   640: 01A6          Resolving word => 1062
+//   642: FD90          Resolving word => 18
+//   644: FD94          Resolving word => 24
+
+//   646: L00646:
+
+//   646: 3B CE       LL$    24    
+//   648: DB        ST0P3          
+//   649: 10           L0          
+//   650: DD        ST1P3          
+//   651: 83          LP3          
+//   652: 39 CB       SL$    24    
+//   654: 7B          RTN          
+//   655: D0          NOP          
+
+//   656: L00656:
+
+//   656: 60 C8         L   200    
+//   658: BC 83       JGE   663    
+//   660: 83          LP3          
+//   661: BA 82         J   665    
+
+//   663: L00663:
+//   663: 60 C8         L   200    
+
+//   665: L00665:
+//   665: A5          SP5          
+//   666: AA         SP10          
+//   667: 3B EF       LL$    30    
+//   669: 26 6A       K6G   106    G106 READWORDS
+//   671: 85          LP5          
+//   672: 1C 8A       JEQ   684    
+//   674: 84          LP4          
+//   675: AA         SP10          
+//   676: 60 28         L    40    
+//   678: AB         SP11          
+//   679: 3B FA       LL$    28    
+//   681: 5A 85       LLL   688    
+//   683: 06           K6          
+
+//   684: L00684:
+//   684: 85          LP5          
+//   685: 7B          RTN          
+
+//   686: FF00          Resolving word => 430
+
+//   688: L00688:
+
+//   688: 3B F7       LL$    20    
+//   690: 1E 82      JEQ0   694    
+//   692: 26 47       K6G    71    G071 ENDREAD
+
+//   694: L00694:
+//   694: 3B F5       LL$    22    
+//   696: 1E 86      JEQ0   704    
+//   698: 26 48       K6G    72    G072 ENDWRITE
+//   700: 3B 3F       LL$    32    
+//   702: 26 40       K6G    64    G064 DELFILE
+
+//   704: L00704:
+//   704: 3B F1       LL$    18    
+//   706: 26 50       K6G    80    G080 SELECTOUTPUT
+//   708: 84          LP4          
+//   709: AA         SP10          
+//   710: 83          LP3          
+//   711: 26 5A       K6G    90    G090 WRITEF
+//   713: 26 54       K6G    84    G084 NEWLINE
+//   715: 85          LP5          
+//   716: 26 02       K6G     2    G002 STOP
+//   718: 7B          RTN          
+//   719: D0          NOP          
+
+//   720: L00720:
+
+//   720: 10           L0          
+//   721: A6          SP6          
+//   722: 83          LP3          
+//   723: 27 42       K7G    66    G066 FINDINPUT
+//   725: 39 E4       SL$    20    
+//   727: 3E 8A      JNE0   739    
+//   729: 83          LP3          
+//   730: AB         SP11          
+//   731: 30 0F        LG    15    G015 RESULT2
+//   733: AC         SP12          
+//   734: 5B E3      LLL$   998    "CANNOT OPEN INPUT FILE %S"
+//   736: 5A 4E       LLL   688    
+//   738: 07           K7          
+
+//   739: L00739:
+//   739: 3B DD       LL$    20    
+//   741: 27 4F       K7G    79    G079 SELECTINPUT
+//   743: 5B DF      LLL$  1050    
+//   745: 07           K7          
+//   746: A5          SP5          
+//   747: BB DE        J$   966    
+
+//   749: L00749:
+//   749: 5B DC      LLL$  1050    
+//   751: 07           K7          
+//   752: A7          SP7          
+//   753: 83          LP3          
+//   754: AC         SP12          
+//   755: 87          LP7          
+//   756: 5A 1A       LLL   656    
+//   758: 08           K8          
+//   759: A8          SP8          
+//   760: 3B C1       LL$    30    
+//   762: 75          RV1          
+//   763: 61 DF FD     LW  -545    
+//   766: 1C 90       JEQ   784    
+//   768: 3B BD       LL$    30    
+//   770: 75          RV1          
+//   771: 61 ED FE     LW  -275    
+//   774: 1C 88       JEQ   784    
+//   776: 3B B9       LL$    30    
+//   778: 75          RV1          
+//   779: 61 DF DF     LW -8225    
+//   782: 3C 83       JNE   787    
+
+//   784: L00784:
+//   784: 11           L1          
+//   785: BA 81         J   788    
+
+//   787: L00787:
+//   787: 10           L0          
+
+//   788: L00788:
+//   788: A9          SP9          
+//   789: 61 EA 03     LW  1002    
+//   792: 85          LP5          
+//   793: 1C 81       JEQ   796    
+//   795: 1B         FHOP          
+
+//   796: L00796:
+//   796: 0F          LM1          
+//   797: 86          LP6          
+//   798: 58          AND          
+//   799: 84          LP4          
+//   800: 59           OR          
+//   801: AA         SP10          
+//   802: 0E 02        LM     2    
+//   804: 85          LP5          
+//   805: 58          AND          
+//   806: 61 E8 03     LW  1000    
+//   809: 3C AD       JNE   856    
+//   811: 3B A7       LL$    30    
+//   813: C9          AP9          
+//   814: 74           RV          
+//   815: 61 DF FD     LW  -545    
+//   818: 1C 8F       JEQ   835    
+//   820: 3B A3       LL$    30    
+//   822: C9          AP9          
+//   823: 74           RV          
+//   824: BA 84         J   830    
+
+//   826: FCE0          Resolving word => 26
+//   828: FCE4          Resolving word => 32
+
+//   830: L00830:
+//   830: 61 DF DF     LW -8225    
+//   833: 3C 95       JNE   856    
+
+//   835: L00835:
+//   835: 3B 9B       LL$    30    
+//   837: C9          AP9          
+//   838: D1           A1          
+//   839: AE         SP14          
+//   840: BA 82         J   844    
+
+//   842: FE84          Resolving word => 462
+
+//   844: L00844:
+//   844: 0F          LM1          
+//   845: AF         SP15          
+//   846: 84          LP4          
+//   847: B0         SP16          
+//   848: 8E         LP14          
+//   849: 5B AC      LLL$   516    
+//   851: 0B          K11          
+//   852: AA         SP10          
+//   853: 15           L5          
+//   854: C9          AP9          
+//   855: A9          SP9          
+
+//   856: L00856:
+//   856: 8A         LP10          
+//   857: 1E B5      JEQ0   912    
+//   859: BA 9C         J   889    
+
+//   861: L00861:
+//   861: 89          LP9          
+//   862: 60 C3         L   195    
+//   864: 5C 8A       JLS   876    
+//   866: 83          LP3          
+//   867: AF         SP15          
+//   868: 60 28         L    40    
+//   870: B0         SP16          
+//   871: 5B A2      LLL$  1024    "TOO MANY NEEDS IN FILE %S"
+//   873: 5B A2      LLL$   688    
+//   875: 0B          K11          
+
+//   876: L00876:
+//   876: 3B 87       LL$    30    
+//   878: C9          AP9          
+//   879: D1           A1          
+//   880: 10           L0          
+//   881: AF         SP15          
+//   882: B5          XCH          
+//   883: 5B 9B      LLL$   516    
+//   885: 0B          K11          
+//   886: 15           L5          
+//   887: C9          AP9          
+//   888: A9          SP9          
+
+//   889: L00889:
+//   889: 3B 80       LL$    30    
+//   891: C9          AP9          
+//   892: 74           RV          
+//   893: 61 ED FE     LW  -275    
+//   896: 1C 5B       JEQ   861    
+//   898: 85          LP5          
+//   899: 5B 96      LLL$  1062    
+//   901: 0B          K11          
+//   902: 87          LP7          
+//   903: 5B 94      LLL$  1062    
+//   905: 0B          K11          
+//   906: 3B 94       LL$    26    
+//   908: C7          AP7          
+//   909: D2           A2          
+//   910: 39 92       SL$    26    
+
+//   912: L00912:
+//   912: 8A         LP10          
+//   913: 1E 86      JEQ0   921    
+//   915: 88          LP8          
+//   916: AF         SP15          
+//   917: 3B 72       LL$    30    
+//   919: 2B 6D      K11G   109    G109 WRITEWORDS
+
+//   921: L00921:
+//   921: 87          LP7          
+//   922: 88          LP8          
+//   923: 55          SUB          
+//   924: A7          SP7          
+//   925: 7E 82      JGR0   929    
+//   927: BA 89         J   938    
+
+//   929: L00929:
+//   929: 83          LP3          
+//   930: AF         SP15          
+//   931: 87          LP7          
+//   932: 5B 88      LLL$   656    
+//   934: 0B          K11          
+//   935: A8          SP8          
+//   936: BA 66         J   912    
+
+//   938: L00938:
+//   938: 61 E9 03     LW  1001    
+//   941: 85          LP5          
+//   942: 1C 81       JEQ   945    
+//   944: 1B         FHOP          
+
+//   945: L00945:
+//   945: 0F          LM1          
+//   946: 8A         LP10          
+//   947: 58          AND          
+//   948: A6          SP6          
+//   949: 5A E3       LLL  1050    
+//   951: 0B          K11          
+//   952: A5          SP5          
+//   953: 84          LP4          
+//   954: 3E 8A      JNE0   966    
+//   956: 86          LP6          
+//   957: 3E 87      JNE0   966    
+//   959: 3B 7B       LL$    34    
+//   961: 3E 83      JNE0   966    
+//   963: 5A 9B       LLL   992    
+//   965: 9B         GOTO          
+
+//   966: L00966:
+//   966: 0E 08        LM     8    
+//   968: 85          LP5          
+//   969: 58          AND          
+//   970: 61 E8 03     LW  1000    
+//   973: 1D 75      JEQ$   749    
+//   975: 61 E0 03     LW   992    
+//   978: 85          LP5          
+//   979: 1C 8A       JEQ   991    
+//   981: 83          LP3          
+//   982: AB         SP11          
+//   983: 60 28         L    40    
+//   985: AC         SP12          
+//   986: 3B 61       LL$    28    
+//   988: 5B 69      LLL$   688    
+//   990: 07           K7          
+
+//   991: L00991:
+//   991: D0          NOP          
+
+//   992: L00992:
+
+//   992: 27 47       K7G    71    G071 ENDREAD
+//   994: 10           L0          
+//   995: 39 5D       SL$    20    
+//   997: 7B          RTN          
+
+//   998: 19 String: "CANNOT OPEN INPUT FILE %S"
+//   998: 19 43 41 4E 4E 4F 54 20 4F 50 45 4E 20 49 4E 50 
+//  1014: 55 54 20 46 49 4C 45 20 25 53 
+
+//  1024: 19 String: "TOO MANY NEEDS IN FILE %S"
+//  1024: 19 54 4F 4F 20 4D 41 4E 59 20 4E 45 45 44 53 20 
+//  1040: 49 4E 20 46 49 4C 45 20 25 53 
+
+//  1050: L01050:
+
+//  1050: 23 4B       K3G    75    G075 RDBIN
+//  1052: A3          SP3          
+//  1053: 24 4B       K4G    75    G075 RDBIN
+//  1055: 18           L8          
+//  1056: 56          LSH          
+//  1057: 83          LP3          
+//  1058: 59           OR          
+//  1059: 7B          RTN          
+
+//  1060: FBF4          Resolving word => 24
+
+//  1062: L01062:
+
+//  1062: 24 51       K4G    81    G081 WRBIN
+//  1064: 83          LP3          
+//  1065: 18           L8          
+//  1066: 57          RSH          
+//  1067: 24 51       K4G    81    G081 WRBIN
+//  1069: 7B          RTN          
+
+//  1070: L01070:
+
+//  1070: 12           L2          
+//  1071: A8          SP8          
+//  1072: F7         L2P3          
+//  1073: 24 3C       K4G    60    G060
+//  1075: A4          SP4          
+//  1076: 30 0C        LG    12    G012
+//  1078: 10           L0          
+//  1079: B6         GBYT          
+//  1080: 11           L1          
+//  1081: 57          RSH          
+//  1082: A5          SP5          
+//  1083: 26 1A       K6G    26    G026 GETVEC
+//  1085: A6          SP6          
+//  1086: 11           L1          
+//  1087: C5          AP5          
+//  1088: AD         SP13          
+//  1089: 86          LP6          
+//  1090: AC         SP12          
+//  1091: 30 0C        LG    12    G012
+//  1093: 28 24       K8G    36    G036 MOVE
+//  1095: 10           L0          
+//  1096: A8          SP8          
+//  1097: BA A9         J  1140    
+
+//  1099: L01099:
+//  1099: 88          LP8          
+//  1100: D6         RVP3          
+//  1101: 3E 82      JNE0  1105    
+//  1103: BA A7         J  1144    
+
+//  1105: L01105:
+//  1105: 88          LP8          
+//  1106: D6         RVP3          
+//  1107: 11           L1          
+//  1108: AD         SP13          
+//  1109: B5          XCH          
+//  1110: 29 3C       K9G    60    G060
+//  1112: A7          SP7          
+//  1113: 84          LP4          
+//  1114: 3C 95       JNE  1137    
+//  1116: 86          LP6          
+//  1117: AD         SP13          
+//  1118: 30 0C        LG    12    G012
+//  1120: 29 5F       K9G    95    G095 COMPSTRING
+//  1122: 3E 8D      JNE0  1137    
+//  1124: 86          LP6          
+//  1125: 29 19       K9G    25    G025 FREEVEC
+//  1127: 10           L0          
+//  1128: AD         SP13          
+//  1129: 60 0B         L    11    
+//  1131: AE         SP14          
+//  1132: 5A 90       LLL  1150    "SAME FILE FOR INPUT AND OUTPUT"
+//  1134: 5B 20      LLL$   688    
+//  1136: 09           K9          
+
+//  1137: L01137:
+//  1137: 11           L1          
+//  1138: C8          AP8          
+//  1139: A8          SP8          
+
+//  1140: L01140:
+//  1140: 88          LP8          
+//  1141: 11           L1          
+//  1142: 9C 53       JLE  1099    
+
+//  1144: L01144:
+//  1144: 86          LP6          
+//  1145: 28 19       K8G    25    G025 FREEVEC
+//  1147: 7B          RTN          
+
+//  1148: FBA2          Resolving word => 30
+
+//  1150: 1E String: "SAME FILE FOR INPUT AND OUTPUT"
+//  1150: 1E 53 41 4D 45 20 46 49 4C 45 20 46 4F 52 20 49 
+//  1166: 4E 50 55 54 20 41 4E 44 20 4F 55 54 50 55 54 
+
+//  1182: FB7E          Resolving word => 28
+//  1184: FB74          Resolving word => 20
+//  1186: FB74          Resolving word => 22
+//  1188: FB6E          Resolving word => 18
+//  1190: FF40          Resolving word => 998
+//  1192: FF72          Resolving word => 1050
+//  1194: FF1C          Resolving word => 966
+//  1196: FD58          Resolving word => 516
+//  1198: FF52          Resolving word => 1024
+//  1200: FE00          Resolving word => 688
+//  1202: FF74          Resolving word => 1062
+//  1204: FB66          Resolving word => 26
+//  1206: FDDA          Resolving word => 656
+//  1208: FB6A          Resolving word => 34
+//  1210: FE33          Resolving word => 749
+
+//  1212: 0000      Ginit end mark
+//  1214: 0003 000A Init  G003 = 14  STARTINIT
+//  1218: 0001 0020 Init  G001 = 36  START
+//  1222: 006D      Highest Global  G109 WRITEWORDS
+//  1224: 03E0                  END
+
+
+No unclassified bytes

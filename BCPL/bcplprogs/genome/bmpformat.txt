@@ -1,0 +1,58 @@
+# This specifies a BMP file representing a 10x4 image
+# encoded using 4 bit pixel values each identifying one of 16 colour
+# given by the RGBA table.
+
+42            # 00: 'B'
+4D            # 'M'
+
+00 00 00 00   # 02: Size of the BMP file in bytes
+00 00         # 06: Reserved
+00 00         # 08: Reserved
+3C 00 00 00   # 0A: Offset to the first byte of bitmap image data
+
+# DIB Header
+
+0C 00 00 00   # 0E: Size of DIB header
+              #     12  Windows / OS/2 version
+              #     Other sizes 64 16 40 52 56 108 124
+              #     These provide various extensions
+0A 00         # 12: Bitmap width
+04 00         # 14: Bitmap height
+01 00         # 16: One bitmap plane
+04 00         # 18: 4 Bits per pixel
+
+# Colour table          The size is 16=2^n where n is the number of bits per pixel
+00 00 90 00   # 1C:     16 colours of form: bb gg rr 00
+00 00 FF 00   # 20:
+00 FF 00 00   # 24:   # 20:
+00 FF FF 00   # 28:
+FF 00 00 00   # 2C:
+FF 00 FF 00   # 30:   # 20:
+FF FF 00 00   # 34:
+FF FF FF 00   # 38:
+40 40 40 00   # 3C:
+00 00 80 00   # 40:
+00 80 00 00   # 44:
+00 80 80 00   # 48:
+80 00 00 00   # 4C:
+80 00 80 00   # 50:
+80 80 00 00   # 54:
+80 80 80 00   # 58:
+
+# Pixel values, these are of size 4 bits
+#               Since the image height is positive they are given
+#               as rows from left to right, bottom to top
+#               Each row is padded with 00s to make the number of bytes a mult of 4
+
+# With K=0=Black W=7=White R=1=Red G=2=Green 4=B=Blue the image is
+
+#       K W R R G G B B W K  indices  0 7 1 1 2 2 4 4 7 0 
+#       K W R G G B B R W K           0 7 1 2 2 4 4 1 7 0 
+#       K W G G B B R R W K           0 7 2 2 4 4 1 1 7 0 
+#       K W G B B R R G W K           0 7 2 4 4 1 1 2 7 0 
+
+70 42 14 21 07   00 00 00 # 5c: 3 padding bytes  top row
+70 22 44 11 07   00 00 00 # 64: 3 padding bytes
+70 21 42 14 07   00 00 00 # 6C: 3 padding bytes
+70 11 22 44 07   00 00 00 # 74: 3 padding bytes  bottom row
+                          # 7C:

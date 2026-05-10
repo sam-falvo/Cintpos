@@ -1,0 +1,4 @@
+.k file/a,opt
+echo "safebcpl com/<file>.b to cin/<file> <opt>"
+safebcpl com/<file>.b to cin/<file> <opt>
+

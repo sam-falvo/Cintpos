@@ -1,0 +1,7 @@
+.k file/a,opt
+echo "bcpl <file>.b to ../cin32/<file>  <opt>"
+bcpl <file>.b to ../cin32/<file>  <opt>
+echo ""
+
+
+

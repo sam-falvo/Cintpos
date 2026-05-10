@@ -1,0 +1,20 @@
+This directory (domesday/bbc/bbccin/) contains the Compiled BBC
+Cintcode version of all the standard commands in the RCP BCPL system
+for the BBC Microcomputer. These files are;
+
+BCPL BCPLARG BCPLSYN BCPLTRN BCPLCCG   The BBC BCPL compile object modules.
+BCPLTRN.orig  Same as BCPLTRN but with padding bytes at the end.
+bcplrom  The 16K BCPL sideways rom.
+
+ENCODEB HEAP JOIN OPT STACK TESTPRO          The standard commands of
+DEBUG EX INSTR JOINCIN LIB RAS STATS TRACE   the BBC BCPL System
+ED GLOBALS IO NEEDCIN TED
+
+
+The BCPL source code of these commands is being reconstructed in the
+directory domesday/bbc/com16/ and a slightly modified version
+designed to run under the modern 32-bit Cintcode system is in
+domesday/bbc/com32/.
+
+For more information look at the file domesday/bbc/README.
+

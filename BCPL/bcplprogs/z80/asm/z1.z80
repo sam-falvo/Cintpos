@@ -1,0 +1,16 @@
+Z1      TITLE   "Z80 BCPL Run Time System  -  Section Z1"
+        ORG     0
+
+M       DEFB    'BCPL'                  ;  Entry flag for BCPL module
+        DEFW    MLIBE-M                 ;  Length of module in bytes
+
+RDPT    PUSH    HL                      ;  Save return address
+        EXX                             ;  Get argument register set
+        LD      C,L                     ;  Load port address
+        IN      L,(C)                   ;  Read the byte
+        LD      H,0                     ;  Set high byte of answer
+        RET                             ;  And return
+
+MLIBE   END
+
+

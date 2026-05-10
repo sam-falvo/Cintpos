@@ -1,0 +1,3 @@
+.k file/a,opt
+echo "bcpl <file>.b to <file> t32 <opt>"
+bcpl <file>.b to <file> t32 <opt>

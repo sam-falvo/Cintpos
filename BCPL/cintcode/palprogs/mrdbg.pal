@@ -1,0 +1,97 @@
+// mrdbg 12/22/1967  1713.0
+
+let Write x = Istuple x -> W(1, Length x) ! Print x
+              where rec W(i, n) = n=0 -> Print nil !
+	                          i >n -> dummy !
+				  (Print(x, i); W(i+1, n)  )
+
+and Debug() =
+( let j = jj in
+  let Lookup S = lookupinJ(S, i)
+  in
+  Write('Debug called*n');
+  let Ch, Symb, Val = 0, 0, 0
+  in
+  let chkind(x) =
+    x='0' -> 0! x='1' -> 1! x='2' -> 2! x='3' -> 3!
+    x='4' -> 4! x='5' -> 5! x='6' -> 6! x='7' -> 7!
+    x='8' -> 8! x='9' -> 9!
+    x='*n' -> 10! x='*s' -> 10! x='*t' -> 10!
+    x=';' -> 11! x=',' -> 11! x='(' -> 11!
+    x=')' -> 11! x='.' -> 11!
+    x='*'' -> 12!
+    -1
+  in
+  let nxtsymb() =
+  ( let let N, Kind = 0, 0
+
+L:  Kind := Chkind(Ch);
+    Kind=10 -> ( Ch := Readch(); goto L ) !
+    Kind=11 -> ( Symb := Ch;
+                 Ch := Readch() ) !
+    Ch='*'' ->
+      ( Sym, Val := '0', '';
+Nsch:   Ch := Readch();
+        Ch='*'' -> ( Ch := Readch();
+	             goto Return 
+	           )!
+        Ch='**' -> ( Ch := Readch();
+	             Ch := Ch='t' -> '*t'!
+	                   Ch='n' -> '*n'!
+	                   Ch='s' -> '*s'!
+	                   Ch='b' -> '*b'!
+			   Ch)! dummy;
+                     Val := Val %Conc Ch;
+                     goto Nsch
+	           )!
+        ( Symb, Val := '0', '';
+M:        Kind < 10 -> ( Val := Val %Conc Ch;
+                         Kind < 0 -> ( Synb = 'V' )!
+			             ( N := N*10 + Kind );
+		         Ch := Readch();
+			 Kind := Chkind(Ch);
+			 goto M
+                       )
+	  Symb='0' -> ( Val := M )!
+Return:   dummy
+	)
+      )
+    in
+    let rec
+    ( Rbasic() =
+        val( let A = Symb='V' -> Lookup(Val)!
+	             Symb='0' -> $ Val!
+		     Symb='(' -> ( Nextsymb();
+		                   Rexp()
+				 )!
+		     res nil
+	      in
+	      Nextsymb();
+	      res A
+	    )
+	and
+	Rterm(f) = Symb='V' | Symb='C' | Symb='(' ->
+	                             term(f (Rbasic()))!
+		   f
+      and
+        Rexp() =
+	( let A = nil
+	  in
+I:        A := aug Rterm(Rbasic());
+          Symb=',' -> ( Nextsymb(); goto I );
+	  Length A = 1 -> A 1, A )
+	)
+      in
+      Ch := Readch();
+ L:   Nextsymb();
+      Write(Pexp(), '*n');
+      Symb='.' -> Write('Program re-entered*n'), goto L
+    )
+
+  LET ( x, y, z = 1, 2, 3)
+
+L: Debug(); x := X+1; gotp L
+
+    
+  )
+

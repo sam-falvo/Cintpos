@@ -1,0 +1,2736 @@
+Ass_dev M:4 DEF libhdr.h[651] Ass_dev=4
+Ass_dir M:2 DEF libhdr.h[649] Ass_dir=2
+Ass_link M:0 DEF libhdr.h[647] Ass_link=0
+Ass_name M:5 DEF libhdr.h[652] Ass_name=5
+Ass_task M:1 DEF libhdr.h[648] Ass_task=1
+Ass_type M:3 DEF libhdr.h[650] Ass_type=3
+B2Wsh M:2 DEF libhdr.h[18] B2Wsh=1+32/32
+B2Wsh M:2 MAN libhdr.h[219] bytesperword=1<<B2Wsh
+CloseObj M:1 DEF libhdr.h[268] CloseObj=1
+Dcb_arg M:4 DEF libhdr.h[592] Dcb_arg=4
+Dcb_cvp M:6 DEF libhdr.h[594] Dcb_cvp=6
+Dcb_devid M:1 DEF libhdr.h[589] Dcb_devid=1
+Dcb_flag M:9 DEF libhdr.h[600] Dcb_flag=9
+Dcb_intson M:7 DEF libhdr.h[598] Dcb_intson=7
+Dcb_irq M:8 DEF libhdr.h[599] Dcb_irq=8
+Dcb_op M:3 DEF libhdr.h[591] Dcb_op=3
+Dcb_threadp M:5 DEF libhdr.h[593] Dcb_threadp=5
+Dcb_type M:0 DEF libhdr.h[588] Dcb_type=0
+Dcb_upb M:15 DEF libhdr.h[609] Dcb_upb=
+Dcb_var0 M:10 DEF libhdr.h[604] Dcb_var0=10
+Dcb_var1 M:11 DEF libhdr.h[605] Dcb_var1=11
+Dcb_var2 M:12 DEF libhdr.h[606] Dcb_var2=12
+Dcb_var3 M:13 DEF libhdr.h[607] Dcb_var3=13
+Dcb_var4 M:14 DEF libhdr.h[608] Dcb_var4=14
+Dcb_wkq M:2 DEF libhdr.h[590] Dcb_wkq=2
+Devc_create M:1 DEF libhdr.h[619] Devc_create=1
+Devc_destroy M:2 DEF libhdr.h[620] Devc_destroy=2
+Devc_setintson M:5 DEF libhdr.h[623] Devc_setintson=5
+Devc_start M:3 DEF libhdr.h[621] Devc_start=3
+Devc_stop M:4 DEF libhdr.h[622] Devc_stop=4
+Devt_clk M:1 DEF libhdr.h[612] Devt_clk=1
+Devt_fileop M:4 DEF libhdr.h[615] Devt_fileop=4
+Devt_tcpdev M:5 DEF libhdr.h[616] Devt_tcpdev=5
+Devt_ttyin M:2 DEF libhdr.h[613] Devt_ttyin=2
+Devt_ttyout M:3 DEF libhdr.h[614] Devt_ttyout=3
+GB2312 M:-2 DEF libhdr.h[521] GB2312=-2
+InitObj M:0 DEF libhdr.h[267] InitObj=0
+One M:1000 DEF robots.b[33] One=1000
+One M:1000 MAN robots.b[1064] IF r!r_bottle&edgesize<...&...<...&edgesize<r!r_cgy&r!r_cgy<...-edgesize DO ..
+One M:1000 MAN robots.b[1084] vx=0&0=vy->0,(Op13)>(Op13)->muldiv(vx,...),muldiv(vy,...)
+One M:1000 MAN robots.b[1095] r!r_cgxdot:=(29*r!r_cgxdot+muldiv(speed,...))/30
+One M:1000 MAN robots.b[1096] r!r_cgydot:=(29*r!r_cgydot+muldiv(speed,...))/30
+One M:1000 MAN robots.b[1107] r!r_cgxdot:=(29*r!r_cgxdot+muldiv(60000,...))/30
+One M:1000 MAN robots.b[1108] r!r_cgydot:=(29*r!r_cgydot+muldiv(60000,...))/30
+One M:1000 MAN robots.b[1130] pitradius/One
+One M:1000 MAN robots.b[1131] r1+edgesize/One
+One M:1000 MAN robots.b[1152] 2*bottleradius/One+2
+One M:1000 MAN robots.b[1162] drawfillcircle(bottleradius/One,...+1,bottleradius/One)
+One M:1000 MAN robots.b[1207] muldiv(r!r_grabpos,...-d1,One)
+One M:1000 MAN robots.b[1258] drawfillcircle(r!r_cgx/One,.../One,robotradius/One)
+One M:1000 MAN robots.b[1260] drawfillcircle(r!r_lcx/One,.../One,shoulderradius/One)
+One M:1000 MAN robots.b[1262] drawfillcircle(r!r_rcx/One,.../One,shoulderradius/One)
+One M:1000 MAN robots.b[1267] plotf(.../One-(...->9,3),...-6,"%n",...)
+One M:1000 MAN robots.b[1272] drawquad(r!r_lcx/One,.../One,...,...)
+One M:1000 MAN robots.b[1277] drawquad(r!r_ltax/One,.../One,...,...)
+One M:1000 MAN robots.b[1281] drawfillcircle(r!r_ltpx/One,.../One,tipradius/One)
+One M:1000 MAN robots.b[1283] drawquad(r!r_rtax/One,.../One,...,...)
+One M:1000 MAN robots.b[1287] drawfillcircle(r!r_rtpx/One,.../One,tipradius/One)
+One M:1000 MAN robots.b[1292] moveto(r!r_bcx/One,r!r_bcy/One)
+One M:1000 MAN robots.b[1293] drawto(b!b_cgx/One,b!b_cgy/One)
+One M:1000 MAN robots.b[1309] blitsurf(surf,screen,...,...)
+One M:1000 MAN robots.b[1315] plotf(.../One+10,...-6,"%n",...)
+One M:1000 MAN robots.b[1320] edgesize/One
+One M:1000 MAN robots.b[1336] blitsurf(pitsurf,screen,...,...)
+One M:1000 MAN robots.b[1476] r!r_cgxdot:=r!r_cgxdot+muldiv(5000,c,One)
+One M:1000 MAN robots.b[1477] r!r_cgydot:=r!r_cgydot+muldiv(5000,s,One)
+One M:1000 MAN robots.b[1485] r!r_cgxdot:=r!r_cgxdot-muldiv(4000,c,One)
+One M:1000 MAN robots.b[1486] r!r_cgydot:=r!r_cgydot-muldiv(4000,s,One)
+One M:1000 MAN robots.b[1523] UNLESS dist<x&x<xsize*One-dist DO ..
+One M:1000 MAN robots.b[1524] UNLESS dist<y&y<ysize*One-dist DO ..
+One M:1000 MAN robots.b[1656] One,One,One
+One M:1000 MAN robots.b[1657] 0,0,One,0,...
+One M:1000 MAN robots.b[1659] FOR dy=0 TO One BY One/100 DO..
+One M:1000 MAN robots.b[1664] writef("dx=%8'q=%8.3d*n",One,dy,...)
+One M:1000 MAN robots.b[1669] writef("Error' -%7.3d*n",e1-One,One-e2)
+One M:1000 MAN robots.b[1701] pit_x,pit_y:=xsize*One/2,ysize*One/2
+One M:1000 MAN robots.b[1721] x:=randno(xsize*One)
+One M:1000 MAN robots.b[1722] y:=randno(ysize*One)
+One M:1000 MAN robots.b[1773] x:=randno(xsize*One)
+One M:1000 MAN robots.b[1774] y:=randno(ysize*One)
+One M:1000 MAN robots.b[1808] wall_ex:=(screenxsize-1)*One
+One M:1000 MAN robots.b[1811] wall_ny:=(screenysize-1)*One
+One M:1000 MAN robots.b[213] IF muldiv(dx,...)+muldiv(dy,...)>muldiv(dist,dist,One) DO ..
+One M:1000 MAN robots.b[294] p1!0:=p1!0-muldiv(400,c,One)
+One M:1000 MAN robots.b[295] p1!1:=p1!1-muldiv(400,s,One)
+One M:1000 MAN robots.b[296] p2!0:=p2!0+muldiv(400,c,One)
+One M:1000 MAN robots.b[297] p2!1:=p2!1+muldiv(400,s,One)
+One M:1000 MAN robots.b[35] OneK=1000*One
+One M:1000 MAN robots.b[366] RESULTIS One
+One M:1000 MAN robots.b[368] c:=muldiv(x,One,d)
+One M:1000 MAN robots.b[369] s:=muldiv(y,One,d)
+One M:1000 MAN robots.b[370] a:=muldiv(c,c,One)+muldiv(s,s,One)
+One M:1000 MAN robots.b[374] d:=(d+muldiv(a,...))/2
+One M:1000 MAN robots.b[376] d:=(d+muldiv(a,...))/2
+One M:1000 MAN robots.b[378] d:=(d+muldiv(a,...))/2
+One M:1000 MAN robots.b[381] s:=muldiv(s,One,d)
+One M:1000 MAN robots.b[382] c:=muldiv(c,One,d)
+One M:1000 MAN robots.b[389] muldiv(dx,c,One)+muldiv(dy,s,One)
+One M:1000 MAN robots.b[48] grabbedpos=bottleradius/(robotradius-shoulderradius-2*tipradius)/One
+One M:1000 MAN robots.b[538] b!b_cgxdot:=b!b_cgxdot+muldiv(10000,dx,One)
+One M:1000 MAN robots.b[539] b!b_cgydot:=b!b_cgydot+muldiv(10000,dy,One)
+One M:1000 MAN robots.b[635] muldiv(c,dx,One)+muldiv(s,dy,One)
+One M:1000 MAN robots.b[636] muldiv(c,dy,One)-muldiv(s,dx,One)
+One M:1000 MAN robots.b[668] muldiv(f1,s,One)
+One M:1000 MAN robots.b[669] Op12
+One M:1000 MAN robots.b[670] muldiv(f2,s,One)
+One M:1000 MAN robots.b[671] Op12
+One M:1000 MAN robots.b[837] muldiv(robotradius-shoulderradius-armthickness,r!r_grabpos,One)
+OneK M:1000000 DEF robots.b[35] OneK=1000*One
+State_dead M:12 DEF libhdr.h[638] State_dead=12
+State_hold M:2 DEF libhdr.h[635] State_hold=2
+State_int M:8 DEF libhdr.h[637] State_int=8
+State_pkt M:1 DEF libhdr.h[634] State_pkt=1
+State_wait M:4 DEF libhdr.h[636] State_wait=4
+Sys_buttons M:56 DEF libhdr.h[413] Sys_buttons=56
+Sys_callc M:59 DEF libhdr.h[416] Sys_callc=59
+Sys_callnative M:53 DEF libhdr.h[410] Sys_callnative=53
+Sys_close M:16 DEF libhdr.h[376] Sys_close=16
+Sys_cputime M:30 DEF libhdr.h[389] Sys_cputime=30
+Sys_datstamp M:44 DEF libhdr.h[401] Sys_datstamp=44
+Sys_delay M:57 DEF libhdr.h[414] Sys_delay=57
+Sys_deletefile M:17 DEF libhdr.h[377] Sys_deletefile=17
+Sys_devcom M:43 DEF libhdr.h[400] Sys_devcom=43
+Sys_dumpmem M:52 DEF libhdr.h[409] Sys_dumpmem=52
+Sys_ext M:68 DEF libhdr.h[427] Sys_ext=68
+Sys_filemodtime M:31 DEF libhdr.h[390] Sys_filemodtime=31
+Sys_filesize M:46 DEF libhdr.h[403] Sys_filesize=46
+Sys_flt M:63 DEF libhdr.h[421] Sys_flt=63
+Sys_freevec M:22 DEF libhdr.h[382] Sys_freevec=22
+Sys_getpid M:51 DEF libhdr.h[408] Sys_getpid=51
+Sys_getprefix M:33 DEF libhdr.h[392] Sys_getprefix=33
+Sys_getsysval M:48 DEF libhdr.h[405] Sys_getsysval=48
+Sys_gettrval M:62 DEF libhdr.h[420] Sys_gettrval=62
+Sys_getvec M:21 DEF libhdr.h[381] Sys_getvec=21
+Sys_gl M:67 DEF libhdr.h[426] Sys_gl=67
+Sys_globin M:24 DEF libhdr.h[384] Sys_globin=24
+Sys_graphics M:34 DEF libhdr.h[393] Sys_graphics=34
+Sys_inc M:55 DEF libhdr.h[412] Sys_inc=55
+Sys_incdcount M:65 DEF libhdr.h[423] Sys_incdcount=65
+Sys_interpret M:7 DEF libhdr.h[368] Sys_interpret=7
+Sys_intflag M:28 DEF libhdr.h[387] Sys_intflag=28
+Sys_loadseg M:23 DEF libhdr.h[383] Sys_loadseg=23
+Sys_lockirq M:41 DEF libhdr.h[398] Sys_lockirq=41
+Sys_muldiv M:26 DEF libhdr.h[386] Sys_muldiv=26
+Sys_openappend M:19 DEF libhdr.h[379] Sys_openappend=19
+Sys_openread M:14 DEF libhdr.h[374] Sys_openread=14
+Sys_openreadwrite M:47 DEF libhdr.h[404] Sys_openreadwrite=47
+Sys_openwrite M:15 DEF libhdr.h[375] Sys_openwrite=15
+Sys_platform M:54 DEF libhdr.h[411] Sys_platform=54
+Sys_pollsardch M:64 DEF libhdr.h[422] Sys_pollsardch=64
+Sys_putsysval M:49 DEF libhdr.h[406] Sys_putsysval=49
+Sys_quit M:0 DEF libhdr.h[361] Sys_quit=0
+Sys_read M:12 DEF libhdr.h[372] Sys_read=12
+Sys_renamefile M:18 DEF libhdr.h[378] Sys_renamefile=18
+Sys_rti M:1 DEF libhdr.h[362] Sys_rti=1
+Sys_sardch M:10 DEF libhdr.h[370] Sys_sardch=10
+Sys_saveregs M:2 DEF libhdr.h[363] Sys_saveregs=2
+Sys_sawrch M:11 DEF libhdr.h[371] Sys_sawrch=11
+Sys_sdl M:66 DEF libhdr.h[425] Sys_sdl=66
+Sys_sdl M:66 MAN robots.b[1639] UNLESS sys(Sys_sdl,sdl_avail) DO ..
+Sys_sdl M:66 MAN sdl.b[134] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+Sys_sdl M:66 MAN sdl.b[149] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+Sys_sdl M:66 MAN sdl.b[165] RESULTIS sys(Sys_sdl,sdl_pollevent,@eventtype)
+Sys_sdl M:66 MAN sdl.b[169] sys(Sys_sdl,sdl_delay,msecs)
+Sys_sdl M:66 MAN sdl.b[172] sys(Sys_sdl,sdl_getticks)
+Sys_sdl M:66 MAN sdl.b[176] sys(Sys_sdl,sdl_hidecursor)
+Sys_sdl M:66 MAN sdl.b[178] sys(Sys_sdl,sdl_showcursor)
+Sys_sdl M:66 MAN sdl.b[181] sys(Sys_sdl,sdl_flip,screen)
+Sys_sdl M:66 MAN sdl.b[185] RESULTIS sys(Sys_sdl,sdl_mksurface,format,...)
+Sys_sdl M:66 MAN sdl.b[188] sys(Sys_sdl,sdl_freesurface,surf)
+Sys_sdl M:66 MAN sdl.b[194] sys(Sys_sdl,sdl_blitsurface,src,...)
+Sys_sdl M:66 MAN sdl.b[201] sys(Sys_sdl,sdl_blitsurface,src,...)
+Sys_sdl M:66 MAN sdl.b[205] sys(Sys_sdl,sdl_fillsurf,currsurf,col)
+Sys_sdl M:66 MAN sdl.b[37] IF sys(Sys_sdl,sdl_init,sdl_init_everything) DO ..
+Sys_sdl M:66 MAN sdl.b[38] sys(Sys_sdl,sdl_geterror,mes)
+Sys_sdl M:66 MAN sdl.b[44] joystick:=sys(Sys_sdl,sdl_joystickopen,0)
+Sys_sdl M:66 MAN sdl.b[63] screen:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+Sys_sdl M:66 MAN sdl.b[66] sys(Sys_sdl,sdl_geterror,mes)
+Sys_sdl M:66 MAN sdl.b[697] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+Sys_sdl M:66 MAN sdl.b[74] sys(Sys_sdl,sdl_getsurfaceinfo,screen,...)
+Sys_sdl M:66 MAN sdl.b[83] sys(Sys_sdl,sdl_maprgb,format,...)
+Sys_sdl M:66 MAN sdl.b[85] sys(Sys_sdl,sdl_wm_setcaption,title,0)
+Sys_sdl M:66 MAN sdl.b[875] sys(Sys_sdl,sdl_drawfillcircle,currsurf,...)
+Sys_sdl M:66 MAN sdl.b[93] sys(Sys_sdl,sdl_quit)
+Sys_sdl M:66 MAN sdl.b[98] sys(Sys_sdl,sdl_setcolourkey,surf,col)
+Sys_seek M:38 DEF libhdr.h[395] Sys_seek=38
+Sys_setcount M:-1 DEF libhdr.h[360] Sys_setcount=-1
+Sys_setprefix M:32 DEF libhdr.h[391] Sys_setprefix=32
+Sys_setraster M:29 DEF libhdr.h[388] Sys_setraster=29
+Sys_setst M:3 DEF libhdr.h[364] Sys_setst=3
+Sys_settrcount M:61 DEF libhdr.h[419] Sys_settrcount=61
+Sys_shellcom M:50 DEF libhdr.h[407] Sys_shellcom=50
+Sys_sound M:58 DEF libhdr.h[415] Sys_sound=58
+Sys_tally M:6 DEF libhdr.h[367] Sys_tally=6
+Sys_tell M:39 DEF libhdr.h[396] Sys_tell=39
+Sys_tracing M:4 DEF libhdr.h[365] Sys_tracing=4
+Sys_trpush M:60 DEF libhdr.h[418] Sys_trpush=60
+Sys_unloadseg M:25 DEF libhdr.h[385] Sys_unloadseg=25
+Sys_unlockirq M:42 DEF libhdr.h[399] Sys_unlockirq=42
+Sys_waitirq M:40 DEF libhdr.h[397] Sys_waitirq=40
+Sys_watch M:5 DEF libhdr.h[366] Sys_watch=5
+Sys_write M:13 DEF libhdr.h[373] Sys_write=13
+Task_cli M:1 DEF libhdr.h[626] Task_cli=1
+Task_consolehandler M:3 DEF libhdr.h[628] Task_consolehandler=3
+Task_debug M:2 DEF libhdr.h[627] Task_debug=2
+Task_filehandler M:4 DEF libhdr.h[629] Task_filehandler=4
+Task_mbxhandler M:5 DEF libhdr.h[630] Task_mbxhandler=5
+Task_tcphandler M:6 DEF libhdr.h[631] Task_tcphandler=6
+UTF8 M:-1 DEF libhdr.h[520] UTF8=-1
+abort G:28 DEF libhdr.h[54] abort=28
+abort G:28 LG robots.b[1419] abort(9999)
+abort G:28 LG robots.b[1446] abort(1000)
+abort G:28 LG robots.b[1670] abort(1000)
+abort G:28 LG robots.b[1715] abort(999)
+abort G:28 LG robots.b[1730] abort(999)
+abort G:28 LG robots.b[1766] abort(999)
+abort G:28 LG robots.b[183] abort(999)
+abort G:28 LG robots.b[333] abort(1000)
+abort G:28 LG robots.b[654] abort(9100)
+abort G:28 LG robots.b[758] abort(3002)
+abort G:28 LG robots.b[850] abort(1234)
+abort G:28 LG robots.b[858] abort(1235)
+abort G:28 LG robots.b[869] abort(1236)
+abort G:28 LG robots.b[894] abort(1236)
+abort G:28 LG robots.b[905] abort(1239)
+abort G:28 LG robots.b[920] abort(1237)
+abort G:28 LG robots.b[939] abort(1236)
+abort G:28 LG robots.b[955] abort(2233)
+abort G:28 LG robots.b[990] abort(2235)
+abort G:28 LG sdl.b[497] abort(999)
+abort G:28 LG sdl.b[931] abort(999)
+alloc2dvecs F:37 LF sdl.b[505] alloc2dvecs()
+alloc2dvecs F:37 LF sdl.b[545] alloc2dvecs()
+alloc2dvecs F:37 RT sdl.b[490] LET alloc2dvecs()BE..
+alloc3dvecs F:41 LF sdl.b[634] alloc3dvecs()
+alloc3dvecs F:41 LF sdl.b[655] alloc3dvecs()
+alloc3dvecs F:41 RT sdl.b[609] LET alloc3dvecs()BE..
+appendstream G:66 DEF libhdr.h[92] appendstream=66
+armthickness M:4000 DEF robots.b[44] armthickness=2*tipradius
+armthickness M:4000 MAN robots.b[837] muldiv(robotradius-shoulderradius-armthickness,r!r_grabpos,One)
+armthickness M:4000 MAN robots.b[839] y3+armthickness
+b_cgx M:0 DEF robots.b[75] b_cgx=0
+b_cgx M:0 MAN robots.b[1072] b!b_cgx-r!r_bcx
+b_cgx M:0 MAN robots.b[1123] b!b_cgx:=b!b_cgx+b!b_cgxdot/sps
+b_cgx M:0 MAN robots.b[1293] drawto(b!b_cgx/One,b!b_cgy/One)
+b_cgx M:0 MAN robots.b[1305] b!b_cgx:=r!r_bcx
+b_cgx M:0 MAN robots.b[1309] blitsurf(surf,screen,...,...)
+b_cgx M:0 MAN robots.b[1315] plotf(.../One+10,...-6,"%n",...)
+b_cgx M:0 MAN robots.b[1389] plotf(80,105,"B1: x'ot=%8.3d",...)
+b_cgx M:0 MAN robots.b[1546] b!b_cgx
+b_cgx M:0 MAN robots.b[1789] b!b_cgx:=x
+b_cgx M:0 MAN robots.b[532] cosines(b!b_cgx-pit_x,b!b_cgy-pit_y)
+b_cgx M:0 MAN robots.b[549] b!b_cgx
+b_cgx M:0 MAN robots.b[562] b!b_cgxdot,b!b_cgx:=Op12,wall_wx+bottleradius
+b_cgx M:0 MAN robots.b[578] b!b_cgxdot,b!b_cgx:=Op12,wall_ex-bottleradius
+b_cgx M:0 MAN robots.b[824] b!b_cgx-r!r_cgx
+b_cgx M:0 MAN robots.b[845] writef("B%n: ' %8.3d)*n",bid,...,...)
+b_cgxdot M:2 DEF robots.b[76] b_cgxdot=
+b_cgxdot M:2 MAN robots.b[1079] b!b_cgxdot,b!b_cgydot
+b_cgxdot M:2 MAN robots.b[1109] b!b_cgxdot,b!b_cgxdot:=r!r_cgxdot,r!r_cgxdot
+b_cgxdot M:2 MAN robots.b[1123] b!b_cgx:=b!b_cgx+b!b_cgxdot/sps
+b_cgxdot M:2 MAN robots.b[1389] plotf(80,105,"B1: x'ot=%8.3d",...)
+b_cgxdot M:2 MAN robots.b[1791] b!b_cgxdot:=randno(50000)-25000
+b_cgxdot M:2 MAN robots.b[491] IF (Op13)>35000|(Op13)>35000 DO ..
+b_cgxdot M:2 MAN robots.b[492] b!b_cgxdot,b!b_cgydot:=b!b_cgxdot*97/100,b!b_cgydot*97/100
+b_cgxdot M:2 MAN robots.b[538] b!b_cgxdot:=b!b_cgxdot+muldiv(10000,dx,One)
+b_cgxdot M:2 MAN robots.b[562] b!b_cgxdot,b!b_cgx:=Op12,wall_wx+bottleradius
+b_cgxdot M:2 MAN robots.b[563] b!b_cgxdot:=b!b_cgxdot+20000
+b_cgxdot M:2 MAN robots.b[578] b!b_cgxdot,b!b_cgx:=Op12,wall_ex-bottleradius
+b_cgxdot M:2 MAN robots.b[579] b!b_cgxdot:=b!b_cgxdot-20000
+b_cgxdot M:2 MAN robots.b[864] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+b_cgxdot M:2 MAN robots.b[865] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+b_cgxdot M:2 MAN robots.b[874] b!b_cgxdot:=inprod(btdot,bwdot,c,...)
+b_cgxdot M:2 MAN robots.b[883] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+b_cgxdot M:2 MAN robots.b[884] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+b_cgxdot M:2 MAN robots.b[889] sawritef("bxdot't=%8.3d*n",b!b_cgxdot,b!b_cgydot)
+b_cgxdot M:2 MAN robots.b[900] sawritef("bxdot't=%8.3d*n",b!b_cgxdot,b!b_cgydot)
+b_cgxdot M:2 MAN robots.b[901] b!b_cgxdot:=inprod(btdot,bwdot,c,...)
+b_cgxdot M:2 MAN robots.b[904] sawritef("bxdot't=%8.3d*n",b!b_cgxdot,b!b_cgydot)
+b_cgxdot M:2 MAN robots.b[915] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+b_cgxdot M:2 MAN robots.b[916] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+b_cgxdot M:2 MAN robots.b[925] b!b_cgxdot:=inprod(btdot,bwdot,c,...)
+b_cgxdot M:2 MAN robots.b[934] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+b_cgxdot M:2 MAN robots.b[935] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+b_cgxdot M:2 MAN robots.b[945] b!b_cgxdot:=inprod(btdot,bwdot,c,...)
+b_cgxdot M:2 MAN robots.b[984] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+b_cgxdot M:2 MAN robots.b[985] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+b_cgxdot M:2 MAN robots.b[995] b!b_cgxdot:=inprod(btdot,bwdot,c,...)
+b_cgy M:1 DEF robots.b[75] b_cgy=
+b_cgy M:1 MAN robots.b[1073] b!b_cgy-r!r_bcy
+b_cgy M:1 MAN robots.b[1124] b!b_cgy:=b!b_cgy+b!b_cgydot/sps
+b_cgy M:1 MAN robots.b[1293] drawto(b!b_cgx/One,b!b_cgy/One)
+b_cgy M:1 MAN robots.b[1306] b!b_cgy:=r!r_bcy
+b_cgy M:1 MAN robots.b[1309] blitsurf(surf,screen,...,...)
+b_cgy M:1 MAN robots.b[1315] plotf(.../One+10,...-6,"%n",...)
+b_cgy M:1 MAN robots.b[1389] plotf(80,105,"B1: x'ot=%8.3d",...)
+b_cgy M:1 MAN robots.b[1547] b!b_cgy
+b_cgy M:1 MAN robots.b[1790] b!b_cgy:=y
+b_cgy M:1 MAN robots.b[532] cosines(b!b_cgx-pit_x,b!b_cgy-pit_y)
+b_cgy M:1 MAN robots.b[550] b!b_cgy
+b_cgy M:1 MAN robots.b[570] b!b_cgydot,b!b_cgy:=Op12,wall_ny-bottleradius
+b_cgy M:1 MAN robots.b[586] b!b_cgydot,b!b_cgy:=Op12,wall_sy+bottleradius
+b_cgy M:1 MAN robots.b[825] b!b_cgy-r!r_cgy
+b_cgy M:1 MAN robots.b[845] writef("B%n: ' %8.3d)*n",bid,...,...)
+b_cgydot M:3 DEF robots.b[76] b_cgydot=
+b_cgydot M:3 MAN robots.b[1079] b!b_cgxdot,b!b_cgydot
+b_cgydot M:3 MAN robots.b[1124] b!b_cgy:=b!b_cgy+b!b_cgydot/sps
+b_cgydot M:3 MAN robots.b[1389] plotf(80,105,"B1: x'ot=%8.3d",...)
+b_cgydot M:3 MAN robots.b[1792] b!b_cgydot:=randno(50000)-25000
+b_cgydot M:3 MAN robots.b[491] IF (Op13)>35000|(Op13)>35000 DO ..
+b_cgydot M:3 MAN robots.b[492] b!b_cgxdot,b!b_cgydot:=b!b_cgxdot*97/100,b!b_cgydot*97/100
+b_cgydot M:3 MAN robots.b[539] b!b_cgydot:=b!b_cgydot+muldiv(10000,dy,One)
+b_cgydot M:3 MAN robots.b[570] b!b_cgydot,b!b_cgy:=Op12,wall_ny-bottleradius
+b_cgydot M:3 MAN robots.b[571] b!b_cgydot:=b!b_cgydot-20000
+b_cgydot M:3 MAN robots.b[586] b!b_cgydot,b!b_cgy:=Op12,wall_sy+bottleradius
+b_cgydot M:3 MAN robots.b[587] b!b_cgydot:=b!b_cgydot+20000
+b_cgydot M:3 MAN robots.b[864] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+b_cgydot M:3 MAN robots.b[865] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+b_cgydot M:3 MAN robots.b[875] b!b_cgydot:=inprod(btdot,bwdot,s,c)
+b_cgydot M:3 MAN robots.b[883] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+b_cgydot M:3 MAN robots.b[884] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+b_cgydot M:3 MAN robots.b[889] sawritef("bxdot't=%8.3d*n",b!b_cgxdot,b!b_cgydot)
+b_cgydot M:3 MAN robots.b[900] sawritef("bxdot't=%8.3d*n",b!b_cgxdot,b!b_cgydot)
+b_cgydot M:3 MAN robots.b[902] b!b_cgydot:=inprod(btdot,bwdot,s,c)
+b_cgydot M:3 MAN robots.b[904] sawritef("bxdot't=%8.3d*n",b!b_cgxdot,b!b_cgydot)
+b_cgydot M:3 MAN robots.b[915] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+b_cgydot M:3 MAN robots.b[916] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+b_cgydot M:3 MAN robots.b[926] b!b_cgydot:=inprod(btdot,bwdot,s,c)
+b_cgydot M:3 MAN robots.b[934] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+b_cgydot M:3 MAN robots.b[935] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+b_cgydot M:3 MAN robots.b[946] b!b_cgydot:=inprod(btdot,bwdot,s,c)
+b_cgydot M:3 MAN robots.b[984] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+b_cgydot M:3 MAN robots.b[985] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+b_cgydot M:3 MAN robots.b[996] b!b_cgydot:=inprod(btdot,bwdot,s,c)
+b_dropped M:6 DEF robots.b[79] b_dropped=
+b_dropped M:6 MAN robots.b[1014] UNLESS b1!b_dropped DO ..
+b_dropped M:6 MAN robots.b[1018] IF b2!b_dropped DO ..
+b_dropped M:6 MAN robots.b[1069] UNLESS b!b_grabbed|b!b_dropped DO ..
+b_dropped M:6 MAN robots.b[1121] IF b!b_dropped DO ..
+b_dropped M:6 MAN robots.b[1290] UNLESS b!b_grabbed|b!b_dropped DO ..
+b_dropped M:6 MAN robots.b[1299] UNLESS b!b_dropped DO ..
+b_dropped M:6 MAN robots.b[1795] b!b_dropped:=FALSE
+b_dropped M:6 MAN robots.b[487] IF b!b_dropped DO ..
+b_dropped M:6 MAN robots.b[523] b!b_dropped:=TRUE
+b_dropped M:6 MAN robots.b[729] UNLESS b!b_dropped|b!b_robot DO ..
+b_dropped M:6 MAN robots.b[751] IF b!b_dropped DO ..
+b_grabbed M:4 DEF robots.b[77] b_grabbed=
+b_grabbed M:4 MAN robots.b[1035] UNLESS inarea|b!b_grabbed DO ..
+b_grabbed M:4 MAN robots.b[1052] b!b_grabbed:=TRUE
+b_grabbed M:4 MAN robots.b[1069] UNLESS b!b_grabbed|b!b_dropped DO ..
+b_grabbed M:4 MAN robots.b[1099] IF b!b_grabbed DO ..
+b_grabbed M:4 MAN robots.b[1290] UNLESS b!b_grabbed|b!b_dropped DO ..
+b_grabbed M:4 MAN robots.b[1303] IF b!b_grabbed DO ..
+b_grabbed M:4 MAN robots.b[1433] IF b!b_grabbed DO ..
+b_grabbed M:4 MAN robots.b[1453] UNLESS b&b!b_grabbed DO ..
+b_grabbed M:4 MAN robots.b[1461] IF b&b!b_grabbed DO ..
+b_grabbed M:4 MAN robots.b[1461] b!b_grabbed:=FALSE
+b_grabbed M:4 MAN robots.b[1793] b!b_grabbed:=FALSE
+b_grabbed M:4 MAN robots.b[514] b!b_grabbed:=FALSE
+b_grabbed M:4 MAN robots.b[967] sb!b_grabbed:=FALSE
+b_grabbed M:4 MAN robots.b[976] b!b_grabbed:=FALSE
+b_id M:7 DEF robots.b[80] b_id=
+b_id M:7 MAN robots.b[1300] b!b_id=1->bottlesurfK,bottlesurfR
+b_id M:7 MAN robots.b[1315] plotf(.../One+10,...-6,"%n",...)
+b_id M:7 MAN robots.b[1431] sawritef("Bottle %i2: ",b!b_id)
+b_id M:7 MAN robots.b[1441] sawritef(" bottle %i2",r!r_bottle!b_id)
+b_id M:7 MAN robots.b[1796] b!b_id:=i
+b_robot M:5 DEF robots.b[78] b_robot=
+b_robot M:5 MAN robots.b[1301] b!b_robot
+b_robot M:5 MAN robots.b[1432] IF b!b_robot DO ..
+b_robot M:5 MAN robots.b[1432] sawritef(" robot  %i2",b!b_robot!r_id)
+b_robot M:5 MAN robots.b[1794] b!b_robot:=0
+b_robot M:5 MAN robots.b[506] b!b_robot
+b_robot M:5 MAN robots.b[515] b!b_robot:=0
+b_robot M:5 MAN robots.b[729] UNLESS b!b_dropped|b!b_robot DO ..
+b_robot M:5 MAN robots.b[734] b!b_robot:=r
+b_robot M:5 MAN robots.b[959] UNLESS b!b_robot DO ..
+b_robot M:5 MAN robots.b[966] sb!b_robot:=0
+b_robot M:5 MAN robots.b[975] b!b_robot:=r
+b_size M:8 DEF robots.b[82] b_size=
+b_size M:8 MAN robots.b[83] b_upb=b_size
+b_upb M:8 DEF robots.b[83] b_upb=b_size
+b_upb M:8 MAN robots.b[1760] mkvec(b_upb)
+b_upb M:8 MAN robots.b[1769] FOR j=0 TO b_upb DO..
+backcolour G:232 DEF robots.b[154] backcolour=
+backcolour G:232 LG robots.b[1322] fillsurf(backcolour)
+backcolour G:232 SG robots.b[1681] backcolour:=maprgb(100,100,100)
+binrdch G:39 DEF libhdr.h[65] binrdch=39
+binwrch G:42 DEF libhdr.h[68] binwrch=42
+bitsperbyte M:8 DEF libhdr.h[220] bitsperbyte=8
+bitsperbyte M:8 MAN libhdr.h[221] bitsperword=bitsperbyte*bytesperword
+bitsperword M:32 DEF libhdr.h[221] bitsperword=bitsperbyte*bytesperword
+bitsperword M:32 MAN libhdr.h[223] minint=1<<bitsperword-1
+blitsurf G:517 DEF sdl.h[127] blitsurf=
+blitsurf G:517 LG robots.b[1309] blitsurf(surf,screen,...,...)
+blitsurf G:517 LG robots.b[1336] blitsurf(pitsurf,screen,...,...)
+blitsurf G:517 RT sdl.b[190] LET blitsurf(src,dst,x,y)BE..
+blitsurfrect G:518 DEF sdl.h[128] blitsurfrect=
+blitsurfrect G:518 RT sdl.b[197] LET blitsurfrect(src,srcrect,dst,x,y)BE..
+bootregs M:11 DEF libhdr.h[429] bootregs=11
+bottlecount G:225 DEF robots.b[145] bottlecount=
+bottlecount G:225 LG robots.b[1360] plotf(80,350,"bottl'nt = %i2",bottlecount)
+bottlecount G:225 LG robots.b[522] bottlecount:=bottlecount-1
+bottlecount G:225 SG robots.b[1636] bottlecount:=bottles
+bottlecount G:225 SG robots.b[522] bottlecount:=bottlecount-1
+bottleradius M:5000 DEF robots.b[40] bottleradius=5000
+bottleradius M:5000 MAN robots.b[1019] IF incontact(b1,b2,bottleradius+bottleradius) DO ..
+bottleradius M:5000 MAN robots.b[1152] 2*bottleradius/One+2
+bottleradius M:5000 MAN robots.b[1162] drawfillcircle(bottleradius/One,...+1,bottleradius/One)
+bottleradius M:5000 MAN robots.b[1246] r!r_bcx:=x+inprod(c,ns,...)
+bottleradius M:5000 MAN robots.b[1247] r!r_bcy:=y+inprod(s,c,...)
+bottleradius M:5000 MAN robots.b[1309] blitsurf(surf,screen,...,...)
+bottleradius M:5000 MAN robots.b[1776] UNLESS nearedge(...)|nearthepit(...)|nearanyrobot(0,...)|nearanybottle(i,x,...) DO ..
+bottleradius M:5000 MAN robots.b[48] grabbedpos=bottleradius/(robotradius-shoulderradius-2*tipradius)/One
+bottleradius M:5000 MAN robots.b[499] IF incontact(b,thepit,pitradius-bottleradius) DO ..
+bottleradius M:5000 MAN robots.b[561] TEST dw<bottleradius THEN .. ELSE ..
+bottleradius M:5000 MAN robots.b[562] b!b_cgxdot,b!b_cgx:=Op12,wall_wx+bottleradius
+bottleradius M:5000 MAN robots.b[569] TEST dn<bottleradius THEN .. ELSE ..
+bottleradius M:5000 MAN robots.b[570] b!b_cgydot,b!b_cgy:=Op12,wall_ny-bottleradius
+bottleradius M:5000 MAN robots.b[577] TEST de<bottleradius THEN .. ELSE ..
+bottleradius M:5000 MAN robots.b[578] b!b_cgxdot,b!b_cgx:=Op12,wall_ex-bottleradius
+bottleradius M:5000 MAN robots.b[585] TEST ds<bottleradius THEN .. ELSE ..
+bottleradius M:5000 MAN robots.b[586] b!b_cgydot,b!b_cgy:=Op12,wall_sy+bottleradius
+bottleradius M:5000 MAN robots.b[762] IF incontact(r,b,robotradius+bottleradius) DO ..
+bottleradius M:5000 MAN robots.b[774] IF incontact(s,b,shoulderradius+bottleradius) DO ..
+bottleradius M:5000 MAN robots.b[787] IF incontact(s,b,shoulderradius+bottleradius) DO ..
+bottleradius M:5000 MAN robots.b[800] IF incontact(s,b,tipradius+bottleradius) DO ..
+bottleradius M:5000 MAN robots.b[813] IF incontact(s,b,tipradius+bottleradius) DO ..
+bottleradius M:5000 MAN robots.b[860] IF y1-bottleradius<=ty&ty<=y1 DO ..
+bottleradius M:5000 MAN robots.b[879] IF y2<=ty&ty<=y2+bottleradius DO ..
+bottleradius M:5000 MAN robots.b[911] IF y3-bottleradius<=ty&ty<=y3 DO ..
+bottleradius M:5000 MAN robots.b[930] IF y4<=ty&ty<=y4+bottleradius DO ..
+bottleradius M:5000 MAN robots.b[982] IF robotradius<=tx&tx<=robotradius+bottleradius DO ..
+bottles G:209 DEF robots.b[128] bottles=
+bottles G:209 LG robots.b[1425] sawritef("Bottl'   = %n*n",bottles)
+bottles G:209 LG robots.b[1630] IF bottles<0 DO ..
+bottles G:209 LG robots.b[1631] IF bottles>100 DO ..
+bottles G:209 LG robots.b[1635] freebottles:=bottles
+bottles G:209 LG robots.b[1636] bottlecount:=bottles
+bottles G:209 LG robots.b[1757] bottlev:=mkvec(bottles)
+bottles G:209 LG robots.b[1759] FOR i=1 TO bottles DO..
+bottles G:209 SG robots.b[1611] bottles:=35
+bottles G:209 SG robots.b[1621] bottles:=!argv!0
+bottles G:209 SG robots.b[1630] bottles:=0
+bottles G:209 SG robots.b[1631] bottles:=100
+bottlesurfB G:230 DEF robots.b[151] bottlesurfB=
+bottlesurfB G:230 LG robots.b[1856] IF bottlesurfB DO ..
+bottlesurfB G:230 LG robots.b[1856] freesurface(bottlesurfB)
+bottlesurfB G:230 SG robots.b[1698] bottlesurfB:=initbottlesurf(col_brown)
+bottlesurfDR G:228 DEF robots.b[149] bottlesurfDR=
+bottlesurfDR G:228 LG robots.b[1304] surf:=bottlesurfDR
+bottlesurfDR G:228 LG robots.b[1854] IF bottlesurfDR DO ..
+bottlesurfDR G:228 LG robots.b[1854] freesurface(bottlesurfDR)
+bottlesurfDR G:228 SG robots.b[1696] bottlesurfDR:=initbottlesurf(col_darkred)
+bottlesurfK G:229 DEF robots.b[150] bottlesurfK=
+bottlesurfK G:229 LG robots.b[1300] b!b_id=1->bottlesurfK,bottlesurfR
+bottlesurfK G:229 LG robots.b[1855] IF bottlesurfK DO ..
+bottlesurfK G:229 LG robots.b[1855] freesurface(bottlesurfK)
+bottlesurfK G:229 SG robots.b[1697] bottlesurfK:=initbottlesurf(col_black)
+bottlesurfR G:227 DEF robots.b[148] bottlesurfR=
+bottlesurfR G:227 LG robots.b[1300] b!b_id=1->bottlesurfK,bottlesurfR
+bottlesurfR G:227 LG robots.b[1853] IF bottlesurfR DO ..
+bottlesurfR G:227 LG robots.b[1853] freesurface(bottlesurfR)
+bottlesurfR G:227 SG robots.b[1695] bottlesurfR:=initbottlesurf(col_red)
+bottlev G:210 DEF robots.b[129] bottlev=
+bottlev G:210 LG robots.b[1011] FOR bid1=1 TO bottlev!0 DO..
+bottlev G:210 LG robots.b[1012] bottlev!bid1
+bottlev G:210 LG robots.b[1016] FOR bid2=bid1+1 TO bottlev!0 DO..
+bottlev G:210 LG robots.b[1017] bottlev!bid2
+bottlev G:210 LG robots.b[1118] FOR bid=1 TO bottlev!0 DO..
+bottlev G:210 LG robots.b[1119] bottlev!bid
+bottlev G:210 LG robots.b[1352] FOR i=1 TO bottlev!0 DO..
+bottlev G:210 LG robots.b[1352] drawbottle(bottlev!i)
+bottlev G:210 LG robots.b[1385] bottlev!0->bottlev!1,0
+bottlev G:210 LG robots.b[1418] sawritef("robot'tlev=%n*n",robotv,bottlev)
+bottlev G:210 LG robots.b[1428] FOR i=1 TO bottlev!0 DO..
+bottlev G:210 LG robots.b[1429] bottlev!i
+bottlev G:210 LG robots.b[1564] FOR i=1 TO bottlev!0 DO..
+bottlev G:210 LG robots.b[1564] IF nearbottle(x,y,...,dist) DO ..
+bottlev G:210 LG robots.b[1758] bottlev!0:=0
+bottlev G:210 LG robots.b[1787] bottlev!0:=i
+bottlev G:210 LG robots.b[1788] bottlev!i:=b
+bottlev G:210 LG robots.b[484] FOR bid=1 TO bottlev!0 DO..
+bottlev G:210 LG robots.b[485] bottlev!bid
+bottlev G:210 LG robots.b[726] FOR bid=1 TO bottlev!0 DO..
+bottlev G:210 LG robots.b[727] b:=bottlev!bid
+bottlev G:210 LG robots.b[748] FOR bid=1 TO bottlev!0 DO..
+bottlev G:210 LG robots.b[749] bottlev!bid
+bottlev G:210 SG robots.b[1757] bottlev:=mkvec(bottles)
+bytesperword M:4 DEF libhdr.h[219] bytesperword=1<<B2Wsh
+bytesperword M:4 MAN libhdr.h[221] bitsperword=bitsperbyte*bytesperword
+bytesperword M:4 MAN libhdr.h[222] mcaddrinc=bytesperword
+bytesperword M:4 MAN libhdr.h[477] scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+bytesperword M:4 MAN libhdr.h[585] tcb_upb=tcb_namebase+15/bytesperword+1
+bytesperword M:4 MAN sdl.b[35] LET mes=VEC 256/bytesperword
+bytesperword M:4 MAN sdl.b[363] LET s=VEC 256/bytesperword
+bytesperword M:4 MAN sdl.b[58] LET mes=VEC 256/bytesperword
+callco G:19 DEF libhdr.h[45] callco=19
+callseg G:107 DEF libhdr.h[134] callseg=107
+capitalch G:96 DEF libhdr.h[123] capitalch=96
+capitalch G:96 LG robots.b[1405] SWITCHON capitalch(eventa2) INTO..
+cbounce F:4 LF robots.b[1020] cbounce(b1,b2,1,1)
+cbounce F:4 LF robots.b[613] cbounce(r1,r2,1,1)
+cbounce F:4 LF robots.b[766] cbounce(r,b,1,0)
+cbounce F:4 LF robots.b[778] cbounce(s,b,1,0)
+cbounce F:4 LF robots.b[791] cbounce(s,b,1,0)
+cbounce F:4 LF robots.b[804] cbounce(s,b,1,0)
+cbounce F:4 LF robots.b[817] cbounce(s,b,1,0)
+cbounce F:4 RT robots.b[224] LET cbounce(p1,p2,m1,m2)BE..
+changeco G:6 DEF libhdr.h[32] changeco=6
+changepri G:155 DEF libhdr.h[189] changepri=155
+cis G:12 DEF libhdr.h[38] cis=12
+clear_words G:115 DEF libhdr.h[142] clear_words=115
+cli_commanddir G:136 DEF libhdr.h[166] cli_commanddir=136
+cli_commandfile G:143 DEF libhdr.h[173] cli_commandfile=143
+cli_commandname G:138 DEF libhdr.h[168] cli_commandname=138
+cli_currentinput G:142 DEF libhdr.h[172] cli_currentinput=142
+cli_currentoutput G:146 DEF libhdr.h[177] cli_currentoutput=146
+cli_data G:135 DEF libhdr.h[165] cli_data=135
+cli_defaultstack G:147 DEF libhdr.h[178] cli_defaultstack=147
+cli_faillevel G:139 DEF libhdr.h[169] cli_faillevel=139
+cli_init G:133 DEF libhdr.h[163] cli_init=133
+cli_initialfaillevel M:10 DEF libhdr.h[529] cli_initialfaillevel=return_hard
+cli_initialstack M:50000 DEF libhdr.h[528] cli_initialstack=50000
+cli_module G:149 DEF libhdr.h[180] cli_module=149
+cli_module_gn M:149 DEF libhdr.h[527] cli_module_gn=149
+cli_preloadlist G:145 DEF libhdr.h[176] cli_preloadlist=145
+cli_prompt G:140 DEF libhdr.h[170] cli_prompt=140
+cli_result2 G:134 DEF libhdr.h[164] cli_result2=134
+cli_returncode G:137 DEF libhdr.h[167] cli_returncode=137
+cli_standardinput G:141 DEF libhdr.h[171] cli_standardinput=141
+cli_standardoutput G:148 DEF libhdr.h[179] cli_standardoutput=148
+cli_status G:144 DEF libhdr.h[175] cli_status=144
+cli_tallyflag G:132 DEF libhdr.h[162] cli_tallyflag=132
+clibit_comcom M:4 DEF libhdr.h[534] clibit_comcom=4
+clibit_endcli M:256 DEF libhdr.h[540] clibit_endcli=256
+clibit_eofdel M:2 DEF libhdr.h[533] clibit_eofdel=2
+clibit_maincli M:8 DEF libhdr.h[535] clibit_maincli=8
+clibit_mbxcli M:64 DEF libhdr.h[538] clibit_mbxcli=64
+clibit_newcli M:16 DEF libhdr.h[536] clibit_newcli=16
+clibit_noprompt M:1 DEF libhdr.h[532] clibit_noprompt=1
+clibit_runcli M:32 DEF libhdr.h[537] clibit_runcli=32
+clibit_tcpcli M:128 DEF libhdr.h[539] clibit_tcpcli=128
+clihook G:4 DEF libhdr.h[30] clihook=4
+cliregs M:21 DEF libhdr.h[430] cliregs=21
+closesdl G:453 DEF sdl.h[44] closesdl=
+closesdl G:453 LG robots.b[1859] closesdl()
+closesdl G:453 RT sdl.b[87] LET closesdl()BE..
+co_c M:5 DEF libhdr.h[265] co_c=
+co_fn M:3 DEF libhdr.h[263] co_fn=
+co_list M:2 DEF libhdr.h[262] co_list=
+co_parent M:1 DEF libhdr.h[261] co_parent=
+co_pptr M:0 DEF libhdr.h[260] co_pptr=0
+co_size M:4 DEF libhdr.h[264] co_size=
+codewrch G:126 DEF libhdr.h[153] codewrch=126
+col_black G:234 DEF robots.b[155] col_black=
+col_black G:234 LG robots.b[1266] setcolour(col_black)
+col_black G:234 LG robots.b[1314] setcolour(col_black)
+col_black G:234 LG robots.b[1697] bottlesurfK:=initbottlesurf(col_black)
+col_black G:234 SG robots.b[1684] col_black:=maprgb(0,0,0)
+col_brown G:235 DEF robots.b[155] col_brown=
+col_brown G:235 LG robots.b[1698] bottlesurfB:=initbottlesurf(col_brown)
+col_brown G:235 SG robots.b[1685] col_brown:=maprgb(100,50,20)
+col_darkblue G:237 DEF robots.b[156] col_darkblue=
+col_darkgreen G:238 DEF robots.b[156] col_darkgreen=
+col_darkred G:236 DEF robots.b[156] col_darkred=
+col_darkred G:236 LG robots.b[1696] bottlesurfDR:=initbottlesurf(col_darkred)
+col_darkred G:236 SG robots.b[1683] col_darkred:=maprgb(128,0,0)
+col_gray1 G:239 DEF robots.b[157] col_gray1=
+col_gray1 G:239 LG robots.b[1141] setcolour(col_gray1)
+col_gray1 G:239 LG robots.b[1326] setcolour(col_gray1)
+col_gray1 G:239 SG robots.b[1686] col_gray1:=maprgb(110,110,110)
+col_gray2 G:240 DEF robots.b[157] col_gray2=
+col_gray2 G:240 LG robots.b[1328] setcolour(col_gray2)
+col_gray2 G:240 SG robots.b[1687] col_gray2:=maprgb(120,120,120)
+col_gray3 G:241 DEF robots.b[157] col_gray3=
+col_gray3 G:241 LG robots.b[1330] setcolour(col_gray3)
+col_gray3 G:241 SG robots.b[1688] col_gray3:=maprgb(130,130,130)
+col_gray4 G:242 DEF robots.b[157] col_gray4=
+col_gray4 G:242 LG robots.b[1332] setcolour(col_gray4)
+col_gray4 G:242 SG robots.b[1689] col_gray4:=maprgb(140,140,140)
+col_red G:233 DEF robots.b[155] col_red=
+col_red G:233 LG robots.b[1291] setcolour(col_red)
+col_red G:233 LG robots.b[1695] bottlesurfR:=initbottlesurf(col_red)
+col_red G:233 SG robots.b[1682] col_red:=maprgb(255,0,0)
+colist G:8 DEF libhdr.h[34] colist=8
+colour G:466 DEF sdl.h[63] colour=
+colour G:466 LG sdl.b[134] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+colour G:466 LG sdl.b[149] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+colour G:466 LG sdl.b[323] colour
+colour G:466 LG sdl.b[697] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+colour G:466 LG sdl.b[875] sys(Sys_sdl,sdl_drawfillcircle,currsurf,...)
+colour G:466 SG sdl.b[96] colour,prevdrawn:=col,FALSE
+compch G:97 DEF libhdr.h[124] compch=97
+compstring G:98 DEF libhdr.h[125] compstring=98
+consoletask G:171 DEF libhdr.h[202] consoletask=171
+copy_bytes G:116 DEF libhdr.h[143] copy_bytes=116
+copy_words G:114 DEF libhdr.h[141] copy_words=114
+copydir G:79 DEF libhdr.h[105] copydir=79
+copyobj G:75 DEF libhdr.h[101] copyobj=75
+copystring G:99 DEF libhdr.h[126] copystring=99
+cos G:13 DEF libhdr.h[39] cos=13
+cosine F:24 FN robots.b[1177] LET cosine(x)=..
+cosine F:24 LF robots.b[1494] cosine(4000)
+cosine F:24 LF robots.b[1505] cosine(4000)
+cosines F:6 FN robots.b[358] LET cosines(x,y)=..
+cosines F:6 LF robots.b[1075] cosines(dx,dy)
+cosines F:6 LF robots.b[1082] cosines(vx,vy)
+cosines F:6 LF robots.b[1103] cosines(dx,dy)
+cosines F:6 LF robots.b[1209] cosines(r!r_cgxdot,r!r_cgydot)
+cosines F:6 LF robots.b[1474] cosines(r!r_cgxdot,r!r_cgydot)
+cosines F:6 LF robots.b[1483] cosines(r!r_cgxdot,r!r_cgydot)
+cosines F:6 LF robots.b[1661] c:=cosines(xdot,ydot)
+cosines F:6 LF robots.b[237] cosines(p2!0-p1!0,p2!1-p1!1)
+cosines F:6 LF robots.b[471] cosines(x-pit_x,y-pit_y)
+cosines F:6 LF robots.b[532] cosines(b!b_cgx-pit_x,b!b_cgy-pit_y)
+cosines F:6 LF robots.b[630] cosines(relvx,relvy)
+cosines F:6 LF robots.b[827] cosines(r!r_cgxdot,r!r_cgydot)
+cowait G:20 DEF libhdr.h[46] cowait=20
+createco G:17 DEF libhdr.h[43] createco=17
+createdev G:172 DEF libhdr.h[203] createdev=172
+createdir G:82 DEF libhdr.h[108] createdir=82
+createtask G:153 DEF libhdr.h[187] createtask=153
+currco G:7 DEF libhdr.h[33] currco=7
+current_language G:190 DEF libhdr.h[211] current_language=190
+currentdir G:14 DEF libhdr.h[40] currentdir=14
+currsurf G:486 DEF sdl.h[89] currsurf=
+currsurf G:486 LG sdl.b[134] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+currsurf G:486 LG sdl.b[149] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+currsurf G:486 LG sdl.b[205] sys(Sys_sdl,sdl_fillsurf,currsurf,col)
+currsurf G:486 LG sdl.b[697] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+currsurf G:486 LG sdl.b[875] sys(Sys_sdl,sdl_drawfillcircle,currsurf,...)
+currsurf G:486 SG sdl.b[101] currsurf,currxsize,currysize:=surf,xsize,ysize
+currx G:470 DEF sdl.h[69] currx=
+currx G:470 LG sdl.b[111] IF ...&...|...&...|x>=currxsize&currx>=currxsize|y>=currysize&curry>=currysize DO ..
+currx G:470 LG sdl.b[119] drawpoint(currx,curry)
+currx G:470 LG sdl.b[121] mx:=(x+currx)/2
+currx G:470 LG sdl.b[123] TEST (mx=currx|mx=x)&(my=curry|my=y) THEN .. ELSE ..
+currx G:470 LG sdl.b[156] moveto(currx+dx,curry+dy)
+currx G:470 LG sdl.b[157] drawto(currx+dx,curry+dy)
+currx G:470 LG sdl.b[159] moveto3d(currx+dx,curry+dy,currz+dz)
+currx G:470 LG sdl.b[160] drawto3d(currx+dx,curry+dy,currz+dz)
+currx G:470 LG sdl.b[211] write_ch_slice(currx,...-line,ch,line)
+currx G:470 LG sdl.b[212] currx:=currx+9
+currx G:470 LG sdl.b[218] currx,curry
+currx G:470 LG sdl.b[380] Op13
+currx G:470 LG sdl.b[382] currx<x->1,-1
+currx G:470 LG sdl.b[387] drawpoint(currx,curry)
+currx G:470 LG sdl.b[388] IF currx=x&curry=y DO ..
+currx G:470 LG sdl.b[392] currx:=currx+sx
+currx G:470 LG sdl.b[403] Op13
+currx G:470 LG sdl.b[405] currx<x->1,-1
+currx G:470 LG sdl.b[408] currx,curry,currz
+currx G:470 LG sdl.b[422] drawpoint3d(currx,curry,currz)
+currx G:470 LG sdl.b[424] IF currx=x&curry=y DO ..
+currx G:470 LG sdl.b[428] currx:=currx+sx
+currx G:470 LG sdl.b[435] currz:=z0+muldiv(z-z0,...,...)
+currx G:470 LG sdl.b[448] Op13
+currx G:470 LG sdl.b[450] currx<x->1,-1
+currx G:470 LG sdl.b[468] IF currx<lefts!curry DO ..
+currx G:470 LG sdl.b[468] lefts!curry:=currx
+currx G:470 LG sdl.b[469] IF currx>rights!curry DO ..
+currx G:470 LG sdl.b[469] rights!curry:=currx
+currx G:470 LG sdl.b[477] IF currx=x&curry=y DO ..
+currx G:470 LG sdl.b[481] currx:=currx+sx
+currx G:470 LG sdl.b[565] Op13
+currx G:470 LG sdl.b[567] currx,curry,currz
+currx G:470 LG sdl.b[568] currx<x->1,-1
+currx G:470 LG sdl.b[579] IF currx<=lefts!curry DO ..
+currx G:470 LG sdl.b[580] lefts!curry:=currx
+currx G:470 LG sdl.b[584] IF currx>=rights!curry DO ..
+currx G:470 LG sdl.b[585] rights!curry:=currx
+currx G:470 LG sdl.b[590] IF currx=x&curry=y DO ..
+currx G:470 LG sdl.b[594] currx:=currx+sx
+currx G:470 LG sdl.b[596] currz:=z0+muldiv(z-z0,...,...)
+currx G:470 SG sdl.b[104] currx,curry,prevdrawn:=x,y,FALSE
+currx G:470 SG sdl.b[107] currx,curry,currz,prevdrawn:=x,y,z,FALSE
+currx G:470 SG sdl.b[115] currx,curry,prevdrawn:=x,y,FALSE
+currx G:470 SG sdl.b[137] currx,curry:=x,y
+currx G:470 SG sdl.b[153] currx,curry,currz:=x,y,z
+currx G:470 SG sdl.b[208] currx,curry:=10,curry-14
+currx G:470 SG sdl.b[212] currx:=currx+9
+currx G:470 SG sdl.b[353] currx,curry:=cx,cy
+currx G:470 SG sdl.b[392] currx:=currx+sx
+currx G:470 SG sdl.b[428] currx:=currx+sx
+currx G:470 SG sdl.b[481] currx:=currx+sx
+currx G:470 SG sdl.b[594] currx:=currx+sx
+currx G:470 SG sdl.b[688] currx,curry:=x0,y0
+currx G:470 SG sdl.b[700] currx,curry:=x0,y0
+currx G:470 SG sdl.b[759] currx,curry:=x0,y0
+currx G:470 SG sdl.b[830] currx,curry:=x0,y0
+currxsize G:487 DEF sdl.h[90] currxsize=
+currxsize G:487 LG sdl.b[111] IF ...&...|...&...|x>=currxsize&currx>=currxsize|y>=currysize&curry>=currysize DO ..
+currxsize G:487 LG sdl.b[133] IF 0<=x&x<currxsize&0<=y&y<currysize DO ..
+currxsize G:487 LG sdl.b[145] IF 0<=x&x<currxsize&0<=y&y<currysize DO ..
+currxsize G:487 LG sdl.b[146] @depthscreen!(x+y*currxsize)
+currxsize G:487 LG sdl.b[407] curry<y->currxsize,(Op12)
+currxsize G:487 LG sdl.b[413] depthscreen:=getvec(currxsize*currysize-1)
+currxsize G:487 LG sdl.b[414] FOR i=0 TO currxsize*currysize-1 DO..
+currxsize G:487 LG sdl.b[533] IF maxx>currxsize DO ..
+currxsize G:487 LG sdl.b[533] maxx:=currxsize-1
+currxsize G:487 LG sdl.b[625] depthscreen:=getvec(currxsize*currysize-1)
+currxsize G:487 LG sdl.b[626] FOR i=0 TO currxsize*currysize-1 DO..
+currxsize G:487 SG sdl.b[101] currsurf,currxsize,currysize:=surf,xsize,ysize
+curry G:471 DEF sdl.h[70] curry=
+curry G:471 LG sdl.b[111] IF ...&...|...&...|x>=currxsize&currx>=currxsize|y>=currysize&curry>=currysize DO ..
+curry G:471 LG sdl.b[119] drawpoint(currx,curry)
+curry G:471 LG sdl.b[122] my:=(y+curry)/2
+curry G:471 LG sdl.b[123] TEST (mx=currx|mx=x)&(my=curry|my=y) THEN .. ELSE ..
+curry G:471 LG sdl.b[156] moveto(currx+dx,curry+dy)
+curry G:471 LG sdl.b[157] drawto(currx+dx,curry+dy)
+curry G:471 LG sdl.b[159] moveto3d(currx+dx,curry+dy,currz+dz)
+curry G:471 LG sdl.b[160] drawto3d(currx+dx,curry+dy,currz+dz)
+curry G:471 LG sdl.b[208] currx,curry:=10,curry-14
+curry G:471 LG sdl.b[211] write_ch_slice(currx,...-line,ch,line)
+curry G:471 LG sdl.b[218] currx,curry
+curry G:471 LG sdl.b[381] Op13
+curry G:471 LG sdl.b[383] curry<y->1,-1
+curry G:471 LG sdl.b[387] drawpoint(currx,curry)
+curry G:471 LG sdl.b[388] IF currx=x&curry=y DO ..
+curry G:471 LG sdl.b[396] curry:=curry+sy
+curry G:471 LG sdl.b[404] Op13
+curry G:471 LG sdl.b[406] curry<y->1,-1
+curry G:471 LG sdl.b[407] curry<y->currxsize,(Op12)
+curry G:471 LG sdl.b[408] currx,curry,currz
+curry G:471 LG sdl.b[422] drawpoint3d(currx,curry,currz)
+curry G:471 LG sdl.b[424] IF currx=x&curry=y DO ..
+curry G:471 LG sdl.b[432] curry:=curry+sy
+curry G:471 LG sdl.b[436] currz:=z0+muldiv(z-z0,...,...)
+curry G:471 LG sdl.b[449] Op13
+curry G:471 LG sdl.b[451] curry<y->1,-1
+curry G:471 LG sdl.b[454] IF curry<miny DO ..
+curry G:471 LG sdl.b[454] miny:=curry
+curry G:471 LG sdl.b[455] IF curry>maxy DO ..
+curry G:471 LG sdl.b[455] maxy:=curry
+curry G:471 LG sdl.b[467] IF 0<=curry&curry<currysize DO ..
+curry G:471 LG sdl.b[468] IF currx<lefts!curry DO ..
+curry G:471 LG sdl.b[468] lefts!curry:=currx
+curry G:471 LG sdl.b[469] IF currx>rights!curry DO ..
+curry G:471 LG sdl.b[469] rights!curry:=currx
+curry G:471 LG sdl.b[477] IF currx=x&curry=y DO ..
+curry G:471 LG sdl.b[485] curry:=curry+sy
+curry G:471 LG sdl.b[566] Op13
+curry G:471 LG sdl.b[567] currx,curry,currz
+curry G:471 LG sdl.b[569] curry<y->1,-1
+curry G:471 LG sdl.b[574] IF 0<=curry&curry<currysize DO ..
+curry G:471 LG sdl.b[575] IF curry<miny DO ..
+curry G:471 LG sdl.b[575] miny:=curry
+curry G:471 LG sdl.b[576] IF curry>maxy DO ..
+curry G:471 LG sdl.b[576] maxy:=curry
+curry G:471 LG sdl.b[579] IF currx<=lefts!curry DO ..
+curry G:471 LG sdl.b[580] lefts!curry:=currx
+curry G:471 LG sdl.b[582] leftds!curry:=currz
+curry G:471 LG sdl.b[584] IF currx>=rights!curry DO ..
+curry G:471 LG sdl.b[585] rights!curry:=currx
+curry G:471 LG sdl.b[587] rightds!curry:=currz
+curry G:471 LG sdl.b[590] IF currx=x&curry=y DO ..
+curry G:471 LG sdl.b[601] curry:=curry+sy
+curry G:471 LG sdl.b[603] currz:=z0+muldiv(z-z0,...,...)
+curry G:471 SG sdl.b[104] currx,curry,prevdrawn:=x,y,FALSE
+curry G:471 SG sdl.b[107] currx,curry,currz,prevdrawn:=x,y,z,FALSE
+curry G:471 SG sdl.b[115] currx,curry,prevdrawn:=x,y,FALSE
+curry G:471 SG sdl.b[137] currx,curry:=x,y
+curry G:471 SG sdl.b[153] currx,curry,currz:=x,y,z
+curry G:471 SG sdl.b[208] currx,curry:=10,curry-14
+curry G:471 SG sdl.b[353] currx,curry:=cx,cy
+curry G:471 SG sdl.b[396] curry:=curry+sy
+curry G:471 SG sdl.b[432] curry:=curry+sy
+curry G:471 SG sdl.b[485] curry:=curry+sy
+curry G:471 SG sdl.b[601] curry:=curry+sy
+curry G:471 SG sdl.b[688] currx,curry:=x0,y0
+curry G:471 SG sdl.b[700] currx,curry:=x0,y0
+curry G:471 SG sdl.b[759] currx,curry:=x0,y0
+curry G:471 SG sdl.b[830] currx,curry:=x0,y0
+currysize G:488 DEF sdl.h[91] currysize=
+currysize G:488 LG sdl.b[111] IF ...&...|...&...|x>=currxsize&currx>=currxsize|y>=currysize&curry>=currysize DO ..
+currysize G:488 LG sdl.b[133] IF 0<=x&x<currxsize&0<=y&y<currysize DO ..
+currysize G:488 LG sdl.b[134] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+currysize G:488 LG sdl.b[145] IF 0<=x&x<currxsize&0<=y&y<currysize DO ..
+currysize G:488 LG sdl.b[149] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+currysize G:488 LG sdl.b[193] x,currysize-y-1,0,0
+currysize G:488 LG sdl.b[200] x,currysize-y-1,0,0
+currysize G:488 LG sdl.b[413] depthscreen:=getvec(currxsize*currysize-1)
+currysize G:488 LG sdl.b[414] FOR i=0 TO currxsize*currysize-1 DO..
+currysize G:488 LG sdl.b[467] IF 0<=curry&curry<currysize DO ..
+currysize G:488 LG sdl.b[492] lefts:=getvec(currysize-1)
+currysize G:488 LG sdl.b[493] rights:=getvec(currysize-1)
+currysize G:488 LG sdl.b[495] sawritef("Unabl'ize=%i3*n",currysize)
+currysize G:488 LG sdl.b[500] FOR i=0 TO currysize-1 DO..
+currysize G:488 LG sdl.b[507] miny,maxy:=currysize,-1
+currysize G:488 LG sdl.b[527] IF maxy>=currysize DO ..
+currysize G:488 LG sdl.b[527] maxy:=currysize-1
+currysize G:488 LG sdl.b[574] IF 0<=curry&curry<currysize DO ..
+currysize G:488 LG sdl.b[611] lefts:=getvec(currysize-1)
+currysize G:488 LG sdl.b[612] rights:=getvec(currysize-1)
+currysize G:488 LG sdl.b[613] FOR y=0 TO currysize-1 DO..
+currysize G:488 LG sdl.b[618] leftds:=getvec(currysize-1)
+currysize G:488 LG sdl.b[619] rightds:=getvec(currysize-1)
+currysize G:488 LG sdl.b[620] FOR y=0 TO currysize-1 DO..
+currysize G:488 LG sdl.b[625] depthscreen:=getvec(currxsize*currysize-1)
+currysize G:488 LG sdl.b[626] FOR i=0 TO currxsize*currysize-1 DO..
+currysize G:488 LG sdl.b[697] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+currysize G:488 LG sdl.b[874] IF y>=currysize-radius DO ..
+currysize G:488 LG sdl.b[874] y:=currysize-radius
+currysize G:488 LG sdl.b[875] sys(Sys_sdl,sdl_drawfillcircle,currsurf,...)
+currysize G:488 SG sdl.b[101] currsurf,currxsize,currysize:=surf,xsize,ysize
+currz G:472 DEF sdl.h[71] currz=
+currz G:472 LG sdl.b[159] moveto3d(currx+dx,curry+dy,currz+dz)
+currz G:472 LG sdl.b[160] drawto3d(currx+dx,curry+dy,currz+dz)
+currz G:472 LG sdl.b[408] currx,curry,currz
+currz G:472 LG sdl.b[422] drawpoint3d(currx,curry,currz)
+currz G:472 LG sdl.b[567] currx,curry,currz
+currz G:472 LG sdl.b[582] leftds!curry:=currz
+currz G:472 LG sdl.b[587] rightds!curry:=currz
+currz G:472 SG sdl.b[107] currx,curry,currz,prevdrawn:=x,y,z,FALSE
+currz G:472 SG sdl.b[153] currx,curry,currz:=x,y,z
+currz G:472 SG sdl.b[435] currz:=z0+muldiv(z-z0,...,...)
+currz G:472 SG sdl.b[436] currz:=z0+muldiv(z-z0,...,...)
+currz G:472 SG sdl.b[596] currz:=z0+muldiv(z-z0,...,...)
+currz G:472 SG sdl.b[603] currz:=z0+muldiv(z-z0,...,...)
+dat_to_strings G:110 DEF libhdr.h[137] dat_to_strings=110
+datstamp G:109 DEF libhdr.h[136] datstamp=109
+datstring G:108 DEF libhdr.h[135] datstring=108
+deadcode M:#xDEADC0DE DEF libhdr.h[243] deadcode=#xDEADC0DE
+debugging G:201 DEF robots.b[117] debugging=
+debugging G:207 DEF robots.b[124] debugging=
+debugging G:207 LG robots.b[1264] IF debugging DO ..
+debugging G:207 LG robots.b[1290] IF debugging DO ..
+debugging G:207 LG robots.b[1312] IF debugging DO ..
+debugging G:207 LG robots.b[1357] IF debugging DO ..
+debugging G:207 LG robots.b[1382] IF debugging DO ..
+debugging G:207 LG robots.b[1414] debugging:=~debugging
+debugging G:207 SG robots.b[1414] debugging:=~debugging
+debugging G:207 SG robots.b[1626] debugging:=argv!5
+delay G:128 DEF libhdr.h[155] delay=128
+delayuntil G:129 DEF libhdr.h[156] delayuntil=129
+deleteco G:18 DEF libhdr.h[44] deleteco=18
+deletedev G:173 DEF libhdr.h[204] deletedev=173
+deletefile G:76 DEF libhdr.h[102] deletefile=76
+deleteself G:125 DEF libhdr.h[152] deleteself=125
+deletetask G:154 DEF libhdr.h[188] deletetask=154
+deplete G:43 DEF libhdr.h[69] deplete=43
+depthscreen G:460 DEF sdl.h[53] depthscreen=
+depthscreen G:460 LG sdl.b[146] @depthscreen!(x+y*currxsize)
+depthscreen G:460 LG sdl.b[412] UNLESS depthscreen DO ..
+depthscreen G:460 LG sdl.b[415] depthscreen!i:=maxint
+depthscreen G:460 LG sdl.b[624] UNLESS depthscreen DO ..
+depthscreen G:460 LG sdl.b[627] depthscreen!i:=maxint
+depthscreen G:460 LG sdl.b[92] IF depthscreen DO ..
+depthscreen G:460 LG sdl.b[92] freevec(depthscreen)
+depthscreen G:460 SG sdl.b[413] depthscreen:=getvec(currxsize*currysize-1)
+depthscreen G:460 SG sdl.b[50] depthscreen:=0
+depthscreen G:460 SG sdl.b[625] depthscreen:=getvec(currxsize*currysize-1)
+displayusage G:206 DEF robots.b[123] displayusage=
+displayusage G:206 LG robots.b[1378] IF displayusage DO ..
+displayusage G:206 LG robots.b[1422] displayusage:=~displayusage
+displayusage G:206 SG robots.b[1422] displayusage:=~displayusage
+displayusage G:206 SG robots.b[1803] displayusage:=FALSE
+done G:200 DEF robots.b[116] done=ug
+done G:200 LG robots.b[1823] UNTIL done DO ..
+done G:200 SG robots.b[1411] done:=TRUE
+done G:200 SG robots.b[1515] done:=TRUE
+done G:200 SG robots.b[1813] done:=FALSE
+drawbottle F:28 LF robots.b[1352] drawbottle(bottlev!i)
+drawbottle F:28 RT robots.b[1299] LET drawbottle(b)BE..
+drawby G:495 DEF sdl.h[99] drawby=
+drawby G:495 RT sdl.b[157] LET drawby(dx,dy)BE..
+drawby3d G:499 DEF sdl.h[104] drawby3d=
+drawby3d G:499 RT sdl.b[160] LET drawby3d(dx,dy,dz)BE..
+drawch F:29 LF sdl.b[358] drawch(s%i)
+drawch F:29 RT sdl.b[207] LET drawch(ch)BE..
+drawcircle G:507 DEF sdl.h[114] drawcircle=
+drawcircle G:507 RT sdl.b[833] LET drawcircle(x0,y0,radius)BE..
+drawellipse G:509 DEF sdl.h[116] drawellipse=
+drawfillcircle G:513 DEF sdl.h[120] drawfillcircle=
+drawfillcircle G:513 LG robots.b[1142] drawfillcircle(r2,r2+1,r2)
+drawfillcircle G:513 LG robots.b[1145] drawfillcircle(r2,r2+1,r1)
+drawfillcircle G:513 LG robots.b[1162] drawfillcircle(bottleradius/One,...+1,bottleradius/One)
+drawfillcircle G:513 LG robots.b[1258] drawfillcircle(r!r_cgx/One,.../One,robotradius/One)
+drawfillcircle G:513 LG robots.b[1260] drawfillcircle(r!r_lcx/One,.../One,shoulderradius/One)
+drawfillcircle G:513 LG robots.b[1262] drawfillcircle(r!r_rcx/One,.../One,shoulderradius/One)
+drawfillcircle G:513 LG robots.b[1281] drawfillcircle(r!r_ltpx/One,.../One,tipradius/One)
+drawfillcircle G:513 LG robots.b[1287] drawfillcircle(r!r_rtpx/One,.../One,tipradius/One)
+drawfillcircle G:513 RT sdl.b[879] LET drawfillcircle(x0,y0,radius)BE..
+drawfillcircle1 F:49 RT sdl.b[869] LET drawfillcircle1(x,y,radius)BE..
+drawfillellipse G:510 DEF sdl.h[117] drawfillellipse=
+drawfillrect G:514 DEF sdl.h[121] drawfillrect=
+drawfillrect G:514 RT sdl.b[691] LET drawfillrect(x0,y0,x1,y1)BE..
+drawfillroundrect G:512 DEF sdl.h[119] drawfillroundrect=
+drawfillroundrect G:512 RT sdl.b[762] LET drawfillroundrect(x0,y0,x1,y1,radius)BE..
+drawpoint G:490 DEF sdl.h[94] drawpoint=
+drawpoint G:490 LG sdl.b[119] drawpoint(currx,curry)
+drawpoint G:490 LG sdl.b[124] drawpoint(x,y)
+drawpoint G:490 LG sdl.b[339] drawpoint(x,y)
+drawpoint G:490 LG sdl.b[340] drawpoint(x+1,y)
+drawpoint G:490 LG sdl.b[341] drawpoint(x+2,y)
+drawpoint G:490 LG sdl.b[342] drawpoint(x+3,y)
+drawpoint G:490 LG sdl.b[343] drawpoint(x+4,y)
+drawpoint G:490 LG sdl.b[344] drawpoint(x+5,y)
+drawpoint G:490 LG sdl.b[345] drawpoint(x+6,y)
+drawpoint G:490 LG sdl.b[346] drawpoint(x+7,y)
+drawpoint G:490 LG sdl.b[387] drawpoint(currx,curry)
+drawpoint G:490 LG sdl.b[681] drawpoint(x,ymin)
+drawpoint G:490 LG sdl.b[682] drawpoint(x,ymax)
+drawpoint G:490 LG sdl.b[685] drawpoint(xmin,y)
+drawpoint G:490 LG sdl.b[686] drawpoint(xmax,y)
+drawpoint G:490 LG sdl.b[716] drawpoint(x,ymin)
+drawpoint G:490 LG sdl.b[717] drawpoint(x,ymax)
+drawpoint G:490 LG sdl.b[720] drawpoint(xmin,y)
+drawpoint G:490 LG sdl.b[721] drawpoint(xmax,y)
+drawpoint G:490 LG sdl.b[732] drawpoint(xmax,ymin+r)
+drawpoint G:490 LG sdl.b[733] drawpoint(xmin,ymin+r)
+drawpoint G:490 LG sdl.b[734] drawpoint(xmax,ymax-r)
+drawpoint G:490 LG sdl.b[735] drawpoint(xmin,ymax-r)
+drawpoint G:490 LG sdl.b[749] drawpoint(xmax-r+x,ymax-r+y)
+drawpoint G:490 LG sdl.b[750] drawpoint(xmin+r-x,ymax-r+y)
+drawpoint G:490 LG sdl.b[751] drawpoint(xmax-r+x,ymin+r-y)
+drawpoint G:490 LG sdl.b[752] drawpoint(xmin+r-x,ymin+r-y)
+drawpoint G:490 LG sdl.b[753] drawpoint(xmax-r+y,ymax-r+x)
+drawpoint G:490 LG sdl.b[754] drawpoint(xmin+r-y,ymax-r+x)
+drawpoint G:490 LG sdl.b[755] drawpoint(xmax-r+y,ymin+r-x)
+drawpoint G:490 LG sdl.b[756] drawpoint(xmin+r-y,ymin+r-x)
+drawpoint G:490 LG sdl.b[776] drawpoint(x,y)
+drawpoint G:490 LG sdl.b[777] drawpoint(x,y)
+drawpoint G:490 LG sdl.b[789] drawpoint(xmax,ymin+r)
+drawpoint G:490 LG sdl.b[790] drawpoint(xmin,ymin+r)
+drawpoint G:490 LG sdl.b[791] drawpoint(xmax,ymax-r)
+drawpoint G:490 LG sdl.b[792] drawpoint(xmin,ymax-r)
+drawpoint G:490 LG sdl.b[806] drawpoint(xmax-r+x,ymax-r+y)
+drawpoint G:490 LG sdl.b[807] drawpoint(xmin+r-x,ymax-r+y)
+drawpoint G:490 LG sdl.b[808] drawpoint(xmax-r+x,ymin+r-y)
+drawpoint G:490 LG sdl.b[809] drawpoint(xmin+r-x,ymin+r-y)
+drawpoint G:490 LG sdl.b[810] drawpoint(xmax-r+y,ymax-r+x)
+drawpoint G:490 LG sdl.b[811] drawpoint(xmin+r-y,ymax-r+x)
+drawpoint G:490 LG sdl.b[812] drawpoint(xmax-r+y,ymin+r-x)
+drawpoint G:490 LG sdl.b[813] drawpoint(xmin+r-y,ymin+r-x)
+drawpoint G:490 LG sdl.b[817] drawpoint(fx,ymax-r+x)
+drawpoint G:490 LG sdl.b[818] drawpoint(fx,ymin+r-x)
+drawpoint G:490 LG sdl.b[824] drawpoint(fx,ymax-r+y)
+drawpoint G:490 LG sdl.b[825] drawpoint(fx,ymin+r-y)
+drawpoint G:490 LG sdl.b[841] drawpoint(x0,y0+radius)
+drawpoint G:490 LG sdl.b[842] drawpoint(x0,y0-radius)
+drawpoint G:490 LG sdl.b[843] drawpoint(x0+radius,y0)
+drawpoint G:490 LG sdl.b[844] drawpoint(x0-radius,y0)
+drawpoint G:490 LG sdl.b[858] drawpoint(x0+x,y0+y)
+drawpoint G:490 LG sdl.b[859] drawpoint(x0-x,y0+y)
+drawpoint G:490 LG sdl.b[860] drawpoint(x0+x,y0-y)
+drawpoint G:490 LG sdl.b[861] drawpoint(x0-x,y0-y)
+drawpoint G:490 LG sdl.b[862] drawpoint(x0+y,y0+x)
+drawpoint G:490 LG sdl.b[863] drawpoint(x0-y,y0+x)
+drawpoint G:490 LG sdl.b[864] drawpoint(x0+y,y0-x)
+drawpoint G:490 LG sdl.b[865] drawpoint(x0-y,y0-x)
+drawpoint G:490 LG sdl.b[888] drawpoint(x0,y0+radius)
+drawpoint G:490 LG sdl.b[889] drawpoint(x0,y0-radius)
+drawpoint G:490 LG sdl.b[890] drawpoint(x,y0)
+drawpoint G:490 LG sdl.b[904] drawpoint(x0+x,y0+y)
+drawpoint G:490 LG sdl.b[905] drawpoint(x0-x,y0+y)
+drawpoint G:490 LG sdl.b[906] drawpoint(x0+x,y0-y)
+drawpoint G:490 LG sdl.b[907] drawpoint(x0-x,y0-y)
+drawpoint G:490 LG sdl.b[908] drawpoint(x0+y,y0+x)
+drawpoint G:490 LG sdl.b[909] drawpoint(x0-y,y0+x)
+drawpoint G:490 LG sdl.b[910] drawpoint(x0+y,y0-x)
+drawpoint G:490 LG sdl.b[911] drawpoint(x0-y,y0-x)
+drawpoint G:490 LG sdl.b[914] drawpoint(fx,y0+x)
+drawpoint G:490 LG sdl.b[915] drawpoint(fx,y0-x)
+drawpoint G:490 LG sdl.b[921] drawpoint(fx,y0+y)
+drawpoint G:490 LG sdl.b[922] drawpoint(fx,y0-y)
+drawpoint G:490 RT sdl.b[130] LET drawpoint(x,y)BE..
+drawpoint3d G:491 DEF sdl.h[95] drawpoint3d=
+drawpoint3d G:491 LG sdl.b[422] drawpoint3d(currx,curry,currz)
+drawpoint3d G:491 RT sdl.b[140] LET drawpoint3d(x,y,z)BE..
+drawquad G:500 DEF sdl.h[106] drawquad=
+drawquad G:500 LG robots.b[1272] drawquad(r!r_lcx/One,.../One,...,...)
+drawquad G:500 LG robots.b[1277] drawquad(r!r_ltax/One,.../One,...,...)
+drawquad G:500 LG robots.b[1283] drawquad(r!r_rtax/One,.../One,...,...)
+drawquad G:500 LG robots.b[1327] drawquad(0,0,d,...)
+drawquad G:500 LG robots.b[1329] drawquad(0,screenysize,d,...)
+drawquad G:500 LG robots.b[1331] drawquad(screenxsize,screenysize,...,...)
+drawquad G:500 LG robots.b[1333] drawquad(0,0,d,...)
+drawquad G:500 RT sdl.b[504] LET drawquad(x1,y1,x2,y2,x3,y3,x4,y4)BE..
+drawquad3d G:503 DEF sdl.h[109] drawquad3d=
+drawquad3d G:503 RT sdl.b[631] LET drawquad3d(x1,y1,z1,x2,y2,z2,x3,...)BE..
+drawrect G:508 DEF sdl.h[115] drawrect=
+drawrect G:508 RT sdl.b[674] LET drawrect(x0,y0,x1,y1)BE..
+drawrobot F:27 LF robots.b[1349] drawrobot(r)
+drawrobot F:27 RT robots.b[1250] LET drawrobot(r)BE..
+drawroundrect G:511 DEF sdl.h[118] drawroundrect=
+drawroundrect G:511 RT sdl.b[703] LET drawroundrect(x0,y0,x1,y1,radius)BE..
+drawstring G:506 DEF sdl.h[113] drawstring=
+drawstring G:506 LG sdl.b[369] drawstring(x,y,plotfstr)
+drawstring G:506 RT sdl.b[356] LET drawstring(x,y,s)BE..
+drawto G:494 DEF sdl.h[98] drawto=
+drawto G:494 LG robots.b[1293] drawto(b!b_cgx/One,b!b_cgy/One)
+drawto G:494 LG sdl.b[125] drawto(mx,my)
+drawto G:494 LG sdl.b[126] drawto(x,y)
+drawto G:494 LG sdl.b[157] drawto(currx+dx,curry+dy)
+drawto G:494 LG sdl.b[538] drawto(maxx,y)
+drawto G:494 LG sdl.b[556] drawto(rights!y,y)
+drawto G:494 RT sdl.b[378] LET drawto(x,y)BE..
+drawto1 F:11 RT sdl.b[109] LET drawto1(x,y)BE..
+drawto3d G:498 DEF sdl.h[103] drawto3d=
+drawto3d G:498 LG sdl.b[160] drawto3d(currx+dx,curry+dy,currz+dz)
+drawto3d G:498 LG sdl.b[646] drawto3d(rights!y,y,rightds!y)
+drawto3d G:498 LG sdl.b[666] drawto3d(rights!y,y,rightds!y)
+drawto3d G:498 RT sdl.b[401] LET drawto3d(x,y,z)BE..
+drawtriangle G:501 DEF sdl.h[107] drawtriangle=
+drawtriangle G:501 RT sdl.b[544] LET drawtriangle(x1,y1,x2,y2,x3,y3)BE..
+drawtriangle3d G:504 DEF sdl.h[110] drawtriangle3d=
+drawtriangle3d G:504 RT sdl.b[654] LET drawtriangle3d(x1,y1,z1,x2,y2,z2,x3,...)BE..
+edgesize M:60000 DEF robots.b[46] edgesize=60000
+edgesize M:60000 MAN robots.b[1064] IF r!r_bottle&edgesize<...&...<...&edgesize<r!r_cgy&r!r_cgy<...-edgesize DO ..
+edgesize M:60000 MAN robots.b[1131] r1+edgesize/One
+edgesize M:60000 MAN robots.b[1320] edgesize/One
+edgesize M:60000 MAN robots.b[1336] blitsurf(pitsurf,screen,...,...)
+edgesize M:60000 MAN robots.b[438] IF dw<=edgesize&dw<=dn&dw<=ds DO ..
+edgesize M:60000 MAN robots.b[446] IF dn<=edgesize&dn<=de&dn<=dw DO ..
+edgesize M:60000 MAN robots.b[454] IF de<=edgesize&de<=ds&de<=dn DO ..
+edgesize M:60000 MAN robots.b[462] IF ds<=edgesize&ds<=de&ds<=dw DO ..
+edgesize M:60000 MAN robots.b[469] IF incontact(r,thepit,pitradius+edgesize) DO ..
+edgesize M:60000 MAN robots.b[496] IF incontact(b,thepit,pitradius+edgesize) DO ..
+edgesize M:60000 MAN robots.b[559] IF dw<edgesize&dw<dn&dw<ds DO ..
+edgesize M:60000 MAN robots.b[567] IF dn<edgesize&dn<de&dn<dw DO ..
+edgesize M:60000 MAN robots.b[575] IF de<edgesize&de<ds&de<dn DO ..
+edgesize M:60000 MAN robots.b[583] IF ds<edgesize&ds<de&ds<dw DO ..
+endread G:60 DEF libhdr.h[86] endread=60
+endstream G:62 DEF libhdr.h[88] endstream=62
+endstreamch M:-1 DEF libhdr.h[226] endstreamch=-1
+endtask G:162 DEF libhdr.h[196] endtask=162
+endwrite G:61 DEF libhdr.h[87] endwrite=61
+entryword M:57311 DEF libhdr.h[245] entryword=57311
+eventa1 G:478 DEF sdl.h[80] eventa1=
+eventa2 G:479 DEF sdl.h[81] eventa2=
+eventa2 G:479 LG robots.b[1405] SWITCHON capitalch(eventa2) INTO..
+eventa3 G:480 DEF sdl.h[82] eventa3=
+eventa4 G:481 DEF sdl.h[83] eventa4=
+eventa5 G:482 DEF sdl.h[84] eventa5=
+eventtype G:477 DEF sdl.h[79] eventtype=
+eventtype G:477 LG robots.b[1400] SWITCHON eventtype INTO..
+eventtype G:477 LLG sdl.b[165] RESULTIS sys(Sys_sdl,sdl_pollevent,@eventtype)
+fault G:174 DEF libhdr.h[205] fault=174
+fillsurf G:515 DEF sdl.h[123] fillsurf=
+fillsurf G:515 LG robots.b[1138] fillsurf(colkey)
+fillsurf G:515 LG robots.b[1158] fillsurf(colkey)
+fillsurf G:515 LG robots.b[1322] fillsurf(backcolour)
+fillsurf G:515 RT sdl.b[204] LET fillsurf(col)BE..
+fin F:252 LAB robots.b[1861] fin:IF spacev DO ..
+findappend G:130 DEF libhdr.h[157] findappend=130
+findarg G:104 DEF libhdr.h[131] findarg=104
+findinoutput G:50 DEF libhdr.h[76] findinoutput=50
+findinput G:48 DEF libhdr.h[74] findinput=48
+findoutput G:49 DEF libhdr.h[75] findoutput=49
+findstream G:52 DEF libhdr.h[78] findstream=52
+findupdate G:51 DEF libhdr.h[77] findupdate=51
+finished G:204 DEF robots.b[120] finished=
+fl_F2N M:42 DEF libhdr.h[515] fl_F2N=
+fl_N2F M:41 DEF libhdr.h[514] fl_N2F=
+fl_abs M:5 DEF libhdr.h[488] fl_abs=
+fl_acos M:20 DEF libhdr.h[492] fl_acos=20
+fl_add M:8 DEF libhdr.h[489] fl_add=
+fl_asin M:21 DEF libhdr.h[493] fl_asin=
+fl_atan M:22 DEF libhdr.h[494] fl_atan=
+fl_atan2 M:23 DEF libhdr.h[495] fl_atan2=
+fl_avail M:0 DEF libhdr.h[486] fl_avail=0
+fl_ceil M:38 DEF libhdr.h[510] fl_ceil=
+fl_cos M:24 DEF libhdr.h[496] fl_cos=
+fl_cosh M:27 DEF libhdr.h[499] fl_cosh=
+fl_div M:7 DEF libhdr.h[489] fl_div=
+fl_eq M:12 DEF libhdr.h[490] fl_eq=
+fl_exp M:30 DEF libhdr.h[502] fl_exp=
+fl_fix M:4 DEF libhdr.h[488] fl_fix=
+fl_float M:3 DEF libhdr.h[488] fl_float=
+fl_floor M:39 DEF libhdr.h[511] fl_floor=
+fl_fmod M:40 DEF libhdr.h[512] fl_fmod=
+fl_frexp M:31 DEF libhdr.h[503] fl_frexp=
+fl_ge M:17 DEF libhdr.h[490] fl_ge=
+fl_gr M:15 DEF libhdr.h[490] fl_gr=
+fl_ldexp M:32 DEF libhdr.h[504] fl_ldexp=
+fl_le M:16 DEF libhdr.h[490] fl_le=
+fl_log M:33 DEF libhdr.h[505] fl_log=
+fl_log10 M:34 DEF libhdr.h[506] fl_log10=
+fl_ls M:14 DEF libhdr.h[490] fl_ls=
+fl_mk M:1 DEF libhdr.h[487] fl_mk=
+fl_modf M:35 DEF libhdr.h[507] fl_modf=
+fl_mul M:6 DEF libhdr.h[489] fl_mul=
+fl_ne M:13 DEF libhdr.h[490] fl_ne=
+fl_neg M:11 DEF libhdr.h[489] fl_neg=
+fl_pos M:10 DEF libhdr.h[489] fl_pos=
+fl_pow M:36 DEF libhdr.h[508] fl_pow=
+fl_radius2 M:43 DEF libhdr.h[516] fl_radius2=
+fl_radius3 M:44 DEF libhdr.h[517] fl_radius3=
+fl_sin M:25 DEF libhdr.h[497] fl_sin=
+fl_sinh M:28 DEF libhdr.h[500] fl_sinh=
+fl_sqrt M:37 DEF libhdr.h[509] fl_sqrt=
+fl_sub M:9 DEF libhdr.h[489] fl_sub=
+fl_tan M:26 DEF libhdr.h[498] fl_tan=
+fl_tanh M:29 DEF libhdr.h[501] fl_tanh=
+fl_unmk M:2 DEF libhdr.h[487] fl_unmk=
+flag_a M:1 DEF libhdr.h[640] flag_a=1<<0
+flag_b M:2 DEF libhdr.h[641] flag_b=1<<1
+flag_c M:4 DEF libhdr.h[642] flag_c=1<<2
+flag_d M:8 DEF libhdr.h[643] flag_d=1<<3
+flag_e M:16 DEF libhdr.h[644] flag_e=1<<4
+format G:455 DEF sdl.h[47] format=
+format G:455 LG sdl.b[185] RESULTIS sys(Sys_sdl,sdl_mksurface,format,...)
+format G:455 LG sdl.b[83] sys(Sys_sdl,sdl_maprgb,format,...)
+format G:455 SG sdl.b[76] format:=fmt
+freebottles G:226 DEF robots.b[146] freebottles=
+freebottles G:226 LG robots.b[1359] plotf(80,365,"freeb'es = %i2",freebottles)
+freebottles G:226 LG robots.b[1426] sawritef("Free 'es = %n*n",freebottles)
+freebottles G:226 LG robots.b[516] freebottles:=freebottles+1
+freebottles G:226 LG robots.b[521] freebottles:=freebottles-1
+freebottles G:226 LG robots.b[721] IF freebottles&r!r_grabpos=1000 DO ..
+freebottles G:226 LG robots.b[735] freebottles:=freebottles-1
+freebottles G:226 LG robots.b[970] freebottles:=freebottles+1
+freebottles G:226 LG robots.b[977] freebottles:=freebottles-1
+freebottles G:226 SG robots.b[1635] freebottles:=bottles
+freebottles G:226 SG robots.b[516] freebottles:=freebottles+1
+freebottles G:226 SG robots.b[521] freebottles:=freebottles-1
+freebottles G:226 SG robots.b[735] freebottles:=freebottles-1
+freebottles G:226 SG robots.b[970] freebottles:=freebottles+1
+freebottles G:226 SG robots.b[977] freebottles:=freebottles-1
+freeobj G:78 DEF libhdr.h[104] freeobj=78
+freesurface G:484 DEF sdl.h[87] freesurface=
+freesurface G:484 LG robots.b[1853] freesurface(bottlesurfR)
+freesurface G:484 LG robots.b[1854] freesurface(bottlesurfDR)
+freesurface G:484 LG robots.b[1855] freesurface(bottlesurfK)
+freesurface G:484 LG robots.b[1856] freesurface(bottlesurfB)
+freesurface G:484 LG robots.b[1857] freesurface(pitsurf)
+freesurface G:484 RT sdl.b[188] LET freesurface(surf)BE..
+freevec G:27 DEF libhdr.h[53] freevec=27
+freevec G:27 LG robots.b[1862] freevec(spacev)
+freevec G:27 LG sdl.b[88] freevec(lefts)
+freevec G:27 LG sdl.b[89] freevec(rights)
+freevec G:27 LG sdl.b[90] freevec(leftds)
+freevec G:27 LG sdl.b[91] freevec(rightds)
+freevec G:27 LG sdl.b[92] freevec(depthscreen)
+g_colist M:8 DEF libhdr.h[251] g_colist=8
+g_currco M:7 DEF libhdr.h[250] g_currco=7
+g_extbase M:950 DEF libhdr.h[658] g_extbase=950
+g_glbase M:450 DEF libhdr.h[657] g_glbase=450
+g_globsize M:0 DEF libhdr.h[248] g_globsize=0
+g_grfbase M:400 DEF libhdr.h[654] g_grfbase=400
+g_keyboard M:20 DEF libhdr.h[255] g_keyboard=20
+g_memsize M:14 DEF libhdr.h[254] g_memsize=14
+g_rootnode M:9 DEF libhdr.h[252] g_rootnode=9
+g_screen M:21 DEF libhdr.h[256] g_screen=21
+g_sdlbase M:450 DEF libhdr.h[656] g_sdlbase=450
+g_sdlbase M:450 MAN sdl.h[41] initsdl=g_sdlbase
+g_sndbase M:400 DEF libhdr.h[655] g_sndbase=400
+g_sys M:3 DEF libhdr.h[249] g_sys=3
+get_index_record G:73 DEF libhdr.h[99] get_index_record=73
+get_record G:71 DEF libhdr.h[97] get_record=71
+get_text G:93 DEF libhdr.h[120] get_text=93
+get_textblib G:93 DEF libhdr.h[119] get_textblib=93
+getevent G:520 DEF sdl.h[131] getevent=
+getevent G:520 FN sdl.b[163] LET getevent()=..
+getevent G:520 LG robots.b[1400] WHILE getevent() DO ..
+getlogname G:118 DEF libhdr.h[145] getlogname=118
+getmousestate G:519 DEF sdl.h[130] getmousestate=
+getmousestate G:519 FN sdl.b[929] LET getmousestate()=..
+getremipaddr G:54 DEF libhdr.h[80] getremipaddr=54
+getvec G:25 DEF libhdr.h[51] getvec=25
+getvec G:25 LG robots.b[1644] spacev:=getvec(spacevupb)
+getvec G:25 LG sdl.b[413] depthscreen:=getvec(currxsize*currysize-1)
+getvec G:25 LG sdl.b[492] lefts:=getvec(currysize-1)
+getvec G:25 LG sdl.b[493] rights:=getvec(currysize-1)
+getvec G:25 LG sdl.b[611] lefts:=getvec(currysize-1)
+getvec G:25 LG sdl.b[612] rights:=getvec(currysize-1)
+getvec G:25 LG sdl.b[618] leftds:=getvec(currysize-1)
+getvec G:25 LG sdl.b[619] rightds:=getvec(currysize-1)
+getvec G:25 LG sdl.b[625] depthscreen:=getvec(currxsize*currysize-1)
+getword G:32 DEF libhdr.h[58] getword=32
+globin G:24 DEF libhdr.h[50] globin=24
+globsize G:0 DEF libhdr.h[26] globsize=0
+globword M:#x8F8F0000 DEF libhdr.h[241] globword=#x8F8F0000
+grabbedpos M:500 DEF robots.b[48] grabbedpos=bottleradius/(robotradius-shoulderradius-2*tipradius)/One
+grabbedpos M:500 MAN robots.b[1047] IF grabpos<=grabbedpos&inarea DO ..
+grabbedpos M:500 MAN robots.b[1049] grabpos:=grabbedpos
+grabbedpos M:500 MAN robots.b[989] sawritef("grabb'= %8.3d*n",grabbedpos)
+grabbercolour G:246 DEF robots.b[162] grabbercolour=
+grabbercolour G:246 LG robots.b[1270] setcolour(grabbercolour)
+grabbercolour G:246 SG robots.b[1693] grabbercolour:=maprgb(200,200,40)
+grablen M:12000 DEF robots.b[45] grablen=12000
+grablen M:12000 MAN robots.b[1208] grablen
+grablen M:12000 MAN robots.b[847] writef("tx=%8'n=%8.3d*n",tx,ty,grablen)
+grablen M:12000 MAN robots.b[848] writef("x1=%8'2=%8.3d*n",robotradius,robotradius+grablen)
+grablen M:12000 MAN robots.b[853] IF robotradius<=tx&tx<=robotradius+grablen DO ..
+help G:202 DEF robots.b[118] help=
+help G:202 LG robots.b[1363] IF help DO ..
+help G:202 LG robots.b[1407] help:=~help
+help G:202 SG robots.b[1407] help:=~help
+help G:202 SG robots.b[1628] help:=FALSE
+hidecursor G:523 DEF sdl.h[136] hidecursor=
+hidecursor G:523 FN sdl.b[176] LET hidecursor()=..
+hold G:158 DEF libhdr.h[192] hold=158
+id_appendscb M:132 DEF libhdr.h[438] id_appendscb=132
+id_inoutscb M:131 DEF libhdr.h[437] id_inoutscb=131
+id_inscb M:129 DEF libhdr.h[435] id_inscb=129
+id_outscb M:130 DEF libhdr.h[436] id_outscb=130
+incontact F:3 FN robots.b[196] LET incontact(p1,p2,dist)=..
+incontact F:3 LF robots.b[1019] IF incontact(b1,b2,bottleradius+bottleradius) DO ..
+incontact F:3 LF robots.b[1092] UNLESS incontact(r,b,2*robotradius) DO ..
+incontact F:3 LF robots.b[469] IF incontact(r,thepit,pitradius+edgesize) DO ..
+incontact F:3 LF robots.b[496] IF incontact(b,thepit,pitradius+edgesize) DO ..
+incontact F:3 LF robots.b[499] IF incontact(b,thepit,pitradius-bottleradius) DO ..
+incontact F:3 LF robots.b[604] IF incontact(r1,r2,12*robotradius) DO ..
+incontact F:3 LF robots.b[610] TEST incontact(r1,r2,2*robotradius) THEN .. ELSE ..
+incontact F:3 LF robots.b[754] UNLESS incontact(r,b,3*robotradius) DO ..
+incontact F:3 LF robots.b[762] IF incontact(r,b,robotradius+bottleradius) DO ..
+incontact F:3 LF robots.b[774] IF incontact(s,b,shoulderradius+bottleradius) DO ..
+incontact F:3 LF robots.b[787] IF incontact(s,b,shoulderradius+bottleradius) DO ..
+incontact F:3 LF robots.b[800] IF incontact(s,b,tipradius+bottleradius) DO ..
+incontact F:3 LF robots.b[813] IF incontact(s,b,tipradius+bottleradius) DO ..
+initbottlesurf F:22 FN robots.b[1150] LET initbottlesurf(col)=..
+initbottlesurf F:22 LF robots.b[1695] bottlesurfR:=initbottlesurf(col_red)
+initbottlesurf F:22 LF robots.b[1696] bottlesurfDR:=initbottlesurf(col_darkred)
+initbottlesurf F:22 LF robots.b[1697] bottlesurfK:=initbottlesurf(col_black)
+initbottlesurf F:22 LF robots.b[1698] bottlesurfB:=initbottlesurf(col_brown)
+initco G:22 DEF libhdr.h[48] initco=22
+initio G:46 DEF libhdr.h[72] initio=46
+initpitsurf F:21 FN robots.b[1128] LET initpitsurf(col)=..
+initpitsurf F:21 LF robots.b[1699] pitsurf:=initpitsurf(pitcolour)
+initsdl G:450 DEF sdl.h[41] initsdl=g_sdlbase
+initsdl G:450 FN sdl.b[34] LET initsdl()=..
+initsdl G:450 LG robots.b[1678] initsdl()
+inprod F:7 FN robots.b[389] LET inprod(dx,dy,c,s)=..
+inprod F:7 LF robots.b[1213] r!r_lcx:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1214] r!r_lcy:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1215] r!r_lex:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1216] r!r_ley:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1218] r!r_rcx:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1219] r!r_rcy:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1220] r!r_rex:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1221] r!r_rey:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1223] r!r_ltax:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1224] r!r_ltay:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1225] r!r_ltbx:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1226] r!r_ltby:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1227] r!r_ltcx:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1228] r!r_ltcy:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1229] r!r_ltdx:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1230] r!r_ltdy:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1231] r!r_ltpx:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1232] r!r_ltpy:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1234] r!r_rtax:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1235] r!r_rtay:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1236] r!r_rtbx:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1237] r!r_rtby:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1238] r!r_rtcx:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1239] r!r_rtcy:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1240] r!r_rtdx:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1241] r!r_rtdy:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1242] r!r_rtpx:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1243] r!r_rtpy:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1246] r!r_bcx:=x+inprod(c,ns,...)
+inprod F:7 LF robots.b[1247] r!r_bcy:=y+inprod(s,c,...)
+inprod F:7 LF robots.b[1496] r!r_cgxdot:=inprod(xdot,ydot,dc,ds)
+inprod F:7 LF robots.b[1497] r!r_cgydot:=inprod(xdot,ydot,...,dc)
+inprod F:7 LF robots.b[1507] r!r_cgxdot:=inprod(xdot,ydot,dc,ds)
+inprod F:7 LF robots.b[1508] r!r_cgydot:=inprod(xdot,ydot,...,dc)
+inprod F:7 LF robots.b[1663] rsq:=inprod(c,s,c,s)
+inprod F:7 LF robots.b[247] inprod(xdot,ydot,c,s)
+inprod F:7 LF robots.b[248] inprod(xdot,ydot,...,c)
+inprod F:7 LF robots.b[257] p2!2:=inprod(tdot,wdot,...)+p1!r_cgxdot
+inprod F:7 LF robots.b[258] p2!3:=inprod(tdot,wdot,...)+p1!r_cgydot
+inprod F:7 LF robots.b[273] inprod(rx1dot,ry1dot,c,s)
+inprod F:7 LF robots.b[274] inprod(rx1dot,ry1dot,...,c)
+inprod F:7 LF robots.b[282] rx1dot:=inprod(t1dot,w1dot,c,...)
+inprod F:7 LF robots.b[283] ry1dot:=inprod(t1dot,w1dot,s,c)
+inprod F:7 LF robots.b[315] inprod(rx1dot,ry1dot,c,s)
+inprod F:7 LF robots.b[316] inprod(rx1dot,ry1dot,...,c)
+inprod F:7 LF robots.b[317] inprod(rx2dot,ry2dot,c,s)
+inprod F:7 LF robots.b[318] inprod(rx2dot,ry2dot,...,c)
+inprod F:7 LF robots.b[342] rx1dot:=inprod(t1dot,w1dot,c,...)
+inprod F:7 LF robots.b[343] ry1dot:=inprod(t1dot,w1dot,s,c)
+inprod F:7 LF robots.b[344] rx2dot:=inprod(t2dot,w2dot,c,...)
+inprod F:7 LF robots.b[345] ry2dot:=inprod(t2dot,w2dot,s,c)
+inprod F:7 LF robots.b[473] r!r_cgxdot:=r!r_cgxdot+inprod(1000,0,...)
+inprod F:7 LF robots.b[474] r!r_cgydot:=r!r_cgydot+inprod(1000,0,...)
+inprod F:7 LF robots.b[831] inprod(bx,by,c,s)
+inprod F:7 LF robots.b[832] inprod(bx,by,...,c)
+inprod F:7 LF robots.b[863] inprod(r!r_cgxdot,r!r_cgydot,...,c)
+inprod F:7 LF robots.b[864] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+inprod F:7 LF robots.b[865] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+inprod F:7 LF robots.b[874] b!b_cgxdot:=inprod(btdot,bwdot,c,...)
+inprod F:7 LF robots.b[875] b!b_cgydot:=inprod(btdot,bwdot,s,c)
+inprod F:7 LF robots.b[881] inprod(r!r_cgxdot,r!r_cgydot,c,s)
+inprod F:7 LF robots.b[882] inprod(r!r_cgxdot,r!r_cgydot,...,c)
+inprod F:7 LF robots.b[883] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+inprod F:7 LF robots.b[884] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+inprod F:7 LF robots.b[901] b!b_cgxdot:=inprod(btdot,bwdot,c,...)
+inprod F:7 LF robots.b[902] b!b_cgydot:=inprod(btdot,bwdot,s,c)
+inprod F:7 LF robots.b[914] inprod(r!r_cgxdot,r!r_cgydot,...,c)
+inprod F:7 LF robots.b[915] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+inprod F:7 LF robots.b[916] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+inprod F:7 LF robots.b[925] b!b_cgxdot:=inprod(btdot,bwdot,c,...)
+inprod F:7 LF robots.b[926] b!b_cgydot:=inprod(btdot,bwdot,s,c)
+inprod F:7 LF robots.b[933] inprod(r!r_cgxdot,r!r_cgydot,...,c)
+inprod F:7 LF robots.b[934] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+inprod F:7 LF robots.b[935] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+inprod F:7 LF robots.b[945] b!b_cgxdot:=inprod(btdot,bwdot,c,...)
+inprod F:7 LF robots.b[946] b!b_cgydot:=inprod(btdot,bwdot,s,c)
+inprod F:7 LF robots.b[983] inprod(r!r_cgxdot,r!r_cgydot,c,s)
+inprod F:7 LF robots.b[984] inprod(b!b_cgxdot,b!b_cgydot,c,s)
+inprod F:7 LF robots.b[985] inprod(b!b_cgxdot,b!b_cgydot,...,c)
+inprod F:7 LF robots.b[995] b!b_cgxdot:=inprod(btdot,bwdot,c,...)
+inprod F:7 LF robots.b[996] b!b_cgydot:=inprod(btdot,bwdot,s,c)
+input G:58 DEF libhdr.h[84] input=58
+instrcount G:121 DEF libhdr.h[148] instrcount=121
+intflag G:119 DEF libhdr.h[146] intflag=119
+isrregs M:41 DEF libhdr.h[433] isrregs=41
+joystick G:463 DEF sdl.h[59] joystick=
+joystick G:463 SG sdl.b[44] joystick:=sys(Sys_sdl,sdl_joystickopen,0)
+klibregs M:21 DEF libhdr.h[431] klibregs=21
+leftds G:457 DEF sdl.h[50] leftds=
+leftds G:457 LG sdl.b[582] leftds!curry:=currz
+leftds G:457 LG sdl.b[617] UNLESS leftds DO ..
+leftds G:457 LG sdl.b[621] leftds!y,rightds!y:=maxint,maxint
+leftds G:457 LG sdl.b[645] moveto3d(lefts!y,y,leftds!y)
+leftds G:457 LG sdl.b[649] leftds!y,rightds!y:=maxint,maxint
+leftds G:457 LG sdl.b[665] moveto3d(lefts!y,y,leftds!y)
+leftds G:457 LG sdl.b[669] leftds!y,rightds!y:=maxint,maxint
+leftds G:457 LG sdl.b[90] IF leftds DO ..
+leftds G:457 LG sdl.b[90] freevec(leftds)
+leftds G:457 SG sdl.b[49] leftds,rightds:=0,0
+leftds G:457 SG sdl.b[618] leftds:=getvec(currysize-1)
+lefts G:456 DEF sdl.h[49] lefts=
+lefts G:456 LG sdl.b[468] IF currx<lefts!curry DO ..
+lefts G:456 LG sdl.b[468] lefts!curry:=currx
+lefts G:456 LG sdl.b[491] UNLESS lefts DO ..
+lefts G:456 LG sdl.b[494] UNLESS lefts&rights DO ..
+lefts G:456 LG sdl.b[501] lefts!i,rights!i:=maxint,minint
+lefts G:456 LG sdl.b[530] lefts!y
+lefts G:456 LG sdl.b[539] lefts!y,rights!y:=maxint,minint
+lefts G:456 LG sdl.b[555] moveto(lefts!y,y)
+lefts G:456 LG sdl.b[557] lefts!y,rights!y:=maxint,minint
+lefts G:456 LG sdl.b[579] IF currx<=lefts!curry DO ..
+lefts G:456 LG sdl.b[580] lefts!curry:=currx
+lefts G:456 LG sdl.b[610] UNLESS lefts DO ..
+lefts G:456 LG sdl.b[614] lefts!y,rights!y:=maxint,minint
+lefts G:456 LG sdl.b[645] moveto3d(lefts!y,y,leftds!y)
+lefts G:456 LG sdl.b[648] lefts!y,rights!y:=maxint,minint
+lefts G:456 LG sdl.b[665] moveto3d(lefts!y,y,leftds!y)
+lefts G:456 LG sdl.b[668] lefts!y,rights!y:=maxint,minint
+lefts G:456 LG sdl.b[88] IF lefts DO ..
+lefts G:456 LG sdl.b[88] freevec(lefts)
+lefts G:456 SG sdl.b[48] lefts,rights:=0,0
+lefts G:456 SG sdl.b[492] lefts:=getvec(currysize-1)
+lefts G:456 SG sdl.b[611] lefts:=getvec(currysize-1)
+level G:15 DEF libhdr.h[41] level=15
+loadseg G:105 DEF libhdr.h[132] loadseg=105
+locatedir G:80 DEF libhdr.h[106] locatedir=80
+locateobj G:81 DEF libhdr.h[107] locateobj=81
+longjump G:16 DEF libhdr.h[42] longjump=16
+maprgb G:467 DEF sdl.h[64] maprgb=
+maprgb G:467 FN sdl.b[83] LET maprgb(r,g,b)=..
+maprgb G:467 LG robots.b[1134] maprgb(1,1,1)
+maprgb G:467 LG robots.b[1154] maprgb(64,64,64)
+maprgb G:467 LG robots.b[1355] setcolour(maprgb(255,255,255))
+maprgb G:467 LG robots.b[1376] setcolour(maprgb(255,255,255))
+maprgb G:467 LG robots.b[1681] backcolour:=maprgb(100,100,100)
+maprgb G:467 LG robots.b[1682] col_red:=maprgb(255,0,0)
+maprgb G:467 LG robots.b[1683] col_darkred:=maprgb(128,0,0)
+maprgb G:467 LG robots.b[1684] col_black:=maprgb(0,0,0)
+maprgb G:467 LG robots.b[1685] col_brown:=maprgb(100,50,20)
+maprgb G:467 LG robots.b[1686] col_gray1:=maprgb(110,110,110)
+maprgb G:467 LG robots.b[1687] col_gray2:=maprgb(120,120,120)
+maprgb G:467 LG robots.b[1688] col_gray3:=maprgb(130,130,130)
+maprgb G:467 LG robots.b[1689] col_gray4:=maprgb(140,140,140)
+maprgb G:467 LG robots.b[1690] pitcolour:=maprgb(20,20,100)
+maprgb G:467 LG robots.b[1691] robotcolour:=maprgb(0,255,0)
+maprgb G:467 LG robots.b[1692] robot1colour:=maprgb(0,120,40)
+maprgb G:467 LG robots.b[1693] grabbercolour:=maprgb(200,200,40)
+maxint M:#x7FFFFFFF DEF libhdr.h[224] maxint=minint-1
+maxint M:#x7FFFFFFF MAN sdl.b[415] depthscreen!i:=maxint
+maxint M:#x7FFFFFFF MAN sdl.b[501] lefts!i,rights!i:=maxint,minint
+maxint M:#x7FFFFFFF MAN sdl.b[539] lefts!y,rights!y:=maxint,minint
+maxint M:#x7FFFFFFF MAN sdl.b[547] miny,maxy:=maxint,minint
+maxint M:#x7FFFFFFF MAN sdl.b[557] lefts!y,rights!y:=maxint,minint
+maxint M:#x7FFFFFFF MAN sdl.b[614] lefts!y,rights!y:=maxint,minint
+maxint M:#x7FFFFFFF MAN sdl.b[621] leftds!y,rightds!y:=maxint,maxint
+maxint M:#x7FFFFFFF MAN sdl.b[627] depthscreen!i:=maxint
+maxint M:#x7FFFFFFF MAN sdl.b[636] miny,maxy:=maxint,minint
+maxint M:#x7FFFFFFF MAN sdl.b[648] lefts!y,rights!y:=maxint,minint
+maxint M:#x7FFFFFFF MAN sdl.b[649] leftds!y,rightds!y:=maxint,maxint
+maxint M:#x7FFFFFFF MAN sdl.b[657] miny,maxy:=maxint,minint
+maxint M:#x7FFFFFFF MAN sdl.b[668] lefts!y,rights!y:=maxint,minint
+maxint M:#x7FFFFFFF MAN sdl.b[669] leftds!y,rightds!y:=maxint,maxint
+maxy G:462 DEF sdl.h[57] maxy=
+maxy G:462 LG sdl.b[455] IF curry>maxy DO ..
+maxy G:462 LG sdl.b[527] IF maxy>=currysize DO ..
+maxy G:462 LG sdl.b[529] FOR y=miny TO maxy DO..
+maxy G:462 LG sdl.b[554] FOR y=miny TO maxy DO..
+maxy G:462 LG sdl.b[576] IF curry>maxy DO ..
+maxy G:462 LG sdl.b[644] FOR y=miny TO maxy DO..
+maxy G:462 LG sdl.b[664] FOR y=miny TO maxy DO..
+maxy G:462 SG sdl.b[455] maxy:=curry
+maxy G:462 SG sdl.b[507] miny,maxy:=currysize,-1
+maxy G:462 SG sdl.b[527] maxy:=currysize-1
+maxy G:462 SG sdl.b[547] miny,maxy:=maxint,minint
+maxy G:462 SG sdl.b[576] maxy:=curry
+maxy G:462 SG sdl.b[636] miny,maxy:=maxint,minint
+maxy G:462 SG sdl.b[657] miny,maxy:=maxint,minint
+mcaddrinc M:4 DEF libhdr.h[222] mcaddrinc=bytesperword
+memoryfree G:131 DEF libhdr.h[158] memoryfree=131
+minint M:#x80000000 DEF libhdr.h[223] minint=1<<bitsperword-1
+minint M:#x80000000 MAN libhdr.h[224] maxint=minint-1
+minint M:#x80000000 MAN sdl.b[501] lefts!i,rights!i:=maxint,minint
+minint M:#x80000000 MAN sdl.b[539] lefts!y,rights!y:=maxint,minint
+minint M:#x80000000 MAN sdl.b[547] miny,maxy:=maxint,minint
+minint M:#x80000000 MAN sdl.b[557] lefts!y,rights!y:=maxint,minint
+minint M:#x80000000 MAN sdl.b[614] lefts!y,rights!y:=maxint,minint
+minint M:#x80000000 MAN sdl.b[636] miny,maxy:=maxint,minint
+minint M:#x80000000 MAN sdl.b[648] lefts!y,rights!y:=maxint,minint
+minint M:#x80000000 MAN sdl.b[657] miny,maxy:=maxint,minint
+minint M:#x80000000 MAN sdl.b[668] lefts!y,rights!y:=maxint,minint
+miny G:461 DEF sdl.h[56] miny=
+miny G:461 LG sdl.b[454] IF curry<miny DO ..
+miny G:461 LG sdl.b[526] IF miny<0 DO ..
+miny G:461 LG sdl.b[529] FOR y=miny TO maxy DO..
+miny G:461 LG sdl.b[554] FOR y=miny TO maxy DO..
+miny G:461 LG sdl.b[575] IF curry<miny DO ..
+miny G:461 LG sdl.b[644] FOR y=miny TO maxy DO..
+miny G:461 LG sdl.b[664] FOR y=miny TO maxy DO..
+miny G:461 SG sdl.b[454] miny:=curry
+miny G:461 SG sdl.b[507] miny,maxy:=currysize,-1
+miny G:461 SG sdl.b[526] miny:=0
+miny G:461 SG sdl.b[547] miny,maxy:=maxint,minint
+miny G:461 SG sdl.b[575] miny:=curry
+miny G:461 SG sdl.b[636] miny,maxy:=maxint,minint
+miny G:461 SG sdl.b[657] miny,maxy:=maxint,minint
+mk2 F:2 FN robots.b[190] LET mk2(a,b)=..
+mkscreen G:451 DEF sdl.h[42] mkscreen=
+mkscreen G:451 FN sdl.b[56] LET mkscreen(title,xsize,ysize)=..
+mkscreen G:451 LG robots.b[1679] mkscreen("Robot'for Help",xsize,ysize)
+mksurface G:483 DEF sdl.h[86] mksurface=
+mksurface G:483 FN sdl.b[183] LET mksurface(w,h)=..
+mksurface G:483 LG robots.b[1135] mksurface(width,height)
+mksurface G:483 LG robots.b[1155] mksurface(width,height)
+mkvec G:224 DEF robots.b[143] mkvec=
+mkvec G:224 FN robots.b[178] LET mkvec(upb)=..
+mkvec G:224 LG robots.b[1675] priq:=mkvec(200)
+mkvec G:224 LG robots.b[1706] robotv:=mkvec(robots)
+mkvec G:224 LG robots.b[1709] mkvec(r_upb)
+mkvec G:224 LG robots.b[1757] bottlev:=mkvec(bottles)
+mkvec G:224 LG robots.b[1760] mkvec(b_upb)
+mkvec G:224 LG robots.b[191] mkvec(1)
+mousebuttons G:476 DEF sdl.h[77] mousebuttons=
+mousex G:474 DEF sdl.h[75] mousex=
+mousey G:475 DEF sdl.h[76] mousey=
+moveby G:493 DEF sdl.h[97] moveby=
+moveby G:493 RT sdl.b[156] LET moveby(dx,dy)BE..
+moveby3d G:497 DEF sdl.h[102] moveby3d=
+moveby3d G:497 RT sdl.b[159] LET moveby3d(dx,dy,dz)BE..
+movesurf G:516 DEF sdl.h[124] movesurf=
+moveto G:492 DEF sdl.h[96] moveto=
+moveto G:492 LG robots.b[1292] moveto(r!r_bcx/One,r!r_bcy/One)
+moveto G:492 LG sdl.b[156] moveto(currx+dx,curry+dy)
+moveto G:492 LG sdl.b[357] moveto(x,y)
+moveto G:492 LG sdl.b[513] moveto(x1,y1)
+moveto G:492 LG sdl.b[536] moveto(minx,y)
+moveto G:492 LG sdl.b[541] moveto(x1,y1)
+moveto G:492 LG sdl.b[549] moveto(x1,y1)
+moveto G:492 LG sdl.b[555] moveto(lefts!y,y)
+moveto G:492 LG sdl.b[559] moveto(x1,y1)
+moveto G:492 RT sdl.b[103] LET moveto(x,y)BE..
+moveto3d G:496 DEF sdl.h[101] moveto3d=
+moveto3d G:496 LG sdl.b[159] moveto3d(currx+dx,curry+dy,currz+dz)
+moveto3d G:496 LG sdl.b[638] moveto3d(x1,y1,z1)
+moveto3d G:496 LG sdl.b[645] moveto3d(lefts!y,y,leftds!y)
+moveto3d G:496 LG sdl.b[651] moveto3d(x1,y1,z1)
+moveto3d G:496 LG sdl.b[659] moveto3d(x1,y1,z1)
+moveto3d G:496 LG sdl.b[665] moveto3d(lefts!y,y,leftds!y)
+moveto3d G:496 LG sdl.b[671] moveto3d(x1,y1,z1)
+moveto3d G:496 RT sdl.b[106] LET moveto3d(x,y,z)BE..
+msecs0 G:255 DEF robots.b[175] msecs0=
+msecs0 G:255 LG robots.b[395] msecsnow:=sdlmsecs()-msecs0
+msecsnow G:254 DEF robots.b[173] msecsnow=
+msecsnow G:254 LG robots.b[398] IF msecsnow<0 DO ..
+msecsnow G:254 LG robots.b[398] msecsnow:=msecsnow+24*60*60*1000
+msecsnow G:254 SG robots.b[395] msecsnow:=sdlmsecs()-msecs0
+msecsnow G:254 SG robots.b[398] msecsnow:=msecsnow+24*60*60*1000
+muldiv G:5 DEF libhdr.h[31] muldiv=5
+muldiv G:5 LG robots.b[1084] vx=0&0=vy->0,(Op13)>(Op13)->muldiv(vx,...),muldiv(vy,...)
+muldiv G:5 LG robots.b[1095] r!r_cgxdot:=(29*r!r_cgxdot+muldiv(speed,...))/30
+muldiv G:5 LG robots.b[1096] r!r_cgydot:=(29*r!r_cgydot+muldiv(speed,...))/30
+muldiv G:5 LG robots.b[1107] r!r_cgxdot:=(29*r!r_cgxdot+muldiv(60000,...))/30
+muldiv G:5 LG robots.b[1108] r!r_cgydot:=(29*r!r_cgydot+muldiv(60000,...))/30
+muldiv G:5 LG robots.b[1207] muldiv(r!r_grabpos,...-d1,One)
+muldiv G:5 LG robots.b[1476] r!r_cgxdot:=r!r_cgxdot+muldiv(5000,c,One)
+muldiv G:5 LG robots.b[1477] r!r_cgydot:=r!r_cgydot+muldiv(5000,s,One)
+muldiv G:5 LG robots.b[1485] r!r_cgxdot:=r!r_cgxdot-muldiv(4000,c,One)
+muldiv G:5 LG robots.b[1486] r!r_cgydot:=r!r_cgydot-muldiv(4000,s,One)
+muldiv G:5 LG robots.b[213] IF muldiv(dx,...)+muldiv(dy,...)>muldiv(dist,dist,One) DO ..
+muldiv G:5 LG robots.b[294] p1!0:=p1!0-muldiv(400,c,One)
+muldiv G:5 LG robots.b[295] p1!1:=p1!1-muldiv(400,s,One)
+muldiv G:5 LG robots.b[296] p2!0:=p2!0+muldiv(400,c,One)
+muldiv G:5 LG robots.b[297] p2!1:=p2!1+muldiv(400,s,One)
+muldiv G:5 LG robots.b[368] c:=muldiv(x,One,d)
+muldiv G:5 LG robots.b[369] s:=muldiv(y,One,d)
+muldiv G:5 LG robots.b[370] a:=muldiv(c,c,One)+muldiv(s,s,One)
+muldiv G:5 LG robots.b[374] d:=(d+muldiv(a,...))/2
+muldiv G:5 LG robots.b[376] d:=(d+muldiv(a,...))/2
+muldiv G:5 LG robots.b[378] d:=(d+muldiv(a,...))/2
+muldiv G:5 LG robots.b[381] s:=muldiv(s,One,d)
+muldiv G:5 LG robots.b[382] c:=muldiv(c,One,d)
+muldiv G:5 LG robots.b[389] muldiv(dx,c,One)+muldiv(dy,s,One)
+muldiv G:5 LG robots.b[538] b!b_cgxdot:=b!b_cgxdot+muldiv(10000,dx,One)
+muldiv G:5 LG robots.b[539] b!b_cgydot:=b!b_cgydot+muldiv(10000,dy,One)
+muldiv G:5 LG robots.b[635] muldiv(c,dx,One)+muldiv(s,dy,One)
+muldiv G:5 LG robots.b[636] muldiv(c,dy,One)-muldiv(s,dx,One)
+muldiv G:5 LG robots.b[668] muldiv(f1,s,One)
+muldiv G:5 LG robots.b[669] Op12
+muldiv G:5 LG robots.b[670] muldiv(f2,s,One)
+muldiv G:5 LG robots.b[671] Op12
+muldiv G:5 LG robots.b[837] muldiv(robotradius-shoulderradius-armthickness,r!r_grabpos,One)
+muldiv G:5 LG sdl.b[435] currz:=z0+muldiv(z-z0,...,...)
+muldiv G:5 LG sdl.b[436] currz:=z0+muldiv(z-z0,...,...)
+muldiv G:5 LG sdl.b[596] currz:=z0+muldiv(z-z0,...,...)
+muldiv G:5 LG sdl.b[603] currz:=z0+muldiv(z-z0,...,...)
+nearanybottle F:34 FN robots.b[1561] LET nearanybottle(bid,x,y,dist)=..
+nearanybottle F:34 LF robots.b[1776] UNLESS nearedge(...)|nearthepit(...)|nearanyrobot(0,...)|nearanybottle(i,x,...) DO ..
+nearanyrobot F:36 FN robots.b[1586] LET nearanyrobot(rid,x,y,dist)=..
+nearanyrobot F:36 LF robots.b[1723] UNLESS nearedge(x,...)|nearthepit(x,...)|nearanyrobot(i,x,...) DO ..
+nearanyrobot F:36 LF robots.b[1776] UNLESS nearedge(...)|nearthepit(...)|nearanyrobot(0,...)|nearanybottle(i,x,...) DO ..
+nearbottle F:33 FN robots.b[1543] LET nearbottle(x,y,b,dist)=..
+nearbottle F:33 LF robots.b[1564] IF nearbottle(x,y,...,dist) DO ..
+nearedge F:31 FN robots.b[1519] LET nearedge(x,y,dist)=..
+nearedge F:31 LF robots.b[1723] UNLESS nearedge(x,...)|nearthepit(x,...)|nearanyrobot(i,x,...) DO ..
+nearedge F:31 LF robots.b[1776] UNLESS nearedge(...)|nearthepit(...)|nearanyrobot(0,...)|nearanybottle(i,x,...) DO ..
+nearrobot F:35 FN robots.b[1569] LET nearrobot(x,y,r,dist)=..
+nearrobot F:35 LF robots.b[1590] IF nearrobot(x,y,...,dist) DO ..
+nearthepit F:32 FN robots.b[1530] LET nearthepit(x,y,dist)=..
+nearthepit F:32 LF robots.b[1723] UNLESS nearedge(x,...)|nearthepit(x,...)|nearanyrobot(i,x,...) DO ..
+nearthepit F:32 LF robots.b[1776] UNLESS nearedge(...)|nearthepit(...)|nearanyrobot(0,...)|nearanybottle(i,x,...) DO ..
+newline G:84 DEF libhdr.h[110] newline=84
+newpage G:120 DEF libhdr.h[147] newpage=120
+note G:63 DEF libhdr.h[89] note=63
+notinuse M:-1 DEF libhdr.h[543] notinuse=-1
+output G:59 DEF libhdr.h[85] output=59
+packstring G:30 DEF libhdr.h[56] packstring=30
+pathfindinput G:53 DEF libhdr.h[79] pathfindinput=53
+peercom G:179 DEF libhdr.h[208] peercom=179
+pit_x G:213 DEF robots.b[136] pit_x=
+pit_x G:213 LG robots.b[1101] pit_x-r!r_cgx
+pit_x G:213 LG robots.b[1336] blitsurf(pitsurf,screen,...,...)
+pit_x G:213 LG robots.b[1531] pit_x
+pit_x G:213 LG robots.b[471] cosines(x-pit_x,y-pit_y)
+pit_x G:213 LG robots.b[532] cosines(b!b_cgx-pit_x,b!b_cgy-pit_y)
+pit_x G:213 LLG robots.b[1703] thepit:=@pit_x
+pit_x G:213 SG robots.b[1701] pit_x,pit_y:=xsize*One/2,ysize*One/2
+pit_xdot G:215 DEF robots.b[136] pit_xdot=
+pit_xdot G:215 SG robots.b[1702] pit_xdot,pit_ydot:=0,0
+pit_y G:214 DEF robots.b[136] pit_y=
+pit_y G:214 LG robots.b[1102] pit_y-r!r_cgy
+pit_y G:214 LG robots.b[1336] blitsurf(pitsurf,screen,...,...)
+pit_y G:214 LG robots.b[1532] pit_y
+pit_y G:214 LG robots.b[471] cosines(x-pit_x,y-pit_y)
+pit_y G:214 LG robots.b[532] cosines(b!b_cgx-pit_x,b!b_cgy-pit_y)
+pit_y G:214 SG robots.b[1701] pit_x,pit_y:=xsize*One/2,ysize*One/2
+pit_ydot G:216 DEF robots.b[136] pit_ydot=
+pit_ydot G:216 SG robots.b[1702] pit_xdot,pit_ydot:=0,0
+pitcolour G:243 DEF robots.b[159] pitcolour=
+pitcolour G:243 LG robots.b[1699] pitsurf:=initpitsurf(pitcolour)
+pitcolour G:243 SG robots.b[1690] pitcolour:=maprgb(20,20,100)
+pitradius M:50000 DEF robots.b[39] pitradius=50000
+pitradius M:50000 MAN robots.b[1130] pitradius/One
+pitradius M:50000 MAN robots.b[1336] blitsurf(pitsurf,screen,...,...)
+pitradius M:50000 MAN robots.b[1723] UNLESS nearedge(x,...)|nearthepit(x,...)|nearanyrobot(i,x,...) DO ..
+pitradius M:50000 MAN robots.b[469] IF incontact(r,thepit,pitradius+edgesize) DO ..
+pitradius M:50000 MAN robots.b[496] IF incontact(b,thepit,pitradius+edgesize) DO ..
+pitradius M:50000 MAN robots.b[499] IF incontact(b,thepit,pitradius-bottleradius) DO ..
+pitsurf G:231 DEF robots.b[152] pitsurf=
+pitsurf G:231 LG robots.b[1336] blitsurf(pitsurf,screen,...,...)
+pitsurf G:231 LG robots.b[1857] IF pitsurf DO ..
+pitsurf G:231 LG robots.b[1857] freesurface(pitsurf)
+pitsurf G:231 SG robots.b[1699] pitsurf:=initpitsurf(pitcolour)
+pkt_a1 M:5 DEF libhdr.h[552] pkt_a1=5
+pkt_a2 M:6 DEF libhdr.h[553] pkt_a2=6
+pkt_a3 M:7 DEF libhdr.h[554] pkt_a3=7
+pkt_a4 M:8 DEF libhdr.h[555] pkt_a4=8
+pkt_a5 M:9 DEF libhdr.h[556] pkt_a5=9
+pkt_a6 M:10 DEF libhdr.h[557] pkt_a6=10
+pkt_arg1 M:5 DEF libhdr.h[552] pkt_arg1=5
+pkt_arg2 M:6 DEF libhdr.h[553] pkt_arg2=6
+pkt_arg3 M:7 DEF libhdr.h[554] pkt_arg3=7
+pkt_arg4 M:8 DEF libhdr.h[555] pkt_arg4=8
+pkt_arg5 M:9 DEF libhdr.h[556] pkt_arg5=9
+pkt_arg6 M:10 DEF libhdr.h[557] pkt_arg6=10
+pkt_devid M:1 DEF libhdr.h[548] pkt_devid=1
+pkt_devtaskid M:1 DEF libhdr.h[548] pkt_devtaskid=1
+pkt_id M:1 DEF libhdr.h[548] pkt_id=1
+pkt_link M:0 DEF libhdr.h[547] pkt_link=0
+pkt_op M:2 DEF libhdr.h[549] pkt_op=2
+pkt_r1 M:3 DEF libhdr.h[550] pkt_r1=3
+pkt_r2 M:4 DEF libhdr.h[551] pkt_r2=4
+pkt_res1 M:3 DEF libhdr.h[550] pkt_res1=3
+pkt_res2 M:4 DEF libhdr.h[551] pkt_res2=4
+pkt_taskid M:1 DEF libhdr.h[548] pkt_taskid=1
+pkt_type M:2 DEF libhdr.h[549] pkt_type=2
+plotf G:526 DEF sdl.h[140] plotf=
+plotf G:526 LG robots.b[1267] plotf(.../One-(...->9,3),...-6,"%n",...)
+plotf G:526 LG robots.b[1315] plotf(.../One+10,...-6,"%n",...)
+plotf G:526 LG robots.b[1359] plotf(80,365,"freeb'es = %i2",freebottles)
+plotf G:526 LG robots.b[1360] plotf(80,350,"bottl'nt = %i2",bottlecount)
+plotf G:526 LG robots.b[1364] plotf(30,165,"H -- 'ormation")
+plotf G:526 LG robots.b[1365] plotf(30,150,"Q -- Quit")
+plotf G:526 LG robots.b[1366] plotf(30,135,"X -- 'debugger")
+plotf G:526 LG robots.b[1367] plotf(30,120,"P -- 'Continue")
+plotf G:526 LG robots.b[1368] plotf(30,105,"G -- 'en robot")
+plotf G:526 LG robots.b[1369] plotf(30,90,"R -- 'en robot")
+plotf G:526 LG robots.b[1370] plotf(30,75,"D -- 'ebugging")
+plotf G:526 LG robots.b[1371] plotf(30,60,"U -- 'le usage")
+plotf G:526 LG robots.b[1372] plotf(30,45,"W -- 'ing info")
+plotf G:526 LG robots.b[1373] plotf(30,30,"Arrow'en robot")
+plotf G:526 LG robots.b[1379] plotf(30,345,"CPU u'sps = %n",...)
+plotf G:526 LG robots.b[1386] plotf(80,120,"R1: x'ot=%8.3d",...)
+plotf G:526 LG robots.b[1389] plotf(80,105,"B1: x'ot=%8.3d",...)
+plotf G:526 RT sdl.b[361] LET plotf(x,y,form,a,b,c,d,...)BE..
+plotfstr G:527 DEF sdl.h[141] plotfstr=
+plotfstr G:527 LG sdl.b[365] plotfstr%0:=0
+plotfstr G:527 LG sdl.b[369] drawstring(x,y,plotfstr)
+plotfstr G:527 LG sdl.b[373] plotfstr%0+1
+plotfstr G:527 LG sdl.b[374] plotfstr%strlen:=ch
+plotfstr G:527 LG sdl.b[375] plotfstr%0:=strlen
+plotfstr G:527 SG sdl.b[364] plotfstr:=s
+plotscreen F:29 LF robots.b[1833] plotscreen()
+plotscreen F:29 RT robots.b[1319] LET plotscreen()BE..
+plotwrch F:33 LF sdl.b[366] wrch:=plotwrch
+plotwrch F:33 RT sdl.b[372] LET plotwrch(ch)BE..
+point G:64 DEF libhdr.h[90] point=64
+pollingch M:-3 DEF libhdr.h[228] pollingch=-3
+prevdrawn G:473 DEF sdl.h[73] prevdrawn=
+prevdrawn G:473 LG sdl.b[119] UNLESS prevdrawn DO ..
+prevdrawn G:473 SG sdl.b[104] currx,curry,prevdrawn:=x,y,FALSE
+prevdrawn G:473 SG sdl.b[107] currx,curry,currz,prevdrawn:=x,y,z,FALSE
+prevdrawn G:473 SG sdl.b[115] currx,curry,prevdrawn:=x,y,FALSE
+prevdrawn G:473 SG sdl.b[132] prevdrawn:=FALSE
+prevdrawn G:473 SG sdl.b[135] prevdrawn:=TRUE
+prevdrawn G:473 SG sdl.b[142] prevdrawn:=FALSE
+prevdrawn G:473 SG sdl.b[150] prevdrawn:=TRUE
+prevdrawn G:473 SG sdl.b[96] colour,prevdrawn:=col,FALSE
+priq G:251 DEF robots.b[169] priq=
+priq G:251 SG robots.b[1675] priq:=mkvec(200)
+priqn G:252 DEF robots.b[170] priqn=
+priqn G:252 SG robots.b[1676] priqn,priqupb:=0,200
+priqupb G:253 DEF robots.b[171] priqupb=
+priqupb G:253 SG robots.b[1676] priqn,priqupb:=0,200
+processevents F:30 LF robots.b[1827] processevents()
+processevents F:30 RT robots.b[1400] LET processevents()BE..
+put_index_record G:74 DEF libhdr.h[100] put_index_record=74
+put_record G:72 DEF libhdr.h[98] put_record=72
+putword G:33 DEF libhdr.h[59] putword=33
+qpkt G:161 DEF libhdr.h[195] qpkt=161
+r_bcx M:36 DEF robots.b[107] r_bcx=
+r_bcx M:36 MAN robots.b[1072] b!b_cgx-r!r_bcx
+r_bcx M:36 MAN robots.b[1246] r!r_bcx:=x+inprod(c,ns,...)
+r_bcx M:36 MAN robots.b[1292] moveto(r!r_bcx/One,r!r_bcy/One)
+r_bcx M:36 MAN robots.b[1305] b!b_cgx:=r!r_bcx
+r_bcy M:37 DEF robots.b[107] r_bcy=
+r_bcy M:37 MAN robots.b[1073] b!b_cgy-r!r_bcy
+r_bcy M:37 MAN robots.b[1247] r!r_bcy:=y+inprod(s,c,...)
+r_bcy M:37 MAN robots.b[1292] moveto(r!r_bcx/One,r!r_bcy/One)
+r_bcy M:37 MAN robots.b[1306] b!b_cgy:=r!r_bcy
+r_bottle M:6 DEF robots.b[89] r_bottle=
+r_bottle M:6 MAN robots.b[1030] r!r_bottle
+r_bottle M:6 MAN robots.b[1064] IF r!r_bottle&edgesize<...&...<...&edgesize<r!r_cgy&r!r_cgy<...-edgesize DO ..
+r_bottle M:6 MAN robots.b[1067] r!r_bottle
+r_bottle M:6 MAN robots.b[1251] r!r_bottle
+r_bottle M:6 MAN robots.b[1384] r!r_bottle
+r_bottle M:6 MAN robots.b[1441] IF r!r_bottle DO ..
+r_bottle M:6 MAN robots.b[1441] sawritef(" bottle %i2",r!r_bottle!b_id)
+r_bottle M:6 MAN robots.b[1451] r!r_bottle
+r_bottle M:6 MAN robots.b[1459] r!r_bottle
+r_bottle M:6 MAN robots.b[1751] r!r_bottle:=0
+r_bottle M:6 MAN robots.b[509] owner!r_bottle:=0
+r_bottle M:6 MAN robots.b[717] r!r_bottle
+r_bottle M:6 MAN robots.b[732] r!r_bottle:=b
+r_bottle M:6 MAN robots.b[963] IF r!r_bottle DO ..
+r_bottle M:6 MAN robots.b[965] r!r_bottle
+r_bottle M:6 MAN robots.b[968] r!r_bottle:=0
+r_bottle M:6 MAN robots.b[973] r!r_bottle:=b
+r_cgx M:0 DEF robots.b[86] r_cgx=0
+r_cgx M:0 MAN robots.b[1064] IF r!r_bottle&edgesize<...&...<...&edgesize<r!r_cgy&r!r_cgy<...-edgesize DO ..
+r_cgx M:0 MAN robots.b[1101] pit_x-r!r_cgx
+r_cgx M:0 MAN robots.b[1113] r!r_cgx:=r!r_cgx+r!r_cgxdot/sps
+r_cgx M:0 MAN robots.b[1202] r!r_cgx,r!r_cgy
+r_cgx M:0 MAN robots.b[1258] drawfillcircle(r!r_cgx/One,.../One,robotradius/One)
+r_cgx M:0 MAN robots.b[1267] plotf(.../One-(...->9,3),...-6,"%n",...)
+r_cgx M:0 MAN robots.b[1386] plotf(80,120,"R1: x'ot=%8.3d",...)
+r_cgx M:0 MAN robots.b[1572] r!r_cgx
+r_cgx M:0 MAN robots.b[1741] r!r_cgx:=x
+r_cgx M:0 MAN robots.b[416] r!r_cgx,r!r_cgy
+r_cgx M:0 MAN robots.b[441] r!r_cgxdot,r!r_cgx:=Op12,wall_wx+robotradius
+r_cgx M:0 MAN robots.b[457] r!r_cgxdot,r!r_cgx:=Op12,wall_ex-robotradius
+r_cgx M:0 MAN robots.b[598] r1!r_cgx,r1!r_cgy
+r_cgx M:0 MAN robots.b[602] r2!r_cgx,r2!r_cgy
+r_cgx M:0 MAN robots.b[824] b!b_cgx-r!r_cgx
+r_cgx M:0 MAN robots.b[844] writef("R%n: ' %8.3d)*n",rid,...,...)
+r_cgxdot M:2 DEF robots.b[87] r_cgxdot=
+r_cgxdot M:2 MAN robots.b[1095] r!r_cgxdot:=(29*r!r_cgxdot+muldiv(speed,...))/30
+r_cgxdot M:2 MAN robots.b[1107] r!r_cgxdot:=(29*r!r_cgxdot+muldiv(60000,...))/30
+r_cgxdot M:2 MAN robots.b[1109] b!b_cgxdot,b!b_cgxdot:=r!r_cgxdot,r!r_cgxdot
+r_cgxdot M:2 MAN robots.b[1113] r!r_cgx:=r!r_cgx+r!r_cgxdot/sps
+r_cgxdot M:2 MAN robots.b[1209] cosines(r!r_cgxdot,r!r_cgydot)
+r_cgxdot M:2 MAN robots.b[1386] plotf(80,120,"R1: x'ot=%8.3d",...)
+r_cgxdot M:2 MAN robots.b[1474] cosines(r!r_cgxdot,r!r_cgydot)
+r_cgxdot M:2 MAN robots.b[1476] r!r_cgxdot:=r!r_cgxdot+muldiv(5000,c,One)
+r_cgxdot M:2 MAN robots.b[1483] cosines(r!r_cgxdot,r!r_cgydot)
+r_cgxdot M:2 MAN robots.b[1485] r!r_cgxdot:=r!r_cgxdot-muldiv(4000,c,One)
+r_cgxdot M:2 MAN robots.b[1492] r!r_cgxdot
+r_cgxdot M:2 MAN robots.b[1496] r!r_cgxdot:=inprod(xdot,ydot,dc,ds)
+r_cgxdot M:2 MAN robots.b[1503] r!r_cgxdot
+r_cgxdot M:2 MAN robots.b[1507] r!r_cgxdot:=inprod(xdot,ydot,dc,ds)
+r_cgxdot M:2 MAN robots.b[1745] r!r_cgxdot:=randno(40000)-20000
+r_cgxdot M:2 MAN robots.b[243] p2!2-p1!r_cgxdot
+r_cgxdot M:2 MAN robots.b[257] p2!2:=inprod(tdot,wdot,...)+p1!r_cgxdot
+r_cgxdot M:2 MAN robots.b[425] IF (Op13)>40000|(Op13)>40000 DO ..
+r_cgxdot M:2 MAN robots.b[426] r!r_cgxdot,r!r_cgydot:=r!r_cgxdot*97/100,r!r_cgydot*97/100
+r_cgxdot M:2 MAN robots.b[430] WHILE (Op13)+(Op13)<1000 DO ..
+r_cgxdot M:2 MAN robots.b[433] r!r_cgxdot:=r!r_cgxdot+randno(201)-100
+r_cgxdot M:2 MAN robots.b[441] r!r_cgxdot,r!r_cgx:=Op12,wall_wx+robotradius
+r_cgxdot M:2 MAN robots.b[442] r!r_cgxdot:=r!r_cgxdot+4000
+r_cgxdot M:2 MAN robots.b[457] r!r_cgxdot,r!r_cgx:=Op12,wall_ex-robotradius
+r_cgxdot M:2 MAN robots.b[458] r!r_cgxdot:=r!r_cgxdot-4000
+r_cgxdot M:2 MAN robots.b[473] r!r_cgxdot:=r!r_cgxdot+inprod(1000,0,...)
+r_cgxdot M:2 MAN robots.b[626] r1!r_cgxdot-r2!r_cgxdot
+r_cgxdot M:2 MAN robots.b[644] writef("R%n: ',%8.3d)*n",rid1,x1,...)
+r_cgxdot M:2 MAN robots.b[646] writef("R%n: ',%8.3d)*n",rid2,x2,...)
+r_cgxdot M:2 MAN robots.b[665] ((Op13)+(Op13))*12/100
+r_cgxdot M:2 MAN robots.b[666] ((Op13)+(Op13))*12/100
+r_cgxdot M:2 MAN robots.b[681] r1!r_cgxdot,r1!r_cgydot:=r1!r_cgxdot+fx1,r1!r_cgydot+fy1
+r_cgxdot M:2 MAN robots.b[682] r2!r_cgxdot,r2!r_cgydot:=r2!r_cgxdot-fx2,r2!r_cgydot-fy2
+r_cgxdot M:2 MAN robots.b[770] r!r_lcx,r!r_lcy,r!r_cgxdot,r!r_cgydot
+r_cgxdot M:2 MAN robots.b[783] r!r_rcx,r!r_rcy,r!r_cgxdot,r!r_cgydot
+r_cgxdot M:2 MAN robots.b[796] r!r_ltcx,r!r_ltcy,r!r_cgxdot,r!r_cgydot
+r_cgxdot M:2 MAN robots.b[809] r!r_rtcx,r!r_rtcy,r!r_cgxdot,r!r_cgydot
+r_cgxdot M:2 MAN robots.b[827] cosines(r!r_cgxdot,r!r_cgydot)
+r_cgxdot M:2 MAN robots.b[863] inprod(r!r_cgxdot,r!r_cgydot,...,c)
+r_cgxdot M:2 MAN robots.b[881] inprod(r!r_cgxdot,r!r_cgydot,c,s)
+r_cgxdot M:2 MAN robots.b[882] inprod(r!r_cgxdot,r!r_cgydot,...,c)
+r_cgxdot M:2 MAN robots.b[888] sawritef("rxdot't=%8.3d*n",r!r_cgxdot,r!r_cgydot)
+r_cgxdot M:2 MAN robots.b[914] inprod(r!r_cgxdot,r!r_cgydot,...,c)
+r_cgxdot M:2 MAN robots.b[933] inprod(r!r_cgxdot,r!r_cgydot,...,c)
+r_cgxdot M:2 MAN robots.b[983] inprod(r!r_cgxdot,r!r_cgydot,c,s)
+r_cgy M:1 DEF robots.b[86] r_cgy=
+r_cgy M:1 MAN robots.b[1064] IF r!r_bottle&edgesize<...&...<...&edgesize<r!r_cgy&r!r_cgy<...-edgesize DO ..
+r_cgy M:1 MAN robots.b[1102] pit_y-r!r_cgy
+r_cgy M:1 MAN robots.b[1114] r!r_cgy:=r!r_cgy+r!r_cgydot/sps
+r_cgy M:1 MAN robots.b[1202] r!r_cgx,r!r_cgy
+r_cgy M:1 MAN robots.b[1258] drawfillcircle(r!r_cgx/One,.../One,robotradius/One)
+r_cgy M:1 MAN robots.b[1267] plotf(.../One-(...->9,3),...-6,"%n",...)
+r_cgy M:1 MAN robots.b[1386] plotf(80,120,"R1: x'ot=%8.3d",...)
+r_cgy M:1 MAN robots.b[1573] r!r_cgy
+r_cgy M:1 MAN robots.b[1742] r!r_cgy:=y
+r_cgy M:1 MAN robots.b[416] r!r_cgx,r!r_cgy
+r_cgy M:1 MAN robots.b[449] r!r_cgydot,r!r_cgy:=Op12,wall_ny-robotradius
+r_cgy M:1 MAN robots.b[465] r!r_cgydot,r!r_cgy:=Op12,wall_sy+robotradius
+r_cgy M:1 MAN robots.b[598] r1!r_cgx,r1!r_cgy
+r_cgy M:1 MAN robots.b[602] r2!r_cgx,r2!r_cgy
+r_cgy M:1 MAN robots.b[825] b!b_cgy-r!r_cgy
+r_cgy M:1 MAN robots.b[844] writef("R%n: ' %8.3d)*n",rid,...,...)
+r_cgydot M:3 DEF robots.b[87] r_cgydot=
+r_cgydot M:3 MAN robots.b[1096] r!r_cgydot:=(29*r!r_cgydot+muldiv(speed,...))/30
+r_cgydot M:3 MAN robots.b[1108] r!r_cgydot:=(29*r!r_cgydot+muldiv(60000,...))/30
+r_cgydot M:3 MAN robots.b[1114] r!r_cgy:=r!r_cgy+r!r_cgydot/sps
+r_cgydot M:3 MAN robots.b[1209] cosines(r!r_cgxdot,r!r_cgydot)
+r_cgydot M:3 MAN robots.b[1386] plotf(80,120,"R1: x'ot=%8.3d",...)
+r_cgydot M:3 MAN robots.b[1474] cosines(r!r_cgxdot,r!r_cgydot)
+r_cgydot M:3 MAN robots.b[1477] r!r_cgydot:=r!r_cgydot+muldiv(5000,s,One)
+r_cgydot M:3 MAN robots.b[1483] cosines(r!r_cgxdot,r!r_cgydot)
+r_cgydot M:3 MAN robots.b[1486] r!r_cgydot:=r!r_cgydot-muldiv(4000,s,One)
+r_cgydot M:3 MAN robots.b[1493] r!r_cgydot
+r_cgydot M:3 MAN robots.b[1497] r!r_cgydot:=inprod(xdot,ydot,...,dc)
+r_cgydot M:3 MAN robots.b[1504] r!r_cgydot
+r_cgydot M:3 MAN robots.b[1508] r!r_cgydot:=inprod(xdot,ydot,...,dc)
+r_cgydot M:3 MAN robots.b[1746] r!r_cgydot:=randno(40000)-20000
+r_cgydot M:3 MAN robots.b[244] p2!3-p1!r_cgydot
+r_cgydot M:3 MAN robots.b[258] p2!3:=inprod(tdot,wdot,...)+p1!r_cgydot
+r_cgydot M:3 MAN robots.b[425] IF (Op13)>40000|(Op13)>40000 DO ..
+r_cgydot M:3 MAN robots.b[426] r!r_cgxdot,r!r_cgydot:=r!r_cgxdot*97/100,r!r_cgydot*97/100
+r_cgydot M:3 MAN robots.b[430] WHILE (Op13)+(Op13)<1000 DO ..
+r_cgydot M:3 MAN robots.b[434] r!r_cgydot:=r!r_cgydot+randno(201)-100
+r_cgydot M:3 MAN robots.b[449] r!r_cgydot,r!r_cgy:=Op12,wall_ny-robotradius
+r_cgydot M:3 MAN robots.b[450] r!r_cgydot:=r!r_cgydot-4000
+r_cgydot M:3 MAN robots.b[465] r!r_cgydot,r!r_cgy:=Op12,wall_sy+robotradius
+r_cgydot M:3 MAN robots.b[466] r!r_cgydot:=r!r_cgydot+4000
+r_cgydot M:3 MAN robots.b[474] r!r_cgydot:=r!r_cgydot+inprod(1000,0,...)
+r_cgydot M:3 MAN robots.b[627] r1!r_cgydot-r2!r_cgydot
+r_cgydot M:3 MAN robots.b[644] writef("R%n: ',%8.3d)*n",rid1,x1,...)
+r_cgydot M:3 MAN robots.b[646] writef("R%n: ',%8.3d)*n",rid2,x2,...)
+r_cgydot M:3 MAN robots.b[665] ((Op13)+(Op13))*12/100
+r_cgydot M:3 MAN robots.b[666] ((Op13)+(Op13))*12/100
+r_cgydot M:3 MAN robots.b[681] r1!r_cgxdot,r1!r_cgydot:=r1!r_cgxdot+fx1,r1!r_cgydot+fy1
+r_cgydot M:3 MAN robots.b[682] r2!r_cgxdot,r2!r_cgydot:=r2!r_cgxdot-fx2,r2!r_cgydot-fy2
+r_cgydot M:3 MAN robots.b[770] r!r_lcx,r!r_lcy,r!r_cgxdot,r!r_cgydot
+r_cgydot M:3 MAN robots.b[783] r!r_rcx,r!r_rcy,r!r_cgxdot,r!r_cgydot
+r_cgydot M:3 MAN robots.b[796] r!r_ltcx,r!r_ltcy,r!r_cgxdot,r!r_cgydot
+r_cgydot M:3 MAN robots.b[809] r!r_rtcx,r!r_rtcy,r!r_cgxdot,r!r_cgydot
+r_cgydot M:3 MAN robots.b[827] cosines(r!r_cgxdot,r!r_cgydot)
+r_cgydot M:3 MAN robots.b[863] inprod(r!r_cgxdot,r!r_cgydot,...,c)
+r_cgydot M:3 MAN robots.b[881] inprod(r!r_cgxdot,r!r_cgydot,c,s)
+r_cgydot M:3 MAN robots.b[882] inprod(r!r_cgxdot,r!r_cgydot,...,c)
+r_cgydot M:3 MAN robots.b[888] sawritef("rxdot't=%8.3d*n",r!r_cgxdot,r!r_cgydot)
+r_cgydot M:3 MAN robots.b[914] inprod(r!r_cgxdot,r!r_cgydot,...,c)
+r_cgydot M:3 MAN robots.b[933] inprod(r!r_cgxdot,r!r_cgydot,...,c)
+r_cgydot M:3 MAN robots.b[983] inprod(r!r_cgxdot,r!r_cgydot,c,s)
+r_grabpos M:4 DEF robots.b[88] r_grabpos=
+r_grabpos M:4 MAN robots.b[1033] r!r_grabpos,r!r_grabposdot
+r_grabpos M:4 MAN robots.b[1042] r!r_grabpos:=grabpos
+r_grabpos M:4 MAN robots.b[1045] r!r_grabpos,r!r_grabposdot:=1000,0
+r_grabpos M:4 MAN robots.b[1050] r!r_grabpos:=grabpos
+r_grabpos M:4 MAN robots.b[1057] r!r_grabpos,r!r_grabposdot:=100,600
+r_grabpos M:4 MAN robots.b[1060] IF inarea&r!r_grabpos=1000&r!r_grabposdot=0 DO ..
+r_grabpos M:4 MAN robots.b[1207] muldiv(r!r_grabpos,...-d1,One)
+r_grabpos M:4 MAN robots.b[1749] r!r_grabpos:=1000
+r_grabpos M:4 MAN robots.b[512] UNLESS owner!r_grabpos=1000 DO ..
+r_grabpos M:4 MAN robots.b[721] IF freebottles&r!r_grabpos=1000 DO ..
+r_grabpos M:4 MAN robots.b[837] muldiv(robotradius-shoulderradius-armthickness,r!r_grabpos,One)
+r_grabposdot M:5 DEF robots.b[88] r_grabposdot=
+r_grabposdot M:5 MAN robots.b[1033] r!r_grabpos,r!r_grabposdot
+r_grabposdot M:5 MAN robots.b[1037] r!r_grabposdot:=grabposdot
+r_grabposdot M:5 MAN robots.b[1045] r!r_grabpos,r!r_grabposdot:=1000,0
+r_grabposdot M:5 MAN robots.b[1051] r!r_grabposdot:=0
+r_grabposdot M:5 MAN robots.b[1057] r!r_grabpos,r!r_grabposdot:=100,600
+r_grabposdot M:5 MAN robots.b[1060] IF inarea&r!r_grabpos=1000&r!r_grabposdot=0 DO ..
+r_grabposdot M:5 MAN robots.b[1061] r!r_grabposdot:=-600
+r_grabposdot M:5 MAN robots.b[1453] r!r_grabposdot:=-600
+r_grabposdot M:5 MAN robots.b[1460] r!r_grabposdot:=300
+r_grabposdot M:5 MAN robots.b[1750] r!r_grabposdot:=0
+r_grabposdot M:5 MAN robots.b[513] owner!r_grabposdot:=600
+r_id M:38 DEF robots.b[109] r_id=
+r_id M:38 MAN robots.b[1255] setcolour(r!r_id=1->robot1colour,robotcolour)
+r_id M:38 MAN robots.b[1267] plotf(.../One-(...->9,3),...-6,"%n",...)
+r_id M:38 MAN robots.b[1432] sawritef(" robot  %i2",b!b_robot!r_id)
+r_id M:38 MAN robots.b[1440] sawritef("Robot  %i2: ",r!r_id)
+r_id M:38 MAN robots.b[1752] r!r_id:=i
+r_inarea M:7 DEF robots.b[90] r_inarea=
+r_inarea M:7 MAN robots.b[1006] r!r_inarea:=inareacount=1
+r_inarea M:7 MAN robots.b[1031] r!r_inarea
+r_inarea M:7 MAN robots.b[1442] IF r!r_inarea DO ..
+r_inarea M:7 MAN robots.b[510] owner!r_inarea:=FALSE
+r_inarea M:7 MAN robots.b[733] r!r_inarea:=FALSE
+r_inarea M:7 MAN robots.b[969] r!r_inarea:=FALSE
+r_inarea M:7 MAN robots.b[974] r!r_inarea:=TRUE
+r_lcx M:12 DEF robots.b[98] r_lcx=
+r_lcx M:12 MAN robots.b[1213] r!r_lcx:=x+inprod(c,ns,...)
+r_lcx M:12 MAN robots.b[1260] drawfillcircle(r!r_lcx/One,.../One,shoulderradius/One)
+r_lcx M:12 MAN robots.b[1272] drawquad(r!r_lcx/One,.../One,...,...)
+r_lcx M:12 MAN robots.b[770] r!r_lcx,r!r_lcy,r!r_cgxdot,r!r_cgydot
+r_lcy M:13 DEF robots.b[98] r_lcy=
+r_lcy M:13 MAN robots.b[1214] r!r_lcy:=y+inprod(s,c,...)
+r_lcy M:13 MAN robots.b[1260] drawfillcircle(r!r_lcx/One,.../One,shoulderradius/One)
+r_lcy M:13 MAN robots.b[1272] drawquad(r!r_lcx/One,.../One,...,...)
+r_lcy M:13 MAN robots.b[770] r!r_lcx,r!r_lcy,r!r_cgxdot,r!r_cgydot
+r_lex M:8 DEF robots.b[97] r_lex=
+r_lex M:8 MAN robots.b[1215] r!r_lex:=x+inprod(c,ns,...)
+r_lex M:8 MAN robots.b[1272] drawquad(r!r_lcx/One,.../One,...,...)
+r_ley M:9 DEF robots.b[97] r_ley=
+r_ley M:9 MAN robots.b[1216] r!r_ley:=y+inprod(s,c,...)
+r_ley M:9 MAN robots.b[1272] drawquad(r!r_lcx/One,.../One,...,...)
+r_ltax M:16 DEF robots.b[101] r_ltax=
+r_ltax M:16 MAN robots.b[1223] r!r_ltax:=x+inprod(c,ns,...)
+r_ltax M:16 MAN robots.b[1277] drawquad(r!r_ltax/One,.../One,...,...)
+r_ltay M:17 DEF robots.b[101] r_ltay=
+r_ltay M:17 MAN robots.b[1224] r!r_ltay:=y+inprod(s,c,...)
+r_ltay M:17 MAN robots.b[1277] drawquad(r!r_ltax/One,.../One,...,...)
+r_ltbx M:20 DEF robots.b[102] r_ltbx=
+r_ltbx M:20 MAN robots.b[1225] r!r_ltbx:=x+inprod(c,ns,...)
+r_ltbx M:20 MAN robots.b[1277] drawquad(r!r_ltax/One,.../One,...,...)
+r_ltby M:21 DEF robots.b[102] r_ltby=
+r_ltby M:21 MAN robots.b[1226] r!r_ltby:=y+inprod(s,c,...)
+r_ltby M:21 MAN robots.b[1277] drawquad(r!r_ltax/One,.../One,...,...)
+r_ltcx M:24 DEF robots.b[103] r_ltcx=
+r_ltcx M:24 MAN robots.b[1227] r!r_ltcx:=x+inprod(c,ns,...)
+r_ltcx M:24 MAN robots.b[1277] drawquad(r!r_ltax/One,.../One,...,...)
+r_ltcx M:24 MAN robots.b[796] r!r_ltcx,r!r_ltcy,r!r_cgxdot,r!r_cgydot
+r_ltcy M:25 DEF robots.b[103] r_ltcy=
+r_ltcy M:25 MAN robots.b[1228] r!r_ltcy:=y+inprod(s,c,...)
+r_ltcy M:25 MAN robots.b[1277] drawquad(r!r_ltax/One,.../One,...,...)
+r_ltcy M:25 MAN robots.b[796] r!r_ltcx,r!r_ltcy,r!r_cgxdot,r!r_cgydot
+r_ltdx M:28 DEF robots.b[104] r_ltdx=
+r_ltdx M:28 MAN robots.b[1229] r!r_ltdx:=x+inprod(c,ns,...)
+r_ltdx M:28 MAN robots.b[1277] drawquad(r!r_ltax/One,.../One,...,...)
+r_ltdy M:29 DEF robots.b[104] r_ltdy=
+r_ltdy M:29 MAN robots.b[1230] r!r_ltdy:=y+inprod(s,c,...)
+r_ltdy M:29 MAN robots.b[1277] drawquad(r!r_ltax/One,.../One,...,...)
+r_ltpx M:32 DEF robots.b[105] r_ltpx=
+r_ltpx M:32 MAN robots.b[1231] r!r_ltpx:=x+inprod(c,ns,...)
+r_ltpx M:32 MAN robots.b[1281] drawfillcircle(r!r_ltpx/One,.../One,tipradius/One)
+r_ltpy M:33 DEF robots.b[105] r_ltpy=
+r_ltpy M:33 MAN robots.b[1232] r!r_ltpy:=y+inprod(s,c,...)
+r_ltpy M:33 MAN robots.b[1281] drawfillcircle(r!r_ltpx/One,.../One,tipradius/One)
+r_rcx M:14 DEF robots.b[98] r_rcx=
+r_rcx M:14 MAN robots.b[1218] r!r_rcx:=x+inprod(c,ns,...)
+r_rcx M:14 MAN robots.b[1262] drawfillcircle(r!r_rcx/One,.../One,shoulderradius/One)
+r_rcx M:14 MAN robots.b[1272] drawquad(r!r_lcx/One,.../One,...,...)
+r_rcx M:14 MAN robots.b[783] r!r_rcx,r!r_rcy,r!r_cgxdot,r!r_cgydot
+r_rcy M:15 DEF robots.b[98] r_rcy=
+r_rcy M:15 MAN robots.b[1219] r!r_rcy:=y+inprod(s,c,...)
+r_rcy M:15 MAN robots.b[1262] drawfillcircle(r!r_rcx/One,.../One,shoulderradius/One)
+r_rcy M:15 MAN robots.b[1272] drawquad(r!r_lcx/One,.../One,...,...)
+r_rcy M:15 MAN robots.b[783] r!r_rcx,r!r_rcy,r!r_cgxdot,r!r_cgydot
+r_rex M:10 DEF robots.b[97] r_rex=
+r_rex M:10 MAN robots.b[1220] r!r_rex:=x+inprod(c,ns,...)
+r_rex M:10 MAN robots.b[1272] drawquad(r!r_lcx/One,.../One,...,...)
+r_rey M:11 DEF robots.b[97] r_rey=
+r_rey M:11 MAN robots.b[1221] r!r_rey:=y+inprod(s,c,...)
+r_rey M:11 MAN robots.b[1272] drawquad(r!r_lcx/One,.../One,...,...)
+r_rtax M:18 DEF robots.b[101] r_rtax=
+r_rtax M:18 MAN robots.b[1234] r!r_rtax:=x+inprod(c,ns,...)
+r_rtax M:18 MAN robots.b[1283] drawquad(r!r_rtax/One,.../One,...,...)
+r_rtay M:19 DEF robots.b[101] r_rtay=
+r_rtay M:19 MAN robots.b[1235] r!r_rtay:=y+inprod(s,c,...)
+r_rtay M:19 MAN robots.b[1283] drawquad(r!r_rtax/One,.../One,...,...)
+r_rtbx M:22 DEF robots.b[102] r_rtbx=
+r_rtbx M:22 MAN robots.b[1236] r!r_rtbx:=x+inprod(c,ns,...)
+r_rtbx M:22 MAN robots.b[1283] drawquad(r!r_rtax/One,.../One,...,...)
+r_rtby M:23 DEF robots.b[102] r_rtby=
+r_rtby M:23 MAN robots.b[1237] r!r_rtby:=y+inprod(s,c,...)
+r_rtby M:23 MAN robots.b[1283] drawquad(r!r_rtax/One,.../One,...,...)
+r_rtcx M:26 DEF robots.b[103] r_rtcx=
+r_rtcx M:26 MAN robots.b[1238] r!r_rtcx:=x+inprod(c,ns,...)
+r_rtcx M:26 MAN robots.b[1283] drawquad(r!r_rtax/One,.../One,...,...)
+r_rtcx M:26 MAN robots.b[809] r!r_rtcx,r!r_rtcy,r!r_cgxdot,r!r_cgydot
+r_rtcy M:27 DEF robots.b[103] r_rtcy=
+r_rtcy M:27 MAN robots.b[1239] r!r_rtcy:=y+inprod(s,c,...)
+r_rtcy M:27 MAN robots.b[1283] drawquad(r!r_rtax/One,.../One,...,...)
+r_rtcy M:27 MAN robots.b[809] r!r_rtcx,r!r_rtcy,r!r_cgxdot,r!r_cgydot
+r_rtdx M:30 DEF robots.b[104] r_rtdx=
+r_rtdx M:30 MAN robots.b[1240] r!r_rtdx:=x+inprod(c,ns,...)
+r_rtdx M:30 MAN robots.b[1283] drawquad(r!r_rtax/One,.../One,...,...)
+r_rtdy M:31 DEF robots.b[104] r_rtdy=
+r_rtdy M:31 MAN robots.b[1241] r!r_rtdy:=y+inprod(s,c,...)
+r_rtdy M:31 MAN robots.b[1283] drawquad(r!r_rtax/One,.../One,...,...)
+r_rtpx M:34 DEF robots.b[105] r_rtpx=
+r_rtpx M:34 MAN robots.b[1242] r!r_rtpx:=x+inprod(c,ns,...)
+r_rtpx M:34 MAN robots.b[1287] drawfillcircle(r!r_rtpx/One,.../One,tipradius/One)
+r_rtpy M:35 DEF robots.b[105] r_rtpy=
+r_rtpy M:35 MAN robots.b[1243] r!r_rtpy:=y+inprod(s,c,...)
+r_rtpy M:35 MAN robots.b[1287] drawfillcircle(r!r_rtpx/One,.../One,tipradius/One)
+r_size M:39 DEF robots.b[111] r_size=
+r_size M:39 MAN robots.b[112] r_upb=r_size
+r_upb M:39 DEF robots.b[112] r_upb=r_size
+r_upb M:39 MAN robots.b[1709] mkvec(r_upb)
+r_upb M:39 MAN robots.b[1718] FOR j=0 TO r_upb DO..
+randno G:34 DEF libhdr.h[60] randno=34
+randno G:34 LG robots.b[1721] x:=randno(xsize*One)
+randno G:34 LG robots.b[1722] y:=randno(ysize*One)
+randno G:34 LG robots.b[1745] r!r_cgxdot:=randno(40000)-20000
+randno G:34 LG robots.b[1746] r!r_cgydot:=randno(40000)-20000
+randno G:34 LG robots.b[1773] x:=randno(xsize*One)
+randno G:34 LG robots.b[1774] y:=randno(ysize*One)
+randno G:34 LG robots.b[1791] b!b_cgxdot:=randno(50000)-25000
+randno G:34 LG robots.b[1792] b!b_cgydot:=randno(50000)-25000
+randno G:34 LG robots.b[433] r!r_cgxdot:=r!r_cgxdot+randno(201)-100
+randno G:34 LG robots.b[434] r!r_cgydot:=r!r_cgydot+randno(201)-100
+randseed G:127 DEF libhdr.h[154] randseed=127
+rawsine F:25 FN robots.b[1179] LET rawsine(x)=..
+rawsine F:25 LF robots.b[1173] rawsine(a)
+rawsine F:25 LF robots.b[1174] RESULTIS s+(...-s)*r/1000
+rdargs G:102 DEF libhdr.h[129] rdargs=102
+rdargs G:102 LG robots.b[1605] UNLESS rdargs("-b/n,'s/n,-d/s",argv,50) DO ..
+rdargs2 G:26 DEF libhdr.h[52] rdargs2=26
+rdch G:38 DEF libhdr.h[64] rdch=38
+rditem G:103 DEF libhdr.h[130] rditem=103
+readn G:83 DEF libhdr.h[109] readn=83
+readwords G:44 DEF libhdr.h[70] readwords=44
+rebound F:5 FN robots.b[356] LET rebound(vel)=..
+rebound F:5 LF robots.b[255] tdot:=rebound(tdot)
+rebound F:5 LF robots.b[279] t1dot:=rebound(t1dot)
+rebound F:5 LF robots.b[338] t1dot:=rebound(t1dot)
+rebound F:5 LF robots.b[339] t2dot:=rebound(t2dot)
+rebound F:5 LF robots.b[872] bwdot:=rebound(v)+rwdot
+rebound F:5 LF robots.b[897] bwdot:=rebound(v)+rwdot
+rebound F:5 LF robots.b[923] bwdot:=rebound(v)+rwdot
+rebound F:5 LF robots.b[943] bwdot:=rebound(v)+rwdot
+rebound F:5 LF robots.b[993] btdot:=rebound(v)+rtdot
+recordnote G:70 DEF libhdr.h[96] recordnote=70
+recordpoint G:69 DEF libhdr.h[95] recordpoint=69
+release G:159 DEF libhdr.h[193] release=159
+renamefile G:77 DEF libhdr.h[103] renamefile=77
+resizescreen G:468 DEF sdl.h[66] resizescreen=
+result2 G:10 DEF libhdr.h[36] result2=10
+result2 G:10 LG robots.b[1076] result2
+result2 G:10 LG robots.b[1083] result2
+result2 G:10 LG robots.b[1104] result2
+result2 G:10 LG robots.b[1210] result2
+result2 G:10 LG robots.b[1475] result2
+result2 G:10 LG robots.b[1484] result2
+result2 G:10 LG robots.b[1662] s:=result2
+result2 G:10 LG robots.b[238] result2
+result2 G:10 LG robots.b[472] result2
+result2 G:10 LG robots.b[533] result2
+result2 G:10 LG robots.b[631] result2
+result2 G:10 LG robots.b[828] result2
+result2 G:10 SG robots.b[365] result2:=0
+result2 G:10 SG robots.b[385] result2:=s
+resumeco G:21 DEF libhdr.h[47] resumeco=21
+return_hard M:10 DEF libhdr.h[524] return_hard=10
+return_hard M:10 MAN libhdr.h[529] cli_initialfaillevel=return_hard
+return_ok M:0 DEF libhdr.h[526] return_ok=0
+return_severe M:20 DEF libhdr.h[523] return_severe=20
+return_soft M:5 DEF libhdr.h[525] return_soft=5
+returncode G:11 DEF libhdr.h[37] returncode=11
+returnpkt G:169 DEF libhdr.h[200] returnpkt=169
+rewindstream G:65 DEF libhdr.h[91] rewindstream=65
+rightds G:459 DEF sdl.h[52] rightds=
+rightds G:459 LG sdl.b[587] rightds!curry:=currz
+rightds G:459 LG sdl.b[621] leftds!y,rightds!y:=maxint,maxint
+rightds G:459 LG sdl.b[646] drawto3d(rights!y,y,rightds!y)
+rightds G:459 LG sdl.b[649] leftds!y,rightds!y:=maxint,maxint
+rightds G:459 LG sdl.b[666] drawto3d(rights!y,y,rightds!y)
+rightds G:459 LG sdl.b[669] leftds!y,rightds!y:=maxint,maxint
+rightds G:459 LG sdl.b[91] IF rightds DO ..
+rightds G:459 LG sdl.b[91] freevec(rightds)
+rightds G:459 SG sdl.b[49] leftds,rightds:=0,0
+rightds G:459 SG sdl.b[619] rightds:=getvec(currysize-1)
+rights G:458 DEF sdl.h[51] rights=
+rights G:458 LG sdl.b[469] IF currx>rights!curry DO ..
+rights G:458 LG sdl.b[469] rights!curry:=currx
+rights G:458 LG sdl.b[494] UNLESS lefts&rights DO ..
+rights G:458 LG sdl.b[501] lefts!i,rights!i:=maxint,minint
+rights G:458 LG sdl.b[531] rights!y
+rights G:458 LG sdl.b[539] lefts!y,rights!y:=maxint,minint
+rights G:458 LG sdl.b[556] drawto(rights!y,y)
+rights G:458 LG sdl.b[557] lefts!y,rights!y:=maxint,minint
+rights G:458 LG sdl.b[584] IF currx>=rights!curry DO ..
+rights G:458 LG sdl.b[585] rights!curry:=currx
+rights G:458 LG sdl.b[614] lefts!y,rights!y:=maxint,minint
+rights G:458 LG sdl.b[646] drawto3d(rights!y,y,rightds!y)
+rights G:458 LG sdl.b[648] lefts!y,rights!y:=maxint,minint
+rights G:458 LG sdl.b[666] drawto3d(rights!y,y,rightds!y)
+rights G:458 LG sdl.b[668] lefts!y,rights!y:=maxint,minint
+rights G:458 LG sdl.b[89] IF rights DO ..
+rights G:458 LG sdl.b[89] freevec(rights)
+rights G:458 SG sdl.b[48] lefts,rights:=0,0
+rights G:458 SG sdl.b[493] rights:=getvec(currysize-1)
+rights G:458 SG sdl.b[612] rights:=getvec(currysize-1)
+robot1colour G:245 DEF robots.b[161] robot1colour=
+robot1colour G:245 LG robots.b[1255] setcolour(r!r_id=1->robot1colour,robotcolour)
+robot1colour G:245 SG robots.b[1692] robot1colour:=maprgb(0,120,40)
+robotcolour G:244 DEF robots.b[160] robotcolour=
+robotcolour G:244 LG robots.b[1255] setcolour(r!r_id=1->robot1colour,robotcolour)
+robotcolour G:244 SG robots.b[1691] robotcolour:=maprgb(0,255,0)
+robotcoords F:26 LF robots.b[1253] robotcoords(r)
+robotcoords F:26 LF robots.b[1753] robotcoords(r)
+robotcoords F:26 LF robots.b[746] robotcoords(r)
+robotcoords F:26 RT robots.b[1199] LET robotcoords(r)BE..
+robotradius M:18000 DEF robots.b[41] robotradius=18000
+robotradius M:18000 MAN robots.b[1092] UNLESS incontact(r,b,2*robotradius) DO ..
+robotradius M:18000 MAN robots.b[1203] robotradius
+robotradius M:18000 MAN robots.b[1246] r!r_bcx:=x+inprod(c,ns,...)
+robotradius M:18000 MAN robots.b[1247] r!r_bcy:=y+inprod(s,c,...)
+robotradius M:18000 MAN robots.b[1258] drawfillcircle(r!r_cgx/One,.../One,robotradius/One)
+robotradius M:18000 MAN robots.b[1723] UNLESS nearedge(x,...)|nearthepit(x,...)|nearanyrobot(i,x,...) DO ..
+robotradius M:18000 MAN robots.b[1776] UNLESS nearedge(...)|nearthepit(...)|nearanyrobot(0,...)|nearanybottle(i,x,...) DO ..
+robotradius M:18000 MAN robots.b[440] TEST dw<robotradius THEN .. ELSE ..
+robotradius M:18000 MAN robots.b[441] r!r_cgxdot,r!r_cgx:=Op12,wall_wx+robotradius
+robotradius M:18000 MAN robots.b[448] TEST dn<robotradius THEN .. ELSE ..
+robotradius M:18000 MAN robots.b[449] r!r_cgydot,r!r_cgy:=Op12,wall_ny-robotradius
+robotradius M:18000 MAN robots.b[456] TEST de<robotradius THEN .. ELSE ..
+robotradius M:18000 MAN robots.b[457] r!r_cgxdot,r!r_cgx:=Op12,wall_ex-robotradius
+robotradius M:18000 MAN robots.b[464] TEST ds<robotradius THEN .. ELSE ..
+robotradius M:18000 MAN robots.b[465] r!r_cgydot,r!r_cgy:=Op12,wall_sy+robotradius
+robotradius M:18000 MAN robots.b[48] grabbedpos=bottleradius/(robotradius-shoulderradius-2*tipradius)/One
+robotradius M:18000 MAN robots.b[604] IF incontact(r1,r2,12*robotradius) DO ..
+robotradius M:18000 MAN robots.b[610] TEST incontact(r1,r2,2*robotradius) THEN .. ELSE ..
+robotradius M:18000 MAN robots.b[651] writef("sepx '= %8.3d*n",sepx,sepy,...)
+robotradius M:18000 MAN robots.b[658] writef("R%i2 's=%9.3d*n",rid1,rid2,...)
+robotradius M:18000 MAN robots.b[661] IF sepx>0&(Op13)<6*robotradius DO ..
+robotradius M:18000 MAN robots.b[754] UNLESS incontact(r,b,3*robotradius) DO ..
+robotradius M:18000 MAN robots.b[762] IF incontact(r,b,robotradius+bottleradius) DO ..
+robotradius M:18000 MAN robots.b[837] muldiv(robotradius-shoulderradius-armthickness,r!r_grabpos,One)
+robotradius M:18000 MAN robots.b[848] writef("x1=%8'2=%8.3d*n",robotradius,robotradius+grablen)
+robotradius M:18000 MAN robots.b[853] IF robotradius<=tx&tx<=robotradius+grablen DO ..
+robotradius M:18000 MAN robots.b[982] IF robotradius<=tx&tx<=robotradius+bottleradius DO ..
+robots G:211 DEF robots.b[131] robots=
+robots G:211 LG robots.b[1427] sawritef("Robot'   = %n*n",robots)
+robots G:211 LG robots.b[1632] IF robots<1 DO ..
+robots G:211 LG robots.b[1633] IF robots>30 DO ..
+robots G:211 LG robots.b[1706] robotv:=mkvec(robots)
+robots G:211 LG robots.b[1708] FOR i=1 TO robots DO..
+robots G:211 SG robots.b[1612] robots:=7
+robots G:211 SG robots.b[1622] robots:=!argv!1
+robots G:211 SG robots.b[1632] robots:=1
+robots G:211 SG robots.b[1633] robots:=30
+robotv G:212 DEF robots.b[132] robotv=
+robotv G:212 LG robots.b[1028] FOR rid=1 TO robotv!0 DO..
+robotv G:212 LG robots.b[1029] robotv!rid
+robotv G:212 LG robots.b[1346] FOR i=1 TO robotv!0 DO..
+robotv G:212 LG robots.b[1347] robotv!i
+robotv G:212 LG robots.b[1383] robotv!1
+robotv G:212 LG robots.b[1418] sawritef("robot'tlev=%n*n",robotv,bottlev)
+robotv G:212 LG robots.b[1437] FOR i=1 TO robotv!0 DO..
+robotv G:212 LG robots.b[1438] robotv!i
+robotv G:212 LG robots.b[1450] robotv!1
+robotv G:212 LG robots.b[1458] robotv!1
+robotv G:212 LG robots.b[1473] robotv!1
+robotv G:212 LG robots.b[1482] robotv!1
+robotv G:212 LG robots.b[1491] robotv!1
+robotv G:212 LG robots.b[1502] robotv!1
+robotv G:212 LG robots.b[1589] FOR i=1 TO robotv!0 DO..
+robotv G:212 LG robots.b[1590] IF nearrobot(x,y,...,dist) DO ..
+robotv G:212 LG robots.b[1707] robotv!0:=0
+robotv G:212 LG robots.b[1737] robotv!0:=i
+robotv G:212 LG robots.b[1738] robotv!i:=r
+robotv G:212 LG robots.b[414] FOR rib=1 TO robotv!0 DO..
+robotv G:212 LG robots.b[415] robotv!rib
+robotv G:212 LG robots.b[595] FOR rid1=1 TO robotv!0 DO..
+robotv G:212 LG robots.b[597] robotv!rid1
+robotv G:212 LG robots.b[600] FOR rid2=rid1+1 TO robotv!0 DO..
+robotv G:212 LG robots.b[601] robotv!rid2
+robotv G:212 LG robots.b[715] FOR rid=1 TO robotv!0 DO..
+robotv G:212 LG robots.b[716] robotv!rid
+robotv G:212 SG robots.b[1706] robotv:=mkvec(robots)
+rootnode G:9 DEF libhdr.h[35] rootnode=9
+rootnodeaddr M:100 DEF libhdr.h[272] rootnodeaddr=100
+rtn_abortcode M:27 DEF libhdr.h[308] rtn_abortcode=
+rtn_adjclock M:33 DEF libhdr.h[326] rtn_adjclock=
+rtn_blib M:19 DEF libhdr.h[297] rtn_blib=
+rtn_blklist M:4 DEF libhdr.h[279] rtn_blklist=
+rtn_boot M:17 DEF libhdr.h[295] rtn_boot=
+rtn_boottrace M:39 DEF libhdr.h[341] rtn_boottrace=
+rtn_bptaddr M:9 DEF libhdr.h[286] rtn_bptaddr=
+rtn_bptinstr M:10 DEF libhdr.h[287] rtn_bptinstr=
+rtn_clkintson M:6 DEF libhdr.h[282] rtn_clkintson=
+rtn_clwkq M:12 DEF libhdr.h[290] rtn_clwkq=
+rtn_context M:28 DEF libhdr.h[309] rtn_context=
+rtn_crntask M:3 DEF libhdr.h[278] rtn_crntask=
+rtn_days M:40 DEF libhdr.h[344] rtn_days=
+rtn_dbgvars M:11 DEF libhdr.h[288] rtn_dbgvars=
+rtn_dcountv M:34 DEF libhdr.h[328] rtn_dcountv=
+rtn_devtab M:1 DEF libhdr.h[276] rtn_devtab=
+rtn_dumpflag M:25 DEF libhdr.h[305] rtn_dumpflag=
+rtn_envlist M:26 DEF libhdr.h[306] rtn_envlist=
+rtn_hdrsvar M:37 DEF libhdr.h[337] rtn_hdrsvar=
+rtn_idletcb M:32 DEF libhdr.h[325] rtn_idletcb=
+rtn_info M:15 DEF libhdr.h[293] rtn_info=
+rtn_insadebug M:8 DEF libhdr.h[284] rtn_insadebug=
+rtn_intflag M:24 DEF libhdr.h[304] rtn_intflag=
+rtn_keyboard M:20 DEF libhdr.h[298] rtn_keyboard=
+rtn_klib M:18 DEF libhdr.h[296] rtn_klib=
+rtn_lastch M:7 DEF libhdr.h[283] rtn_lastch=
+rtn_lastg M:30 DEF libhdr.h[318] rtn_lastg=
+rtn_lastp M:29 DEF libhdr.h[317] rtn_lastp=
+rtn_lastst M:31 DEF libhdr.h[319] rtn_lastst=
+rtn_mc0 M:43 DEF libhdr.h[349] rtn_mc0=
+rtn_mc1 M:44 DEF libhdr.h[351] rtn_mc1=
+rtn_mc2 M:45 DEF libhdr.h[352] rtn_mc2=
+rtn_mc3 M:46 DEF libhdr.h[353] rtn_mc3=
+rtn_membase M:13 DEF libhdr.h[291] rtn_membase=
+rtn_memsize M:14 DEF libhdr.h[292] rtn_memsize=
+rtn_mins M:41 DEF libhdr.h[346] rtn_mins=rtn_msecs
+rtn_msecs M:41 DEF libhdr.h[345] rtn_msecs=
+rtn_msecs M:41 MAN libhdr.h[346] rtn_mins=rtn_msecs
+rtn_pathvar M:36 DEF libhdr.h[335] rtn_pathvar=
+rtn_rootvar M:35 DEF libhdr.h[333] rtn_rootvar=
+rtn_screen M:21 DEF libhdr.h[299] rtn_screen=
+rtn_scriptsvar M:38 DEF libhdr.h[339] rtn_scriptsvar=
+rtn_sys M:16 DEF libhdr.h[294] rtn_sys=
+rtn_system M:47 DEF libhdr.h[355] rtn_system=
+rtn_tallyv M:5 DEF libhdr.h[280] rtn_tallyv=
+rtn_tasktab M:0 DEF libhdr.h[275] rtn_tasktab=0
+rtn_tcblist M:2 DEF libhdr.h[277] rtn_tcblist=
+rtn_ticks M:42 DEF libhdr.h[347] rtn_ticks=
+rtn_upb M:60 DEF libhdr.h[357] rtn_upb=60
+rtn_vecstatsv M:22 DEF libhdr.h[301] rtn_vecstatsv=
+rtn_vecstatsvupb M:23 DEF libhdr.h[302] rtn_vecstatsvupb=
+sardch G:36 DEF libhdr.h[62] sardch=36
+saveregs M:31 DEF libhdr.h[432] saveregs=31
+sawrch G:37 DEF libhdr.h[63] sawrch=37
+sawritef G:95 DEF libhdr.h[122] sawritef=95
+sawritef G:95 LG robots.b[1417] sawritef("User 'ebugger*n")
+sawritef G:95 LG robots.b[1418] sawritef("robot'tlev=%n*n",robotv,bottlev)
+sawritef G:95 LG robots.b[1425] sawritef("Bottl'   = %n*n",bottles)
+sawritef G:95 LG robots.b[1426] sawritef("Free 'es = %n*n",freebottles)
+sawritef G:95 LG robots.b[1427] sawritef("Robot'   = %n*n",robots)
+sawritef G:95 LG robots.b[1431] sawritef("Bottle %i2: ",b!b_id)
+sawritef G:95 LG robots.b[1432] sawritef(" robot  %i2",b!b_robot!r_id)
+sawritef G:95 LG robots.b[1433] sawritef(" grabbed")
+sawritef G:95 LG robots.b[1434] sawritef("*n")
+sawritef G:95 LG robots.b[1440] sawritef("Robot  %i2: ",r!r_id)
+sawritef G:95 LG robots.b[1441] sawritef(" bottle %i2",r!r_bottle!b_id)
+sawritef G:95 LG robots.b[1442] sawritef(" bott' in area")
+sawritef G:95 LG robots.b[1443] sawritef("*n")
+sawritef G:95 LG robots.b[1714] sawritef("More ' needed*n")
+sawritef G:95 LG robots.b[1765] sawritef("More ' needed*n")
+sawritef G:95 LG robots.b[857] sawritef("R%n: 'rabbers*n",rid,bid)
+sawritef G:95 LG robots.b[868] sawritef("B%n: 'ber arm*n",bid)
+sawritef G:95 LG robots.b[887] sawritef("B%n: 'ber arm*n",bid)
+sawritef G:95 LG robots.b[888] sawritef("rxdot't=%8.3d*n",r!r_cgxdot,r!r_cgydot)
+sawritef G:95 LG robots.b[889] sawritef("bxdot't=%8.3d*n",b!b_cgxdot,b!b_cgydot)
+sawritef G:95 LG robots.b[890] sawritef("c=   '  %8.3d*n",c,s)
+sawritef G:95 LG robots.b[891] sawritef("rtdot't=%8.3d*n",rtdot,rwdot)
+sawritef G:95 LG robots.b[892] sawritef("btdot't=%8.3d*n",btdot,bwdot)
+sawritef G:95 LG robots.b[893] sawritef("v=    %8.3d*n",v)
+sawritef G:95 LG robots.b[900] sawritef("bxdot't=%8.3d*n",b!b_cgxdot,b!b_cgydot)
+sawritef G:95 LG robots.b[904] sawritef("bxdot't=%8.3d*n",b!b_cgxdot,b!b_cgydot)
+sawritef G:95 LG robots.b[919] sawritef("B%n: 'grabber*n",bid)
+sawritef G:95 LG robots.b[938] sawritef("B%n i'grabber*n",bid)
+sawritef G:95 LG robots.b[954] sawritef("B%n: 'er area*n",bid,rid)
+sawritef G:95 LG robots.b[988] sawritef("B%n i'er base*n",bid,rid)
+sawritef G:95 LG robots.b[989] sawritef("grabb'= %8.3d*n",grabbedpos)
+sawritef G:95 LG sdl.b[495] sawritef("Unabl'ize=%i3*n",currysize)
+scb_blength M:14 DEF libhdr.h[463] scb_blength=
+scb_block M:9 DEF libhdr.h[458] scb_block=
+scb_buf M:3 DEF libhdr.h[452] scb_buf=
+scb_bufend M:11 DEF libhdr.h[460] scb_bufend=
+scb_encoding M:19 DEF libhdr.h[473] scb_encoding=
+scb_end M:5 DEF libhdr.h[454] scb_end=
+scb_endfn M:8 DEF libhdr.h[457] scb_endfn=
+scb_fd M:16 DEF libhdr.h[465] scb_fd=
+scb_id M:0 DEF libhdr.h[449] scb_id=0
+scb_lblock M:12 DEF libhdr.h[461] scb_lblock=
+scb_ldata M:13 DEF libhdr.h[462] scb_ldata=
+scb_maxnamelen M:31 DEF libhdr.h[447] scb_maxnamelen=31
+scb_maxnamelen M:31 MAN libhdr.h[477] scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_name M:20 DEF libhdr.h[475] scb_name=
+scb_name M:20 MAN libhdr.h[477] scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_nameeend M:27 DEF libhdr.h[477] scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_pos M:4 DEF libhdr.h[453] scb_pos=
+scb_rdfn M:6 DEF libhdr.h[455] scb_rdfn=
+scb_reclen M:15 DEF libhdr.h[464] scb_reclen=
+scb_size M:28 DEF libhdr.h[480] scb_size=
+scb_size M:28 MAN libhdr.h[481] scb_upb=scb_size-1
+scb_task M:2 DEF libhdr.h[451] scb_task=
+scb_timeout M:17 DEF libhdr.h[466] scb_timeout=
+scb_timeoutact M:18 DEF libhdr.h[469] scb_timeoutact=
+scb_type M:1 DEF libhdr.h[450] scb_type=
+scb_upb M:27 DEF libhdr.h[481] scb_upb=scb_size-1
+scb_wrfn M:7 DEF libhdr.h[456] scb_wrfn=
+scb_write M:10 DEF libhdr.h[459] scb_write=
+scbt_console M:-1 DEF libhdr.h[443] scbt_console=-1
+scbt_file M:1 DEF libhdr.h[441] scbt_file=1
+scbt_mbx M:-2 DEF libhdr.h[444] scbt_mbx=-2
+scbt_net M:2 DEF libhdr.h[440] scbt_net=2
+scbt_ram M:0 DEF libhdr.h[442] scbt_ram=0
+scbt_tcp M:-3 DEF libhdr.h[445] scbt_tcp=-3
+screen G:454 DEF sdl.h[46] screen=
+screen G:454 LG robots.b[1309] blitsurf(surf,screen,...,...)
+screen G:454 LG robots.b[1321] selectsurface(screen,screenxsize,screenysize)
+screen G:454 LG robots.b[1324] selectsurface(screen,xsize,ysize)
+screen G:454 LG robots.b[1336] blitsurf(pitsurf,screen,...,...)
+screen G:454 LG robots.b[1341] selectsurface(screen,xsize,ysize)
+screen G:454 LG sdl.b[181] sys(Sys_sdl,sdl_flip,screen)
+screen G:454 LG sdl.b[65] UNLESS screen DO ..
+screen G:454 LG sdl.b[74] sys(Sys_sdl,sdl_getsurfaceinfo,screen,...)
+screen G:454 LG sdl.b[80] selectsurface(screen,xsize,ysize)
+screen G:454 SG sdl.b[63] screen:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+screenxsize G:464 DEF sdl.h[61] screenxsize=
+screenxsize G:464 LG robots.b[1064] IF r!r_bottle&edgesize<...&...<...&edgesize<r!r_cgy&r!r_cgy<...-edgesize DO ..
+screenxsize G:464 LG robots.b[1321] selectsurface(screen,screenxsize,screenysize)
+screenxsize G:464 LG robots.b[1329] drawquad(0,screenysize,d,...)
+screenxsize G:464 LG robots.b[1331] drawquad(screenxsize,screenysize,...,...)
+screenxsize G:464 LG robots.b[1333] drawquad(0,0,d,...)
+screenxsize G:464 LG robots.b[1808] wall_ex:=(screenxsize-1)*One
+screenxsize G:464 LG sdl.b[63] screen:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+screenxsize G:464 SG sdl.b[61] screenxsize,screenysize:=xsize,ysize
+screenysize G:465 DEF sdl.h[62] screenysize=
+screenysize G:465 LG robots.b[1064] IF r!r_bottle&edgesize<...&...<...&edgesize<r!r_cgy&r!r_cgy<...-edgesize DO ..
+screenysize G:465 LG robots.b[1321] selectsurface(screen,screenxsize,screenysize)
+screenysize G:465 LG robots.b[1327] drawquad(0,0,d,...)
+screenysize G:465 LG robots.b[1329] drawquad(0,screenysize,d,...)
+screenysize G:465 LG robots.b[1331] drawquad(screenxsize,screenysize,...,...)
+screenysize G:465 LG robots.b[1811] wall_ny:=(screenysize-1)*One
+screenysize G:465 LG sdl.b[63] screen:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+screenysize G:465 SG sdl.b[61] screenxsize,screenysize:=xsize,ysize
+sdl_ANYFORMAT M:#x10000000 DEF sdl.h[288] sdl_ANYFORMAT=#x10000000
+sdl_DOUBLEBUF M:#x40000000 DEF sdl.h[290] sdl_DOUBLEBUF=#x40000000
+sdl_FULLSCREEN M:#x80000000 DEF sdl.h[291] sdl_FULLSCREEN=#x80000000
+sdl_HWPALETTE M:#x20000000 DEF sdl.h[289] sdl_HWPALETTE=#x20000000
+sdl_HWSURFACE M:1 DEF sdl.h[286] sdl_HWSURFACE=1
+sdl_NOFRAME M:32 DEF sdl.h[295] sdl_NOFRAME=32
+sdl_OPENGL M:2 DEF sdl.h[292] sdl_OPENGL=2
+sdl_OPENGLBLIT M:10 DEF sdl.h[293] sdl_OPENGLBLIT=10
+sdl_RESIZABLE M:16 DEF sdl.h[294] sdl_RESIZABLE=16
+sdl_SWSURFACE M:0 DEF sdl.h[285] sdl_SWSURFACE=0
+sdl_SWSURFACE M:0 MAN sdl.b[63] screen:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+sdl_avail M:0 DEF sdl.h[149] sdl_avail=0
+sdl_avail M:0 MAN robots.b[1639] UNLESS sys(Sys_sdl,sdl_avail) DO ..
+sdl_blitsurface M:11 DEF sdl.h[162] sdl_blitsurface=
+sdl_blitsurface M:11 MAN sdl.b[194] sys(Sys_sdl,sdl_blitsurface,src,...)
+sdl_blitsurface M:11 MAN sdl.b[201] sys(Sys_sdl,sdl_blitsurface,src,...)
+sdl_delay M:16 DEF sdl.h[167] sdl_delay=
+sdl_delay M:16 MAN sdl.b[169] sys(Sys_sdl,sdl_delay,msecs)
+sdl_displayformat M:18 DEF sdl.h[169] sdl_displayformat=
+sdl_drawcircle M:30 DEF sdl.h[184] sdl_drawcircle=
+sdl_drawellipse M:33 DEF sdl.h[187] sdl_drawellipse=
+sdl_drawfillcircle M:37 DEF sdl.h[191] sdl_drawfillcircle=
+sdl_drawfillcircle M:37 MAN sdl.b[875] sys(Sys_sdl,sdl_drawfillcircle,currsurf,...)
+sdl_drawfillellipse M:34 DEF sdl.h[188] sdl_drawfillellipse=
+sdl_drawfillrect M:38 DEF sdl.h[192] sdl_drawfillrect=
+sdl_drawfillround M:36 DEF sdl.h[190] sdl_drawfillround=
+sdl_drawhline M:28 DEF sdl.h[182] sdl_drawhline=
+sdl_drawline M:27 DEF sdl.h[181] sdl_drawline=
+sdl_drawpixel M:32 DEF sdl.h[186] sdl_drawpixel=
+sdl_drawrect M:31 DEF sdl.h[185] sdl_drawrect=
+sdl_drawround M:35 DEF sdl.h[189] sdl_drawround=
+sdl_drawvline M:29 DEF sdl.h[183] sdl_drawvline=
+sdl_enable M:1 DEF sdl.h[260] sdl_enable=1
+sdl_fillrect M:39 DEF sdl.h[194] sdl_fillrect=
+sdl_fillrect M:39 MAN sdl.b[134] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+sdl_fillrect M:39 MAN sdl.b[149] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+sdl_fillrect M:39 MAN sdl.b[697] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+sdl_fillsurf M:40 DEF sdl.h[195] sdl_fillsurf=
+sdl_fillsurf M:40 MAN sdl.b[205] sys(Sys_sdl,sdl_fillsurf,currsurf,col)
+sdl_flip M:17 DEF sdl.h[168] sdl_flip=
+sdl_flip M:17 MAN sdl.b[181] sys(Sys_sdl,sdl_flip,screen)
+sdl_freesurface M:13 DEF sdl.h[164] sdl_freesurface=
+sdl_freesurface M:13 MAN sdl.b[188] sys(Sys_sdl,sdl_freesurface,surf)
+sdl_freewav M:23 DEF sdl.h[176] sdl_freewav=
+sdl_geterror M:8 DEF sdl.h[159] sdl_geterror=
+sdl_geterror M:8 MAN sdl.b[38] sys(Sys_sdl,sdl_geterror,mes)
+sdl_geterror M:8 MAN sdl.b[66] sys(Sys_sdl,sdl_geterror,mes)
+sdl_getfmtinfo M:7 DEF sdl.h[156] sdl_getfmtinfo=
+sdl_getmousestate M:21 DEF sdl.h[174] sdl_getmousestate=
+sdl_getsurfaceinfo M:6 DEF sdl.h[155] sdl_getsurfaceinfo=
+sdl_getsurfaceinfo M:6 MAN sdl.b[74] sys(Sys_sdl,sdl_getsurfaceinfo,screen,...)
+sdl_getticks M:50 DEF sdl.h[209] sdl_getticks=
+sdl_getticks M:50 MAN sdl.b[172] sys(Sys_sdl,sdl_getticks)
+sdl_hidecursor M:52 DEF sdl.h[212] sdl_hidecursor=
+sdl_hidecursor M:52 MAN sdl.b[176] sys(Sys_sdl,sdl_hidecursor)
+sdl_ignore M:0 DEF sdl.h[259] sdl_ignore=0
+sdl_imgload M:15 DEF sdl.h[166] sdl_imgload=
+sdl_init M:1 DEF sdl.h[150] sdl_init=
+sdl_init M:1 MAN sdl.b[37] IF sys(Sys_sdl,sdl_init,sdl_init_everything) DO ..
+sdl_init_everything M:65535 DEF sdl.h[283] sdl_init_everything=65535
+sdl_init_everything M:65535 MAN sdl.b[37] IF sys(Sys_sdl,sdl_init,sdl_init_everything) DO ..
+sdl_joystickclose M:43 DEF sdl.h[200] sdl_joystickclose=
+sdl_joystickeventstate M:49 DEF sdl.h[208] sdl_joystickeventstate=
+sdl_joystickgetaxis M:56 DEF sdl.h[217] sdl_joystickgetaxis=
+sdl_joystickgetball M:57 DEF sdl.h[218] sdl_joystickgetball=
+sdl_joystickgetbutton M:55 DEF sdl.h[216] sdl_joystickgetbutton=
+sdl_joystickgethat M:58 DEF sdl.h[219] sdl_joystickgethat=
+sdl_joystickname M:44 DEF sdl.h[201] sdl_joystickname=
+sdl_joysticknumaxes M:45 DEF sdl.h[202] sdl_joysticknumaxes=
+sdl_joysticknumballs M:47 DEF sdl.h[204] sdl_joysticknumballs=
+sdl_joysticknumbuttons M:46 DEF sdl.h[203] sdl_joysticknumbuttons=
+sdl_joysticknumhats M:48 DEF sdl.h[205] sdl_joysticknumhats=
+sdl_joystickopen M:42 DEF sdl.h[199] sdl_joystickopen=
+sdl_joystickopen M:42 MAN sdl.b[44] joystick:=sys(Sys_sdl,sdl_joystickopen,0)
+sdl_loadbmp M:10 DEF sdl.h[161] sdl_loadbmp=
+sdl_loadwav M:22 DEF sdl.h[175] sdl_loadwav=
+sdl_locksurface M:4 DEF sdl.h[153] sdl_locksurface=
+sdl_maprgb M:26 DEF sdl.h[180] sdl_maprgb=
+sdl_maprgb M:26 MAN sdl.b[83] sys(Sys_sdl,sdl_maprgb,format,...)
+sdl_mksurface M:53 DEF sdl.h[213] sdl_mksurface=
+sdl_mksurface M:53 MAN sdl.b[185] RESULTIS sys(Sys_sdl,sdl_mksurface,format,...)
+sdl_numjoysticks M:41 DEF sdl.h[198] sdl_numjoysticks=
+sdl_pollevent M:20 DEF sdl.h[172] sdl_pollevent=
+sdl_pollevent M:20 MAN sdl.b[165] RESULTIS sys(Sys_sdl,sdl_pollevent,@eventtype)
+sdl_quit M:3 DEF sdl.h[152] sdl_quit=
+sdl_quit M:3 MAN sdl.b[93] sys(Sys_sdl,sdl_quit)
+sdl_setalpha M:14 DEF sdl.h[165] sdl_setalpha=
+sdl_setcolourkey M:12 DEF sdl.h[163] sdl_setcolourkey=
+sdl_setcolourkey M:54 DEF sdl.h[214] sdl_setcolourkey=
+sdl_setcolourkey M:54 MAN sdl.b[98] sys(Sys_sdl,sdl_setcolourkey,surf,col)
+sdl_setvideomode M:2 DEF sdl.h[151] sdl_setvideomode=
+sdl_setvideomode M:2 MAN sdl.b[63] screen:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+sdl_showcursor M:51 DEF sdl.h[211] sdl_showcursor=
+sdl_showcursor M:51 MAN sdl.b[178] sys(Sys_sdl,sdl_showcursor)
+sdl_unlocksurface M:5 DEF sdl.h[154] sdl_unlocksurface=
+sdl_updaterect M:9 DEF sdl.h[160] sdl_updaterect=
+sdl_videoinfo M:25 DEF sdl.h[179] sdl_videoinfo=
+sdl_waitevent M:19 DEF sdl.h[170] sdl_waitevent=
+sdl_wm_setcaption M:24 DEF sdl.h[178] sdl_wm_setcaption=
+sdl_wm_setcaption M:24 MAN sdl.b[85] sys(Sys_sdl,sdl_wm_setcaption,title,0)
+sdldelay G:521 DEF sdl.h[133] sdldelay=
+sdldelay G:521 LG robots.b[1847] sdldelay(t0+stepmsecs-t1)
+sdldelay G:521 LG robots.b[1851] sdldelay(200)
+sdldelay G:521 RT sdl.b[168] LET sdldelay(msecs)BE..
+sdle_active M:1 DEF sdl.h[262] sdle_active=1
+sdle_arrowdown M:274 DEF sdl.h[279] sdle_arrowdown=274
+sdle_arrowdown M:274 MAN robots.b[1481] CASE sdle_arrowdown:.. 
+sdle_arrowleft M:276 DEF sdl.h[281] sdle_arrowleft=276
+sdle_arrowleft M:276 MAN robots.b[1501] CASE sdle_arrowleft:.. 
+sdle_arrowright M:275 DEF sdl.h[280] sdle_arrowright=275
+sdle_arrowright M:275 MAN robots.b[1490] CASE sdle_arrowright:.. 
+sdle_arrowup M:273 DEF sdl.h[278] sdle_arrowup=273
+sdle_arrowup M:273 MAN robots.b[1472] CASE sdle_arrowup:.. 
+sdle_joyaxismotion M:7 DEF sdl.h[268] sdle_joyaxismotion=7
+sdle_joyballmotion M:8 DEF sdl.h[269] sdle_joyballmotion=8
+sdle_joybuttondown M:10 DEF sdl.h[271] sdle_joybuttondown=10
+sdle_joybuttonup M:11 DEF sdl.h[272] sdle_joybuttonup=11
+sdle_joyhatmotion M:9 DEF sdl.h[270] sdle_joyhatmotion=9
+sdle_keydown M:2 DEF sdl.h[263] sdle_keydown=2
+sdle_keydown M:2 MAN robots.b[1404] CASE sdle_keydown:.. 
+sdle_keyup M:3 DEF sdl.h[264] sdle_keyup=3
+sdle_mousebuttondown M:5 DEF sdl.h[266] sdle_mousebuttondown=5
+sdle_mousebuttonup M:6 DEF sdl.h[267] sdle_mousebuttonup=6
+sdle_mousemotion M:4 DEF sdl.h[265] sdle_mousemotion=4
+sdle_quit M:12 DEF sdl.h[273] sdle_quit=12
+sdle_quit M:12 MAN robots.b[1513] CASE sdle_quit:.. 
+sdle_syswmevent M:13 DEF sdl.h[274] sdle_syswmevent=13
+sdle_userevent M:15 DEF sdl.h[276] sdle_userevent=15
+sdle_videoresize M:14 DEF sdl.h[275] sdle_videoresize=14
+sdlmsecs G:522 DEF sdl.h[134] sdlmsecs=
+sdlmsecs G:522 FN sdl.b[172] LET sdlmsecs()=..
+sdlmsecs G:522 LG robots.b[1824] sdlmsecs()
+sdlmsecs G:522 LG robots.b[1844] t1:=sdlmsecs()
+sdlmsecs G:522 LG robots.b[395] msecsnow:=sdlmsecs()-msecs0
+sectword M:64991 DEF libhdr.h[244] sectword=64991
+seed G:220 DEF robots.b[140] seed=
+seed G:220 LG robots.b[1637] setseed(seed)
+seed G:220 SG robots.b[1601] seed:=5
+seed G:220 SG robots.b[1625] seed:=!argv!4
+selectinput G:56 DEF libhdr.h[82] selectinput=56
+selectoutput G:57 DEF libhdr.h[83] selectoutput=57
+selectsurface G:485 DEF sdl.h[88] selectsurface=
+selectsurface G:485 LG robots.b[1137] selectsurface(surf,width,height)
+selectsurface G:485 LG robots.b[1157] selectsurface(surf,width,height)
+selectsurface G:485 LG robots.b[1321] selectsurface(screen,screenxsize,screenysize)
+selectsurface G:485 LG robots.b[1324] selectsurface(screen,xsize,ysize)
+selectsurface G:485 LG robots.b[1341] selectsurface(screen,xsize,ysize)
+selectsurface G:485 LG sdl.b[80] selectsurface(screen,xsize,ysize)
+selectsurface G:485 RT sdl.b[100] LET selectsurface(surf,xsize,ysize)BE..
+sendpkt G:165 DEF libhdr.h[198] sendpkt=165
+set_process_name G:175 DEF libhdr.h[206] set_process_name=175
+setbit G:112 DEF libhdr.h[139] setbit=112
+setbulk G:122 DEF libhdr.h[149] setbulk=122
+setcaption G:452 DEF sdl.h[43] setcaption=
+setcaption G:452 LG sdl.b[79] setcaption(title)
+setcaption G:452 RT sdl.b[85] LET setcaption(title)BE..
+setcolour G:469 DEF sdl.h[67] setcolour=
+setcolour G:469 LG robots.b[1141] setcolour(col_gray1)
+setcolour G:469 LG robots.b[1144] setcolour(col)
+setcolour G:469 LG robots.b[1161] setcolour(col)
+setcolour G:469 LG robots.b[1255] setcolour(r!r_id=1->robot1colour,robotcolour)
+setcolour G:469 LG robots.b[1266] setcolour(col_black)
+setcolour G:469 LG robots.b[1270] setcolour(grabbercolour)
+setcolour G:469 LG robots.b[1291] setcolour(col_red)
+setcolour G:469 LG robots.b[1314] setcolour(col_black)
+setcolour G:469 LG robots.b[1326] setcolour(col_gray1)
+setcolour G:469 LG robots.b[1328] setcolour(col_gray2)
+setcolour G:469 LG robots.b[1330] setcolour(col_gray3)
+setcolour G:469 LG robots.b[1332] setcolour(col_gray4)
+setcolour G:469 LG robots.b[1355] setcolour(maprgb(255,255,255))
+setcolour G:469 LG robots.b[1376] setcolour(maprgb(255,255,255))
+setcolour G:469 RT sdl.b[96] LET setcolour(col)BE..
+setcolourkey G:489 DEF sdl.h[92] setcolourkey=
+setcolourkey G:489 LG robots.b[1139] setcolourkey(surf,colkey)
+setcolourkey G:489 LG robots.b[1159] setcolourkey(surf,colkey)
+setcolourkey G:489 RT sdl.b[98] LET setcolourkey(surf,col)BE..
+setflags G:156 DEF libhdr.h[190] setflags=156
+setlims G:502 DEF sdl.h[108] setlims=
+setlims G:502 LG sdl.b[514] setlims(x2,y2)
+setlims G:502 LG sdl.b[517] setlims(x3,y3)
+setlims G:502 LG sdl.b[518] setlims(x4,y4)
+setlims G:502 LG sdl.b[519] setlims(x1,y1)
+setlims G:502 LG sdl.b[550] setlims(x2,y2)
+setlims G:502 LG sdl.b[551] setlims(x3,y3)
+setlims G:502 LG sdl.b[552] setlims(x1,y1)
+setlims G:502 RT sdl.b[440] LET setlims(x,y)BE..
+setlims3d G:505 DEF sdl.h[111] setlims3d=
+setlims3d G:505 LG sdl.b[639] setlims3d(x2,y2,z2)
+setlims3d G:505 LG sdl.b[640] setlims3d(x3,y3,z3)
+setlims3d G:505 LG sdl.b[641] setlims3d(x4,y4,z4)
+setlims3d G:505 LG sdl.b[642] setlims3d(x1,y1,z1)
+setlims3d G:505 LG sdl.b[660] setlims3d(x2,y2,z2)
+setlims3d G:505 LG sdl.b[661] setlims3d(x3,y3,z3)
+setlims3d G:505 LG sdl.b[662] setlims3d(x1,y1,z1)
+setlims3d G:505 RT sdl.b[562] LET setlims3d(x,y,z)BE..
+setlogname G:117 DEF libhdr.h[144] setlogname=117
+setrecordlength G:68 DEF libhdr.h[94] setrecordlength=68
+setseed G:35 DEF libhdr.h[61] setseed=35
+setseed G:35 LG robots.b[1637] setseed(seed)
+settimeout G:55 DEF libhdr.h[81] settimeout=55
+settimeoutact G:124 DEF libhdr.h[151] settimeoutact=124
+shoulderradius M:4000 DEF robots.b[42] shoulderradius=4000
+shoulderradius M:4000 MAN robots.b[1204] shoulderradius
+shoulderradius M:4000 MAN robots.b[1260] drawfillcircle(r!r_lcx/One,.../One,shoulderradius/One)
+shoulderradius M:4000 MAN robots.b[1262] drawfillcircle(r!r_rcx/One,.../One,shoulderradius/One)
+shoulderradius M:4000 MAN robots.b[48] grabbedpos=bottleradius/(robotradius-shoulderradius-2*tipradius)/One
+shoulderradius M:4000 MAN robots.b[774] IF incontact(s,b,shoulderradius+bottleradius) DO ..
+shoulderradius M:4000 MAN robots.b[787] IF incontact(s,b,shoulderradius+bottleradius) DO ..
+shoulderradius M:4000 MAN robots.b[837] muldiv(robotradius-shoulderradius-armthickness,r!r_grabpos,One)
+showcursor G:524 DEF sdl.h[137] showcursor=
+showcursor G:524 FN sdl.b[178] LET showcursor()=..
+sine F:23 FN robots.b[1167] LET sine(theta)=..
+sine F:23 LF robots.b[1177] sine(x+64000)
+sine F:23 LF robots.b[1495] sine(4000)
+sine F:23 LF robots.b[1506] Op12
+spacep G:222 DEF robots.b[142] spacep=
+spacep G:222 LG robots.b[179] spacep
+spacep G:222 LG robots.b[180] spacep:=spacep+upb+1
+spacep G:222 LG robots.b[181] IF spacep>spacet DO ..
+spacep G:222 SG robots.b[1651] spacep,spacet:=spacev,spacev+spacevupb
+spacep G:222 SG robots.b[180] spacep:=spacep+upb+1
+spacet G:223 DEF robots.b[142] spacet=
+spacet G:223 LG robots.b[181] IF spacep>spacet DO ..
+spacet G:223 SG robots.b[1651] spacep,spacet:=spacev,spacev+spacevupb
+spacev G:221 DEF robots.b[142] spacev=
+spacev G:221 LG robots.b[1646] UNLESS spacev DO ..
+spacev G:221 LG robots.b[1651] spacep,spacet:=spacev,spacev+spacevupb
+spacev G:221 LG robots.b[1862] IF spacev DO ..
+spacev G:221 LG robots.b[1862] freevec(spacev)
+spacev G:221 SG robots.b[1644] spacev:=getvec(spacevupb)
+spacevupb M:100000 DEF robots.b[37] spacevupb=100000
+spacevupb M:100000 MAN robots.b[1644] spacev:=getvec(spacevupb)
+spacevupb M:100000 MAN robots.b[1651] spacep,spacet:=spacev,spacev+spacevupb
+splitname G:47 DEF libhdr.h[73] splitname=47
+sps G:208 DEF robots.b[126] sps=
+sps G:208 LG robots.b[1041] grabpos:=grabpos+grabposdot/sps
+sps G:208 LG robots.b[1113] r!r_cgx:=r!r_cgx+r!r_cgxdot/sps
+sps G:208 LG robots.b[1114] r!r_cgy:=r!r_cgy+r!r_cgydot/sps
+sps G:208 LG robots.b[1123] b!b_cgx:=b!b_cgx+b!b_cgxdot/sps
+sps G:208 LG robots.b[1124] b!b_cgy:=b!b_cgy+b!b_cgydot/sps
+sps G:208 LG robots.b[1379] plotf(30,345,"CPU u'sps = %n",...)
+sps G:208 LG robots.b[1805] stepmsecs:=1000/sps
+sps G:208 LG robots.b[1838] sps:=sps-1
+sps G:208 LG robots.b[1839] sps:=sps+1
+sps G:208 LG robots.b[1840] IF sps<1 DO ..
+sps G:208 LG robots.b[1841] stepmsecs:=1000/sps
+sps G:208 SG robots.b[1804] sps:=10
+sps G:208 SG robots.b[1838] sps:=sps-1
+sps G:208 SG robots.b[1839] sps:=sps+1
+sps G:208 SG robots.b[1840] sps:=1
+srchwk G:150 DEF libhdr.h[184] srchwk=150
+stackfree G:123 DEF libhdr.h[150] stackfree=123
+stackword M:#xABCD1234 DEF libhdr.h[242] stackword=#xABCD1234
+start G:1 DEF libhdr.h[27] start=1
+start G:1 FN robots.b[1595] LET start()=..
+startco G:23 DEF libhdr.h[49] startco=23
+step F:20 LF robots.b[1829] step()
+step F:20 RT robots.b[391] LET step()BE..
+stepping G:203 DEF robots.b[119] stepping=
+stepping G:203 LG robots.b[1469] stepping:=~stepping
+stepping G:203 LG robots.b[1829] IF stepping DO ..
+stepping G:203 SG robots.b[1469] stepping:=~stepping
+stepping G:203 SG robots.b[1800] stepping:=TRUE
+stepstream G:67 DEF libhdr.h[93] stepstream=67
+stop G:2 DEF libhdr.h[28] stop=2
+str2numb G:101 DEF libhdr.h[128] str2numb=101
+string_to_dat G:111 DEF libhdr.h[138] string_to_dat=111
+string_to_number G:100 DEF libhdr.h[127] string_to_number=100
+sys G:3 DEF libhdr.h[29] sys=3
+sys G:3 LG robots.b[1639] UNLESS sys(Sys_sdl,sdl_avail) DO ..
+sys G:3 LG sdl.b[134] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+sys G:3 LG sdl.b[149] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+sys G:3 LG sdl.b[165] RESULTIS sys(Sys_sdl,sdl_pollevent,@eventtype)
+sys G:3 LG sdl.b[169] sys(Sys_sdl,sdl_delay,msecs)
+sys G:3 LG sdl.b[172] sys(Sys_sdl,sdl_getticks)
+sys G:3 LG sdl.b[176] sys(Sys_sdl,sdl_hidecursor)
+sys G:3 LG sdl.b[178] sys(Sys_sdl,sdl_showcursor)
+sys G:3 LG sdl.b[181] sys(Sys_sdl,sdl_flip,screen)
+sys G:3 LG sdl.b[185] RESULTIS sys(Sys_sdl,sdl_mksurface,format,...)
+sys G:3 LG sdl.b[188] sys(Sys_sdl,sdl_freesurface,surf)
+sys G:3 LG sdl.b[194] sys(Sys_sdl,sdl_blitsurface,src,...)
+sys G:3 LG sdl.b[201] sys(Sys_sdl,sdl_blitsurface,src,...)
+sys G:3 LG sdl.b[205] sys(Sys_sdl,sdl_fillsurf,currsurf,col)
+sys G:3 LG sdl.b[37] IF sys(Sys_sdl,sdl_init,sdl_init_everything) DO ..
+sys G:3 LG sdl.b[38] sys(Sys_sdl,sdl_geterror,mes)
+sys G:3 LG sdl.b[44] joystick:=sys(Sys_sdl,sdl_joystickopen,0)
+sys G:3 LG sdl.b[63] screen:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+sys G:3 LG sdl.b[66] sys(Sys_sdl,sdl_geterror,mes)
+sys G:3 LG sdl.b[697] sys(Sys_sdl,sdl_fillrect,currsurf,...)
+sys G:3 LG sdl.b[74] sys(Sys_sdl,sdl_getsurfaceinfo,screen,...)
+sys G:3 LG sdl.b[83] sys(Sys_sdl,sdl_maprgb,format,...)
+sys G:3 LG sdl.b[85] sys(Sys_sdl,sdl_wm_setcaption,title,0)
+sys G:3 LG sdl.b[875] sys(Sys_sdl,sdl_drawfillcircle,currsurf,...)
+sys G:3 LG sdl.b[93] sys(Sys_sdl,sdl_quit)
+sys G:3 LG sdl.b[98] sys(Sys_sdl,sdl_setcolourkey,surf,col)
+sysabort G:29 DEF libhdr.h[55] sysabort=29
+t_bhunk M:3000 DEF libhdr.h[238] t_bhunk=3000
+t_bhunk64 M:4000 DEF libhdr.h[239] t_bhunk64=4000
+t_end M:1002 DEF libhdr.h[234] t_end=1002
+t_end64 M:2002 DEF libhdr.h[237] t_end64=2002
+t_hunk M:1000 DEF libhdr.h[232] t_hunk=1000
+t_hunk64 M:2000 DEF libhdr.h[235] t_hunk64=2000
+t_reloc M:1001 DEF libhdr.h[233] t_reloc=1001
+t_reloc64 M:2001 DEF libhdr.h[236] t_reloc64=2001
+taskid G:152 DEF libhdr.h[186] taskid=152
+taskwait G:160 DEF libhdr.h[194] taskwait=160
+tcb G:151 DEF libhdr.h[185] tcb=151
+tcb_a M:11 DEF libhdr.h[574] tcb_a=tcb_regs
+tcb_active M:10 DEF libhdr.h[571] tcb_active=10
+tcb_b M:12 DEF libhdr.h[575] tcb_b=12
+tcb_c M:13 DEF libhdr.h[576] tcb_c=13
+tcb_count M:18 DEF libhdr.h[581] tcb_count=18
+tcb_flags M:5 DEF libhdr.h[566] tcb_flags=5
+tcb_g M:15 DEF libhdr.h[578] tcb_g=15
+tcb_gbase M:8 DEF libhdr.h[569] tcb_gbase=8
+tcb_link M:0 DEF libhdr.h[561] tcb_link=0
+tcb_namebase M:19 DEF libhdr.h[583] tcb_namebase=19
+tcb_namebase M:19 MAN libhdr.h[585] tcb_upb=tcb_namebase+15/bytesperword+1
+tcb_p M:14 DEF libhdr.h[577] tcb_p=14
+tcb_pc M:17 DEF libhdr.h[580] tcb_pc=17
+tcb_pri M:2 DEF libhdr.h[563] tcb_pri=2
+tcb_regs M:11 DEF libhdr.h[573] tcb_regs=11
+tcb_regs M:11 MAN libhdr.h[574] tcb_a=tcb_regs
+tcb_sbase M:9 DEF libhdr.h[570] tcb_sbase=9
+tcb_seglist M:7 DEF libhdr.h[568] tcb_seglist=7
+tcb_st M:16 DEF libhdr.h[579] tcb_st=16
+tcb_state M:4 DEF libhdr.h[565] tcb_state=4
+tcb_stsiz M:6 DEF libhdr.h[567] tcb_stsiz=6
+tcb_taskid M:1 DEF libhdr.h[562] tcb_taskid=1
+tcb_upb M:23 DEF libhdr.h[585] tcb_upb=tcb_namebase+15/bytesperword+1
+tcb_wkq M:3 DEF libhdr.h[564] tcb_wkq=3
+testbit G:113 DEF libhdr.h[140] testbit=113
+testflags G:157 DEF libhdr.h[191] testflags=157
+tg M:190 DEF libhdr.h[216] tg=190
+thepit G:217 DEF robots.b[137] thepit=
+thepit G:217 LG robots.b[469] IF incontact(r,thepit,pitradius+edgesize) DO ..
+thepit G:217 LG robots.b[496] IF incontact(b,thepit,pitradius+edgesize) DO ..
+thepit G:217 LG robots.b[499] IF incontact(b,thepit,pitradius-bottleradius) DO ..
+thepit G:217 SG robots.b[1703] thepit:=@pit_x
+timeoutch M:-2 DEF libhdr.h[227] timeoutch=-2
+tipradius M:2000 DEF robots.b[43] tipradius=2000
+tipradius M:2000 MAN robots.b[1205] tipradius
+tipradius M:2000 MAN robots.b[1281] drawfillcircle(r!r_ltpx/One,.../One,tipradius/One)
+tipradius M:2000 MAN robots.b[1287] drawfillcircle(r!r_rtpx/One,.../One,tipradius/One)
+tipradius M:2000 MAN robots.b[44] armthickness=2*tipradius
+tipradius M:2000 MAN robots.b[48] grabbedpos=bottleradius/(robotradius-shoulderradius-2*tipradius)/One
+tipradius M:2000 MAN robots.b[800] IF incontact(s,b,tipradius+bottleradius) DO ..
+tipradius M:2000 MAN robots.b[813] IF incontact(s,b,tipradius+bottleradius) DO ..
+ug M:200 DEF libhdr.h[217] ug=200
+ug M:200 MAN robots.b[116] done=ug
+unhold G:159 DEF libhdr.h[193] unhold=159
+unloadseg G:106 DEF libhdr.h[133] unloadseg=106
+unpackstring G:31 DEF libhdr.h[57] unpackstring=31
+unrdch G:40 DEF libhdr.h[66] unrdch=40
+updatescreen G:525 DEF sdl.h[138] updatescreen=
+updatescreen G:525 LG robots.b[1834] updatescreen()
+updatescreen G:525 RT sdl.b[180] LET updatescreen()BE..
+usage G:205 DEF robots.b[122] usage=
+usage G:205 LG robots.b[1379] plotf(30,345,"CPU u'sps = %n",...)
+usage G:205 LG robots.b[1836] UNLESS 80<usage&usage<95 DO ..
+usage G:205 LG robots.b[1837] TEST usage>90 THEN .. ELSE ..
+usage G:205 SG robots.b[1801] usage:=0
+usage G:205 SG robots.b[1831] usage:=100*comptime/stepmsecs
+wall_ex G:248 DEF robots.b[165] wall_ex=
+wall_ex G:248 LG robots.b[420] wall_ex-x
+wall_ex G:248 LG robots.b[457] r!r_cgxdot,r!r_cgx:=Op12,wall_ex-robotradius
+wall_ex G:248 LG robots.b[555] wall_ex-x
+wall_ex G:248 LG robots.b[578] b!b_cgxdot,b!b_cgx:=Op12,wall_ex-bottleradius
+wall_ex G:248 SG robots.b[1808] wall_ex:=(screenxsize-1)*One
+wall_ny G:250 DEF robots.b[167] wall_ny=
+wall_ny G:250 LG robots.b[419] wall_ny-y
+wall_ny G:250 LG robots.b[449] r!r_cgydot,r!r_cgy:=Op12,wall_ny-robotradius
+wall_ny G:250 LG robots.b[554] wall_ny-y
+wall_ny G:250 LG robots.b[570] b!b_cgydot,b!b_cgy:=Op12,wall_ny-bottleradius
+wall_ny G:250 SG robots.b[1811] wall_ny:=(screenysize-1)*One
+wall_sy G:249 DEF robots.b[166] wall_sy=
+wall_sy G:249 LG robots.b[421] y-wall_sy
+wall_sy G:249 LG robots.b[465] r!r_cgydot,r!r_cgy:=Op12,wall_sy+robotradius
+wall_sy G:249 LG robots.b[556] y-wall_sy
+wall_sy G:249 LG robots.b[586] b!b_cgydot,b!b_cgy:=Op12,wall_sy+bottleradius
+wall_sy G:249 SG robots.b[1810] wall_sy:=0
+wall_wx G:247 DEF robots.b[164] wall_wx=
+wall_wx G:247 LG robots.b[418] x-wall_wx
+wall_wx G:247 LG robots.b[441] r!r_cgxdot,r!r_cgx:=Op12,wall_wx+robotradius
+wall_wx G:247 LG robots.b[553] x-wall_wx
+wall_wx G:247 LG robots.b[562] b!b_cgxdot,b!b_cgx:=Op12,wall_wx+bottleradius
+wall_wx G:247 SG robots.b[1807] wall_wx:=0
+wrch G:41 DEF libhdr.h[67] wrch=41
+wrch G:41 LG sdl.b[362] wrch
+wrch G:41 SG sdl.b[366] wrch:=plotwrch
+wrch G:41 SG sdl.b[368] wrch:=oldwrch
+write_ch_slice F:30 LF sdl.b[211] write_ch_slice(currx,...-line,ch,line)
+write_ch_slice F:30 RT sdl.b[215] LET write_ch_slice(x,y,ch,line)BE..
+writed G:85 DEF libhdr.h[111] writed=85
+writef G:94 DEF libhdr.h[121] writef=94
+writef G:94 LG robots.b[1514] writef("QUIT*n")
+writef G:94 LG robots.b[1607] writef("Bad a' robots*n")
+writef G:94 LG robots.b[1640] writef("*nThe 'ailable*n")
+writef G:94 LG robots.b[1647] writef("Insuf'ailable*n")
+writef G:94 LG robots.b[1664] writef("dx=%8'q=%8.3d*n",One,dy,...)
+writef G:94 LG robots.b[1669] writef("Error' -%7.3d*n",e1-One,One-e2)
+writef G:94 LG robots.b[1729] writef("Too m'o place*n")
+writef G:94 LG robots.b[182] writef("Insuf't space*n")
+writef G:94 LG robots.b[1850] writef("*nQuitting*n")
+writef G:94 LG robots.b[322] writef("dir  '%10.3d)*n",c,s)
+writef G:94 LG robots.b[323] writef("p1   '%10.3d)*n",p1!0,p1!1)
+writef G:94 LG robots.b[324] writef("p2   '%10.3d)*n",p2!0,p2!1)
+writef G:94 LG robots.b[325] writef("p1dot') m1=%n*n",p1!2,...,m1)
+writef G:94 LG robots.b[326] writef("p2dot') m2=%n*n",p2!2,...,m2)
+writef G:94 LG robots.b[327] writef("cgdot'%10.3d)*n",cgxdot,cgydot)
+writef G:94 LG robots.b[328] writef("r1dot'%10.3d)*n",rx1dot,ry1dot)
+writef G:94 LG robots.b[329] writef("r2dot'%10.3d)*n",rx2dot,ry2dot)
+writef G:94 LG robots.b[330] writef("t1dot'%10.3d)*n",t1dot,w1dot)
+writef G:94 LG robots.b[331] writef("t2dot'%10.3d)*n",t2dot,w2dot)
+writef G:94 LG robots.b[332] writef("t1dot'gravity*n",t1dot)
+writef G:94 LG robots.b[643] writef("R%n: 'ith R%n*n",rid1,rid2)
+writef G:94 LG robots.b[644] writef("R%n: ',%8.3d)*n",rid1,x1,...)
+writef G:94 LG robots.b[646] writef("R%n: ',%8.3d)*n",rid2,x2,...)
+writef G:94 LG robots.b[648] writef("(dx,d',%8.3d)*n",dx,dy,...)
+writef G:94 LG robots.b[650] writef("Relat',%8.3d)*n",c,s)
+writef G:94 LG robots.b[651] writef("sepx '= %8.3d*n",sepx,sepy,...)
+writef G:94 LG robots.b[658] writef("R%i2 's=%9.3d*n",rid1,rid2,...)
+writef G:94 LG robots.b[690] writef("Apply' to R%n*n",fx1,fy1,rid1)
+writef G:94 LG robots.b[691] writef("Apply' to R%n*n",fx2,fy2,rid2)
+writef G:94 LG robots.b[757] writef("R%n i' to B%n*n",rid,bid)
+writef G:94 LG robots.b[765] writef("R%n b'ith B%n*n",rid,bid)
+writef G:94 LG robots.b[777] writef("R%n l'ith B%n*n",rid,bid)
+writef G:94 LG robots.b[790] writef("R%n r'ith B%n*n",rid,bid)
+writef G:94 LG robots.b[803] writef("R%n l'ith B%n*n",rid,bid)
+writef G:94 LG robots.b[816] writef("R%n r'ith B%n*n",rid,bid)
+writef G:94 LG robots.b[844] writef("R%n: ' %8.3d)*n",rid,...,...)
+writef G:94 LG robots.b[845] writef("B%n: ' %8.3d)*n",bid,...,...)
+writef G:94 LG robots.b[846] writef("bx=%8'y=%8.3d*n",bx,by)
+writef G:94 LG robots.b[847] writef("tx=%8'n=%8.3d*n",tx,ty,grablen)
+writef G:94 LG robots.b[848] writef("x1=%8'2=%8.3d*n",robotradius,robotradius+grablen)
+writef G:94 LG robots.b[849] writef("y1=%8'4=%8.3d*n",y1,y2,...)
+writef G:94 LG sdl.b[367] writef(form,a,b,...)
+writef G:94 LG sdl.b[39] writef("Unabl'SDL: %s*n",mes)
+writef G:94 LG sdl.b[67] writef("Unabl'ode: %s*n",mes)
+writef G:94 LG sdl.b[930] writef("*ngetm'ailable*n")
+writehex G:87 DEF libhdr.h[113] writehex=87
+writen G:86 DEF libhdr.h[112] writen=86
+writeoct G:88 DEF libhdr.h[114] writeoct=88
+writes G:89 DEF libhdr.h[115] writes=89
+writet G:90 DEF libhdr.h[116] writet=90
+writeu G:91 DEF libhdr.h[117] writeu=91
+writewords G:45 DEF libhdr.h[71] writewords=45
+writez G:92 DEF libhdr.h[118] writez=92
+xsize G:218 DEF robots.b[138] xsize=
+xsize G:218 LG robots.b[1324] selectsurface(screen,xsize,ysize)
+xsize G:218 LG robots.b[1341] selectsurface(screen,xsize,ysize)
+xsize G:218 LG robots.b[1523] UNLESS dist<x&x<xsize*One-dist DO ..
+xsize G:218 LG robots.b[1679] mkscreen("Robot'for Help",xsize,ysize)
+xsize G:218 LG robots.b[1701] pit_x,pit_y:=xsize*One/2,ysize*One/2
+xsize G:218 LG robots.b[1721] x:=randno(xsize*One)
+xsize G:218 LG robots.b[1773] x:=randno(xsize*One)
+xsize G:218 SG robots.b[1618] xsize:=700
+xsize G:218 SG robots.b[1623] xsize:=!argv!2
+ysize G:219 DEF robots.b[139] ysize=
+ysize G:219 LG robots.b[1324] selectsurface(screen,xsize,ysize)
+ysize G:219 LG robots.b[1341] selectsurface(screen,xsize,ysize)
+ysize G:219 LG robots.b[1524] UNLESS dist<y&y<ysize*One-dist DO ..
+ysize G:219 LG robots.b[1679] mkscreen("Robot'for Help",xsize,ysize)
+ysize G:219 LG robots.b[1701] pit_x,pit_y:=xsize*One/2,ysize*One/2
+ysize G:219 LG robots.b[1722] y:=randno(ysize*One)
+ysize G:219 LG robots.b[1774] y:=randno(ysize*One)
+ysize G:219 SG robots.b[1619] ysize:=500
+ysize G:219 SG robots.b[1624] ysize:=!argv!3

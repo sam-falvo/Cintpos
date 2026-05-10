@@ -1,0 +1,11 @@
+.k arg
+
+# This just compiles the resident BCPL code of the Cintsys system.
+# It is used when creating the cross reference listing xcintsys.
+
+c bs bootsys "<arg>"
+c bs blib "<arg>"
+c bs dlibsys "<arg>"
+c bs clisys "<arg>"
+
+

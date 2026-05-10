@@ -1,0 +1,7 @@
+.k n/a,opt
+echo "bugify com/bcplfe.b  -s <n> <opt>"
+bugify com/bcplfe.b -s <n> <opt>
+echo "*nDifferences*n"
+shellcom "diff com/bcplfe.b BUGIFIED.b"
+echo "*nCompilation*n"
+bcpl BUGIFIED.b to junk

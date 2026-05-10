@@ -1,0 +1,30 @@
+// EXAMPL PAL  06/14/1968  1026.5
+
+def innerproduct(a,b) = valo
+{ let i = Order a
+  and rec f n = n<1 -> 0
+                    !  a n * b n * f(n-1)
+  in
+  if i = Order b then res f i;
+  Write 'Illegal call tp *'innerproduct*'';
+  res SYSTEMERROR 0
+}
+
+and A1 = 1, 2, 3
+and A2 = 4, 5, 6
+and B1 = 6, 7
+and B2 = 9, 10
+in
+
+def Test(p, q) be
+  Write(p, '*n', q, '*n*t', innerproduct(p, q), '*n')
+  in
+  Test(nil, nil);
+  Test(A1, A2);
+  Test(B1, B2);
+
+  Write 'and now an illegal argument:  ...*n*n' ;
+  Test(A1, B1);
+
+  Write 'All done.*n'
+  

@@ -1,0 +1,7 @@
+.k file/a,opt
+echo "cin32/bcpl nonames com16/<file>.b to rcin16/<file>  <opt>"
+cin32/bcpl nonames com16/<file>.b to rcin16/<file>  <opt>
+echo ""
+
+
+

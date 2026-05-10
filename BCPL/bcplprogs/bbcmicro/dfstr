@@ -1,0 +1,7 @@
+.k opt
+echo "mapcode bbccin/bcplrom hints hints/bcplrom.hints -t -r 32768 <opt>"
+"mapcode"  bbccin/bcplrom  hints hints/bcplrom.hints -t -r 32768 <opt>
+echo ""
+
+
+

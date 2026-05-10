@@ -1,0 +1,117 @@
+Condittional #defines controlling the ccompilation of
+cintsys and cintpos
+
+forLinuxSDL      for Linux on a Pentium with SDL
+forLinuxGL       for Linux on a Pentium with SDL and GL
+forRaspi         for the Raspberry Pi without graphics
+forRaspiSDL      for the Raspberry Pi with SDL graphics
+forRaspiGL       for the Raspberry Pi with OpenGL ES graphics
+forVmsVax        for the Vax under VMS
+forMacOSX        for Mac OSX
+forWin32         for Windows using Microsoft Visual C ???
+forCYGWIN32      for Windows using GNU Cygnus Solutions
+
+The following are no longer used
+forMAC
+forMIPS
+forSGI
+forLinuxamd64
+forLinuxPPC
+forSUN4
+forSPARC
+forALPHA
+forMSDOS
+forOS2
+forSHwinCE
+forMIPSwinCE
+forGP2X
+forMacOSPPC
+
+
+CINTPOSyes     Create cintpos or cintpos64
+CINTSYSyes     Create cintsys or cintsys64
+TARGET64       Create cintdyd64 or cintpod64 
+CURRENT64      The compiler is running on a 54 bit machine
+BIGENDER       The target code is big ender Cintcode
+MMAP           Cintcode or cintpos memory is allocated using mmap
+               to allow read, write and execute access.
+VMSNAMES       Convert BCPL filename syntax to VMS syntax 
+WINNAMES       Convert BCPL filename syntax to Windows syntax 
+UNIXNAMES      Convert BCPL filename syntax to Unix syntax 
+SOUND          Include sound library functions
+CALLC          Provde the callc function
+
+CINTERPyes  compile cinterp.c to create cinterp.o
+FASTERPyes                              fasterp.o
+RASTERINGyes                            rasterp.o
+
+SDLavail
+GLavail
+EXTavail
+JSAvail
+
+Makefile:           CC = gcc -O4 -DforLinux    -DSOUND -DCALLC -DEXTavail -march=native -mfpmath=sse -Wpedantic
+MakefileCygwin:     GP2XCC = $(HOME)/devkitPro/devkitGP2X/bin/arm-linux-gcc -O4 -static -DforGP2X
+MakefileCygwin:     CC = gcc -O4 -DforCYGWIN32
+MakefileGL:         CC = gcc -O3 -DforLinuxGL  -DSOUND -DCALLC -DEXTavail
+MakefileMacOSX:     CC = gcc -O3 -DforMacOSX   -DCALLC
+MakefileRaspi:      CC = gcc -O2 -DforRaspi    -DEXTavail -Wpedantic
+MakefileRaspiGL27:  CC = gcc -O4 -DforRaspiGL  -DEXTavail
+MakefileRaspiSDL:   CC = gcc -O4 -DforRaspiSDL -DEXTavail
+MakefileSDL:        CC = gcc -O4 -DforLinuxSDL -DSOUND -DCALLC -DEXTavail
+
+If TARGET64 is #defined code is being compiled for a 64 bit BCPL system.
+  This means the the BCPL wordlength is 64 and are the Cintcode register, memory
+  elements such as stack locations and global vector elements, also BCPL floating
+  point values.
+
+RASTSYSyes
+Originally cintcode/sysc contained two interpreters.
+cinterp.c   The source of the slow interpreter cinterp.o
+            and the fast interpreter fasterp.o
+	    If FASTERPyes is #defined fasterp. is compiled
+	    otherwise cinterp.o is created.
+rasterp.c   The source of rasterp.o
+The resulting system has two interpreters
+either cinterp.o and fasterp.o
+or     rasterp.o and fasterp.o defpeding on whethe #RASTERINGyes is d#defined.
+FASTERPyes and RASTERINGyes are never #defined at the same time.
+
+If RASTERINGyes is #defined code is included in the interpreter to generate
+raster data to bewritten to file as Cincode instructions are being executed.
+This data can be used later to create diagrams ofhow memory is used when a
+program runs. The implementayion used the #defined macro Rb, Rh and Rw to deal
+with memory references accessing bytes, 16 bit half words and BCPL words.
+When RASTERINGyes is not #defined, the macros generate no code.
+These macros are currently defined in cinterp.c but should be moved to
+cintsys.h for that they can be used in all the C source files of the system.
+
+If SDLavail is defined the SDL library is linked in to the system allowing
+functions such as SDL_init and SDL_SetVideoMode to be called.
+
+If GLavail is #defined the Open GL library is likin to the system allowing
+functions such as glCreateShader and glCompileShader to be called.
+Both SDLavail and GLavail can be #defined at the same time.
+
+In Cintpos/cintpos/sysc there were also two interpreters
+cinterp.c and rasterp.c both different from the cintsys verions.
+The cintsys and cintpos are now being combine to use just
+cintsys.c and cinterp.c with the differences controlled by the
+#defines CINTSYSyes and CINTPOSyes.
+These #defines control the difference between cintsys and cintpos
+in all the C sourcode of these two systems.
+
+Eventually these two systems will be compiled from exactly the same
+source code files with the differences controlled by #defines.
+
+
+
+sysc/cintsys.c:#ifdef TARGET64
+sysc/cintsys.c:  // This version cannot be used when TARGET64 is defined.
+sysc/cintsys.c:  // If TARGET64 is set, BCPLWORD is the type of a 64 bit integer
+sysc/cintsys.c:#ifndef TARGET64
+sysc/cintsys.c:#ifdef TARGET64
+sysc/mkint-h.c:  // TARGET64 is conditionally defined elsewhere depending on the BCPL word
+sysc/mkint-h.c:  // FLOAT32 depending on whether TARGET64 is defined or not. Thus BCPL
+
+

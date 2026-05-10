@@ -1,0 +1,22 @@
+$get!mushdr;
+
+\score "Opus 0" [
+
+\conductor
+ ( \name "conductor"
+   4s1\tempo (120 60) ||
+
+ )
+
+\part
+ ( \name "Piano RH"
+   (4c4 d e f)\tempo(s4 100 s 50 s 100 s) ||
+ )
+
+\part
+ ( \name "Piano LH"
+   (3c4 (d e d)\tup s2 f4)\tempo(50 s4 100 s 50) ||
+ )
+
+]
+

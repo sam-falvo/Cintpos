@@ -1,0 +1,350 @@
+Before calling findsections
+fcounter=0 notfcounter=0 mcounter=0 notmcounter=0
+codevsize-fcounter-notfcounter=526
+codevsize-mcounter-notmcounter=526
+
+Calling findsections
+
+    0: 03E8 BCPL  Section     size   520 bytes
+  522: Max global number 289
+  518: G001 =    16   START
+After calling findsections
+fcounter=1 notfcounter=15 mcounter=0 notmcounter=16
+codevsize-fcounter-notfcounter=510
+codevsize-mcounter-notmcounter=510
+
+Calling findnames
+
+Finding section, needs and entry names
+    6: SECTION Name: ARGS   
+After calling findnames
+fcounter=1 notfcounter=25 mcounter=0 notmcounter=26
+codevsize-fcounter-notfcounter=500
+codevsize-mcounter-notmcounter=500
+
+Calling scancode
+
+After calling scancode
+fcounter=227 notfcounter=187 mcounter=0 notmcounter=409
+codevsize-fcounter-notfcounter=112
+codevsize-mcounter-notmcounter=117
+
+Calling findnotf
+
+After calling findnotf
+fcounter=227 notfcounter=288 mcounter=0 notmcounter=409
+codevsize-fcounter-notfcounter=11
+codevsize-mcounter-notmcounter=117
+
+Calling findstrings
+
+After calling findstrings
+fcounter=227 notfcounter=298 mcounter=0 notmcounter=512
+codevsize-fcounter-notfcounter=1
+codevsize-mcounter-notmcounter=14
+About to call dumpcode()
+
+//     0: 03E8 0104                HUNK    size=260
+//     4: 0104
+//     6: FDDF                     Section name: ARGS   
+//     8: 07 41 52 47 53 20 20 20
+
+//    16: GLOBAL ENTRY             G001 START
+//    16: 5A B4       LLL    70    "FROM/A,TO/A,REPORT/K,NONAMES/S,MAX/S"
+//    18: A3          SP3          
+//    19: 5A D7       LLL   108    "OCODE$$"
+//    21: A4          SP4          
+//    22: 5A DC       LLL   116    "*nBCPL - RCP V2.2*n"
+//    24: A5          SP5          
+//    25: 5A EB       LLL   134    "Bad args for %S"
+//    27: A6          SP6          
+//    28: 5A F8       LLL   150    "Cannot open %S"
+//    30: A7          SP7          
+//    31: 28 4A       K8G    74    G074 OUTPUT
+//    33: A8          SP8          
+//    34: 40 0A       LLP    10    
+//    36: A9          SP9          
+//    37: BB E3        J$   176    
+//    39: D0          NOP          
+
+//    40: L00040:    LET error(mess, a, b) BE
+
+//    40: 30 0F        LG    15    G015 RESULT2
+//    42: 31 FA        SG   250    G250 rc
+//    44: 5A F8       LLL   166    "*nError. "
+//    46: 26 5E       K6G    94    G094 WRITES
+//    48: 84          LP4          
+//    49: AA         SP10          
+//    50: 85          LP5          
+//    51: AB         SP11          
+//    52: 83          LP3          
+//    53: 26 5A       K6G    90    G090 WRITEF
+//    55: 26 54       K6G    84    G084 NEWLINE
+//    57: 3A 89        LL    68    
+//    59: AA         SP10          
+//    60: 3A 84        LL    66    
+//    62: 26 1C       K6G    28    G028 LONGJUMP
+//    64: 7B          RTN          
+//    65: D0          NOP          
+
+//    66: 0000       DATA      0    Operand of LL SL
+
+//    68: 0000       DATA      0    Operand of LL SL
+
+//    70: 24 String: "FROM/A,TO/A,REPORT/K,NONAMES/S,MAX/S"
+//    70: 24 46 52 4F 4D 2F 41 2C 54 4F 2F 41 2C 52 45 50 
+//    86: 4F 52 54 2F 4B 2C 4E 4F 4E 41 4D 45 53 2F 53 2C 
+//   102: 4D 41 58 2F 53 
+
+//   108: 07 String: "OCODE$$"
+//   108: 07 4F 43 4F 44 45 24 24 
+
+//   116: 11 String: "*nBCPL - RCP V2.2*n"
+//   116: 11 0A 42 43 50 4C 20 2D 20 52 43 50 20 56 32 2E 
+//   132: 32 0A 
+
+//   134: 0F String: "Bad args for %S"
+//   134: 0F 42 61 64 20 61 72 67 73 20 66 6F 72 20 25 53 
+
+//   150: 0E String: "Cannot open %S"
+//   150: 0E 43 61 6E 6E 6F 74 20 6F 70 65 6E 20 25 53 
+
+//   166: 08 String: "*nError. "
+//   166: 08 0A 45 72 72 6F 72 2E 20 
+
+//   176: L00176:
+//   176: 30 1B        LG    27    G027 LEVEL
+//   178: 20 5B         K    91    
+//   180: 38 0C        SL    66    
+//   182: 5B A4      LLL$   466    
+//   184: 38 0A        SL    68    
+//   186: 10           L0          
+//   187: 31 FA        SG   250    G250 rc
+//   189: 51 1E       SG1    30    G286 sourcestream
+//   191: 31 FD        SG   253    G253 ocodeoutstream
+//   193: 31 FE        SG   254    G254 codestream
+//   195: 88          LP8          
+//   196: 31 FC        SG   252    G252 verstream
+//   198: 89          LP9          
+//   199: A0 5F        SP    95    
+//   201: 60 50         L    80    
+//   203: A0 60        SP    96    
+//   205: 83          LP3          
+//   206: 30 61        LG    97    G097 RDARGS
+//   208: 20 5B         K    91    
+//   210: 3E 8C      JNE0   224    
+//   212: 60 0B         L    11    
+//   214: 31 0F        SG    15    G015 RESULT2
+//   216: 83          LP3          
+//   217: A0 5F        SP    95    
+//   219: 86          LP6          
+//   220: 5B 92      LLL$    40    
+//   222: 20 5B         K    91    
+
+//   224: L00224:
+//   224: 89          LP9          
+//   225: 76          RV2          
+//   226: 1E 9C      JEQ0   256    
+//   228: 89          LP9          
+//   229: 76          RV2          
+//   230: 30 43        LG    67    G067 FINDOUTPUT
+//   232: 20 5B         K    91    
+//   234: 31 FC        SG   252    G252 verstream
+//   236: 3E 8C      JNE0   250    
+//   238: 88          LP8          
+//   239: 31 FC        SG   252    G252 verstream
+//   241: 89          LP9          
+//   242: 76          RV2          
+//   243: A0 5F        SP    95    
+//   245: 87          LP7          
+//   246: 5B 85      LLL$    40    
+//   248: 20 5B         K    91    
+
+//   250: L00250:
+//   250: 30 FC        LG   252    G252 verstream
+//   252: 30 50        LG    80    G080 SELECTOUTPUT
+//   254: 20 5B         K    91    
+
+//   256: L00256:
+//   256: 85          LP5          
+//   257: 30 5E        LG    94    G094 WRITES
+//   259: 20 5B         K    91    
+//   261: 89          LP9          
+//   262: 77          RV3          
+//   263: F2          NOT          
+//   264: 51 06       SG1     6    G262 naming
+//   266: 30 FB        LG   251    G251 spacev
+//   268: 51 09       SG1     9    G265 nametable
+//   270: 50 09       LG1     9    G265 nametable
+//   272: 51 0E       SG1    14    G270 dvec
+//   274: 51 05       SG1     5    G261 cgworkspace
+//   276: 61 D6 06     LW  1750    
+//   279: 51 04       SG1     4    G260 cgworksize
+//   281: 60 80         L   128    
+//   283: 53 09       AG1     9    G265 nametable
+//   285: 51 0D       SG1    13    G269 chbuf
+//   287: E0 40         A    64    
+//   289: 51 0B       SG1    11    G267 wordv
+//   291: E0 80         A   128    
+//   293: 51 0A       SG1    10    G266 getv
+//   295: E0 14         A    20    
+//   297: 51 0C       SG1    12    G268 gett
+//   299: 61 00 05     LW  1280    
+//   302: 51 19       SG1    25    G281 declsize
+//   304: 13           L3          
+//   305: 51 1D       SG1    29    G285 savespacesize
+//   307: 60 A0         L   160    
+//   309: A0 5B        SP    91    
+//   311: 50 0E       LG1    14    G270 dvec
+//   313: 53 19       AG1    25    G281 declsize
+//   315: A0 5C        SP    92    
+//   317: 50 19       LG1    25    G281 declsize
+//   319: 51 0F       SG1    15    G271 dvect
+//   321: 80 5C        LP    92    
+//   323: 51 10       SG1    16    G272 globdecl
+//   325: 80 5B        LP    91    
+//   327: 51 11       SG1    17    G273 globdeclt
+//   329: C0 5C        AP    92    
+//   331: 51 12       SG1    18    G274 casek
+//   333: 80 5B        LP    91    
+//   335: 12           L2          
+//   336: 34          MUL          
+//   337: C0 5C        AP    92    
+//   339: 51 13       SG1    19    G275 casel
+//   341: 80 5B        LP    91    
+//   343: 51 14       SG1    20    G276 caset
+//   345: 89          LP9          
+//   346: 78          RV4          
+//   347: 31 FF        SG   255    G255 maxoption
+//   349: 89          LP9          
+//   350: 78          RV4          
+//   351: 3E AE      JNE0   399    
+//   353: 10           L0          
+//   354: A0 5F        SP    95    
+//   356: E9         L0P9          
+//   357: 30 3C        LG    60    G060 FILENAME
+//   359: 20 5B         K    91    
+//   361: 3E A4      JNE0   399    
+//   363: E9         L0P9          
+//   364: 30 94        LG   148    G148 FINDSTFILE
+//   366: 20 5B         K    91    
+//   368: 3E 9D      JNE0   399    
+//   370: 10           L0          
+//   371: A0 5F        SP    95    
+//   373: A0 60        SP    96    
+//   375: E9         L0P9          
+//   376: 30 A9        LG   169    G169 READ
+//   378: 20 5B         K    91    
+//   380: E9         L0P9          
+//   381: 30 94        LG   148    G148 FINDSTFILE
+//   383: 20 5B         K    91    
+//   385: A0 5B        SP    91    
+//   387: 1E 8A      JEQ0   399    
+//   389: B1           S1          
+//   390: 74           RV          
+//   391: 61 FF 7F     LW 32767    
+//   394: 58          AND          
+//   395: 0F          LM1          
+//   396: C0 5B        AP    91    
+//   398: 94           ST          
+
+//   399: L00399:
+//   399: E9         L0P9          
+//   400: 30 42        LG    66    G066 FINDINPUT
+//   402: 20 5B         K    91    
+//   404: 51 1E       SG1    30    G286 sourcestream
+//   406: 3E 88      JNE0   416    
+//   408: E9         L0P9          
+//   409: A0 5F        SP    95    
+//   411: 87          LP7          
+//   412: 5B 32      LLL$    40    
+//   414: 20 5B         K    91    
+
+//   416: L00416:
+//   416: 84          LP4          
+//   417: 30 43        LG    67    G067 FINDOUTPUT
+//   419: 20 5B         K    91    
+//   421: 31 FD        SG   253    G253 ocodeoutstream
+//   423: 3E 88      JNE0   433    
+//   425: 84          LP4          
+//   426: A0 5F        SP    95    
+//   428: 87          LP7          
+//   429: 5B 29      LLL$    40    
+//   431: 20 5B         K    91    
+
+//   433: L00433:
+//   433: 89          LP9          
+//   434: 75          RV1          
+//   435: 30 43        LG    67    G067 FINDOUTPUT
+//   437: 20 5B         K    91    
+//   439: 31 FE        SG   254    G254 codestream
+//   441: 3E 89      JNE0   452    
+//   443: 89          LP9          
+//   444: 75          RV1          
+//   445: A0 5F        SP    95    
+//   447: 87          LP7          
+//   448: 5B 20      LLL$    40    
+//   450: 20 5B         K    91    
+
+//   452: L00452:
+//   452: 50 1E       LG1    30    G286 sourcestream
+//   454: 30 4F        LG    79    G079 SELECTINPUT
+//   456: 20 5B         K    91    
+//   458: 11           L1          
+//   459: 51 20       SG1    32    G288 linecount
+//   461: 10           L0          
+//   462: 51 21       SG1    33    G289 reportcount
+//   464: 7B          RTN          
+//   465: D0          NOP          
+
+//   466: 50 1E       LG1    30    G286 sourcestream
+//   468: 5A A2       LLL   504    
+//   470: 20 5B         K    91    
+//   472: 30 FD        LG   253    G253 ocodeoutstream
+//   474: 5A 94       LLL   496    
+//   476: 20 5B         K    91    
+//   478: 84          LP4          
+//   479: 30 40        LG    64    G064 DELFILE
+//   481: 20 5B         K    91    
+//   483: 88          LP8          
+//   484: 30 FC        LG   252    G252 verstream
+//   486: 1C 84       JEQ   492    
+//   488: 5A 86       LLL   496    
+//   490: 20 5B         K    91    
+
+//   492: L00492:
+//   492: 7B          RTN          
+//   493: D0          NOP          
+
+//   494: FEC2          Resolving word => 176
+
+//   496: L00496:
+
+//   496: 1E 84      JEQ0   502    
+//   498: 24 50       K4G    80    G080 SELECTOUTPUT
+//   500: 24 48       K4G    72    G072 ENDWRITE
+
+//   502: L00502:
+//   502: 7B          RTN          
+//   503: D0          NOP          
+
+//   504: L00504:
+
+//   504: 1E 84      JEQ0   510    
+//   506: 24 4F       K4G    79    G079 SELECTINPUT
+//   508: 24 47       K4G    71    G071 ENDREAD
+
+//   510: L00510:
+//   510: 7B          RTN          
+//   511: D0          NOP          
+
+//   512: FFD2          Resolving word => 466
+//   514: FE26          Resolving word => 40
+
+//   516: 0000      Ginit end mark
+//   518: 0001 000C Init  G001 = 16  START
+//   522: 0121      Highest Global  G289 reportcount
+//   524: 03E0                  END
+
+
+No unclassified bytes

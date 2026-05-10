@@ -1,0 +1,27 @@
+.k file,opt
+
+c bc64 bcpl
+
+bcpl com/cmpltest.b to junk t64
+junk
+echo cmpltest
+wait 2
+
+bcpl com/fcmpltest.b to junk t64
+junk
+echo fcmpltest
+wait 2
+
+bcpl com/fltcmpltest.b to junk t64
+junk
+echo fltcmpltest
+wait 2
+
+bcpl com/patcmpltest.b to junk t64
+junk
+echo patcmpltest
+sysinfo
+
+
+
+

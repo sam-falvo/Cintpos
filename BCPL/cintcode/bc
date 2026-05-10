@@ -1,0 +1,4 @@
+.k file/a,opt
+echo "bcpl com/<file>.b to cin/<file> <opt>"
+bcpl com/<file>.b to cin/<file> <opt>
+

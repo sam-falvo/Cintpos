@@ -1,0 +1,378 @@
+Before calling findsections
+fcounter=0 notfcounter=0 mcounter=0 notmcounter=0
+codevsize-fcounter-notfcounter=514
+codevsize-mcounter-notmcounter=514
+
+Calling findsections
+
+    0: 03E8 CODE  Section     size   508 bytes
+  510: Max global number 166
+  506: G122 =    14   TRAPSTART
+After calling findsections
+fcounter=1 notfcounter=13 mcounter=0 notmcounter=14
+codevsize-fcounter-notfcounter=500
+codevsize-mcounter-notmcounter=500
+
+Calling findnames
+
+Finding section, needs and entry names
+    4: SECTION Name: STACK  
+After calling findnames
+fcounter=1 notfcounter=23 mcounter=0 notmcounter=24
+codevsize-fcounter-notfcounter=490
+codevsize-mcounter-notmcounter=490
+
+Calling scancode
+
+After calling scancode
+fcounter=196 notfcounter=133 mcounter=0 notmcounter=328
+codevsize-fcounter-notfcounter=185
+codevsize-mcounter-notmcounter=186
+
+Calling findnotf
+
+After calling findnotf
+fcounter=196 notfcounter=294 mcounter=0 notmcounter=328
+codevsize-fcounter-notfcounter=24
+codevsize-mcounter-notmcounter=186
+
+Calling findstrings
+
+After calling findstrings
+fcounter=196 notfcounter=318 mcounter=0 notmcounter=507
+codevsize-fcounter-notfcounter=0
+codevsize-mcounter-notmcounter=7
+About to call dumpcode()
+
+//     0: 03E8 00FE                MHUNK    size=254
+//     4: FDDF                     Section name: STACK  
+//     6: 07 53 54 41 43 4B 20 20
+
+//    14: GLOBAL ENTRY             G122 TRAPSTART
+//    14: 40 04       LLP     4    
+//    16: A3          SP3          
+//    17: 83          LP3          
+//    18: AB         SP11          
+//    19: 12           L2          
+//    20: AC         SP12          
+//    21: 5A CB       LLL    98    "ALL/S"
+//    23: 27 61       K7G    97    G097 RDARGS
+//    25: 3E 84      JNE0    31    
+//    27: 60 0B         L    11    
+//    29: 27 02       K7G     2    G002 STOP
+
+//    31: L00031:
+//    31: E3         L0P3          
+//    32: 1E A8      JEQ0    74    
+//    34: 30 16        LG    22    G022 CURRCO
+//    36: A7          SP7          
+//    37: 87          LP7          
+//    38: 5B D2      LLL$   462    
+//    40: 08           K8          
+//    41: 1E 8A      JEQ0    53    
+
+//    43: L00043:
+//    43: 87          LP7          
+//    44: 5A CC       LLL   122    
+//    46: 08           K8          
+//    47: 87          LP7          
+//    48: 75          RV1          
+//    49: A7          SP7          
+//    50: 0F          LM1          
+//    51: 3C 76       JNE    43    
+
+//    53: L00053:
+//    53: 30 A6        LG   166    G166 COLIST
+//    55: A7          SP7          
+//    56: BA 8B         J    69    
+
+//    58: L00058:
+//    58: 87          LP7          
+//    59: 75          RV1          
+//    60: 3E 84      JNE0    66    
+//    62: 87          LP7          
+//    63: 5A B9       LLL   122    
+//    65: 08           K8          
+
+//    66: L00066:
+//    66: 87          LP7          
+//    67: 76          RV2          
+//    68: A7          SP7          
+
+//    69: L00069:
+//    69: 87          LP7          
+//    70: 3E 72      JNE0    58    
+//    72: BA 8C         J    86    
+
+//    74: L00074:
+//    74: 30 16        LG    22    G022 CURRCO
+//    76: 5B BF      LLL$   462    
+//    78: 07           K7          
+//    79: 1E 85      JEQ0    86    
+//    81: 30 16        LG    22    G022 CURRCO
+//    83: 5A A5       LLL   122    
+//    85: 07           K7          
+
+//    86: L00086:
+//    86: 30 A6        LG   166    G166 COLIST
+//    88: 3E 84      JNE0    94    
+//    90: 5A 8C       LLL   104    "No current stack*n"
+//    92: 27 5E       K7G    94    G094 WRITES
+
+//    94: L00094:
+//    94: 10           L0          
+//    95: 27 02       K7G     2    G002 STOP
+//    97: 7B          RTN          
+
+//    98: 05 String: "ALL/S"
+//    98: 05 41 4C 4C 2F 53 
+
+//   104: 11 String: "No current stack*n"
+//   104: 11 4E 6F 20 63 75 72 72 65 6E 74 20 73 74 61 63 
+//   120: 6B 0A 
+
+//   122: L00122:
+
+//   122: E3         L0P3          
+//   123: A4          SP4          
+//   124: 19           L9          
+//   125: C4          AP4          
+//   126: A5          SP5          
+//   127: 83          LP3          
+//   128: AA         SP10          
+//   129: FC         L4P3          
+//   130: AB         SP11          
+//   131: 5B AE      LLL$   300    "*nCOROUTINE %I5 SIZE %I4"
+//   133: 26 5A       K6G    90    G090 WRITEF
+//   135: 30 16        LG    22    G022 CURRCO
+//   137: 83          LP3          
+//   138: 3C 86       JNE   146    
+//   140: 5B AB      LLL$   324    "   (Current)"
+//   142: 26 5A       K6G    90    G090 WRITEF
+//   144: BA 89         J   155    
+
+//   146: L00146:
+//   146: 30 14        LG    20    G020 MAINSTACK
+//   148: 83          LP3          
+//   149: 3C 84       JNE   155    
+//   151: 5B A6      LLL$   338    "   (Main)"
+//   153: 26 5A       K6G    90    G090 WRITEF
+
+//   155: L00155:
+//   155: 30 13        LG    19    G019 TRAPSTACK
+//   157: 83          LP3          
+//   158: 3C 84       JNE   164    
+//   160: 5B A3      LLL$   348    "   (Trap)"
+//   162: 26 5A       K6G    90    G090 WRITEF
+
+//   164: L00164:
+//   164: 0F          LM1          
+//   165: F3         L1P3          
+//   166: 7C 82       JGR   170    
+//   168: 9E 86      JLE0   176    
+
+//   170: L00170:
+//   170: F3         L1P3          
+//   171: AA         SP10          
+//   172: 5B 9E      LLL$   358    "*nParent%I6"
+//   174: 26 5A       K6G    90    G090 WRITEF
+
+//   176: L00176:
+//   176: FC         L4P3          
+//   177: A6          SP6          
+
+//   178: L00178:
+//   178: 0F          LM1          
+//   179: C6          AP6          
+//   180: A6          SP6          
+//   181: 83          LP3          
+//   182: D9         RVP6          
+//   183: 1E 79      JEQ0   178    
+//   185: 86          LP6          
+//   186: AB         SP11          
+//   187: 5B 97      LLL$   370    "*n%N words of stack used*n"
+//   189: 27 5A       K7G    90    G090 WRITEF
+//   191: 11           L1          
+//   192: A6          SP6          
+//   193: BA E3         J   294    
+
+//   195: L00195:
+//   195: 10           L0          
+//   196: 60 FF         L   255    
+//   198: B6         GBYT          
+//   199: 60 7F         L   127    
+//   201: 9C 89       JLE   212    
+//   203: 60 7C         L   124    
+//   205: 27 23       K7G    35    G035 OPSYS
+//   207: 61 F9 03     LW  1017    
+//   210: 27 17       K7G    23    G023 ABORT
+
+//   212: L00212:
+//   212: 84          LP4          
+//   213: AB         SP11          
+//   214: 5B 8B      LLL$   396    "%I6: "
+//   216: 27 5A       K7G    90    G090 WRITEF
+//   218: 83          LP3          
+//   219: 84          LP4          
+//   220: 3C 86       JNE   228    
+//   222: 5B 88      LLL$   402    " Base of stack*n"
+//   224: 27 5A       K7G    90    G090 WRITEF
+//   226: BA C7         J   299    
+
+//   228: L00228:
+//   228: 84          LP4          
+//   229: 83          LP3          
+//   230: 55          SUB          
+//   231: 5E 86      JLS0   239    
+//   233: B5          XCH          
+//   234: 83          LP3          
+//   235: 55          SUB          
+//   236: FC         L4P3          
+//   237: 9C 86       JLE   245    
+
+//   239: L00239:
+//   239: 5B 80      LLL$   418    " IMPROPER LINK*n"
+//   241: 27 5A       K7G    90    G090 WRITEF
+//   243: BA B6         J   299    
+
+//   245: L00245:
+//   245: F4         L1P4          
+//   246: AB         SP11          
+//   247: F8         L2P4          
+//   248: AC         SP12          
+//   249: 5B 7C      LLL$   434    " (return to %B) %A()"
+//   251: 27 5A       K7G    90    G090 WRITEF
+//   253: 17           L7          
+//   254: C4          AP4          
+//   255: 85          LP5          
+//   256: 5C 83       JLS   261    
+//   258: 84          LP4          
+//   259: BC 83       JGE   264    
+
+//   261: L00261:
+//   261: 17           L7          
+//   262: C4          AP4          
+//   263: A5          SP5          
+
+//   264: L00264:
+//   264: 13           L3          
+//   265: C4          AP4          
+//   266: A7          SP7          
+//   267: 0F          LM1          
+//   268: C5          AP5          
+//   269: A8          SP8          
+//   270: BA 89         J   281    
+
+//   272: L00272:
+//   272: E7         L0P7          
+//   273: AD         SP13          
+//   274: 5B 71      LLL$   456    "%A"
+//   276: 29 5A       K9G    90    G090 WRITEF
+//   278: 11           L1          
+//   279: C7          AP7          
+//   280: A7          SP7          
+
+//   281: L00281:
+//   281: 87          LP7          
+//   282: 88          LP8          
+//   283: 9C 73       JLE   272    
+//   285: 27 54       K7G    84    G084 NEWLINE
+//   287: 84          LP4          
+//   288: A5          SP5          
+//   289: E4         L0P4          
+//   290: A4          SP4          
+//   291: 11           L1          
+//   292: C6          AP6          
+//   293: A6          SP6          
+
+//   294: L00294:
+//   294: 86          LP6          
+//   295: 60 19         L    25    
+//   297: 9C 18       JLE   195    
+
+//   299: L00299:
+//   299: 7B          RTN          
+
+//   300: 17 String: "*nCOROUTINE %I5 SIZE %I4"
+//   300: 17 0A 43 4F 52 4F 55 54 49 4E 45 20 25 49 35 20 
+//   316: 53 49 5A 45 20 25 49 34 
+
+//   324: 0C String: "   (Current)"
+//   324: 0C 20 20 20 28 43 75 72 72 65 6E 74 29 
+
+//   338: 09 String: "   (Main)"
+//   338: 09 20 20 20 28 4D 61 69 6E 29 
+
+//   348: 09 String: "   (Trap)"
+//   348: 09 20 20 20 28 54 72 61 70 29 
+
+//   358: 0A String: "*nParent%I6"
+//   358: 0A 0A 50 61 72 65 6E 74 25 49 36 
+
+//   370: 18 String: "*n%N words of stack used*n"
+//   370: 18 0A 25 4E 20 77 6F 72 64 73 20 6F 66 20 73 74 
+//   386: 61 63 6B 20 75 73 65 64 0A 
+
+//   396: 05 String: "%I6: "
+//   396: 05 25 49 36 3A 20 
+
+//   402: 0F String: " Base of stack*n"
+//   402: 0F 20 42 61 73 65 20 6F 66 20 73 74 61 63 6B 0A 
+
+//   418: 0F String: " IMPROPER LINK*n"
+//   418: 0F 20 49 4D 50 52 4F 50 45 52 20 4C 49 4E 4B 0A 
+
+//   434: 14 String: " (return to %B) %A()"
+//   434: 14 20 28 72 65 74 75 72 6E 20 74 6F 20 25 42 29 
+//   450: 20 25 41 28 29 
+
+//   456: 02 String: "%A"
+//   456: 02 25 41 
+
+//   460: 0002          Resolving word => 462
+
+//   462: L00462:
+
+//   462: 30 A6        LG   166    G166 COLIST
+//   464: A4          SP4          
+//   465: BA 89         J   476    
+
+//   467: L00467:
+//   467: 83          LP3          
+//   468: 84          LP4          
+//   469: 3C 83       JNE   474    
+//   471: 0F          LM1          
+//   472: BA 86         J   480    
+
+//   474: L00474:
+//   474: F8         L2P4          
+//   475: A4          SP4          
+
+//   476: L00476:
+//   476: 84          LP4          
+//   477: 3E 74      JNE0   467    
+//   479: 10           L0          
+
+//   480: L00480:
+//   480: 7B          RTN          
+//   481: D0          NOP          
+
+//   482: FF4A          Resolving word => 300
+//   484: FF60          Resolving word => 324
+//   486: FF6C          Resolving word => 338
+//   488: FF74          Resolving word => 348
+//   490: FF7C          Resolving word => 358
+//   492: FF86          Resolving word => 370
+//   494: FF9E          Resolving word => 396
+//   496: FFA2          Resolving word => 402
+//   498: FFB0          Resolving word => 418
+//   500: FFBE          Resolving word => 434
+//   502: FFD2          Resolving word => 456
+
+//   504: 0000      Ginit end mark
+//   506: 007A 000A Init  G122 = 14  TRAPSTART
+//   510: 00A6      Highest Global  G166 COLIST
+//   512: 03E0                  END
+
+
+No unclassified bytes

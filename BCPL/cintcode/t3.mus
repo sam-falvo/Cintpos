@@ -1,0 +1,19 @@
+$get!mushdr;
+
+\score "Opus 1" [
+
+\conductor
+ ( \name "Conductor"
+   s4 |
+   s1 |
+   s1 ||
+ )
+
+\part
+ ( \name "Piano part"
+   2c4 |
+   3c1 |
+   4c1 ||
+ )
+]
+

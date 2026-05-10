@@ -1,0 +1,2879 @@
+AA M:0 DEF dnappm.b[430] AA=0
+AA M:0 MAN dnappm.b[1267] currpair:=AA
+AA M:0 MAN dnappm.b[1988] FOR XY=AA TO TT DO..
+AA M:0 MAN dnappm.b[2032] FOR XY=AA TO TT DO..
+AA M:0 MAN dnappm.b[2052] FOR XY=AA TO TT DO..
+AC M:1 DEF dnappm.b[430] AC=
+AG M:2 DEF dnappm.b[430] AG=
+AT M:3 DEF dnappm.b[430] AT=
+Ass_dev M:4 DEF libhdr.h[754] Ass_dev=4
+Ass_dir M:2 DEF libhdr.h[752] Ass_dir=2
+Ass_link M:0 DEF libhdr.h[750] Ass_link=0
+Ass_name M:5 DEF libhdr.h[755] Ass_name=5
+Ass_task M:1 DEF libhdr.h[751] Ass_task=1
+Ass_type M:3 DEF libhdr.h[753] Ass_type=3
+B2Wsh M:2 DEF libhdr.h[26] B2Wsh=1+32/32
+B2Wsh M:2 MAN libhdr.h[244] bytesperword=1<<B2Wsh
+CA M:4 DEF dnappm.b[430] CA=
+CC M:5 DEF dnappm.b[430] CC=
+CG M:6 DEF dnappm.b[430] CG=
+CT M:7 DEF dnappm.b[430] CT=
+CloseObj M:1 DEF libhdr.h[294] CloseObj=1
+Dcb_arg M:4 DEF libhdr.h[694] Dcb_arg=4
+Dcb_cvp M:16 DEF libhdr.h[708] Dcb_cvp=16
+Dcb_devid M:1 DEF libhdr.h[691] Dcb_devid=1
+Dcb_flag M:7 DEF libhdr.h[697] Dcb_flag=7
+Dcb_intson M:6 DEF libhdr.h[696] Dcb_intson=6
+Dcb_irq M:5 DEF libhdr.h[695] Dcb_irq=5
+Dcb_op M:3 DEF libhdr.h[693] Dcb_op=3
+Dcb_threadp M:14 DEF libhdr.h[707] Dcb_threadp=14
+Dcb_type M:0 DEF libhdr.h[690] Dcb_type=0
+Dcb_upb M:17 DEF libhdr.h[712] Dcb_upb=17
+Dcb_var0 M:8 DEF libhdr.h[701] Dcb_var0=8
+Dcb_var1 M:9 DEF libhdr.h[702] Dcb_var1=9
+Dcb_var2 M:10 DEF libhdr.h[703] Dcb_var2=10
+Dcb_var3 M:11 DEF libhdr.h[704] Dcb_var3=11
+Dcb_var4 M:12 DEF libhdr.h[705] Dcb_var4=12
+Dcb_wkq M:2 DEF libhdr.h[692] Dcb_wkq=2
+Devc_create M:1 DEF libhdr.h[722] Devc_create=1
+Devc_destroy M:2 DEF libhdr.h[723] Devc_destroy=2
+Devc_setintson M:5 DEF libhdr.h[726] Devc_setintson=5
+Devc_start M:3 DEF libhdr.h[724] Devc_start=3
+Devc_stop M:4 DEF libhdr.h[725] Devc_stop=4
+Devt_clk M:1 DEF libhdr.h[715] Devt_clk=1
+Devt_fileop M:4 DEF libhdr.h[718] Devt_fileop=4
+Devt_tcpdev M:5 DEF libhdr.h[719] Devt_tcpdev=5
+Devt_ttyin M:2 DEF libhdr.h[716] Devt_ttyin=2
+Devt_ttyout M:3 DEF libhdr.h[717] Devt_ttyout=3
+GA M:8 DEF dnappm.b[430] GA=
+GB2312 M:-2 DEF libhdr.h[623] GB2312=-2
+GC M:9 DEF dnappm.b[430] GC=
+GG M:10 DEF dnappm.b[430] GG=
+GT M:11 DEF dnappm.b[430] GT=
+InitObj M:0 DEF libhdr.h[293] InitObj=0
+ON64 M:0 DEF libhdr.h[28] ON64=32=64
+State_dead M:12 DEF libhdr.h[741] State_dead=12
+State_hold M:2 DEF libhdr.h[738] State_hold=2
+State_int M:8 DEF libhdr.h[740] State_int=8
+State_pkt M:1 DEF libhdr.h[737] State_pkt=1
+State_wait M:4 DEF libhdr.h[739] State_wait=4
+Sys_buttons M:56 DEF libhdr.h[465] Sys_buttons=56
+Sys_callc M:59 DEF libhdr.h[468] Sys_callc=59
+Sys_callnative M:53 DEF libhdr.h[462] Sys_callnative=53
+Sys_close M:16 DEF libhdr.h[428] Sys_close=16
+Sys_cputime M:30 DEF libhdr.h[441] Sys_cputime=30
+Sys_datstamp M:44 DEF libhdr.h[453] Sys_datstamp=44
+Sys_delay M:57 DEF libhdr.h[466] Sys_delay=57
+Sys_deletefile M:17 DEF libhdr.h[429] Sys_deletefile=17
+Sys_devcom M:43 DEF libhdr.h[452] Sys_devcom=43
+Sys_dumpmem M:52 DEF libhdr.h[461] Sys_dumpmem=52
+Sys_ext M:68 DEF libhdr.h[479] Sys_ext=68
+Sys_filemodtime M:31 DEF libhdr.h[442] Sys_filemodtime=31
+Sys_filesize M:46 DEF libhdr.h[455] Sys_filesize=46
+Sys_flt M:63 DEF libhdr.h[473] Sys_flt=63
+Sys_flt M:63 MAN dnappm.b[1552]
+    scalefactor#:=screencentrex#/sys(Sys_flt,fl_tan,fovby2)
+Sys_flt M:63 MAN dnappm.b[2048] FIX rad2deg(sys(Sys_flt,fl_atan2,y,x))
+Sys_flt M:63 MAN dnappm.b[715] bn#:=sys(Sys_flt,fl_atan2,mlw,mlh)
+Sys_flt M:63 MAN dnappm.b[716] c#:=sys(Sys_flt,fl_cos,bn)
+Sys_flt M:63 MAN dnappm.b[716] s#:=sys(Sys_flt,fl_sin,bn)
+Sys_flt M:63 MAN dnappm.b[729] bw#:=sys(Sys_flt,fl_atan2,...,mlh)
+Sys_flt M:63 MAN dnappm.b[730] c#:=sys(Sys_flt,fl_cos,bw)
+Sys_flt M:63 MAN dnappm.b[730] s#:=sys(Sys_flt,fl_sin,bw)
+Sys_flt M:63 MAN dnappm.b[743] bh#:=sys(Sys_flt,fl_atan2,...,mtn)
+Sys_flt M:63 MAN dnappm.b[744] c#:=sys(Sys_flt,fl_cos,bh)
+Sys_flt M:63 MAN dnappm.b[744] s#:=sys(Sys_flt,fl_sin,bh)
+Sys_flt M:63 MAN dnappm.b[776] sys(Sys_flt,fl_cos,at)
+Sys_flt M:63 MAN dnappm.b[776] sys(Sys_flt,fl_sin,at)
+Sys_flt M:63 MAN dnappm.b[777] sys(Sys_flt,fl_cos,aw)
+Sys_flt M:63 MAN dnappm.b[777] sys(Sys_flt,fl_sin,aw)
+Sys_flt M:63 MAN dnappm.b[778] sys(Sys_flt,fl_cos,al)
+Sys_flt M:63 MAN dnappm.b[778] sys(Sys_flt,fl_sin,al)
+Sys_flt M:63 MAN dnappm.b[803] sys(Sys_flt,fl_cos,angle)
+Sys_flt M:63 MAN dnappm.b[804] sys(Sys_flt,fl_sin,angle)
+Sys_flt M:63 MAN dnappm.b[826] sys(Sys_flt,fl_cos,angle)
+Sys_flt M:63 MAN dnappm.b[827] sys(Sys_flt,fl_sin,angle)
+Sys_flt M:63 MAN dnappm.b[855] sys(Sys_flt,fl_cos,angle)
+Sys_flt M:63 MAN dnappm.b[856] sys(Sys_flt,fl_sin,angle)
+Sys_flt M:63 MAN sdl.b[66] sys(Sys_flt,fl_sqrt,x*x+y*y+z*z)
+Sys_flt M:63 MAN sdl.b[67]
+    TEST r#<sys(Sys_flt,fl_mk,1,-10) THEN .. ELSE ..
+Sys_flt M:63 MAN sdl.b[82] RESULTIS sys(Sys_flt,fl_sqrt,x*x+y*y+z*z)
+Sys_freevec M:22 DEF libhdr.h[434] Sys_freevec=22
+Sys_getbuildno M:71 DEF libhdr.h[482] Sys_getbuildno=71
+Sys_getpid M:51 DEF libhdr.h[460] Sys_getpid=51
+Sys_getprefix M:33 DEF libhdr.h[444] Sys_getprefix=33
+Sys_getsysval M:48 DEF libhdr.h[457] Sys_getsysval=48
+Sys_gettrval M:62 DEF libhdr.h[472] Sys_gettrval=62
+Sys_getvec M:21 DEF libhdr.h[433] Sys_getvec=21
+Sys_gl M:67 DEF libhdr.h[478] Sys_gl=67
+Sys_globin M:24 DEF libhdr.h[436] Sys_globin=24
+Sys_graphics M:34 DEF libhdr.h[445] Sys_graphics=34
+Sys_inc M:55 DEF libhdr.h[464] Sys_inc=55
+Sys_incdcount M:65 DEF libhdr.h[475] Sys_incdcount=65
+Sys_interpret M:7 DEF libhdr.h[420] Sys_interpret=7
+Sys_intflag M:28 DEF libhdr.h[439] Sys_intflag=28
+Sys_joy M:69 DEF libhdr.h[480] Sys_joy=69
+Sys_loadseg M:23 DEF libhdr.h[435] Sys_loadseg=23
+Sys_lockirq M:41 DEF libhdr.h[450] Sys_lockirq=41
+Sys_muldiv M:26 DEF libhdr.h[438] Sys_muldiv=26
+Sys_openappend M:19 DEF libhdr.h[431] Sys_openappend=19
+Sys_openread M:14 DEF libhdr.h[426] Sys_openread=14
+Sys_openreadwrite M:47 DEF libhdr.h[456] Sys_openreadwrite=47
+Sys_openwrite M:15 DEF libhdr.h[427] Sys_openwrite=15
+Sys_platform M:54 DEF libhdr.h[463] Sys_platform=54
+Sys_pollsardch M:64 DEF libhdr.h[474] Sys_pollsardch=64
+Sys_putsysval M:49 DEF libhdr.h[458] Sys_putsysval=49
+Sys_quit M:0 DEF libhdr.h[413] Sys_quit=0
+Sys_read M:12 DEF libhdr.h[424] Sys_read=12
+Sys_renamefile M:18 DEF libhdr.h[430] Sys_renamefile=18
+Sys_rti M:1 DEF libhdr.h[414] Sys_rti=1
+Sys_sardch M:10 DEF libhdr.h[422] Sys_sardch=10
+Sys_saveregs M:2 DEF libhdr.h[415] Sys_saveregs=2
+Sys_sawrch M:11 DEF libhdr.h[423] Sys_sawrch=11
+Sys_sdl M:66 DEF libhdr.h[477] Sys_sdl=66
+Sys_sdl M:66 MAN sdl.b[160]
+    IF sys(Sys_sdl,sdl_init,sdl_init_everything) DO ..
+Sys_sdl M:66 MAN sdl.b[162] sys(Sys_sdl,sdl_geterror,mes)
+Sys_sdl M:66 MAN sdl.b[222]
+    ok:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+Sys_sdl M:66 MAN sdl.b[233] sys(Sys_sdl,sdl_geterror,mes)
+Sys_sdl M:66 MAN sdl.b[246]
+    sys(Sys_sdl,sdl_getsurfaceinfo,@screen,@flags)
+Sys_sdl M:66 MAN sdl.b[273] sys(Sys_sdl,sdl_maprgb,@format,r,g,b)
+Sys_sdl M:66 MAN sdl.b[275] sys(Sys_sdl,sdl_wm_setcaption,title,0)
+Sys_sdl M:66 MAN sdl.b[283] sys(Sys_sdl,sdl_quit)
+Sys_sdl M:66 MAN sdl.b[289] sys(Sys_sdl,sdl_setcolourkey,surfptr,col)
+Sys_sdl M:66 MAN sdl.b[293]
+    sys(Sys_sdl,sdl_mksurface,@format,w,h,surfptr)
+Sys_sdl M:66 MAN sdl.b[297] sys(Sys_sdl,sdl_freesurface,surfptr)
+Sys_sdl M:66 MAN sdl.b[307]
+    RESULTIS sys(Sys_sdl,sdl_pollevent,@eventtype)
+Sys_sdl M:66 MAN sdl.b[311] sys(Sys_sdl,sdl_delay,msecs)
+Sys_sdl M:66 MAN sdl.b[313] sys(Sys_sdl,sdl_getticks)
+Sys_sdl M:66 MAN sdl.b[316] sys(Sys_sdl,sdl_hidecursor)
+Sys_sdl M:66 MAN sdl.b[318] sys(Sys_sdl,sdl_showcursor)
+Sys_sdl M:66 MAN sdl.b[321] sys(Sys_sdl,sdl_flip,@screen)
+Sys_sdl M:66 MAN sdl.b[331]
+    sys(Sys_sdl,sdl_blitsurface,srcptr,0,dstptr,@dx)
+Sys_sdl M:66 MAN sdl.b[340]
+    sys(Sys_sdl,sdl_blitsurface,srcptr,0,dstptr,@dx)
+Sys_sdl M:66 MAN sdl.b[344] sys(Sys_sdl,sdl_fillsurf,@currsurf,col)
+Sys_sdl M:66 MAN sdl.b[3749]
+    sys(Sys_sdl,sdl_fillrect,@currsurf,xmin,currysize-ymax,...,...)
+Sys_sdl M:66 MAN sdl.b[392]
+    sys(Sys_sdl,sdl_fillrect,@currsurf,x,currysize-y,1,...)
+Sys_seek M:38 DEF libhdr.h[447] Sys_seek=38
+Sys_setcount M:-1 DEF libhdr.h[412] Sys_setcount=-1
+Sys_setprefix M:32 DEF libhdr.h[443] Sys_setprefix=32
+Sys_setraster M:29 DEF libhdr.h[440] Sys_setraster=29
+Sys_setst M:3 DEF libhdr.h[416] Sys_setst=3
+Sys_settracing M:70 DEF libhdr.h[481] Sys_settracing=70
+Sys_settrcount M:61 DEF libhdr.h[471] Sys_settrcount=61
+Sys_shellcom M:50 DEF libhdr.h[459] Sys_shellcom=50
+Sys_sound M:58 DEF libhdr.h[467] Sys_sound=58
+Sys_tally M:6 DEF libhdr.h[419] Sys_tally=6
+Sys_tell M:39 DEF libhdr.h[448] Sys_tell=39
+Sys_tracing M:4 DEF libhdr.h[417] Sys_tracing=4
+Sys_trpush M:60 DEF libhdr.h[470] Sys_trpush=60
+Sys_unloadseg M:25 DEF libhdr.h[437] Sys_unloadseg=25
+Sys_unlockirq M:42 DEF libhdr.h[451] Sys_unlockirq=42
+Sys_waitirq M:40 DEF libhdr.h[449] Sys_waitirq=40
+Sys_watch M:5 DEF libhdr.h[418] Sys_watch=5
+Sys_write M:13 DEF libhdr.h[425] Sys_write=13
+TA M:12 DEF dnappm.b[430] TA=
+TC M:13 DEF dnappm.b[430] TC=
+TG M:14 DEF dnappm.b[430] TG=
+TT M:15 DEF dnappm.b[430] TT=
+TT M:15 MAN dnappm.b[1988] FOR XY=AA TO TT DO..
+TT M:15 MAN dnappm.b[2032] FOR XY=AA TO TT DO..
+TT M:15 MAN dnappm.b[2052] FOR XY=AA TO TT DO..
+Task_cli M:1 DEF libhdr.h[729] Task_cli=1
+Task_consolehandler M:3 DEF libhdr.h[731] Task_consolehandler=3
+Task_debug M:2 DEF libhdr.h[730] Task_debug=2
+Task_filehandler M:4 DEF libhdr.h[732] Task_filehandler=4
+Task_mbxhandler M:5 DEF libhdr.h[733] Task_mbxhandler=5
+Task_tcphandler M:6 DEF libhdr.h[734] Task_tcphandler=6
+UTF8 M:-1 DEF libhdr.h[622] UTF8=-1
+XY2str G:293 DEF dnappm.b[374] XY2str=
+XY2str G:293 FN dnappm.b[2101] LET XY2str(XY)=..
+XY2str G:293 LG dnappm.b[1204]
+    writef("%s an'f %7.1f*n",XY2str(XY),rad2deg(av!0),rad2deg(av!1),rad2deg(av!2))
+XY2str G:293 LG dnappm.b[1206] writef("%s matrix",XY2str(XY))
+XY2str G:293 LG dnappm.b[2034]
+    writef("%s %9'f %9.6f*n",XY2str(XY),rad2deg(av!0),rad2deg(av!1),rad2deg(av!2))
+XY2str G:293 LG dnappm.b[2086]
+    writef("doinc'e=%7.3f*n",val,XY2str(currpair),axis2ch(curraxis),av!curraxis)
+XY2str G:293 LG dnappm.b[2096]
+    writef("?%s%c'6.3f   *n",XY2str(currpair),axis2ch(curraxis),v!curraxis,incrementdegrees)
+abort G:28 DEF libhdr.h[65] abort=28
+abort G:28 LG dnappm.b[1688] abort(999)
+abort G:28 LG dnappm.b[1747] abort(1000)
+abort G:28 LG dnappm.b[1816] abort(1456)
+abort G:28 LG dnappm.b[2141] abort(5578)
+abort G:28 LG dnappm.b[458] abort(999)
+abort G:28 LG dnappm.b[497] abort(999)
+abort G:28 LG dnappm.b[513] abort(6666)
+abort G:28 LG dnappm.b[542] abort(999)
+abort G:28 LG dnappm.b[555] abort(998)
+abort G:28 LG sdl.b[125] abort(4499)
+abort G:28 LG sdl.b[352] abort(999)
+abort G:28 LG sdl.b[3678] abort(999)
+abort G:28 LG sdl.b[4135] abort(5556)
+abort G:28 LG sdl.b[4161] abort(999)
+abort G:28 LG sdl.b[4381] abort(998)
+alloc2dvecs F:51 LF sdl.b[254] alloc2dvecs()
+alloc2dvecs F:51 LF sdl.b[4152] alloc2dvecs()
+alloc2dvecs F:51 RT sdl.b[3671] LET alloc2dvecs()BE..
+alloc3dvecs F:66 LF sdl.b[268] alloc3dvecs()
+alloc3dvecs F:66 RT sdl.b[4151] LET alloc3dvecs()BE..
+angle F:169 FN dnappm.b[2043] LET angle(FLT x,FLT y)=..
+anglesfilename G:218 DEF dnappm.b[266] anglesfilename=
+anglesfilename G:218 LG dnappm.b[1396] IF anglesfilename DO ..
+anglesfilename G:218 LG dnappm.b[1396] rdangles(anglesfilename)
+anglesfilename G:218 SG dnappm.b[1313] anglesfilename:="angles"
+anglesfilename G:218 SG dnappm.b[1335] anglesfilename:=argv!1
+anglesv G:262 DEF dnappm.b[326] anglesv=
+anglesv G:262 LG dnappm.b[1185] XYav:=anglesv!XY
+anglesv G:262 LG dnappm.b[1202] anglesv!XY
+anglesv G:262 LG dnappm.b[1231] anglesv!XY:=av
+anglesv G:262 LG dnappm.b[1989] anglesv!XY
+anglesv G:262 LG dnappm.b[2033] anglesv!XY
+anglesv G:262 LG dnappm.b[2057] anglesv!XY
+anglesv G:262 LG dnappm.b[2084] anglesv!currpair
+anglesv G:262 LG dnappm.b[2095] anglesv!currpair
+anglesv G:262 LG dnappm.b[647] anglesv!XY
+anglesv G:262 LG dnappm.b[663] anglesv!YX
+anglesv G:262 LG dnappm.b[769] anglesv!XY
+anglesv G:262 SG dnappm.b[1223] anglesv:=newvec(15)
+appendstream G:66 DEF libhdr.h[103] appendstream=66
+axis2ch G:288 DEF dnappm.b[368] axis2ch=
+axis2ch G:288 FN dnappm.b[2125] LET axis2ch(axis)=..
+axis2ch G:288 LG dnappm.b[2086]
+    writef("doinc'e=%7.3f*n",val,XY2str(currpair),axis2ch(curraxis),av!curraxis)
+axis2ch G:288 LG dnappm.b[2096]
+    writef("?%s%c'6.3f   *n",XY2str(currpair),axis2ch(curraxis),v!curraxis,incrementdegrees)
+binrdch G:39 DEF libhdr.h[76] binrdch=39
+binwrch G:42 DEF libhdr.h[79] binwrch=42
+binwrch G:42 LG dnappm.b[557] binwrch(0)
+binwrch G:42 LG dnappm.b[557] binwrch(255)
+binwrch G:42 LG dnappm.b[558] binwrch(0)
+binwrch G:42 LG dnappm.b[558] binwrch(255)
+binwrch G:42 LG dnappm.b[559] binwrch(0)
+binwrch G:42 LG dnappm.b[559] binwrch(255)
+binwrch G:42 LG dnappm.b[560] binwrch(0)
+binwrch G:42 LG dnappm.b[560] binwrch(255)
+binwrch G:42 LG dnappm.b[561] binwrch(255)
+binwrch G:42 LG dnappm.b[562] binwrch(0)
+binwrch G:42 LG dnappm.b[563] binwrch(70)
+bitsperbyte M:8 DEF libhdr.h[245] bitsperbyte=8
+bitsperbyte M:8 MAN libhdr.h[246] bitsperword=bitsperbyte*bytesperword
+bitsperword M:32 DEF libhdr.h[246] bitsperword=bitsperbyte*bytesperword
+bitsperword M:32 MAN libhdr.h[248] minint=1<<bitsperword-1
+bld_CYGWIN32 M:43 DEF libhdr.h[520] bld_CYGWIN32=43
+bld_MacOSX M:31 DEF libhdr.h[512] bld_MacOSX=31
+bld_MacOSXSDL M:32 DEF libhdr.h[513] bld_MacOSXSDL=32
+bld_MacOSXSDL2 M:33 DEF libhdr.h[514] bld_MacOSXSDL2=33
+bld_MacOSXSDL2GL M:35 DEF libhdr.h[516] bld_MacOSXSDL2GL=35
+bld_MacOSXSDLGL M:34 DEF libhdr.h[515] bld_MacOSXSDLGL=34
+bld_Raspi M:21 DEF libhdr.h[506] bld_Raspi=21
+bld_RaspiSDL M:22 DEF libhdr.h[507] bld_RaspiSDL=22
+bld_RaspiSDL2 M:23 DEF libhdr.h[508] bld_RaspiSDL2=23
+bld_RaspiSDL2GL M:25 DEF libhdr.h[510] bld_RaspiSDL2GL=25
+bld_RaspiSDLGL M:24 DEF libhdr.h[509] bld_RaspiSDLGL=24
+bld_VmsVax M:41 DEF libhdr.h[518] bld_VmsVax=41
+bld_Win32 M:42 DEF libhdr.h[519] bld_Win32=42
+bld_linux M:1 DEF libhdr.h[499] bld_linux=1
+bld_linuxGL M:4 DEF libhdr.h[502] bld_linuxGL=4
+bld_linuxSDL M:2 DEF libhdr.h[500] bld_linuxSDL=2
+bld_linuxSDL2 M:3 DEF libhdr.h[501] bld_linuxSDL2=3
+bld_linuxSDL2GL M:6 DEF libhdr.h[504] bld_linuxSDL2GL=6
+bld_linuxSDLGL M:5 DEF libhdr.h[503] bld_linuxSDLGL=5
+bld_unknown M:0 DEF libhdr.h[498] bld_unknown=0
+bldf_callc M:2 DEF libhdr.h[525] bldf_callc=1<<1
+bldf_joystick M:4 DEF libhdr.h[526] bldf_joystick=1<<2
+bldf_sound M:1 DEF libhdr.h[524] bldf_sound=1
+blitsurf G:526 DEF sdl.h[201] blitsurf=
+blitsurf G:526 RT sdl.b[323] LET blitsurf(srcptr,dstptr,x,y)BE..
+blitsurfrect G:527 DEF sdl.h[202] blitsurfrect=
+blitsurfrect G:527 RT sdl.b[335]
+    LET blitsurfrect(srcptr,srcrect,dstptr,x,y)BE..
+blklist G:227 DEF dnappm.b[280] blklist=
+blklist G:227 LG dnappm.b[1510] WHILE blklist DO ..
+blklist G:227 LG dnappm.b[1511] blklist
+blklist G:227 LG dnappm.b[461] v!0:=blklist
+blklist G:227 SG dnappm.b[1212] blklist:=0
+blklist G:227 SG dnappm.b[1297] blklist:=0
+blklist G:227 SG dnappm.b[1512] blklist:=!blk
+blklist G:227 SG dnappm.b[462] blklist:=v
+blkp G:228 DEF dnappm.b[281] blkp=
+blkp G:228 LG dnappm.b[447] blkp
+blkp G:228 LG dnappm.b[450] IF blkp>=blkt DO ..
+blkp G:228 SG dnappm.b[1212] blkp:=0
+blkp G:228 SG dnappm.b[448] blkp:=p+n+1
+blkp G:228 SG dnappm.b[465] blkp:=p+n+1
+blkt G:229 DEF dnappm.b[282] blkt=
+blkt G:229 LG dnappm.b[450] IF blkp>=blkt DO ..
+blkt G:229 SG dnappm.b[1212] blkt:=0
+blkt G:229 SG dnappm.b[463] blkt:=v+blkupb
+blkupb M:1000000 DEF dnappm.b[427] blkupb=1000000
+blkupb M:1000000 MAN dnappm.b[451] getvec(blkupb)
+blkupb M:1000000 MAN dnappm.b[453] UNLESS v&n<blkupb DO ..
+blkupb M:1000000 MAN dnappm.b[463] blkt:=v+blkupb
+bootregs M:11 DEF libhdr.h[486] bootregs=11
+building G:220 DEF dnappm.b[270] building=
+building G:220 LG dnappm.b[1443] UNLESS building DO ..
+building G:220 LG dnappm.b[1494] IF building DO ..
+building G:220 LG dnappm.b[1692] IF building DO ..
+building G:220 LG dnappm.b[1712]
+    IF frameno=0|building&frameno MOD buildstep=0 DO ..
+building G:220 LG dnappm.b[1748]
+    IF trino=trianglecount|building&(trino+1) MOD buildstep=0 DO ..
+building G:220 LG dnappm.b[2220] building->"B00000.ppm","F00000.ppm"
+building G:220 SG dnappm.b[1349] building:=argv!14
+buildingN G:221 DEF dnappm.b[272] buildingN=
+buildingN G:221 LG dnappm.b[1692] buildstep:=trianglecount/buildingN
+buildingN G:221 SG dnappm.b[1324] buildingN:=10
+buildingN G:221 SG dnappm.b[1350] buildingN:=!argv!15
+buildstep G:222 DEF dnappm.b[274] buildstep=
+buildstep G:222 LG dnappm.b[1712]
+    IF frameno=0|building&frameno MOD buildstep=0 DO ..
+buildstep G:222 LG dnappm.b[1748]
+    IF trino=trianglecount|building&(trino+1) MOD buildstep=0 DO ..
+buildstep G:222 SG dnappm.b[1325] buildstep:=1
+buildstep G:222 SG dnappm.b[1691] buildstep:=1
+buildstep G:222 SG dnappm.b[1692] buildstep:=trianglecount/buildingN
+bytesperword M:4 DEF libhdr.h[244] bytesperword=1<<B2Wsh
+bytesperword M:4 MAN libhdr.h[246] bitsperword=bitsperbyte*bytesperword
+bytesperword M:4 MAN libhdr.h[247] mcaddrinc=bytesperword
+bytesperword M:4 MAN libhdr.h[572]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+bytesperword M:4 MAN libhdr.h[687]
+    tcb_upb=tcb_namebase+15/bytesperword+1
+bytesperword M:4 MAN sdl.b[140] LET mes=VEC 256/bytesperword
+bytesperword M:4 MAN sdl.b[208] LET mes=VEC 256/bytesperword
+bytesperword M:4 MAN sdl.b[3607] LET s=VEC 256/bytesperword
+callco G:19 DEF libhdr.h[56] callco=19
+callseg G:107 DEF libhdr.h[145] callseg=107
+cameraH FG:261 DEF dnappm.b[323] FLT cameraH=
+cameraH FG:261 LG dnappm.b[1539]
+    writef("Camer' %12.3f*n",cameraPosNo,cameraN,cameraW,cameraH)
+cameraH FG:261 LG dnappm.b[1781] H#-cameraH
+cameraH FG:261 LG dnappm.b[1812]
+    writef("world'%12.3f)*n",cameraN,cameraW,cameraH)
+cameraH FG:261 SG dnappm.b[1538]
+    cameraH#:=initialH#*initialfac#+targetH#*targetfac
+cameraN FG:259 DEF dnappm.b[323] FLT cameraN=
+cameraN FG:259 LG dnappm.b[1539]
+    writef("Camer' %12.3f*n",cameraPosNo,cameraN,cameraW,cameraH)
+cameraN FG:259 LG dnappm.b[1781] N#-cameraN
+cameraN FG:259 LG dnappm.b[1812]
+    writef("world'%12.3f)*n",cameraN,cameraW,cameraH)
+cameraN FG:259 SG dnappm.b[1536]
+    cameraN#:=initialN#*initialfac#+targetN#*targetfac
+cameraPosNo G:248 DEF dnappm.b[315] cameraPosNo=
+cameraPosNo G:248 LG dnappm.b[1460]
+    UNTIL done|cameraPosNo>lastPosNo DO ..
+cameraPosNo G:248 LG dnappm.b[1498] cameraPosNo:=cameraPosNo+1
+cameraPosNo G:248 LG dnappm.b[1531] FLOAT cameraPosNo
+cameraPosNo G:248 LG dnappm.b[1539]
+    writef("Camer' %12.3f*n",cameraPosNo,cameraN,cameraW,cameraH)
+cameraPosNo G:248 SG dnappm.b[1323] cameraPosNo:=0
+cameraPosNo G:248 SG dnappm.b[1443] cameraPosNo:=firstPosNo
+cameraPosNo G:248 SG dnappm.b[1498] cameraPosNo:=cameraPosNo+1
+cameraW FG:260 DEF dnappm.b[323] FLT cameraW=
+cameraW FG:260 LG dnappm.b[1539]
+    writef("Camer' %12.3f*n",cameraPosNo,cameraN,cameraW,cameraH)
+cameraW FG:260 LG dnappm.b[1781] W#-cameraW
+cameraW FG:260 LG dnappm.b[1812]
+    writef("world'%12.3f)*n",cameraN,cameraW,cameraH)
+cameraW FG:260 SG dnappm.b[1537]
+    cameraW#:=initialW#*initialfac#+targetW#*targetfac
+capitalch G:96 DEF libhdr.h[134] capitalch=96
+capitalch G:96 LG dnappm.b[934] capitalch(rdch())
+changeco G:6 DEF libhdr.h[42] changeco=6
+changepri G:155 DEF libhdr.h[207] changepri=155
+charHsep G:517 DEF sdl.h[181] charHsep=
+charHsep G:517 LG sdl.b[413] currx:=currx+fontW+charHsep
+charHsep G:517 SG sdl.b[397] charHsep:=3
+charHsep G:517 SG sdl.b[402] charHsep:=2
+charLmargin G:519 DEF sdl.h[183] charLmargin=
+charLmargin G:519 LG dnappm.b[1450]
+    drawf(charLmargin,FIX screencentrey,"ABCD*n'34567890")
+charLmargin G:519 LG sdl.b[408] currx:=charLmargin
+charLmargin G:519 SG sdl.b[398] charLmargin:=10
+charLmargin G:519 SG sdl.b[403] charLmargin:=10
+charVsep G:518 DEF sdl.h[182] charVsep=
+charVsep G:518 LG sdl.b[409] curry:=curry-fontH-charVsep
+charVsep G:518 SG sdl.b[397] charVsep:=4
+charVsep G:518 SG sdl.b[402] charVsep:=3
+chklimits F:69 RT sdl.b[4410] LET chklimits()BE..
+cis G:12 DEF libhdr.h[49] cis=12
+clear_words G:115 DEF libhdr.h[153] clear_words=115
+clh FG:240 DEF dnappm.b[298] FLT clh=
+clh FG:240 LG dnappm.b[1597] writef("Direc'%12.5f)*n",cln,clw,clh)
+clh FG:240 LG dnappm.b[1785] t#*cln#+w#*clw#+l#*clh
+clh FG:240 LG dnappm.b[1927] writef("cln=%'h=%9.6f*n",cln,clw,clh)
+cli_commanddir G:136 DEF libhdr.h[177] cli_commanddir=136
+cli_commandfile G:143 DEF libhdr.h[188] cli_commandfile=143
+cli_commandname G:138 DEF libhdr.h[183] cli_commandname=138
+cli_currentinput G:142 DEF libhdr.h[187] cli_currentinput=142
+cli_currentoutput G:146 DEF libhdr.h[194] cli_currentoutput=146
+cli_data G:135 DEF libhdr.h[176] cli_data=135
+cli_defaultstack G:147 DEF libhdr.h[195] cli_defaultstack=147
+cli_faillevel G:139 DEF libhdr.h[184] cli_faillevel=139
+cli_init G:133 DEF libhdr.h[174] cli_init=133
+cli_initialfaillevel M:10 DEF libhdr.h[631]
+    cli_initialfaillevel=return_hard
+cli_initialstack M:50000 DEF libhdr.h[630] cli_initialstack=50000
+cli_module G:149 DEF libhdr.h[197] cli_module=149
+cli_module_gn M:149 DEF libhdr.h[629] cli_module_gn=149
+cli_preloadlist G:145 DEF libhdr.h[193] cli_preloadlist=145
+cli_prompt G:140 DEF libhdr.h[185] cli_prompt=140
+cli_result2 G:134 DEF libhdr.h[175] cli_result2=134
+cli_returncode G:137 DEF libhdr.h[178] cli_returncode=137
+cli_standardinput G:141 DEF libhdr.h[186] cli_standardinput=141
+cli_standardoutput G:148 DEF libhdr.h[196] cli_standardoutput=148
+cli_status G:144 DEF libhdr.h[190] cli_status=144
+cli_tallyflag G:132 DEF libhdr.h[173] cli_tallyflag=132
+clibit_comcom M:4 DEF libhdr.h[636] clibit_comcom=4
+clibit_endcli M:256 DEF libhdr.h[642] clibit_endcli=256
+clibit_eofdel M:2 DEF libhdr.h[635] clibit_eofdel=2
+clibit_maincli M:8 DEF libhdr.h[637] clibit_maincli=8
+clibit_mbxcli M:64 DEF libhdr.h[640] clibit_mbxcli=64
+clibit_newcli M:16 DEF libhdr.h[638] clibit_newcli=16
+clibit_noprompt M:1 DEF libhdr.h[634] clibit_noprompt=1
+clibit_runcli M:32 DEF libhdr.h[639] clibit_runcli=32
+clibit_tcpcli M:128 DEF libhdr.h[641] clibit_tcpcli=128
+clihook G:4 DEF libhdr.h[40] clihook=4
+cliregs M:21 DEF libhdr.h[487] cliregs=21
+cln FG:238 DEF dnappm.b[298] FLT cln=
+cln FG:238 LG dnappm.b[1597] writef("Direc'%12.5f)*n",cln,clw,clh)
+cln FG:238 LG dnappm.b[1785] t#*cln#+w*clw#+l*clh
+cln FG:238 LG dnappm.b[1927] writef("cln=%'h=%9.6f*n",cln,clw,clh)
+cln FG:238 LLG dnappm.b[1596] crossprodV3(@ctn,@cwn,@cln)
+closesdl G:504 DEF sdl.h[158] closesdl=
+closesdl G:504 LG dnappm.b[1520] closesdl()
+closesdl G:504 LG dnappm.b[1845] closesdl()
+closesdl G:504 RT sdl.b[277] LET closesdl()BE..
+clw FG:239 DEF dnappm.b[298] FLT clw=
+clw FG:239 LG dnappm.b[1597] writef("Direc'%12.5f)*n",cln,clw,clh)
+clw FG:239 LG dnappm.b[1785] t#*cln#+w#*clw#+l*clh
+clw FG:239 LG dnappm.b[1927] writef("cln=%'h=%9.6f*n",cln,clw,clh)
+co_c M:5 DEF libhdr.h[291] co_c=
+co_fn M:3 DEF libhdr.h[289] co_fn=
+co_list M:2 DEF libhdr.h[288] co_list=
+co_parent M:1 DEF libhdr.h[287] co_parent=
+co_pptr M:0 DEF libhdr.h[286] co_pptr=0
+co_size M:4 DEF libhdr.h[290] co_size=
+codewrch G:126 DEF libhdr.h[164] codewrch=126
+col_black FG:311 DEF dnappm.b[403] FLT col_black=
+col_black FG:311 LG dnappm.b[549] RESULTIS col_black
+col_black FG:311 SG dnappm.b[1218] col_black#:= 5.000
+col_black FG:311 SG dnappm.b[1381] col_black#:=maprgb(0,0,0)
+col_black G:202 DEF dnappm.b[248] col_black=
+col_blue G:203 DEF dnappm.b[249] col_blue=
+col_blue G:203 LG dnappm.b[546] RESULTIS col_blue
+col_blue G:203 SG dnappm.b[1382] col_blue:=maprgb(0,0,255)
+col_cyan G:208 DEF dnappm.b[254] col_cyan=
+col_cyan G:208 LG dnappm.b[547] RESULTIS col_cyan
+col_cyan G:208 SG dnappm.b[1387] col_cyan:=maprgb(255,255,0)
+col_darkred G:210 DEF dnappm.b[256] col_darkred=
+col_darkred G:210 SG dnappm.b[1389] col_darkred:=maprgb(128,0,0)
+col_gray G:211 DEF dnappm.b[257] col_gray=
+col_gray G:211 LG dnappm.b[550] RESULTIS col_gray
+col_gray G:211 SG dnappm.b[1390] col_gray:=maprgb(70,70,70)
+col_green G:204 DEF dnappm.b[250] col_green=
+col_green G:204 LG dnappm.b[545] RESULTIS col_green
+col_green G:204 SG dnappm.b[1383] col_green:=maprgb(0,255,0)
+col_lightred G:213 DEF dnappm.b[259] col_lightred=
+col_lightred G:213 SG dnappm.b[1392] col_lightred:=maprgb(255,128,128)
+col_lightyellow G:212 DEF dnappm.b[258] col_lightyellow=
+col_lightyellow G:212 SG dnappm.b[1391]
+    col_lightyellow:=maprgb(128,255,255)
+col_majenta G:207 DEF dnappm.b[253] col_majenta=
+col_majenta G:207 SG dnappm.b[1386] col_majenta:=maprgb(255,0,255)
+col_red G:206 DEF dnappm.b[252] col_red=
+col_red G:206 LG dnappm.b[544] RESULTIS col_red
+col_red G:206 SG dnappm.b[1385] col_red:=maprgb(255,0,0)
+col_white FG:310 DEF dnappm.b[402] FLT col_white=
+col_white FG:310 LG dnappm.b[548] RESULTIS col_white
+col_white FG:310 SG dnappm.b[1217] col_white#:= 4.000
+col_white FG:310 SG dnappm.b[1388] col_white#:=maprgb(255,255,255)
+col_white G:209 DEF dnappm.b[255] col_white=
+col_yellow G:205 DEF dnappm.b[251] col_yellow=
+col_yellow G:205 SG dnappm.b[1384] col_yellow:=maprgb(0,255,255)
+colist G:8 DEF libhdr.h[44] colist=8
+colno2col F:20 FN dnappm.b[540] LET colno2col(colno)=..
+colno2col F:20 LF dnappm.b[1632] currcolour:=colno2col(colno)
+colno2col F:20 LF dnappm.b[1639] fillsurf(colno2col(colno))
+colno2col F:20 LF dnappm.b[1733]
+    writef("colno' => %x8*n",colno,colno2col(colno))
+colno_a M:0 DEF dnappm.b[440] colno_a=colno_red
+colno_black M:5 DEF dnappm.b[437] colno_black=
+colno_black M:5 MAN dnappm.b[1095]
+    mkTriangle(vsxv,isxv,@rx0,@lx1,@lx0,colno_black)
+colno_black M:5 MAN dnappm.b[1096]
+    mkTriangle(vsxv,isxv,@rx0,@lx1,@rx1,colno_black)
+colno_black M:5 MAN dnappm.b[549] CASE colno_black:.. 
+colno_black M:5 MAN dnappm.b[562] CASE colno_black:.. 
+colno_black M:5 MAN dnappm.b[574] RESULTIS colno_black
+colno_blue M:2 DEF dnappm.b[434] colno_blue=
+colno_blue M:2 MAN dnappm.b[1448] fillscreen(colno_blue)
+colno_blue M:2 MAN dnappm.b[442] colno_g=colno_blue
+colno_blue M:2 MAN dnappm.b[546] CASE colno_blue:.. 
+colno_blue M:2 MAN dnappm.b[559] CASE colno_blue:.. 
+colno_blue M:2 MAN dnappm.b[571] RESULTIS colno_blue
+colno_c M:1 DEF dnappm.b[441] colno_c=colno_green
+colno_cyan M:3 DEF dnappm.b[435] colno_cyan=
+colno_cyan M:3 MAN dnappm.b[443] colno_t=colno_cyan
+colno_cyan M:3 MAN dnappm.b[547] CASE colno_cyan:.. 
+colno_cyan M:3 MAN dnappm.b[560] CASE colno_cyan:.. 
+colno_cyan M:3 MAN dnappm.b[572] RESULTIS colno_cyan
+colno_g M:2 DEF dnappm.b[442] colno_g=colno_blue
+colno_gray M:6 DEF dnappm.b[438] colno_gray=
+colno_gray M:6 MAN dnappm.b[1445] fillscreen(colno_gray)
+colno_gray M:6 MAN dnappm.b[1621] fillscreen(colno_gray)
+colno_gray M:6 MAN dnappm.b[1715] fillscreen(colno_gray)
+colno_gray M:6 MAN dnappm.b[550] CASE colno_gray:.. 
+colno_gray M:6 MAN dnappm.b[563] CASE colno_gray:.. 
+colno_gray M:6 MAN dnappm.b[575] RESULTIS colno_gray
+colno_green M:1 DEF dnappm.b[433] colno_green=
+colno_green M:1 MAN dnappm.b[441] colno_c=colno_green
+colno_green M:1 MAN dnappm.b[545] CASE colno_green:.. 
+colno_green M:1 MAN dnappm.b[558] CASE colno_green:.. 
+colno_green M:1 MAN dnappm.b[570] RESULTIS colno_green
+colno_red M:0 DEF dnappm.b[432] colno_red=0
+colno_red M:0 MAN dnappm.b[440] colno_a=colno_red
+colno_red M:0 MAN dnappm.b[544] CASE colno_red:.. 
+colno_red M:0 MAN dnappm.b[557] CASE colno_red:.. 
+colno_red M:0 MAN dnappm.b[569] RESULTIS colno_red
+colno_t M:3 DEF dnappm.b[443] colno_t=colno_cyan
+colno_white M:4 DEF dnappm.b[436] colno_white=
+colno_white M:4 MAN dnappm.b[1032]
+    mkTriangle(vsxv,isxv,@lx0,@rx0,@rx1,colno_white)
+colno_white M:4 MAN dnappm.b[1033]
+    mkTriangle(vsxv,isxv,@lx0,@lx1,@rx1,colno_white)
+colno_white M:4 MAN dnappm.b[1647] selectcolno(colno_white)
+colno_white M:4 MAN dnappm.b[548] CASE colno_white:.. 
+colno_white M:4 MAN dnappm.b[561] CASE colno_white:.. 
+colno_white M:4 MAN dnappm.b[573] RESULTIS colno_white
+compch G:97 DEF libhdr.h[135] compch=97
+compstring G:98 DEF libhdr.h[136] compstring=98
+concatstr G:273 DEF dnappm.b[353] concatstr=
+concatstr G:273 FN dnappm.b[521] LET concatstr(s1,s2,s3)=..
+concatstr G:273 LG dnappm.b[1359]
+    UNLESS mkscreen3d(concatstr("Genom'm file: ",fromfilename->fromfilename,"Test Genome",str),1500,700) DO ..
+consoletask G:171 DEF libhdr.h[220] consoletask=171
+copy_bytes G:116 DEF libhdr.h[154] copy_bytes=116
+copy_words G:114 DEF libhdr.h[152] copy_words=114
+copydir G:79 DEF libhdr.h[116] copydir=79
+copyobj G:75 DEF libhdr.h[112] copyobj=75
+copystring G:99 DEF libhdr.h[137] copystring=99
+cos G:13 DEF libhdr.h[50] cos=13
+cos G:13 LG dnappm.b[1877] deplete(cos)
+cos G:13 LG dnappm.b[1885] deplete(cos)
+cos G:13 LG dnappm.b[1893] deplete(cos)
+cos G:13 LG dnappm.b[1901] deplete(cos)
+cos G:13 LG dnappm.b[2004] deplete(cos)
+cos G:13 LG dnappm.b[2098] deplete(cos)
+cowait G:20 DEF libhdr.h[57] cowait=20
+createco G:17 DEF libhdr.h[54] createco=17
+createdev G:172 DEF libhdr.h[221] createdev=172
+createdir G:82 DEF libhdr.h[119] createdir=82
+createtask G:153 DEF libhdr.h[205] createtask=153
+crossprod G:451 DEF sdl.h[67] crossprod=
+crossprod G:451 RT sdl.b[52] LET crossprod(v,w,r)BE..
+crossprodV3 F:179 LF dnappm.b[1596] crossprodV3(@ctn,@cwn,@cln)
+crossprodV3 F:179 LF dnappm.b[2165] crossprodV3(p,q,r)
+crossprodV3 F:179 LF dnappm.b[2178] crossprodV3(r,p,q)
+crossprodV3 F:179 RT dnappm.b[2187] LET crossprodV3(p,q,r)BE..
+cth FG:234 DEF dnappm.b[288] FLT cth=
+cth FG:234 LG dnappm.b[1577] writef("Direc'%12.5f)*n",ctn,ctw,cth)
+cth FG:234 LG dnappm.b[1783] t#*ctn#+w#*ctw#+l#*cth
+cth FG:234 LG dnappm.b[1923] writef("ctn=%'h=%9.6f*n",ctn,ctw,cth)
+cth FG:234 SG dnappm.b[1570] cth#:=targetH#-initialH
+ctn FG:232 DEF dnappm.b[288] FLT ctn=
+ctn FG:232 LG dnappm.b[1577] writef("Direc'%12.5f)*n",ctn,ctw,cth)
+ctn FG:232 LG dnappm.b[1584] cww#:=ctn
+ctn FG:232 LG dnappm.b[1783] t#*ctn#+w*ctw#+l*cth
+ctn FG:232 LG dnappm.b[1923] writef("ctn=%'h=%9.6f*n",ctn,ctw,cth)
+ctn FG:232 LLG dnappm.b[1576] standardise(@ctn)
+ctn FG:232 LLG dnappm.b[1596] crossprodV3(@ctn,@cwn,@cln)
+ctn FG:232 SG dnappm.b[1568] ctn#:=targetN#-initialN
+ctw FG:233 DEF dnappm.b[288] FLT ctw=
+ctw FG:233 LG dnappm.b[1577] writef("Direc'%12.5f)*n",ctn,ctw,cth)
+ctw FG:233 LG dnappm.b[1583] cwn#:=#-ctw
+ctw FG:233 LG dnappm.b[1783] t#*ctn#+w#*ctw#+l*cth
+ctw FG:233 LG dnappm.b[1923] writef("ctn=%'h=%9.6f*n",ctn,ctw,cth)
+ctw FG:233 SG dnappm.b[1569] ctw#:=targetW#-initialW
+curraxis G:305 DEF dnappm.b[393] curraxis=
+curraxis G:305 LG dnappm.b[1909] setcurraxis((curraxis+1) MOD 3)
+curraxis G:305 LG dnappm.b[2085] av!curraxis#:=av!curraxis#+val
+curraxis G:305 LG dnappm.b[2086]
+    writef("doinc'e=%7.3f*n",val,XY2str(currpair),axis2ch(curraxis),av!curraxis)
+curraxis G:305 LG dnappm.b[2096]
+    writef("?%s%c'6.3f   *n",XY2str(currpair),axis2ch(curraxis),v!curraxis,incrementdegrees)
+curraxis G:305 SG dnappm.b[1268] curraxis:=0
+curraxis G:305 SG dnappm.b[2078] curraxis:=axis
+currco G:7 DEF libhdr.h[43] currco=7
+currcolno G:269 DEF dnappm.b[347] currcolno=
+currcolno G:269 LG dnappm.b[2254] ppmv!p:=currcolno
+currcolno G:269 SG dnappm.b[1633] currcolno:=colno
+currcolour G:484 DEF sdl.h[122] currcolour=
+currcolour G:484 LG sdl.b[1682] currcolour
+currcolour G:484 LG sdl.b[3560] currcolour
+currcolour G:484 LG sdl.b[3749]
+    sys(Sys_sdl,sdl_fillrect,@currsurf,xmin,currysize-ymax,...,...)
+currcolour G:484 LG sdl.b[392]
+    sys(Sys_sdl,sdl_fillrect,@currsurf,x,currysize-y,1,...)
+currcolour G:484 SG dnappm.b[1632] currcolour:=colno2col(colno)
+currcolour G:484 SG sdl.b[286] currcolour:=col
+current_language G:190 DEF libhdr.h[235] current_language=190
+currentdir G:14 DEF libhdr.h[51] currentdir=14
+currpair G:304 DEF dnappm.b[392] currpair=
+currpair G:304 LG dnappm.b[2084] anglesv!currpair
+currpair G:304 LG dnappm.b[2086]
+    writef("doinc'e=%7.3f*n",val,XY2str(currpair),axis2ch(curraxis),av!curraxis)
+currpair G:304 LG dnappm.b[2090] setrotationmatrix(currpair)
+currpair G:304 LG dnappm.b[2091] prpair(currpair)
+currpair G:304 LG dnappm.b[2095] anglesv!currpair
+currpair G:304 LG dnappm.b[2096]
+    writef("?%s%c'6.3f   *n",XY2str(currpair),axis2ch(curraxis),v!curraxis,incrementdegrees)
+currpair G:304 SG dnappm.b[1267] currpair:=AA
+currpair G:304 SG dnappm.b[2071] currpair:=incrementstate*4+letno
+currsurf G:456 DEF sdl.h[73] currsurf=
+currsurf G:456 LLG sdl.b[344] sys(Sys_sdl,sdl_fillsurf,@currsurf,col)
+currsurf G:456 LLG sdl.b[3749]
+    sys(Sys_sdl,sdl_fillrect,@currsurf,xmin,currysize-ymax,...,...)
+currsurf G:456 LLG sdl.b[392]
+    sys(Sys_sdl,sdl_fillrect,@currsurf,x,currysize-y,1,...)
+currsurf G:456 SG sdl.b[300] currsurf:=surfptr!0
+currsurf1 G:457 DEF sdl.h[73] currsurf1=
+currsurf1 G:457 SG sdl.b[300] currsurf1:=surfptr!1
+currsz3d G:489 DEF sdl.h[134] currsz3d=
+currsz3d G:489 LG sdl.b[3981] currsz3d:=currsz3d+dsz
+currsz3d G:489 LG sdl.b[3985]
+    drawto3d(currx3d+dx,curry3d+dy,currsz3d+dsz)
+currsz3d G:489 LG sdl.b[4009] currsz3d
+currsz3d G:489 SG sdl.b[180] currsz3d:=0
+currsz3d G:489 SG sdl.b[3976] currsz3d:=sz
+currsz3d G:489 SG sdl.b[3981] currsz3d:=currsz3d+dsz
+currsz3d G:489 SG sdl.b[4026] currsz3d:=sz1
+currx G:485 DEF sdl.h[124] currx=
+currx G:485 LG sdl.b[1717] currx
+currx G:485 LG sdl.b[360] moveto(currx+dx,curry+dy)
+currx G:485 LG sdl.b[363] currx
+currx G:485 LG sdl.b[386] drawto(currx+dx,curry+dy)
+currx G:485 LG sdl.b[412]
+    write_ch_slice(currx,curry+fontH-1-line,ch,line)
+currx G:485 LG sdl.b[413] currx:=currx+fontW+charHsep
+currx G:485 LG sdl.b[418] currx
+currx G:485 SG sdl.b[1712] currx:=cx
+currx G:485 SG sdl.b[176] currx:=0
+currx G:485 SG sdl.b[3596] currx:=cx
+currx G:485 SG sdl.b[359] currx:=x
+currx G:485 SG sdl.b[3740] currx:=x0
+currx G:485 SG sdl.b[3752] currx:=x0
+currx G:485 SG sdl.b[377] currx:=x
+currx G:485 SG sdl.b[3811] currx:=x0
+currx G:485 SG sdl.b[3882] currx:=x0
+currx G:485 SG sdl.b[408] currx:=charLmargin
+currx G:485 SG sdl.b[413] currx:=currx+fontW+charHsep
+currx3d G:487 DEF sdl.h[131] currx3d=
+currx3d G:487 LG sdl.b[3979] currx3d:=currx3d+dx
+currx3d G:487 LG sdl.b[3985]
+    drawto3d(currx3d+dx,curry3d+dy,currsz3d+dsz)
+currx3d G:487 LG sdl.b[4009] currx3d
+currx3d G:487 SG sdl.b[180] currx3d:=0
+currx3d G:487 SG sdl.b[3976] currx3d:=x
+currx3d G:487 SG sdl.b[3979] currx3d:=currx3d+dx
+currx3d G:487 SG sdl.b[4026] currx3d:=x1
+currx3d G:487 SG sdl.b[4026] currx3d:=y1
+currxsize G:468 DEF sdl.h[89] currxsize=
+currxsize G:468 LG sdl.b[184] depthvupb:=currxsize*currysize-1
+currxsize G:468 LG sdl.b[391] IF 0<=x&x<currxsize&0<=y&y<currysize DO ..
+currxsize G:468 LG sdl.b[3995]
+    IF 0<=x&x<currxsize&0<=y&y<currysize DO ..
+currxsize G:468 LG sdl.b[3997] x+y*currxsize
+currxsize G:468 LG sdl.b[4348] leftxv!y:=currxsize
+currxsize G:468 LG sdl.b[4367] IF x1>=currxsize DO ..
+currxsize G:468 LG sdl.b[4368] sz1:=interpolate(currxsize-1,x0,x1,...)
+currxsize G:468 LG sdl.b[4369] x1:=currxsize-1
+currxsize G:468 LG sdl.b[4405] leftxv!y:=currxsize
+currxsize G:468 SG sdl.b[195] currxsize:=0
+currxsize G:468 SG sdl.b[301] currxsize:=xsize
+currxupb G:470 DEF sdl.h[92] currxupb=
+curry G:486 DEF sdl.h[125] curry=
+curry G:486 LG sdl.b[1717] curry
+curry G:486 LG sdl.b[360] moveto(currx+dx,curry+dy)
+curry G:486 LG sdl.b[363] curry
+curry G:486 LG sdl.b[386] drawto(currx+dx,curry+dy)
+curry G:486 LG sdl.b[409] curry:=curry-fontH-charVsep
+curry G:486 LG sdl.b[412]
+    write_ch_slice(currx,curry+fontH-1-line,ch,line)
+curry G:486 LG sdl.b[418] curry
+curry G:486 SG sdl.b[1712] curry:=cy
+curry G:486 SG sdl.b[176] curry:=0
+curry G:486 SG sdl.b[3596] curry:=cy
+curry G:486 SG sdl.b[359] curry:=y
+curry G:486 SG sdl.b[3740] curry:=y0
+curry G:486 SG sdl.b[3752] curry:=y0
+curry G:486 SG sdl.b[377] curry:=y
+curry G:486 SG sdl.b[3811] curry:=y0
+curry G:486 SG sdl.b[3882] curry:=y0
+curry G:486 SG sdl.b[409] curry:=curry-fontH-charVsep
+curry3d G:488 DEF sdl.h[132] curry3d=
+curry3d G:488 LG sdl.b[3980] curry3d:=curry3d+dy
+curry3d G:488 LG sdl.b[3985]
+    drawto3d(currx3d+dx,curry3d+dy,currsz3d+dsz)
+curry3d G:488 LG sdl.b[4009] curry3d
+curry3d G:488 SG sdl.b[180] curry3d:=0
+curry3d G:488 SG sdl.b[3976] curry3d:=y
+curry3d G:488 SG sdl.b[3980] curry3d:=curry3d+dy
+currysize G:469 DEF sdl.h[90] currysize=
+currysize G:469 LG sdl.b[184] depthvupb:=currxsize*currysize-1
+currysize G:469 LG sdl.b[302] curryupb:=currysize-1
+currysize G:469 LG sdl.b[326] currysize-y-1
+currysize G:469 LG sdl.b[339] currysize-y-1
+currysize G:469 LG sdl.b[3642] IF 0<=y&y<currysize DO ..
+currysize G:469 LG sdl.b[3682] leftxv!y:=currysize
+currysize G:469 LG sdl.b[3692] miny:=currysize
+currysize G:469 LG sdl.b[3716] leftxv!y:=currysize-1
+currysize G:469 LG sdl.b[3749]
+    sys(Sys_sdl,sdl_fillrect,@currsurf,xmin,currysize-ymax,...,...)
+currysize G:469 LG sdl.b[391] IF 0<=x&x<currxsize&0<=y&y<currysize DO ..
+currysize G:469 LG sdl.b[392]
+    sys(Sys_sdl,sdl_fillrect,@currsurf,x,currysize-y,1,...)
+currysize G:469 LG sdl.b[3995]
+    IF 0<=x&x<currxsize&0<=y&y<currysize DO ..
+currysize G:469 LG sdl.b[4165] leftzv!y:=currysize
+currysize G:469 LG sdl.b[4346] miny:=currysize
+currysize G:469 LG sdl.b[4348] FOR y=0 TO currysize-1 DO..
+currysize G:469 LG sdl.b[4413] FOR y=0 TO currysize-1 DO..
+currysize G:469 SG sdl.b[195] currysize:=0
+currysize G:469 SG sdl.b[301] currysize:=ysize
+curryupb G:471 DEF sdl.h[93] curryupb=
+curryupb G:471 LG sdl.b[3674] leftxv:=getvec(curryupb)
+curryupb G:471 LG sdl.b[3675] rightxv:=getvec(curryupb)
+curryupb G:471 LG sdl.b[3681] FOR y=0 TO curryupb DO..
+curryupb G:471 LG sdl.b[4061] IF y0>curryupb DO ..
+curryupb G:471 LG sdl.b[4064] x0:=interpolate(curryupb,y0,y1,...)
+curryupb G:471 LG sdl.b[4065] sz0:=interpolate(curryupb,y0,y1,...)
+curryupb G:471 LG sdl.b[4066] y0:=curryupb
+curryupb G:471 LG sdl.b[4079] IF y1>curryupb DO ..
+curryupb G:471 LG sdl.b[4082] x1:=interpolate(curryupb,y0,y1,...)
+curryupb G:471 LG sdl.b[4083] sz1:=interpolate(curryupb,y0,y1,...)
+curryupb G:471 LG sdl.b[4084] y1:=curryupb
+curryupb G:471 LG sdl.b[4155] leftzv:=getvec(curryupb)
+curryupb G:471 LG sdl.b[4156] rightzv:=getvec(curryupb)
+curryupb G:471 LG sdl.b[4164] FOR y=0 TO curryupb DO..
+curryupb G:471 SG sdl.b[302] curryupb:=currysize-1
+cwh FG:237 DEF dnappm.b[294] FLT cwh=
+cwh FG:237 LG dnappm.b[1592] writef("Direc'%12.5f)*n",cwn,cww,cwh)
+cwh FG:237 LG dnappm.b[1784] t#*cwn#+w#*cww#+l#*cwh
+cwh FG:237 LG dnappm.b[1925] writef("cwn=%'h=%9.6f*n",cwn,cww,cwh)
+cwh FG:237 SG dnappm.b[1585] cwh#:= 0.000
+cwn FG:235 DEF dnappm.b[294] FLT cwn=
+cwn FG:235 LG dnappm.b[1592] writef("Direc'%12.5f)*n",cwn,cww,cwh)
+cwn FG:235 LG dnappm.b[1784] t#*cwn#+w*cww#+l*cwh
+cwn FG:235 LG dnappm.b[1925] writef("cwn=%'h=%9.6f*n",cwn,cww,cwh)
+cwn FG:235 LLG dnappm.b[1591] standardise(@cwn)
+cwn FG:235 LLG dnappm.b[1596] crossprodV3(@ctn,@cwn,@cln)
+cwn FG:235 SG dnappm.b[1583] cwn#:=#-ctw
+cww FG:236 DEF dnappm.b[294] FLT cww=
+cww FG:236 LG dnappm.b[1592] writef("Direc'%12.5f)*n",cwn,cww,cwh)
+cww FG:236 LG dnappm.b[1784] t#*cwn#+w#*cww#+l*cwh
+cww FG:236 LG dnappm.b[1925] writef("cwn=%'h=%9.6f*n",cwn,cww,cwh)
+cww FG:236 SG dnappm.b[1584] cww#:=ctn
+dat_to_strings G:110 DEF libhdr.h[148] dat_to_strings=110
+datstamp G:109 DEF libhdr.h[147] datstamp=109
+datstring G:108 DEF libhdr.h[146] datstring=108
+deadcode M:#xDEADC0DE DEF libhdr.h[268] deadcode=-#x21523F22
+debug G:223 DEF dnappm.b[276] debug=
+debug G:223 LG dnappm.b[1423] IF debug DO ..
+debug G:223 LG dnappm.b[1915] TEST debug THEN .. ELSE ..
+debug G:223 LG dnappm.b[2131] IF debug DO ..
+debug G:223 LG dnappm.b[2152] IF debug DO ..
+debug G:223 LG dnappm.b[2159] IF debug DO ..
+debug G:223 LG dnappm.b[2166] IF debug DO ..
+debug G:223 LG dnappm.b[2173] IF debug DO ..
+debug G:223 LG dnappm.b[2179] IF debug DO ..
+debug G:223 LG dnappm.b[510] IF FALSE&debug DO ..
+debug G:223 SG dnappm.b[1351] debug:=argv!16
+debug G:223 SG dnappm.b[1915] debug:=FALSE
+debug G:223 SG dnappm.b[1916] debug:=TRUE
+deg2rad G:291 DEF dnappm.b[371] deg2rad=
+deg2rad G:291 FN dnappm.b[1653] LET deg2rad(FLT degrees)=..
+deg2rad G:291 LG dnappm.b[1189] an#:=deg2rad(readflt())
+deg2rad G:291 LG dnappm.b[1190] aw#:=deg2rad(readflt())
+deg2rad G:291 LG dnappm.b[1191] ah#:=deg2rad(readflt())
+deg2rad G:291 LG dnappm.b[1272]
+    incrementradians#:=deg2rad(incrementdegrees)
+deg2rad G:291 LG dnappm.b[1551] deg2rad(fieldofview#/ 2.000)
+deg2rad G:291 LG dnappm.b[1952]
+    incrementradians#:=deg2rad(incrementdegrees)
+deg2rad G:291 LG dnappm.b[1958]
+    incrementradians#:=deg2rad(incrementdegrees)
+delay G:128 DEF libhdr.h[166] delay=128
+delay G:128 LG dnappm.b[1454] delay(5000)
+delay G:128 LG dnappm.b[1519] delay(500)
+delay G:128 LG dnappm.b[1541] delay(5000)
+delayuntil G:129 DEF libhdr.h[167] delayuntil=129
+deleteco G:18 DEF libhdr.h[55] deleteco=18
+deletedev G:173 DEF libhdr.h[222] deletedev=173
+deletefile G:76 DEF libhdr.h[113] deletefile=76
+deleteself G:125 DEF libhdr.h[163] deleteself=125
+deletetask G:154 DEF libhdr.h[206] deletetask=154
+deplete G:43 DEF libhdr.h[80] deplete=43
+deplete G:43 LG dnappm.b[1877] deplete(cos)
+deplete G:43 LG dnappm.b[1885] deplete(cos)
+deplete G:43 LG dnappm.b[1893] deplete(cos)
+deplete G:43 LG dnappm.b[1901] deplete(cos)
+deplete G:43 LG dnappm.b[2004] deplete(cos)
+deplete G:43 LG dnappm.b[2098] deplete(cos)
+depthfactor FG:245 DEF dnappm.b[308] FLT depthfactor=
+depthv G:478 DEF sdl.h[111] depthv=
+depthv G:478 LG sdl.b[282] IF depthv DO ..
+depthv G:478 LG sdl.b[282] freevec(depthv)
+depthv G:478 LG sdl.b[345] IF depthv DO ..
+depthv G:478 LG sdl.b[345] depthv!p:=maxdepth
+depthv G:478 LG sdl.b[3998] IF sz<=depthv!p DO ..
+depthv G:478 LG sdl.b[4002] depthv!p:=sz
+depthv G:478 LG sdl.b[4159] UNLESS leftzv*rightzv*depthv DO ..
+depthv G:478 LG sdl.b[4167] depthv!i:=maxdepth
+depthv G:478 SG dnappm.b[1295] depthv:=0
+depthv G:478 SG dnappm.b[1378] depthv:=getvec(depthvupb)
+depthv G:478 SG sdl.b[185] depthv:=0
+depthv G:478 SG sdl.b[219] depthv:=0
+depthv G:478 SG sdl.b[4157] depthv:=getvec(depthvupb)
+depthvupb G:479 DEF sdl.h[113] depthvupb=
+depthvupb G:479 LG dnappm.b[1378] depthv:=getvec(depthvupb)
+depthvupb G:479 LG dnappm.b[1379] ppmv:=getvec(depthvupb)
+depthvupb G:479 LG dnappm.b[1642] FOR i=0 TO depthvupb DO..
+depthvupb G:479 LG dnappm.b[2237] FOR i=0 TO depthvupb DO..
+depthvupb G:479 LG sdl.b[345] FOR p=0 TO depthvupb DO..
+depthvupb G:479 LG sdl.b[4157] depthv:=getvec(depthvupb)
+depthvupb G:479 LG sdl.b[4167] FOR i=0 TO depthvupb DO..
+depthvupb G:479 SG dnappm.b[1377] depthvupb:=screenxsize*screenysize-1
+depthvupb G:479 SG sdl.b[184] depthvupb:=currxsize*currysize-1
+depthvupb G:479 SG sdl.b[220] depthvupb:=-1
+depthvupb G:479 SG sdl.b[267] depthvupb:=xsize*ysize-1
+displayPos G:318 DEF dnappm.b[413] displayPos=
+displayPos G:318 LG dnappm.b[1492] displayPos()
+displayPos G:318 RT dnappm.b[1601] LET displayPos()BE..
+displayv G:267 DEF dnappm.b[341] displayv=
+displayv G:267 LG dnappm.b[1112]
+    writef("verte'layv=%n*n",vertexv,indexv,displayv)
+displayv G:267 LG dnappm.b[1132] FOR i=1 TO displayv!0-1 BY 3 DO..
+displayv G:267 LG dnappm.b[1133]
+    writef(" %i5 'i5  %i5*n",displayv!i,displayv!(i+1),displayv!(i+2))
+displayv G:267 LG dnappm.b[1507] IF displayv DO ..
+displayv G:267 LG dnappm.b[1507] freevec(displayv)
+displayv G:267 LG dnappm.b[1676] displayv!1
+displayv G:267 LG dnappm.b[1677] displayv!2
+displayv G:267 LG dnappm.b[1678] displayv!3
+displayv G:267 LG dnappm.b[1685]
+    UNLESS displayv!0=3&mode=4&offset=0 DO ..
+displayv G:267 LG dnappm.b[1686]
+    writef("Model'offset=*n",displayv!0,mode,offset)
+displayv G:267 SG dnappm.b[1109] displayv:=dvec
+displayv G:267 SG dnappm.b[1296] displayv:=0
+doincrement G:289 DEF dnappm.b[369] doincrement=
+doincrement G:289 LG dnappm.b[1944] doincrement(incrementradians)
+doincrement G:289 LG dnappm.b[1947] doincrement(#-incrementradians)
+doincrement G:289 RT dnappm.b[2083] LET doincrement(FLT val)BE..
+done G:230 DEF dnappm.b[284] done=
+done G:230 LG dnappm.b[1460] UNTIL done|cameraPosNo>lastPosNo DO ..
+done G:230 SG dnappm.b[1441] done:=FALSE
+done G:230 SG dnappm.b[1873] done:=TRUE
+drawGenomeModel G:290 DEF dnappm.b[370] drawGenomeModel=
+drawGenomeModel G:290 LG dnappm.b[1628] drawGenomeModel()
+drawGenomeModel G:290 RT dnappm.b[1657] LET drawGenomeModel()BE..
+drawby G:513 DEF sdl.h[173] drawby=
+drawby G:513 RT sdl.b[386] LET drawby(dx,dy)BE..
+drawby3d G:545 DEF sdl.h[242] drawby3d=
+drawby3d G:545 RT sdl.b[3984] LET drawby3d(dx,dy,dsz)BE..
+drawch G:514 DEF sdl.h[176] drawch=
+drawch G:514 LG sdl.b[3601] drawch(s%i)
+drawch G:514 RT sdl.b[407] LET drawch(ch)BE..
+drawcircle G:534 DEF sdl.h[217] drawcircle=
+drawcircle G:534 RT sdl.b[3885] LET drawcircle(x0,y0,radius)BE..
+drawellipse G:537 DEF sdl.h[221] drawellipse=
+drawf G:558 DEF sdl.h[284] drawf=
+drawf G:558 LG dnappm.b[1450]
+    drawf(charLmargin,FIX screencentrey,"ABCD*n'34567890")
+drawf G:558 LG dnappm.b[1648]
+    drawf(30,screenysize-30,"%s",sequenceTitle)
+drawf G:558 LG dnappm.b[1650]
+    drawf(screenxsize/2-50,30,"Frame'ber: %i4",frameno)
+drawf G:558 RT sdl.b[3604] LET drawf(x,y,form,a,b,c,d,...)BE..
+drawfillcircle G:538 DEF sdl.h[223] drawfillcircle=
+drawfillcircle G:538 RT sdl.b[3921] LET drawfillcircle(x0,y0,radius)BE..
+drawfillellipse G:541 DEF sdl.h[226] drawfillellipse=
+drawfillrect G:539 DEF sdl.h[224] drawfillrect=
+drawfillrect G:539 RT sdl.b[3743] LET drawfillrect(x0,y0,x1,y1)BE..
+drawfillrndrect G:540 DEF sdl.h[225] drawfillrndrect=
+drawfillrndrect G:540 RT sdl.b[3814]
+    LET drawfillrndrect(x0,y0,x1,y1,radius)BE..
+drawfstr G:559 DEF sdl.h[286] drawfstr=
+drawfstr G:559 LG sdl.b[3609] drawfstr%0:=0
+drawfstr G:559 LG sdl.b[3613] drawstr(x,y,drawfstr)
+drawfstr G:559 LG sdl.b[3617] drawfstr%0+1
+drawfstr G:559 LG sdl.b[3618] drawfstr%strlen:=ch
+drawfstr G:559 LG sdl.b[3619] drawfstr%0:=strlen
+drawfstr G:559 SG sdl.b[3608] drawfstr:=s
+drawpoint G:529 DEF sdl.h[206] drawpoint=
+drawpoint G:529 LG dnappm.b[1220] sdldrawpoint:=drawpoint
+drawpoint G:529 LG sdl.b[1698] drawpoint(x+0,y)
+drawpoint G:529 LG sdl.b[1699] drawpoint(x+1,y)
+drawpoint G:529 LG sdl.b[1700] drawpoint(x+2,y)
+drawpoint G:529 LG sdl.b[1701] drawpoint(x+3,y)
+drawpoint G:529 LG sdl.b[1702] drawpoint(x+4,y)
+drawpoint G:529 LG sdl.b[1703] drawpoint(x+5,y)
+drawpoint G:529 LG sdl.b[1704] drawpoint(x+6,y)
+drawpoint G:529 LG sdl.b[1705] drawpoint(x+7,y)
+drawpoint G:529 LG sdl.b[3582] drawpoint(x+0,y)
+drawpoint G:529 LG sdl.b[3583] drawpoint(x+1,y)
+drawpoint G:529 LG sdl.b[3584] drawpoint(x+2,y)
+drawpoint G:529 LG sdl.b[3585] drawpoint(x+3,y)
+drawpoint G:529 LG sdl.b[3586] drawpoint(x+4,y)
+drawpoint G:529 LG sdl.b[3587] drawpoint(x+5,y)
+drawpoint G:529 LG sdl.b[3588] drawpoint(x+6,y)
+drawpoint G:529 LG sdl.b[3589] drawpoint(x+7,y)
+drawpoint G:529 LG sdl.b[3590] drawpoint(x+8,y)
+drawpoint G:529 LG sdl.b[3591] drawpoint(x+9,y)
+drawpoint G:529 LG sdl.b[3592] drawpoint(x+10,y)
+drawpoint G:529 LG sdl.b[3593] drawpoint(x+11,y)
+drawpoint G:529 LG sdl.b[3733] drawpoint(x,ymin)
+drawpoint G:529 LG sdl.b[3734] drawpoint(x,ymax)
+drawpoint G:529 LG sdl.b[3737] drawpoint(xmin,y)
+drawpoint G:529 LG sdl.b[3738] drawpoint(xmax,y)
+drawpoint G:529 LG sdl.b[375] drawpoint(x,y)
+drawpoint G:529 LG sdl.b[3768] drawpoint(x,ymin)
+drawpoint G:529 LG sdl.b[3769] drawpoint(x,ymax)
+drawpoint G:529 LG sdl.b[3772] drawpoint(xmin,y)
+drawpoint G:529 LG sdl.b[3773] drawpoint(xmax,y)
+drawpoint G:529 LG sdl.b[3784] drawpoint(xmax,ymin+r)
+drawpoint G:529 LG sdl.b[3785] drawpoint(xmin,ymin+r)
+drawpoint G:529 LG sdl.b[3786] drawpoint(xmax,ymax-r)
+drawpoint G:529 LG sdl.b[3787] drawpoint(xmin,ymax-r)
+drawpoint G:529 LG sdl.b[3801] drawpoint(xmax-r+x,ymax-r+y)
+drawpoint G:529 LG sdl.b[3802] drawpoint(xmin+r-x,ymax-r+y)
+drawpoint G:529 LG sdl.b[3803] drawpoint(xmax-r+x,ymin+r-y)
+drawpoint G:529 LG sdl.b[3804] drawpoint(xmin+r-x,ymin+r-y)
+drawpoint G:529 LG sdl.b[3805] drawpoint(xmax-r+y,ymax-r+x)
+drawpoint G:529 LG sdl.b[3806] drawpoint(xmin+r-y,ymax-r+x)
+drawpoint G:529 LG sdl.b[3807] drawpoint(xmax-r+y,ymin+r-x)
+drawpoint G:529 LG sdl.b[3808] drawpoint(xmin+r-y,ymin+r-x)
+drawpoint G:529 LG sdl.b[3828] drawpoint(x,y)
+drawpoint G:529 LG sdl.b[3829] drawpoint(x,y)
+drawpoint G:529 LG sdl.b[3841] drawpoint(xmax,ymin+r)
+drawpoint G:529 LG sdl.b[3842] drawpoint(xmin,ymin+r)
+drawpoint G:529 LG sdl.b[3843] drawpoint(xmax,ymax-r)
+drawpoint G:529 LG sdl.b[3844] drawpoint(xmin,ymax-r)
+drawpoint G:529 LG sdl.b[3858] drawpoint(xmax-r+x,ymax-r+y)
+drawpoint G:529 LG sdl.b[3859] drawpoint(xmin+r-x,ymax-r+y)
+drawpoint G:529 LG sdl.b[3860] drawpoint(xmax-r+x,ymin+r-y)
+drawpoint G:529 LG sdl.b[3861] drawpoint(xmin+r-x,ymin+r-y)
+drawpoint G:529 LG sdl.b[3862] drawpoint(xmax-r+y,ymax-r+x)
+drawpoint G:529 LG sdl.b[3863] drawpoint(xmin+r-y,ymax-r+x)
+drawpoint G:529 LG sdl.b[3864] drawpoint(xmax-r+y,ymin+r-x)
+drawpoint G:529 LG sdl.b[3865] drawpoint(xmin+r-y,ymin+r-x)
+drawpoint G:529 LG sdl.b[3869] drawpoint(fx,ymax-r+x)
+drawpoint G:529 LG sdl.b[3870] drawpoint(fx,ymin+r-x)
+drawpoint G:529 LG sdl.b[3876] drawpoint(fx,ymax-r+y)
+drawpoint G:529 LG sdl.b[3877] drawpoint(fx,ymin+r-y)
+drawpoint G:529 LG sdl.b[3893] drawpoint(x0,y0+radius)
+drawpoint G:529 LG sdl.b[3894] drawpoint(x0,y0-radius)
+drawpoint G:529 LG sdl.b[3895] drawpoint(x0+radius,y0)
+drawpoint G:529 LG sdl.b[3896] drawpoint(x0-radius,y0)
+drawpoint G:529 LG sdl.b[3910] drawpoint(x0+x,y0+y)
+drawpoint G:529 LG sdl.b[3911] drawpoint(x0-x,y0+y)
+drawpoint G:529 LG sdl.b[3912] drawpoint(x0+x,y0-y)
+drawpoint G:529 LG sdl.b[3913] drawpoint(x0-x,y0-y)
+drawpoint G:529 LG sdl.b[3914] drawpoint(x0+y,y0+x)
+drawpoint G:529 LG sdl.b[3915] drawpoint(x0-y,y0+x)
+drawpoint G:529 LG sdl.b[3916] drawpoint(x0+y,y0-x)
+drawpoint G:529 LG sdl.b[3917] drawpoint(x0-y,y0-x)
+drawpoint G:529 LG sdl.b[3930] drawpoint(x0,y0+radius)
+drawpoint G:529 LG sdl.b[3931] drawpoint(x0,y0-radius)
+drawpoint G:529 LG sdl.b[3932] drawpoint(x,y0)
+drawpoint G:529 LG sdl.b[3946] drawpoint(x0+x,y0+y)
+drawpoint G:529 LG sdl.b[3947] drawpoint(x0-x,y0+y)
+drawpoint G:529 LG sdl.b[3948] drawpoint(x0+x,y0-y)
+drawpoint G:529 LG sdl.b[3949] drawpoint(x0-x,y0-y)
+drawpoint G:529 LG sdl.b[3950] drawpoint(x0+y,y0+x)
+drawpoint G:529 LG sdl.b[3951] drawpoint(x0-y,y0+x)
+drawpoint G:529 LG sdl.b[3952] drawpoint(x0+y,y0-x)
+drawpoint G:529 LG sdl.b[3953] drawpoint(x0-y,y0-x)
+drawpoint G:529 LG sdl.b[3956] drawpoint(fx,y0+x)
+drawpoint G:529 LG sdl.b[3957] drawpoint(fx,y0-x)
+drawpoint G:529 LG sdl.b[3963] drawpoint(fx,y0+y)
+drawpoint G:529 LG sdl.b[3964] drawpoint(fx,y0-y)
+drawpoint G:529 LG sdl.b[4003] drawpoint(x,y)
+drawpoint G:529 RT sdl.b[388] LET drawpoint(x,y)BE..
+drawpoint G:529 SG dnappm.b[1221] drawpoint:=ppmdrawpoint
+drawpoint3d G:546 DEF sdl.h[248] drawpoint3d=
+drawpoint3d G:546 LG sdl.b[4032] drawpoint3d(x,y,sz)
+drawpoint3d G:546 LG sdl.b[4390] drawpoint3d(x0,y,sz)
+drawpoint3d G:546 LG sdl.b[4396] drawpoint3d(x,y,sz)
+drawpoint3d G:546 RT sdl.b[3987] LET drawpoint3d(x,y,sz)BE..
+drawquad G:532 DEF sdl.h[210] drawquad=
+drawquad G:532 RT sdl.b[3720] LET drawquad(x1,y1,x2,y2,x3,y3,x4,y4)BE..
+drawquad3d G:548 DEF sdl.h[257] drawquad3d=
+drawquad3d G:548 RT sdl.b[4172]
+    LET drawquad3d(x1,y1,z1,x2,y2,z2,x3,...)BE..
+drawrect G:535 DEF sdl.h[219] drawrect=
+drawrect G:535 RT sdl.b[3726] LET drawrect(x0,y0,x1,y1)BE..
+drawrndrect G:536 DEF sdl.h[220] drawrndrect=
+drawrndrect G:536 RT sdl.b[3755] LET drawrndrect(x0,y0,x1,y1,radius)BE..
+drawstr G:530 DEF sdl.h[207] drawstr=
+drawstr G:530 LG sdl.b[3613] drawstr(x,y,drawfstr)
+drawstr G:530 RT sdl.b[3599] LET drawstr(x,y,s)BE..
+drawtext F:160 LF dnappm.b[1716] drawtext()
+drawtext F:160 RT dnappm.b[1645] LET drawtext()BE..
+drawto G:512 DEF sdl.h[171] drawto=
+drawto G:512 LG sdl.b[3714] drawto(rightxv!y,y)
+drawto G:512 LG sdl.b[386] drawto(currx+dx,curry+dy)
+drawto G:512 RT sdl.b[362] LET drawto(x1,y1)BE..
+drawto3d G:544 DEF sdl.h[239] drawto3d=
+drawto3d G:544 LG sdl.b[3985]
+    drawto3d(currx3d+dx,curry3d+dy,currsz3d+dsz)
+drawto3d G:544 RT sdl.b[4008] LET drawto3d(x1,y1,sz1)BE..
+drawtriangle G:531 DEF sdl.h[208] drawtriangle=
+drawtriangle G:531 LG sdl.b[3722] drawtriangle(x1,y1,x2,y2,x3,y3)
+drawtriangle G:531 LG sdl.b[3723] drawtriangle(x2,y2,x3,y3,x4,y4)
+drawtriangle G:531 RT sdl.b[3685]
+    LET drawtriangle(x1,y1,x2,y2,x3,y3)BE..
+drawtriangle3d G:547 DEF sdl.h[252] drawtriangle3d=
+drawtriangle3d G:547 LG dnappm.b[1740]
+    drawtriangle3d(sx1,sy1,sz1,sx2,sy2,sz2,...)
+drawtriangle3d G:547 LG dnappm.b[1743]
+    drawtriangle3d(sx1,sy1,30,sx2,sy2,20,...)
+drawtriangle3d G:547 LG sdl.b[4177]
+    drawtriangle3d(x1,y1,z1,x2,y2,z2,...)
+drawtriangle3d G:547 LG sdl.b[4178]
+    drawtriangle3d(x1,y1,z1,x3,y3,z3,...)
+drawtriangle3d G:547 LG sdl.b[4207]
+    drawtriangle3d(x1,y1,z1,x3,y3,z3,...)
+drawtriangle3d G:547 LG sdl.b[4208]
+    drawtriangle3d(x3,y3,z3,x1,y1,z1,...)
+drawtriangle3d G:547 LG sdl.b[4213]
+    drawtriangle3d(x2,y2,z2,x1,y1,z1,...)
+drawtriangle3d G:547 LG sdl.b[4214]
+    drawtriangle3d(x2,y2,z2,x3,y3,z3,...)
+drawtriangle3d G:547 LG sdl.b[4215]
+    drawtriangle3d(x3,y3,z3,x2,y2,z2,...)
+drawtriangle3d G:547 LG sdl.b[4244]
+    drawtriangle3d(x1,y1,z1,x3,y3,z3,...)
+drawtriangle3d G:547 LG sdl.b[4274]
+    drawtriangle3d(x1,y1,z1,x4,y4,z4,...)
+drawtriangle3d G:547 LG sdl.b[4275]
+    drawtriangle3d(x1,y1,z1,x2,y2,z2,...)
+drawtriangle3d G:547 LG sdl.b[4304]
+    drawtriangle3d(x1,y1,z1,x3,y3,z3,...)
+drawtriangle3d G:547 LG sdl.b[4331]
+    drawtriangle3d(x1,y1,z1,x2,y2,z2,...)
+drawtriangle3d G:547 LG sdl.b[4332]
+    drawtriangle3d(x2,y2,z2,x3,y3,z3,...)
+drawtriangle3d G:547 RT sdl.b[4181]
+    LET drawtriangle3d(x1,y1,z1,x2,y2,z2,x3,...)BE..
+drawwrch F:49 LF sdl.b[3610] wrch:=drawwrch
+drawwrch F:49 RT sdl.b[3616] LET drawwrch(ch)BE..
+endread G:60 DEF libhdr.h[97] endread=60
+endstream G:62 DEF libhdr.h[99] endstream=62
+endstream G:62 LG dnappm.b[1163] endstream(instream)
+endstream G:62 LG dnappm.b[1176] endstream(instream)
+endstream G:62 LG dnappm.b[2037] endstream(outstream)
+endstream G:62 LG dnappm.b[2246] endstream(ppmstream)
+endstream G:62 LG dnappm.b[940] endstream(instream)
+endstreamch M:-1 DEF libhdr.h[251] endstreamch=-1
+endstreamch M:-1 MAN dnappm.b[1158] .. REPEATUNTIL ch=10|ch=endstreamch
+endstreamch M:-1 MAN dnappm.b[1160] UNLESS ch=endstreamch DO ..
+endstreamch M:-1 MAN dnappm.b[1162] CASE endstreamch:.. 
+endstreamch M:-1 MAN dnappm.b[1175] CASE endstreamch:.. 
+endstreamch M:-1 MAN dnappm.b[938] CASE endstreamch:.. 
+endstreamch M:-1 MAN dnappm.b[947] UNTIL ch=10|ch=endstreamch DO ..
+endtask G:162 DEF libhdr.h[214] endtask=162
+endwrite G:61 DEF libhdr.h[98] endwrite=61
+entryword M:57311 DEF libhdr.h[270] entryword=57311
+eventa1 G:494 DEF sdl.h[146] eventa1=
+eventa2 G:495 DEF sdl.h[147] eventa2=
+eventa2 G:495 LG dnappm.b[1850] eventa2
+eventa3 G:496 DEF sdl.h[148] eventa3=
+eventa4 G:497 DEF sdl.h[149] eventa4=
+eventa5 G:498 DEF sdl.h[150] eventa5=
+eventtype G:493 DEF sdl.h[145] eventtype=
+eventtype G:493 LG dnappm.b[1838] SWITCHON eventtype INTO..
+eventtype G:493 LLG sdl.b[307]
+    RESULTIS sys(Sys_sdl,sdl_pollevent,@eventtype)
+f0 FG:215 DEF dnappm.b[262] FLT f0=
+f0 FG:215 LG dnappm.b[1004] f0
+f0 FG:215 LG dnappm.b[1005] f0
+f0 FG:215 LG dnappm.b[1006] f0
+f0 FG:215 LG dnappm.b[1015] f0
+f0 FG:215 LG dnappm.b[1016] f0
+f0 FG:215 LG dnappm.b[1017] f0
+f0 FG:215 LG dnappm.b[1018] f0
+f0 FG:215 LG dnappm.b[1232] av!1#:=f0
+f0 FG:215 LG dnappm.b[1232] av!2#:=f0
+f0 FG:215 LG dnappm.b[1233] mat3set(mv,f1,f0,f0,f0,f1,...)
+f0 FG:215 LG dnappm.b[666] f0
+f0 FG:215 LG dnappm.b[669] f0
+f0 FG:215 LG dnappm.b[670] f0
+f0 FG:215 LG dnappm.b[671] f0
+f0 FG:215 LG dnappm.b[720] mat3set(tm,f1,f0,f0,f0,c,...)
+f0 FG:215 LG dnappm.b[734] mat3set(tm,c,f0,#-s,f0,f1,...)
+f0 FG:215 LG dnappm.b[734] mat3set(tm,c,f0,-s,f0,f1,...)
+f0 FG:215 LG dnappm.b[748] mat3set(tm,c,s,f0,#-s,c,...)
+f0 FG:215 LG dnappm.b[748] mat3set(tm,c,s,f0,-s,c,...)
+f0 FG:215 LG dnappm.b[781] mat3set(mv,f1,f0,f0,f0,cost,...)
+f0 FG:215 LG dnappm.b[784] mat3set(m,cosw,f0,#-sinw,f0,f1,...)
+f0 FG:215 LG dnappm.b[784] mat3set(m,cosw,f0,-sinw,f0,f1,...)
+f0 FG:215 LG dnappm.b[788] mat3set(m,cosl,sinl,f0,#-sinl,cosl,...)
+f0 FG:215 LG dnappm.b[788] mat3set(m,cosl,sinl,f0,-sinl,cosl,...)
+f0 FG:215 LG dnappm.b[814] mat3set(tm,f1,f0,f0,f0,c,...)
+f0 FG:215 LG dnappm.b[837] mat3set(tm,c,f0,#-s,f0,f1,...)
+f0 FG:215 LG dnappm.b[837] mat3set(tm,c,f0,-s,f0,f1,...)
+f0 FG:215 LG dnappm.b[866] mat3set(tm,c,s,f0,#-s,c,...)
+f0 FG:215 LG dnappm.b[866] mat3set(tm,c,s,f0,-s,c,...)
+f0 FG:215 LG dnappm.b[998] f0
+f0 FG:215 SG dnappm.b[1215] f0#:= 0.000
+f1 FG:216 DEF dnappm.b[263] FLT f1=
+f1 FG:216 LG dnappm.b[1004] f1
+f1 FG:216 LG dnappm.b[1005] f1
+f1 FG:216 LG dnappm.b[1006] f1
+f1 FG:216 LG dnappm.b[1233] mat3set(mv,f1,f0,f0,f0,f1,...)
+f1 FG:216 LG dnappm.b[720] mat3set(tm,f1,f0,f0,f0,c,...)
+f1 FG:216 LG dnappm.b[734] mat3set(tm,c,f0,#-s,f0,f1,...)
+f1 FG:216 LG dnappm.b[748] mat3set(tm,c,s,f0,#-s,c,...)
+f1 FG:216 LG dnappm.b[781] mat3set(mv,f1,f0,f0,f0,cost,...)
+f1 FG:216 LG dnappm.b[784] mat3set(m,cosw,f0,#-sinw,f0,f1,...)
+f1 FG:216 LG dnappm.b[788] mat3set(m,cosl,sinl,f0,#-sinl,cosl,...)
+f1 FG:216 LG dnappm.b[814] mat3set(tm,f1,f0,f0,f0,c,...)
+f1 FG:216 LG dnappm.b[837] mat3set(tm,c,f0,#-s,f0,f1,...)
+f1 FG:216 LG dnappm.b[866] mat3set(tm,c,s,f0,#-s,c,...)
+f1 FG:216 SG dnappm.b[1216] f1#:= 1.000
+fardepth G:483 DEF sdl.h[119] fardepth=
+fardepth G:483 LG dnappm.b[1739]
+    writef("neard'epth=%n*n",neardepth,fardepth)
+fardepth G:483 LG sdl.b[4192]
+    writef("drawt'th = %n*n",neardepth,fardepth)
+fardepth G:483 LG sdl.b[4224] IF z3>fardepth|z1<neardepth DO ..
+fardepth G:483 LG sdl.b[4226] IF z1>fardepth DO ..
+fardepth G:483 LG sdl.b[4226] TEST z2>fardepth THEN .. ELSE ..
+fardepth G:483 LG sdl.b[4238] x1:=interpolate(fardepth,z3,z1,...)
+fardepth G:483 LG sdl.b[4239] y1:=interpolate(fardepth,z3,z1,...)
+fardepth G:483 LG sdl.b[4240] z1:=fardepth
+fardepth G:483 LG sdl.b[4241] x2:=interpolate(fardepth,z3,z2,...)
+fardepth G:483 LG sdl.b[4242] y2:=interpolate(fardepth,z3,z2,...)
+fardepth G:483 LG sdl.b[4243] z2:=fardepth
+fardepth G:483 LG sdl.b[4267] interpolate(fardepth,z2,z1,x2,x1)
+fardepth G:483 LG sdl.b[4268] interpolate(fardepth,z2,z1,y2,y1)
+fardepth G:483 LG sdl.b[4269] fardepth
+fardepth G:483 LG sdl.b[4270] x1:=interpolate(fardepth,z3,z1,...)
+fardepth G:483 LG sdl.b[4271] y1:=interpolate(fardepth,z3,z1,...)
+fardepth G:483 LG sdl.b[4272] z1:=fardepth
+fardepth G:483 LG sdl.b[4298] x2:=interpolate(fardepth,z2,z1,...)
+fardepth G:483 LG sdl.b[4299] y2:=interpolate(fardepth,z2,z1,...)
+fardepth G:483 LG sdl.b[4300] z2:=fardepth
+fardepth G:483 LG sdl.b[4301] x3:=interpolate(fardepth,z3,z1,...)
+fardepth G:483 LG sdl.b[4302] y3:=interpolate(fardepth,z3,z1,...)
+fardepth G:483 LG sdl.b[4303] z3:=fardepth
+fardepth G:483 LG sdl.b[4375]
+    writef("drawt'th = %n*n",neardepth,fardepth)
+fardepth G:483 SG sdl.b[4421] fardepth:=far
+fault G:182 DEF libhdr.h[232] fault=182
+fieldofview FG:243 DEF dnappm.b[305] FLT fieldofview=
+fieldofview FG:243 LG dnappm.b[1551] deg2rad(fieldofview#/ 2.000)
+fieldofview FG:243 LG dnappm.b[1974]
+    writef("Field'degress*n",fieldofview)
+fieldofview FG:243 SG dnappm.b[1320] fieldofview#:= 60.000
+fieldofview FG:243 SG dnappm.b[1973] fieldofview#:=FLOAT intarg
+fillscreen G:320 DEF dnappm.b[415] fillscreen=
+fillscreen G:320 LG dnappm.b[1445] fillscreen(colno_gray)
+fillscreen G:320 LG dnappm.b[1448] fillscreen(colno_blue)
+fillscreen G:320 LG dnappm.b[1621] fillscreen(colno_gray)
+fillscreen G:320 LG dnappm.b[1715] fillscreen(colno_gray)
+fillscreen G:320 RT dnappm.b[1636] LET fillscreen(colno)BE..
+fillsurf G:524 DEF sdl.h[191] fillsurf=
+fillsurf G:524 LG dnappm.b[1639] fillsurf(colno2col(colno))
+fillsurf G:524 RT sdl.b[343] LET fillsurf(col)BE..
+fin F:185 LAB dnappm.b[1501] fin:IF genomev DO ..
+fin F:185 LF dnappm.b[1412] GOTO fin
+fin F:185 LF dnappm.b[1455] GOTO fin
+findappend G:130 DEF libhdr.h[168] findappend=130
+findarg G:104 DEF libhdr.h[142] findarg=104
+findinoutput G:50 DEF libhdr.h[87] findinoutput=50
+findinput G:48 DEF libhdr.h[85] findinput=48
+findinput G:48 LG dnappm.b[1145] findinput(filename)
+findinput G:48 LG dnappm.b[927] filename->findinput(filename),0
+findoutput G:49 DEF libhdr.h[86] findoutput=49
+findoutput G:49 LG dnappm.b[2025] outstream:=findoutput(filename)
+findoutput G:49 LG dnappm.b[2233] ppmstream:=findoutput(filename)
+findstream G:52 DEF libhdr.h[89] findstream=52
+findupdate G:51 DEF libhdr.h[88] findupdate=51
+firstPosNo G:251 DEF dnappm.b[317] firstPosNo=
+firstPosNo G:251 LG dnappm.b[1443] cameraPosNo:=firstPosNo
+firstPosNo G:251 SG dnappm.b[1322] firstPosNo:=initialPosNo
+firstPosNo G:251 SG dnappm.b[1345] firstPosNo:=!argv!8
+fl_64to32 M:45 DEF libhdr.h[618] fl_64to32=
+fl_F2N M:42 DEF libhdr.h[615] fl_F2N=
+fl_N2F M:41 DEF libhdr.h[614] fl_N2F=
+fl_abs M:5 DEF libhdr.h[585] fl_abs=
+fl_acos M:20 DEF libhdr.h[590] fl_acos=20
+fl_add M:9 DEF libhdr.h[587] fl_add=
+fl_asin M:21 DEF libhdr.h[591] fl_asin=
+fl_atan M:22 DEF libhdr.h[592] fl_atan=
+fl_atan2 M:23 DEF libhdr.h[593] fl_atan2=
+fl_atan2 M:23 MAN dnappm.b[2048] FIX rad2deg(sys(Sys_flt,fl_atan2,y,x))
+fl_atan2 M:23 MAN dnappm.b[715] bn#:=sys(Sys_flt,fl_atan2,mlw,mlh)
+fl_atan2 M:23 MAN dnappm.b[729] bw#:=sys(Sys_flt,fl_atan2,...,mlh)
+fl_atan2 M:23 MAN dnappm.b[743] bh#:=sys(Sys_flt,fl_atan2,...,mtn)
+fl_avail M:0 DEF libhdr.h[583] fl_avail=0
+fl_ceil M:38 DEF libhdr.h[608] fl_ceil=
+fl_cos M:24 DEF libhdr.h[594] fl_cos=
+fl_cos M:24 MAN dnappm.b[716] c#:=sys(Sys_flt,fl_cos,bn)
+fl_cos M:24 MAN dnappm.b[730] c#:=sys(Sys_flt,fl_cos,bw)
+fl_cos M:24 MAN dnappm.b[744] c#:=sys(Sys_flt,fl_cos,bh)
+fl_cos M:24 MAN dnappm.b[776] sys(Sys_flt,fl_cos,at)
+fl_cos M:24 MAN dnappm.b[777] sys(Sys_flt,fl_cos,aw)
+fl_cos M:24 MAN dnappm.b[778] sys(Sys_flt,fl_cos,al)
+fl_cos M:24 MAN dnappm.b[803] sys(Sys_flt,fl_cos,angle)
+fl_cos M:24 MAN dnappm.b[826] sys(Sys_flt,fl_cos,angle)
+fl_cos M:24 MAN dnappm.b[855] sys(Sys_flt,fl_cos,angle)
+fl_cosh M:27 DEF libhdr.h[597] fl_cosh=
+fl_div M:7 DEF libhdr.h[586] fl_div=
+fl_eq M:13 DEF libhdr.h[588] fl_eq=
+fl_exp M:30 DEF libhdr.h[600] fl_exp=
+fl_fix M:4 DEF libhdr.h[585] fl_fix=
+fl_float M:3 DEF libhdr.h[585] fl_float=
+fl_floor M:39 DEF libhdr.h[609] fl_floor=
+fl_frexp M:31 DEF libhdr.h[601] fl_frexp=
+fl_ge M:18 DEF libhdr.h[588] fl_ge=
+fl_gr M:16 DEF libhdr.h[588] fl_gr=
+fl_ldexp M:32 DEF libhdr.h[602] fl_ldexp=
+fl_le M:17 DEF libhdr.h[588] fl_le=
+fl_log M:33 DEF libhdr.h[603] fl_log=
+fl_log10 M:34 DEF libhdr.h[604] fl_log10=
+fl_ls M:15 DEF libhdr.h[588] fl_ls=
+fl_mk M:1 DEF libhdr.h[584] fl_mk=
+fl_mk M:1 MAN sdl.b[67] TEST r#<sys(Sys_flt,fl_mk,1,-10) THEN .. ELSE ..
+fl_mod M:8 DEF libhdr.h[586] fl_mod=
+fl_modf M:40 DEF libhdr.h[610] fl_modf=
+fl_mul M:6 DEF libhdr.h[586] fl_mul=
+fl_ne M:14 DEF libhdr.h[588] fl_ne=
+fl_neg M:12 DEF libhdr.h[587] fl_neg=
+fl_pos M:11 DEF libhdr.h[587] fl_pos=
+fl_pow M:36 DEF libhdr.h[606] fl_pow=36
+fl_radius2 M:43 DEF libhdr.h[616] fl_radius2=
+fl_radius3 M:44 DEF libhdr.h[617] fl_radius3=
+fl_sin M:25 DEF libhdr.h[595] fl_sin=
+fl_sin M:25 MAN dnappm.b[716] s#:=sys(Sys_flt,fl_sin,bn)
+fl_sin M:25 MAN dnappm.b[730] s#:=sys(Sys_flt,fl_sin,bw)
+fl_sin M:25 MAN dnappm.b[744] s#:=sys(Sys_flt,fl_sin,bh)
+fl_sin M:25 MAN dnappm.b[776] sys(Sys_flt,fl_sin,at)
+fl_sin M:25 MAN dnappm.b[777] sys(Sys_flt,fl_sin,aw)
+fl_sin M:25 MAN dnappm.b[778] sys(Sys_flt,fl_sin,al)
+fl_sin M:25 MAN dnappm.b[804] sys(Sys_flt,fl_sin,angle)
+fl_sin M:25 MAN dnappm.b[827] sys(Sys_flt,fl_sin,angle)
+fl_sin M:25 MAN dnappm.b[856] sys(Sys_flt,fl_sin,angle)
+fl_sinh M:28 DEF libhdr.h[598] fl_sinh=
+fl_sqrt M:37 DEF libhdr.h[607] fl_sqrt=
+fl_sqrt M:37 MAN sdl.b[66] sys(Sys_flt,fl_sqrt,x*x+y*y+z*z)
+fl_sqrt M:37 MAN sdl.b[82] RESULTIS sys(Sys_flt,fl_sqrt,x*x+y*y+z*z)
+fl_sub M:10 DEF libhdr.h[587] fl_sub=
+fl_tan M:26 DEF libhdr.h[596] fl_tan=
+fl_tan M:26 MAN dnappm.b[1552]
+    scalefactor#:=screencentrex#/sys(Sys_flt,fl_tan,fovby2)
+fl_tanh M:29 DEF libhdr.h[599] fl_tanh=
+fl_unmk M:2 DEF libhdr.h[584] fl_unmk=
+flag_a M:1 DEF libhdr.h[743] flag_a=1<<0
+flag_b M:2 DEF libhdr.h[744] flag_b=1<<1
+flag_c M:4 DEF libhdr.h[745] flag_c=1<<2
+flag_d M:8 DEF libhdr.h[746] flag_d=1<<3
+flag_e M:16 DEF libhdr.h[747] flag_e=1<<4
+fontH G:516 DEF sdl.h[180] fontH=
+fontH G:516 LG sdl.b[409] curry:=curry-fontH-charVsep
+fontH G:516 LG sdl.b[411] FOR line=0 TO fontH-1 DO..
+fontH G:516 LG sdl.b[412]
+    write_ch_slice(currx,curry+fontH-1-line,ch,line)
+fontH G:516 SG sdl.b[396] fontH:=18
+fontH G:516 SG sdl.b[401] fontH:=12
+fontW G:515 DEF sdl.h[179] fontW=
+fontW G:515 LG sdl.b[413] currx:=currx+fontW+charHsep
+fontW G:515 SG sdl.b[396] fontW:=12
+fontW G:515 SG sdl.b[401] fontW:=8
+fonttab G:521 DEF sdl.h[186] fonttab=
+format G:458 DEF sdl.h[76] format=
+format G:458 LLG sdl.b[273] sys(Sys_sdl,sdl_maprgb,@format,r,g,b)
+format G:458 LLG sdl.b[293]
+    sys(Sys_sdl,sdl_mksurface,@format,w,h,surfptr)
+format G:458 SG sdl.b[248] format:=fmt
+format1 G:459 DEF sdl.h[77] format1=
+format1 G:459 SG sdl.b[248] format1:=fmt1
+frameno G:247 DEF dnappm.b[312] frameno=
+frameno G:247 LG dnappm.b[1650]
+    drawf(screenxsize/2-50,30,"Frame'ber: %i4",frameno)
+frameno G:247 LG dnappm.b[1712]
+    IF frameno=0|building&frameno MOD buildstep=0 DO ..
+frameno G:247 LG dnappm.b[1753] writef("Writi'rame %n*n",frameno)
+frameno G:247 LG dnappm.b[1755] frameno:=frameno+1
+frameno G:247 LG dnappm.b[1967] writef("Frame'mber %n*n",frameno)
+frameno G:247 LG dnappm.b[2221] frameno
+frameno G:247 SG dnappm.b[1314] frameno:=0
+frameno G:247 SG dnappm.b[1755] frameno:=frameno+1
+frameno G:247 SG dnappm.b[1966] frameno:=intarg
+freeobj G:78 DEF libhdr.h[115] freeobj=78
+freesurface G:508 DEF sdl.h[165] freesurface=
+freesurface G:508 RT sdl.b[297] LET freesurface(surfptr)BE..
+freevec G:27 DEF libhdr.h[64] freevec=27
+freevec G:27 LG dnappm.b[1502] freevec(genomev)
+freevec G:27 LG dnappm.b[1505] freevec(vertexv)
+freevec G:27 LG dnappm.b[1506] freevec(indexv)
+freevec G:27 LG dnappm.b[1507] freevec(displayv)
+freevec G:27 LG dnappm.b[1514] freevec(blk)
+freevec G:27 LG dnappm.b[508] freevec(v)
+freevec G:27 LG sdl.b[278] freevec(leftxv)
+freevec G:27 LG sdl.b[279] freevec(rightxv)
+freevec G:27 LG sdl.b[280] freevec(leftzv)
+freevec G:27 LG sdl.b[281] freevec(rightzv)
+freevec G:27 LG sdl.b[282] freevec(depthv)
+fromfilename G:217 DEF dnappm.b[265] fromfilename=
+fromfilename G:217 LG dnappm.b[1359]
+    UNLESS mkscreen3d(concatstr("Genom'm file: ",fromfilename->fromfilename,"Test Genome",str),1500,700) DO ..
+fromfilename G:217 LG dnappm.b[1402]
+    genomev:=rdGenomeSequence(fromfilename)
+fromfilename G:217 LG dnappm.b[1411]
+    writef("Faile'file %s*n",fromfilename)
+fromfilename G:217 SG dnappm.b[1312] fromfilename:="seq045512"
+fromfilename G:217 SG dnappm.b[1333] fromfilename:=argv!0
+fscreencentrex FG:466 DEF sdl.h[86] FLT fscreencentrex=
+fscreencentrey FG:467 DEF sdl.h[87] FLT fscreencentrey=
+fscreenxsize FG:464 DEF sdl.h[84] FLT fscreenxsize=
+fscreenxsize FG:464 SG sdl.b[214] fscreenxsize#:=FLOAT xsize
+fscreenysize FG:465 DEF sdl.h[85] FLT fscreenysize=
+fscreenysize FG:465 SG sdl.b[214] fscreenysize#:=FLOAT ysize
+g_colist M:8 DEF libhdr.h[276] g_colist=8
+g_currco M:7 DEF libhdr.h[275] g_currco=7
+g_extbase M:950 DEF libhdr.h[761] g_extbase=950
+g_glbase M:450 DEF libhdr.h[759] g_glbase=450
+g_globsize M:0 DEF libhdr.h[273] g_globsize=0
+g_grbase M:450 DEF libhdr.h[757] g_grbase=450
+g_keyboard M:20 DEF libhdr.h[281] g_keyboard=20
+g_memsize M:14 DEF libhdr.h[280] g_memsize=14
+g_result2 M:10 DEF libhdr.h[278] g_result2=10
+g_rootnode M:9 DEF libhdr.h[277] g_rootnode=9
+g_screen M:21 DEF libhdr.h[282] g_screen=21
+g_sdlbase M:450 DEF libhdr.h[758] g_sdlbase=450
+g_sdlbase M:450 MAN sdl.h[66] inprod=g_sdlbase
+g_sndbase M:450 DEF libhdr.h[760] g_sndbase=450
+g_sys M:3 DEF libhdr.h[274] g_sys=3
+genomeradius FG:308 DEF dnappm.b[399] FLT genomeradius=
+genomeradius FG:308 LG dnappm.b[1015] genomeradius
+genomeradius FG:308 LG dnappm.b[1016] #-genomeradius
+genomeradius FG:308 LG dnappm.b[1017] genomeradius
+genomeradius FG:308 LG dnappm.b[1018] #-genomeradius
+genomeradius FG:308 LG dnappm.b[1041] x#+genomeradius#*swx
+genomeradius FG:308 LG dnappm.b[1042] y#+genomeradius#*swy
+genomeradius FG:308 LG dnappm.b[1043] z#+genomeradius#*swz
+genomeradius FG:308 LG dnappm.b[1045] x#-genomeradius#*swx
+genomeradius FG:308 LG dnappm.b[1046] y#-genomeradius#*swy
+genomeradius FG:308 LG dnappm.b[1047] z#-genomeradius#*swz
+genomeradius FG:308 LG dnappm.b[1074] x#+genomeradius#*swx
+genomeradius FG:308 LG dnappm.b[1075] y#+genomeradius#*swy
+genomeradius FG:308 LG dnappm.b[1076] z#+genomeradius#*swz
+genomeradius FG:308 LG dnappm.b[1078] x#-genomeradius#*swx
+genomeradius FG:308 LG dnappm.b[1079] y#-genomeradius#*swy
+genomeradius FG:308 LG dnappm.b[1080] z#-genomeradius#*swz
+genomeradius FG:308 LG dnappm.b[1086] x1#+genomeradius#*swx
+genomeradius FG:308 LG dnappm.b[1087] y1#+genomeradius#*swy
+genomeradius FG:308 LG dnappm.b[1088] z1#+genomeradius#*swz
+genomeradius FG:308 LG dnappm.b[1090] x1#-genomeradius#*swx
+genomeradius FG:308 LG dnappm.b[1091] y1#-genomeradius#*swy
+genomeradius FG:308 LG dnappm.b[1092] z1#-genomeradius#*swz
+genomeradius FG:308 SG dnappm.b[1262] genomeradius#:= 0.950
+genomeradius FG:308 SG dnappm.b[1264] genomeradius#:= 0.250
+genomesep FG:309 DEF dnappm.b[400] FLT genomesep=
+genomesep FG:309 LG dnappm.b[1053] nx#:=x#+genomesep#*stx
+genomesep FG:309 LG dnappm.b[1054] ny#:=y#+genomesep#*sty
+genomesep FG:309 LG dnappm.b[1055] nz#:=z#+genomesep#*stz
+genomesep FG:309 SG dnappm.b[1263] genomesep#:= 0.340
+genomesep FG:309 SG dnappm.b[1265] genomesep#:= 1.000
+genomev G:264 DEF dnappm.b[329] genomev=
+genomev G:264 LG dnappm.b[1038] FOR i=1 TO genomev!0 DO..
+genomev G:264 LG dnappm.b[1049] genomev!i
+genomev G:264 LG dnappm.b[1061] IF i=genomev!0 DO ..
+genomev G:264 LG dnappm.b[1065] Y:=genomev!(i+1)
+genomev G:264 LG dnappm.b[1404] UNLESS genomev DO ..
+genomev G:264 LG dnappm.b[1410] UNLESS genomev DO ..
+genomev G:264 LG dnappm.b[1414] genomev!i:=v!i
+genomev G:264 LG dnappm.b[1424] genomev!0
+genomev G:264 LG dnappm.b[1429] genomev!i
+genomev G:264 LG dnappm.b[1435] IF len<genomev!0 DO ..
+genomev G:264 LG dnappm.b[1502] IF genomev DO ..
+genomev G:264 LG dnappm.b[1502] freevec(genomev)
+genomev G:264 SG dnappm.b[1292] genomev:=0
+genomev G:264 SG dnappm.b[1402] genomev:=rdGenomeSequence(fromfilename)
+genomev G:264 SG dnappm.b[1409] genomev:=getvec(v!0)
+get_record G:71 DEF libhdr.h[108] get_record=71
+get_text G:93 DEF libhdr.h[131] get_text=93
+get_textblib G:93 DEF libhdr.h[130] get_textblib=93
+getevent G:552 DEF sdl.h[275] getevent=
+getevent G:552 FN sdl.b[305] LET getevent()=..
+getevent G:552 LG dnappm.b[1838] WHILE getevent() DO ..
+getlogname G:118 DEF libhdr.h[156] getlogname=118
+getmousestate G:551 DEF sdl.h[274] getmousestate=
+getmousestate G:551 FN sdl.b[350] LET getmousestate()=..
+getremipaddr G:54 DEF libhdr.h[91] getremipaddr=54
+getvec G:25 DEF libhdr.h[62] getvec=25
+getvec G:25 LG dnappm.b[1378] depthv:=getvec(depthvupb)
+getvec G:25 LG dnappm.b[1379] ppmv:=getvec(depthvupb)
+getvec G:25 LG dnappm.b[1409] genomev:=getvec(v!0)
+getvec G:25 LG dnappm.b[451] getvec(blkupb)
+getvec G:25 LG dnappm.b[491] getvec(newupb)
+getvec G:25 LG sdl.b[3674] leftxv:=getvec(curryupb)
+getvec G:25 LG sdl.b[3675] rightxv:=getvec(curryupb)
+getvec G:25 LG sdl.b[4155] leftzv:=getvec(curryupb)
+getvec G:25 LG sdl.b[4156] rightzv:=getvec(curryupb)
+getvec G:25 LG sdl.b[4157] depthv:=getvec(depthvupb)
+getword G:32 DEF libhdr.h[69] getword=32
+globin G:24 DEF libhdr.h[61] globin=24
+globsize G:0 DEF libhdr.h[36] globsize=0
+globword M:#x8F8F0000 DEF libhdr.h[266] globword=-#x70710000
+hidecursor G:555 DEF sdl.h[280] hidecursor=
+hidecursor G:555 FN sdl.b[316] LET hidecursor()=..
+hold G:158 DEF libhdr.h[210] hold=158
+id_appendscb M:132 DEF libhdr.h[532] id_appendscb=132
+id_inoutscb M:131 DEF libhdr.h[531] id_inoutscb=131
+id_inscb M:129 DEF libhdr.h[529] id_inscb=129
+id_outscb M:130 DEF libhdr.h[530] id_outscb=130
+incrementdegrees FG:300 DEF dnappm.b[386] FLT incrementdegrees=
+incrementdegrees FG:300 LG dnappm.b[1272]
+    incrementradians#:=deg2rad(incrementdegrees)
+incrementdegrees FG:300 LG dnappm.b[1951]
+    incrementdegrees#:= 0.500#*incrementdegrees
+incrementdegrees FG:300 LG dnappm.b[1952]
+    incrementradians#:=deg2rad(incrementdegrees)
+incrementdegrees FG:300 LG dnappm.b[1953]
+    writef("*nincr's=%9.6f*n",incrementdegrees)
+incrementdegrees FG:300 LG dnappm.b[1957]
+    incrementdegrees#:= 2.000#*incrementdegrees
+incrementdegrees FG:300 LG dnappm.b[1958]
+    incrementradians#:=deg2rad(incrementdegrees)
+incrementdegrees FG:300 LG dnappm.b[1959]
+    writef("*nincr's=%9.6f*n",incrementdegrees)
+incrementdegrees FG:300 LG dnappm.b[2060]
+    av!a#+incrementdegrees#*r#/ 1000000.000
+incrementdegrees FG:300 LG dnappm.b[2096]
+    writef("?%s%c'6.3f   *n",XY2str(currpair),axis2ch(curraxis),v!curraxis,incrementdegrees)
+incrementdegrees FG:300 SG dnappm.b[1270] incrementdegrees#:= 0.063
+incrementdegrees FG:300 SG dnappm.b[1951]
+    incrementdegrees#:= 0.500#*incrementdegrees
+incrementdegrees FG:300 SG dnappm.b[1957]
+    incrementdegrees#:= 2.000#*incrementdegrees
+incrementing G:303 DEF dnappm.b[390] incrementing=
+incrementradians FG:301 DEF dnappm.b[387] FLT incrementradians=
+incrementradians FG:301 LG dnappm.b[1944] doincrement(incrementradians)
+incrementradians FG:301 LG dnappm.b[1947]
+    doincrement(#-incrementradians)
+incrementradians FG:301 SG dnappm.b[1272]
+    incrementradians#:=deg2rad(incrementdegrees)
+incrementradians FG:301 SG dnappm.b[1952]
+    incrementradians#:=deg2rad(incrementdegrees)
+incrementradians FG:301 SG dnappm.b[1958]
+    incrementradians#:=deg2rad(incrementdegrees)
+incrementstate G:302 DEF dnappm.b[389] incrementstate=
+incrementstate G:302 LG dnappm.b[1878]
+    TEST incrementstate<0 THEN .. ELSE ..
+incrementstate G:302 LG dnappm.b[1886]
+    TEST incrementstate<0 THEN .. ELSE ..
+incrementstate G:302 LG dnappm.b[1894]
+    TEST incrementstate<0 THEN .. ELSE ..
+incrementstate G:302 LG dnappm.b[1902]
+    TEST incrementstate<0 THEN .. ELSE ..
+incrementstate G:302 LG dnappm.b[2071] currpair:=incrementstate*4+letno
+incrementstate G:302 SG dnappm.b[1274] incrementstate:=-1
+incrementstate G:302 SG dnappm.b[1859] incrementstate:=-1
+incrementstate G:302 SG dnappm.b[1879] incrementstate:=0
+incrementstate G:302 SG dnappm.b[1887] incrementstate:=1
+incrementstate G:302 SG dnappm.b[1895] incrementstate:=2
+incrementstate G:302 SG dnappm.b[1903] incrementstate:=3
+incrementstate G:302 SG dnappm.b[2072] incrementstate:=-1
+indexp G:268 DEF dnappm.b[344] indexp=
+indexp G:268 LG dnappm.b[896] pushval(isxv,indexp)
+indexp G:268 LG dnappm.b[897] indexp:=indexp+1
+indexp G:268 LG dnappm.b[905] pushval(isxv,indexp)
+indexp G:268 LG dnappm.b[906] indexp:=indexp+1
+indexp G:268 LG dnappm.b[914] pushval(isxv,indexp)
+indexp G:268 LG dnappm.b[915] indexp:=indexp+1
+indexp G:268 SG dnappm.b[1010] indexp:=0
+indexp G:268 SG dnappm.b[897] indexp:=indexp+1
+indexp G:268 SG dnappm.b[906] indexp:=indexp+1
+indexp G:268 SG dnappm.b[915] indexp:=indexp+1
+indexv G:266 DEF dnappm.b[338] indexv=
+indexv G:266 LG dnappm.b[1112]
+    writef("verte'layv=%n*n",vertexv,indexv,displayv)
+indexv G:266 LG dnappm.b[1127] FOR i=1 TO indexv!0>64->64,indexv!0 DO..
+indexv G:266 LG dnappm.b[1129] writef(" %i5",indexv!i)
+indexv G:266 LG dnappm.b[1506] IF indexv DO ..
+indexv G:266 LG dnappm.b[1506] freevec(indexv)
+indexv G:266 LG dnappm.b[1700] @indexv!(offset+3*trino+1)
+indexv G:266 SG dnappm.b[1108] indexv:=ivec
+indexv G:266 SG dnappm.b[1296] indexv:=0
+initco G:22 DEF libhdr.h[59] initco=22
+initialH FG:255 DEF dnappm.b[321] FLT initialH=
+initialH FG:255 LG dnappm.b[1538]
+    cameraH#:=initialH#*initialfac#+targetH*targetfac
+initialH FG:255 LG dnappm.b[1570] cth#:=targetH#-initialH
+initialH FG:255 SG dnappm.b[1328] initialH#:= 5.000
+initialH FG:255 SG dnappm.b[1340] initialH#:=FLOAT !argv!5
+initialN FG:253 DEF dnappm.b[321] FLT initialN=
+initialN FG:253 LG dnappm.b[1354] IF targetN#-initialN#< 1.000 DO ..
+initialN FG:253 LG dnappm.b[1536]
+    cameraN#:=initialN#*initialfac#+targetN*targetfac
+initialN FG:253 LG dnappm.b[1568] ctn#:=targetN#-initialN
+initialN FG:253 SG dnappm.b[1328] initialN#:=#- 1000.000
+initialN FG:253 SG dnappm.b[1338] initialN#:=FLOAT !argv!3
+initialN FG:253 SG dnappm.b[1354] initialN#:=targetN#- 1.000
+initialPosNo G:249 DEF dnappm.b[316] initialPosNo=
+initialPosNo G:249 LG dnappm.b[1322] firstPosNo:=initialPosNo
+initialPosNo G:249 LG dnappm.b[1529] FLOAT initialPosNo
+initialPosNo G:249 SG dnappm.b[1317] initialPosNo:=0
+initialW FG:254 DEF dnappm.b[321] FLT initialW=
+initialW FG:254 LG dnappm.b[1537]
+    cameraW#:=initialW#*initialfac#+targetW*targetfac
+initialW FG:254 LG dnappm.b[1569] ctw#:=targetW#-initialW
+initialW FG:254 SG dnappm.b[1328] initialW#:= 0.000
+initialW FG:254 SG dnappm.b[1339] initialW#:=FLOAT !argv!4
+initio G:46 DEF libhdr.h[83] initio=46
+initsdl G:499 DEF sdl.h[153] initsdl=
+initsdl G:499 FN sdl.b[138] LET initsdl()=..
+initsdl G:499 LG dnappm.b[1299] UNLESS initsdl() DO ..
+inprod G:450 DEF sdl.h[66] inprod=g_sdlbase
+inprod G:450 FN sdl.b[45] LET inprod(v,w)=..
+input G:58 DEF libhdr.h[95] input=58
+input G:58 LG dnappm.b[1288] stdin:=input()
+instrcount G:121 DEF libhdr.h[159] instrcount=121
+intarg G:246 DEF dnappm.b[310] intarg=
+intarg G:246 LG dnappm.b[1869] intarg:=10*intarg+ch-48
+intarg G:246 LG dnappm.b[1966] frameno:=intarg
+intarg G:246 LG dnappm.b[1973] fieldofview#:=FLOAT intarg
+intarg G:246 SG dnappm.b[1314] intarg:=0
+intarg G:246 SG dnappm.b[1863] intarg:=0
+intarg G:246 SG dnappm.b[1869] intarg:=10*intarg+ch-48
+intarg G:246 SG dnappm.b[1874] intarg:=0
+intarg G:246 SG dnappm.b[1881] intarg:=0
+intarg G:246 SG dnappm.b[1889] intarg:=0
+intarg G:246 SG dnappm.b[1897] intarg:=0
+intarg G:246 SG dnappm.b[1905] intarg:=0
+intarg G:246 SG dnappm.b[1910] intarg:=0
+intarg G:246 SG dnappm.b[1917] intarg:=0
+intarg G:246 SG dnappm.b[1931] intarg:=0
+intarg G:246 SG dnappm.b[1936] intarg:=0
+intarg G:246 SG dnappm.b[1941] intarg:=0
+intarg G:246 SG dnappm.b[1945] intarg:=0
+intarg G:246 SG dnappm.b[1948] intarg:=0
+intarg G:246 SG dnappm.b[1954] intarg:=0
+intarg G:246 SG dnappm.b[1960] intarg:=0
+intarg G:246 SG dnappm.b[1968] intarg:=0
+intarg G:246 SG dnappm.b[1975] intarg:=0
+interpolate G:528 DEF sdl.h[204] interpolate=
+interpolate G:528 FN sdl.b[85] LET interpolate(p,p1,p2,q1,q2)=..
+interpolate G:528 LG sdl.b[111] RESULTIS interpolate(p,p2,p1,q2,q1)
+interpolate G:528 LG sdl.b[123] res:=interpolate(p,p1,midp,...)
+interpolate G:528 LG sdl.b[124] res:=interpolate(p-midp,midp,p2,...)
+interpolate G:528 LG sdl.b[134] interpolate(p,p1,p2,q1,q2)
+interpolate G:528 LG sdl.b[4055] x0:=interpolate(0,y0,y1,...)
+interpolate G:528 LG sdl.b[4056] sz0:=interpolate(0,y0,y1,...)
+interpolate G:528 LG sdl.b[4064] x0:=interpolate(curryupb,y0,y1,...)
+interpolate G:528 LG sdl.b[4065] sz0:=interpolate(curryupb,y0,y1,...)
+interpolate G:528 LG sdl.b[4073] x1:=interpolate(0,y0,y1,...)
+interpolate G:528 LG sdl.b[4074] sz1:=interpolate(0,y0,y1,...)
+interpolate G:528 LG sdl.b[4082] x1:=interpolate(curryupb,y0,y1,...)
+interpolate G:528 LG sdl.b[4083] sz1:=interpolate(curryupb,y0,y1,...)
+interpolate G:528 LG sdl.b[4118] leftzv!y:=interpolate(s,0,smax,...)
+interpolate G:528 LG sdl.b[4125] rightzv!y:=interpolate(s,0,smax,...)
+interpolate G:528 LG sdl.b[4238] x1:=interpolate(fardepth,z3,z1,...)
+interpolate G:528 LG sdl.b[4239] y1:=interpolate(fardepth,z3,z1,...)
+interpolate G:528 LG sdl.b[4241] x2:=interpolate(fardepth,z3,z2,...)
+interpolate G:528 LG sdl.b[4242] y2:=interpolate(fardepth,z3,z2,...)
+interpolate G:528 LG sdl.b[4267] interpolate(fardepth,z2,z1,x2,x1)
+interpolate G:528 LG sdl.b[4268] interpolate(fardepth,z2,z1,y2,y1)
+interpolate G:528 LG sdl.b[4270] x1:=interpolate(fardepth,z3,z1,...)
+interpolate G:528 LG sdl.b[4271] y1:=interpolate(fardepth,z3,z1,...)
+interpolate G:528 LG sdl.b[4298] x2:=interpolate(fardepth,z2,z1,...)
+interpolate G:528 LG sdl.b[4299] y2:=interpolate(fardepth,z2,z1,...)
+interpolate G:528 LG sdl.b[4301] x3:=interpolate(fardepth,z3,z1,...)
+interpolate G:528 LG sdl.b[4302] y3:=interpolate(fardepth,z3,z1,...)
+interpolate G:528 LG sdl.b[4325] interpolate(neardepth,z3,z2,x3,x2)
+interpolate G:528 LG sdl.b[4326] interpolate(neardepth,z3,z2,y3,y2)
+interpolate G:528 LG sdl.b[4328] x3:=interpolate(neardepth,z3,z1,...)
+interpolate G:528 LG sdl.b[4329] y3:=interpolate(neardepth,z3,z1,...)
+interpolate G:528 LG sdl.b[4364] sz0:=interpolate(0,x0,x1,...)
+interpolate G:528 LG sdl.b[4368] sz1:=interpolate(currxsize-1,x0,x1,...)
+interpolate G:528 LG sdl.b[4394] interpolate(x,x0,x1,sz0,sz1)
+interpolate1 F:6 FN sdl.b[91] LET interpolate1(p,p1,p2,q1,q2)=..
+interpolate1 F:6 LF sdl.b[86] interpolate1(p,p1,p2,q1,q2)
+intflag G:119 DEF libhdr.h[157] intflag=119
+isrregs M:41 DEF libhdr.h[493] isrregs=41
+joystick G:460 DEF sdl.h[79] joystick=
+joystick1 G:461 DEF sdl.h[79] joystick1=
+klibregs M:21 DEF libhdr.h[488] klibregs=21
+lastPosNo G:252 DEF dnappm.b[317] lastPosNo=
+lastPosNo G:252 LG dnappm.b[1460] UNTIL done|cameraPosNo>lastPosNo DO ..
+lastPosNo G:252 SG dnappm.b[1322] lastPosNo:=targetPosNo
+lastPosNo G:252 SG dnappm.b[1346] lastPosNo:=!argv!9
+leftxv G:472 DEF sdl.h[95] leftxv=
+leftxv G:472 LG sdl.b[278] IF leftxv DO ..
+leftxv G:472 LG sdl.b[278] freevec(leftxv)
+leftxv G:472 LG sdl.b[3644] IF leftxv!y>x DO ..
+leftxv G:472 LG sdl.b[3645] leftxv!y:=x
+leftxv G:472 LG sdl.b[3676] UNLESS leftxv&rightxv DO ..
+leftxv G:472 LG sdl.b[3682] leftxv!y:=currysize
+leftxv G:472 LG sdl.b[3713] moveto(leftxv!y,y)
+leftxv G:472 LG sdl.b[3716] leftxv!y:=currysize-1
+leftxv G:472 LG sdl.b[4115] IF leftxv!y>=x DO ..
+leftxv G:472 LG sdl.b[4116] leftxv!y:=x
+leftxv G:472 LG sdl.b[4131]
+    writef("*nleft'maxy=%n*n",leftxv!y,leftzv!y,rightxv!y,rightzv!y,miny,maxy)
+leftxv G:472 LG sdl.b[4348] leftxv!y:=currxsize
+leftxv G:472 LG sdl.b[4358] leftxv!y
+leftxv G:472 LG sdl.b[4405] leftxv!y:=currxsize
+leftxv G:472 LG sdl.b[4413] IF leftxv!y<=rightxv!y DO ..
+leftxv G:472 LG sdl.b[4414]
+    writef("y=%i3'n %n:%n*n",y,leftxv!y,leftzv!y,rightxv!y,rightzv!y)
+leftxv G:472 SG dnappm.b[1293] leftxv:=0
+leftxv G:472 SG sdl.b[192] leftxv:=0
+leftxv G:472 SG sdl.b[3674] leftxv:=getvec(curryupb)
+leftzv G:473 DEF sdl.h[97] leftzv=
+leftzv G:473 LG sdl.b[280] IF leftzv DO ..
+leftzv G:473 LG sdl.b[280] freevec(leftzv)
+leftzv G:473 LG sdl.b[4118] leftzv!y:=interpolate(s,0,smax,...)
+leftzv G:473 LG sdl.b[4130] IF leftzv!y=500 DO ..
+leftzv G:473 LG sdl.b[4131]
+    writef("*nleft'maxy=%n*n",leftxv!y,leftzv!y,rightxv!y,rightzv!y,miny,maxy)
+leftzv G:473 LG sdl.b[4159] UNLESS leftzv*rightzv*depthv DO ..
+leftzv G:473 LG sdl.b[4165] leftzv!y:=currysize
+leftzv G:473 LG sdl.b[4358] leftzv!y
+leftzv G:473 LG sdl.b[4406] leftzv!y:=0
+leftzv G:473 LG sdl.b[4414]
+    writef("y=%i3'n %n:%n*n",y,leftxv!y,leftzv!y,rightxv!y,rightzv!y)
+leftzv G:473 SG dnappm.b[1294] leftzv:=0
+leftzv G:473 SG sdl.b[181] leftzv:=0
+leftzv G:473 SG sdl.b[4155] leftzv:=getvec(curryupb)
+letno2ch G:274 DEF dnappm.b[354] letno2ch=
+letno2ch G:274 FN dnappm.b[530] LET letno2ch(letno)=..
+letno2ch G:274 LG dnappm.b[1431] wrch(letno2ch(letno))
+letno2colno F:22 FN dnappm.b[566] LET letno2colno(letno)=..
+letno2colno F:22 LF dnappm.b[1057]
+    mkTriangle(vsxv,isxv,@lx,@rx,@nx,letno2colno(X))
+level G:15 DEF libhdr.h[52] level=15
+loadseg G:105 DEF libhdr.h[143] loadseg=105
+locatedir G:80 DEF libhdr.h[117] locatedir=80
+locateobj G:81 DEF libhdr.h[118] locateobj=81
+longjump G:16 DEF libhdr.h[53] longjump=16
+maprgb G:502 DEF sdl.h[156] maprgb=
+maprgb G:502 FN sdl.b[273] LET maprgb(r,g,b)=..
+maprgb G:502 LG dnappm.b[1381] col_black#:=maprgb(0,0,0)
+maprgb G:502 LG dnappm.b[1382] col_blue:=maprgb(0,0,255)
+maprgb G:502 LG dnappm.b[1383] col_green:=maprgb(0,255,0)
+maprgb G:502 LG dnappm.b[1384] col_yellow:=maprgb(0,255,255)
+maprgb G:502 LG dnappm.b[1385] col_red:=maprgb(255,0,0)
+maprgb G:502 LG dnappm.b[1386] col_majenta:=maprgb(255,0,255)
+maprgb G:502 LG dnappm.b[1387] col_cyan:=maprgb(255,255,0)
+maprgb G:502 LG dnappm.b[1388] col_white#:=maprgb(255,255,255)
+maprgb G:502 LG dnappm.b[1389] col_darkred:=maprgb(128,0,0)
+maprgb G:502 LG dnappm.b[1390] col_gray:=maprgb(70,70,70)
+maprgb G:502 LG dnappm.b[1391] col_lightyellow:=maprgb(128,255,255)
+maprgb G:502 LG dnappm.b[1392] col_lightred:=maprgb(255,128,128)
+mat3mulmmm G:277 DEF dnappm.b[357] mat3mulmmm=
+mat3mulmmm G:277 LG dnappm.b[1069] mat3mulmmm(matrixv!XY,m,m)
+mat3mulmmm G:277 LG dnappm.b[721] mat3mulmmm(tm,m,m)
+mat3mulmmm G:277 LG dnappm.b[735] mat3mulmmm(tm,m,m)
+mat3mulmmm G:277 LG dnappm.b[749] mat3mulmmm(tm,m,m)
+mat3mulmmm G:277 LG dnappm.b[785] mat3mulmmm(m,mv,mv)
+mat3mulmmm G:277 LG dnappm.b[789] mat3mulmmm(m,mv,mv)
+mat3mulmmm G:277 LG dnappm.b[817] mat3mulmmm(tm,m,m)
+mat3mulmmm G:277 LG dnappm.b[844] mat3mulmmm(tm,m,m)
+mat3mulmmm G:277 LG dnappm.b[869] mat3mulmmm(tm,m,m)
+mat3mulmmm G:277 RT dnappm.b[585] LET mat3mulmmm(m,p,q)BE..
+mat3mulmvv G:278 DEF dnappm.b[358] mat3mulmvv=
+mat3mulmvv G:278 RT dnappm.b[618] LET mat3mulmvv(m,p,q)BE..
+mat3set G:276 DEF dnappm.b[356] mat3set=
+mat3set G:276 LG dnappm.b[1233] mat3set(mv,f1,f0,f0,f0,f1,...)
+mat3set G:276 LG dnappm.b[720] mat3set(tm,f1,f0,f0,f0,c,...)
+mat3set G:276 LG dnappm.b[734] mat3set(tm,c,f0,#-s,f0,f1,...)
+mat3set G:276 LG dnappm.b[748] mat3set(tm,c,s,f0,#-s,c,...)
+mat3set G:276 LG dnappm.b[781] mat3set(mv,f1,f0,f0,f0,cost,...)
+mat3set G:276 LG dnappm.b[784] mat3set(m,cosw,f0,#-sinw,f0,f1,...)
+mat3set G:276 LG dnappm.b[788] mat3set(m,cosl,sinl,f0,#-sinl,cosl,...)
+mat3set G:276 LG dnappm.b[814] mat3set(tm,f1,f0,f0,f0,c,...)
+mat3set G:276 LG dnappm.b[837] mat3set(tm,c,f0,#-s,f0,f1,...)
+mat3set G:276 LG dnappm.b[866] mat3set(tm,c,s,f0,#-s,c,...)
+mat3set G:276 RT dnappm.b[578] LET mat3set(m,a0,a1,a2,a3,a4,a5,...)BE..
+matrixv G:263 DEF dnappm.b[327] matrixv=
+matrixv G:263 LG dnappm.b[1069] mat3mulmmm(matrixv!XY,m,m)
+matrixv G:263 LG dnappm.b[1203] matrixv!XY
+matrixv G:263 LG dnappm.b[1231] matrixv!XY:=mv
+matrixv G:263 LG dnappm.b[648] matrixv!XY
+matrixv G:263 LG dnappm.b[664] matrixv!YX
+matrixv G:263 LG dnappm.b[770] matrixv!XY
+matrixv G:263 SG dnappm.b[1224] matrixv:=newvec(15)
+maxdepth G:480 DEF sdl.h[115] maxdepth=
+maxdepth G:480 LG sdl.b[345] depthv!p:=maxdepth
+maxdepth G:480 LG sdl.b[4167] depthv!i:=maxdepth
+maxdepth G:480 SG sdl.b[187] maxdepth:=#x3B9ACA00
+maxint M:#x7FFFFFFF DEF libhdr.h[249] maxint=minint-1
+maxy G:477 DEF sdl.h[108] maxy=
+maxy G:477 LG sdl.b[3647] IF maxy<y DO ..
+maxy G:477 LG sdl.b[3652] IF maxy<y DO ..
+maxy G:477 LG sdl.b[3709] FOR y=miny TO maxy DO..
+maxy G:477 LG sdl.b[4120] IF y>maxy DO ..
+maxy G:477 LG sdl.b[4127] IF y>maxy DO ..
+maxy G:477 LG sdl.b[4131]
+    writef("*nleft'maxy=%n*n",leftxv!y,leftzv!y,rightxv!y,rightzv!y,miny,maxy)
+maxy G:477 LG sdl.b[4356] FOR y=miny TO maxy DO..
+maxy G:477 LG sdl.b[4412] writef("chkli'maxy=%n*n",miny,maxy)
+maxy G:477 SG sdl.b[193] maxy:=-1
+maxy G:477 SG sdl.b[3647] maxy:=y
+maxy G:477 SG sdl.b[3652] maxy:=y
+maxy G:477 SG sdl.b[3692] maxy:=-1
+maxy G:477 SG sdl.b[4120] maxy:=y
+maxy G:477 SG sdl.b[4127] maxy:=y
+maxy G:477 SG sdl.b[4346] maxy:=-1
+mcaddrinc M:4 DEF libhdr.h[247] mcaddrinc=bytesperword
+memoryfree G:131 DEF libhdr.h[169] memoryfree=131
+mindepth G:481 DEF sdl.h[116] mindepth=
+mindepth G:481 SG sdl.b[188] mindepth:=-#x3B9ACA00
+minint M:#x80000000 DEF libhdr.h[248] minint=1<<bitsperword-1
+minint M:#x80000000 MAN libhdr.h[249] maxint=minint-1
+miny G:476 DEF sdl.h[107] miny=
+miny G:476 LG sdl.b[3646] IF miny>y DO ..
+miny G:476 LG sdl.b[3651] IF miny>y DO ..
+miny G:476 LG sdl.b[3709] FOR y=miny TO maxy DO..
+miny G:476 LG sdl.b[4119] IF y<miny DO ..
+miny G:476 LG sdl.b[4126] IF y<miny DO ..
+miny G:476 LG sdl.b[4131]
+    writef("*nleft'maxy=%n*n",leftxv!y,leftzv!y,rightxv!y,rightzv!y,miny,maxy)
+miny G:476 LG sdl.b[4356] FOR y=miny TO maxy DO..
+miny G:476 LG sdl.b[4412] writef("chkli'maxy=%n*n",miny,maxy)
+miny G:476 SG sdl.b[193] miny:=0
+miny G:476 SG sdl.b[3646] miny:=y
+miny G:476 SG sdl.b[3651] miny:=y
+miny G:476 SG sdl.b[3692] miny:=currysize
+miny G:476 SG sdl.b[4119] miny:=y
+miny G:476 SG sdl.b[4126] miny:=y
+miny G:476 SG sdl.b[4346] miny:=currysize
+mkGenomeModel G:286 DEF dnappm.b[366] mkGenomeModel=
+mkGenomeModel G:286 FN dnappm.b[970] LET mkGenomeModel()=..
+mkGenomeModel G:286 LG dnappm.b[1471] mkGenomeModel()
+mkTriangle G:284 DEF dnappm.b[364] mkTriangle=
+mkTriangle G:284 LG dnappm.b[1032]
+    mkTriangle(vsxv,isxv,@lx0,@rx0,@rx1,colno_white)
+mkTriangle G:284 LG dnappm.b[1033]
+    mkTriangle(vsxv,isxv,@lx0,@lx1,@rx1,colno_white)
+mkTriangle G:284 LG dnappm.b[1057]
+    mkTriangle(vsxv,isxv,@lx,@rx,@nx,letno2colno(X))
+mkTriangle G:284 LG dnappm.b[1095]
+    mkTriangle(vsxv,isxv,@rx0,@lx1,@lx0,colno_black)
+mkTriangle G:284 LG dnappm.b[1096]
+    mkTriangle(vsxv,isxv,@rx0,@lx1,@rx1,colno_black)
+mkTriangle G:284 RT dnappm.b[884]
+    LET mkTriangle(vsxv,isxv,a,b,c,colno)BE..
+mkscreen G:500 DEF sdl.h[154] mkscreen=
+mkscreen G:500 FN sdl.b[201] LET mkscreen(title,xsize,ysize)=..
+mkscreen G:500 LG sdl.b[264] UNLESS mkscreen(title,xsize,ysize) DO ..
+mkscreen3d G:501 DEF sdl.h[155] mkscreen3d=
+mkscreen3d G:501 FN sdl.b[259] LET mkscreen3d(title,xsize,ysize)=..
+mkscreen3d G:501 LG dnappm.b[1359]
+    UNLESS mkscreen3d(concatstr("Genom'm file: ",fromfilename->fromfilename,"Test Genome",str),1500,700) DO ..
+mksurface G:507 DEF sdl.h[164] mksurface=
+mksurface G:507 FN sdl.b[291] LET mksurface(w,h,surfptr)=..
+modelchanged G:306 DEF dnappm.b[394] modelchanged=
+modelchanged G:306 LG dnappm.b[1465] WHILE modelchanged DO ..
+modelchanged G:306 SG dnappm.b[1467] modelchanged:=FALSE
+modelchanged G:306 SG dnappm.b[2088] modelchanged:=TRUE
+modelchanged G:306 SG dnappm.b[793] modelchanged:=TRUE
+mousebuttons G:492 DEF sdl.h[142] mousebuttons=
+mousex G:490 DEF sdl.h[139] mousex=
+mousey G:491 DEF sdl.h[140] mousey=
+moveby G:511 DEF sdl.h[170] moveby=
+moveby G:511 RT sdl.b[360] LET moveby(dx,dy)BE..
+moveby3d G:543 DEF sdl.h[237] moveby3d=
+moveby3d G:543 RT sdl.b[3978] LET moveby3d(dx,dy,dsz)BE..
+movesurf G:525 DEF sdl.h[195] movesurf=
+moveto G:510 DEF sdl.h[169] moveto=
+moveto G:510 LG sdl.b[3600] moveto(x,y)
+moveto G:510 LG sdl.b[360] moveto(currx+dx,curry+dy)
+moveto G:510 LG sdl.b[3713] moveto(leftxv!y,y)
+moveto G:510 RT sdl.b[359] LET moveto(x,y)BE..
+moveto3d G:542 DEF sdl.h[234] moveto3d=
+moveto3d G:542 RT sdl.b[3975] LET moveto3d(x,y,sz)BE..
+muldiv G:5 DEF libhdr.h[41] muldiv=5
+muldiv G:5 LG sdl.b[105] RESULTIS q1+muldiv(q2-q1,p-p1,p2-p1)
+muldiv G:5 LG sdl.b[130] RESULTIS q1+muldiv(q2-q1,p-p1,p2-p1)
+neardepth G:482 DEF sdl.h[118] neardepth=
+neardepth G:482 LG dnappm.b[1739]
+    writef("neard'epth=%n*n",neardepth,fardepth)
+neardepth G:482 LG sdl.b[4192]
+    writef("drawt'th = %n*n",neardepth,fardepth)
+neardepth G:482 LG sdl.b[4224] IF z3>fardepth|z1<neardepth DO ..
+neardepth G:482 LG sdl.b[4279] IF z3<neardepth DO ..
+neardepth G:482 LG sdl.b[4279] TEST z2<neardepth THEN .. ELSE ..
+neardepth G:482 LG sdl.b[4325] interpolate(neardepth,z3,z2,x3,x2)
+neardepth G:482 LG sdl.b[4326] interpolate(neardepth,z3,z2,y3,y2)
+neardepth G:482 LG sdl.b[4327] neardepth
+neardepth G:482 LG sdl.b[4328] x3:=interpolate(neardepth,z3,z1,...)
+neardepth G:482 LG sdl.b[4329] y3:=interpolate(neardepth,z3,z1,...)
+neardepth G:482 LG sdl.b[4330] z3:=neardepth
+neardepth G:482 LG sdl.b[4375]
+    writef("drawt'th = %n*n",neardepth,fardepth)
+neardepth G:482 SG sdl.b[4421] neardepth:=near
+newline G:84 DEF libhdr.h[121] newline=84
+newline G:84 LG dnappm.b[1135] newline()
+newline G:84 LG dnappm.b[1208] newline()
+newline G:84 LG dnappm.b[1432] newline()
+newline G:84 LG dnappm.b[1434] newline()
+newline G:84 LG dnappm.b[1521] newline()
+newline G:84 LG dnappm.b[1598] newline()
+newline G:84 LG dnappm.b[1734] newline()
+newline G:84 LG dnappm.b[1835] newline()
+newline G:84 LG dnappm.b[1922] newline()
+newline G:84 LG dnappm.b[1929] newline()
+newline G:84 LG dnappm.b[2079] newline()
+newline G:84 LG dnappm.b[2155] newline()
+newline G:84 LG dnappm.b[2162] newline()
+newline G:84 LG dnappm.b[2169] newline()
+newline G:84 LG dnappm.b[2176] newline()
+newline G:84 LG dnappm.b[2182] newline()
+newline G:84 LG dnappm.b[2241] newline()
+newline G:84 LG dnappm.b[2244] newline()
+newline G:84 LG sdl.b[4415] newline()
+newpage G:120 DEF libhdr.h[158] newpage=120
+newvec G:271 DEF dnappm.b[351] newvec=
+newvec G:271 FN dnappm.b[446] LET newvec(n)=..
+newvec G:271 LG dnappm.b[1223] anglesv:=newvec(15)
+newvec G:271 LG dnappm.b[1224] matrixv:=newvec(15)
+newvec G:271 LG dnappm.b[1229] newvec(2)
+newvec G:271 LG dnappm.b[1230] newvec(8)
+note G:63 DEF libhdr.h[100] note=63
+notinuse M:-1 DEF libhdr.h[645] notinuse=-1
+output G:59 DEF libhdr.h[96] output=59
+output G:59 LG dnappm.b[1289] stdout:=output()
+output G:59 LG dnappm.b[454] output()
+packstring G:30 DEF libhdr.h[67] packstring=30
+pathfindinput G:53 DEF libhdr.h[90] pathfindinput=53
+peercom G:179 DEF libhdr.h[226] peercom=179
+pi FG:214 DEF dnappm.b[261] FLT pi=
+pi FG:214 LG dnappm.b[1653] degrees#*pi#/ 180.000
+pi FG:214 LG dnappm.b[1655] radians#* 180.000#/pi
+pi FG:214 SG dnappm.b[1214] pi#:= 3.142
+pkt_a1 M:5 DEF libhdr.h[654] pkt_a1=5
+pkt_a2 M:6 DEF libhdr.h[655] pkt_a2=6
+pkt_a3 M:7 DEF libhdr.h[656] pkt_a3=7
+pkt_a4 M:8 DEF libhdr.h[657] pkt_a4=8
+pkt_a5 M:9 DEF libhdr.h[658] pkt_a5=9
+pkt_a6 M:10 DEF libhdr.h[659] pkt_a6=10
+pkt_arg1 M:5 DEF libhdr.h[654] pkt_arg1=5
+pkt_arg2 M:6 DEF libhdr.h[655] pkt_arg2=6
+pkt_arg3 M:7 DEF libhdr.h[656] pkt_arg3=7
+pkt_arg4 M:8 DEF libhdr.h[657] pkt_arg4=8
+pkt_arg5 M:9 DEF libhdr.h[658] pkt_arg5=9
+pkt_arg6 M:10 DEF libhdr.h[659] pkt_arg6=10
+pkt_devid M:1 DEF libhdr.h[650] pkt_devid=1
+pkt_devtaskid M:1 DEF libhdr.h[650] pkt_devtaskid=1
+pkt_id M:1 DEF libhdr.h[650] pkt_id=1
+pkt_link M:0 DEF libhdr.h[649] pkt_link=0
+pkt_op M:2 DEF libhdr.h[651] pkt_op=2
+pkt_r1 M:3 DEF libhdr.h[652] pkt_r1=3
+pkt_r2 M:4 DEF libhdr.h[653] pkt_r2=4
+pkt_res1 M:3 DEF libhdr.h[652] pkt_res1=3
+pkt_res2 M:4 DEF libhdr.h[653] pkt_res2=4
+pkt_taskid M:1 DEF libhdr.h[650] pkt_taskid=1
+pkt_type M:2 DEF libhdr.h[651] pkt_type=2
+point G:64 DEF libhdr.h[101] point=64
+pollingch M:-3 DEF libhdr.h[253] pollingch=-3
+ppmdrawpoint G:325 DEF dnappm.b[422] ppmdrawpoint=
+ppmdrawpoint G:325 LG dnappm.b[1221] drawpoint:=ppmdrawpoint
+ppmdrawpoint G:325 RT dnappm.b[2252] LET ppmdrawpoint(x,y)BE..
+ppming G:219 DEF dnappm.b[268] ppming=
+ppming G:219 LG dnappm.b[1452] IF ppming DO ..
+ppming G:219 LG dnappm.b[1754] IF ppming DO ..
+ppming G:219 SG dnappm.b[1348] ppming:=argv!13
+ppmv G:270 DEF dnappm.b[348] ppmv=
+ppmv G:270 LG dnappm.b[1642] ppmv!i:=colno
+ppmv G:270 LG dnappm.b[2237] wrppmcolour(ppmv!i)
+ppmv G:270 LG dnappm.b[2239] writef("*nRow ' ppmv=%n",row,ppmv)
+ppmv G:270 LG dnappm.b[2242] writef("%n",ppmv!(x+row*screenxsize))
+ppmv G:270 LG dnappm.b[2254] ppmv!p:=currcolno
+ppmv G:270 SG dnappm.b[1379] ppmv:=getvec(depthvupb)
+prmat3 G:280 DEF dnappm.b[360] prmat3=
+prmat3 G:280 LG dnappm.b[2154] prmat3(m)
+prmat3 G:280 LG dnappm.b[2161] prmat3(m)
+prmat3 G:280 LG dnappm.b[2168] prmat3(m)
+prmat3 G:280 LG dnappm.b[2175] prmat3(m)
+prmat3 G:280 LG dnappm.b[2181] prmat3(m)
+prmat3 G:280 RT dnappm.b[2200] LET prmat3(m)BE..
+processevents G:299 DEF dnappm.b[382] processevents=
+processevents G:299 LG dnappm.b[1461] processevents()
+processevents G:299 RT dnappm.b[1838] LET processevents()BE..
+prpair G:282 DEF dnappm.b[362] prpair=
+prpair G:282 LG dnappm.b[1199] prpair(XY)
+prpair G:282 LG dnappm.b[2091] prpair(currpair)
+prpair G:282 RT dnappm.b[1201] LET prpair(XY)BE..
+prpairs G:281 DEF dnappm.b[361] prpairs=
+prpairs G:281 RT dnappm.b[1199] LET prpairs()BE..
+prvec3 G:279 DEF dnappm.b[359] prvec3=
+prvec3 G:279 RT dnappm.b[2195] LET prvec3(v)BE..
+pushval G:272 DEF dnappm.b[352] pushval=
+pushval G:272 LG dnappm.b[1102] pushval(@dupb,4)
+pushval G:272 LG dnappm.b[1103] pushval(@dupb,ivec!0)
+pushval G:272 LG dnappm.b[1104] pushval(@dupb,0)
+pushval G:272 LG dnappm.b[892] pushval(vsxv,a!0)
+pushval G:272 LG dnappm.b[893] pushval(vsxv,a!1)
+pushval G:272 LG dnappm.b[894] pushval(vsxv,a!2)
+pushval G:272 LG dnappm.b[895] pushval(vsxv,colno)
+pushval G:272 LG dnappm.b[896] pushval(isxv,indexp)
+pushval G:272 LG dnappm.b[901] pushval(vsxv,b!0)
+pushval G:272 LG dnappm.b[902] pushval(vsxv,b!1)
+pushval G:272 LG dnappm.b[903] pushval(vsxv,b!2)
+pushval G:272 LG dnappm.b[904] pushval(vsxv,colno)
+pushval G:272 LG dnappm.b[905] pushval(isxv,indexp)
+pushval G:272 LG dnappm.b[910] pushval(vsxv,c!0)
+pushval G:272 LG dnappm.b[911] pushval(vsxv,c!1)
+pushval G:272 LG dnappm.b[912] pushval(vsxv,c!2)
+pushval G:272 LG dnappm.b[913] pushval(vsxv,colno)
+pushval G:272 LG dnappm.b[914] pushval(isxv,indexp)
+pushval G:272 LG dnappm.b[939] pushval(sxv,-1)
+pushval G:272 LG dnappm.b[961] pushval(sxv,0)
+pushval G:272 LG dnappm.b[962] pushval(sxv,1)
+pushval G:272 LG dnappm.b[963] pushval(sxv,2)
+pushval G:272 LG dnappm.b[964] pushval(sxv,3)
+pushval G:272 RT dnappm.b[472] LET pushval(sxv,val)BE..
+put_record G:72 DEF libhdr.h[109] put_record=72
+putword G:33 DEF libhdr.h[70] putword=33
+qpkt G:161 DEF libhdr.h[213] qpkt=161
+rad2deg G:292 DEF dnappm.b[372] rad2deg=
+rad2deg G:292 FN dnappm.b[1655] LET rad2deg(FLT radians)=..
+rad2deg G:292 LG dnappm.b[1204]
+    writef("%s an'f %7.1f*n",XY2str(XY),rad2deg(av!0),rad2deg(av!1),rad2deg(av!2))
+rad2deg G:292 LG dnappm.b[2034]
+    writef("%s %9'f %9.6f*n",XY2str(XY),rad2deg(av!0),rad2deg(av!1),rad2deg(av!2))
+rad2deg G:292 LG dnappm.b[2048] FIX rad2deg(sys(Sys_flt,fl_atan2,y,x))
+radius G:453 DEF sdl.h[69] radius=
+radius G:453 FN sdl.b[79] LET radius(v)=..
+radius G:453 LG dnappm.b[2130] radius(v)
+randno G:34 DEF libhdr.h[71] randno=34
+randno G:34 LG dnappm.b[2059] FLOAT (randno(#x1E8481)-1000000)
+randseed G:127 DEF libhdr.h[165] randseed=127
+rdGenomeSequence G:285 DEF dnappm.b[365] rdGenomeSequence=
+rdGenomeSequence G:285 FN dnappm.b[918]
+    LET rdGenomeSequence(filename)=..
+rdGenomeSequence G:285 LG dnappm.b[1402]
+    genomev:=rdGenomeSequence(fromfilename)
+rdangles G:287 DEF dnappm.b[367] rdangles=
+rdangles G:287 LG dnappm.b[1396] rdangles(anglesfilename)
+rdangles G:287 RT dnappm.b[1142] LET rdangles(filename)BE..
+rdargs G:102 DEF libhdr.h[140] rdargs=102
+rdargs G:102 LG dnappm.b[1304]
+    UNLESS rdargs("FROM,'BN/n,D/s",argv,100) DO ..
+rdargs2 G:26 DEF libhdr.h[63] rdargs2=26
+rdch G:38 DEF libhdr.h[75] rdch=38
+rdch G:38 LG dnappm.b[1150] rdch()
+rdch G:38 LG dnappm.b[1158] ch:=rdch()
+rdch G:38 LG dnappm.b[1171] ch:=rdch()
+rdch G:38 LG dnappm.b[2007] ch:=rdch()
+rdch G:38 LG dnappm.b[2015] ch:=rdch()
+rdch G:38 LG dnappm.b[934] capitalch(rdch())
+rdch G:38 LG dnappm.b[946] ch:=rdch()
+rdch G:38 LG dnappm.b[952] ch:=rdch()
+rditem G:103 DEF libhdr.h[141] rditem=103
+readflt G:74 DEF libhdr.h[111] readflt=74
+readflt G:74 LG dnappm.b[1189] an#:=deg2rad(readflt())
+readflt G:74 LG dnappm.b[1190] aw#:=deg2rad(readflt())
+readflt G:74 LG dnappm.b[1191] ah#:=deg2rad(readflt())
+readn G:83 DEF libhdr.h[120] readn=83
+readwords G:44 DEF libhdr.h[81] readwords=44
+recordnote G:70 DEF libhdr.h[107] recordnote=70
+recordpoint G:69 DEF libhdr.h[106] recordpoint=69
+release G:159 DEF libhdr.h[211] release=159
+renamefile G:77 DEF libhdr.h[114] renamefile=77
+resizescreen G:522 DEF sdl.h[188] resizescreen=
+result2 G:10 DEF libhdr.h[46] result2=10
+resumeco G:21 DEF libhdr.h[58] resumeco=21
+return_hard M:10 DEF libhdr.h[626] return_hard=10
+return_hard M:10 MAN libhdr.h[631] cli_initialfaillevel=return_hard
+return_ok M:0 DEF libhdr.h[628] return_ok=0
+return_severe M:20 DEF libhdr.h[625] return_severe=20
+return_soft M:5 DEF libhdr.h[627] return_soft=5
+returnpkt G:169 DEF libhdr.h[218] returnpkt=169
+rewindstream G:65 DEF libhdr.h[102] rewindstream=65
+rightxv G:474 DEF sdl.h[101] rightxv=
+rightxv G:474 LG sdl.b[279] IF rightxv DO ..
+rightxv G:474 LG sdl.b[279] freevec(rightxv)
+rightxv G:474 LG sdl.b[3649] IF rightxv!y<x DO ..
+rightxv G:474 LG sdl.b[3650] rightxv!y:=x
+rightxv G:474 LG sdl.b[3676] UNLESS leftxv&rightxv DO ..
+rightxv G:474 LG sdl.b[3682] rightxv!y:=-1
+rightxv G:474 LG sdl.b[3714] drawto(rightxv!y,y)
+rightxv G:474 LG sdl.b[3716] rightxv!y:=0
+rightxv G:474 LG sdl.b[4122] IF rightxv!y<x DO ..
+rightxv G:474 LG sdl.b[4123] rightxv!y:=x
+rightxv G:474 LG sdl.b[4131]
+    writef("*nleft'maxy=%n*n",leftxv!y,leftzv!y,rightxv!y,rightzv!y,miny,maxy)
+rightxv G:474 LG sdl.b[4348] rightxv!y:=-1
+rightxv G:474 LG sdl.b[4359] rightxv!y
+rightxv G:474 LG sdl.b[4405] rightxv!y:=-1
+rightxv G:474 LG sdl.b[4413] IF leftxv!y<=rightxv!y DO ..
+rightxv G:474 LG sdl.b[4414]
+    writef("y=%i3'n %n:%n*n",y,leftxv!y,leftzv!y,rightxv!y,rightzv!y)
+rightxv G:474 SG dnappm.b[1293] rightxv:=0
+rightxv G:474 SG sdl.b[192] rightxv:=0
+rightxv G:474 SG sdl.b[3675] rightxv:=getvec(curryupb)
+rightzv G:475 DEF sdl.h[103] rightzv=
+rightzv G:475 LG sdl.b[281] IF rightzv DO ..
+rightzv G:475 LG sdl.b[281] freevec(rightzv)
+rightzv G:475 LG sdl.b[4125] rightzv!y:=interpolate(s,0,smax,...)
+rightzv G:475 LG sdl.b[4131]
+    writef("*nleft'maxy=%n*n",leftxv!y,leftzv!y,rightxv!y,rightzv!y,miny,maxy)
+rightzv G:475 LG sdl.b[4159] UNLESS leftzv*rightzv*depthv DO ..
+rightzv G:475 LG sdl.b[4165] rightzv!y:=-1
+rightzv G:475 LG sdl.b[4359] rightzv!y
+rightzv G:475 LG sdl.b[4406] rightzv!y:=0
+rightzv G:475 LG sdl.b[4414]
+    writef("y=%i3'n %n:%n*n",y,leftxv!y,leftzv!y,rightxv!y,rightzv!y)
+rightzv G:475 SG dnappm.b[1294] rightzv:=0
+rightzv G:475 SG sdl.b[181] rightzv:=0
+rightzv G:475 SG sdl.b[4156] rightzv:=getvec(curryupb)
+rootnode G:9 DEF libhdr.h[45] rootnode=9
+rootnodeaddr M:100 DEF libhdr.h[298] rootnodeaddr=100
+rotate3 G:294 DEF dnappm.b[375] rotate3=
+rotate3 G:294 RT dnappm.b[872] LET rotate3(m,FLT at,FLT aw,FLT al)BE..
+rotate3l F:30 LF dnappm.b[880] rotate3l(m,al)
+rotate3l F:30 RT dnappm.b[849] LET rotate3l(m,FLT angle)BE..
+rotate3t F:28 LF dnappm.b[878] rotate3t(m,at)
+rotate3t F:28 RT dnappm.b[797] LET rotate3t(m,FLT angle)BE..
+rotate3w F:29 LF dnappm.b[879] rotate3w(m,aw)
+rotate3w F:29 RT dnappm.b[820] LET rotate3w(m,FLT angle)BE..
+rtn_abortcode M:27 DEF libhdr.h[334] rtn_abortcode=
+rtn_adjclock M:33 DEF libhdr.h[352] rtn_adjclock=
+rtn_blib M:19 DEF libhdr.h[323] rtn_blib=
+rtn_blklist M:4 DEF libhdr.h[305] rtn_blklist=
+rtn_boot M:17 DEF libhdr.h[321] rtn_boot=
+rtn_boottrace M:39 DEF libhdr.h[367] rtn_boottrace=
+rtn_bptaddr M:9 DEF libhdr.h[312] rtn_bptaddr=
+rtn_bptinstr M:10 DEF libhdr.h[313] rtn_bptinstr=
+rtn_clkintson M:6 DEF libhdr.h[308] rtn_clkintson=
+rtn_clwkq M:12 DEF libhdr.h[316] rtn_clwkq=
+rtn_context M:28 DEF libhdr.h[335] rtn_context=
+rtn_crntask M:3 DEF libhdr.h[304] rtn_crntask=
+rtn_days M:40 DEF libhdr.h[370] rtn_days=
+rtn_dbgvars M:11 DEF libhdr.h[314] rtn_dbgvars=
+rtn_dcountv M:34 DEF libhdr.h[354] rtn_dcountv=
+rtn_devtab M:1 DEF libhdr.h[302] rtn_devtab=
+rtn_dumpflag M:25 DEF libhdr.h[331] rtn_dumpflag=
+rtn_envlist M:26 DEF libhdr.h[332] rtn_envlist=
+rtn_gvecsize M:63 DEF libhdr.h[403] rtn_gvecsize=
+rtn_hdrsvar M:37 DEF libhdr.h[363] rtn_hdrsvar=
+rtn_hostaddsize M:62 DEF libhdr.h[400] rtn_hostaddsize=
+rtn_icount M:48 DEF libhdr.h[383] rtn_icount=
+rtn_idletcb M:32 DEF libhdr.h[351] rtn_idletcb=
+rtn_info M:15 DEF libhdr.h[319] rtn_info=
+rtn_insadebug M:8 DEF libhdr.h[310] rtn_insadebug=
+rtn_intflag M:24 DEF libhdr.h[330] rtn_intflag=
+rtn_joyaxis0 M:55 DEF libhdr.h[392] rtn_joyaxis0=
+rtn_joyaxis1 M:56 DEF libhdr.h[393] rtn_joyaxis1=
+rtn_joyaxis2 M:57 DEF libhdr.h[394] rtn_joyaxis2=
+rtn_joyaxis3 M:58 DEF libhdr.h[395] rtn_joyaxis3=
+rtn_joyaxis4 M:59 DEF libhdr.h[396] rtn_joyaxis4=
+rtn_joyaxis5 M:60 DEF libhdr.h[397] rtn_joyaxis5=
+rtn_joyaxis6 M:61 DEF libhdr.h[398] rtn_joyaxis6=
+rtn_joyaxiscount M:52 DEF libhdr.h[389] rtn_joyaxiscount=
+rtn_joybuttoncount M:51 DEF libhdr.h[388] rtn_joybuttoncount=
+rtn_joybuttons M:54 DEF libhdr.h[391] rtn_joybuttons=
+rtn_joycurrbuttons M:53 DEF libhdr.h[390] rtn_joycurrbuttons=
+rtn_joystickfd M:49 DEF libhdr.h[386] rtn_joystickfd=
+rtn_joystickfd1 M:50 DEF libhdr.h[387] rtn_joystickfd1=
+rtn_keyboard M:20 DEF libhdr.h[324] rtn_keyboard=
+rtn_klib M:18 DEF libhdr.h[322] rtn_klib=
+rtn_lastch M:7 DEF libhdr.h[309] rtn_lastch=
+rtn_mc0 M:43 DEF libhdr.h[375] rtn_mc0=
+rtn_mc1 M:44 DEF libhdr.h[377] rtn_mc1=
+rtn_mc2 M:45 DEF libhdr.h[378] rtn_mc2=
+rtn_mc3 M:46 DEF libhdr.h[379] rtn_mc3=
+rtn_membase M:13 DEF libhdr.h[317] rtn_membase=
+rtn_memsize M:14 DEF libhdr.h[318] rtn_memsize=
+rtn_mins M:41 DEF libhdr.h[372] rtn_mins=rtn_msecs
+rtn_msecs M:41 DEF libhdr.h[371] rtn_msecs=
+rtn_msecs M:41 MAN libhdr.h[372] rtn_mins=rtn_msecs
+rtn_pathvar M:36 DEF libhdr.h[361] rtn_pathvar=
+rtn_rootvar M:35 DEF libhdr.h[359] rtn_rootvar=
+rtn_screen M:21 DEF libhdr.h[325] rtn_screen=
+rtn_scriptsvar M:38 DEF libhdr.h[365] rtn_scriptsvar=
+rtn_sys M:16 DEF libhdr.h[320] rtn_sys=
+rtn_sysg M:30 DEF libhdr.h[344] rtn_sysg=
+rtn_sysp M:29 DEF libhdr.h[343] rtn_sysp=
+rtn_sysst M:31 DEF libhdr.h[345] rtn_sysst=
+rtn_system M:47 DEF libhdr.h[381] rtn_system=
+rtn_tallyv M:5 DEF libhdr.h[306] rtn_tallyv=
+rtn_tasktab M:0 DEF libhdr.h[301] rtn_tasktab=0
+rtn_tcblist M:2 DEF libhdr.h[303] rtn_tcblist=
+rtn_ticks M:42 DEF libhdr.h[373] rtn_ticks=
+rtn_upb M:80 DEF libhdr.h[409] rtn_upb=80
+rtn_vecstatsv M:22 DEF libhdr.h[327] rtn_vecstatsv=
+rtn_vecstatsvupb M:23 DEF libhdr.h[328] rtn_vecstatsvupb=
+sardch G:36 DEF libhdr.h[73] sardch=36
+saveregs M:31 DEF libhdr.h[489] saveregs=31
+sawrch G:37 DEF libhdr.h[74] sawrch=37
+sawritef G:95 DEF libhdr.h[133] sawritef=95
+sawritef G:95 LG dnappm.b[2232] sawritef("Writi'ile: %s*n",filename)
+sawritef G:95 LG dnappm.b[554] sawritef("colno'mber %n*n",colno)
+sawritef G:95 LG sdl.b[141] sawritef("inits'entered*n")
+sawritef G:95 LG sdl.b[3677] sawritef("getve'failure*n")
+scalefactor FG:244 DEF dnappm.b[307] FLT scalefactor=
+scalefactor FG:244 LG dnappm.b[1556]
+    writef("setCa'  %9.3f*n",scalefactor)
+scalefactor FG:244 LG dnappm.b[1807]
+    s!0:=FIX (screencentrex#-x#*scalefactor#/depth)
+scalefactor FG:244 LG dnappm.b[1808]
+    s!1:=FIX (screencentrey#+y#*scalefactor#/depth)
+scalefactor FG:244 SG dnappm.b[1552]
+    scalefactor#:=screencentrex#/sys(Sys_flt,fl_tan,fovby2)
+scb_blength M:14 DEF libhdr.h[557] scb_blength=
+scb_block M:9 DEF libhdr.h[552] scb_block=
+scb_buf M:3 DEF libhdr.h[546] scb_buf=
+scb_bufend M:11 DEF libhdr.h[554] scb_bufend=
+scb_encoding M:20 DEF libhdr.h[568] scb_encoding=
+scb_end M:5 DEF libhdr.h[548] scb_end=
+scb_endfn M:8 DEF libhdr.h[551] scb_endfn=
+scb_fd M:16 DEF libhdr.h[559] scb_fd=
+scb_fd1 M:17 DEF libhdr.h[560] scb_fd1=
+scb_id M:0 DEF libhdr.h[543] scb_id=0
+scb_lblock M:12 DEF libhdr.h[555] scb_lblock=
+scb_ldata M:13 DEF libhdr.h[556] scb_ldata=
+scb_maxnamelen M:31 DEF libhdr.h[541] scb_maxnamelen=31
+scb_maxnamelen M:31 MAN libhdr.h[572]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_name M:21 DEF libhdr.h[570] scb_name=
+scb_name M:21 MAN libhdr.h[572]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_nameeend M:28 DEF libhdr.h[572]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_pos M:4 DEF libhdr.h[547] scb_pos=
+scb_rdfn M:6 DEF libhdr.h[549] scb_rdfn=
+scb_reclen M:15 DEF libhdr.h[558] scb_reclen=
+scb_size M:29 DEF libhdr.h[575] scb_size=
+scb_size M:29 MAN libhdr.h[576] scb_upb=scb_size-1
+scb_task M:2 DEF libhdr.h[545] scb_task=
+scb_timeout M:18 DEF libhdr.h[561] scb_timeout=
+scb_timeoutact M:19 DEF libhdr.h[564] scb_timeoutact=
+scb_type M:1 DEF libhdr.h[544] scb_type=
+scb_upb M:28 DEF libhdr.h[576] scb_upb=scb_size-1
+scb_wrfn M:7 DEF libhdr.h[550] scb_wrfn=
+scb_write M:10 DEF libhdr.h[553] scb_write=
+scbt_console M:-1 DEF libhdr.h[537] scbt_console=-1
+scbt_file M:1 DEF libhdr.h[535] scbt_file=1
+scbt_mbx M:-2 DEF libhdr.h[538] scbt_mbx=-2
+scbt_net M:2 DEF libhdr.h[534] scbt_net=2
+scbt_ram M:0 DEF libhdr.h[536] scbt_ram=0
+scbt_tcp M:-3 DEF libhdr.h[539] scbt_tcp=-3
+screen G:454 DEF sdl.h[71] screen=
+screen G:454 LLG sdl.b[222]
+    ok:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+screen G:454 LLG sdl.b[246]
+    sys(Sys_sdl,sdl_getsurfaceinfo,@screen,@flags)
+screen G:454 LLG sdl.b[252] selectsurface(@screen,xsize,ysize)
+screen G:454 LLG sdl.b[321] sys(Sys_sdl,sdl_flip,@screen)
+screen1 G:455 DEF sdl.h[71] screen1=
+screencentrex FG:241 DEF dnappm.b[302] FLT screencentrex=
+screencentrex FG:241 LG dnappm.b[1552]
+    scalefactor#:=screencentrex#/sys(Sys_flt,fl_tan,fovby2)
+screencentrex FG:241 LG dnappm.b[1554]
+    writef("setCa'y=%9.3f*n",screencentrex,screencentrey)
+screencentrex FG:241 LG dnappm.b[1807]
+    s!0:=FIX (screencentrex#-x*scalefactor/depth)
+screencentrex FG:241 SG dnappm.b[1374]
+    screencentrex#:=FLOAT screenxsize#/ 2.000
+screencentrey FG:242 DEF dnappm.b[303] FLT screencentrey=
+screencentrey FG:242 LG dnappm.b[1450]
+    drawf(charLmargin,FIX screencentrey,"ABCD*n'34567890")
+screencentrey FG:242 LG dnappm.b[1554]
+    writef("setCa'y=%9.3f*n",screencentrex,screencentrey)
+screencentrey FG:242 LG dnappm.b[1808]
+    s!1:=FIX (screencentrey#+y#*scalefactor#/depth)
+screencentrey FG:242 SG dnappm.b[1375]
+    screencentrey#:=FLOAT screenysize#/ 2.000
+screenxsize G:462 DEF sdl.h[82] screenxsize=
+screenxsize G:462 LG dnappm.b[1372]
+    writef("Scree'%n x %n*n",screenxsize,screenysize)
+screenxsize G:462 LG dnappm.b[1374]
+    screencentrex#:=FLOAT screenxsize#/ 2.000
+screenxsize G:462 LG dnappm.b[1377] depthvupb:=screenxsize*screenysize-1
+screenxsize G:462 LG dnappm.b[1650]
+    drawf(screenxsize/2-50,30,"Frame'ber: %i4",frameno)
+screenxsize G:462 LG dnappm.b[1799] s!0:=screenxsize/2
+screenxsize G:462 LG dnappm.b[2236]
+    writef("%n*n%n*n255*n",screenxsize,screenysize)
+screenxsize G:462 LG dnappm.b[2240] FOR x=0 TO screenxsize-1 DO..
+screenxsize G:462 LG dnappm.b[2242]
+    writef("%n",ppmv!(x+row*screenxsize))
+screenxsize G:462 LG dnappm.b[2253] (screenysize-y)*screenxsize+x
+screenxsize G:462 LG sdl.b[216] TEST screenxsize>300 THEN .. ELSE ..
+screenxsize G:462 LG sdl.b[222]
+    ok:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+screenxsize G:462 SG sdl.b[213] screenxsize:=xsize
+screenysize G:463 DEF sdl.h[83] screenysize=
+screenysize G:463 LG dnappm.b[1372]
+    writef("Scree'%n x %n*n",screenxsize,screenysize)
+screenysize G:463 LG dnappm.b[1375]
+    screencentrey#:=FLOAT screenysize#/ 2.000
+screenysize G:463 LG dnappm.b[1377] depthvupb:=screenxsize*screenysize-1
+screenysize G:463 LG dnappm.b[1648]
+    drawf(30,screenysize-30,"%s",sequenceTitle)
+screenysize G:463 LG dnappm.b[1800] s!1:=screenysize/2
+screenysize G:463 LG dnappm.b[2236]
+    writef("%n*n%n*n255*n",screenxsize,screenysize)
+screenysize G:463 LG dnappm.b[2238] FOR row=0 TO screenysize-1 DO..
+screenysize G:463 LG dnappm.b[2253] (screenysize-y)*screenxsize+x
+screenysize G:463 LG sdl.b[222]
+    ok:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+screenysize G:463 SG sdl.b[213] screenysize:=ysize
+sdl_ANYFORMAT M:#x10000000 DEF sdl.h[396] sdl_ANYFORMAT=#x10000000
+sdl_DOUBLEBUF M:#x40000000 DEF sdl.h[398] sdl_DOUBLEBUF=#x40000000
+sdl_FULLSCREEN M:#x80000000 DEF sdl.h[399] sdl_FULLSCREEN=-#x80000000
+sdl_HWPALETTE M:#x20000000 DEF sdl.h[397] sdl_HWPALETTE=#x20000000
+sdl_HWSURFACE M:1 DEF sdl.h[394] sdl_HWSURFACE=1
+sdl_NOFRAME M:32 DEF sdl.h[403] sdl_NOFRAME=32
+sdl_OPENGL M:2 DEF sdl.h[400] sdl_OPENGL=2
+sdl_OPENGLBLIT M:10 DEF sdl.h[401] sdl_OPENGLBLIT=10
+sdl_RESIZABLE M:16 DEF sdl.h[402] sdl_RESIZABLE=16
+sdl_SWSURFACE M:0 DEF sdl.h[393] sdl_SWSURFACE=0
+sdl_SWSURFACE M:0 MAN sdl.b[222]
+    ok:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+sdl_avail M:0 DEF sdl.h[295] sdl_avail=0
+sdl_blitsurface M:11 DEF sdl.h[308] sdl_blitsurface=
+sdl_blitsurface M:11 MAN sdl.b[331]
+    sys(Sys_sdl,sdl_blitsurface,srcptr,0,dstptr,@dx)
+sdl_blitsurface M:11 MAN sdl.b[340]
+    sys(Sys_sdl,sdl_blitsurface,srcptr,0,dstptr,@dx)
+sdl_delay M:16 DEF sdl.h[313] sdl_delay=
+sdl_delay M:16 MAN sdl.b[311] sys(Sys_sdl,sdl_delay,msecs)
+sdl_displayformat M:18 DEF sdl.h[315] sdl_displayformat=
+sdl_drawcircle M:30 DEF sdl.h[330] sdl_drawcircle=
+sdl_drawellipse M:33 DEF sdl.h[333] sdl_drawellipse=
+sdl_drawfillcircle M:37 DEF sdl.h[337] sdl_drawfillcircle=
+sdl_drawfillellipse M:34 DEF sdl.h[334] sdl_drawfillellipse=
+sdl_drawfillrect M:38 DEF sdl.h[338] sdl_drawfillrect=
+sdl_drawfillround M:36 DEF sdl.h[336] sdl_drawfillround=
+sdl_drawhline M:28 DEF sdl.h[328] sdl_drawhline=
+sdl_drawline M:27 DEF sdl.h[327] sdl_drawline=
+sdl_drawpixel M:32 DEF sdl.h[332] sdl_drawpixel=
+sdl_drawrect M:31 DEF sdl.h[331] sdl_drawrect=
+sdl_drawround M:35 DEF sdl.h[335] sdl_drawround=
+sdl_drawvline M:29 DEF sdl.h[329] sdl_drawvline=
+sdl_enable M:1 DEF sdl.h[368] sdl_enable=1
+sdl_fillrect M:39 DEF sdl.h[340] sdl_fillrect=
+sdl_fillrect M:39 MAN sdl.b[3749]
+    sys(Sys_sdl,sdl_fillrect,@currsurf,xmin,currysize-ymax,...,...)
+sdl_fillrect M:39 MAN sdl.b[392]
+    sys(Sys_sdl,sdl_fillrect,@currsurf,x,currysize-y,1,...)
+sdl_fillsurf M:40 DEF sdl.h[341] sdl_fillsurf=
+sdl_fillsurf M:40 MAN sdl.b[344] sys(Sys_sdl,sdl_fillsurf,@currsurf,col)
+sdl_flip M:17 DEF sdl.h[314] sdl_flip=
+sdl_flip M:17 MAN sdl.b[321] sys(Sys_sdl,sdl_flip,@screen)
+sdl_freesurface M:13 DEF sdl.h[310] sdl_freesurface=
+sdl_freesurface M:13 MAN sdl.b[297] sys(Sys_sdl,sdl_freesurface,surfptr)
+sdl_freewav M:23 DEF sdl.h[322] sdl_freewav=
+sdl_geterror M:8 DEF sdl.h[305] sdl_geterror=
+sdl_geterror M:8 MAN sdl.b[162] sys(Sys_sdl,sdl_geterror,mes)
+sdl_geterror M:8 MAN sdl.b[233] sys(Sys_sdl,sdl_geterror,mes)
+sdl_getfmtinfo M:7 DEF sdl.h[302] sdl_getfmtinfo=
+sdl_getmousestate M:21 DEF sdl.h[320] sdl_getmousestate=
+sdl_getsurfaceinfo M:6 DEF sdl.h[301] sdl_getsurfaceinfo=
+sdl_getsurfaceinfo M:6 MAN sdl.b[246]
+    sys(Sys_sdl,sdl_getsurfaceinfo,@screen,@flags)
+sdl_getticks M:50 DEF sdl.h[354] sdl_getticks=
+sdl_getticks M:50 MAN sdl.b[313] sys(Sys_sdl,sdl_getticks)
+sdl_hidecursor M:52 DEF sdl.h[357] sdl_hidecursor=
+sdl_hidecursor M:52 MAN sdl.b[316] sys(Sys_sdl,sdl_hidecursor)
+sdl_ignore M:0 DEF sdl.h[367] sdl_ignore=0
+sdl_imgload M:15 DEF sdl.h[312] sdl_imgload=
+sdl_init M:1 DEF sdl.h[296] sdl_init=
+sdl_init M:1 MAN sdl.b[160]
+    IF sys(Sys_sdl,sdl_init,sdl_init_everything) DO ..
+sdl_init_everything M:65535 DEF sdl.h[391] sdl_init_everything=65535
+sdl_init_everything M:65535 MAN sdl.b[160]
+    IF sys(Sys_sdl,sdl_init,sdl_init_everything) DO ..
+sdl_joystickclose M:43 DEF sdl.h[346] sdl_joystickclose=
+sdl_joystickeventstate M:49 DEF sdl.h[353] sdl_joystickeventstate=
+sdl_joystickgetaxis M:56 DEF sdl.h[362] sdl_joystickgetaxis=
+sdl_joystickgetball M:57 DEF sdl.h[363] sdl_joystickgetball=
+sdl_joystickgetbutton M:55 DEF sdl.h[361] sdl_joystickgetbutton=
+sdl_joystickgethat M:58 DEF sdl.h[364] sdl_joystickgethat=
+sdl_joystickname M:44 DEF sdl.h[347] sdl_joystickname=
+sdl_joysticknumaxes M:45 DEF sdl.h[348] sdl_joysticknumaxes=
+sdl_joysticknumballs M:47 DEF sdl.h[350] sdl_joysticknumballs=
+sdl_joysticknumbuttons M:46 DEF sdl.h[349] sdl_joysticknumbuttons=
+sdl_joysticknumhats M:48 DEF sdl.h[351] sdl_joysticknumhats=
+sdl_joystickopen M:42 DEF sdl.h[345] sdl_joystickopen=
+sdl_loadbmp M:10 DEF sdl.h[307] sdl_loadbmp=
+sdl_loadwav M:22 DEF sdl.h[321] sdl_loadwav=
+sdl_locksurface M:4 DEF sdl.h[299] sdl_locksurface=
+sdl_maprgb M:26 DEF sdl.h[326] sdl_maprgb=
+sdl_maprgb M:26 MAN sdl.b[273] sys(Sys_sdl,sdl_maprgb,@format,r,g,b)
+sdl_mksurface M:53 DEF sdl.h[358] sdl_mksurface=
+sdl_mksurface M:53 MAN sdl.b[293]
+    sys(Sys_sdl,sdl_mksurface,@format,w,h,surfptr)
+sdl_numjoysticks M:41 DEF sdl.h[344] sdl_numjoysticks=
+sdl_pollevent M:20 DEF sdl.h[318] sdl_pollevent=
+sdl_pollevent M:20 MAN sdl.b[307]
+    RESULTIS sys(Sys_sdl,sdl_pollevent,@eventtype)
+sdl_quit M:3 DEF sdl.h[298] sdl_quit=
+sdl_quit M:3 MAN sdl.b[283] sys(Sys_sdl,sdl_quit)
+sdl_setalpha M:14 DEF sdl.h[311] sdl_setalpha=
+sdl_setcolourkey M:12 DEF sdl.h[309] sdl_setcolourkey=
+sdl_setcolourkey M:54 DEF sdl.h[359] sdl_setcolourkey=
+sdl_setcolourkey M:54 MAN sdl.b[289]
+    sys(Sys_sdl,sdl_setcolourkey,surfptr,col)
+sdl_setvideomode M:2 DEF sdl.h[297] sdl_setvideomode=
+sdl_setvideomode M:2 MAN sdl.b[222]
+    ok:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+sdl_showcursor M:51 DEF sdl.h[356] sdl_showcursor=
+sdl_showcursor M:51 MAN sdl.b[318] sys(Sys_sdl,sdl_showcursor)
+sdl_unlocksurface M:5 DEF sdl.h[300] sdl_unlocksurface=
+sdl_updaterect M:9 DEF sdl.h[306] sdl_updaterect=
+sdl_videoinfo M:25 DEF sdl.h[325] sdl_videoinfo=
+sdl_waitevent M:19 DEF sdl.h[316] sdl_waitevent=
+sdl_wm_setcaption M:24 DEF sdl.h[324] sdl_wm_setcaption=
+sdl_wm_setcaption M:24 MAN sdl.b[275]
+    sys(Sys_sdl,sdl_wm_setcaption,title,0)
+sdldelay G:553 DEF sdl.h[277] sdldelay=
+sdldelay G:553 RT sdl.b[310] LET sdldelay(msecs)BE..
+sdldrawpoint G:324 DEF dnappm.b[420] sdldrawpoint=
+sdldrawpoint G:324 LG dnappm.b[2258] sdldrawpoint(x,y)
+sdldrawpoint G:324 SG dnappm.b[1220] sdldrawpoint:=drawpoint
+sdle_active M:1 DEF sdl.h[370] sdle_active=1
+sdle_arrowdown M:274 DEF sdl.h[387] sdle_arrowdown=274
+sdle_arrowleft M:276 DEF sdl.h[389] sdle_arrowleft=276
+sdle_arrowright M:275 DEF sdl.h[388] sdle_arrowright=275
+sdle_arrowup M:273 DEF sdl.h[386] sdle_arrowup=273
+sdle_joyaxismotion M:7 DEF sdl.h[376] sdle_joyaxismotion=7
+sdle_joyballmotion M:8 DEF sdl.h[377] sdle_joyballmotion=8
+sdle_joybuttondown M:10 DEF sdl.h[379] sdle_joybuttondown=10
+sdle_joybuttonup M:11 DEF sdl.h[380] sdle_joybuttonup=11
+sdle_joyhatmotion M:9 DEF sdl.h[378] sdle_joyhatmotion=9
+sdle_keydown M:2 DEF sdl.h[371] sdle_keydown=2
+sdle_keydown M:2 MAN dnappm.b[1849] CASE sdle_keydown:.. 
+sdle_keyup M:3 DEF sdl.h[372] sdle_keyup=3
+sdle_mousebuttondown M:5 DEF sdl.h[374] sdle_mousebuttondown=5
+sdle_mousebuttonup M:6 DEF sdl.h[375] sdle_mousebuttonup=6
+sdle_mousemotion M:4 DEF sdl.h[373] sdle_mousemotion=4
+sdle_quit M:12 DEF sdl.h[381] sdle_quit=12
+sdle_quit M:12 MAN dnappm.b[1843] CASE sdle_quit:.. 
+sdle_syswmevent M:13 DEF sdl.h[382] sdle_syswmevent=13
+sdle_userevent M:15 DEF sdl.h[384] sdle_userevent=15
+sdle_videoresize M:14 DEF sdl.h[383] sdle_videoresize=14
+sdlmsecs G:554 DEF sdl.h[278] sdlmsecs=
+sdlmsecs G:554 FN sdl.b[313] LET sdlmsecs()=..
+sectword M:64991 DEF libhdr.h[269] sectword=64991
+selectcolno F:158 LF dnappm.b[1449] selectcolno(1)
+selectcolno F:158 LF dnappm.b[1647] selectcolno(colno_white)
+selectcolno F:158 LF dnappm.b[1732] selectcolno(colno)
+selectcolno F:158 RT dnappm.b[1631] LET selectcolno(colno)BE..
+selectfont G:523 DEF sdl.h[189] selectfont=
+selectfont G:523 LG sdl.b[145] selectfont(11)
+selectfont G:523 LG sdl.b[216] selectfont(18)
+selectfont G:523 LG sdl.b[217] selectfont(12)
+selectfont G:523 RT sdl.b[395] LET selectfont(h)BE..
+selectinput G:56 DEF libhdr.h[93] selectinput=56
+selectinput G:56 LG dnappm.b[1148] selectinput(instream)
+selectinput G:56 LG dnappm.b[2005] selectinput(stdin)
+selectinput G:56 LG dnappm.b[932] selectinput(instream)
+selectoutput G:57 DEF libhdr.h[94] selectoutput=57
+selectoutput G:57 LG dnappm.b[2031] selectoutput(outstream)
+selectoutput G:57 LG dnappm.b[2038] selectoutput(stdout)
+selectoutput G:57 LG dnappm.b[2234] selectoutput(ppmstream)
+selectoutput G:57 LG dnappm.b[2247] selectoutput(stdout)
+selectoutput G:57 LG dnappm.b[455] selectoutput(stdout)
+selectoutput G:57 LG dnappm.b[457] selectoutput(out)
+selectsurface G:509 DEF sdl.h[166] selectsurface=
+selectsurface G:509 LG sdl.b[252] selectsurface(@screen,xsize,ysize)
+selectsurface G:509 RT sdl.b[299]
+    LET selectsurface(surfptr,xsize,ysize)BE..
+sendpkt G:165 DEF libhdr.h[216] sendpkt=165
+sequenceTitle G:322 DEF dnappm.b[417] sequenceTitle=
+sequenceTitle G:322 LG dnappm.b[1648]
+    drawf(30,screenysize-30,"%s",sequenceTitle)
+sequenceTitle G:322 LG dnappm.b[950] sequenceTitle%len:=ch
+sequenceTitle G:322 LG dnappm.b[955] sequenceTitle%0:=len
+sequenceTitle G:322 LG dnappm.b[956]
+    writef("Seque'le: %s*n*n",sequenceTitle)
+sequenceTitle G:322 SG dnappm.b[1286] sequenceTitle:=titlev
+setCameraLens G:317 DEF dnappm.b[412] setCameraLens=
+setCameraLens G:317 LG dnappm.b[1616] setCameraLens()
+setCameraLens G:317 RT dnappm.b[1544] LET setCameraLens()BE..
+setCameraOrientation G:315 DEF dnappm.b[409] setCameraOrientation=
+setCameraOrientation G:315 LG dnappm.b[1613] setCameraOrientation()
+setCameraOrientation G:315 RT dnappm.b[1559]
+    LET setCameraOrientation()BE..
+setCameraPos G:316 DEF dnappm.b[410] setCameraPos=
+setCameraPos G:316 LG dnappm.b[1610] setCameraPos()
+setCameraPos G:316 RT dnappm.b[1525] LET setCameraPos()BE..
+setIterationFactors G:314 DEF dnappm.b[408] setIterationFactors=
+set_process_name G:175 DEF libhdr.h[224] set_process_name=175
+setangles G:275 DEF dnappm.b[355] setangles=
+setangles G:275 LG dnappm.b[1194] setangles(XY,an,aw,ah)
+setangles G:275 RT dnappm.b[641]
+    LET setangles(XY,FLT an,FLT aw,FLT ah)BE..
+setbit G:112 DEF libhdr.h[150] setbit=112
+setbulk G:122 DEF libhdr.h[160] setbulk=122
+setcaption G:503 DEF sdl.h[157] setcaption=
+setcaption G:503 LG sdl.b[251] setcaption(title)
+setcaption G:503 RT sdl.b[275] LET setcaption(title)BE..
+setcolour G:505 DEF sdl.h[160] setcolour=
+setcolour G:505 RT sdl.b[286] LET setcolour(col)BE..
+setcolourkey G:506 DEF sdl.h[161] setcolourkey=
+setcolourkey G:506 RT sdl.b[288] LET setcolourkey(surfptr,col)BE..
+setcurraxis G:295 DEF dnappm.b[376] setcurraxis=
+setcurraxis G:295 LG dnappm.b[1909] setcurraxis((curraxis+1) MOD 3)
+setcurraxis G:295 RT dnappm.b[2077] LET setcurraxis(axis)BE..
+setcurrcolno G:321 DEF dnappm.b[416] setcurrcolno=
+setcurrpair G:296 DEF dnappm.b[377] setcurrpair=
+setcurrpair G:296 LG dnappm.b[1880] setcurrpair(0)
+setcurrpair G:296 LG dnappm.b[1888] setcurrpair(1)
+setcurrpair G:296 LG dnappm.b[1896] setcurrpair(2)
+setcurrpair G:296 LG dnappm.b[1904] setcurrpair(3)
+setcurrpair G:296 RT dnappm.b[2070] LET setcurrpair(letno)BE..
+setdepthlimits G:550 DEF sdl.h[268] setdepthlimits=
+setdepthlimits G:550 LG dnappm.b[1619]
+    setdepthlimits( 10.000, 100000.000)
+setdepthlimits G:550 LG sdl.b[142] setdepthlimits(1,#x3B9ACA00)
+setdepthlimits G:550 LG sdl.b[183] setdepthlimits(1,#x3B9ACA00)
+setdepthlimits G:550 LG sdl.b[4169] setdepthlimits(1,#x3B9ACA00)
+setdepthlimits G:550 RT sdl.b[4418] LET setdepthlimits(near,far)BE..
+setflags G:156 DEF libhdr.h[208] setflags=156
+setinitstate G:297 DEF dnappm.b[378] setinitstate=
+setinitstate G:297 LG dnappm.b[1356] setinitstate()
+setinitstate G:297 RT dnappm.b[1211] LET setinitstate()BE..
+setlims G:533 DEF sdl.h[214] setlims=
+setlims G:533 LG sdl.b[3705] setlims(x1,y1,x2,y2)
+setlims G:533 LG sdl.b[3706] setlims(x2,y2,x3,y3)
+setlims G:533 LG sdl.b[3707] setlims(x3,y3,x1,y1)
+setlims G:533 RT sdl.b[3622] LET setlims(x0,y0,x1,y1)BE..
+setlims3d G:549 DEF sdl.h[264] setlims3d=
+setlims3d G:549 LG sdl.b[4350] setlims3d(x1,y1,z1,x2,y2,z2)
+setlims3d G:549 LG sdl.b[4351] setlims3d(x2,y2,z2,x3,y3,z3)
+setlims3d G:549 LG sdl.b[4352] setlims3d(x3,y3,z3,x1,y1,z1)
+setlims3d G:549 RT sdl.b[4042] LET setlims3d(x0,y0,sz0,x1,y1,sz1)BE..
+setlogname G:117 DEF libhdr.h[155] setlogname=117
+setrandomangles G:307 DEF dnappm.b[397] setrandomangles=
+setrandomangles G:307 LG dnappm.b[1398] setrandomangles()
+setrandomangles G:307 LG dnappm.b[1400] setrandomangles()
+setrandomangles G:307 LG dnappm.b[1982] setrandomangles()
+setrandomangles G:307 RT dnappm.b[2052] LET setrandomangles()BE..
+setrecordlength G:68 DEF libhdr.h[105] setrecordlength=68
+setrotationmatrix G:283 DEF dnappm.b[363] setrotationmatrix=
+setrotationmatrix G:283 LG dnappm.b[1991] setrotationmatrix(XY)
+setrotationmatrix G:283 LG dnappm.b[2066] setrotationmatrix(XY)
+setrotationmatrix G:283 LG dnappm.b[2090] setrotationmatrix(currpair)
+setrotationmatrix G:283 LG dnappm.b[656] setrotationmatrix(XY)
+setrotationmatrix G:283 LG dnappm.b[758] setrotationmatrix(YX)
+setrotationmatrix G:283 RT dnappm.b[768] LET setrotationmatrix(XY)BE..
+setseed G:35 DEF libhdr.h[72] setseed=35
+setseed G:35 LG dnappm.b[1336] setseed(9)
+setseed G:35 LG dnappm.b[1337] setseed(!argv!2)
+settimeout G:55 DEF libhdr.h[92] settimeout=55
+settimeoutact G:124 DEF libhdr.h[162] settimeoutact=124
+setvec G:181 DEF libhdr.h[231] setvec=181
+showcursor G:556 DEF sdl.h[281] showcursor=
+showcursor G:556 FN sdl.b[318] LET showcursor()=..
+spacep G:225 DEF dnappm.b[278] spacep=
+spacet G:226 DEF dnappm.b[278] spacet=
+spacev G:224 DEF dnappm.b[278] spacev=
+splitname G:47 DEF libhdr.h[84] splitname=47
+srchwk G:150 DEF libhdr.h[202] srchwk=150
+stackfree G:123 DEF libhdr.h[161] stackfree=123
+stackword M:#xABCD1234 DEF libhdr.h[267] stackword=-#x5432EDCC
+standardise F:177 LF dnappm.b[1576] standardise(@ctn)
+standardise F:177 LF dnappm.b[1591] standardise(@cwn)
+standardise F:177 LF dnappm.b[2158] standardise(p)
+standardise F:177 LF dnappm.b[2172] standardise(r)
+standardise F:177 RT dnappm.b[2127] LET standardise(v)BE..
+standardiseM3 F:178 RT dnappm.b[2145] LET standardiseM3(m)BE..
+standardize G:452 DEF sdl.h[68] standardize=
+standardize G:452 RT sdl.b[62] LET standardize(v)BE..
+start G:1 DEF libhdr.h[37] start=1
+start G:1 FN dnappm.b[1280] LET start()=..
+startco G:23 DEF libhdr.h[60] startco=23
+stdin G:200 DEF dnappm.b[245] stdin=ug
+stdin G:200 LG dnappm.b[2005] selectinput(stdin)
+stdin G:200 SG dnappm.b[1288] stdin:=input()
+stdout G:201 DEF dnappm.b[246] stdout=
+stdout G:201 LG dnappm.b[2038] selectoutput(stdout)
+stdout G:201 LG dnappm.b[2247] selectoutput(stdout)
+stdout G:201 LG dnappm.b[455] selectoutput(stdout)
+stdout G:201 SG dnappm.b[1289] stdout:=output()
+stepping G:231 DEF dnappm.b[285] stepping=
+stepping G:231 LG dnappm.b[1497] IF stepping DO ..
+stepping G:231 LG dnappm.b[1940] stepping:=~stepping
+stepping G:231 SG dnappm.b[1347] stepping:=argv!12
+stepping G:231 SG dnappm.b[1940] stepping:=~stepping
+stepstream G:67 DEF libhdr.h[104] stepstream=67
+stop G:2 DEF libhdr.h[38] stop=2
+str2numb G:101 DEF libhdr.h[139] str2numb=101
+string_to_dat G:111 DEF libhdr.h[149] string_to_dat=111
+string_to_number G:100 DEF libhdr.h[138] string_to_number=100
+sys G:3 DEF libhdr.h[39] sys=3
+sys G:3 LG dnappm.b[1552]
+    scalefactor#:=screencentrex#/sys(Sys_flt,fl_tan,fovby2)
+sys G:3 LG dnappm.b[2048] FIX rad2deg(sys(Sys_flt,fl_atan2,y,x))
+sys G:3 LG dnappm.b[715] bn#:=sys(Sys_flt,fl_atan2,mlw,mlh)
+sys G:3 LG dnappm.b[716] c#:=sys(Sys_flt,fl_cos,bn)
+sys G:3 LG dnappm.b[716] s#:=sys(Sys_flt,fl_sin,bn)
+sys G:3 LG dnappm.b[729] bw#:=sys(Sys_flt,fl_atan2,...,mlh)
+sys G:3 LG dnappm.b[730] c#:=sys(Sys_flt,fl_cos,bw)
+sys G:3 LG dnappm.b[730] s#:=sys(Sys_flt,fl_sin,bw)
+sys G:3 LG dnappm.b[743] bh#:=sys(Sys_flt,fl_atan2,...,mtn)
+sys G:3 LG dnappm.b[744] c#:=sys(Sys_flt,fl_cos,bh)
+sys G:3 LG dnappm.b[744] s#:=sys(Sys_flt,fl_sin,bh)
+sys G:3 LG dnappm.b[776] sys(Sys_flt,fl_cos,at)
+sys G:3 LG dnappm.b[776] sys(Sys_flt,fl_sin,at)
+sys G:3 LG dnappm.b[777] sys(Sys_flt,fl_cos,aw)
+sys G:3 LG dnappm.b[777] sys(Sys_flt,fl_sin,aw)
+sys G:3 LG dnappm.b[778] sys(Sys_flt,fl_cos,al)
+sys G:3 LG dnappm.b[778] sys(Sys_flt,fl_sin,al)
+sys G:3 LG dnappm.b[803] sys(Sys_flt,fl_cos,angle)
+sys G:3 LG dnappm.b[804] sys(Sys_flt,fl_sin,angle)
+sys G:3 LG dnappm.b[826] sys(Sys_flt,fl_cos,angle)
+sys G:3 LG dnappm.b[827] sys(Sys_flt,fl_sin,angle)
+sys G:3 LG dnappm.b[855] sys(Sys_flt,fl_cos,angle)
+sys G:3 LG dnappm.b[856] sys(Sys_flt,fl_sin,angle)
+sys G:3 LG sdl.b[160] IF sys(Sys_sdl,sdl_init,sdl_init_everything) DO ..
+sys G:3 LG sdl.b[162] sys(Sys_sdl,sdl_geterror,mes)
+sys G:3 LG sdl.b[222] ok:=sys(Sys_sdl,sdl_setvideomode,screenxsize,...)
+sys G:3 LG sdl.b[233] sys(Sys_sdl,sdl_geterror,mes)
+sys G:3 LG sdl.b[246] sys(Sys_sdl,sdl_getsurfaceinfo,@screen,@flags)
+sys G:3 LG sdl.b[273] sys(Sys_sdl,sdl_maprgb,@format,r,g,b)
+sys G:3 LG sdl.b[275] sys(Sys_sdl,sdl_wm_setcaption,title,0)
+sys G:3 LG sdl.b[283] sys(Sys_sdl,sdl_quit)
+sys G:3 LG sdl.b[289] sys(Sys_sdl,sdl_setcolourkey,surfptr,col)
+sys G:3 LG sdl.b[293] sys(Sys_sdl,sdl_mksurface,@format,w,h,surfptr)
+sys G:3 LG sdl.b[297] sys(Sys_sdl,sdl_freesurface,surfptr)
+sys G:3 LG sdl.b[307] RESULTIS sys(Sys_sdl,sdl_pollevent,@eventtype)
+sys G:3 LG sdl.b[311] sys(Sys_sdl,sdl_delay,msecs)
+sys G:3 LG sdl.b[313] sys(Sys_sdl,sdl_getticks)
+sys G:3 LG sdl.b[316] sys(Sys_sdl,sdl_hidecursor)
+sys G:3 LG sdl.b[318] sys(Sys_sdl,sdl_showcursor)
+sys G:3 LG sdl.b[321] sys(Sys_sdl,sdl_flip,@screen)
+sys G:3 LG sdl.b[331] sys(Sys_sdl,sdl_blitsurface,srcptr,0,dstptr,@dx)
+sys G:3 LG sdl.b[340] sys(Sys_sdl,sdl_blitsurface,srcptr,0,dstptr,@dx)
+sys G:3 LG sdl.b[344] sys(Sys_sdl,sdl_fillsurf,@currsurf,col)
+sys G:3 LG sdl.b[3749]
+    sys(Sys_sdl,sdl_fillrect,@currsurf,xmin,currysize-ymax,...,...)
+sys G:3 LG sdl.b[392]
+    sys(Sys_sdl,sdl_fillrect,@currsurf,x,currysize-y,1,...)
+sys G:3 LG sdl.b[66] sys(Sys_flt,fl_sqrt,x#*x#+y#*y#+z#*z)
+sys G:3 LG sdl.b[67] TEST r#<sys(Sys_flt,fl_mk,1,-10) THEN .. ELSE ..
+sys G:3 LG sdl.b[82] RESULTIS sys(Sys_flt,fl_sqrt,x#*x#+y#*y#+z#*z)
+sysabort G:29 DEF libhdr.h[66] sysabort=29
+t_bhunk M:3000 DEF libhdr.h[263] t_bhunk=3000
+t_bhunk64 M:4000 DEF libhdr.h[264] t_bhunk64=4000
+t_end M:1002 DEF libhdr.h[259] t_end=1002
+t_end64 M:2002 DEF libhdr.h[262] t_end64=2002
+t_hunk M:1000 DEF libhdr.h[257] t_hunk=1000
+t_hunk64 M:2000 DEF libhdr.h[260] t_hunk64=2000
+t_reloc M:1001 DEF libhdr.h[258] t_reloc=1001
+t_reloc64 M:2001 DEF libhdr.h[261] t_reloc64=2001
+targetH FG:258 DEF dnappm.b[322] FLT targetH=
+targetH FG:258 LG dnappm.b[1538]
+    cameraH#:=initialH#*initialfac#+targetH#*targetfac
+targetH FG:258 LG dnappm.b[1570] cth#:=targetH#-initialH
+targetH FG:258 SG dnappm.b[1329] targetH#:= 5.000
+targetH FG:258 SG dnappm.b[1343] targetH#:=FLOAT !argv!8
+targetN FG:256 DEF dnappm.b[322] FLT targetN=
+targetN FG:256 LG dnappm.b[1354] IF targetN#-initialN#< 1.000 DO ..
+targetN FG:256 LG dnappm.b[1354] initialN#:=targetN#- 1.000
+targetN FG:256 LG dnappm.b[1536]
+    cameraN#:=initialN#*initialfac#+targetN#*targetfac
+targetN FG:256 LG dnappm.b[1568] ctn#:=targetN#-initialN
+targetN FG:256 SG dnappm.b[1329] targetN#:= 0.000
+targetN FG:256 SG dnappm.b[1341] targetN#:=FLOAT !argv!6
+targetPosNo G:250 DEF dnappm.b[316] targetPosNo=
+targetPosNo G:250 LG dnappm.b[1322] lastPosNo:=targetPosNo
+targetPosNo G:250 LG dnappm.b[1530] FLOAT targetPosNo
+targetPosNo G:250 SG dnappm.b[1317] targetPosNo:=10
+targetPosNo G:250 SG dnappm.b[1344] targetPosNo:=!argv!7
+targetW FG:257 DEF dnappm.b[322] FLT targetW=
+targetW FG:257 LG dnappm.b[1537]
+    cameraW#:=initialW#*initialfac#+targetW#*targetfac
+targetW FG:257 LG dnappm.b[1569] ctw#:=targetW#-initialW
+targetW FG:257 SG dnappm.b[1329] targetW#:= 0.000
+targetW FG:257 SG dnappm.b[1342] targetW#:=FLOAT !argv!7
+taskid G:152 DEF libhdr.h[204] taskid=152
+taskwait G:160 DEF libhdr.h[212] taskwait=160
+tcb G:151 DEF libhdr.h[203] tcb=151
+tcb_a M:11 DEF libhdr.h[676] tcb_a=tcb_regs
+tcb_active M:10 DEF libhdr.h[673] tcb_active=10
+tcb_b M:12 DEF libhdr.h[677] tcb_b=12
+tcb_c M:13 DEF libhdr.h[678] tcb_c=13
+tcb_count M:18 DEF libhdr.h[683] tcb_count=18
+tcb_flags M:5 DEF libhdr.h[668] tcb_flags=5
+tcb_g M:15 DEF libhdr.h[680] tcb_g=15
+tcb_gbase M:8 DEF libhdr.h[671] tcb_gbase=8
+tcb_link M:0 DEF libhdr.h[663] tcb_link=0
+tcb_namebase M:19 DEF libhdr.h[685] tcb_namebase=19
+tcb_namebase M:19 MAN libhdr.h[687]
+    tcb_upb=tcb_namebase+15/bytesperword+1
+tcb_p M:14 DEF libhdr.h[679] tcb_p=14
+tcb_pc M:17 DEF libhdr.h[682] tcb_pc=17
+tcb_pri M:2 DEF libhdr.h[665] tcb_pri=2
+tcb_regs M:11 DEF libhdr.h[675] tcb_regs=11
+tcb_regs M:11 MAN libhdr.h[676] tcb_a=tcb_regs
+tcb_sbase M:9 DEF libhdr.h[672] tcb_sbase=9
+tcb_seglist M:7 DEF libhdr.h[670] tcb_seglist=7
+tcb_st M:16 DEF libhdr.h[681] tcb_st=16
+tcb_state M:4 DEF libhdr.h[667] tcb_state=4
+tcb_stsiz M:6 DEF libhdr.h[669] tcb_stsiz=6
+tcb_taskid M:1 DEF libhdr.h[664] tcb_taskid=1
+tcb_upb M:23 DEF libhdr.h[687] tcb_upb=tcb_namebase+15/bytesperword+1
+tcb_wkq M:3 DEF libhdr.h[666] tcb_wkq=3
+tempval G:11 DEF libhdr.h[47] tempval=11
+testbit G:113 DEF libhdr.h[151] testbit=113
+testflags G:157 DEF libhdr.h[209] testflags=157
+tg M:190 DEF libhdr.h[241] tg=190
+timeoutch M:-2 DEF libhdr.h[252] timeoutch=-2
+tstinterpolate F:7 LF sdl.b[148] tstinterpolate(150,100,200,2000,3000)
+tstinterpolate F:7 LF sdl.b[149]
+    tstinterpolate(-150,-100,-200,2000,3000)
+tstinterpolate F:7 LF sdl.b[150] tstinterpolate(150,100,200,-2000,-3000)
+tstinterpolate F:7 LF sdl.b[151]
+    tstinterpolate(-150,-100,-200,-2000,-3000)
+tstinterpolate F:7 LF sdl.b[153]
+    tstinterpolate(#x59682F00,#x3B9ACA00,#x77359400,2000,3000)
+tstinterpolate F:7 LF sdl.b[154]
+    tstinterpolate(-#x59682F00,-#x3B9ACA00,-#x77359400,2000,3000)
+tstinterpolate F:7 LF sdl.b[155]
+    tstinterpolate(#x59682F00,#x3B9ACA00,#x77359400,-2000,-3000)
+tstinterpolate F:7 LF sdl.b[156]
+    tstinterpolate(-#x59682F00,-#x3B9ACA00,-#x77359400,-2000,-3000)
+tstinterpolate F:7 RT sdl.b[133] LET tstinterpolate(p,p1,p2,q1,q2)BE..
+ug M:200 DEF libhdr.h[242] ug=200
+ug M:200 MAN dnappm.b[245] stdin=ug
+unhold G:159 DEF libhdr.h[211] unhold=159
+unloadseg G:106 DEF libhdr.h[144] unloadseg=106
+unpackstring G:31 DEF libhdr.h[68] unpackstring=31
+unrdch G:40 DEF libhdr.h[77] unrdch=40
+updatescreen G:557 DEF sdl.h[282] updatescreen=
+updatescreen G:557 LG dnappm.b[1451] updatescreen()
+updatescreen G:557 LG dnappm.b[1746] updatescreen()
+updatescreen G:557 LG dnappm.b[1752] updatescreen()
+updatescreen G:557 RT sdl.b[320] LET updatescreen()BE..
+vertexv G:265 DEF dnappm.b[335] vertexv=
+vertexv G:265 LG dnappm.b[1112]
+    writef("verte'layv=%n*n",vertexv,indexv,displayv)
+vertexv G:265 LG dnappm.b[1118] writef("*nVert'rtex=%n*n",vertexv)
+vertexv G:265 LG dnappm.b[1119]
+    FOR i=1 TO vertexv!0>120->120,vertexv!0 BY 4 DO..
+vertexv G:265 LG dnappm.b[1121] writef(" %8.3f",vertexv!i)
+vertexv G:265 LG dnappm.b[1122] writef(" %8.3f",vertexv!(i+1))
+vertexv G:265 LG dnappm.b[1123] writef(" %8.3f",vertexv!(i+2))
+vertexv G:265 LG dnappm.b[1124] writef(" %8i",vertexv!(i+3))
+vertexv G:265 LG dnappm.b[1505] IF vertexv DO ..
+vertexv G:265 LG dnappm.b[1505] freevec(vertexv)
+vertexv G:265 LG dnappm.b[1702] @vertexv!(1+4*t!0)
+vertexv G:265 LG dnappm.b[1703] @vertexv!(1+4*t!1)
+vertexv G:265 LG dnappm.b[1704] @vertexv!(1+4*t!2)
+vertexv G:265 SG dnappm.b[1107] vertexv:=vvec
+vertexv G:265 SG dnappm.b[1296] vertexv:=0
+world2screen G:312 DEF dnappm.b[405] world2screen=
+world2screen G:312 FN dnappm.b[1773] LET world2screen(v,s)=..
+world2screen G:312 LG dnappm.b[1726] world2screen(v1,@sx1)
+world2screen G:312 LG dnappm.b[1727] world2screen(v2,@sx2)
+world2screen G:312 LG dnappm.b[1728] world2screen(v3,@sx3)
+wranglesdata F:168 LF dnappm.b[1935] wranglesdata()
+wranglesdata F:168 RT dnappm.b[1998] LET wranglesdata()BE..
+wrch G:41 DEF libhdr.h[78] wrch=41
+wrch G:41 LG dnappm.b[1431] wrch(letno2ch(letno))
+wrch G:41 LG dnappm.b[1877] wrch(ch)
+wrch G:41 LG dnappm.b[1885] wrch(ch)
+wrch G:41 LG dnappm.b[1893] wrch(ch)
+wrch G:41 LG dnappm.b[1901] wrch(ch)
+wrch G:41 LG sdl.b[3606] wrch
+wrch G:41 SG sdl.b[3610] wrch:=drawwrch
+wrch G:41 SG sdl.b[3612] wrch:=oldwrch
+wrcurrangle G:298 DEF dnappm.b[379] wrcurrangle=
+wrcurrangle G:298 LG dnappm.b[2074] wrcurrangle()
+wrcurrangle G:298 LG dnappm.b[2080] wrcurrangle()
+wrcurrangle G:298 LG dnappm.b[2089] wrcurrangle()
+wrcurrangle G:298 RT dnappm.b[2094] LET wrcurrangle()BE..
+wrhelp F:166 LF dnappm.b[1862] wrhelp()
+wrhelp F:166 RT dnappm.b[1820] LET wrhelp()BE..
+write_ch_slice G:520 DEF sdl.h[185] write_ch_slice=
+write_ch_slice G:520 LG sdl.b[412]
+    write_ch_slice(currx,curry+fontH-1-line,ch,line)
+write_ch_slice G:520 SG sdl.b[399] write_ch_slice:=write_ch_slice18
+write_ch_slice G:520 SG sdl.b[404] write_ch_slice:=write_ch_slice12
+write_ch_slice12 F:45 LF sdl.b[404] write_ch_slice:=write_ch_slice12
+write_ch_slice12 F:45 RT sdl.b[416]
+    LET write_ch_slice12(x,y,ch,line)BE..
+write_ch_slice18 F:46 LF sdl.b[399] write_ch_slice:=write_ch_slice18
+write_ch_slice18 F:46 RT sdl.b[1715]
+    LET write_ch_slice18(x,y,ch,line)BE..
+writed G:85 DEF libhdr.h[122] writed=85
+writee G:180 DEF libhdr.h[230] writee=180
+writef G:94 DEF libhdr.h[132] writef=94
+writef G:94 LG dnappm.b[1112]
+    writef("verte'layv=%n*n",vertexv,indexv,displayv)
+writef G:94 LG dnappm.b[1118] writef("*nVert'rtex=%n*n",vertexv)
+writef G:94 LG dnappm.b[1120] writef("*n%i3: ",(i-1)/4)
+writef G:94 LG dnappm.b[1121] writef(" %8.3f",vertexv!i)
+writef G:94 LG dnappm.b[1122] writef(" %8.3f",vertexv!(i+1))
+writef G:94 LG dnappm.b[1123] writef(" %8.3f",vertexv!(i+2))
+writef G:94 LG dnappm.b[1124] writef(" %8i",vertexv!(i+3))
+writef G:94 LG dnappm.b[1126] writef("*n*nIndex data*n")
+writef G:94 LG dnappm.b[1128] writef("*n%i6: ",i-1)
+writef G:94 LG dnappm.b[1129] writef(" %i5",indexv!i)
+writef G:94 LG dnappm.b[1131] writef("*n*nDis'a items*n")
+writef G:94 LG dnappm.b[1133]
+    writef(" %i5 'i5  %i5*n",displayv!i,displayv!(i+1),displayv!(i+2))
+writef G:94 LG dnappm.b[1204]
+    writef("%s an'f %7.1f*n",XY2str(XY),rad2deg(av!0),rad2deg(av!1),rad2deg(av!2))
+writef G:94 LG dnappm.b[1206] writef("%s matrix",XY2str(XY))
+writef G:94 LG dnappm.b[1207] writef(" %5.3f",mv!i)
+writef G:94 LG dnappm.b[1300] writef("ERROR'library*n")
+writef G:94 LG dnappm.b[1308] writef("Bad a' dnabmp*n")
+writef G:94 LG dnappm.b[1369] writef("*nUnab' window*n")
+writef G:94 LG dnappm.b[1372]
+    writef("Scree'%n x %n*n",screenxsize,screenysize)
+writef G:94 LG dnappm.b[1411] writef("Faile'file %s*n",fromfilename)
+writef G:94 LG dnappm.b[1435] writef("...*n")
+writef G:94 LG dnappm.b[1466] writef("Build' angles*n")
+writef G:94 LG dnappm.b[1491] writef("Calli'playPos*n")
+writef G:94 LG dnappm.b[1539]
+    writef("Camer' %12.3f*n",cameraPosNo,cameraN,cameraW,cameraH)
+writef G:94 LG dnappm.b[1554]
+    writef("setCa'y=%9.3f*n",screencentrex,screencentrey)
+writef G:94 LG dnappm.b[1556] writef("setCa'  %9.3f*n",scalefactor)
+writef G:94 LG dnappm.b[1577] writef("Direc'%12.5f)*n",ctn,ctw,cth)
+writef G:94 LG dnappm.b[1592] writef("Direc'%12.5f)*n",cwn,cww,cwh)
+writef G:94 LG dnappm.b[1597] writef("Direc'%12.5f)*n",cln,clw,clh)
+writef G:94 LG dnappm.b[1606] writef("displ'entered*n")
+writef G:94 LG dnappm.b[1624] writef("displ'meModel*n")
+writef G:94 LG dnappm.b[1640] writef("fills'olno=%n*n",colno)
+writef G:94 LG dnappm.b[1646] writef("drawt'g drawf*n")
+writef G:94 LG dnappm.b[1682] writef("drawG'fset=%n*n",mode,size,offset)
+writef G:94 LG dnappm.b[1686]
+    writef("Model'offset=*n",displayv!0,mode,offset)
+writef G:94 LG dnappm.b[1730] writef("trino=%n*n",trino)
+writef G:94 LG dnappm.b[1733]
+    writef("colno' => %x8*n",colno,colno2col(colno))
+writef G:94 LG dnappm.b[1735]
+    writef("*nTria'f %5.2f*n",v1!0,v1!1,v1!2,v2!0,...,...)
+writef G:94 LG dnappm.b[1737]
+    writef("*nTria'n %n %n*n",sx1,sy1,sz1,sx2,sy2,...)
+writef G:94 LG dnappm.b[1739]
+    writef("neard'epth=%n*n",neardepth,fardepth)
+writef G:94 LG dnappm.b[1753] writef("Writi'rame %n*n",frameno)
+writef G:94 LG dnappm.b[1811] writef("world'%12.3f)*n",N,W,H)
+writef G:94 LG dnappm.b[1812]
+    writef("world'%12.3f)*n",cameraN,cameraW,cameraH)
+writef G:94 LG dnappm.b[1813] writef("world'%12.3f)*n",t,w,l)
+writef G:94 LG dnappm.b[1814] writef("world'%12.3f)*n",x,y,depth)
+writef G:94 LG dnappm.b[1815] writef("world', %12i)*n",s!0,s!1,s!2)
+writef G:94 LG dnappm.b[1821] writef("*nComm'ummary*n*n")
+writef G:94 LG dnappm.b[1822] writef("?    'p info.*n")
+writef G:94 LG dnappm.b[1823] writef("Q    '  Quit.*n")
+writef G:94 LG dnappm.b[1824] writef("AA AC'adjust.*n")
+writef G:94 LG dnappm.b[1825] writef("N    'e pair.*n")
+writef G:94 LG dnappm.b[1826] writef("** /  't by 2.*n")
+writef G:94 LG dnappm.b[1827] writef("+ -  ' angle.*n")
+writef G:94 LG dnappm.b[1828] writef("R    ' pairs.*n")
+writef G:94 LG dnappm.b[1829] writef("Z    ' pairs.*n")
+writef G:94 LG dnappm.b[1830] writef("S    'sition.*n")
+writef G:94 LG dnappm.b[1831] writef("P    'values.*n")
+writef G:94 LG dnappm.b[1832] writef("<n> F'lay it.*n")
+writef G:94 LG dnappm.b[1833] writef("<n> V'screen.*n")
+writef G:94 LG dnappm.b[1834] writef("W nam'o file.*n")
+writef G:94 LG dnappm.b[1844] writef("QUIT*n")
+writef G:94 LG dnappm.b[1923] writef("ctn=%'h=%9.6f*n",ctn,ctw,cth)
+writef G:94 LG dnappm.b[1925] writef("cwn=%'h=%9.6f*n",cwn,cww,cwh)
+writef G:94 LG dnappm.b[1927] writef("cln=%'h=%9.6f*n",cln,clw,clh)
+writef G:94 LG dnappm.b[1953]
+    writef("*nincr's=%9.6f*n",incrementdegrees)
+writef G:94 LG dnappm.b[1959]
+    writef("*nincr's=%9.6f*n",incrementdegrees)
+writef G:94 LG dnappm.b[1967] writef("Frame'mber %n*n",frameno)
+writef G:94 LG dnappm.b[1974] writef("Field'degress*n",fieldofview)
+writef G:94 LG dnappm.b[2003] writef("*nWrit'o file: ")
+writef G:94 LG dnappm.b[2021] writef("*nThe 'its and*n")
+writef G:94 LG dnappm.b[2022] writef("'/', ' or '**'*n")
+writef G:94 LG dnappm.b[2027] writef("*nUnab'ile: %s*n",filename)
+writef G:94 LG dnappm.b[2034]
+    writef("%s %9'f %9.6f*n",XY2str(XY),rad2deg(av!0),rad2deg(av!1),rad2deg(av!2))
+writef G:94 LG dnappm.b[2039] writef("*nAngl'ile: %s*n",filename)
+writef G:94 LG dnappm.b[2086]
+    writef("doinc'e=%7.3f*n",val,XY2str(currpair),axis2ch(curraxis),av!curraxis)
+writef G:94 LG dnappm.b[2096]
+    writef("?%s%c'6.3f   *n",XY2str(currpair),axis2ch(curraxis),v!curraxis,incrementdegrees)
+writef G:94 LG dnappm.b[2131] writef("stand'  %9.6f*n",v!0,v!1,v!2,r)
+writef G:94 LG dnappm.b[2153] writef("stand'diseM3:*n")
+writef G:94 LG dnappm.b[2160] writef("stand'andaise*n")
+writef G:94 LG dnappm.b[2167] writef("stand'ossprod*n")
+writef G:94 LG dnappm.b[2174] writef("stand'dardise*n")
+writef G:94 LG dnappm.b[2180] writef("stand'ossprod*n")
+writef G:94 LG dnappm.b[2197] writef("( %12'12.5f )*n",v!0,v!1,v!2)
+writef G:94 LG dnappm.b[2202] writef("( %12'12.5f )*n",m!0,m!3,m!6)
+writef G:94 LG dnappm.b[2203] writef("( %12'12.5f )*n",m!1,m!4,m!7)
+writef G:94 LG dnappm.b[2204] writef("( %12'12.5f )*n",m!2,m!5,m!8)
+writef G:94 LG dnappm.b[2235] writef("P6*n")
+writef G:94 LG dnappm.b[2236]
+    writef("%n*n%n*n255*n",screenxsize,screenysize)
+writef G:94 LG dnappm.b[2239] writef("*nRow ' ppmv=%n",row,ppmv)
+writef G:94 LG dnappm.b[2242] writef("%n",ppmv!(x+row*screenxsize))
+writef G:94 LG dnappm.b[2248] writef("File 'written*n",filename)
+writef G:94 LG dnappm.b[456] writef("*nSyst'failure*n")
+writef G:94 LG dnappm.b[496] writef("More 'pushval*n")
+writef G:94 LG dnappm.b[511]
+    writef("pushv'i6 p=%n*n",v,upb,newv,newupb,p)
+writef G:94 LG dnappm.b[541] writef("colno'umber %n",colno)
+writef G:94 LG dnappm.b[956] writef("Seque'le: %s*n*n",sequenceTitle)
+writef G:94 LG sdl.b[135] writef("inter') => %n*n",p,p1,p2,q1,q2,res)
+writef G:94 LG sdl.b[163] writef("Unabl'SDL: %s*n",mes)
+writef G:94 LG sdl.b[234] writef("Unabl'ode: %s*n",mes)
+writef G:94 LG sdl.b[351] writef("*ngetm'ailable*n")
+writef G:94 LG sdl.b[3611] writef(form,a,b,c,d,e,...)
+writef G:94 LG sdl.b[4131]
+    writef("*nleft'maxy=%n*n",leftxv!y,leftzv!y,rightxv!y,rightzv!y,miny,maxy)
+writef G:94 LG sdl.b[4160] writef("getve'failure*n")
+writef G:94 LG sdl.b[4192] writef("drawt'th = %n*n",neardepth,fardepth)
+writef G:94 LG sdl.b[4220] writef("Verti'0i %10i*n",z1,z2,z3)
+writef G:94 LG sdl.b[4375] writef("drawt'th = %n*n",neardepth,fardepth)
+writef G:94 LG sdl.b[4377] writef("drawt'pth=%8i*n",x1,y1,z1)
+writef G:94 LG sdl.b[4378] writef("drawt'pth=%8i*n",x2,y2,z2)
+writef G:94 LG sdl.b[4379] writef("drawt'pth=%8i*n",x3,y3,z3)
+writef G:94 LG sdl.b[4380] writef("y=%n 'o %n:%n*n",y,x0,sz0,x1,sz1)
+writef G:94 LG sdl.b[4412] writef("chkli'maxy=%n*n",miny,maxy)
+writef G:94 LG sdl.b[4414]
+    writef("y=%i3'n %n:%n*n",y,leftxv!y,leftzv!y,rightxv!y,rightzv!y)
+writef G:94 LG sdl.b[87] writef("inter') => %n*n",p,p1,p2,q1,q2,res)
+writeflt G:73 DEF libhdr.h[110] writeflt=73
+writehex G:87 DEF libhdr.h[124] writehex=87
+writen G:86 DEF libhdr.h[123] writen=86
+writeoct G:88 DEF libhdr.h[125] writeoct=88
+writes G:89 DEF libhdr.h[126] writes=89
+writet G:90 DEF libhdr.h[127] writet=90
+writeu G:91 DEF libhdr.h[128] writeu=91
+writewords G:45 DEF libhdr.h[82] writewords=45
+writez G:92 DEF libhdr.h[129] writez=92
+wrppmcolour G:319 DEF dnappm.b[414] wrppmcolour=
+wrppmcolour G:319 LG dnappm.b[2237] wrppmcolour(ppmv!i)
+wrppmcolour G:319 RT dnappm.b[553] LET wrppmcolour(colno)BE..
+wrppmfile G:323 DEF dnappm.b[419] wrppmfile=
+wrppmfile G:323 LG dnappm.b[1452] wrppmfile()
+wrppmfile G:323 LG dnappm.b[1754] wrppmfile()
+wrppmfile G:323 RT dnappm.b[2219] LET wrppmfile()BE..
+zscale G:313 DEF dnappm.b[407] zscale=
+zscale G:313 FN dnappm.b[1762] LET zscale(FLT z)=..
+zscale G:313 LG dnappm.b[1809] s!2:=zscale(depth)

@@ -1,0 +1,103 @@
+This file contains detailed documentation of the the implementation
+of the BCPL system for the BBC Micro.
+
+The Heap
+
+This is a list of blocks pointed to by HEAP (g48). The last block in
+the chain is pointed to by HEAPEND (g54). The last block consists of
+two words 0 and -1.  For all the other blocks in the chain word 0
+points to the next block and word 1 is a bit pattern indicating the
+state of the block, as follows.
+
+bits 0-7
+  0    The block is free, bits 8-15 will also be zero
+  1    This block is the root stack
+  2    This block is a program stack
+  3    This block is a global vector
+  4    This block is a stream control block
+  5-63 This block is for system use
+127    This block is a program data area
+128    This block is a file control block
+130    This block if a file name block
+
+bit 8  This area can be moved by SHUFFLE. It is only set when the type
+       is 128-130 and the file is unlinked
+bits 9-14 Reserved
+bit 15    The block is protected. It is only set in file control blocks,
+          preventing deletion by SHUFFLE, or freeing by TIDY.
+
+Language RAM layout
+
+Area from #x400 to #x7FF
+
+#x400  Word address of the system index
+#x402  Byte address of the dispatch routine
+#x404  Word address of the start of the heap
+#x406  Word address of a heap block reserved for use by SAVE
+#x408  Length of the heap block reserved for use by SAVE
+#x40A  Word address of the root stack
+#x40C  Word in which GETVEC saves the size of the vector required when
+       trapping to command state
+#x40E  Byte address of the current fault routine
+#x410  Byte address of machine code to set up fault routine address
+       and jump to despatch routine
+#x412  Word address of the MOVE routine
+#x414  Word address of the OPSYS routine
+
+Miscellaneous globals
+
+CLIINSTR (g33) The stream identifier for the current command file, or zero.
+
+EXERROR (g207) TRUE is ERRCONT is not in effect.
+
+PRGENDLABEL (g8)  The current recovery point used by LONGJUMP 
+PRGENDLEVEL (g7) 
+
+RUNSUSP (g206)    TRUE is there is a suspended run-state program.
+
+TIDYSTATE (g208)  Set to 2 when TIDY is performed. Set to 1 when
+                  modified TIDY (no files are unlinked) is performed.
+
+Page 0
+
+  0     The machine state bit pattern
+           bit 0    I.TIME is to be updated
+           bit 1    ESP should trap to command state
+           bit 2    GETVEC should trap to command state is it
+                    cannot allocate a vector.
+           bit 7    process the 'trap' flags in I.FLAGS
+           bit 8    Set if the system is in command state
+     
+  2     CURRCO
+  4     Cintcode P
+  6     Cintcode PC
+  8     Cintcode A
+ 10     Cintcode B
+ 12     Cintcode C
+
+ 14     Cintcode G
+ 16     Byte address of RESULT2
+ 18     Byte address of MCRESULT
+ 20     Byte address of FAULTROUTINE
+ 22-32  flags
+ 34-37  limits
+ 38-50  last saved trap state
+ 52-56  trap count
+ 58-60  count
+ 62     length indicator of the last jump/call/return instruction
+        (for use by DEBUG)
+          < 0    1 byte
+          = 0    2 bytes
+          > 0    3 bytes
+ 64-76  last saved run state
+ 78-80  last jump addresses
+
+ 82     work locations used by the interpreter
+ 84
+ 86
+ 88
+
+ 90-110 reserved
+112-142 available for users
+144-    use by the operating system
+

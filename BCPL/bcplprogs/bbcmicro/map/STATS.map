@@ -1,0 +1,1233 @@
+Before calling findsections
+fcounter=0 notfcounter=0 mcounter=0 notmcounter=0
+codevsize-fcounter-notfcounter=1644
+codevsize-mcounter-notmcounter=1644
+
+Calling findsections
+
+    0: 03E8 BCPL  Section     size  1638 bytes
+ 1640: Max global number 147
+ 1636: G138 =  1542   BCPLSCRIPTS
+ 1632: G137 =  1460   BCPLHDRS
+ 1628: G136 =  1290   BCPLPATH
+ 1624: G135 =  1188   BCPLROOT
+After calling findsections
+fcounter=4 notfcounter=27 mcounter=0 notmcounter=31
+codevsize-fcounter-notfcounter=1613
+codevsize-mcounter-notmcounter=1613
+
+Calling findnames
+
+Finding section, needs and entry names
+    6: SECTION Name: STATS  
+After calling findnames
+fcounter=4 notfcounter=37 mcounter=0 notmcounter=41
+codevsize-fcounter-notfcounter=1603
+codevsize-mcounter-notmcounter=1603
+
+Calling scancode
+
+After calling scancode
+fcounter=586 notfcounter=557 mcounter=0 notmcounter=1135
+codevsize-fcounter-notfcounter=501
+codevsize-mcounter-notmcounter=509
+
+Calling findnotf
+
+After calling findnotf
+fcounter=586 notfcounter=1042 mcounter=0 notmcounter=1135
+codevsize-fcounter-notfcounter=16
+codevsize-mcounter-notmcounter=509
+
+Calling findstrings
+
+After calling findstrings
+fcounter=586 notfcounter=1058 mcounter=0 notmcounter=1599
+codevsize-fcounter-notfcounter=0
+codevsize-mcounter-notmcounter=45
+About to call dumpcode()
+
+//     0: 03E8 0333                HUNK    size=819
+//     4: 0333
+//     6: FDDF                     Section name: STATS  
+//     8: 07 53 54 41 54 53 20 20
+
+//    16: L00016:
+
+//    16: 3A EA        LL   124    
+//    18: A4          SP4          
+//    19: 5A E7       LLL   124    
+//    21: A5          SP5          
+//    22: BA A8         J    64    
+
+//    24: L00024:
+//    24: FD         L4P4          
+//    25: 83          LP3          
+//    26: 37          XOR          
+//    27: 5E 98      JLS0    53    
+//    29: B5          XCH          
+//    30: 83          LP3          
+//    31: BC 86       JGE    39    
+//    33: 84          LP4          
+//    34: A5          SP5          
+//    35: E4         L0P4          
+//    36: A4          SP4          
+//    37: BA 8C         J    51    
+
+//    39: L00039:
+//    39: FD         L4P4          
+//    40: 83          LP3          
+//    41: 3C 86       JNE    49    
+//    43: 11           L1          
+//    44: C4          AP4          
+//    45: 5B D4      LLL$   184    
+//    47: 07           K7          
+//    48: 7B          RTN          
+
+//    49: L00049:
+//    49: BA 90         J    67    
+
+//    51: L00051:
+//    51: BA 8B         J    64    
+
+//    53: L00053:
+//    53: 83          LP3          
+//    54: BE 86      JGE0    62    
+//    56: 84          LP4          
+//    57: A5          SP5          
+//    58: E4         L0P4          
+//    59: A4          SP4          
+//    60: BA 82         J    64    
+
+//    62: L00062:
+//    62: BA 83         J    67    
+
+//    64: L00064:
+//    64: 84          LP4          
+//    65: 3E 55      JNE0    24    
+
+//    67: L00067:
+//    67: 3A AF        LL   116    
+//    69: 30 82        LG   130    G130
+//    71: 55          SUB          
+//    72: 61 18 03     LW   792    
+//    75: 7C 89       JGR    86    
+//    77: 3A A5        LL   116    
+//    79: A6          SP6          
+//    80: E0 08         A     8    
+//    82: 38 A0        SL   116    
+//    84: BA 91         J   103    
+
+//    86: L00086:
+//    86: 84          LP4          
+//    87: 3E 87      JNE0    96    
+//    89: 85          LP5          
+//    90: 78          RV4          
+//    91: 11           L1          
+//    92: 57          RSH          
+//    93: 31 85        SG   133    G133
+//    95: 7B          RTN          
+
+//    96: L00096:
+//    96: 85          LP5          
+//    97: AB         SP11          
+//    98: 84          LP4          
+//    99: 5B E0      LLL$   474    
+//   101: 07           K7          
+//   102: A6          SP6          
+
+//   103: L00103:
+//   103: 83          LP3          
+//   104: AB         SP11          
+//   105: 86          LP6          
+//   106: 5B DE      LLL$   488    
+//   108: 07           K7          
+//   109: E5         L0P5          
+//   110: 86          LP6          
+//   111: 94           ST          
+//   112: 86          LP6          
+//   113: 85          LP5          
+//   114: 94           ST          
+//   115: 7B          RTN          
+
+//   116: 0000       DATA      0    Operand of LL SL
+
+//   118: 0000       DATA      0    Operand of LL SL
+
+//   120: 0000       DATA      0    Operand of LL SL
+
+//   122: 0000       DATA      0    Operand of LL SL
+
+
+//   124: 0000       DATA      0    Operand of LL LLL SL
+
+//   126: 0000       DATA      0    Operand of LL SL
+
+//   128: 0000       DATA      0    Operand of LL SL
+
+//   130: L00130:
+
+//   130: 60 10         L    16    
+//   132: 58          AND          
+//   133: 1E 84      JEQ0   139    
+//   135: 5A 83       LLL   140    " "
+//   137: 24 5A       K4G    90    G090 ##Bad string##
+
+//   139: L00139:
+//   139: 7B          RTN          
+
+//   140: 01 String: " "
+//   140: 01 20 
+
+//   142: L00142:
+
+//   142: 3A 70        LL   128    
+//   144: 1E 86      JEQ0   152    
+//   146: 5A 88       LLL   156    "ZERO DATA FIRST"
+//   148: 23 8F       K3G   143    G143 ##Bad string##
+//   150: BA 83         J   155    
+
+//   152: L00152:
+//   152: 0F          LM1          
+//   153: BA 80         J   155    
+
+//   155: L00155:
+//   155: 7B          RTN          
+
+//   156: 0F String: "ZERO DATA FIRST"
+//   156: 0F 5A 45 52 4F 20 44 41 54 41 20 46 49 52 53 54 
+
+//   172: L00172:
+
+//   172: 10           L0          
+//   173: 38 4D        SL   124    
+//   175: 30 82        LG   130    G130
+//   177: 38 41        SL   116    
+//   179: 10           L0          
+//   180: 38 4A        SL   128    
+//   182: 7B          RTN          
+//   183: D0          NOP          
+
+//   184: L00184:
+
+//   184: E3         L0P3          
+//   185: D1           A1          
+//   186: DB        ST0P3          
+//   187: E3         L0P3          
+//   188: 61 10 27     LW 10000    
+//   191: 7C 81       JGR   194    
+//   193: 7B          RTN          
+
+//   194: L00194:
+//   194: E3         L0P3          
+//   195: E1 F0 D8     AW -10000    
+//   198: DB        ST0P3          
+//   199: F3         L1P3          
+//   200: D1           A1          
+//   201: DD        ST1P3          
+//   202: 7B          RTN          
+//   203: D0          NOP          
+
+//   204: L00204:
+
+//   204: 3A 2E        LL   124    
+//   206: A3          SP3          
+//   207: 5A ED       LLL   318    "*nSTATISTICS up to:*n"
+//   209: 24 5A       K4G    90    G090 ##Bad string##
+//   211: 24 92       K4G   146    G146
+//   213: 5A FB       LLL   338    "*n "
+//   215: 24 5A       K4G    90    G090 ##Bad string##
+//   217: 83          LP3          
+//   218: 3E 86      JNE0   226    
+//   220: 5A F8       LLL   342    "NO STATISTICS HELD*n"
+//   222: 24 5A       K4G    90    G090 ##Bad string##
+//   224: BA 84         J   230    
+
+//   226: L00226:
+//   226: 5B FD      LLL$   362    "   EXECUTIONS       ADDRESSES*n"
+//   228: 24 5A       K4G    90    G090 ##Bad string##
+
+//   230: L00230:
+//   230: BA D2         J   314    
+
+//   232: L00232:
+//   232: 3A 14        LL   126    
+//   234: 1E 94      JEQ0   256    
+//   236: 5B FD      LLL$   394    "   "
+//   238: 24 5E       K4G    94    G094
+//   240: 11           L1          
+//   241: C3          AP3          
+//   242: 24 91       K4G   145    G145 ##Bad string##
+//   244: FC         L4P3          
+//   245: 11           L1          
+//   246: 57          RSH          
+//   247: A9          SP9          
+//   248: FC         L4P3          
+//   249: A8          SP8          
+//   250: 5B FE      LLL$   398    "         %B  %A*n"
+//   252: 24 5A       K4G    90    G090 ##Bad string##
+//   254: BA AF         J   303    
+
+//   256: L00256:
+//   256: 83          LP3          
+//   257: 1A          L10          
+//   258: B6         GBYT          
+//   259: 60 10         L    16    
+//   261: 58          AND          
+//   262: 3E 88      JNE0   272    
+//   264: FA         L3P3          
+//   265: 11           L1          
+//   266: 57          RSH          
+//   267: A8          SP8          
+//   268: 5B FA      LLL$   416    "*n%A()*n"
+//   270: 24 5A       K4G    90    G090 ##Bad string##
+
+//   272: L00272:
+//   272: 5B F9      LLL$   424    "   "
+//   274: 24 5E       K4G    94    G094
+//   276: 11           L1          
+//   277: C3          AP3          
+//   278: 24 91       K4G   145    G145 ##Bad string##
+//   280: FC         L4P3          
+//   281: B2           S2          
+//   282: A9          SP9          
+//   283: FA         L3P3          
+//   284: A8          SP8          
+//   285: 5B FC      LLL$   428    "      %B TO%B      "
+//   287: 24 5A       K4G    90    G090 ##Bad string##
+//   289: 83          LP3          
+//   290: 5B FE      LLL$   554    
+//   292: 04           K4          
+//   293: 5B FD      LLL$   448    " TO "
+//   295: 24 5A       K4G    90    G090 ##Bad string##
+//   297: 83          LP3          
+//   298: 5B FC      LLL$   820    
+//   300: 04           K4          
+//   301: 24 54       K4G    84    G084 ##Bad string##
+
+//   303: L00303:
+//   303: 24 93       K4G   147    G147 À­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­Þ          $  ä     !  ÿÿÿÿ    ÞÀ­Þ          pè ì‹     …w  ÿÿÿÿ    ÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­
+//   305: 1E 85      JEQ0   312    
+//   307: 5B FD      LLL$   454    "*nOUTPUT STOPPED*n"
+//   309: 24 5A       K4G    90    G090 ##Bad string##
+//   311: 7B          RTN          
+
+//   312: L00312:
+//   312: E3         L0P3          
+//   313: A3          SP3          
+
+//   314: L00314:
+//   314: 83          LP3          
+//   315: 3E 2B      JNE0   232    
+//   317: 7B          RTN          
+
+//   318: 13 String: "*nSTATISTICS up to:*n"
+//   318: 13 0A 53 54 41 54 49 53 54 49 43 53 20 75 70 20 
+//   334: 74 6F 3A 0A 
+
+//   338: 02 String: "*n "
+//   338: 02 0A 20 
+
+//   342: 13 String: "NO STATISTICS HELD*n"
+//   342: 13 4E 4F 20 53 54 41 54 49 53 54 49 43 53 20 48 
+//   358: 45 4C 44 0A 
+
+//   362: 1E String: "   EXECUTIONS       ADDRESSES*n"
+//   362: 1E 20 20 20 45 58 45 43 55 54 49 4F 4E 53 20 20 
+//   378: 20 20 20 20 20 41 44 44 52 45 53 53 45 53 0A 
+
+//   394: 03 String: "   "
+//   394: 03 20 20 20 
+
+//   398: 10 String: "         %B  %A*n"
+//   398: 10 20 20 20 20 20 20 20 20 20 25 42 20 20 25 41 
+//   414: 0A 
+
+//   416: 06 String: "*n%A()*n"
+//   416: 06 0A 25 41 28 29 0A 
+
+//   424: 03 String: "   "
+//   424: 03 20 20 20 
+
+//   428: 13 String: "      %B TO%B      "
+//   428: 13 20 20 20 20 20 20 25 42 20 54 4F 25 42 20 20 
+//   444: 20 20 20 20 
+
+//   448: 04 String: " TO "
+//   448: 04 20 54 4F 20 
+
+//   454: 10 String: "*nOUTPUT STOPPED*n"
+//   454: 10 0A 4F 55 54 50 55 54 20 53 54 4F 50 50 45 44 
+//   470: 0A 
+
+//   472: FEE0          Resolving word => 184
+
+//   474: L00474:
+
+//   474: BA 84         J   480    
+
+//   476: L00476:
+//   476: 83          LP3          
+//   477: A4          SP4          
+//   478: E3         L0P3          
+//   479: A3          SP3          
+
+//   480: L00480:
+//   480: E3         L0P3          
+//   481: 3E 79      JNE0   476    
+//   483: 10           L0          
+//   484: DC        ST0P4          
+//   485: 83          LP3          
+//   486: 7B          RTN          
+//   487: D0          NOP          
+
+//   488: L00488:
+
+//   488: 11           L1          
+//   489: DD        ST1P3          
+//   490: 10           L0          
+//   491: 83          LP3          
+//   492: 96          ST2          
+//   493: 3B E2       LL$   120    
+//   495: 83          LP3          
+//   496: 97          ST3          
+//   497: 84          LP4          
+//   498: 14           L4          
+//   499: 98         STP3          
+//   500: 3B E0       LL$   118    
+//   502: B2           S2          
+//   503: 10           L0          
+//   504: B5          XCH          
+//   505: B6         GBYT          
+//   506: B8          ATC          
+//   507: A5          SP5          
+//   508: 83          LP3          
+//   509: 1A          L10          
+//   510: B7         PBYT          
+//   511: 0E 02        LM     2    
+//   513: C4          AP4          
+//   514: 10           L0          
+//   515: B5          XCH          
+//   516: B6         GBYT          
+//   517: B8          ATC          
+//   518: A5          SP5          
+//   519: 83          LP3          
+//   520: 60 0B         L    11    
+//   522: B7         PBYT          
+//   523: 83          LP3          
+//   524: 1A          L10          
+//   525: B6         GBYT          
+//   526: 0E 02        LM     2    
+//   528: 58          AND          
+//   529: 60 92         L   146    
+//   531: 3C 84       JNE   537    
+//   533: 3B FD       LL$   122    
+//   535: BA 82         J   539    
+
+//   537: L00537:
+//   537: 3B CD       LL$   118    
+
+//   539: L00539:
+//   539: 16           L6          
+//   540: 98         STP3          
+//   541: 19           L9          
+//   542: 33 12        AG    18    G018 ##Bad string##
+//   544: 74           RV          
+//   545: 75          RV1          
+//   546: 17           L7          
+//   547: 98         STP3          
+//   548: 7B          RTN          
+//   549: D0          NOP          
+
+//   550: FFB4          Resolving word => 474
+//   552: FFC0          Resolving word => 488
+
+//   554: L00554:
+
+//   554: 1A          L10          
+//   555: B6         GBYT          
+//   556: A4          SP4          
+//   557: 10           L0          
+//   558: A5          SP5          
+//   559: FA         L3P3          
+//   560: A6          SP6          
+//   561: 84          LP4          
+//   562: 5B FE      LLL$   130    
+//   564: 07           K7          
+//   565: BA E4         J   667    
+
+//   567: DEFAULT:
+
+//   567: L00567:
+//   567: 86          LP6          
+//   568: 5B FC      LLL$  1244    
+//   570: 07           K7          
+//   571: 15           L5          
+//   572: A5          SP5          
+//   573: BB FA        J$   716    
+
+//   575: CASE 144:
+
+//   575: L00575:
+//   575: 5B FA      LLL$   736    "CASE  "
+//   577: 27 5A       K7G    90    G090 ##Bad string##
+//   579: 83          LP3          
+//   580: 7A          RV6          
+//   581: 60 1F         L    31    
+//   583: 9C 98       JLE   609    
+//   585: 83          LP3          
+//   586: 7A          RV6          
+//   587: 60 7F         L   127    
+//   589: BC 92       JGE   609    
+//   591: 83          LP3          
+//   592: 7A          RV6          
+//   593: 18           L8          
+//   594: 56          LSH          
+//   595: D1           A1          
+//   596: A7          SP7          
+//   597: 83          LP3          
+//   598: 7A          RV6          
+//   599: AD         SP13          
+//   600: 40 07       LLP     7    
+//   602: AC         SP12          
+//   603: 5B FA      LLL$   746    "'%S' %I3"
+//   605: 28 5A       K8G    90    G090 ##Bad string##
+//   607: BA 87         J   616    
+
+//   609: L00609:
+//   609: 83          LP3          
+//   610: 7A          RV6          
+//   611: AB         SP11          
+//   612: 5B FB      LLL$   756    "%I7"
+//   614: 27 5A       K7G    90    G090 ##Bad string##
+
+//   616: L00616:
+//   616: 11           L1          
+//   617: A5          SP5          
+//   618: BA E0         J   716    
+
+//   620: CASE 120:
+
+//   620: L00620:
+//   620: 5B FD      LLL$   762    "RETURN"
+//   622: 27 5A       K7G    90    G090 ##Bad string##
+//   624: 18           L8          
+//   625: A5          SP5          
+//   626: BA D8         J   716    
+
+//   628: CASE 184:
+
+//   628: L00628:
+//   628: 5B FE      LLL$   774    "JUMP LABEL"
+//   630: 27 5A       K7G    90    G090 ##Bad string##
+//   632: 14           L4          
+//   633: A5          SP5          
+//   634: BA D0         J   716    
+
+//   636: CASE 152:
+
+//   636: L00636:
+//   636: 5B FB      LLL$   786    "LABEL"
+//   638: 27 5A       K7G    90    G090 ##Bad string##
+//   640: 19           L9          
+//   641: A5          SP5          
+//   642: BA C8         J   716    
+
+//   644: CASE 188:
+//   644: CASE 156:
+//   644: CASE 124:
+//   644: CASE 92:
+//   644: CASE 60:
+//   644: CASE 28:
+
+//   644: L00644:
+//   644: 83          LP3          
+//   645: 7A          RV6          
+//   646: FA         L3P3          
+//   647: 3C 88       JNE   657    
+//   649: 5B FD      LLL$   794    "THEN"
+//   651: 27 5A       K7G    90    G090 ##Bad string##
+//   653: 1A          L10          
+//   654: A5          SP5          
+//   655: BA 88         J   665    
+
+//   657: L00657:
+//   657: 83          LP3          
+//   658: 7A          RV6          
+//   659: B2           S2          
+//   660: AB         SP11          
+//   661: 5B FC      LLL$   806    "ELSE (%B)"
+//   663: 27 5A       K7G    90    G090 ##Bad string##
+
+//   665: L00665:
+//   665: BA B1         J   716    
+
+//   667: L00667:
+//   667: 0E 04        LM     4    
+//   669: 84          LP4          
+//   670: 58          AND          
+//   671: 92          SWB          
+//   672: 000A        len =   10
+//   674: FF95    default =>   567
+//   676: 001C      const =    28
+//   678: FFDE      label =>   644
+//   680: 003C      const =    60
+//   682: FFDA      label =>   644
+//   684: 005C      const =    92
+//   686: FFD6      label =>   644
+//   688: 0078      const =   120
+//   690: FFBA      label =>   620
+//   692: 007C      const =   124
+//   694: FFCE      label =>   644
+//   696: 0090      const =   144
+//   698: FF85      label =>   575
+//   700: 0098      const =   152
+//   702: FFBE      label =>   636
+//   704: 009C      const =   156
+//   706: FFC2      label =>   644
+//   708: 00B8      const =   184
+//   710: FFAE      label =>   628
+//   712: 00BC      const =   188
+//   714: FFBA      label =>   644
+
+//   716: L00716:
+//   716: 11           L1          
+//   717: A7          SP7          
+//   718: 85          LP5          
+//   719: A8          SP8          
+//   720: BA 87         J   729    
+
+//   722: L00722:
+//   722: 5A DE       LLL   818    " "
+//   724: 29 5A       K9G    90    G090 ##Bad string##
+//   726: 11           L1          
+//   727: C7          AP7          
+//   728: A7          SP7          
+
+//   729: L00729:
+//   729: 87          LP7          
+//   730: 88          LP8          
+//   731: 9C 75       JLE   722    
+//   733: 7B          RTN          
+
+//   734: FE8C          Resolving word => 362
+
+//   736: 06 String: "CASE  "
+//   736: 06 43 41 53 45 20 20 
+
+//   744: FEA2          Resolving word => 394
+
+//   746: 08 String: "'%S' %I3"
+//   746: 08 27 25 53 27 20 25 49 33 
+
+//   756: 03 String: "%I7"
+//   756: 03 25 49 37 
+
+//   760: FE96          Resolving word => 398
+
+//   762: 06 String: "RETURN"
+//   762: 06 52 45 54 55 52 4E 
+
+//   770: FE9E          Resolving word => 416
+//   772: FEA4          Resolving word => 424
+
+//   774: 0A String: "JUMP LABEL"
+//   774: 0A 4A 55 4D 50 20 4C 41 42 45 4C 
+
+//   786: 05 String: "LABEL"
+//   786: 05 4C 41 42 45 4C 
+
+//   792: FE94          Resolving word => 428
+
+//   794: 04 String: "THEN"
+//   794: 04 54 48 45 4E 
+
+//   800: FF0A          Resolving word => 554
+//   802: FE9E          Resolving word => 448
+//   804: 0010          Resolving word => 820
+
+//   806: 09 String: "ELSE (%B)"
+//   806: 09 45 4C 53 45 20 28 25 42 29 
+
+//   816: FE96          Resolving word => 454
+
+//   818: 01 String: " "
+//   818: 01 20 
+
+//   820: L00820:
+
+//   820: 60 0B         L    11    
+//   822: B6         GBYT          
+//   823: A4          SP4          
+//   824: 17           L7          
+//   825: D6         RVP3          
+//   826: A5          SP5          
+//   827: 84          LP4          
+//   828: 5B 79      LLL$   130    
+//   830: 06           K6          
+//   831: BA EC         J   941    
+
+//   833: DEFAULT:
+
+//   833: L00833:
+//   833: 85          LP5          
+//   834: 5B 77      LLL$  1244    
+//   836: 06           K6          
+//   837: BB DA        J$  1022    
+
+//   839: CASE 146:
+
+//   839: L00839:
+//   839: 5B DA      LLL$  1024    "SWITCHON"
+//   841: 26 5A       K6G    90    G090 ##Bad string##
+//   843: BB D7        J$  1022    
+
+//   845: CASE 122:
+
+//   845: L00845:
+//   845: 5B D8      LLL$  1034    "RETURN"
+//   847: 26 5A       K6G    90    G090 ##Bad string##
+//   849: BB D4        J$  1022    
+
+//   851: CASE 154:
+
+//   851: L00851:
+//   851: 17           L7          
+//   852: D6         RVP3          
+//   853: AA         SP10          
+//   854: 5B D5      LLL$  1044    "GOTO %B"
+//   856: 26 5A       K6G    90    G090 ##Bad string##
+//   858: BB D0        J$  1022    
+
+//   860: CASE 186:
+
+//   860: L00860:
+//   860: 17           L7          
+//   861: D6         RVP3          
+//   862: AA         SP10          
+//   863: 5B D1      LLL$  1052    "JUMP TO %B"
+//   865: 26 5A       K6G    90    G090 ##Bad string##
+//   867: BB CB        J$  1022    
+
+//   869: CASE 60:
+
+//   869: L00869:
+//   869: 5B CF      LLL$  1064    "TEST ="
+//   871: 26 5A       K6G    90    G090 ##Bad string##
+//   873: BB C8        J$  1022    
+
+//   875: CASE 62:
+
+//   875: L00875:
+//   875: 5B CD      LLL$  1080    "TEST =0"
+//   877: 26 5A       K6G    90    G090 ##Bad string##
+//   879: BB C5        J$  1022    
+
+//   881: CASE 28:
+
+//   881: L00881:
+//   881: 5B E7      LLL$  1088    "TEST NE"
+//   883: 26 5A       K6G    90    G090 ##Bad string##
+//   885: BB C2        J$  1022    
+
+//   887: CASE 30:
+
+//   887: L00887:
+//   887: 5B E5      LLL$  1096    "TEST NE 0"
+//   889: 26 5A       K6G    90    G090 ##Bad string##
+//   891: BB BF        J$  1022    
+
+//   893: CASE 124:
+
+//   893: L00893:
+//   893: 5B F6      LLL$  1108    "TEST <="
+//   895: 26 5A       K6G    90    G090 ##Bad string##
+//   897: BA FB         J  1022    
+
+//   899: CASE 126:
+
+//   899: L00899:
+//   899: 5B F4      LLL$  1118    "TEST <=0"
+//   901: 26 5A       K6G    90    G090 ##Bad string##
+//   903: BA F5         J  1022    
+
+//   905: CASE 188:
+
+//   905: L00905:
+//   905: 5B F2      LLL$  1130    "TEST <"
+//   907: 26 5A       K6G    90    G090 ##Bad string##
+//   909: BA EF         J  1022    
+
+//   911: CASE 190:
+
+//   911: L00911:
+//   911: 5B F0      LLL$  1142    "TEST <0"
+//   913: 26 5A       K6G    90    G090 ##Bad string##
+//   915: BA E9         J  1022    
+
+//   917: CASE 156:
+
+//   917: L00917:
+//   917: 5B EE      LLL$  1150    "TEST >"
+//   919: 26 5A       K6G    90    G090 ##Bad string##
+//   921: BA E3         J  1022    
+
+//   923: CASE 158:
+
+//   923: L00923:
+//   923: 5B EC      LLL$  1160    "TEST >0"
+//   925: 26 5A       K6G    90    G090 ##Bad string##
+//   927: BA DD         J  1022    
+
+//   929: CASE 92:
+
+//   929: L00929:
+//   929: 5B EA      LLL$  1170    "TEST >="
+//   931: 26 5A       K6G    90    G090 ##Bad string##
+//   933: BA D7         J  1022    
+
+//   935: CASE 94:
+
+//   935: L00935:
+//   935: 5B E8      LLL$  1178    "TEST >=0"
+//   937: 26 5A       K6G    90    G090 ##Bad string##
+//   939: BA D1         J  1022    
+
+//   941: L00941:
+//   941: 0E 02        LM     2    
+//   943: 84          LP4          
+//   944: 58          AND          
+//   945: BA 85         J   952    
+//   947: D0          NOP          
+
+//   948: FCC4          Resolving word => 120
+//   950: FCC0          Resolving word => 118
+
+//   952: L00952:
+//   952: 92          SWB          
+//   953: D0
+//   954: 0010        len =   16
+//   956: FF85    default =>   833
+//   958: 001C      const =    28
+//   960: FFB1      label =>   881
+//   962: 001E      const =    30
+//   964: FFB3      label =>   887
+//   966: 003C      const =    60
+//   968: FF9D      label =>   869
+//   970: 003E      const =    62
+//   972: FF9F      label =>   875
+//   974: 005C      const =    92
+//   976: FFD1      label =>   929
+//   978: 005E      const =    94
+//   980: FFD3      label =>   935
+//   982: 007A      const =   122
+//   984: FF75      label =>   845
+//   986: 007C      const =   124
+//   988: FFA1      label =>   893
+//   990: 007E      const =   126
+//   992: FFA3      label =>   899
+//   994: 0092      const =   146
+//   996: FF63      label =>   839
+//   998: 009A      const =   154
+//  1000: FF6B      label =>   851
+//  1002: 009C      const =   156
+//  1004: FFA9      label =>   917
+//  1006: 009E      const =   158
+//  1008: FFAB      label =>   923
+//  1010: 00BA      const =   186
+//  1012: FF68      label =>   860
+//  1014: 00BC      const =   188
+//  1016: FF91      label =>   905
+//  1018: 00BE      const =   190
+//  1020: FF93      label =>   911
+
+//  1022: L01022:
+//  1022: 7B          RTN          
+//  1023: D0          NOP          
+
+//  1024: 08 String: "SWITCHON"
+//  1024: 08 53 57 49 54 43 48 4F 4E 
+
+//  1034: 06 String: "RETURN"
+//  1034: 06 52 45 54 55 52 4E 
+
+//  1042: FC68          Resolving word => 122
+
+//  1044: 07 String: "GOTO %B"
+//  1044: 07 47 4F 54 4F 20 25 42 
+
+//  1052: 0A String: "JUMP TO %B"
+//  1052: 0A 4A 55 4D 50 20 54 4F 20 25 42 
+
+//  1064: 06 String: "TEST ="
+//  1064: 06 54 45 53 54 20 3D 
+
+//  1072: FC52          Resolving word => 130
+//  1074: 00AA          Resolving word => 1244
+//  1076: FE98          Resolving word => 716
+//  1078: FEAA          Resolving word => 736
+
+//  1080: 07 String: "TEST =0"
+//  1080: 07 54 45 53 54 20 3D 30 
+
+//  1088: 07 String: "TEST NE"
+//  1088: 07 54 45 53 54 20 4E 45 
+
+//  1096: 09 String: "TEST NE 0"
+//  1096: 09 54 45 53 54 20 4E 45 20 30 
+
+//  1106: FE98          Resolving word => 746
+
+//  1108: 07 String: "TEST <="
+//  1108: 07 54 45 53 54 20 3C 3D 
+
+//  1116: FE98          Resolving word => 756
+
+//  1118: 08 String: "TEST <=0"
+//  1118: 08 54 45 53 54 20 3C 3D 30 
+
+//  1128: FE92          Resolving word => 762
+
+//  1130: 06 String: "TEST <"
+//  1130: 06 54 45 53 54 20 3C 
+
+//  1138: FE94          Resolving word => 774
+//  1140: FE9E          Resolving word => 786
+
+//  1142: 07 String: "TEST <0"
+//  1142: 07 54 45 53 54 20 3C 30 
+
+//  1150: 06 String: "TEST >"
+//  1150: 06 54 45 53 54 20 3E 
+
+//  1158: FE94          Resolving word => 794
+
+//  1160: 07 String: "TEST >0"
+//  1160: 07 54 45 53 54 20 3E 30 
+
+//  1168: FE96          Resolving word => 806
+
+//  1170: 07 String: "TEST >="
+//  1170: 07 54 45 53 54 20 3E 3D 
+
+//  1178: 08 String: "TEST >=0"
+//  1178: 08 54 45 53 54 20 3E 3D 30 
+
+//  1188: GLOBAL ENTRY             G135 BCPLROOT
+//  1188: 30 12        LG    18    G018 ##Bad string##
+//  1190: 77          RV3          
+//  1191: A3          SP3          
+//  1192: 10           L0          
+//  1193: A4          SP4          
+//  1194: BA 86         J  1202    
+
+//  1196: L01196:
+//  1196: 10           L0          
+//  1197: 83          LP3          
+//  1198: 99         STP4          
+//  1199: 11           L1          
+//  1200: C4          AP4          
+//  1201: A4          SP4          
+
+//  1202: L01202:
+//  1202: 84          LP4          
+//  1203: 13           L3          
+//  1204: 9C 76       JLE  1196    
+//  1206: 3B C6       LL$   126    
+//  1208: 1E 85      JEQ0  1215    
+//  1210: 0F          LM1          
+//  1211: 83          LP3          
+//  1212: 96          ST2          
+//  1213: BA 82         J  1217    
+
+//  1215: L01215:
+//  1215: 0F          LM1          
+//  1216: DD        ST1P3          
+
+//  1217: L01217:
+//  1217: 19           L9          
+//  1218: 33 12        AG    18    G018 ##Bad string##
+//  1220: 74           RV          
+//  1221: 74           RV          
+//  1222: 39 BF       SL$   118    
+//  1224: 19           L9          
+//  1225: 33 12        AG    18    G018 ##Bad string##
+//  1227: 74           RV          
+//  1228: 75          RV1          
+//  1229: 39 BC       SL$   120    
+//  1231: 17           L7          
+//  1232: 33 12        AG    18    G018 ##Bad string##
+//  1234: 74           RV          
+//  1235: 78          RV4          
+//  1236: 39 BA       SL$   122    
+//  1238: 0F          LM1          
+//  1239: 39 B9       SL$   128    
+//  1241: 10           L0          
+//  1242: 7B          RTN          
+//  1243: D0          NOP          
+
+//  1244: L01244:
+
+//  1244: 11           L1          
+//  1245: 58          AND          
+//  1246: 3E 8A      JNE0  1258    
+//  1248: B5          XCH          
+//  1249: 11           L1          
+//  1250: 57          RSH          
+//  1251: A8          SP8          
+//  1252: 5A 8C       LLL  1266    "%A()"
+//  1254: 24 5A       K4G    90    G090 ##Bad string##
+//  1256: BA 86         J  1264    
+
+//  1258: L01258:
+//  1258: 83          LP3          
+//  1259: A8          SP8          
+//  1260: 5A 8A       LLL  1272    "%B "
+//  1262: 24 5A       K4G    90    G090 ##Bad string##
+
+//  1264: L01264:
+//  1264: 7B          RTN          
+//  1265: D0          NOP          
+
+//  1266: 04 String: "%A()"
+//  1266: 04 25 41 28 29 
+
+//  1272: 03 String: "%B "
+//  1272: 03 25 42 20 
+
+//  1276: FF02          Resolving word => 1022
+//  1278: FF02          Resolving word => 1024
+//  1280: FF0A          Resolving word => 1034
+//  1282: FF12          Resolving word => 1044
+//  1284: FF18          Resolving word => 1052
+//  1286: FF22          Resolving word => 1064
+//  1288: FF30          Resolving word => 1080
+
+//  1290: GLOBAL ENTRY             G136 BCPLPATH
+//  1290: BA BA         J  1350    
+
+//  1292: DEFAULT:
+
+//  1292: L01292:
+//  1292: 10           L0          
+//  1293: BA DC         J  1387    
+
+//  1295: CASE 68:
+
+//  1295: L01295:
+//  1295: 5B 9E      LLL$   204    
+//  1297: 03           K3          
+//  1298: BA D6         J  1386    
+
+//  1300: CASE 79:
+//  1300: CASE 73:
+
+//  1300: L01300:
+//  1300: 5A E6       LLL  1404    "*nUse W to unload statistics before*nentering 'I' or 'O'*n"
+//  1302: 23 5A       K3G    90    G090 ##Bad string##
+//  1304: BA D0         J  1386    
+
+//  1306: CASE 74:
+
+//  1306: L01306:
+//  1306: 3B 94       LL$   126    
+//  1308: 1E 88      JEQ0  1318    
+//  1310: 5B 98      LLL$   142    
+//  1312: 03           K3          
+//  1313: 1E 83      JEQ0  1318    
+//  1315: 10           L0          
+//  1316: 39 8F       SL$   126    
+
+//  1318: L01318:
+//  1318: BA C2         J  1386    
+
+//  1320: CASE 75:
+
+//  1320: L01320:
+//  1320: 3B 8D       LL$   126    
+//  1322: 3E 88      JNE0  1332    
+//  1324: 5B 91      LLL$   142    
+//  1326: 03           K3          
+//  1327: 1E 83      JEQ0  1332    
+//  1329: 0F          LM1          
+//  1330: 39 88       SL$   126    
+
+//  1332: L01332:
+//  1332: BA B4         J  1386    
+
+//  1334: CASE 76:
+
+//  1334: L01334:
+//  1334: 5B 8C      LLL$   142    
+//  1336: 03           K3          
+//  1337: 10           L0          
+//  1338: BA AF         J  1387    
+
+//  1340: CASE 90:
+
+//  1340: L01340:
+//  1340: 5B 8A      LLL$   172    
+//  1342: 03           K3          
+//  1343: BA A9         J  1386    
+//  1345: D0          NOP          
+
+//  1346: FEFE          Resolving word => 1088
+//  1348: FF04          Resolving word => 1096
+
+//  1350: L01350:
+//  1350: 30 83        LG   131    G131
+//  1352: 92          SWB          
+//  1353: D0
+//  1354: 0007        len =    7
+//  1356: FFC0    default =>  1292
+//  1358: 0044      const =    68
+//  1360: FFBF      label =>  1295
+//  1362: 0049      const =    73
+//  1364: FFC0      label =>  1300
+//  1366: 004A      const =    74
+//  1368: FFC2      label =>  1306
+//  1370: 004B      const =    75
+//  1372: FFCC      label =>  1320
+//  1374: 004C      const =    76
+//  1376: FFD6      label =>  1334
+//  1378: 004F      const =    79
+//  1380: FFB0      label =>  1300
+//  1382: 005A      const =    90
+//  1384: FFD4      label =>  1340
+
+//  1386: L01386:
+//  1386: 0F          LM1          
+
+//  1387: L01387:
+//  1387: 7B          RTN          
+
+//  1388: FEE8          Resolving word => 1108
+//  1390: FEF0          Resolving word => 1118
+//  1392: FEFA          Resolving word => 1130
+//  1394: FF04          Resolving word => 1142
+//  1396: FF0A          Resolving word => 1150
+//  1398: FF12          Resolving word => 1160
+//  1400: FF1A          Resolving word => 1170
+//  1402: FF20          Resolving word => 1178
+
+//  1404: 37 String: "*nUse W to unload statistics before*nentering 'I' or 'O'*n"
+//  1404: 37 0A 55 73 65 20 57 20 74 6F 20 75 6E 6C 6F 61 
+//  1420: 64 20 73 74 61 74 69 73 74 69 63 73 20 62 65 66 
+//  1436: 6F 72 65 0A 65 6E 74 65 72 69 6E 67 20 27 49 27 
+//  1452: 20 6F 72 20 27 4F 27 0A 
+
+//  1460: GLOBAL ENTRY             G137 BCPLHDRS
+//  1460: 1E 83      JEQ0  1465    
+//  1462: 0F          LM1          
+//  1463: BA A1         J  1498    
+
+//  1465: L01465:
+//  1465: 61 20 03     LW   800    
+//  1468: 24 1A       K4G    26    G026 À­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­Þ          $  ä     !  ÿÿÿÿ    ÞÀ­Þ      ÿ   tè ì‹     …w  ÿÿÿÿ    ÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­
+//  1470: 31 82        SG   130    G130
+//  1472: 3E 87      JNE0  1481    
+//  1474: 5A 98       LLL  1500    "*nNOT ENOUGH SPACE*n"
+//  1476: 24 5A       K4G    90    G090 ##Bad string##
+//  1478: 10           L0          
+//  1479: BA 91         J  1498    
+
+//  1481: L01481:
+//  1481: 10           L0          
+//  1482: 39 3D       SL$   118    
+//  1484: 39 3D       SL$   120    
+//  1486: 39 3D       SL$   122    
+//  1488: 39 39       SL$   126    
+//  1490: 5B 3F      LLL$   172    
+//  1492: 04           K4          
+//  1493: 5A 99       LLL  1520    "*nPROGRAM STATISTICS*n"
+//  1495: 24 5A       K4G    90    G090 ##Bad string##
+//  1497: 0F          LM1          
+
+//  1498: L01498:
+//  1498: 7B          RTN          
+//  1499: D0          NOP          
+
+//  1500: 12 String: "*nNOT ENOUGH SPACE*n"
+//  1500: 12 0A 4E 4F 54 20 45 4E 4F 55 47 48 20 53 50 41 
+//  1516: 43 45 0A 
+
+//  1520: 14 String: "*nPROGRAM STATISTICS*n"
+//  1520: 14 0A 50 52 4F 47 52 41 4D 20 53 54 41 54 49 53 
+//  1536: 54 49 43 53 0A 
+
+//  1542: GLOBAL ENTRY             G138 BCPLSCRIPTS
+//  1542: 19           L9          
+//  1543: 33 12        AG    18    G018 ##Bad string##
+//  1545: 74           RV          
+//  1546: A3          SP3          
+//  1547: E3         L0P3          
+//  1548: A4          SP4          
+//  1549: 84          LP4          
+//  1550: A5          SP5          
+//  1551: F3         L1P3          
+//  1552: A6          SP6          
+//  1553: 3B 18       LL$   126    
+//  1555: 1E 8F      JEQ0  1572    
+//  1557: 0E 02        LM     2    
+//  1559: C4          AP4          
+//  1560: 10           L0          
+//  1561: B5          XCH          
+//  1562: B6         GBYT          
+//  1563: 60 7B         L   123    
+//  1565: 3C 83       JNE  1570    
+//  1567: 10           L0          
+//  1568: BA A1         J  1603    
+
+//  1570: L01570:
+//  1570: 86          LP6          
+//  1571: A5          SP5          
+
+//  1572: L01572:
+//  1572: 85          LP5          
+//  1573: 11           L1          
+//  1574: 57          RSH          
+//  1575: A7          SP7          
+//  1576: 30 86        LG   134    G134                                                                                                                                                                                                                                                               
+//  1578: 5C 89       JLS  1589    
+//  1580: B5          XCH          
+//  1581: 30 85        LG   133    G133
+//  1583: 7C 84       JGR  1589    
+//  1585: 85          LP5          
+//  1586: 5B 10      LLL$    16    
+//  1588: 08           K8          
+
+//  1589: L01589:
+//  1589: 84          LP4          
+//  1590: 39 07       SL$   118    
+//  1592: 86          LP6          
+//  1593: 39 06       SL$   120    
+//  1595: 17           L7          
+//  1596: 33 12        AG    18    G018 ##Bad string##
+//  1598: 74           RV          
+//  1599: 78          RV4          
+//  1600: 39 04       SL$   122    
+//  1602: 11           L1          
+
+//  1603: L01603:
+//  1603: 7B          RTN          
+
+//  1604: FA3A          Resolving word => 126
+//  1606: FA30          Resolving word => 118
+//  1608: FA30          Resolving word => 120
+//  1610: FA30          Resolving word => 122
+//  1612: FA34          Resolving word => 128
+//  1614: FA7E          Resolving word => 204
+//  1616: FA3E          Resolving word => 142
+//  1618: FA5A          Resolving word => 172
+//  1620: F9BC          Resolving word => 16
+
+//  1622: 0000      Ginit end mark
+//  1624: 0087 04A0 Init  G135 = 1188  BCPLROOT
+//  1628: 0088 0506 Init  G136 = 1290  BCPLPATH
+//  1632: 0089 05B0 Init  G137 = 1460  BCPLHDRS
+//  1636: 008A 0602 Init  G138 = 1542  BCPLSCRIPTS
+//  1640: 0093      Highest Global  G147 À­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­Þ          $  ä     !  ÿÿÿÿ    ÞÀ­Þ      ÿ   tè ì‹     …w  ÿÿÿÿ    ÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­ÞÞÀ­
+//  1642: 03E0                  END
+
+
+No unclassified bytes

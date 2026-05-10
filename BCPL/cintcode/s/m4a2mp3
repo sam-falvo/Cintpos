@@ -1,0 +1,7 @@
+.k file
+shellcom "ls **.m4a >m4afiles"
+type m4afiles
+echo
+delay 2000
+m4a2mp3
+

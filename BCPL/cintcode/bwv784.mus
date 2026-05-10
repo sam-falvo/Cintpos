@@ -1,0 +1,97 @@
+%$get!mushdr;
+$get!sonichdr;
+
+\score "bwv784" [
+
+\conductor
+ ( \name "conductor"
+   s1\t70\v50\l90 |   // 1
+   s1 |   // 2
+   s1 |   // 3
+   s1 |   // 4
+   s1 |   // 5
+   s1 |   // 6
+   s1 |   // 7
+   s1 |   // 8
+   s1 |   // 9
+   s1 |   // 10
+   s1 |   // 11
+   s1 |   // 12
+   s1 |   // 13
+   s1 |   // 14
+   s1 |   // 15
+   s1 |   // 16
+   s1 |   // 17
+   s1 |   // 18
+   s1 |   // 19
+   s1 |   // 20
+   s1 |   // 21
+   s1 |   // 22
+   s1 |   // 23
+   s1\t70 |   // 24
+   s1\t50\l90 z\t30\v50\l100||  // 25 last bar
+ )
+
+\part
+ ( \name "Piano RH"
+   $piano;
+   r16  4e a c   b  e,  b' d   c8 e gis, e'   |  // 1
+   4a16  e a c   b  e,  b' d   c8 a r    r    |  // 2
+   r16  5e c e   a, c   e, g   f8 a d    f~   |  // 3
+   5f16  d b d   g, b   d, f   e8 g c    e~   |  // 4
+   5e16  c a c   f,8 d'~ d16  b g b e,8 c'~   |  // 5
+   5c16 a f a d,8 b' c r r4                   |  // 6
+   r16 4g c e d 4g 5d f e8 g 4b 5g |   // 7
+   5c16 g c e d 4g 5d f e8 c 5g e | //  8
+   6c16a e a 5c e 4a c d8 fis a c | //  9
+   5b16 g d g 4b d 4g b c8 e g b | //  10
+   5a16 fis dis fis 4b dis 4fis a g8 5g~ g16 e c e | //  11
+   4a8 5fis~ fis16 d b d 4g8 5e~ e16 c a c | //  12
+   4fis16 5g fis e dis fis 4b dis e8 r r4 | //  13
+   r16 5g bes g e g 5cis e g e cis e 4a r16 r8 | //  14
+   r16 5f a f d f 4b d f d b d 4g r r8 | //  15
+   r16 5e g e c e 4a c dis c a c 4fis r r8 | //  16
+   r16 5d f d b d 4gis b d b gis b 4e r r8 | //  17
+   r16 4e a c b 4e 4b d c8 a gis b | //  18
+   4a16 c e c a c 4fis a c a fis a 4dis 5c b a | //  19
+   4gis16 b d b gis b 4d f gis f d f 3b 4f e d | //  20
+   4c16 e a e c e 3a c dis c a c 3fis 4c b a | //  21
+   3gis8 4b gis e r16 e a c b 4e 4b d | //  22
+   5c16 a c e   d b d f   e c e g   f e d c | //  23
+   4b16 c d e   f d gis d   5b 5d c 5a   f d b d | //  24
+   4gis16 b c a e a b gis a e c e 3a4  || // 25 Last bar
+ )
+
+
+\part
+ ( \name "Piano LH"
+   $piano;
+   |   |   |   |     |   |   |   |     |   |   |   |     |   |   |   |   
+   2a8     3a4               gis8      a16 e   a   c     b   e,  b'  d |  // 1
+   4c8     a         gis     e         a16 e   a   c     b   e,  b'  d |  // 2
+   4c8     a         c       a         d16 a   f   a     d,  f   a,  c |  // 3
+   2b8     d         g       b~        b16 g   e   g     c,  e   g,  b |  // 4
+   2a8     c         d16 f   b,  d     g,8     b         c16 e   a,  c |  // 5
+   2f8     d         g16 g'  f   g     c,  g'  c   e     d   g,  d'  f |  // 6
+   4e8 c b g c16 g c e d 3g 4d f //  7
+   4e8 c r4 r16 4g e g 4c e 3g b //  8
+   3a8 c e g fis16 a 4d fis 3a d 3fis a //  9
+   3g8 b d fis e16 g 4c e 3g c 3e g //  10
+   3fis8 a b dis r16 e c e 3a c e g  //  11
+   4fis d b d 3g b d fis e c a c 3fis a c8~ //  12
+   4c16 b c a b8 2b e16 4e b g e b g b  //  13
+   2e8 3e g bes 3cis r r16 4g f e //  14
+   4d8 3d f aes 2b r r16 4f e d //  15
+   4c8 3c e fis 2a r r16 4e dis cis //  16
+   3b8 2b d f 2gis r r16 4d c b //  17
+   4c8 a gis e a16 e a c b 3e 3b d //  18
+   4c16 e a e c e 3a c 3fis a c a fis a 3dis fis //  19
+   3e8 gis b gis e b gis e //  20
+   2a c e c a c 2dis r //  21
+   r16 3b gis e d 3b gis d c8 e 2gis 3e //  22
+   2a 3fis 2b 3gis 3c 3a 3d 3bes //  23
+   3gis f d b gis a 2d e //  24
+   2f dis e 3e 2a2 || // 25 Last bar
+ )
+
+]

@@ -1,0 +1,30 @@
+This directory holds the BCPL source code of the resident parts of
+the single threaded BCPL Cintcode system. It also holds the versions
+of the handwritten Cintcode library syslib for 32 and 64 bit systems
+for both bigender and little ender machines.
+
+The files are as follows:
+
+README        This file
+
+blib.b        The part of the BCPL library that is used by both
+              cintsys and cintpos.
+bootsys.b     The first BCPL code executed when cintsys starts up.
+clisys.b      The version of the command language interpreter for cintsys
+dlibsys.b     The system dependent part of the BCPL library used
+              by cintsys
+
+syslib32big   The version of syslib for 32-bit bigender systems
+syslib32lit   The version of syslib for 32-bit littleender systems
+syslib64big   The version of syslib for 64-bit bigender systems
+syslib64lit   The version of syslib for 64-bit littleender systems
+
+safeblib.b    A backup version of blib.b
+safebootsys.b A backup version of bootsys.b
+safeclisys.b  A backup version of clisys.b
+safedlibsys.b A backup version of dlibsys.b
+
+These safe copies are made by the command: c savesafe
+
+MR
+19/08/2023

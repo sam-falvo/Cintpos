@@ -1,0 +1,282 @@
+Before calling findsections
+fcounter=0 notfcounter=0 mcounter=0 notmcounter=0
+codevsize-fcounter-notfcounter=352
+codevsize-mcounter-notmcounter=352
+
+Calling findsections
+
+    0: 03E8 BCPL  Section     size   346 bytes
+  348: Max global number 296
+  344: G001 =   102   START
+  340: G003 =    98   STARTINIT
+  336: G296 =    86   smallnumber
+After calling findsections
+fcounter=3 notfcounter=23 mcounter=0 notmcounter=26
+codevsize-fcounter-notfcounter=326
+codevsize-mcounter-notmcounter=326
+
+Calling findnames
+
+Finding section, needs and entry names
+    6: SECTION Name: BCPL   
+After calling findnames
+fcounter=3 notfcounter=33 mcounter=0 notmcounter=36
+codevsize-fcounter-notfcounter=316
+codevsize-mcounter-notmcounter=316
+
+Calling scancode
+
+After calling scancode
+fcounter=142 notfcounter=133 mcounter=0 notmcounter=273
+codevsize-fcounter-notfcounter=77
+codevsize-mcounter-notmcounter=79
+
+Calling findnotf
+
+After calling findnotf
+fcounter=142 notfcounter=196 mcounter=0 notmcounter=273
+codevsize-fcounter-notfcounter=14
+codevsize-mcounter-notmcounter=79
+
+Calling findstrings
+
+After calling findstrings
+fcounter=142 notfcounter=210 mcounter=0 notmcounter=348
+codevsize-fcounter-notfcounter=0
+codevsize-mcounter-notmcounter=4
+About to call dumpcode()
+
+//     0: 03E8 00AD                HUNK    size=173
+//     4: 00AD
+//     6: FDDF                     Section name: BCPL   
+//     8: 07 42 43 50 4C 20 20 20
+
+//    16: L00016:
+
+//    16: 25 68       K5G   104    G104 LOADSEG
+//    18: A5          SP5          
+//    19: 3E 8D      JNE0    34    
+//    21: 30 0F        LG    15    G015 RESULT2
+//    23: 31 FA        SG   250    G250 rc
+//    25: 83          LP3          
+//    26: AA         SP10          
+//    27: 5A 95       LLL    50    "*nCannot load %S"
+//    29: 26 5A       K6G    90    G090 WRITEF
+//    31: 10           L0          
+//    32: BA 8E         J    48    
+
+//    34: L00034:
+//    34: 85          LP5          
+//    35: 26 64       K6G   100    G100 GLOBIN
+//    37: 84          LP4          
+//    38: 26 01       K6G     1    G001 START
+//    40: A4          SP4          
+//    41: 85          LP5          
+//    42: 26 65       K6G   101    G101 GLOBUNIN
+//    44: 85          LP5          
+//    45: 26 69       K6G   105    G105 UNLOADSEG
+//    47: 84          LP4          
+
+//    48: L00048:
+//    48: 7B          RTN          
+//    49: D0          NOP          
+
+//    50: 0F String: "*nCannot load %S"
+//    50: 0F 0A 43 61 6E 6E 6F 74 20 6C 6F 61 64 20 25 53 
+
+//    66: L00066:
+
+//    66: 50 03       LG1     3    G259 keepocode
+//    68: A3          SP3          
+//    69: 10           L0          
+//    70: 51 03       SG1     3    G259 keepocode
+//    72: BA 87         J    81    
+
+//    74: L00074:
+//    74: 83          LP3          
+//    75: A4          SP4          
+//    76: E3         L0P3          
+//    77: A3          SP3          
+//    78: 84          LP4          
+//    79: 25 19       K5G    25    G025 FREEVEC
+
+//    81: L00081:
+//    81: 83          LP3          
+//    82: 3E 76      JNE0    74    
+//    84: 7B          RTN          
+//    85: D0          NOP          
+
+//    86: GLOBAL ENTRY             G296 smallnumber
+//    86: 9E 88      JLE0    96    
+//    88: 61 84 03     LW   900    
+//    91: BC 83       JGE    96    
+//    93: 0F          LM1          
+//    94: BA 81         J    97    
+
+//    96: L00096:
+//    96: 10           L0          
+
+//    97: L00097:
+//    97: 7B          RTN          
+
+//    98: GLOBAL ENTRY             G003 STARTINIT
+//    98: 61 26 02     LW   550    
+//   101: 7B          RTN          
+
+//   102: GLOBAL ENTRY             G001 START
+//   102: 5B 6D      LLL$   262    "BCPLARG"
+//   104: A3          SP3          
+//   105: 5B 6C      LLL$   270    "BCPLSYN"
+//   107: A4          SP4          
+//   108: 5B 6C      LLL$   278    "BCPLTRN"
+//   110: A5          SP5          
+//   111: 5B 6B      LLL$   286    "BCPLCCG"
+//   113: A6          SP6          
+//   114: 27 49       K7G    73    G073 INPUT
+//   116: A7          SP7          
+//   117: 28 4A       K8G    74    G074 OUTPUT
+//   119: A8          SP8          
+//   120: 61 08 07     LW  1800    
+//   123: 29 1A       K9G    26    G026 GETVEC
+//   125: 31 FB        SG   251    G251 spacev
+//   127: 10           L0          
+//   128: 51 03       SG1     3    G259 keepocode
+//   130: 31 FE        SG   254    G254 codestream
+//   132: 83          LP3          
+//   133: 5A 09       LLL    16        callbcplseg
+//   135: 09           K9          
+//   136: 30 FA        LG   250    G250 rc
+//   138: 1E 83      JEQ0   143    
+//   140: 5A D4       LLL   226        fail
+//   142: 9B         GOTO          
+
+//   143: L00143:
+//   143: 50 1E       LG1    30    G286 sourcestream
+//   145: 1E A7      JEQ0   186    
+
+//   147: L00147:
+//   147: 84          LP4          
+//   148: 5B 5A      LLL$    16        callbcplseg
+//   150: 09           K9          
+//   151: A9          SP9          
+//   152: 0F          LM1          
+//   153: 50 1F       LG1    31    G287 ch
+//   155: 3C 82       JNE   159    
+//   157: 2A 47      K10G    71    G071 ENDREAD
+
+//   159: L00159:
+//   159: 89          LP9          
+//   160: 1E 84      JEQ0   166    
+//   162: 30 FA        LG   250    G250 rc
+//   164: 1E 82      JEQ0   168    
+
+//   166: L00166:
+//   166: BA 92         J   186    
+
+//   168: L00168:
+//   168: 89          LP9          
+//   169: AE         SP14          
+//   170: 85          LP5          
+//   171: 5B 4E      LLL$    16        callbcplseg
+//   173: 0A          K10          
+//   174: 5A 12       LLL    66        freeocode
+//   176: 0A          K10          
+//   177: 0F          LM1          
+//   178: 50 1F       LG1    31    G287 ch
+//   180: 1C 84       JEQ   186    
+//   182: 30 FA        LG   250    G250 rc
+//   184: 1E 59      JEQ0   147    
+
+//   186: L00186:
+//   186: 29 47       K9G    71    G071 ENDREAD
+//   188: 30 FD        LG   253    G253 ocodeoutstream
+//   190: 29 50       K9G    80    G080 SELECTOUTPUT
+//   192: 10           L0          
+//   193: 29 52       K9G    82    G082 WRCH
+//   195: 29 48       K9G    72    G072 ENDWRITE
+//   197: 10           L0          
+//   198: 31 FD        SG   253    G253 ocodeoutstream
+//   200: 30 FC        LG   252    G252 verstream
+//   202: 29 50       K9G    80    G080 SELECTOUTPUT
+//   204: 5B 3F      LLL$    66    
+//   206: 09           K9          
+//   207: 30 FA        LG   250    G250 rc
+//   209: 3E 8A      JNE0   221    
+//   211: 86          LP6          
+//   212: 5B 3A      LLL$    16        callbcplseg
+//   214: 09           K9          
+//   215: 30 FC        LG   252    G252 verstream
+//   217: 29 50       K9G    80    G080 SELECTOUTPUT
+//   219: BA 84         J   225    
+
+//   221: L00221:
+//   221: 5A C7       LLL   294    "*nNo Code Generated"
+//   223: 29 5E       K9G    94    G094 WRITES
+
+//   225: L00225:
+//   225: D0          NOP          
+
+//   226: L00226:    fail
+
+//   226: 29 54       K9G    84    G084 NEWLINE
+//   228: 88          LP8          
+//   229: 30 FC        LG   252    G252 verstream
+//   231: 1C 82       JEQ   235    
+//   233: 29 48       K9G    72    G072 ENDWRITE
+
+//   235: L00235:
+//   235: 29 49       K9G    73    G073 INPUT
+//   237: 87          LP7          
+//   238: 1C 82       JEQ   242    
+//   240: 29 47       K9G    71    G071 ENDREAD
+
+//   242: L00242:
+//   242: 30 FE        LG   254    G254 codestream
+//   244: 1E 84      JEQ0   250    
+//   246: 29 50       K9G    80    G080 SELECTOUTPUT
+//   248: 29 48       K9G    72    G072 ENDWRITE
+
+//   250: L00250:
+//   250: 88          LP8          
+//   251: 29 50       K9G    80    G080 SELECTOUTPUT
+//   253: 5A BB       LLL   314    "OCODE$$"
+//   255: 29 40       K9G    64    G064 DELFILE
+//   257: 30 FA        LG   250    G250 rc
+//   259: 29 02       K9G     2    G002 STOP
+//   261: 7B          RTN          
+
+//   262: 07 String: "BCPLARG"
+//   262: 07 42 43 50 4C 41 52 47 
+
+//   270: 07 String: "BCPLSYN"
+//   270: 07 42 43 50 4C 53 59 4E 
+
+//   278: 07 String: "BCPLTRN"
+//   278: 07 42 43 50 4C 54 52 4E 
+
+//   286: 07 String: "BCPLCCG"
+//   286: 07 42 43 50 4C 43 43 47 
+
+//   294: 12 String: "*nNo Code Generated"
+//   294: 12 0A 4E 6F 20 43 6F 64 65 20 47 65 6E 65 72 61 
+//   310: 74 65 64 
+
+//   314: 07 String: "OCODE$$"
+//   314: 07 4F 43 4F 44 45 24 24 
+
+//   322: FFC4          Resolving word => 262
+//   324: FFCA          Resolving word => 270
+//   326: FFD0          Resolving word => 278
+//   328: FFD6          Resolving word => 286
+//   330: FEC6          Resolving word => 16
+//   332: FEF6          Resolving word => 66
+
+//   334: 0000      Ginit end mark
+//   336: 0128 0052 Init  G296 = 86  smallnumber
+//   340: 0003 005E Init  G003 = 98  STARTINIT
+//   344: 0001 0062 Init  G001 = 102  START
+//   348: 0128      Highest Global  G296 smallnumber
+//   350: 03E0                  END
+
+
+No unclassified bytes

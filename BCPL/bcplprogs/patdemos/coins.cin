@@ -1,0 +1,138 @@
+lasttrngn=409   cgg=420
+   0:  DATAW #x00000000
+   4:  DATAW #x0000FDDF
+   8:  DATAW #x494F430B
+  12:  DATAW #x2020534E
+  16:  DATAW #x20202020
+  20:  DATAW #x0000DFDF
+  24:  DATAW #x696F630B
+  28:  DATAW #x2020736E
+  32:  DATAW #x20202020
+// Entry to:   coins      
+  36: L10:
+  36:    LLL  L13
+  38:    SP8  
+  39:    XCH  
+  40:     LF  L11
+  42:     K4  
+  43:    RTN  
+  44: L12:
+  44:     L0  
+  45:    RTN  
+  48: L13:
+  48:  DATAW #x000000C8
+  52:  DATAW #x00000064
+  56:  DATAW #x00000032
+  60:  DATAW #x00000014
+  64:  DATAW #x0000000A
+  68:  DATAW #x00000005
+  72:  DATAW #x00000002
+  76:  DATAW #x00000001
+  80:  DATAW #x0000DFDF
+  84:  DATAW #x2020630B
+  88:  DATAW #x20202020
+  92:  DATAW #x20202020
+// Entry to:   c          
+  96: L11:
+  96:   JGE0  L14
+  98:     L0  
+  99:    RTN  
+ 100: L14:
+ 100:    LP3  
+ 101:   JEQ0  L16
+ 103:   L0P4  
+ 104:     L1  
+ 105:    JNE  L15
+ 107: L16:
+ 107:     L1  
+ 108:    RTN  
+ 109: L15:
+ 109:     L1  
+ 110:    AP4  
+ 111:    SP9  
+ 112:    LP3  
+ 113:     LF  L11
+ 115:     K5  
+ 116:    SP5  
+ 117:    LP3  
+ 118:   L0P4  
+ 119:    SUB  
+ 120:    LP4  
+ 121:   SP10  
+ 122:    XCH  
+ 123:     LF  L11
+ 125:     K6  
+ 126:    AP5  
+ 127:    RTN  
+ 128: L19:
+ 128:     L0  
+ 129:    RTN  
+ 132:  DATAW #x0000DFDF
+ 136:  DATAW #x6174730B
+ 140:  DATAW #x20207472
+ 144:  DATAW #x20202020
+// Entry to:   start      
+ 148: L20:
+ 148:    LLL  L19920
+ 150:    K3G   89
+ 152:     L0  
+ 153:     LF  L21
+ 155:     K3  
+ 156:     L1  
+ 157:     LF  L21
+ 159:     K3  
+ 160:     L2  
+ 161:     LF  L21
+ 163:     K3  
+ 164:     L5  
+ 165:     LF  L21
+ 167:     K3  
+ 168:      L   21
+ 170:     LF  L21
+ 172:     K3  
+ 173:      L  100
+ 175:     LF  L21
+ 177:     K3  
+ 178:      L  200
+ 180:     LF  L21
+ 182:     K3  
+ 183:     L0  
+ 184:    RTN  
+ 188: L19920:
+ 188:  DATAW #x696F430E
+ 192:  DATAW #x7020736E
+ 196:  DATAW #x6C626F72
+ 200:  DATAW #x000A6D65
+ 204:  DATAW #x0000DFDF
+ 208:  DATAW #x2020740B
+ 212:  DATAW #x20202020
+ 216:  DATAW #x20202020
+// Entry to:   t          
+ 220: L21:
+ 220:     LF  L10
+ 222:     K9  
+ 223:    SP9  
+ 224:    LP3  
+ 225:    SP8  
+ 226:    LLL  L19919
+ 228:    K4G   94
+ 230:    RTN  
+ 231: L22:
+ 231:     L0  
+ 232:    RTN  
+ 236: L19919:
+ 236:  DATAW #x6D755320
+ 240:  DATAW #x25203D20
+ 244:  DATAW #x20203369
+ 248:  DATAW #x626D756E
+ 252:  DATAW #x6F207265
+ 256:  DATAW #x61772066
+ 260:  DATAW #x3D207379
+ 264:  DATAW #x36692520
+ 268:  DATAW #x0000000A
+ 272:  DATAH L10-$
+ 276:  DATAW #x00000000
+ 280:  DATAW #x00000001
+ 284:  DATAW #x00000094
+ 288:  DATAW #x0000005E
+Code size =   292 bytes of 32-bit little ender Cintcode

@@ -1,0 +1,37 @@
+This directory holds BBC BCPL programs modified to be compiled using
+bbcbcpl32 and run using the modern 32 bit BCPL Cintcode system.  It
+uses the standard libhdr.h but also uses LIBHDR.h and SYSHDR.h. It
+uses BBCLIB.b to provide an interface with the BBC BCPL library
+functions.
+
+Copyright Martin Richards (c) 5 Dec 2019
+
+Files and directories
+
+LIBHDR.h          Header files modified for use with bbcbcpl32
+SYSHDR.h
+
+com32/            Holds BBC BCPL programs modified to be compiled by bbcbcpl32
+com32/BBCLIB.b
+
+cin32/            Holds the 32 bit Cincode compilations of programs in com32
+
+bc                A command command to compile programs in com32 to cin32
+
+A typical test program com32/tst1.b is:
+
+get "libhdr"
+get "LIBHDR.h"
+get "SYSHDR.h"
+get "BBCLIB.b"
+
+.
+
+get "libhdr"
+get "LIBHDR.h"
+get "SYSHDR.h"
+
+let start() = VALOF
+$( WRITEF("Hello World!*n")
+   resultis 0
+$)

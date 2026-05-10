@@ -1,0 +1,4 @@
+.k file/a,opt
+echo "bcplint com/<file>.b to <file>.int NSELST <opt>"
+bcplint com/<file>.b to <file>.int NOSELST <opt>
+

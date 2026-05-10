@@ -1,0 +1,25 @@
+
+This directory holds the runtime library modules for the native
+code implementation of BCPL for Raspberry Pi machines using the ARMv7
+architecture. It uses 32-bit registers and execute essentially the the
+original ARM machine code
+
+These libraries and the codegenerator (now called com/bcplcgarmv7.b)
+were implemented by D.J.Allerton with minor modifications by
+M.Richards to allow them to run under modern Cintcode BCPL. What is
+planned is both a cross compiler running on the Cintcode BCPL system
+and a native code version of the compiler running directly on an ARMv7
+Raspbe rry Pi such as the Model 2B.
+
+This is still under development. Initially this system will be limited
+to 32-bit BCPL and will not compile the floating point operators and
+constants. But floating point will be available using the
+sys(Sys_flt,...) facilities.
+
+This directory is called BCPL/cintcode/armv7. The version for later
+Raspberry PIs running ARMv8, typically called Model 3, 4 and 5, is
+directory BCPL/cintcode/armv8. This is still in early stages of
+development.
+
+MR
+5 May 2026

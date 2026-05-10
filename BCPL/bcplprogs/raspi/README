@@ -1,0 +1,116 @@
+This directory holds the source code of the programs discribed in the
+document bcpl4raspi.pdf and their compilations. the following seguence
+of commands show how they can be compiled and run, in more or less the
+order in which they occur in bcpl4raspi.pdf.
+
+The first programs do not use SDL or OpengGL and can be compiled and
+run on the Raspberry Pi using a version of cintsys created using any
+of the makefiles: MakefileRaspi, MakefileRaspiSDL and MakefileRaspiGL.
+
+cd ~/distribution/BCPL/bcplprogs/raspi
+cintsys
+c b hello
+hello
+
+c b fib1
+fib1
+
+c b fib4
+fib4
+
+c b prime1
+prime1
+
+c b multab
+multab
+
+c b fib5
+fib5
+
+c b rsa
+rsa
+
+c b vec3
+vec3
+
+c b vec6
+vec6
+
+c b collatz0
+collatz0
+
+c b pig
+pig        -- p=play  h=hold  q=quit
+
+c b enigma-m3
+enigma-m3
+hello
+ctrl-c
+
+c b aes128
+aes128
+
+c b reedsolomon
+reedsolomon
+
+c b queens
+queens
+
+c b suduku
+sudoku
+
+c b blocks
+blocks
+
+c b evale
+evale
+
+c b pidigs
+pidigs
+
+c b epr163
+epr163
+
+
+
+
+
+The next set of programs use SDL and can be compiled and run on the
+Raspberry Pi using a version of cintsys created using either
+MakefileRaspiSDL or MakefileRaspiGL.
+
+c b engine
+engine
+
+c b dragon
+dragon
+
+c b life
+life
+
+c b graph
+graph
+
+c b lander
+lander
+
+c b bucket
+bucket
+
+c b hdmandset
+hdmandset
+
+c b robots
+robots
+
+
+
+The final set of programs use OpengGL and must use a version of cintsys
+created using MakefileRaspiGL.
+
+c b gltst
+gltst            -- Control the image using the arror keys,
+                 -- ',' '.' and 'q'.
+
+c b gltiger
+gltiger          -- Use the controls as for gltst.

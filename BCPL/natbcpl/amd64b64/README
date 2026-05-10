@@ -1,0 +1,11 @@
+AMD64b64
+
+This directory contains files relating to 64-bit BCPL using native code
+on AMD64 machines, typically under Linux.
+
+BCPL code ti compiled to 64-bit sial using bcpl2sial with the t64 option
+running under cintsys64. The sial code is translated into AMD64 assembly
+language using a CLI command of the form:
+
+c nbamd64b64 dir name
+

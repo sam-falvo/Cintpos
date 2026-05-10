@@ -1,0 +1,41 @@
+// NCUBES    PAL         12/03/67  1338.4
+
+// This is the original version of this program.
+// A slightly modified and commented version is in
+// palparogs/ncubes.pal.
+
+let N = 4 in
+
+let g n y m -* m=n -> not y m, y m
+in
+
+let rec Next (n, y, x, B) = n=0 -* not N ,
+                            y n = x n -* Next(n-1, y, x, B)     ,
+			    B         -* Next(n-1, y, x, false) ,
+			    false
+in
+
+let rec Adj(y, n, P, x) =
+                    Next(N, y, x, true) -* true ,
+		    n=0 -* false ,
+		    Adj(g ((P n) y, y, n-1, P, x)
+in
+
+let Ok(n, P, k, x) = not Adj(g (P n) x, n-1, P, g k x)
+in
+
+
+let rec Srch(n, k, P, x) =
+       k gr N -> 0 !
+       ( Ok(n, P, k, x) -* ( Srch(n+1, 1, Q, g k x) where Q =
+                                                     let Q = Aug P in
+						       Q (n+1) := k;
+						       Print Q; print '*n';
+						       Q)
+			 ,  dummy;
+	 Srch(n, k+1, P, x) )
+in
+
+Srch(3, 1, (1,2,3), (false, false, false, true))
+
+

@@ -1,0 +1,4 @@
+.k file/a,opt
+echo "z80bcpl bcpl/<file>.b to hex <file>.hex savesize 2 noselst list list/<file>.list <opt>"
+z80bcpl bcpl/<file>.b to hex/<file>.hex savesize 2 noselst list list/<file>.list <opt>
+

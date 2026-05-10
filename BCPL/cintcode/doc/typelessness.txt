@@ -1,0 +1,673 @@
+
+        Random notes concerning the typelessness of BCPL and MCPL
+                                   by
+                             Martin Richards
+Started 24/06/2021
+Updated: 21/07/2021 17:03
+This file is held in bcpl.tgz as BCPL/cintcode/doc/typelessness.txt
+
+
+Almost all programming languages make extensive use of data types but
+BCPL and MCPL are typeless. This document discusses why this is the
+case.
+
+The design of BCPL was strongly influenced by the state of computing
+at Cambridge in 1963 and the development of the CPL programming
+language. So I will start with a little history.
+
+EDSAC was the first computer in Cambridge. It was designed and built
+by Maurice Wilkes and his team of engineers and successfully ran its
+first program in May 1949 when I was nearly 9 years old. One of the
+fundamental problems to solve at the time was how to implement a
+random access memory of sufficient size to be useful. The group at
+Manchester University used a system based on Williams tubes that
+stored individual bits as small charged dots on the inside of cathode
+ray tubes. EDSAC used acoustic delay lines using from tubes of
+mercury with transducers at both ends. A pulse sent from one end would
+reach the other end sometime later where it could be detected,
+reshaped and resent from the first end. The pulses could represent
+digits 0 and 1 and if sent at a rate of half a million per second a
+tube with a length of about 6 feet could hold sufficient digits to be
+useful.  Wilkes had worked on radar systems during the war was already
+familiar with what mercury delay lines could do.
+
+Numerical values could be represented as sequences of bits from the
+least significant end and if two delay lines were synchronised, the
+two numbers they held could be added together by feeding them through
+a simple circuit called a full adder consisting of a flipflop to hold
+the carry and a few logic gates. This mechanism could add numbers of
+any length, and Wilkes decided to have an accumulator of length of 71
+bits.  Numbers could be negated by complementing every digit and
+adding one to the result. This allowed subtraction to be performed
+with little additional hardware. A number could be doubled by passing
+it through a flipflop to delay the bits by one position. This enabled
+a simple implementation of multiplication. The entire machine required
+only about logic 700 gates. Unlike the Manchester Mark 1, EDSAC was
+powerful enough to be useful to radio astronomers, theoretical
+chemists, mathematicians and others. Wilkes decided to make it
+available to anyone in the University who had a reason to use it. It
+was thus reputedly the first machine in the world to provide a
+computing service.
+
+David Wheeler wrote the initial orders that were preloaded into memory
+allowing programs in assembly language to be read from paper tape and
+executed. This code was so cunning and compact that I decided to write
+a poster describing how it worked, also including a description of one
+of the first significant programs that run on the machine. This poster
+is posted on the wall of the first floor tea room in the Computer
+Laboratory but is also available on my home page (poster.pdf).
+
+After about 10 years EDSAC was dismantled and replaced by an equally
+amazing machine called EDSAC 2. This machine was also designed and
+built by Wilkes and his team. It had a 40 bit accumulator and a memory
+of 1024 40-bit words using a huge number of tiny ferrite cores. The
+logic of the machine was implemented using a bit slicing technique
+using, for instance, 40 identical chassis, each dealing with a
+different bit position of the accumulator. A novel feature of the
+machine was that it was controlled by a micro-program of 1024
+instructions implemented using a 32x32 array of ferrite cores. When
+the addressed core fired windings through it would send signals
+controlling parts of the machine including setting up the x-y
+coordinates of the next core to fire.  Often the address of the next
+micro instruction depended on signals such as the sign bit of the
+accumulator or whether all its bits were zero.
+
+In addition to the accumulator there were two 11-bit index registers,
+r and s.  The instructions was 20 bits long consisting of a 7-bit
+function code allowing 128 different instructions, followed by 2 bits
+to control the way the index registers were used and a 11 bit address
+field sufficient to address any of the 2048 instructions in memory.
+David Wheeler implemented the micro program in his usual brilliant
+way. Although programming EDSAC 2 in assembly language was reasonably
+easy most users preferred to use EDSAC Autocode, a simple high level
+language designed and implemented by David Hartley.
+
+By 1963 EDSAC 2 was growing old and the University decided to replace
+it by a faster more powerful machine. One that seem appropriate
+was the Atlas computer designed and built by Feranti in conjunction
+with Manchester University. One of these machines had already been
+installed at the Institute of Computer Science at the University of
+London. The machine was expensive and Cambridge decide to save money
+by helping to design a slightly cut down version. This machine was
+called Atlas 2 and the one installed in Cambridge was given the name
+Titan.
+
+The machine had a 48-bit word length with 128 24-bit index registers.
+Each machine instruction had a length of 48 bits with a 10-bit
+function code two 7-bit fields specifying index registers and a 24-bit
+address field. When Titan first began to work at the end of December
+1964, it was just bare hardware with no operating system and no high
+level languages, but it could read and write paper tape and could use
+several one inch magnetic tape drives for backing store. I recall that
+the machine had 65536 48-bit words of main memory.
+
+Since London and Cambridge had similar machines, it was decided to
+develop a new general purpose language for use on both machines. The
+new language was given the name CPL and a committee was formed headed
+by Christopher Strachey to work on its design.  Some of the committee
+members from Cambridge were David Hartley, David Barron, Roger Needham
+and David Park, and some from London included Eric Nixon, George
+Coulouris and John Buxton. Peter Landin, who was an assistant to
+Strachey, played a significant part in the design. He was an
+enthusiast of Lambda calculus have written papers showing the
+relationship between recursion and call-by-name in Algol 60 and Lambda
+Calculus. He was a firm believer that a programming language should
+have a firm underlying mathematical structure.
+
+The implementation of CPL in London was mainly done by Coulouris and
+was reasonably successful but the Cambridge version did less well
+being mainly implemented by a variety of research students who came
+and left during the project. There was also the need to make the
+compiler portable since it had to be transferred from EDSAC 2 to Titan
+halfway though the project. Another problem was that CPL continued to
+develop while it was being implemented and soon became too large and
+complex to be compiled on a machine as small as EDSAC 2.
+
+Programming languages in the late 1950s were rather primitive. Two of
+the more significant ones were Fortran designed by IBM mainly for
+scientific calculations and COBOL primarily designed for commercial use
+such as banking and billing systems. Fortran could perform arithmetic
+in both integer and floating point values. You could define functions
+which could have arguments, although these were always pointers to
+memory locations where the argument values were held. Using modern
+terminology these arguments were called by reference. There was a, not
+so subtle, problem when passing numerical constants such as 10 since
+Fortran functions could assign new values they were given as arguments
+and this may cause the location holding the constant 10 to be
+updated. This is bad news if other occurrences of the constant 10 share
+the same location. The problem remains even if all occurrences of 10
+in all function calls have different locations. Another problem with
+Fortran functions was that recursion was not permitted.
+
+COBOL had features allowing the representation of compound structures
+such as those needed to represent names, addresses, account numbers,
+telephone numbers, dates and sums of money. Particular attention was
+paid to how these quantities should appear when printed. The
+algorithmic part of a COBOL program was essentially a sequence of
+typically labelled statements. You could not define a function (or
+subroutine) but you could use the PERFORM statement to execute a
+specified selection of consecutive statements. This behaved somewhat
+like a call of a parameterlees function. The PERFORM statement had
+added features. It could, for instance, repeatedly execute the selected
+statements varying the value of a variable each time. The effect was
+similar to a combination of a FOR loop and a parameterless function
+call. As with Fortran, recursion was not allowed.
+
+Around this time IBM was working on a new language, PL/1, which they
+hoped would be good for both scientific and commercial applications.
+In 1960, Algol 60 was published with a revised report two years
+later. This was a fairly simple and elegant language which was machine
+independent and could be used as a notion when publishing newly
+discovered algorithms. Of course, such algorithms could be run on
+machines having an Algol compiler. It had integer and real variables
+and functions that could be called recursively. Function arguments
+could be called by value or by name. If an argument was called by
+value, the value of the argument would be evaluated before handing it
+to the function. If it was called by name, essentially the argument
+expression was passed to the function and evaluated within the function
+every time that argument was used. This can be costly but was necessary
+if, for instance, the user wishes a function to update the value of a
+variable passed to it as an argument. One other notable feature of
+Algol 60 was that its functions could be defined inside other
+functions. This meant that the information needed to represent a
+function must not only include the address of its compiled code but
+also something about the environment in which the function was
+defined. Both call by name and nested function definitions are similar
+to the way functions worked in Lambda Calculus. These ideas probably
+appeal more to mathematicians than to typical programmers.
+
+Since these were the languages around at the time, it is not
+surprising the the designers of CPL took Algol 60 as a possible
+starting point, removing some features and adding others where they
+thought necessary. Some extensions were simple such as the addition of
+new conditional constructs such as the UNTIL, REPEAT, REPEATWHILE and
+REPEATUNTIL constructs. They added a better switch construct together
+with manifest constants to make case labels more readable. Commands
+like BREAK, LOOP and ENDCASE were added to reduce the need for labels
+and GOTO commands. These additions were easy to implement. But other
+extensions were more problematical. Whereas Algol could call function
+arguments by value and by name, CPL had three modes of calling: call
+by value, call by substitution and call by reference. Since declaring
+initialised local variables had much in common with the declaration of
+function arguments, it was decided to allow declaration of local
+variables by value and by reference. This allowed a variable to
+reference say the third element of an array.
+
+CPL was similar to Algol by allowing functions to be recursive and be
+defined inside other functions. The normal way to implement calls of
+such functions was to use static and dynamic chains in the run time
+stack to implement the display mechanism suggested by Dijkstra. But
+Strachey suggested another mechanism based on making a list of the
+values of all the function's free variables when it was declared. This
+lead to two kinds of function. The free variable lists of fixed
+function held values, while those of free functions held
+references. There was the mistaken belief that if a fixed function was
+called twice with the same arguments it would yield the same result
+each time. Another added complication was that CPL had many more
+numerical data types and to reduce the number of types specified by
+the user, CPL allowed the types of variables and expressions to be
+deduced automatically where possible. The mechanism involved solving
+type equations based on how all the variables and expressions were
+used within the program.
+
+Since we needed to implement the compiler to run on both EDSAC 2 and
+Titan, it was decided to write the compiler in CPL and since there was
+as yet no CPL compiler, a simple subset of the language was chosen
+that could easily translated by hand into a sequence of macro calls
+that would expand into assembly language for either EDSAC 2 or Titan.
+Strachey designed a truly wonderful general purpose macro generator
+(GPM) for the job. It could be implemented in as few as 200 machine
+instructions and was remarkably powerful. It could perform simple
+arithmetic and execute conditional statements making it possible to
+define, for example, a macro taking a number n as its argument that
+would expand to the digits of the nth prime number. To simplify the
+hand translation into macros calls, we chose to make our subset of CPL
+as simple as possible. We kept most of the conditional commands such
+as IF, TEST, WHILE, UNTIL, REPEAT, SWITCHON, and a simplified FOR
+command. We also kept most of integer, bit pattern and truth value
+operators. We certainly needed recursive functions but decided that
+they should be simple subroutines not requiring Dijkstra's display
+mechanism or Strachey's free variable lists. This allowed functions to
+be represented by just a pointer to the first instruction of its
+compiled code. Large programs could easily be broken into a set of
+separately compiled sections. Function arguments were always called by
+value, although the effect of call by reference could be achieved by
+passing a pointer to a variable's location as an argument. All that
+was needed was a way of obtaining a pointer to a variable and a way of
+obtaining the contents of the location a pointer refers to. These are,
+of course, simple operations in machine code. Another major
+simplification was was to decide that all arguments, variables and
+locations of memory were to be the same size.
+
+Since EDSAC 2 was so small we needed to write the compiler as a
+collection of fairly small sections. To allow these sections to
+communicate with each other and share variables, an area of store
+called the global vector was added. This was somewhat similar the the
+blank common area of Fortran. The global vector could hold the entry
+points to functions defined in other section as well as ordinary
+shared variables.
+
+The implementation of function calls required a stack. The currently
+executing function had a stack frame pointed to by a register called
+P.  The first three locations of the stack frame held the previous P
+pointer, the return address and, as a debugging aid, a pointer to the
+entry point of the current function. Other elements of the stack frame
+held the function's arguments, local variables and anonymous values
+used during expression evaluation. These could be referred to by an
+offset relative to P. Similarly. Elements of the global vector could
+be referred to by an integer offset relative to a pointer called
+G. When I moved to MIT in Cambridge, Massachusetts in December 1966 I
+completed the design of this language and wrote a compiler for it for
+the IBM 7094 computer. This was the birth of BCPL and the source code
+of an early version of its compiler is available via my home page.
+
+One important property of this subset of CPL is that every construct
+it contains is easily directly translated into one or two machine
+instructions. In a sense it can be thought of as a high level assembly
+language. All its variables were typeless in the same way that general
+purpose registers of a computer are typeless since they can hold
+integers, bit patterns, truth value, machine addresses, entry points of
+functions, pointers to arrays, or nodes in a linked list or parse
+tree. The computer does not care, it just attempts to execute the
+instructions given to it by the user. If machine code is typeless
+surely it is reasonable for a high level assembly language to also be
+typeless.
+
+        Discussion of data types in programming languages.
+
+As we have seen in 1960 programming languages were fairly primitive.
+Fortran could perform calculations using both integer and floating
+point numbers. If a variable names starting with letters such as I, J
+and K held integer values while variables held floating point numbers
+if they started with letters such as A, B, C, X, Y and Z. In Algol all
+variables had to be declared before they were used and could be given
+numeric types such as integer and real. Both languages allowed one,
+two and three dimensional arrays of integers or floating point numbers.
+
+COBOL, on the other hand, was more interested with how many decimal
+digits a number could hold and how many of them were after the decimal
+point. It was particularly concerned with how they should appear when
+output, such as what to do with leading zeroes, signs + and - and
+whether to output symbols such as $ or £. PL/1 was a language being
+developed by IBM attempting to combine the good points of both Fortran
+and COBOL. It had interesting data types that I will discuss later.
+
+At this time major advances were being made in digital electronics
+since transistors were now available and circuits could be made using
+printed circuit boards. Even integrated circuits were beginning to
+developed. Computers were becoming more powerful and had larger
+memories. This leads to considerable development in programming
+languages and particularly in their use of data types.
+
+Programs typically perform calculations based on real world quantities
+such as distances in centimetres, speed in miles per hour, volumes in
+litres, dates, sums of money, account numbers, names and addresses.
+Language designers soon realised that that data types would be a
+useful addition to programming languages, but there was little
+understanding of what data types were and how they should be
+used. Were types primarily to allow the compiler to allocate variables
+of the right size and select the appropriate machine instructions.
+Alternatively, were they more concerned with more machine independent
+and abstract properties of variables and expressions such as
+precision, scaling, whether they are signed, etc. There were questions
+such as what is the type of a pointer. Does it include the types of
+quantities accessible using the pointer. What is the type of a function
+and does it include the type of its arguments and does it include the
+mode of calling the arguments. The type of a function in Algol 60 only
+specified its result type, but since functions could be passed as
+arguments to other functions there were problems about how to
+implement calls to such functions. This implies that the types of
+functions must include the types and modes of calling of the
+arguments.
+
+This is clearly a problem if the function, such as printf in C, can
+take a variable number of arguments of different types.  Advocates of
+strict type checking like the idea that the type of every expression
+can be checked for validity in the context in which it used. This is
+not possible for the arguments of printf since the format string given
+by the first argument of printf cannot, in general, be known at
+compile time. Note that the WRITE statement in Fortran is roughly
+equivalent the printf but its format string is explicitly
+referenced. printf is what is called a polymorphic function and some
+languages allow the user to define such functions. In such languages
+the users can define several variants of a function giving them
+different different bodies for each set of argument types.  One of my
+favourite languages that adopted this technique is ML and my
+experimental language MCPL followed some of its ideas but, being
+typeless, it selected which function body to used based on argument
+values rather than types. It used a mechanism rather analogous to a
+generalised switch. Applying this kind of mechanism to allow printf to
+be fully checked is not possible since the number of possible argument
+patterns is much too large. Note that the equivalent function, writef, in
+BCPL has no such problem and is easy to implement. Some compilers
+attempt to optimise calls of printf in C if the format string is given
+explicitly, but this is problematic since printf is not a reserved
+word but an ordinary library functions. It is a function the ordinary
+users can define. It is almost impossible for a compiler to make valid
+optimisations of a call of printf when the format argument is given as
+an explicit string constant since the code for printf is normally
+extracted from a precompiled library and the compiler has no way of
+inspecting the source code of printf.
+
+Another area in C and related languages are the words const and
+volatile. These are called type qualifiers and the user there might
+well expect, for example, const int to behave like a type allowing the
+compiler to allocate the right sized locations to hold a value of this
+type and to select appropriate machine instructions to perform
+addition or multiplication. But const is not concerned with these
+details, it just specifies a property of the location, if any, holding
+a value of this type. It essentially says that the location holding
+the value cannot be updated. Normally the location is one allocated
+when the variable was declared, but is could be an element of an array
+or a structure. It might even be an argument of a function.
+Unfortunately the rules relating to the legal use of const are tricky.
+For instance, can you tell whether the following conforms with the
+ANSI C standard?
+
+      foo(const char **p) { }
+  
+      main(int argc, char **argv)
+      { foo(argv);
+      }
+
+Although char *s matches const shar *p, char **argv does not match
+const char **p. The reason for this involves finding sentences in five
+widely separated sections of the 200 page ANSI standard. Many C
+programmers would not be able to resolve this problem partly because
+most do not actually own the manual because, at least from ANSI, it
+costs more than $130. For a detailed explanation see
+
+Expert C Programming, deep C secrets
+by
+Peter van de Linden
+
+
+Some quantities require more space in their representation than
+others.  So there is a strong argument favouring data types to allow
+the compiler to allocate space more efficiently.  Characters can
+typically be represented by 8-bit bytes whereas integers with a
+reasonably large range may need 32 bits. Even if two values are the
+same size, the interpretation of their bits patterns may differ. One
+might be a 2s complement integer while the other may be a floating
+point number. So another obvious advantage of data types is to help
+the compiler select appropriate machine instructions for operations on
+values of different kinds. Data type also allow the compiler check
+that quantities are being used correctly. Even though type checking
+helps to find programming errors at compile time, the increased
+complexity of the language will make learning the language more
+difficult, possibly resulting in more programming errors.
+
+Some languages made available many different numerical types but this
+sometimes turned out to be less useful than expected.  PL/1 was a
+language having integer types of many sizes which could be either
+signed or unsigned. It also had floating point numbers of various
+precisions.  Partly because of the influence of COBOL, it had a
+decimal type of the form DEC(p,q) where p it the number decimal digits
+and q was a scaling factor giving the number of digits after the
+decimal point. A typical value of type DEC(8,2) is 123456.78.
+
+At first sight this system may seem really useful but in practice it
+had some serious problems. You would expect to be able perform
+arithmetic on any of the available numeric data types. For instance,
+one would expect to be able to multiply a floating point number by an
+integer and divide the result by a number of type DEC(8,2).  Since
+there are many numerical types and many arithmetic operators there are
+a huge number of rules defining result type returned by each operator
+based on the types of its operands.  Many of these rules are counter
+intuitive and not easy to remember making misunderstandings likely.
+For example, what is the type of the result of adding values of types
+DEC(5,2) and DEC(4,1) and is this type the same if the numbers were
+being multiplied. If the result is then assigned to a variable of type
+DEC(5,1) what truncation or rounding might happen and is overflow
+possible. Programmer's failure to fully understand the rules is likely
+cause their programs to be less reliable This can be serious if the
+program is calculating X-ray doses or is part of a flight control
+system of an aircraft.
+
+As another example, what is the type of 1+2? It turns out the types of
+1 and 2 are both of type DEC(1,0) and you might guess that the result
+type is also DEC(1,0) but this does not seem so sensible when
+considering 9+9 which should equal 18 and possibly having type
+DEC(2,0). Suppose sum is of type DEC(8,2) representing a sum of money
+in dollars and cents and a variable sum is of this type and equals
+123456.78, what is the value of sum/10. Is it 12345.67 or 12345.678 or
+12345.68.  Another example involves bit strings such as '00011111'B
+which represent an integer in binary. This corresponds to 31 if it is
+assigned to an integer variable. So you might think that you can
+represent numbers in decimal or binary and they would work as
+expected.  Unfortunately this is not true since 1 turns out not to
+equal to '1'B since 1 is of type DEC(1,0) and is actually held as a
+binary coded decimal (BCD) nibble of 4 bits namely 0001, while '1'B is
+a bit string of length one. But the length of bit strings in PL/1 are
+rounded up to a multiple of 4 and since bit strings are like character
+strings are left justified, it is actually represented by the nibble
+1000 which is not equal to 0001. This is particularly unfortunate
+since '1'B and '0'B are the conventional representations of true and
+false as returned by the relational operators.
+
+The so called decimal numbers were probably designed to be implemented
+using the BCD hardware available on such machines such as the
+IBM/360. Unfortunately this hardware limits the size of decimal
+numbers to 16 nibbles. Since such numbers were signed, the programmer
+may well wonder how negative decimal numbers were implemented. There
+were nibbles representing the 10 digits so perhaps there was a nibble
+for a minus sign and possibly one for a plus sign. It was perhaps
+possible to have a 16 digit positive decimal number, but probably only
+15 digits were allowed for negative numbers.  Alternatively the
+language might insist that the compiler implement decimal numbers
+without any length limit.
+
+In ordinary mathematics dividing x by 10 and there multiplying the
+result by 10 returns the original value of x, but in programming
+languages the meaning of (x/10)*10 is not so simple. Depending on the
+type of x it may or may not equal x.
+
+Another major problem for strictly typed languages is to find types
+that can be used to represent the parse tree of a program. CPL had no
+types suitable for this so the subset of CPL used to write its first
+compiler had to be extended to allow such trees to be built and
+manipulated. In machine code on EDSAC 2 there was no difficulty since
+it was word addressed and all memory locations were the same size and
+large enough to hold a memory address. A node in a parse tree could be
+represented by a pointer to a group of consecutive memory locations
+with the first holding a small number indicating the operator of the
+node and the remaining elements being its operands. In BCPL, the
+operators could be given manifest constant names to make the program
+more readable. Using square brackets to enclose the elements of such
+nodes. some typical examples are as follow:
+
+        [Number, k]
+	[Name, <hash-chain>, <packed-characters>]
+	[Add, x, y]
+	[Sub, x, y]
+	[While, e, c]
+	[For, name, x, lim, step, body]
+
+Such nodes could be created by functions such as mk2, mk3, mk4
+etc. For instance mk2(Number, 123) would allocate two words of memory
+initialised with the value Number and 123. returning a pointer to
+these two words. mk6(For, name, x, lim, step, body) would create a
+node representing a for loop with control variable name, initial value
+x final value lim, a given step length and body. If t points to a
+parse tree node, p!0 is the operator and p!1, p!2, p!3 etc are the
+operands.
+
+A compiler implemented in BCPL for an almost trivial language VSPL
+using this technique can be found in vspl.tgz or vspl.zip available
+from my home page. This distribution also contains implementations of
+VSPL using other languages such as MCPL, C, two versions using Java
+and a version using C, Lex and Yacc. They all produce identical
+results. An example of a VSPL program is as follows.
+
+static count, isprime[1000]
+
+let start() = valof
+{ for i = 2 to 999 do isprime[i] := true;  // Until proved otherwise.
+  count := 0;
+  for p = 2 to 999 do if isprime[p] do
+  { let i = p*p;
+    while i<=999 do { isprime[i] := false; i := i+p };
+    out(p)
+  };
+  resultis 0
+}
+ 
+let out(n) be
+{ if count mod 10 = 0 do printf("\n");
+  printf(" %3d", n);
+  count := count+1
+}
+
+
+In a strictly typed language this kind of structure is hard to
+design. Many languages have attempted to solve the problem with
+varying degrees of success. C nearly succeeded since it had the struct
+mechanism for defining structure with named fields of differing
+types. It also had the union mechanism allowing a variable to hold
+values of various different types. The space allocated for such a
+variable was large enough to hold the largest of the possible value.
+You could represent a parse tree node by a variable which was the
+union of all pointers to parse tree structs. You could cast an unknown
+pointer to be a pointer to a particular parse tree struct, but
+unfortunately you cannot tell which struct to choose since you cannot
+access the operator until the cast has been made. C had to have a
+rather inelegant relaxation of the rules to make this possible.
+
+One final example is something I found difficult in C while
+implementing the Cintcode byte stream interpretive language.  I
+represented the Cintcode memory using an array holding BCPL
+words. These were typically 32-bits long and were usually of type int.
+BCPL can handle both 32-bit integer and 32-bit floating point values
+and so locations in the Cintcode memory sometimes held values of
+either sort. The problem was how to persuade C to regard a location in
+the Cintcode memory to be a 32-bit integer at one moment and a 32-bit
+floating point number at the next. One possibilty is to use the union
+mechanism but this is somewhat tedious and inefficient, another method
+is use pointers into the Cintcode memory with casts such as (int*) or
+(float*) to allow a value of the right type to be accessed.  Neither
+of these methods are entirely satisfactory. In machine code you can
+easily add two 31-bit patterns using either an integer or floating
+point add instruction and in BCPL you can do the same using either +
+or #+. There is no conversion cost in either case. But in C, you have
+to find a way of causing C to think a bit patern is of type float when
+it previously thought it was an int, and do this in a way that has no
+conversion cost and does not cause excessively strict compilers
+generating annoying warning messages.
+
+Most of this document outlines the difficulty of designing a type
+system for programming languages that is easy to understand and allows
+the compiler to generate efficient code and generate informative
+messages when the user accidentally breaks the typing rules. We have
+seen that type systems can greatly complicate a language causing
+programmers to sometimes misunderstand the exact meaning of statements
+they write. This may make their programs less reliable. This section
+is intended to show that typeless languages can be much simpler to
+describe and with almost no possibility of misunderstanding the
+meaning of any statement. To illustrate this key feature of the design
+of BCPL will be given.
+
+As stated earlier BCPL is essentially a high level assembly language
+originally used to create a compiler for CPL. It was hand translated
+into GPM macro call allowing the compiler to run on both EDSAC 2 and
+Titan. This macro language was essentially an abstract machine code.
+Modern BCPL compilers use an intermediate code called OCODE as an
+alternative to the GPM macros. The OCODE machine is tailor made for
+BCPL and is very clean and simple. Most BCPL compilers use a front end
+that translates source programs into OCODE before invoking a code
+generator to produce the the required target machine code. The OCODE
+machine has a random access memory consisting of a one dimensional
+array of BCPL words. These words have a system dependent bit
+length. On EDSAC 2 it was 20 bits and for Atlas it is 24. On the IBM
+7094, the first machine to have a BCPL compiler, it was 36. One many
+machines, such as the BBC Micro and the PDP 11, it was 16. On all
+modern BCPL systems it is safe to assume the BCPL word length is
+either 32 or 64 bits. The words in the OCODE memory are addressed by
+consecutive integer starting at zero.
+
+The OCODE machine is stack base and uses two registers, P and S. P
+points to the base of the stack frame of the currently executing
+function and S points to the top of the stack. In practice, register S
+is not needed since the distance between P and S is aways known. Its
+purpose is to simplify the specification of the machine. Local
+variables are addressed relative to P. For instance, in the following
+function
+
+LET f(x,y,z) = x*y+z
+
+the variables x, y and z are in locations 3, 4 and 5 relative to P and
+the OCODE translation of x*y+z is
+
+LP 3
+LP 4
+MUL
+LP 5
+ADD
+
+These are simple stack operations. For instance, LP 3 means
+
+s!0 := P!3; s := s+1
+
+and ADD means
+
+S!-2 := S!-2 + S!-1; S := S-1
+
+Early computers represented integers in various way such as sign and
+modulus, ones compliment and twos compliment, but on modern BCPL
+systems it is safe to assume that twos compliment integer arithmetic
+is used. If in doubt about the integer arithmetic used in BCPL it can
+be checked by running the sysinfo command. This command also checks
+the floating point operations use the IEEE floating point standard.
+
+There is therefore very little room for misunderstanding the meaning
+of x*y+z. All the other BCPL expression operator compile into equally
+simple and precise OCODE. Relational operators such as = and <=
+generate code involving the OCODE statements EQ and LE. These generate
+the result -1 for TRUE and 0 for FALSE. The bit pattern operators ~,
+&, |, EQV and XOR can be used to evaluate Boolean expression as well
+as working on arbitrary bit patterns.
+
+Conditional and unconditional jumps are implemented by the OCODE
+statements JT, JF anf JUMP. These are used in the compilation of all
+the BCPL conditional constructs. There are just a few other OCODE
+statements used in the compilation of function definition and calls,
+and the Switchon command. The correspondence between BCPL source and
+its OCODE translation is simple. A typical example of this
+correspondence taken from the BCPL compiler is as follows.
+
+
+LET trnext(next) BE { IF next<0 DO out1(s_rtrn)
+                      IF next>0 DO out2(s_jump, next)
+                    }
+
+The above function definition translates into the following OCODE.
+
+ENTRY L1198 6  't' 'r' 'n' 'e' 'x' 't'
+SAVE 4
+LP 3
+LN 0
+LS
+JF L1200
+STACK 7
+LN 121
+LG 372
+RTAP 4
+LAB L1200
+LP 3
+LN 0
+GR
+JF L1201
+STACK 7
+LN 110
+LP 3
+LG 373
+RTAP 4
+RTRN
+LAB L1201
+RTRN
+ENDPROC
+
+
+One can regard the BCPL frontend (bcplfe.b) as an operational
+semantics formal specificaion of the language, giving the meaning of a
+program by its translation into OCODE.
+

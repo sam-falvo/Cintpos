@@ -1,0 +1,12 @@
+let a, k, d = -1, nil, nil
+in
+let f x =
+  l: a := a+1;
+     Print a;
+  m: x < 0 -> (k := d) |
+     x eq 0 -> (k := l) |
+     (x := x - 3)
+in
+d := n; f a; goto k;
+n: a
+

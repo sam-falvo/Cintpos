@@ -1,0 +1,4 @@
+.k file/a,arg
+echo "bcpl com/<file>.b to cin/<file> t32 <arg>"
+bcpl com/<file>.b to cin/<file> t32 <arg>
+

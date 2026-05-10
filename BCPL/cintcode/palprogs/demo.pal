@@ -1,0 +1,10 @@
+
+
+let f(n) = (n+1) * n / 2
+in
+let start ()  =
+( Print('f(10) = ', f 10, '*n');
+  0
+)
+in
+start(1,2,3)

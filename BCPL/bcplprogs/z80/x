@@ -1,0 +1,5 @@
+.k file/a,opt
+echo "z80emu hex/<file>.hex <opt>"
+z80emu hex/<file>.hex <opt>
+
+

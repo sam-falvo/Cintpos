@@ -1,0 +1,65 @@
+// This is a test for the pal lexical analyser. It contains all the
+
+// tokens recognized by pal70.
+
+x
+x_y // Not in pal70
+123
+1.2
+1.2e1 // not in pal70
+;
+,
+(
+)
+=
+&
+|
+<
+>
+<= // not in pal70
+>= // not in pal70
+%
+~
+~= // not in pal70
+*
+**
+:
+:=
+-
+-*
+->
+/
+'abc*t*s*n'
+
+// Reserveved words
+and
+aug
+def
+do
+dummy
+eq
+false
+fn
+gr
+gr
+goto
+if
+ifso
+ifnot
+in
+let
+ls
+le
+not
+ne
+nil
+logor
+rec
+res
+true
+test
+then // not in pal70
+valof
+where
+while
+within

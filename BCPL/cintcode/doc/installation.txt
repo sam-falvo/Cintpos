@@ -1,0 +1,130 @@
+How to Install the BCPL Cintcode System
+
+This document provides notes on how to install the BCPL Cintcode
+System on various machines and various operating systems. These notes
+only cover systems that I access to and have tried.
+
+For BCPL Cintcode to work you must define the environment variables
+typically: BCPLROOT, BCPLPATH, BCPLHDRS, BCPLSCTRIPTS and PATH. These
+variables have values that are character strings held in the
+underlying operating system (typically Linux, Window or MacOS). These
+stringsh can be read by both the C code that implements the Cintcode
+interpreter and running BCPL programs. For instance, when cintsys.c is
+initialising the system, it could call pathinput("syscin/blib",
+"BCPLPATH") to open file containing the compilation of the resident
+BCPL library, searching through the directories specified by the
+BCPLPATH environment variable. Similarly the c command (source
+com/c.b) uses the BCPL version pathfindinput(filename, envname) to
+open scripts held in the directories specified typically by
+BCPLSCRIPTS. Although the usual names of the variables are BCPLROOT,
+BCPLPATH, BCPLHDRS and BCPLSCRIPTS they are held in the BCPL rootnode
+and can be renamed by the user when starting the system.
+
+It is clear that the BCPL Cintcode system will fail to start properly
+if the environment variables are not set correctly.  Their values and
+how to set them up depend on the operating system you are using. Here,
+I describe how I cause them to be defined on Linux, Cygwin, Window XP,
+Windows 10 and MacOS.
+
+Under Wubi Linux running on a Windows XP machine I cause these
+variables and those for 64 bit BCPL to be setup by inserting the the
+following lines at the end of the file .bashrc in my home directory.
+
+BCPLROOT=$HOME/distribution/BCPL/cintcode
+BCPLPATH=$BCPLROOT/cin
+BCPLHDRS=$BCPLROOT/g
+BCPLSCRIPTS=$BCPLROOT/s
+PATH=$PATH:$BCPLROOT/bin
+
+BCPL64ROOT=$HOME/distribution/BCPL/cintcode
+BCPL64PATH=$BCPL64ROOT/cin64
+BCPL64HDRS=$BCPL64ROOT/g
+BCPL64SCRIPTS=$BCPL64ROOT/s
+PATH=$PATH:$BCPL64ROOT/bin
+
+export BCPLROOT BCPLPATH BCPLHDRS BCPLSCRIPTS
+export BCPL64ROOT BCPL64PATH BCPL64HDRS BCPL64SCRIPTS
+export PATH
+
+It is assumed that HOME is already defined to be the absolute address
+of my home directory.
+
+Under Linux, the value of an environment variable can be seen by
+typing the bash shell command:
+
+echo $BCPLROOT
+
+On my laptop output:
+
+/home/mr10/distribution/BCPL/cintcode
+
+The cintcode directory has directories g, cin and s for header files
+(read by GET), compiled Cintcode and scripts.
+
+
+
+Under Cygwin running under Window XP or Windows 10, I create the
+cygwin startup script C:\cygwin\cygwin.bat as follows:
+
+@echo off
+echo Initialising Cintcode BCPL environment
+
+SET HOME=/home/mr10
+
+SET BCPLROOT=%HOME%/distribution/BCPL/cintcode
+SET BCPLPATH=%BCPLROOT%/cin
+SET BCPLHDRS=%BCPLROOT%/g
+SET BCPLSCRIPTS=%BCPLROOT%/s
+
+SET BCPL64ROOT=%HOME%/distribution/BCPL64/cintcode
+SET BCPL64PATH=%BCPL64ROOT%/cin
+SET BCPL64HDRS=%BCPL64ROOT%/g
+SET BCPL64SCRIPTS=%BCPL64ROOT%/s
+
+SET POSROOT=%HOME%/distribution/Cintpos/cintpos
+SET POSPATH=%POSROOT%/cin
+SET POSHDRS=%POSROOT%/g
+SET POSSCRIPTS=%POSROOT%/s
+
+SET PATH=.;%BCPLROOT%/bin;%POSROOT%/bin;C:\cygwin\home\mr10\bin
+
+C:
+chdir C:\cygwin\bin
+
+bash --login -i
+
+Notice that I define HOME using my own user id: mr10.
+
+By default, when you install Cygwin it will create a directory
+C:\Cygwin that holds all its files. It will normally create an icon on
+the desktop called cygwin.terminal which I normally rename as cygwin.
+You should right click on this icon and then click on the properties
+menu item. This will allow you to specify C:\Cygwin\cygwin.bat as the
+script to obey when cygwin starts up. Having done that, return to the
+desctop and double click on the cygwin icon. This should open a cygwin
+window expecting you to type bash commands. You can type a command
+such as:
+
+echo $BCPLROOT
+
+to check that the evironment variables are set correctly.
+
+
+To install BCPL on Cygwin I entered Cygwin by double clicking on its
+icon. I then created the directory distribution in my home directory
+by typing the command: 
+
+mkdir distribution
+
+I also needed to be sure I had access to the BCPL distribution file
+bcpl.tgz. I had previously obtained it from the web using a browser
+and placed it in my home directory.  As far as Cygwin is concerned my
+home directory is: /home/mr10 but this directory is actually
+C:\cygwin\home\mr10, so that is where I placed it before entering
+Cygwin. To extract the BCPL distribution files I typed the following:
+
+cd distribution
+tas zxvf ../bcpl.tgz
+
+This created a directory BCPL in distribution containing all the files
+and directories of the BCPL system.

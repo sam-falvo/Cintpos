@@ -1,0 +1,38 @@
+.k file,opt
+
+c bc cmpltest
+wait 2
+cmpltest
+echo cmpltest
+wait 2
+
+c bc fcmpltest
+wait 2
+fcmpltest
+echo fcmpltest
+wait 2
+
+c bc fltcmpltest
+wait 2
+fltcmpltest
+echo fltcmpltest
+wait 2
+
+c bc patcmpltest
+wait 2
+patcmpltest
+echo patcmpltest
+wait 2
+
+c bc brklooptests
+wait 2
+brklooptests
+echo brklooptests
+wait 2
+
+echo "*nCalling sysinfo"
+sysinfo
+
+
+
+

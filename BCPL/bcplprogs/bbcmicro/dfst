@@ -1,0 +1,7 @@
+.k file/a,opt
+echo "mapcode bbccin/<file> hints hints/<file>.hints -t <opt>"
+"mapcode"  bbccin/<file>  hints hints/<file>.hints -t <opt>
+echo ""
+
+
+

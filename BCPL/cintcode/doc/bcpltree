@@ -1,0 +1,324 @@
+BCPL lexical tokens and parse tree struture.
+
+*****************************  Lexical Tokens   ***********************
+
+number      123   #377   #xFF    #b_101_111  'a'  'EDIT'
+name        x a1 Abc p_q
+string      "hello"   "hi\nthere"    (zero terminated)
+true
+false
+valof
+lv
+rv
+fnap
+query       ?
+neg
+abs
+mul
+div
+mod
+add
+sub
+eq
+ne
+ls
+gr
+le
+ge
+slct
+of
+byteap
+mthap       #          method application
+not
+lshift
+rshift
+logand
+logor
+eqv
+xor
+cond       ->
+table
+needs
+section
+ass        :=
+rtap
+goto
+resultis
+colon
+test
+for
+if
+unless
+while
+until
+repeat
+repeatwhile
+repeatuntil
+skip
+loop
+break
+return
+finish
+endcase
+swithcon
+case
+default
+seq
+let
+and
+manifest global static
+valdef
+vecdef
+constdef
+const
+fndef
+rtdef
+local
+label
+
+patfndef
+patrtdef
+ematch
+cmatch
+every
+yields     =>
+pateq;  patne;  patls;  patgr;  patle;  patge
+patfeq; patfne; patfls; patfgr; patfle; patfge
+be lsect
+rsect get
+semicolon
+into
+to
+by
+do
+else
+vec
+lparen
+rparen
+sbra
+sket
+dot
+eof
+dots        ..         range in a pattern
+bitsperbcplword
+none
+fnum
+float
+fix
+fabs
+fmul
+fdiv
+fmod
+fadd
+ffsub
+fpos
+fneg
+feq
+fne
+fls
+fgr
+fle
+fge
+fcond
+fass
+assvecap
+assmul; assdiv; assmod; assadd; asssub
+assfmul; assfdiv; assfmod; assfadd; assfsub
+asslshift; assrshift
+asslogand; asslogor; asseqv; assxor
+
+
+
+
+**************************   Parse Tree   ****************************
+
+E      -> [true]                      TRUE
+       |  [false]                     FALSE
+       |  [query]                     ?
+       |  [name, -, <bytes>]          x    Abc   p3   x_y
+       |  [string, <len>, <bytes>]    "hello*n"
+       |  [numb, <val>]               123   #377  #x_FF #b_101  'A'
+       |  [valof, C]                  VALOF C
+       |  [every, Elist, Cpatlist, ln]   EVERY (Elist) Cpatlist .
+       |  [cmatch, Elist, Cpatlist, ln]   MATCH (Elist) Cpatlist .
+       |  [ematch, Elist, Epatlist, ln]   MATCH (Elist) Epatlist .
+       |  [table, Elist]              TABLE SK ,..., SK
+       |  [fnap, E, Elist, ln]        E()  or E ( E ,.., E )
+       |  [rtap, E, Elist, ln]        E()  or E ( E ,.., E )
+       |  [neg, E]                    - E
+       |  [abs, E]                    ABS E
+       |  [lv, E]                     @ E
+       |  [byteap, E, E]              E % E
+       |  [vecap, E, E]               E ! E
+       |  [rv, E]                     ! E  (= E!0)
+       |  [lshift, E, E]              E << E
+       |  [rshift, E, E]              E >> E
+       |  [logand, E, E]              E & E
+       |  [mult, E, E]                E * E
+       |  [div, E, E]                 E / E
+       |  [mod, E, E]                 E MOD E
+       |  [xor, E, E]                 E XOR E
+       |  [bitor, E, E]               E | E
+       |  [plus, E, E]                E + E
+       |  [sub, E, E]                 E - E
+       |  [rel, E, Rel]               E relop E relop ... E
+       |  [not, E]                    NOT E
+       |  [logand, E, E]              E & E
+       |  [logor, E, E]               E | E
+       |  [cond, E, E, E]             E -> E, E
+
+Rlist  -> 0
+       |  [eq, E, Rlist]
+       |  [ne, E, Rlist]
+       |  [le, E, Rlist]
+       |  [ge, E, Rlist]
+       |  [ls, E, Rlist]
+       |  [gr, E, Rlist]
+
+K      -> [true]                      TRUE
+       |  [false]                     FALSE
+       |  [query]                     ?
+       |  [Name, -, <name> ]          Abc      Mult
+       |  [number, <val>]             123      #377      #x_FF    #b_101
+       |  [neg, K]                    - E
+       |  [abs, K]                    ABS E
+       |  [lshift, K, K]              E << E
+       |  [rshift, K, K]              E >> E
+       |  [mod, K, K]                 E MOD E
+       |  [mult, K, K]                E * E
+       |  [div, K, K]                 E / E
+       |  [plus, K, K]                E + E
+       |  [sub, K, K]                 E - E
+       |  [rel, RKlist]               K relop K relop ... K
+       |  [not, K]                    NOT E
+       |  [logand, K, K]                 E AND E
+       |  [logor, K, K]                  E OR E
+       |  [xor, K, K]                 E XOR E
+       |  [eqv, K, K]                 E EQV E
+       |  [cond, K, K, K]             E -> E, E
+
+RKlist -> 0
+       |  [eq, E, RKlist]
+       |  [ne, E, RKlist]
+       |  [le, E, RKlist]
+       |  [ge, E, RKlist]
+       |  [ls, E, RKlist]
+       |  [gr, E, RKlist]
+
+SK     -> K
+       |  Str
+       |  [table, SKlist]
+
+P      -> 0                           Basic patterns
+       |  [Name, -, <name> ]          Manifest constant name
+       |  [number, <val>]             1234
+       |  [query]                     ?
+       |  [true]                      TRUE
+       |  [false]                     FALSE
+       |  [dots,K,K]                  K .. K  where K is
+                                      numb, true, false or char or
+				      a manifest constant
+       |  [por,K,[por,K,..]]          K | K | ...
+                                      where the Ks contain only 
+                                      numb, true, false, char, dots or
+				      a manifest constant
+       |  [ptr, Plist]                [ Plist ]
+       |  [pateq, E]                  = E
+       |  [patne, E]                  ~= E
+       |  [patle, E]                  <= E
+       |  [patge, E]                  >= E
+       |  [patls, E]                  < E
+       |  [patgr, E]                  > E
+       |  [patand, E, Plist]          P P .. P
+
+
+Plist  -> P                           P
+       |  [comma, P, Plist]           P ,.., P
+
+blockbody -> C
+          | [valdef, Nlist, Elist, ln]
+
+
+C      -> 0
+       |  [seq, C, C]                  C ; C
+       |  [repeat, C, ln]              C REPEAT
+       |  [repeatwhile, C, E, ln]      C REPEATWHILE E
+       |  [repeatuntil, C, E, ln]      C REPEATUNTIL E
+       |  [let, Slist, ln]             LET x=1, y=VEC 10, z="abc"
+       |  [goto, E, ln]                GOTO E
+       |  [test, E, C, C, ln]          TEST E THEN C ELSE C
+       |  [if, E, C, ln]               IF E DO C
+       |  [unless, E, C, ln]           UNLESS E DO C
+       |  [while, E, C, ln]            WHILE E DO C
+       |  [until, E, C, ln]            UNTIL E DO C
+       |  [for, Name, E, E, K, C, ln]  FOR i = E TO E BY K DO C
+       |  [for, Name, E, E, 0, C, ln]  FOR i = E TO E DO C
+       |  [for, Name, E, 0, K, C, ln]  FOR i = E BY K DO C
+       |  [for, Name, E, 0, 0, C, ln]  FOR i = E DO C
+       |  [return, ln]                RETURN
+       |  [resultis, E, ln]           RESULTIS E
+       |  [exit, 0, ln]               EXIT    (current match construct)
+       |  [exit, E, ln]               EXIT E
+       |  [loop, ln]                  LOOP
+       |  [break, ln]                 BREAK
+       
+       |  [ass,       Elist, Elist, ln]  E,..,E     :=  E,..,E
+       |  [fass,      Elist, Elist, ln]  E,..,E    #:=  E,..,E
+       |  [assvecap,  Elist, Elist, ln]  E,..,E    !:=  E,..,E
+       |  [assmul,    Elist, Elist, ln]  E,..,E    *:=  E,..,E
+       |  [assfmul,   Elist, Elist, ln]  E,..,E   #*:=  E,..,E
+       |  [assdiv,    Elist, Elist, ln]  E,..,E    /:=  E,..,E
+       |  [assfdiv,   Elist, Elist, ln]  E,..,E   #/:=  E,..,E
+       |  [assmod,    Elist, Elist, ln]  E,..,E  MOD:=  E,..,E
+       |  [assfmod,   Elist, Elist, ln]  E,..,E #MOD:=  E,..,E
+       |  [assadd,    Elist, Elist, ln]  E,..,E    +:=  E,..,E
+       |  [assfadd,   Elist, Elist, ln]  E,..,E   #+:=  E,..,E
+       |  [asssub,    Elist, Elist, ln]  E,..,E    -:=  E,..,E
+       |  [assfsub,   Elist, Elist, ln]  E,..,E   #-:=  E,..,E
+       |  [asslshift, Elist, Elist, ln]  E,..,E   <<:=  E,..,E
+       |  [assrshift, Elist, Elist, ln]  E,..,E   >>:=  E,..,E
+       |  [asslogand, Elist, Elist, ln]  E,..,E    &:=  E,..,E
+       |  [asslogor,  Elist, Elist, ln]  E,..,E    |:=  E,..,E
+       |  [assxor,    Elist, Elist, ln]  E,..,E  XOR:=  E,..,E
+       |  [asseqv,    Elist, Elist, ln]  E,..,E  EQV:=  E,..,E
+
+Fndef  -> 0
+       |  [fnpat, Plist, E, Fndef, ln] : P ,.., P => E
+                                       ...
+                                       : P ,.., P => E
+
+Rtdef  -> 0
+       |  [rtpat, Plist, C, Rtdef, ln] : P ,.., P BE C
+                                       ...
+                                       : P ,.., P BE C
+
+Prog   -> [section, Str, Prob, ln]    Is prest it must be the first Prog item
+       |  [manifest, Mlist, Prog, ln]   MANIFEST { A=1; B; C=A+B }
+       |  [global,   Glist, Prog, ln]   GLOBAL { A:200; B }
+       |  [static,   Slist, Prog, ln]   STATIC { A=1; B }
+       |  [fndef, Name, Nlist, E, -, ln]
+       |  [rtdef, Name, Nlist, C, -, ln]
+       |  [patfndef, Name, Ematchlist, Prog, -, ln]
+       |  [patrtdef, Name, Cmatchlist, Prog, -, ln]
+
+Mlist  -> 0                           Manifests
+       |  [mdef, Name, 0, Mlist]
+       |  [mdef, Name, K, Mlist]
+
+Slist  -> 0                           Statics
+       |  [sdef, Name, 0, Slist]
+       |  [sdef, Name, K, Slist]
+
+
+Glist  -> 0                           Globals
+       |  [sdef, Name, 0, Glist]
+       |  [sdef, Name, K, Glist]
+
+
+Elist  -> E                           List of one ore more expression
+       |  [comma, E, Elist]
+
+Vlist  -> Name                        List of one ore more names
+       |  [comma, Name, Vlist]
+
+

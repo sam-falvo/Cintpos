@@ -1,0 +1,4 @@
+.k file/a,opt
+echo "z80asm asm/<file>.z80 to hex <file>.hex list list/<file>.list <opt>"
+z80asm asm/<file>.z80 to hex/<file>.hex list list/<file>.list <opt>
+

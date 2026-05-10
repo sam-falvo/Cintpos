@@ -1,0 +1,977 @@
+Ass_dev M:4 DEF libhdr.h[703] Ass_dev=4
+Ass_dir M:2 DEF libhdr.h[701] Ass_dir=2
+Ass_link M:0 DEF libhdr.h[699] Ass_link=0
+Ass_name M:5 DEF libhdr.h[704] Ass_name=5
+Ass_task M:1 DEF libhdr.h[700] Ass_task=1
+Ass_type M:3 DEF libhdr.h[702] Ass_type=3
+B2Wsh M:3 DEF libhdr.h[23] B2Wsh=1+64/32
+B2Wsh M:3 MAN libhdr.h[237] bytesperword=1<<B2Wsh
+BestPosition G:210 DEF checkers.b[245] BestPosition=
+BestPosition G:210 FN checkers.b[425] LET BestPosition(P,V,L,d,r)=..
+BestPosition G:210 LG checkers.b[419] v:=BestPosition(NIL,-INF,L,...)
+BestPosition G:210 LG checkers.b[448] RESULTIS BestPosition(P,V,l,d,r)
+BestPosition G:210 LG checkers.b[456] BestPosition(NIL,-INF,L,d,0)
+Board G:203 DEF checkers.b[236] Board=
+Board G:203 LG checkers.b[528] ~X&~Y&Board
+Board G:203 LG checkers.b[637] ~X&~Y&Board
+Board G:203 LG checkers.b[739] (n>=0->x<<n,x>>-n)&Board
+Board G:203 SG checkers.b[332] Board:=#xFF7FBFDFE0
+Capture M:-1 DEF checkers.b[291] Capture=TRUE
+Capture M:-1 MAN checkers.b[461] RemainingPositionList(P,Capture,5)
+Capture M:-1 MAN checkers.b[500]
+    list:=C=Capture->CaptureTree(@x),FinalPosition(@x)
+Capture M:-1 MAN checkers.b[529]
+    C=Capture->Shift(Empty,-Sigma*s)&Y,Empty
+Capture M:-1 MAN checkers.b[561] IF C=Capture DO ..
+CaptureTree G:219 DEF checkers.b[255] CaptureTree=
+CaptureTree G:219 FN checkers.b[607] LET CaptureTree(ip)=..
+CaptureTree G:219 LG checkers.b[500]
+    list:=C=Capture->CaptureTree(@x),FinalPosition(@x)
+CaptureTree G:219 LG checkers.b[656] RESULTIS CaptureTree(@X)
+CaptureTree G:219 LG checkers.b[661]
+    RESULTIS Join(CaptureTree(@h2!L),CombineCaptureTrees(h1!L))
+ChoosePosition G:209 DEF checkers.b[244] ChoosePosition=
+ChoosePosition G:209 FN checkers.b[408] LET ChoosePosition(P,r)=..
+ChoosePosition G:209 LG checkers.b[349] ChoosePosition(@X,@x)
+CloseObj M:1 DEF libhdr.h[286] CloseObj=1
+CombineCaptureTrees G:222 DEF checkers.b[258] CombineCaptureTrees=
+CombineCaptureTrees G:222 FN checkers.b[659]
+    LET CombineCaptureTrees(L)=..
+CombineCaptureTrees G:222 LG checkers.b[618]
+    RESULTIS CombineCaptureTrees(L)
+CombineCaptureTrees G:222 LG checkers.b[661]
+    RESULTIS Join(CaptureTree(@h2!L),CombineCaptureTrees(h1!L))
+Dcb_arg M:4 DEF libhdr.h[643] Dcb_arg=4
+Dcb_cvp M:16 DEF libhdr.h[657] Dcb_cvp=16
+Dcb_devid M:1 DEF libhdr.h[640] Dcb_devid=1
+Dcb_flag M:7 DEF libhdr.h[646] Dcb_flag=7
+Dcb_intson M:6 DEF libhdr.h[645] Dcb_intson=6
+Dcb_irq M:5 DEF libhdr.h[644] Dcb_irq=5
+Dcb_op M:3 DEF libhdr.h[642] Dcb_op=3
+Dcb_threadp M:14 DEF libhdr.h[656] Dcb_threadp=14
+Dcb_type M:0 DEF libhdr.h[639] Dcb_type=0
+Dcb_upb M:17 DEF libhdr.h[661] Dcb_upb=17
+Dcb_var0 M:8 DEF libhdr.h[650] Dcb_var0=8
+Dcb_var1 M:9 DEF libhdr.h[651] Dcb_var1=9
+Dcb_var2 M:10 DEF libhdr.h[652] Dcb_var2=10
+Dcb_var3 M:11 DEF libhdr.h[653] Dcb_var3=11
+Dcb_var4 M:12 DEF libhdr.h[654] Dcb_var4=12
+Dcb_wkq M:2 DEF libhdr.h[641] Dcb_wkq=2
+Devc_create M:1 DEF libhdr.h[671] Devc_create=1
+Devc_destroy M:2 DEF libhdr.h[672] Devc_destroy=2
+Devc_setintson M:5 DEF libhdr.h[675] Devc_setintson=5
+Devc_start M:3 DEF libhdr.h[673] Devc_start=3
+Devc_stop M:4 DEF libhdr.h[674] Devc_stop=4
+Devt_clk M:1 DEF libhdr.h[664] Devt_clk=1
+Devt_fileop M:4 DEF libhdr.h[667] Devt_fileop=4
+Devt_tcpdev M:5 DEF libhdr.h[668] Devt_tcpdev=5
+Devt_ttyin M:2 DEF libhdr.h[665] Devt_ttyin=2
+Devt_ttyout M:3 DEF libhdr.h[666] Devt_ttyout=3
+FinalPosition F:31 FN checkers.b[594] LET FinalPosition(ip)=..
+FinalPosition F:31 LF checkers.b[500]
+    list:=C=Capture->CaptureTree(@x),FinalPosition(@x)
+FinalPosition F:31 LF checkers.b[617] RESULTIS FinalPosition(ip)
+FindMoveSet G:216 DEF checkers.b[251] FindMoveSet=
+FindMoveSet G:216 FN checkers.b[520] LET FindMoveSet(P,C,s)=..
+FindMoveSet G:216 LG checkers.b[481] FindMoveSet(P,C,s)
+FindPosition G:218 DEF checkers.b[254] FindPosition=
+GB2312 M:-2 DEF libhdr.h[572] GB2312=-2
+INF M:1000000 DEF checkers.b[290] INF=1000000
+INF M:1000000 MAN checkers.b[419] v:=BestPosition(NIL,-INF,L,...)
+INF M:1000000 MAN checkers.b[456] BestPosition(NIL,-INF,L,d,0)
+InitObj M:0 DEF libhdr.h[285] InitObj=0
+Join G:225 DEF checkers.b[262] Join=
+Join G:225 FN checkers.b[664] LET Join(L1,L2)=..
+Join G:225 LG checkers.b[508]
+    RESULTIS Join(list,PartialPositionList(P,C,s,...))
+Join G:225 LG checkers.b[661]
+    RESULTIS Join(CaptureTree(@h2!L),CombineCaptureTrees(h1!L))
+LastRows G:204 DEF checkers.b[237] LastRows=
+LastRows G:204 LG checkers.b[571] K:=K&~psi&~phi|theta&LastRows
+LastRows G:204 LG checkers.b[647] K:=K&~phi&~psi|theta&LastRows
+LastRows G:204 SG checkers.b[333] LastRows:=#xF0000001E0
+LegalPositionsFrom G:212 DEF checkers.b[247] LegalPositionsFrom=
+LegalPositionsFrom G:212 FN checkers.b[460] LET LegalPositionsFrom(P)=..
+LegalPositionsFrom G:212 LG checkers.b[412] LegalPositionsFrom(P)
+LegalPositionsFrom G:212 LG checkers.b[452] LegalPositionsFrom(P)
+MakeMove G:217 DEF checkers.b[252] MakeMove=
+MakeMove G:217 LG checkers.b[496] MakeMove(P,C,s,phi,@x)
+MakeMove G:217 RT checkers.b[546] LET MakeMove(P,C,s,phi,r)BE..
+MinList G:226 DEF checkers.b[263] MinList=
+MinList G:226 FN checkers.b[677] LET MinList(L1,L2,L3,L4)=..
+MinList G:226 LG checkers.b[625]
+    RESULTIS MinList(PCP(ip,phi,5),PCP(ip,phi,4),PCP(ip,...),PCP(ip,...))
+NIL M:0 DEF checkers.b[289] NIL=0
+NIL M:0 MAN checkers.b[419] v:=BestPosition(NIL,-INF,L,...)
+NIL M:0 MAN checkers.b[456] BestPosition(NIL,-INF,L,d,0)
+NIL M:0 MAN checkers.b[511] RESULTIS NIL
+NIL M:0 MAN checkers.b[604] RESULTIS mknode(NIL,@X)
+NIL M:0 MAN checkers.b[641] RESULTIS NIL
+NIL M:0 MAN checkers.b[660] RESULTIS NIL
+NextMoveDirection G:215 DEF checkers.b[250] NextMoveDirection=
+NextMoveDirection G:215 FN checkers.b[516] LET NextMoveDirection(s)=..
+NextMoveDirection G:215 LG checkers.b[513]
+    RESULTIS RemainingPositionList(P,C,NextMoveDirection(s))
+NonCapture M:0 DEF checkers.b[292] NonCapture=FALSE
+NonCapture M:0 MAN checkers.b[468]
+    L:=RemainingPositionList(P,NonCapture,5)
+ON64 M:-1 DEF libhdr.h[25] ON64=64=64
+ON64 M:-1 MAN checkers.b[304] UNLESS ON64 DO ..
+PCP G:221 DEF checkers.b[257] PCP=
+PCP G:221 FN checkers.b[631] LET PCP(P,phi,s)=..
+PCP G:221 LG checkers.b[625]
+    RESULTIS MinList(PCP(ip,phi,5),PCP(ip,phi,4),PCP(ip,...),PCP(ip,...))
+PartialCapturePositionList G:220 DEF checkers.b[256]
+    PartialCapturePositionList=
+PartialCapturePositionList G:220 FN checkers.b[621]
+    LET PartialCapturePositionList(ip)=..
+PartialCapturePositionList G:220 LG checkers.b[611]
+    PartialCapturePositionList(ip)
+PartialPositionList G:214 DEF checkers.b[249] PartialPositionList=
+PartialPositionList G:214 FN checkers.b[487]
+    LET PartialPositionList(P,C,s,set)=..
+PartialPositionList G:214 LG checkers.b[484]
+    RESULTIS PartialPositionList(P,C,s,set)
+PartialPositionList G:214 LG checkers.b[508]
+    RESULTIS Join(list,PartialPositionList(P,C,s,...))
+PositionValue G:211 DEF checkers.b[246] PositionValue=
+PositionValue G:211 FN checkers.b[451] LET PositionValue(P,d)=..
+PositionValue G:211 LG checkers.b[443] -PositionValue(p,d+1)
+RemainingPositionList G:213 DEF checkers.b[248] RemainingPositionList=
+RemainingPositionList G:213 FN checkers.b[480]
+    LET RemainingPositionList(P,C,s)=..
+RemainingPositionList G:213 LG checkers.b[461]
+    RemainingPositionList(P,Capture,5)
+RemainingPositionList G:213 LG checkers.b[468]
+    L:=RemainingPositionList(P,NonCapture,5)
+RemainingPositionList G:213 LG checkers.b[513]
+    RESULTIS RemainingPositionList(P,C,NextMoveDirection(s))
+Shift G:228 DEF checkers.b[265] Shift=
+Shift G:228 FN checkers.b[739] LET Shift(x,n)=..
+Shift G:228 LG checkers.b[529] C=Capture->Shift(Empty,-Sigma*s)&Y,Empty
+Shift G:228 LG checkers.b[533] Shift(psi,-Sigma*s)&X
+Shift G:228 LG checkers.b[560] Shift(phi,Sigma*s)
+Shift G:228 LG checkers.b[562] theta:=Shift(theta,Sigma*s)
+Shift G:228 LG checkers.b[635] Shift(phi,Sigma*s)&Y
+Shift G:228 LG checkers.b[638] Shift(psi,Sigma*s)&Empty
+SingleDigitFrom G:227 DEF checkers.b[264] SingleDigitFrom=
+SingleDigitFrom G:227 FN checkers.b[727] LET SingleDigitFrom(x)=..
+SingleDigitFrom G:227 LG checkers.b[491] SingleDigitFrom(set)
+State_dead M:12 DEF libhdr.h[690] State_dead=12
+State_hold M:2 DEF libhdr.h[687] State_hold=2
+State_int M:8 DEF libhdr.h[689] State_int=8
+State_pkt M:1 DEF libhdr.h[686] State_pkt=1
+State_wait M:4 DEF libhdr.h[688] State_wait=4
+Sys_buttons M:56 DEF libhdr.h[451] Sys_buttons=56
+Sys_callc M:59 DEF libhdr.h[454] Sys_callc=59
+Sys_callnative M:53 DEF libhdr.h[448] Sys_callnative=53
+Sys_close M:16 DEF libhdr.h[414] Sys_close=16
+Sys_cputime M:30 DEF libhdr.h[427] Sys_cputime=30
+Sys_datstamp M:44 DEF libhdr.h[439] Sys_datstamp=44
+Sys_delay M:57 DEF libhdr.h[452] Sys_delay=57
+Sys_deletefile M:17 DEF libhdr.h[415] Sys_deletefile=17
+Sys_devcom M:43 DEF libhdr.h[438] Sys_devcom=43
+Sys_dumpmem M:52 DEF libhdr.h[447] Sys_dumpmem=52
+Sys_ext M:68 DEF libhdr.h[465] Sys_ext=68
+Sys_filemodtime M:31 DEF libhdr.h[428] Sys_filemodtime=31
+Sys_filesize M:46 DEF libhdr.h[441] Sys_filesize=46
+Sys_flt M:63 DEF libhdr.h[459] Sys_flt=63
+Sys_freevec M:22 DEF libhdr.h[420] Sys_freevec=22
+Sys_getpid M:51 DEF libhdr.h[446] Sys_getpid=51
+Sys_getprefix M:33 DEF libhdr.h[430] Sys_getprefix=33
+Sys_getsysval M:48 DEF libhdr.h[443] Sys_getsysval=48
+Sys_gettrval M:62 DEF libhdr.h[458] Sys_gettrval=62
+Sys_getvec M:21 DEF libhdr.h[419] Sys_getvec=21
+Sys_gl M:67 DEF libhdr.h[464] Sys_gl=67
+Sys_globin M:24 DEF libhdr.h[422] Sys_globin=24
+Sys_graphics M:34 DEF libhdr.h[431] Sys_graphics=34
+Sys_inc M:55 DEF libhdr.h[450] Sys_inc=55
+Sys_incdcount M:65 DEF libhdr.h[461] Sys_incdcount=65
+Sys_interpret M:7 DEF libhdr.h[406] Sys_interpret=7
+Sys_intflag M:28 DEF libhdr.h[425] Sys_intflag=28
+Sys_joy M:69 DEF libhdr.h[466] Sys_joy=69
+Sys_loadseg M:23 DEF libhdr.h[421] Sys_loadseg=23
+Sys_lockirq M:41 DEF libhdr.h[436] Sys_lockirq=41
+Sys_muldiv M:26 DEF libhdr.h[424] Sys_muldiv=26
+Sys_openappend M:19 DEF libhdr.h[417] Sys_openappend=19
+Sys_openread M:14 DEF libhdr.h[412] Sys_openread=14
+Sys_openreadwrite M:47 DEF libhdr.h[442] Sys_openreadwrite=47
+Sys_openwrite M:15 DEF libhdr.h[413] Sys_openwrite=15
+Sys_platform M:54 DEF libhdr.h[449] Sys_platform=54
+Sys_pollsardch M:64 DEF libhdr.h[460] Sys_pollsardch=64
+Sys_putsysval M:49 DEF libhdr.h[444] Sys_putsysval=49
+Sys_quit M:0 DEF libhdr.h[399] Sys_quit=0
+Sys_read M:12 DEF libhdr.h[410] Sys_read=12
+Sys_renamefile M:18 DEF libhdr.h[416] Sys_renamefile=18
+Sys_rti M:1 DEF libhdr.h[400] Sys_rti=1
+Sys_sardch M:10 DEF libhdr.h[408] Sys_sardch=10
+Sys_saveregs M:2 DEF libhdr.h[401] Sys_saveregs=2
+Sys_sawrch M:11 DEF libhdr.h[409] Sys_sawrch=11
+Sys_sdl M:66 DEF libhdr.h[463] Sys_sdl=66
+Sys_seek M:38 DEF libhdr.h[433] Sys_seek=38
+Sys_setcount M:-1 DEF libhdr.h[398] Sys_setcount=-1
+Sys_setprefix M:32 DEF libhdr.h[429] Sys_setprefix=32
+Sys_setraster M:29 DEF libhdr.h[426] Sys_setraster=29
+Sys_setst M:3 DEF libhdr.h[402] Sys_setst=3
+Sys_settrcount M:61 DEF libhdr.h[457] Sys_settrcount=61
+Sys_shellcom M:50 DEF libhdr.h[445] Sys_shellcom=50
+Sys_sound M:58 DEF libhdr.h[453] Sys_sound=58
+Sys_tally M:6 DEF libhdr.h[405] Sys_tally=6
+Sys_tell M:39 DEF libhdr.h[434] Sys_tell=39
+Sys_tracing M:4 DEF libhdr.h[403] Sys_tracing=4
+Sys_trpush M:60 DEF libhdr.h[456] Sys_trpush=60
+Sys_unloadseg M:25 DEF libhdr.h[423] Sys_unloadseg=25
+Sys_unlockirq M:42 DEF libhdr.h[437] Sys_unlockirq=42
+Sys_waitirq M:40 DEF libhdr.h[435] Sys_waitirq=40
+Sys_watch M:5 DEF libhdr.h[404] Sys_watch=5
+Sys_write M:13 DEF libhdr.h[411] Sys_write=13
+Task_cli M:1 DEF libhdr.h[678] Task_cli=1
+Task_consolehandler M:3 DEF libhdr.h[680] Task_consolehandler=3
+Task_debug M:2 DEF libhdr.h[679] Task_debug=2
+Task_filehandler M:4 DEF libhdr.h[681] Task_filehandler=4
+Task_mbxhandler M:5 DEF libhdr.h[682] Task_mbxhandler=5
+Task_tcphandler M:6 DEF libhdr.h[683] Task_tcphandler=6
+Terminal G:223 DEF checkers.b[259] Terminal=
+Terminal G:223 FN checkers.b[741] LET Terminal(P,d)=..
+Terminal G:223 LG checkers.b[451]
+    Terminal(P,d)->TerminalValue(P),(VALOF {..})
+TerminalValue G:224 DEF checkers.b[260] TerminalValue=
+TerminalValue G:224 FN checkers.b[743] LET TerminalValue(P)=..
+TerminalValue G:224 LG checkers.b[451]
+    Terminal(P,d)->TerminalValue(P),(VALOF {..})
+UTF8 M:-1 DEF libhdr.h[571] UTF8=-1
+abort G:28 DEF libhdr.h[61] abort=28
+abort G:28 LG checkers.b[377] abort(999)
+abort G:28 LG checkers.b[588] abort(999)
+abort G:28 LG checkers.b[603] abort(6334)
+appendstream G:66 DEF libhdr.h[99] appendstream=66
+binrdch G:39 DEF libhdr.h[72] binrdch=39
+binwrch G:42 DEF libhdr.h[75] binwrch=42
+bits G:234 DEF checkers.b[271] bits=
+bits G:234 FN checkers.b[729] LET bits(x)=..
+bits G:234 LG checkers.b[751] val:=val+3*(bits(blackmen)-bits(blackmen))
+bits G:234 LG checkers.b[752]
+    val:=val+9*(bits(blackkings)-bits(blackkings))
+bitsperbyte M:8 DEF libhdr.h[238] bitsperbyte=8
+bitsperbyte M:8 MAN libhdr.h[239] bitsperword=bitsperbyte*bytesperword
+bitsperword M:64 DEF libhdr.h[239] bitsperword=bitsperbyte*bytesperword
+bitsperword M:64 MAN libhdr.h[241] minint=1<<bitsperword-1
+bl F:46 LF checkers.b[774] bl()
+bl F:46 LF checkers.b[775] bl()
+bl F:46 LF checkers.b[776] bl()
+bl F:46 LF checkers.b[777] bl()
+bl F:46 LF checkers.b[778] bl()
+bl F:46 LF checkers.b[779] bl()
+bl F:46 LF checkers.b[780] bl()
+bl F:46 LF checkers.b[781] bl()
+bl F:46 RT checkers.b[784] LET bl()BE..
+black G:205 DEF checkers.b[238] black=
+black G:205 LG checkers.b[345] black
+black G:205 SG checkers.b[336] black:=253920
+black G:205 SG checkers.b[341] black:=#x402C4000
+bootregs M:11 DEF libhdr.h[469] bootregs=11
+bytesperword M:8 DEF libhdr.h[237] bytesperword=1<<B2Wsh
+bytesperword M:8 MAN libhdr.h[239] bitsperword=bitsperbyte*bytesperword
+bytesperword M:8 MAN libhdr.h[240] mcaddrinc=bytesperword
+bytesperword M:8 MAN libhdr.h[521]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+bytesperword M:8 MAN libhdr.h[636]
+    tcb_upb=tcb_namebase+15/bytesperword+1
+callco G:19 DEF libhdr.h[52] callco=19
+callseg G:107 DEF libhdr.h[141] callseg=107
+capitalch G:96 DEF libhdr.h[130] capitalch=96
+changeco G:6 DEF libhdr.h[38] changeco=6
+changepri G:155 DEF libhdr.h[203] changepri=155
+cis G:12 DEF libhdr.h[45] cis=12
+clear_words G:115 DEF libhdr.h[149] clear_words=115
+cli_commanddir G:136 DEF libhdr.h[173] cli_commanddir=136
+cli_commandfile G:143 DEF libhdr.h[184] cli_commandfile=143
+cli_commandname G:138 DEF libhdr.h[179] cli_commandname=138
+cli_currentinput G:142 DEF libhdr.h[183] cli_currentinput=142
+cli_currentoutput G:146 DEF libhdr.h[190] cli_currentoutput=146
+cli_data G:135 DEF libhdr.h[172] cli_data=135
+cli_defaultstack G:147 DEF libhdr.h[191] cli_defaultstack=147
+cli_faillevel G:139 DEF libhdr.h[180] cli_faillevel=139
+cli_init G:133 DEF libhdr.h[170] cli_init=133
+cli_initialfaillevel M:10 DEF libhdr.h[580]
+    cli_initialfaillevel=return_hard
+cli_initialstack M:50000 DEF libhdr.h[579] cli_initialstack=50000
+cli_module G:149 DEF libhdr.h[193] cli_module=149
+cli_module_gn M:149 DEF libhdr.h[578] cli_module_gn=149
+cli_preloadlist G:145 DEF libhdr.h[189] cli_preloadlist=145
+cli_prompt G:140 DEF libhdr.h[181] cli_prompt=140
+cli_result2 G:134 DEF libhdr.h[171] cli_result2=134
+cli_returncode G:137 DEF libhdr.h[174] cli_returncode=137
+cli_standardinput G:141 DEF libhdr.h[182] cli_standardinput=141
+cli_standardoutput G:148 DEF libhdr.h[192] cli_standardoutput=148
+cli_status G:144 DEF libhdr.h[186] cli_status=144
+cli_tallyflag G:132 DEF libhdr.h[169] cli_tallyflag=132
+clibit_comcom M:4 DEF libhdr.h[585] clibit_comcom=4
+clibit_endcli M:256 DEF libhdr.h[591] clibit_endcli=256
+clibit_eofdel M:2 DEF libhdr.h[584] clibit_eofdel=2
+clibit_maincli M:8 DEF libhdr.h[586] clibit_maincli=8
+clibit_mbxcli M:64 DEF libhdr.h[589] clibit_mbxcli=64
+clibit_newcli M:16 DEF libhdr.h[587] clibit_newcli=16
+clibit_noprompt M:1 DEF libhdr.h[583] clibit_noprompt=1
+clibit_runcli M:32 DEF libhdr.h[588] clibit_runcli=32
+clibit_tcpcli M:128 DEF libhdr.h[590] clibit_tcpcli=128
+clihook G:4 DEF libhdr.h[36] clihook=4
+cliregs M:21 DEF libhdr.h[470] cliregs=21
+co_c M:5 DEF libhdr.h[283] co_c=
+co_fn M:3 DEF libhdr.h[281] co_fn=
+co_list M:2 DEF libhdr.h[280] co_list=
+co_parent M:1 DEF libhdr.h[279] co_parent=
+co_pptr M:0 DEF libhdr.h[278] co_pptr=0
+co_size M:4 DEF libhdr.h[282] co_size=
+codewrch G:126 DEF libhdr.h[160] codewrch=126
+colist G:8 DEF libhdr.h[40] colist=8
+compch G:97 DEF libhdr.h[131] compch=97
+compstring G:98 DEF libhdr.h[132] compstring=98
+consoletask G:171 DEF libhdr.h[216] consoletask=171
+contains G:235 DEF checkers.b[272] contains=
+contains G:235 FN checkers.b[716] LET contains(L,node)=..
+contains G:235 LG checkers.b[707] TEST contains(L,node) THEN .. ELSE ..
+copy_bytes G:116 DEF libhdr.h[150] copy_bytes=116
+copy_words G:114 DEF libhdr.h[148] copy_words=114
+copydir G:79 DEF libhdr.h[112] copydir=79
+copyobj G:75 DEF libhdr.h[108] copyobj=75
+copystring G:99 DEF libhdr.h[133] copystring=99
+cos G:13 DEF libhdr.h[46] cos=13
+cowait G:20 DEF libhdr.h[53] cowait=20
+createco G:17 DEF libhdr.h[50] createco=17
+createdev G:172 DEF libhdr.h[217] createdev=172
+createdir G:82 DEF libhdr.h[115] createdir=82
+createtask G:153 DEF libhdr.h[201] createtask=153
+currco G:7 DEF libhdr.h[39] currco=7
+current_language G:190 DEF libhdr.h[228] current_language=190
+currentdir G:14 DEF libhdr.h[47] currentdir=14
+dat_to_strings G:110 DEF libhdr.h[144] dat_to_strings=110
+datstamp G:109 DEF libhdr.h[143] datstamp=109
+datstring G:108 DEF libhdr.h[142] datstring=108
+deadcode M:#xDEADC0DE DEF libhdr.h[261] deadcode=-#x21523F22
+debugging G:245 DEF checkers.b[284] debugging=
+debugging G:245 SG checkers.b[302] debugging:=FALSE
+debugging G:245 SG checkers.b[316] debugging:=argv!2
+delay G:128 DEF libhdr.h[162] delay=128
+delayuntil G:129 DEF libhdr.h[163] delayuntil=129
+deleteco G:18 DEF libhdr.h[51] deleteco=18
+deletedev G:173 DEF libhdr.h[218] deletedev=173
+deletefile G:76 DEF libhdr.h[109] deletefile=76
+deleteself G:125 DEF libhdr.h[159] deleteself=125
+deletetask G:154 DEF libhdr.h[202] deletetask=154
+deplete G:43 DEF libhdr.h[76] deplete=43
+endread G:60 DEF libhdr.h[93] endread=60
+endstream G:62 DEF libhdr.h[95] endstream=62
+endstream G:62 LG checkers.b[357] endstream(tostream)
+endstreamch M:-1 DEF libhdr.h[244] endstreamch=-1
+endtask G:162 DEF libhdr.h[210] endtask=162
+endwrite G:61 DEF libhdr.h[94] endwrite=61
+entryword M:57311 DEF libhdr.h[263] entryword=57311
+fault G:174 DEF libhdr.h[219] fault=174
+findappend G:130 DEF libhdr.h[164] findappend=130
+findarg G:104 DEF libhdr.h[138] findarg=104
+findinoutput G:50 DEF libhdr.h[83] findinoutput=50
+findinput G:48 DEF libhdr.h[81] findinput=48
+findoutput G:49 DEF libhdr.h[82] findoutput=49
+findoutput G:49 LG checkers.b[319] tostream:=findoutput(tofilename)
+findstream G:52 DEF libhdr.h[85] findstream=52
+findupdate G:51 DEF libhdr.h[84] findupdate=51
+fl_64to32 M:45 DEF libhdr.h[567] fl_64to32=
+fl_F2N M:42 DEF libhdr.h[564] fl_F2N=
+fl_N2F M:41 DEF libhdr.h[563] fl_N2F=
+fl_abs M:5 DEF libhdr.h[534] fl_abs=
+fl_acos M:20 DEF libhdr.h[539] fl_acos=20
+fl_add M:9 DEF libhdr.h[536] fl_add=
+fl_asin M:21 DEF libhdr.h[540] fl_asin=
+fl_atan M:22 DEF libhdr.h[541] fl_atan=
+fl_atan2 M:23 DEF libhdr.h[542] fl_atan2=
+fl_avail M:0 DEF libhdr.h[532] fl_avail=0
+fl_ceil M:38 DEF libhdr.h[557] fl_ceil=
+fl_cos M:24 DEF libhdr.h[543] fl_cos=
+fl_cosh M:27 DEF libhdr.h[546] fl_cosh=
+fl_div M:7 DEF libhdr.h[535] fl_div=
+fl_eq M:13 DEF libhdr.h[537] fl_eq=
+fl_exp M:30 DEF libhdr.h[549] fl_exp=
+fl_fix M:4 DEF libhdr.h[534] fl_fix=
+fl_float M:3 DEF libhdr.h[534] fl_float=
+fl_floor M:39 DEF libhdr.h[558] fl_floor=
+fl_frexp M:31 DEF libhdr.h[550] fl_frexp=
+fl_ge M:18 DEF libhdr.h[537] fl_ge=
+fl_gr M:16 DEF libhdr.h[537] fl_gr=
+fl_ldexp M:32 DEF libhdr.h[551] fl_ldexp=
+fl_le M:17 DEF libhdr.h[537] fl_le=
+fl_log M:33 DEF libhdr.h[552] fl_log=
+fl_log10 M:34 DEF libhdr.h[553] fl_log10=
+fl_ls M:15 DEF libhdr.h[537] fl_ls=
+fl_mk M:1 DEF libhdr.h[533] fl_mk=
+fl_mod M:8 DEF libhdr.h[535] fl_mod=
+fl_modf M:40 DEF libhdr.h[559] fl_modf=
+fl_mul M:6 DEF libhdr.h[535] fl_mul=
+fl_ne M:14 DEF libhdr.h[537] fl_ne=
+fl_neg M:12 DEF libhdr.h[536] fl_neg=
+fl_pos M:11 DEF libhdr.h[536] fl_pos=
+fl_pow M:36 DEF libhdr.h[555] fl_pow=36
+fl_radius2 M:43 DEF libhdr.h[565] fl_radius2=
+fl_radius3 M:44 DEF libhdr.h[566] fl_radius3=
+fl_sin M:25 DEF libhdr.h[544] fl_sin=
+fl_sinh M:28 DEF libhdr.h[547] fl_sinh=
+fl_sqrt M:37 DEF libhdr.h[556] fl_sqrt=
+fl_sub M:10 DEF libhdr.h[536] fl_sub=
+fl_tan M:26 DEF libhdr.h[545] fl_tan=
+fl_tanh M:29 DEF libhdr.h[548] fl_tanh=
+fl_unmk M:2 DEF libhdr.h[533] fl_unmk=
+flag_a M:1 DEF libhdr.h[692] flag_a=1<<0
+flag_b M:2 DEF libhdr.h[693] flag_b=1<<1
+flag_c M:4 DEF libhdr.h[694] flag_c=1<<2
+flag_d M:8 DEF libhdr.h[695] flag_d=1<<3
+flag_e M:16 DEF libhdr.h[696] flag_e=1<<4
+freelist G:239 DEF checkers.b[277] freelist=
+freelist G:239 LG checkers.b[370] IF freelist DO ..
+freelist G:239 LG checkers.b[371] p:=freelist
+freelist G:239 LG checkers.b[390] h1!node:=freelist
+freelist G:239 LG checkers.b[397] h1!t:=freelist
+freelist G:239 LG checkers.b[402] freelist
+freelist G:239 SG checkers.b[330] freelist:=0
+freelist G:239 SG checkers.b[372] freelist:=h1!p
+freelist G:239 SG checkers.b[391] freelist:=node
+freelist G:239 SG checkers.b[398] freelist:=L
+freelistlength G:233 DEF checkers.b[270] freelistlength=
+freelistlength G:233 FN checkers.b[401] LET freelistlength()=..
+freelistlength G:233 LG checkers.b[354]
+    writef("%n wo's is %n*n",spacet-spacep,spacet-spacev,freelistlength())
+freenode G:232 DEF checkers.b[269] freenode=
+freenode G:232 LG checkers.b[708] freenode(node)
+freenode G:232 RT checkers.b[389] LET freenode(node)BE..
+freenodelist F:12 RT checkers.b[394] LET freenodelist(L)BE..
+freeobj G:78 DEF libhdr.h[111] freeobj=78
+freevec G:27 DEF libhdr.h[60] freevec=27
+freevec G:27 LG checkers.b[359] freevec(spacev)
+g_colist M:8 DEF libhdr.h[269] g_colist=8
+g_currco M:7 DEF libhdr.h[268] g_currco=7
+g_extbase M:950 DEF libhdr.h[710] g_extbase=950
+g_glbase M:450 DEF libhdr.h[709] g_glbase=450
+g_globsize M:0 DEF libhdr.h[266] g_globsize=0
+g_grfbase M:400 DEF libhdr.h[706] g_grfbase=400
+g_keyboard M:20 DEF libhdr.h[273] g_keyboard=20
+g_memsize M:14 DEF libhdr.h[272] g_memsize=14
+g_rootnode M:9 DEF libhdr.h[270] g_rootnode=9
+g_screen M:21 DEF libhdr.h[274] g_screen=21
+g_sdlbase M:450 DEF libhdr.h[708] g_sdlbase=450
+g_sndbase M:400 DEF libhdr.h[707] g_sndbase=400
+g_sys M:3 DEF libhdr.h[267] g_sys=3
+get_record G:71 DEF libhdr.h[104] get_record=71
+get_text G:93 DEF libhdr.h[127] get_text=93
+get_textblib G:93 DEF libhdr.h[126] get_textblib=93
+getlogname G:118 DEF libhdr.h[152] getlogname=118
+getremipaddr G:54 DEF libhdr.h[87] getremipaddr=54
+getvec G:25 DEF libhdr.h[58] getvec=25
+getvec G:25 LG checkers.b[327] spacev:=getvec(100000)
+getword G:32 DEF libhdr.h[65] getword=32
+globin G:24 DEF libhdr.h[57] globin=24
+globsize G:0 DEF libhdr.h[32] globsize=0
+globword M:#x8F8F0000 DEF libhdr.h[259] globword=-#x70710000
+h1 M:0 DEF checkers.b[288] h1=0
+h1 M:0 MAN checkers.b[372] freelist:=h1!p
+h1 M:0 MAN checkers.b[382] h1!p:=link
+h1 M:0 MAN checkers.b[382] h2!p:=h1!P
+h1 M:0 MAN checkers.b[390] h1!node:=freelist
+h1 M:0 MAN checkers.b[396] WHILE h1!t DO ..
+h1 M:0 MAN checkers.b[396] t:=h1!t
+h1 M:0 MAN checkers.b[397] h1!t:=freelist
+h1 M:0 MAN checkers.b[404] t:=h1!t
+h1 M:0 MAN checkers.b[433] h1!r:=h1!P
+h1 M:0 MAN checkers.b[439] h1!L
+h1 M:0 MAN checkers.b[523] h1!P
+h1 M:0 MAN checkers.b[558] h1!P
+h1 M:0 MAN checkers.b[581] h1!r:=X
+h1 M:0 MAN checkers.b[598] h1!ip
+h1 M:0 MAN checkers.b[634] h1!P
+h1 M:0 MAN checkers.b[661]
+    RESULTIS Join(CaptureTree(@h2!L),CombineCaptureTrees(h1!L))
+h1 M:0 MAN checkers.b[669] L1:=h1!L1
+h1 M:0 MAN checkers.b[669] WHILE h1!L1 DO ..
+h1 M:0 MAN checkers.b[670] h1!L1:=L2
+h1 M:0 MAN checkers.b[685] L1:=h1!L1
+h1 M:0 MAN checkers.b[689] L2:=h1!L2
+h1 M:0 MAN checkers.b[693] L3:=h1!L3
+h1 M:0 MAN checkers.b[697] L4:=h1!L4
+h1 M:0 MAN checkers.b[711] h1!node:=L
+h1 M:0 MAN checkers.b[722] L:=h1!L
+h1 M:0 MAN checkers.b[745] h1!P&~kings
+h1 M:0 MAN checkers.b[746] h1!P&kings
+h1 M:0 MAN checkers.b[790] h1!P
+h1 M:0 MAN checkers.b[794] W:=h1!P
+h1 M:0 MAN checkers.b[817] L:=h1!L
+h2 M:1 DEF checkers.b[288] h2=
+h2 M:1 MAN checkers.b[382] h2!p:=h1!P
+h2 M:1 MAN checkers.b[382] h3!p:=h2!P
+h2 M:1 MAN checkers.b[433] h2!r:=h2!P
+h2 M:1 MAN checkers.b[440] @h2!L
+h2 M:1 MAN checkers.b[523] h2!P
+h2 M:1 MAN checkers.b[558] h2!P
+h2 M:1 MAN checkers.b[581] h2!r:=Y
+h2 M:1 MAN checkers.b[598] h2!ip
+h2 M:1 MAN checkers.b[634] h2!P
+h2 M:1 MAN checkers.b[661]
+    RESULTIS Join(CaptureTree(@h2!L),CombineCaptureTrees(h1!L))
+h2 M:1 MAN checkers.b[719]
+    IF h2!L=h2!node&h3!L=h2!node&h4!L=h4!node&h5!L=h5!node&h6!L=h6!node DO ..
+h2 M:1 MAN checkers.b[747] h2!P&~king
+h2 M:1 MAN checkers.b[748] h2!P&kings
+h2 M:1 MAN checkers.b[790] h2!P
+h2 M:1 MAN checkers.b[794] B:=h2!P
+h2 M:1 MAN checkers.b[816] prboard(@h2!L)
+h3 M:2 DEF checkers.b[288] h3=
+h3 M:2 MAN checkers.b[382] h3!p:=h2!P
+h3 M:2 MAN checkers.b[382] h4!p:=h3!P
+h3 M:2 MAN checkers.b[433] h3!r:=h3!P
+h3 M:2 MAN checkers.b[523] h3!P
+h3 M:2 MAN checkers.b[558] h3!P
+h3 M:2 MAN checkers.b[581] h3!r:=K
+h3 M:2 MAN checkers.b[598] h3!ip
+h3 M:2 MAN checkers.b[623] h3!ip
+h3 M:2 MAN checkers.b[634] h3!P
+h3 M:2 MAN checkers.b[719]
+    IF h2!L=h2!node&h3!L=h2!node&h4!L=h4!node&h5!L=h5!node&h6!L=h6!node DO ..
+h3 M:2 MAN checkers.b[744] h3!P
+h3 M:2 MAN checkers.b[790] h3!P
+h4 M:3 DEF checkers.b[288] h4=
+h4 M:3 MAN checkers.b[382] h4!p:=h3!P
+h4 M:3 MAN checkers.b[382] h5!p:=h4!P
+h4 M:3 MAN checkers.b[433] h4!r:=h4!P
+h4 M:3 MAN checkers.b[523] h4!P
+h4 M:3 MAN checkers.b[558] h4!P
+h4 M:3 MAN checkers.b[581] h4!r:=Sigma
+h4 M:3 MAN checkers.b[598] -h4!ip
+h4 M:3 MAN checkers.b[634] h4!P
+h4 M:3 MAN checkers.b[719]
+    IF h2!L=h2!node&h3!L=h2!node&h4!L=h4!node&h5!L=h5!node&h6!L=h6!node DO ..
+h4 M:3 MAN checkers.b[772] TEST h4!P>0 THEN .. ELSE ..
+h4 M:3 MAN checkers.b[790] h4!P
+h5 M:4 DEF checkers.b[288] h5=
+h5 M:4 MAN checkers.b[382] h5!p:=h4!P
+h5 M:4 MAN checkers.b[382] h6!p:=h5!P
+h5 M:4 MAN checkers.b[433] h5!r:=h5!P
+h5 M:4 MAN checkers.b[581] h5!r:=theta
+h5 M:4 MAN checkers.b[624] h5!ip
+h5 M:4 MAN checkers.b[719]
+    IF h2!L=h2!node&h3!L=h2!node&h4!L=h4!node&h5!L=h5!node&h6!L=h6!node DO ..
+h5 M:4 MAN checkers.b[790] h5!P
+h6 M:5 DEF checkers.b[288] h6=
+h6 M:5 MAN checkers.b[382] h6!p:=h5!P
+h6 M:5 MAN checkers.b[719]
+    IF h2!L=h2!node&h3!L=h2!node&h4!L=h4!node&h5!L=h5!node&h6!L=h6!node DO ..
+hold G:158 DEF libhdr.h[206] hold=158
+id_appendscb M:132 DEF libhdr.h[481] id_appendscb=132
+id_inoutscb M:131 DEF libhdr.h[480] id_inoutscb=131
+id_inscb M:129 DEF libhdr.h[478] id_inscb=129
+id_outscb M:130 DEF libhdr.h[479] id_outscb=130
+initco G:22 DEF libhdr.h[55] initco=22
+initio G:46 DEF libhdr.h[79] initio=46
+input G:58 DEF libhdr.h[91] input=58
+input G:58 LG checkers.b[298] stdin:=input()
+insert F:38 FN checkers.b[703] LET insert(L,node)=..
+insert F:38 LF checkers.b[686] L:=insert(L,node)
+insert F:38 LF checkers.b[690] L:=insert(L,node)
+insert F:38 LF checkers.b[694] L:=insert(L,node)
+insert F:38 LF checkers.b[698] L:=insert(L,node)
+instrcount G:121 DEF libhdr.h[155] instrcount=121
+intflag G:119 DEF libhdr.h[153] intflag=119
+isrregs M:41 DEF libhdr.h[476] isrregs=41
+kings G:207 DEF checkers.b[240] kings=
+kings G:207 LG checkers.b[345] kings
+kings G:207 LG checkers.b[745] h1!P&~kings
+kings G:207 LG checkers.b[746] h1!P&kings
+kings G:207 LG checkers.b[748] h2!P&kings
+kings G:207 SG checkers.b[338] kings:=0
+kings G:207 SG checkers.b[343] kings:=#x100000
+klibregs M:21 DEF libhdr.h[471] klibregs=21
+level G:15 DEF libhdr.h[48] level=15
+loadseg G:105 DEF libhdr.h[139] loadseg=105
+locatedir G:80 DEF libhdr.h[113] locatedir=80
+locateobj G:81 DEF libhdr.h[114] locateobj=81
+longjump G:16 DEF libhdr.h[49] longjump=16
+maxint M:#xFFFFFFFF DEF libhdr.h[242] maxint=minint-1
+mcaddrinc M:8 DEF libhdr.h[240] mcaddrinc=bytesperword
+memoryfree G:131 DEF libhdr.h[165] memoryfree=131
+minint M:#x00000000 DEF libhdr.h[241] minint=1<<bitsperword-1
+minint M:#x00000000 MAN libhdr.h[242] maxint=minint-1
+mknode G:231 DEF checkers.b[268] mknode=
+mknode G:231 FN checkers.b[363] LET mknode(link,P)=..
+mknode G:231 LG checkers.b[604] RESULTIS mknode(NIL,@X)
+muldiv G:5 DEF libhdr.h[37] muldiv=5
+newline G:84 DEF libhdr.h[117] newline=84
+newline G:84 LG checkers.b[786] newline()
+newpage G:120 DEF libhdr.h[154] newpage=120
+nl F:47 LF checkers.b[774] nl()
+nl F:47 LF checkers.b[775] nl()
+nl F:47 LF checkers.b[776] nl()
+nl F:47 LF checkers.b[777] nl()
+nl F:47 LF checkers.b[778] nl()
+nl F:47 LF checkers.b[779] nl()
+nl F:47 LF checkers.b[780] nl()
+nl F:47 LF checkers.b[781] nl()
+nl F:47 RT checkers.b[786] LET nl()BE..
+note G:63 DEF libhdr.h[96] note=63
+notinuse M:-1 DEF libhdr.h[594] notinuse=-1
+output G:59 DEF libhdr.h[92] output=59
+output G:59 LG checkers.b[299] stdout:=output()
+packstring G:30 DEF libhdr.h[63] packstring=30
+pathfindinput G:53 DEF libhdr.h[86] pathfindinput=53
+peercom G:179 DEF libhdr.h[222] peercom=179
+pkt_a1 M:5 DEF libhdr.h[603] pkt_a1=5
+pkt_a2 M:6 DEF libhdr.h[604] pkt_a2=6
+pkt_a3 M:7 DEF libhdr.h[605] pkt_a3=7
+pkt_a4 M:8 DEF libhdr.h[606] pkt_a4=8
+pkt_a5 M:9 DEF libhdr.h[607] pkt_a5=9
+pkt_a6 M:10 DEF libhdr.h[608] pkt_a6=10
+pkt_arg1 M:5 DEF libhdr.h[603] pkt_arg1=5
+pkt_arg2 M:6 DEF libhdr.h[604] pkt_arg2=6
+pkt_arg3 M:7 DEF libhdr.h[605] pkt_arg3=7
+pkt_arg4 M:8 DEF libhdr.h[606] pkt_arg4=8
+pkt_arg5 M:9 DEF libhdr.h[607] pkt_arg5=9
+pkt_arg6 M:10 DEF libhdr.h[608] pkt_arg6=10
+pkt_devid M:1 DEF libhdr.h[599] pkt_devid=1
+pkt_devtaskid M:1 DEF libhdr.h[599] pkt_devtaskid=1
+pkt_id M:1 DEF libhdr.h[599] pkt_id=1
+pkt_link M:0 DEF libhdr.h[598] pkt_link=0
+pkt_op M:2 DEF libhdr.h[600] pkt_op=2
+pkt_r1 M:3 DEF libhdr.h[601] pkt_r1=3
+pkt_r2 M:4 DEF libhdr.h[602] pkt_r2=4
+pkt_res1 M:3 DEF libhdr.h[601] pkt_res1=3
+pkt_res2 M:4 DEF libhdr.h[602] pkt_res2=4
+pkt_taskid M:1 DEF libhdr.h[599] pkt_taskid=1
+pkt_type M:2 DEF libhdr.h[600] pkt_type=2
+point G:64 DEF libhdr.h[97] point=64
+pollingch M:-3 DEF libhdr.h[246] pollingch=-3
+prboard G:229 DEF checkers.b[266] prboard=
+prboard G:229 LG checkers.b[348] prboard(@X)
+prboard G:229 LG checkers.b[421] prboard(r)
+prboard G:229 LG checkers.b[602] prboard(@X)
+prboard G:229 LG checkers.b[816] prboard(@h2!L)
+prboard G:229 RT checkers.b[770] LET prboard(P)BE..
+prlist G:230 DEF checkers.b[267] prlist=
+prlist G:230 RT checkers.b[804] LET prlist(L)BE..
+put_record G:72 DEF libhdr.h[105] put_record=72
+putword G:33 DEF libhdr.h[66] putword=33
+qpkt G:161 DEF libhdr.h[209] qpkt=161
+randno G:34 DEF libhdr.h[67] randno=34
+randseed G:127 DEF libhdr.h[161] randseed=127
+rdargs G:102 DEF libhdr.h[136] rdargs=102
+rdargs G:102 LG checkers.b[309]
+    UNLESS rdargs("TO/K,-t/S,-d/S",argv,50) DO ..
+rdargs2 G:26 DEF libhdr.h[59] rdargs2=26
+rdch G:38 DEF libhdr.h[71] rdch=38
+rditem G:103 DEF libhdr.h[137] rditem=103
+readflt G:74 DEF libhdr.h[107] readflt=74
+readn G:83 DEF libhdr.h[116] readn=83
+readwords G:44 DEF libhdr.h[77] readwords=44
+recordnote G:70 DEF libhdr.h[103] recordnote=70
+recordpoint G:69 DEF libhdr.h[102] recordpoint=69
+release G:159 DEF libhdr.h[207] release=159
+renamefile G:77 DEF libhdr.h[110] renamefile=77
+result2 G:10 DEF libhdr.h[42] result2=10
+resumeco G:21 DEF libhdr.h[54] resumeco=21
+return_hard M:10 DEF libhdr.h[575] return_hard=10
+return_hard M:10 MAN libhdr.h[580] cli_initialfaillevel=return_hard
+return_ok M:0 DEF libhdr.h[577] return_ok=0
+return_severe M:20 DEF libhdr.h[574] return_severe=20
+return_soft M:5 DEF libhdr.h[576] return_soft=5
+returnpkt G:169 DEF libhdr.h[214] returnpkt=169
+rewindstream G:65 DEF libhdr.h[98] rewindstream=65
+rootnode G:9 DEF libhdr.h[41] rootnode=9
+rootnodeaddr M:100 DEF libhdr.h[290] rootnodeaddr=100
+rtn_abortcode M:27 DEF libhdr.h[326] rtn_abortcode=
+rtn_adjclock M:33 DEF libhdr.h[344] rtn_adjclock=
+rtn_blib M:19 DEF libhdr.h[315] rtn_blib=
+rtn_blklist M:4 DEF libhdr.h[297] rtn_blklist=
+rtn_boot M:17 DEF libhdr.h[313] rtn_boot=
+rtn_boottrace M:39 DEF libhdr.h[359] rtn_boottrace=
+rtn_bptaddr M:9 DEF libhdr.h[304] rtn_bptaddr=
+rtn_bptinstr M:10 DEF libhdr.h[305] rtn_bptinstr=
+rtn_clkintson M:6 DEF libhdr.h[300] rtn_clkintson=
+rtn_clwkq M:12 DEF libhdr.h[308] rtn_clwkq=
+rtn_context M:28 DEF libhdr.h[327] rtn_context=
+rtn_crntask M:3 DEF libhdr.h[296] rtn_crntask=
+rtn_days M:40 DEF libhdr.h[362] rtn_days=
+rtn_dbgvars M:11 DEF libhdr.h[306] rtn_dbgvars=
+rtn_dcountv M:34 DEF libhdr.h[346] rtn_dcountv=
+rtn_devtab M:1 DEF libhdr.h[294] rtn_devtab=
+rtn_dumpflag M:25 DEF libhdr.h[323] rtn_dumpflag=
+rtn_envlist M:26 DEF libhdr.h[324] rtn_envlist=
+rtn_hdrsvar M:37 DEF libhdr.h[355] rtn_hdrsvar=
+rtn_hostaddsize M:62 DEF libhdr.h[392] rtn_hostaddsize=
+rtn_icount M:48 DEF libhdr.h[375] rtn_icount=
+rtn_idletcb M:32 DEF libhdr.h[343] rtn_idletcb=
+rtn_info M:15 DEF libhdr.h[311] rtn_info=
+rtn_insadebug M:8 DEF libhdr.h[302] rtn_insadebug=
+rtn_intflag M:24 DEF libhdr.h[322] rtn_intflag=
+rtn_joyaxis0 M:55 DEF libhdr.h[384] rtn_joyaxis0=
+rtn_joyaxis1 M:56 DEF libhdr.h[385] rtn_joyaxis1=
+rtn_joyaxis2 M:57 DEF libhdr.h[386] rtn_joyaxis2=
+rtn_joyaxis3 M:58 DEF libhdr.h[387] rtn_joyaxis3=
+rtn_joyaxis4 M:59 DEF libhdr.h[388] rtn_joyaxis4=
+rtn_joyaxis5 M:60 DEF libhdr.h[389] rtn_joyaxis5=
+rtn_joyaxis6 M:61 DEF libhdr.h[390] rtn_joyaxis6=
+rtn_joyaxiscount M:52 DEF libhdr.h[381] rtn_joyaxiscount=
+rtn_joybuttoncount M:51 DEF libhdr.h[380] rtn_joybuttoncount=
+rtn_joybuttons M:54 DEF libhdr.h[383] rtn_joybuttons=
+rtn_joycurrbuttons M:53 DEF libhdr.h[382] rtn_joycurrbuttons=
+rtn_joystickfd M:49 DEF libhdr.h[378] rtn_joystickfd=
+rtn_joystickfd1 M:50 DEF libhdr.h[379] rtn_joystickfd1=
+rtn_keyboard M:20 DEF libhdr.h[316] rtn_keyboard=
+rtn_klib M:18 DEF libhdr.h[314] rtn_klib=
+rtn_lastch M:7 DEF libhdr.h[301] rtn_lastch=
+rtn_lastg M:30 DEF libhdr.h[336] rtn_lastg=
+rtn_lastp M:29 DEF libhdr.h[335] rtn_lastp=
+rtn_lastst M:31 DEF libhdr.h[337] rtn_lastst=
+rtn_mc0 M:43 DEF libhdr.h[367] rtn_mc0=
+rtn_mc1 M:44 DEF libhdr.h[369] rtn_mc1=
+rtn_mc2 M:45 DEF libhdr.h[370] rtn_mc2=
+rtn_mc3 M:46 DEF libhdr.h[371] rtn_mc3=
+rtn_membase M:13 DEF libhdr.h[309] rtn_membase=
+rtn_memsize M:14 DEF libhdr.h[310] rtn_memsize=
+rtn_mins M:41 DEF libhdr.h[364] rtn_mins=rtn_msecs
+rtn_msecs M:41 DEF libhdr.h[363] rtn_msecs=
+rtn_msecs M:41 MAN libhdr.h[364] rtn_mins=rtn_msecs
+rtn_pathvar M:36 DEF libhdr.h[353] rtn_pathvar=
+rtn_rootvar M:35 DEF libhdr.h[351] rtn_rootvar=
+rtn_screen M:21 DEF libhdr.h[317] rtn_screen=
+rtn_scriptsvar M:38 DEF libhdr.h[357] rtn_scriptsvar=
+rtn_sys M:16 DEF libhdr.h[312] rtn_sys=
+rtn_system M:47 DEF libhdr.h[373] rtn_system=
+rtn_tallyv M:5 DEF libhdr.h[298] rtn_tallyv=
+rtn_tasktab M:0 DEF libhdr.h[293] rtn_tasktab=0
+rtn_tcblist M:2 DEF libhdr.h[295] rtn_tcblist=
+rtn_ticks M:42 DEF libhdr.h[365] rtn_ticks=
+rtn_upb M:80 DEF libhdr.h[395] rtn_upb=80
+rtn_vecstatsv M:22 DEF libhdr.h[319] rtn_vecstatsv=
+rtn_vecstatsvupb M:23 DEF libhdr.h[320] rtn_vecstatsvupb=
+sardch G:36 DEF libhdr.h[69] sardch=36
+saveregs M:31 DEF libhdr.h[472] saveregs=31
+sawrch G:37 DEF libhdr.h[70] sawrch=37
+sawritef G:95 DEF libhdr.h[129] sawritef=95
+scb_blength M:14 DEF libhdr.h[506] scb_blength=
+scb_block M:9 DEF libhdr.h[501] scb_block=
+scb_buf M:3 DEF libhdr.h[495] scb_buf=
+scb_bufend M:11 DEF libhdr.h[503] scb_bufend=
+scb_encoding M:20 DEF libhdr.h[517] scb_encoding=
+scb_end M:5 DEF libhdr.h[497] scb_end=
+scb_endfn M:8 DEF libhdr.h[500] scb_endfn=
+scb_fd M:16 DEF libhdr.h[508] scb_fd=
+scb_fd1 M:17 DEF libhdr.h[509] scb_fd1=
+scb_id M:0 DEF libhdr.h[492] scb_id=0
+scb_lblock M:12 DEF libhdr.h[504] scb_lblock=
+scb_ldata M:13 DEF libhdr.h[505] scb_ldata=
+scb_maxnamelen M:31 DEF libhdr.h[490] scb_maxnamelen=31
+scb_maxnamelen M:31 MAN libhdr.h[521]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_name M:21 DEF libhdr.h[519] scb_name=
+scb_name M:21 MAN libhdr.h[521]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_nameeend M:24 DEF libhdr.h[521]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_pos M:4 DEF libhdr.h[496] scb_pos=
+scb_rdfn M:6 DEF libhdr.h[498] scb_rdfn=
+scb_reclen M:15 DEF libhdr.h[507] scb_reclen=
+scb_size M:25 DEF libhdr.h[524] scb_size=
+scb_size M:25 MAN libhdr.h[525] scb_upb=scb_size-1
+scb_task M:2 DEF libhdr.h[494] scb_task=
+scb_timeout M:18 DEF libhdr.h[510] scb_timeout=
+scb_timeoutact M:19 DEF libhdr.h[513] scb_timeoutact=
+scb_type M:1 DEF libhdr.h[493] scb_type=
+scb_upb M:24 DEF libhdr.h[525] scb_upb=scb_size-1
+scb_wrfn M:7 DEF libhdr.h[499] scb_wrfn=
+scb_write M:10 DEF libhdr.h[502] scb_write=
+scbt_console M:-1 DEF libhdr.h[486] scbt_console=-1
+scbt_file M:1 DEF libhdr.h[484] scbt_file=1
+scbt_mbx M:-2 DEF libhdr.h[487] scbt_mbx=-2
+scbt_net M:2 DEF libhdr.h[483] scbt_net=2
+scbt_ram M:0 DEF libhdr.h[485] scbt_ram=0
+scbt_tcp M:-3 DEF libhdr.h[488] scbt_tcp=-3
+sectword M:64991 DEF libhdr.h[262] sectword=64991
+selectinput G:56 DEF libhdr.h[89] selectinput=56
+selectoutput G:57 DEF libhdr.h[90] selectoutput=57
+selectoutput G:57 LG checkers.b[324] selectoutput(tostream)
+sendpkt G:165 DEF libhdr.h[212] sendpkt=165
+set_process_name G:175 DEF libhdr.h[220] set_process_name=175
+setbit G:112 DEF libhdr.h[146] setbit=112
+setbulk G:122 DEF libhdr.h[156] setbulk=122
+setflags G:156 DEF libhdr.h[204] setflags=156
+setlogname G:117 DEF libhdr.h[151] setlogname=117
+setrecordlength G:68 DEF libhdr.h[101] setrecordlength=68
+setseed G:35 DEF libhdr.h[68] setseed=35
+settimeout G:55 DEF libhdr.h[88] settimeout=55
+settimeoutact G:124 DEF libhdr.h[158] settimeoutact=124
+setvec G:181 DEF libhdr.h[225] setvec=181
+sigma G:208 DEF checkers.b[241] sigma=
+spacep G:201 DEF checkers.b[232] spacep=
+spacep G:237 DEF checkers.b[275] spacep=
+spacep G:237 LG checkers.b[354]
+    writef("%n wo's is %n*n",spacet-spacep,spacet-spacev,freelistlength())
+spacep G:237 LG checkers.b[368] spacep-6
+spacep G:237 SG checkers.b[329] spacep:=spacet
+spacep G:237 SG checkers.b[381] spacep:=p
+spacet G:202 DEF checkers.b[233] spacet=
+spacet G:238 DEF checkers.b[276] spacet=
+spacet G:238 LG checkers.b[329] spacep:=spacet
+spacet G:238 LG checkers.b[354]
+    writef("%n wo's is %n*n",spacet-spacep,spacet-spacev,freelistlength())
+spacet G:238 SG checkers.b[328] spacet:=spacev+100000
+spacev G:200 DEF checkers.b[231] spacev=ug
+spacev G:236 DEF checkers.b[274] spacev=
+spacev G:236 LG checkers.b[328] spacet:=spacev+100000
+spacev G:236 LG checkers.b[354]
+    writef("%n wo's is %n*n",spacet-spacep,spacet-spacev,freelistlength())
+spacev G:236 LG checkers.b[359] IF spacev DO ..
+spacev G:236 LG checkers.b[359] freevec(spacev)
+spacev G:236 LG checkers.b[375] IF p<spacev DO ..
+spacev G:236 SG checkers.b[327] spacev:=getvec(100000)
+splitname G:47 DEF libhdr.h[80] splitname=47
+sq F:48 LF checkers.b[774] sq(5,P)
+sq F:48 LF checkers.b[774] sq(6,P)
+sq F:48 LF checkers.b[774] sq(7,P)
+sq F:48 LF checkers.b[774] sq(8,P)
+sq F:48 LF checkers.b[775] sq(10,P)
+sq F:48 LF checkers.b[775] sq(11,P)
+sq F:48 LF checkers.b[775] sq(12,P)
+sq F:48 LF checkers.b[775] sq(9,P)
+sq F:48 LF checkers.b[776] sq(14,P)
+sq F:48 LF checkers.b[776] sq(15,P)
+sq F:48 LF checkers.b[776] sq(16,P)
+sq F:48 LF checkers.b[776] sq(17,P)
+sq F:48 LF checkers.b[777] sq(18,P)
+sq F:48 LF checkers.b[777] sq(19,P)
+sq F:48 LF checkers.b[777] sq(20,P)
+sq F:48 LF checkers.b[777] sq(21,P)
+sq F:48 LF checkers.b[778] sq(23,P)
+sq F:48 LF checkers.b[778] sq(24,P)
+sq F:48 LF checkers.b[778] sq(25,P)
+sq F:48 LF checkers.b[778] sq(26,P)
+sq F:48 LF checkers.b[779] sq(27,P)
+sq F:48 LF checkers.b[779] sq(28,P)
+sq F:48 LF checkers.b[779] sq(29,P)
+sq F:48 LF checkers.b[779] sq(30,P)
+sq F:48 LF checkers.b[780] sq(32,P)
+sq F:48 LF checkers.b[780] sq(33,P)
+sq F:48 LF checkers.b[780] sq(34,P)
+sq F:48 LF checkers.b[780] sq(35,P)
+sq F:48 LF checkers.b[781] sq(36,P)
+sq F:48 LF checkers.b[781] sq(37,P)
+sq F:48 LF checkers.b[781] sq(38,P)
+sq F:48 LF checkers.b[781] sq(39,P)
+sq F:48 RT checkers.b[788] LET sq(n,P)BE..
+srchwk G:150 DEF libhdr.h[198] srchwk=150
+stackfree G:123 DEF libhdr.h[157] stackfree=123
+stackword M:#xABCD1234 DEF libhdr.h[260] stackword=-#x5432EDCC
+start G:1 DEF libhdr.h[33] start=1
+start G:1 FN checkers.b[295] LET start()=..
+startco G:23 DEF libhdr.h[56] startco=23
+stdin G:240 DEF checkers.b[279] stdin=
+stdin G:240 SG checkers.b[298] stdin:=input()
+stdout G:241 DEF checkers.b[280] stdout=
+stdout G:241 SG checkers.b[299] stdout:=output()
+stepstream G:67 DEF libhdr.h[100] stepstream=67
+stop G:2 DEF libhdr.h[34] stop=2
+str2numb G:101 DEF libhdr.h[135] str2numb=101
+string_to_dat G:111 DEF libhdr.h[145] string_to_dat=111
+string_to_number G:100 DEF libhdr.h[134] string_to_number=100
+sys G:3 DEF libhdr.h[35] sys=3
+sysabort G:29 DEF libhdr.h[62] sysabort=29
+t_bhunk M:3000 DEF libhdr.h[256] t_bhunk=3000
+t_bhunk64 M:4000 DEF libhdr.h[257] t_bhunk64=4000
+t_end M:1002 DEF libhdr.h[252] t_end=1002
+t_end64 M:2002 DEF libhdr.h[255] t_end64=2002
+t_hunk M:1000 DEF libhdr.h[250] t_hunk=1000
+t_hunk64 M:2000 DEF libhdr.h[253] t_hunk64=2000
+t_reloc M:1001 DEF libhdr.h[251] t_reloc=1001
+t_reloc64 M:2001 DEF libhdr.h[254] t_reloc64=2001
+taskid G:152 DEF libhdr.h[200] taskid=152
+taskwait G:160 DEF libhdr.h[208] taskwait=160
+tcb G:151 DEF libhdr.h[199] tcb=151
+tcb_a M:11 DEF libhdr.h[625] tcb_a=tcb_regs
+tcb_active M:10 DEF libhdr.h[622] tcb_active=10
+tcb_b M:12 DEF libhdr.h[626] tcb_b=12
+tcb_c M:13 DEF libhdr.h[627] tcb_c=13
+tcb_count M:18 DEF libhdr.h[632] tcb_count=18
+tcb_flags M:5 DEF libhdr.h[617] tcb_flags=5
+tcb_g M:15 DEF libhdr.h[629] tcb_g=15
+tcb_gbase M:8 DEF libhdr.h[620] tcb_gbase=8
+tcb_link M:0 DEF libhdr.h[612] tcb_link=0
+tcb_namebase M:19 DEF libhdr.h[634] tcb_namebase=19
+tcb_namebase M:19 MAN libhdr.h[636]
+    tcb_upb=tcb_namebase+15/bytesperword+1
+tcb_p M:14 DEF libhdr.h[628] tcb_p=14
+tcb_pc M:17 DEF libhdr.h[631] tcb_pc=17
+tcb_pri M:2 DEF libhdr.h[614] tcb_pri=2
+tcb_regs M:11 DEF libhdr.h[624] tcb_regs=11
+tcb_regs M:11 MAN libhdr.h[625] tcb_a=tcb_regs
+tcb_sbase M:9 DEF libhdr.h[621] tcb_sbase=9
+tcb_seglist M:7 DEF libhdr.h[619] tcb_seglist=7
+tcb_st M:16 DEF libhdr.h[630] tcb_st=16
+tcb_state M:4 DEF libhdr.h[616] tcb_state=4
+tcb_stsiz M:6 DEF libhdr.h[618] tcb_stsiz=6
+tcb_taskid M:1 DEF libhdr.h[613] tcb_taskid=1
+tcb_upb M:21 DEF libhdr.h[636] tcb_upb=tcb_namebase+15/bytesperword+1
+tcb_wkq M:3 DEF libhdr.h[615] tcb_wkq=3
+tempval G:11 DEF libhdr.h[43] tempval=11
+testbit G:113 DEF libhdr.h[147] testbit=113
+testflags G:157 DEF libhdr.h[205] testflags=157
+tg M:190 DEF libhdr.h[234] tg=190
+timeoutch M:-2 DEF libhdr.h[245] timeoutch=-2
+tofilename G:242 DEF checkers.b[281] tofilename=
+tofilename G:242 LG checkers.b[318] IF tofilename DO ..
+tofilename G:242 LG checkers.b[319] tostream:=findoutput(tofilename)
+tofilename G:242 LG checkers.b[321] writef("Unabl' output*n",tofilename)
+tofilename G:242 SG checkers.b[300] tofilename:=0
+tofilename G:242 SG checkers.b[314] tofilename:=argv!0
+tostream G:243 DEF checkers.b[282] tostream=
+tostream G:243 LG checkers.b[320] UNLESS tostream DO ..
+tostream G:243 LG checkers.b[324] selectoutput(tostream)
+tostream G:243 LG checkers.b[357] IF tostream DO ..
+tostream G:243 LG checkers.b[357] endstream(tostream)
+tostream G:243 SG checkers.b[300] tostream:=0
+tostream G:243 SG checkers.b[319] tostream:=findoutput(tofilename)
+tracing G:244 DEF checkers.b[283] tracing=
+tracing G:244 SG checkers.b[301] tracing:=FALSE
+tracing G:244 SG checkers.b[315] tracing:=argv!1
+ug M:200 DEF libhdr.h[235] ug=200
+ug M:200 MAN checkers.b[231] spacev=ug
+unhold G:159 DEF libhdr.h[207] unhold=159
+unloadseg G:106 DEF libhdr.h[140] unloadseg=106
+unpackstring G:31 DEF libhdr.h[64] unpackstring=31
+unrdch G:40 DEF libhdr.h[73] unrdch=40
+white G:206 DEF checkers.b[239] white=
+white G:206 LG checkers.b[345] white
+white G:206 SG checkers.b[337] white:=#xFF78000000
+white G:206 SG checkers.b[342] white:=#x0620100000
+wrch G:41 DEF libhdr.h[74] wrch=41
+writed G:85 DEF libhdr.h[118] writed=85
+writee G:180 DEF libhdr.h[224] writee=180
+writef G:94 DEF libhdr.h[128] writef=94
+writef G:94 LG checkers.b[305] writef("ERROR'it BCPL*n")
+writef G:94 LG checkers.b[310] writef("Bad a'heckers*n")
+writef G:94 LG checkers.b[321] writef("Unabl' output*n",tofilename)
+writef G:94 LG checkers.b[347] writef("Initi'osition*n")
+writef G:94 LG checkers.b[354]
+    writef("%n wo's is %n*n",spacet-spacep,spacet-spacev,freelistlength())
+writef G:94 LG checkers.b[376] writef("More ' needed*n")
+writef G:94 LG checkers.b[420] writef("Choos'alue=%n*n",v)
+writef G:94 LG checkers.b[587] writef("MakeM'm error*n")
+writef G:94 LG checkers.b[601] writef("A fin'osition*n")
+writef G:94 LG checkers.b[772] writef("Black to play*n")
+writef G:94 LG checkers.b[773] writef("White to play*n")
+writef G:94 LG checkers.b[784] writef(" + ")
+writef G:94 LG checkers.b[800] writef(" %c ",ch)
+writef G:94 LG checkers.b[801] writef("(%c)",ch)
+writef G:94 LG checkers.b[810] writef("The l's empty*n")
+writef G:94 LG checkers.b[815] writef("%i3: ",count)
+writeflt G:73 DEF libhdr.h[106] writeflt=73
+writehex G:87 DEF libhdr.h[120] writehex=87
+writen G:86 DEF libhdr.h[119] writen=86
+writeoct G:88 DEF libhdr.h[121] writeoct=88
+writes G:89 DEF libhdr.h[122] writes=89
+writet G:90 DEF libhdr.h[123] writet=90
+writeu G:91 DEF libhdr.h[124] writeu=91
+writewords G:45 DEF libhdr.h[78] writewords=45
+writez G:92 DEF libhdr.h[125] writez=92

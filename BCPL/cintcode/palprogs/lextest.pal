@@ -1,0 +1,66 @@
+// This is a comment
+123
+10000
+10001
+//123456789000000.0  // Too many significant digits
+//12345678000000.1  // Too many significant digits
+12345678000000.0
+//12345678000000.
+//0.1.2       // Bad real number
+0.1
+0.000000000012345678
+123.456
+1234.5678
+//1234.56789  // Too many significant digits
+//1234.       //No digits after decimal point
+.123          // Dot followed by Int!
+abc123
+'' 'a' 'abc'
+:=
++
+and
+aug
+,
+-> -*
+/
+def
+do
+dummy
+eq
+**
+false
+fn
+if
+ifnot
+ifso
+>= ge
+> gt
+ifnot
+ifso
+in
+:
+<= le
+< lt
+let
+.
+& logand
+or
+( [
+) ]
+*
+~= ne
+nil
+~ not
+%
+|
+res
+;
+-
+sys
+test
+true
+$
+=
+valof
+within
+ 

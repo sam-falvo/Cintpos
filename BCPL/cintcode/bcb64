@@ -1,0 +1,3 @@
+.k file/a,opt
+echo "bcpl com/<file>.b to enderbig64/<file> oender t64 <opt>"
+bcpl com/<file>.b to enderbig64/<file> oender t64 <opt>

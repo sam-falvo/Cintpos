@@ -1,0 +1,261 @@
+Systematic Test of the BCPL Cintcode System
+
+The BCPL Cintcode System is freely available and designed to run on a
+wide variety of machines. The primary source of this system is from
+its implementation under Wubi Linux running on Window XP on a 32 bit
+Pentium processor. The laptop is a Toshiba Tecra. There are many
+variants of the system and many different architectures to install and
+test.  I plan to test BCPL on many sytems some of which have optional
+access to the SDL and OpenGL libraries. These systems will include the
+following, all of which are currently available to me:
+
+                                                      SDL       OpenGL
+32 bit Pentium running Linux                           Y          Y
+64 bit Pentium running Linux                           ?          ?
+32 bit Pentium under Windows XP                        N          N
+32 bit Pentium under Cygwin running on Windows XP      Y          ?
+32 bit ARM under Linux on a Raspberry Pi               Y          ?
+32 bit OSX on a Mac Mini                               ?          ?
+64 bit Windows 10                                      ?          ?
+32 bit Cygwin under Windows 10                         ?          ?
+
+Some of the questions marks will be replaced by Y or N in due course.
+
+Variants of the BCPL compiler to test are:
+
+Compiler with a BCPL word length of 32 bits compiling to 32 bit Cintcode.
+Compiler with a BCPL word length of 32 bits compiling to 64 bit Cintcode.
+Compiler with a BCPL word length of 64 bits compiling to 32 bit Cintcode.
+Compiler with a BCPL word length of 64 bits compiling to 64 bit Cintcode.
+
+BCPL floating point values are of the same length as the BCPL word and
+require further development.
+
+Similar testing is required for the native code version of BCPL
+(natbcpl) and for the Cintpos System.
+
+This represents a substantial amount of work and will take time to
+complete.
+
+This document will in due course show how to install and test all
+versions of BCPL on the above systems.
+
+
+1) Installation of 32 bit Cintcode BCPL on Wubu Linux on Under Windows XP.
+
+Log into Linux. This will hopefully leave in tour home directory
+expecting bash shell commands. Type: pwd
+
+On my system this outputs:
+
+/home/mr10
+
+indicating that I am logged in with user name mr10 and that my home
+direcory is /home/mr10. Now type: ls -alrt to see what files and
+directories are in you home direcory.
+
+If necessary create directories distribution and Downloads by typing:
+
+mkdir distribution
+mkdir Downloads
+
+Use a web brower to locate and download bcpl.tgz from
+www.cl.cam.ac.uk/users/mr10 and copy it into the directory Download.
+
+Now type:
+
+ls -l Download/bcpl.tgz        -- to check that bcpl.tgz has been downloaded
+cd distribution
+rm -rf BCPL                    -- remove an old version of BCPL is it exists
+tar zxvf ~/Downloads/bcpl.tgz  -- extract all the files of the BCPL system
+cd BCPL/cintcode               -- get into the root directory of the BCPL system
+
+If you have the emacs editor installed (recommended), type:
+
+cp -r Elisp ~/.
+cp .emacs ~/.
+
+This directory and file will cause emacs to display BCPL files more
+readably using colours.
+
+You now must setup the BCPL environment variables BCPLROOT, BCPLPATH,
+BCPLHDRS and BCPLSCRIPTS. There is a file os/linux/setbcplenv to do
+this, but you must first edit it to replace the one occurrence of my
+user id by yours. You may also want to modify the setting of the PATH
+variable. To run this script type
+
+. os/libux/setbcplenv
+
+Check that it has worked by typing
+
+echo $BCPLROOT
+echo $BCPLPATH
+echo $BCPLHDRS
+echo $BCPLSCRIPTS
+echo $PATH
+
+If you want to setup the BCPL environment variables every time you enter
+a bask shell, I would recommend your add the line
+
+. distribition/BCPL/cintcode/os/linux/setbcplenv
+
+as the last line of .bashrc.
+
+We are now ready to rebuild the BCPL Cintcode System. Type:
+
+make clean
+make
+
+This will compile and link all the modules that combine to form the
+BCPL Cintcode System. It ends by and the executing bin/cintsys which
+should leave you in the BCPL Cintcode Command Language Interpreter
+(CLI).
+
+You will notice that it has re-compiled most of the BCPL programs that
+come with the distribution.
+
+You can test the CLI by typing:
+
+echo hello                   -- Execute the echo command
+bcpl com/echo.b to junk      -- Compile the echo program from its source
+junk hello                   -- Execute the resulting compiled program
+c bc echo                    -- Re-compile echo using the command comman bc
+bcpl com/bcpl.b to junk      -- Compile the BCPL compiler
+junk com/bcpl.b to junk      -- Demonstrate that it works
+c bc bcpl                    -- Re-compile the compiler using bc
+c bc cmpltest                -- Compile a systematic test program
+cmpltest                     -- and run it. It should show no errors.
+
+You can leave the BCPL System by typing: logout or CTRL-c. Note that
+CTRL-c means hold down the ctrl key while pressing c.
+
+If cintsys fails to start, it is likely that something is wrong with
+the environment variable settings. To help you to try typing:
+
+cintsys -f
+
+or 
+
+cintsts -f -v
+
+These commands output trace information to help you discover what went
+wrong.
+
+
+
+
+
+2) Installation of 32 bit Cintcode BCPL on Cygwin under Windows XP and
+possibly Windows 10.
+
+These steps have been tested on a Window XP machine (and also on one
+running Windows 10).
+
+Cygwin is a Windows application that provides facilities that are very
+similar to Linux.
+
+You must first install Cygwin, typically in directory c:\cygwin.
+
+If you have a problem, try a google search on the following key words:
+
+how to install cygwin on windows
+
+Use a web browser to copy bcpl.tgz from my home page
+(www.cl.cam.ac.uk/users/mr10) into directory c:\cygwin
+
+Enter cygwin, typically by double clicking on the cygwin icon on the desktop.
+This icon may have the name: cygwin terminal. (I normally change its name to cygwin).
+
+This should cause you to enter cygwin, prompting you for a bash shell
+command.  Type the command: pwd which should respond with the file name
+of you current directory. On my machine the response is
+
+/home/mr10
+
+My user name on this machine under widows XP is mr10. Yours will be different.
+
+Create the directory distribution and enter it by typing:
+
+mkdir distribution
+cd distribution
+pwd
+
+Check that bcpl.tgz is in /cygwin by typing
+
+ls -lrt /cygwin
+
+Extract all the files from bcpl.tgz by typing the following:
+
+tar zxvf /cygwin/bcpl.tgz
+
+Copy cygwin.bat into directory /cygwin by typing:
+
+cp BCPL/cintcode/os/cywin/cygwin.bat /cygwin
+
+You will need to make a minor change to cygwin.bat to replace my user id
+by yours in the line
+
+SET HOME=/home/mr10
+
+Now leave cygwin by typing:
+
+exit
+
+Right click on the cygwin icon and select the properties menu
+item. This will open a dialog window containing various field. Place
+in the field named Target the text: c:\cygwin\cygwin.bat If there is a
+field: Start in, you might like to place in it the Windows filename of
+your cygwin home directory. On my system this is: c:\cygwin\home\mr10
+
+After updating these fields, double clicking on the cygwin icon will
+set the BCPL environment variables before entering the bash command
+language interpreter. Yow can check that this has happenf by typing:
+
+echo $BCPLROOT
+
+On my system the response is:
+
+/home/mr10/distribution/cintcode
+
+On your system your user name should appear instead of mr10.
+
+Now install the BCPL system by typing the following:
+
+ls -l /cygdrive/c/cygwin/bcpl.tgz    -- Check that bcpl.tgz is in the cygwin directory.
+cd ~/distribution                    -- Enter the distribution directory
+rm -rf BCPL                          -- Remove an old version of BCPL if necessary
+tar zxvf /cygdrive/c/cygwin/bcpl.tgz -- Extract all the files of the BCPL System
+cd BCPL/cintcode                     -- Enter the BCPL root directory
+which gcc                            -- Check that the gcc C compiler is installed
+make clean                           -- Clean up the file system before rebuilding BCPL
+make                                 -- Rebuild bin/cintsys and recompile many programs
+
+
+This should leave you in the BCPL Cintcode System with a prompt similar to:
+
+BCPL Cintcode System (14 Jan 2012)
+0.000> 
+
+You can leave the BCPL System by typing: logout or CTRL-c
+and you can re-enter it by typing: cintsys
+
+To test the system try typing:
+
+echo hello
+bcpl com/bcpl.b to junk
+junk com/bcpl.b to junk
+c compall
+bench100
+
+If cintsys fails, the most common fault is that the setting of
+the BCPL environment variables is wrong in cygwin.bat.
+
+To help diagnose the problem, double-click on the Cygwin icon
+and type the following:
+
+cd $BCPLROOT
+pwd
+cintsys -f           -- For a more detailed trace type: cintsys -f -v
+
+This traces the use of the environment variables when opening files.
+

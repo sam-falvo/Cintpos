@@ -1,0 +1,71 @@
+// Edited copy of SYN.PAL 12 May 1969 23:51
+
+let Parse(C, Salt) = C 1 (C, Salt)
+
+in
+let Seq(C, Salt) = Parse(C 3, Parse(C 2, Salt))
+
+and Or(C, Salt) = val (    res Parse(C 2, (Salt 1, L));
+                        L: res Parse(C 3, Salt)
+                      )
+
+and Qu(C, Salt) = let S, Alt = Salt 1, Salt 2
+                  in C 2 eq Stem S -> (Stern S, Alt) | (goto Alt)
+
+in
+
+let A, B, C = 0, 0, 0
+in
+
+A := (Or, (Seq, B, C), (Qu, '2'));         // A -> B C | 2
+
+B := (Or, (Qu, '0'), (Seq, (Qu, '0'), C)); // B -> 0 | 0 C
+
+C := (Se, (Qu, '1'), (Seq, A, (Qu, '1'))); // C -> 1 A 1
+
+loop:
+
+( let Ch, S = 0, '' in
+
+  Write 'please type some input*n*n' ;
+
+L: Ch := Readch nil;
+
+   if Ch eq '*n' do ( if S eq '' do Finish nil;
+                      Parse(A, (S, Fail));
+                      Write(S, ' is OK*n' );
+                      goto loop;
+
+                Fail:
+                      write(S, ' is not OK*n' );
+                      goto loop
+                    );
+
+   S := S %Conc Ch
+   goto L
+)
+
+// Typical output
+
+/*
+pal syn.pal
+
+Please type some input
+
+00101211
+00101211  is not OK
+
+Please type some input
+
+0121
+0121  is OK
+
+Please type some input
+
+0101211
+0101211  is OK
+
+Please type some input
+
+*/
+

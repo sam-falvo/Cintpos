@@ -1,0 +1,57 @@
+.k file,opt
+
+c b64 coins
+coins
+echo coins
+wait 2
+
+c b64 eval
+eval
+echo eval
+wait 2
+
+c b64 fft
+fft
+echo fft
+wait 2
+
+c b64 fib
+fib
+echo fib
+wait 2
+
+c b64 match
+match
+echo match
+wait 2
+
+c b64 prover
+prover
+echo prover
+wait 2
+
+c b64 queens
+queens
+echo queens
+wait 2
+
+c b64 splay
+splay
+echo splay
+wait 2
+
+c b64 tttree
+tttree
+echo tttree
+wait 2
+
+c b64 turing
+turing
+echo turing
+
+
+
+
+
+
+

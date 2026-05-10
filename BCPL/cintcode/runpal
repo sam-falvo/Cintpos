@@ -1,0 +1,4 @@
+.k file/a,opt
+echo "pal palprogs/<file>.pal -p  <opt>"
+pal palprogs/<file>.pal -p  <opt>
+

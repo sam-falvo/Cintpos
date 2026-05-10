@@ -1,0 +1,35 @@
+Summary of vim commands
+
+h i k l    Move cursor left, down, up, right
+q          Quit
+q!         Quit even when there are unsaved changes
+wq         Write changes ad quit
+i          Start inserting before the current char
+ESC        Enter command mode, ie leave insert mode
+a          Start inserting after the current char
+o          Start inserting before start of next line
+ZZ         Same as ESC wq
+x          Delete current char
+dw         Delete from current char to end of word
+d$         Delete from current char to end of line
+de         Delete from current char to end of word   ?????
+d4w        Delete 4 words
+dd         Delete current line
+5dd        Delete 5 lines
+u          Undo the latest command
+d command  Save deleted text in cache memory, like cut
+p          Paster from cache memory after current line
+/          Search forward
+?          Search backwards
+n          Search forward in direction / or ?
+N          Search backwards in direction / or ?
+:s/---/----/   Substitue something with something
+:s/---/----/g  Substitue something with something
+:%s/---/----/g Substitue something with something in the entire document
+G           Goto end of file
+Gn          Goto line n
+:!date      Execute the shell command date
+:w          Wite the file
+:w filename Erite the file to filename
+r filename  Retrieve/insert from file filename
+v           Highlight text followed by :w filename

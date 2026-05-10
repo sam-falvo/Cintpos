@@ -1,0 +1,378 @@
+     REL
+; This contains most of the Z80 instructions in alphabetical order
+; with a few extra instructions to set suitable data values.
+; z80emu initialises the memory with random values and sets most
+; registers to zero except for
+; BC = #x1CBA
+; DE = #xE73D
+; HL = #xA100
+; IX = #xA100
+; IY = #xE100
+; SP = #x7100
+; PC = #x0000
+
+     ADC A,(HL)
+     ADC A,(IX+13)
+     ADC A,(IY-7)
+     ADC A,10
+     ADC A,H
+     ADC HL,BC
+     ADC HL,DE
+     ADC HL,HL
+     ADC HL,SP
+     
+     ADD A,(HL)
+     ADD A,(IX+5)
+     ADD A,(IY-1)
+     ADD A,20
+     ADD A,B
+     ADD HL,BC
+     ADD HL,DE
+     ADD HL,HL
+     ADD HL,SP
+     ADD IX,BC
+     ADD IX,DE
+     ADD IX,IX
+     ADD IX,SP
+     ADD IY,BC
+     ADD IY,DE
+     ADD IY,IY
+     ADD IY,SP
+
+     AND (HL)
+     AND (IX+14)
+     AND (IY-7)
+     AND #x1F
+     AND D
+     
+     BIT 5,(HL)
+     BIT 3,(IX-10)
+     BIT 4,(IY+12)
+     BIT 2,B
+
+     LD A,#xC9          ; Store RET in #x7654
+     LD (#x7654),A
+     CALL #x7654
+     CALL C,#x7654
+     CALL M,#x7654
+     CALL NC,#x7654
+     CALL NZ,#x7654
+     CALL P,#x7654
+     CALL PE,#x7654
+     CALL PO,#x7654
+     CALL Z,#x7654
+     
+     CCF
+     CP (HL)
+     CP (IX+5)
+     CP (IY-11)
+     CP 10
+     CP A
+     CPD
+     CPDR
+     CPI
+     CPIR
+     CPL
+     DAA
+
+     DEC (HL)
+     DEC (IX+31)
+     DEC (IY-7)
+     DEC A
+     DEC B
+     DEC BC
+     DEC C
+     DEC D
+     DEC DE
+     DEC E
+     DEC H
+     DEC HL
+     DEC IX
+     DEC IY
+     DEC L
+     DEC SP
+
+     DJNZ -2
+     EI
+     EX (SP),HL
+     EX (SP),IX
+     EX (SP),IY
+     EX AF,AF'
+     EX DE,HL
+     EXX
+     HALT
+     IM 0
+     IM 1
+     IM 2
+     
+     IN A,(C)
+     IN A,(5)
+     IN B,(C)
+     IN C,(C)
+     IN D,(C)
+     IN E,(C)
+     IN H,(C)
+     IN L,(C)
+     ;IN F,(C)
+     
+     INC (HL)
+     INC (IX+7)
+     INC (IY-#x1F)
+     INC A
+     INC B
+     INC BC
+     INC C
+     INC D
+     INC DE
+     INC E
+     INC H
+     INC HL
+     INC IX
+     INC IY
+     INC L
+     INC SP
+     
+     IND
+     INDR
+     INI
+     INIR
+
+     JP #x3000
+     JP (HL)
+     JP (IX)
+     JP (IY)
+     JP C,#x3000
+     JP M,#x3000
+     JP NC,#x3000
+     JP NZ,#x3000
+     JP P,#x3000
+     JP PE,#x3000
+     JP PO,#x3000
+     JP Z,#x3000
+
+     JR -5
+     JR C,7
+     JR NC,9
+     JR NZ,-11
+     JR Z,-2
+     
+     LD (BC),A
+     LD (DE),A
+     LD (HL),23
+     LD (HL),D
+     LD (IX+11),123
+     LD (IX+4),E
+     LD (IY-13),255
+     LD (IY-4),E
+     LD (#x2000),A
+     LD (#x2000),BC
+     LD (#x2000),DE
+     LD (#x2000),HL
+     LD (#x2000),IX
+     LD (#x2000),IY
+     LD (#x2000),SP
+
+     LD A,(BC)
+     LD A,(DE)
+     LD A,(HL)
+     LD A,(IX+10)
+     LD A,(IY-7)
+     LD A,(#X2000)
+     LD A,100
+     LD A,D
+     LD A,I
+     LD A,R
+     
+     LD B,(HL)
+     LD B,(IX+12)
+     LD B,(IY-5)
+     LD B,20
+     LD B,E
+     LD BC,(#X2000)
+     LD BC,#X2000
+
+     LD C,(HL)
+     LD C,(IX+12)
+     LD C,(IY-5)
+     LD C,20
+     LD C,D
+
+     LD D,(HL)
+     LD D,(IX+12)
+     LD D,(IY-5)
+     LD D,20
+     LD D,E
+     LD DE,(#X2000)
+     LD DE,#X2000
+
+     LD E,(HL)
+     LD E,(IX+12)
+     LD E,(IY-5)
+     LD E,20
+     LD E,D
+
+     LD H,(HL)
+     LD H,(IX+12)
+     LD H,(IY-5)
+     LD H,20
+     LD H,E
+     LD HL,(#X2000)
+     LD HL,#X2000
+
+     LD I,A
+
+     LD IX,(#X2000)
+     LD IX,#X2000
+     LD IY,(#X2000)
+     LD IY,#X2000
+
+     LD L,(HL)
+     LD L,(IX+12)
+     LD L,(IY-5)
+     LD L,20
+     LD L,D
+
+     LD I,A
+
+     LD SP,(#x2000)
+     LD SP,IX
+     LD SP,IY
+     LD SP,#x2000
+
+     LDD
+     LDDR
+     LDI
+     LDIR
+
+     NEG
+     NOP
+     
+     OR (HL)
+     OR (IX+1)
+     OR (IY-15)
+     OR 10
+     OR D
+     OTDR
+     OTIR
+     OUT (C),A
+     OUT (C),B
+     OUT (C),C
+     OUT (C),D
+     OUT (C),E
+     OUT (C),H
+     OUT (C),L
+     OUT (20),A
+     OUTD
+     OUTI
+     POP AF
+     POP BC
+     POP DE
+     POP IX
+     POP IY
+     PUSH AF
+     PUSH BC
+     PUSH DE
+     PUSH HL
+     PUSH IX
+     PUSH IY
+     RES 2,(HL)
+     RES 3,(IX+5)
+     RES 4,(IY-7)
+     RES 5,D
+     RET
+     RET C
+     RET M
+     RET NC
+     RET NZ
+     RET PE
+     RET PO
+     RET Z
+     RETI
+     RETN
+     
+     RL (HL)
+     RL (IX+8)
+     RL (IY-11)
+     RL E
+     RLA
+     RLC (HL)
+     RLC (IX-5)
+     RLC (IY-8)
+     RLC B
+     RLCA
+     RLD
+     
+     RR (HL)
+     RR (IX+8)
+     RR (IY-11)
+     RR E
+     
+     RRA
+
+     RRC (HL)
+     RRC (IX+8)
+     RRC (IY-11)
+     RRC E
+     RRCA
+     RRD
+     RST 0
+     RST #x8
+     RST #x10
+     RST #x18
+     RST #x20
+     RST #x28
+     RST #x30
+     RST #x38
+
+     SBC A,(HL)
+     SBC A,(IX+8)
+     SBC A,(IY-11)
+     SBC A,23
+     SBC A,H
+     SBC HL,BC
+     SBC HL,DE
+     SBC HL,HL
+     SBC HL,SP
+
+     SCF
+     
+     SET 2,(HL)
+     SET 3,(IX+3)
+     SET 6,(IX-5)
+     SET 7,D
+
+     SLA (HL)
+     SLA (IX+8)
+     SLA (IY-11)
+     SLA E
+
+     SRA (HL)
+     SRA (IX-5)
+     SRA (IY-8)
+     SRA B
+     
+     SRL (HL)
+     SRL (IX-5)
+     SRL (IY-8)
+     SRL B
+     
+     SUB (HL)
+     SUB (IX+8)
+     SUB (IY-11)
+     SUB 23
+     SUB H
+     
+     XOR (HL)
+     XOR (IX+8)
+     XOR (IY-11)
+     XOR 23
+     XOR H
+     
+
+     END
+
+
+
+
+
+

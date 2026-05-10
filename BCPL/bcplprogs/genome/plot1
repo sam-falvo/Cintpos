@@ -1,0 +1,30 @@
+# This file contains parameters for the dnaplot program
+# that draws a 3D image of a DNA sequence. The image is like
+# the flight of an aircraft with each letter in the sequence
+# affecting the setting of the airlerons and elevator. The
+# following is a typical setting for the letter A.
+
+# A -15.4 +20.56 200 150   0
+
+# This means the aircraft rotates 15.4 degrees to the left
+# followed by pulling the stick back causing a clockwise
+# rotation of 20.56 degrees about the axis of the right hand wing.
+# The three numbers that follow specify the RGB component of
+# the 3D edge for all occurencies of letter A.
+
+# There are similar parameters for letters C, G and T.
+
+# The image is displayed on the screen. There are controls to
+# cause the image to be rotated and view from any distance.
+
+# The following a a possible senting of the parameters.
+
+A -15.4 +20.56 200 150   0
+C +15.4 +20.56 100 240 100
+G -15.4 -20.56   0 230 180
+T +15.4 -20.56  50  70 250
+
+# The image is just a sequence of coloured lines following
+# the 3D path specified by the genome sequence and the above
+# parameters.
+

@@ -1,0 +1,59 @@
+
+This directory (bcplprogs/bbcmicro) holds files relating to the BBC
+BCPL System.
+
+The directory bbccin/ holds object modules of the BBC BCPL
+system and the 16k BBC BCPL sideways rom.
+
+These files can be made more readable and placed in map/ using the
+command mapcode whose source is cintcom/com/mapcode.c There are script
+files in this directory to make these conversions more convenient.
+For instance, c df BCPLSYN will convert bbccin/BCPLSYN to
+map/BCPLSYN.map using the hints file hints/BCPLSYN.hints.
+
+The resulting map file greatly assists the reconstruction a BCPL
+source file that will generate the same code as in bbccin/BCPLSYN. The
+reconstructed BCPL code is held in com16/. A slightly modified version
+designed to run under the modern 32-bit BCPL Cintcode system is in
+com32/.
+
+The command: c bc32 bcplsyn will compile com32/bcplsyn.b using the
+modern 32-bit BCPL Cintcode compiler to generate the file
+cin32/bcplsyn.
+
+The compiler consisting of the files bcpl, bcplarg, bcplsyn, bcpltrn
+and bcplccg in directory cin32/ can be used to compile the
+16-bit BCPL files in com16 to produce 16-bit BBC Cintcode files in
+cin16/. If the reconstructed compilers in com32/ and com16/ are correct
+the resulting files in cin16/ will be identical to those in bbccin/.
+
+The standard BBC BCPL commands have yet to be reconstructed and similarly
+the BCPL sideways rom.
+
+There then remains the larger problem of reconstructing the BCPL
+source of the entire Domesday project, whose 16-bit object modules are
+available from the faser discs.  But this may not be necessary since
+it sounds as if much of the original Domesday source code has been
+found.
+
+The BBC BCPL compiler creates an Ocode file called OCODE$$ that is
+passed to the codegenerator. I have modified com/bbcbcpl.b not to
+delete this file at the end of the compilation if no TO file is given
+so that it can be inspected by the prbbcocode command. A typical
+command sequence is as follows:
+
+bbcbcpl com16/bcplsyn.b
+prbbcocode OCODE$$ to rocode/bcplsyn.ocd
+
+Althernatively use the command:
+c rocd bcplsyn
+
+In due course the codegenerator in com/bbcbcpl.b will be replaced
+by one that generates modern 32-bit Cintcode. This new version
+of the compiler will be called bbcbcpl32.b. This will enable
+BBC BCPL programs to be compiled and run using the current 32-bit
+BCPL Cintcode system. Some programs will need minor changes to
+deal with the change of word length from 16 to 32 bits.
+
+Martin Richards
+29 Nov 2019

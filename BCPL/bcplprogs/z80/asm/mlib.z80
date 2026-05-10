@@ -1,0 +1,305 @@
+MLIB    TITLE   "Z80 BCPL Run Time System  -  Section MLIB"
+        GET     "HEADER"
+        LAYOUT
+;  This section contains the library routine which, by their nature,
+;  cannot be coded in BCPL, either for reasons of efficiency or
+;  complexity.
+        LAYOUT
+        REF     GETVEC
+        REF     FREEVEC
+
+        DEF     GLOBIN
+
+G.RDPT  EQU      6*2                    ;  Global number of "readport"
+G.WRPT  EQU      7*2                    ;  Global number of "writeport"
+G.GETB  EQU     15*2                    ;  Global number of "getbyte"
+G.PUTB  EQU     16*2                    ;  Global number of "putbyte"
+G.LEVL  EQU     17*2                    ;  Global number of "level"
+G.LGJP  EQU     18*2                    ;  Global number of "longjump"
+G.APTV  EQU     20*2                    ;  Global number of "aptovec"
+G.GLOB  EQU     28*2                    ;  Global number of "globin"
+G.GVEC  EQU     29*2                    ;  Global number of "getvec"
+G.FVEC  EQU     30*2                    ;  Global number of "freevec"
+G.MAXG  EQU     150*2                   ;  Maximum global used
+        LAYOUT
+        RELOCATABLE
+
+        ORG     0
+
+MLIB    DEFB    'BCPL'                  ;  Entry flag for BCPL module
+        DEFW    MLIBE-MLIB              ;  Length of module in bytes
+        LAYOUT
+;  READPORT
+;  --------
+;
+;    x  :=  readport( port )
+
+
+        ALIGN
+
+RDPT    PUSH    HL                      ;  Save return address
+        EXX                             ;  Get argument register set
+        LD      C,L                     ;  Load port address
+        IN      L,(C)                   ;  Read the byte
+        LD      H,0                     ;  Set high byte of answer
+        RET                             ;  And return
+        LAYOUT
+;  WRITEPORT
+;  ---------
+;
+;    writeport( port, x )
+
+
+        ALIGN
+
+WRPT    PUSH    HL                      ;  Save return address
+        EXX                             ;  Get argument register set
+        LD      C,L                     ;  Load port address
+        OUT     (C),E                   ;  Write the byte
+        RET                             ;  And return
+        LAYOUT
+;  GETBYTE
+;  -------
+;
+;    x  :=  getbyte( vector, offset )
+
+
+        ALIGN
+
+GETB    PUSH    HL                      ;  Save return link
+        EXX                             ;  Get argument register set
+        ADD     HL,HL                   ;  Get byte pointer to vector
+        ADD     HL,DE                   ;  Add in the offset
+        LD      L,(HL)                  ;  Load the byte
+        LD      H,0                     ;  Set top byte of answer
+        RET                             ;  And return
+        LAYOUT
+;  PUTBYTE
+;  -------
+;
+;    putbyte( vector, offset, x )
+
+
+        ALIGN
+
+PUTB    PUSH    HL                      ;  Save return link
+        EXX                             ;  Get argument register set
+        ADD     HL,HL                   ;  Get byte pointer to vector
+        ADD     HL,DE                   ;  Add in the offset
+        LD      (HL),C                  ;  Store the byte
+        RET                             ;  And return
+        LAYOUT
+;  LEVEL
+;  -----
+;
+;    x  :=  level()
+
+
+        ALIGN
+
+LEVL    PUSH    IX                      ;  Save current stack pointer
+        EX      (SP),HL                 ;  Swap return link and answer
+        RET                             ;  And return
+        LAYOUT
+;  LONGJUMP
+;  --------
+;
+;    longjump( stackpointer, label )
+
+
+        ALIGN
+
+LGJP    EXX                             ;  Get argument register set
+        PUSH    HL                      ;  Store stack pointer
+        POP     IX                      ;  And set IX to it
+        EX      DE,HL                   ;  Get label address in HL
+        JP      (HL)                    ;  And go to it
+        LAYOUT
+;  APTOVEC
+;  -------
+;
+;    x  :=  aptovec( function, vecsize )
+
+
+        ALIGN
+
+APTV    EXX                             ;  Get argument register set
+        PUSH    HL                      ;  Save function address
+        PUSH    IX                      ;  Save current stack pointer
+        POP     HL                      ;  And store in HL
+        ADD     HL,DE                   ;  Add in the vector upb
+        ADD     HL,DE                   ;  Twice to get byte value
+        LD      BC,-126                 ;  Correction factor for stack offset
+        ADD     HL,BC                   ;  Get vector pointer
+        SRL     H                       ;  And make a BCPL ...
+        RR      L                       ;  ... pointer out of it
+        PUSH    DE                      ;  Save vector upb
+        EXX                             ;  Get system register set
+        EX      (SP),HL                 ;  Swap vector upb and return link
+        INC     HL                      ;  Make vector size
+        ADD     HL,HL                   ;  And get the byte count
+        ADD     HL,DE                   ;  Add in the previous stack increment
+        EX      DE,HL                   ;  And set the new stack increment
+        POP     HL                      ;  Restore return link
+        RET                             ;  And enter the function
+        LAYOUT
+;  GLOBIN
+;  ------
+;
+;    globin( address )
+
+        ALIGN
+
+GLOB    PUSH    HL                      ;  Save return link on the stack
+        EXX                             ;  Get argument register set
+        ADD     HL,HL                   ;  Get byte pointer to module
+
+;  The following code is shared by the BCPL routine GLOBIN, and the internal
+;  initialisation code.
+
+GLOBIN  PUSH    HL                      ;  Save EP of current module
+        LD      A,(HL)                  ;  Load first byte
+        CP      'B'                     ;  Is this correct ?
+        JP      NZ,GLOB0                ;  No, so return
+        INC     HL                      ;  Increment pointer
+        LD      A,(HL)                  ;  Load second byte
+        CP      'C'                     ;  Is this correct ?
+        JP      NZ,GLOB0                ;  No, so return
+        INC     HL                      ;  Increment pointer
+        LD      A,(HL)                  ;  Load third byte
+        CP      'P'                     ;  Is this correct ?
+        JP      NZ,GLOB0                ;  No, so return
+        INC     HL                      ;  Increment pointer
+        LD      A,(HL)                  ;  Load fourth byte
+        CP      'L'                     ;  Is this correct ?
+        JP      NZ,GLOB0                ;  No, so return
+        INC     HL                      ;  Increment pointer
+
+;  If we drop through here, then the first four bytes of the next module are
+;  believed to be "BCPL", and so we assume that this is a BCPL module.  The
+;  next two bytes contain the length of the module, and so we should look at
+;  the end of it to find the global definitions.
+
+        LD      C,(HL)                  ;  Load low byte of length
+        INC     HL                      ;  Increment pointer
+        LD      B,(HL)                  ;  Load high byte of length
+
+;  At the moment, HL points 6 bytes in to the new module, BC contains the
+;  module length in bytes, and (SP) contains the pointer to the beginning
+;  of the module.  
+
+        POP     HL                      ;  Restore pointer to base of module
+        ADD     HL,BC                   ;  Add in the module length
+        PUSH    HL                      ;  And save pointer to new module
+
+;  We should now step back over the HRG, and start scanning the global
+;  entries for initialisation information.
+
+        DEC     HL                      ;  Go back over...
+        DEC     HL                      ;  ...the HRG entry
+
+;  Now enter the loop scanning the global definitions for this module.
+;  We keep on scanning until the "address" field of the loaded entry is
+;  zero, at which point we decide that we have hit the end of the list.
+
+GLOB1   DEC     HL                      ;  High byte of address
+        LD      D,(HL)                  ;  Load it
+        DEC     HL                      ;  Low byte of address
+        LD      E,(HL)                  ;  Load it
+
+        DEC     HL                      ;  High byte of global number
+        LD      B,(HL)                  ;  Load it
+        DEC     HL                      ;  Low byte of global number
+        LD      C,(HL)                  ;  Load it
+
+        LD      A,E                     ;  Load low byte of address
+        OR      D                       ;  Is zero (end of list)
+        JP      Z,GLOB2                 ;  Yes, so break from loop
+
+;  If we drop through here, then this global should be initialised.  At
+;  this point, HL points to the current entry in the module, DE contains
+;  the entry point, and BC contains the offet in the global vector.
+
+        PUSH    HL                      ;  Save the module pointer
+        PUSH    IY                      ;  Store the global pointer
+        POP     HL                      ;  And put into HL
+        ADD     HL,BC                   ;  Add in the offset
+        LD      BC,-128                 ;  And correct for the...
+        ADD     HL,BC                   ;  ...128 byte offset in IX
+
+        LD      (HL),E                  ;  Store low byte of global
+        INC     HL                      ;  Increment pointer
+        LD      (HL),D                  ;  Store high byte of global
+
+        POP     HL                      ;  Restore module pointer
+        JP      GLOB1                   ;  And loop until finished
+
+;  If we come here, then we have reached the end of the global list for
+;  this module.  We must therefore go on to the next module, if there is
+;  one.
+
+GLOB2   POP     HL                      ;  Restore new module pointer
+        JP      GLOBIN                  ;  Start all over again
+
+;  If we come here, then this really is the end of the line.  We have
+;  initialised the whole of the modules in the list, and so we should
+;  return whence we came.
+
+GLOB0   POP     HL                      ;  Restore current module pointer
+        RET                             ;  And return
+        LAYOUT
+;  GETVEC
+;  ------
+;
+;    Allocate a vector with the given upperbound from the heap.
+
+
+        ALIGN
+
+GVEC    PUSH    HL                      ;  Save return address
+        EXX                             ;  Get argument register set
+        INC     HL                      ;  Make size out of UPB
+        ADD     HL,HL                   ;  Get byte count
+        CALL    GETVEC                  ;  Call system routine
+        RET     NZ                      ;  If error, then return now
+
+        SRL     H                       ;  Make a BCPL ...
+        RR      L                       ;  ... pointer
+        RET                             ;  And return
+        LAYOUT
+;  FREEVEC
+;  -------
+;
+;    Free a vector which was allocated from the heap.
+
+
+        ALIGN
+
+FVEC    PUSH    HL                      ;  Save return address
+        EXX                             ;  Get argument register set
+        LD      A,H                     ;  Load high byte
+        OR      L                       ;  Check for zero argument
+        RET     Z                       ;  And return if so
+
+        ADD     HL,HL                   ;  Make byte pointer
+        CALL    FREEVEC                 ;  Call system routine
+        RET                             ;  And return
+        LAYOUT
+        ALIGN
+
+        DEFW    0                       ;  End of global list
+        DEFW    G.RDPT,RDPT             ;  Entry of READPORT
+        DEFW    G.WRPT,WRPT             ;  Entry of WRITEPORT
+        DEFW    G.GETB,GETB             ;  Entry of GETBYTE
+        DEFW    G.PUTB,PUTB             ;  Entry of PUTBYTE
+        DEFW    G.LEVL,LEVL             ;  Entry of LEVEL
+        DEFW    G.LGJP,LGJP             ;  Entry of LONGJUMP
+        DEFW    G.APTV,APTV             ;  Entry of APTOVEC
+        DEFW    G.GLOB,GLOB             ;  Entry of GLOBIN
+        DEFW    G.GVEC,GVEC             ;  Entry of GETVEC
+        DEFW    G.FVEC,FVEC             ;  Entry of FREEVEC
+        DEFW    G.MAXG                  ;  HRG
+        LAYOUT
+MLIBE   END
+
+

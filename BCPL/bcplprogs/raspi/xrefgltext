@@ -1,0 +1,2017 @@
+Ass_dev M:4 DEF libhdr.h[749] Ass_dev=4
+Ass_dir M:2 DEF libhdr.h[747] Ass_dir=2
+Ass_link M:0 DEF libhdr.h[745] Ass_link=0
+Ass_name M:5 DEF libhdr.h[750] Ass_name=5
+Ass_task M:1 DEF libhdr.h[746] Ass_task=1
+Ass_type M:3 DEF libhdr.h[748] Ass_type=3
+B2Wsh M:2 DEF libhdr.h[26] B2Wsh=1+32/32
+B2Wsh M:2 MAN libhdr.h[240] bytesperword=1<<B2Wsh
+CloseObj M:1 DEF libhdr.h[289] CloseObj=1
+ColorLoc G:217 DEF gltext.b[116] ColorLoc=
+ColorLoc G:217 LG gltext.b[319]
+    sys(Sys_gl,gl_EnableVertexAttribArray,ColorLoc)
+ColorLoc G:217 LG gltext.b[321] sys(Sys_gl,gl_VertexData,ColorLoc,3,8,3)
+ColorLoc G:217 LG gltext.b[579]
+    sys(Sys_gl,gl_DisableVertexAttribArray,ColorLoc)
+ColorLoc G:217 SG gltext.b[236]
+    ColorLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vColor")
+Compileshader F:8 FN gltext.b[589]
+    LET Compileshader(prog,isVshader,filename)=..
+Compileshader F:8 LF gltext.b[215]
+    Vshader:=Compileshader(glprog,TRUE,"gltex'ader.sdr")
+Compileshader F:8 LF gltext.b[220]
+    Fshader:=Compileshader(glprog,FALSE,"gltex'ader.sdr")
+ControlLoc G:220 DEF gltext.b[120] ControlLoc=
+ControlLoc G:220 LG gltext.b[559]
+    sys(Sys_gl,gl_UniformMatrix4fv,ControlLoc,glprog,control)
+ControlLoc G:220 SG gltext.b[245]
+    ControlLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"control")
+CosAileron FG:225 DEF gltext.b[126] FLT CosAileron=
+CosAileron FG:225 LG gltext.b[554] control!4#:=CosAileron
+CosAileron FG:225 SG gltext.b[539]
+    CosAileron#:=sys(Sys_flt,fl_cos,AileronAngle)
+CosElevator FG:221 DEF gltext.b[122] FLT CosElevator=
+CosElevator FG:221 LG gltext.b[552] control!2#:=CosElevator
+CosElevator FG:221 SG gltext.b[534]
+    CosElevator#:=sys(Sys_flt,fl_cos,ElevatorAngle)
+CosRudder FG:223 DEF gltext.b[124] FLT CosRudder=
+CosRudder FG:223 LG gltext.b[550] control!0#:=CosRudder
+CosRudder FG:223 SG gltext.b[529]
+    CosRudder#:=sys(Sys_flt,fl_cos,RudderAngle)
+DataLoc G:218 DEF gltext.b[117] DataLoc=
+DataLoc G:218 LG gltext.b[330]
+    sys(Sys_gl,gl_EnableVertexAttribArray,DataLoc)
+DataLoc G:218 LG gltext.b[332] sys(Sys_gl,gl_VertexData,DataLoc,2,8,6)
+DataLoc G:218 LG gltext.b[580]
+    sys(Sys_gl,gl_DisableVertexAttribArray,DataLoc)
+DataLoc G:218 SG gltext.b[237]
+    DataLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vData")
+Dcb_arg M:4 DEF libhdr.h[689] Dcb_arg=4
+Dcb_cvp M:16 DEF libhdr.h[703] Dcb_cvp=16
+Dcb_devid M:1 DEF libhdr.h[686] Dcb_devid=1
+Dcb_flag M:7 DEF libhdr.h[692] Dcb_flag=7
+Dcb_intson M:6 DEF libhdr.h[691] Dcb_intson=6
+Dcb_irq M:5 DEF libhdr.h[690] Dcb_irq=5
+Dcb_op M:3 DEF libhdr.h[688] Dcb_op=3
+Dcb_threadp M:14 DEF libhdr.h[702] Dcb_threadp=14
+Dcb_type M:0 DEF libhdr.h[685] Dcb_type=0
+Dcb_upb M:17 DEF libhdr.h[707] Dcb_upb=17
+Dcb_var0 M:8 DEF libhdr.h[696] Dcb_var0=8
+Dcb_var1 M:9 DEF libhdr.h[697] Dcb_var1=9
+Dcb_var2 M:10 DEF libhdr.h[698] Dcb_var2=10
+Dcb_var3 M:11 DEF libhdr.h[699] Dcb_var3=11
+Dcb_var4 M:12 DEF libhdr.h[700] Dcb_var4=12
+Dcb_wkq M:2 DEF libhdr.h[687] Dcb_wkq=2
+Devc_create M:1 DEF libhdr.h[717] Devc_create=1
+Devc_destroy M:2 DEF libhdr.h[718] Devc_destroy=2
+Devc_setintson M:5 DEF libhdr.h[721] Devc_setintson=5
+Devc_start M:3 DEF libhdr.h[719] Devc_start=3
+Devc_stop M:4 DEF libhdr.h[720] Devc_stop=4
+Devt_clk M:1 DEF libhdr.h[710] Devt_clk=1
+Devt_fileop M:4 DEF libhdr.h[713] Devt_fileop=4
+Devt_tcpdev M:5 DEF libhdr.h[714] Devt_tcpdev=5
+Devt_ttyin M:2 DEF libhdr.h[711] Devt_ttyin=2
+Devt_ttyout M:3 DEF libhdr.h[712] Devt_ttyout=3
+Fshader G:215 DEF gltext.b[113] Fshader=
+Fshader G:215 SG gltext.b[220]
+    Fshader:=Compileshader(glprog,FALSE,"gltex'ader.sdr")
+GB2312 M:-2 DEF libhdr.h[618] GB2312=-2
+GL_BLEND M:3042 DEF glmanifests.h[17] GL_BLEND=3042
+GL_BLEND M:3042 MAN gl.b[155] sys(Sys_gl,gl_Enable,GL_BLEND)
+GL_COLOR_BUFFER_BIT M:16384 DEF glmanifests.h[15]
+    GL_COLOR_BUFFER_BIT=16384
+GL_COLOR_BUFFER_BIT M:16384 MAN gltext.b[565]
+    sys(Sys_gl,gl_Clear,GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+GL_DEPTH_BUFFER_BIT M:256 DEF glmanifests.h[16] GL_DEPTH_BUFFER_BIT=256
+GL_DEPTH_BUFFER_BIT M:256 MAN gltext.b[565]
+    sys(Sys_gl,gl_Clear,GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+GL_DEPTH_TEST M:2929 DEF glmanifests.h[6] GL_DEPTH_TEST=2929
+GL_DEPTH_TEST M:2929 MAN gltext.b[288]
+    sys(Sys_gl,gl_Enable,GL_DEPTH_TEST)
+GL_LESS M:513 DEF glmanifests.h[7] GL_LESS=513
+GL_LESS M:513 MAN gltext.b[290] sys(Sys_gl,gl_DepthFunc,GL_LESS)
+GL_LINES M:1 DEF glmanifests.h[9] GL_LINES=1
+GL_LINE_LOOP M:2 DEF glmanifests.h[11] GL_LINE_LOOP=2
+GL_LINE_STRIP M:3 DEF glmanifests.h[10] GL_LINE_STRIP=3
+GL_ONE_MINUS_SRC_ALPHA M:771 DEF glmanifests.h[19]
+    GL_ONE_MINUS_SRC_ALPHA=771
+GL_ONE_MINUS_SRC_ALPHA M:771 MAN gl.b[154]
+    sys(Sys_gl,gl_BlendFunc,GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA)
+GL_POINTS M:0 DEF glmanifests.h[8] GL_POINTS=0
+GL_SRC_ALPHA M:770 DEF glmanifests.h[18] GL_SRC_ALPHA=770
+GL_SRC_ALPHA M:770 MAN gl.b[154]
+    sys(Sys_gl,gl_BlendFunc,GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA)
+GL_TRIANGLES M:4 DEF glmanifests.h[12] GL_TRIANGLES=4
+GL_TRIANGLE_FAN M:6 DEF glmanifests.h[14] GL_TRIANGLE_FAN=6
+GL_TRIANGLE_STRIP M:5 DEF glmanifests.h[13] GL_TRIANGLE_STRIP=5
+GL_VERTEX_ARRAY M:32884 DEF glmanifests.h[4] GL_VERTEX_ARRAY=32884
+GL_VERTEX_SHADER M:35633 DEF glmanifests.h[5] GL_VERTEX_SHADER=35633
+IndexBuffer G:248 DEF gltext.b[147] IndexBuffer=
+IndexBuffer G:248 SG gltext.b[345]
+    IndexBuffer:=sys(Sys_gl,gl_GenIndexBuffer,...,ivec)
+InitObj M:0 DEF libhdr.h[288] InitObj=0
+MatrixLoc G:219 DEF gltext.b[119] MatrixLoc=
+MatrixLoc G:219 LG gltext.b[524]
+    sys(Sys_gl,gl_UniformMatrix4fv,MatrixLoc,glprog,projectionMatrix)
+MatrixLoc G:219 SG gltext.b[244]
+    MatrixLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"matrix")
+ON64 M:0 DEF libhdr.h[28] ON64=32=64
+ON64 M:0 MAN gl.b[235] IF ON64 DO ..
+SinAileron FG:226 DEF gltext.b[127] FLT SinAileron=
+SinAileron FG:226 LG gltext.b[555] control!5#:=SinAileron
+SinAileron FG:226 SG gltext.b[540]
+    SinAileron#:=sys(Sys_flt,fl_sin,AileronAngle)
+SinElevator FG:222 DEF gltext.b[123] FLT SinElevator=
+SinElevator FG:222 LG gltext.b[553] control!3#:=SinElevator
+SinElevator FG:222 SG gltext.b[535]
+    SinElevator#:=sys(Sys_flt,fl_sin,ElevatorAngle)
+SinRudder FG:224 DEF gltext.b[125] FLT SinRudder=
+SinRudder FG:224 LG gltext.b[551] control!1#:=SinRudder
+SinRudder FG:224 SG gltext.b[530]
+    SinRudder#:=sys(Sys_flt,fl_sin,RudderAngle)
+State_dead M:12 DEF libhdr.h[736] State_dead=12
+State_hold M:2 DEF libhdr.h[733] State_hold=2
+State_int M:8 DEF libhdr.h[735] State_int=8
+State_pkt M:1 DEF libhdr.h[732] State_pkt=1
+State_wait M:4 DEF libhdr.h[734] State_wait=4
+Sys_buttons M:56 DEF libhdr.h[460] Sys_buttons=56
+Sys_callc M:59 DEF libhdr.h[463] Sys_callc=59
+Sys_callnative M:53 DEF libhdr.h[457] Sys_callnative=53
+Sys_close M:16 DEF libhdr.h[423] Sys_close=16
+Sys_cputime M:30 DEF libhdr.h[436] Sys_cputime=30
+Sys_datstamp M:44 DEF libhdr.h[448] Sys_datstamp=44
+Sys_delay M:57 DEF libhdr.h[461] Sys_delay=57
+Sys_deletefile M:17 DEF libhdr.h[424] Sys_deletefile=17
+Sys_devcom M:43 DEF libhdr.h[447] Sys_devcom=43
+Sys_dumpmem M:52 DEF libhdr.h[456] Sys_dumpmem=52
+Sys_ext M:68 DEF libhdr.h[474] Sys_ext=68
+Sys_filemodtime M:31 DEF libhdr.h[437] Sys_filemodtime=31
+Sys_filesize M:46 DEF libhdr.h[450] Sys_filesize=46
+Sys_flt M:63 DEF libhdr.h[468] Sys_flt=63
+Sys_flt M:63 MAN gl.b[189] sys(Sys_flt,fl_sqrt,x*x+y*y)
+Sys_flt M:63 MAN gl.b[191] sys(Sys_flt,fl_sqrt,x*x+y*y+z*z)
+Sys_flt M:63 MAN gl.b[235] RESULTIS sys(Sys_flt,fl_64to32,x)
+Sys_flt M:63 MAN gltext.b[529]
+    CosRudder#:=sys(Sys_flt,fl_cos,RudderAngle)
+Sys_flt M:63 MAN gltext.b[530]
+    SinRudder#:=sys(Sys_flt,fl_sin,RudderAngle)
+Sys_flt M:63 MAN gltext.b[534]
+    CosElevator#:=sys(Sys_flt,fl_cos,ElevatorAngle)
+Sys_flt M:63 MAN gltext.b[535]
+    SinElevator#:=sys(Sys_flt,fl_sin,ElevatorAngle)
+Sys_flt M:63 MAN gltext.b[539]
+    CosAileron#:=sys(Sys_flt,fl_cos,AileronAngle)
+Sys_flt M:63 MAN gltext.b[540]
+    SinAileron#:=sys(Sys_flt,fl_sin,AileronAngle)
+Sys_freevec M:22 DEF libhdr.h[429] Sys_freevec=22
+Sys_getbuildno M:71 DEF libhdr.h[477] Sys_getbuildno=71
+Sys_getpid M:51 DEF libhdr.h[455] Sys_getpid=51
+Sys_getprefix M:33 DEF libhdr.h[439] Sys_getprefix=33
+Sys_getsysval M:48 DEF libhdr.h[452] Sys_getsysval=48
+Sys_gettrval M:62 DEF libhdr.h[467] Sys_gettrval=62
+Sys_getvec M:21 DEF libhdr.h[428] Sys_getvec=21
+Sys_gl M:67 DEF libhdr.h[473] Sys_gl=67
+Sys_gl M:67 MAN gl.b[106] sys(Sys_gl,gl_Init)
+Sys_gl M:67 MAN gl.b[137] screenxsize:=sys(Sys_gl,gl_MkScreen,title,...)
+Sys_gl M:67 MAN gl.b[145] sys(Sys_gl,gl_GetError,mes)
+Sys_gl M:67 MAN gl.b[154]
+    sys(Sys_gl,gl_BlendFunc,GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA)
+Sys_gl M:67 MAN gl.b[155] sys(Sys_gl,gl_Enable,GL_BLEND)
+Sys_gl M:67 MAN gl.b[216] sys(Sys_gl,gl_pollevent,@eventtype)
+Sys_gl M:67 MAN gltext.b[204] glprog:=sys(Sys_gl,gl_MkProg)
+Sys_gl M:67 MAN gltext.b[226]
+    UNLESS sys(Sys_gl,gl_LinkProgram,glprog)=-1 DO ..
+Sys_gl M:67 MAN gltext.b[232] sys(Sys_gl,gl_UseProgram,glprog)
+Sys_gl M:67 MAN gltext.b[235]
+    VertexLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vVertex")
+Sys_gl M:67 MAN gltext.b[236]
+    ColorLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vColor")
+Sys_gl M:67 MAN gltext.b[237]
+    DataLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vData")
+Sys_gl M:67 MAN gltext.b[244]
+    MatrixLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"matrix")
+Sys_gl M:67 MAN gltext.b[245]
+    ControlLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"control")
+Sys_gl M:67 MAN gltext.b[288] sys(Sys_gl,gl_Enable,GL_DEPTH_TEST)
+Sys_gl M:67 MAN gltext.b[290] sys(Sys_gl,gl_DepthFunc,GL_LESS)
+Sys_gl M:67 MAN gltext.b[300]
+    VertexBuffer:=sys(Sys_gl,gl_GenVertexBuffer,...,vvec)
+Sys_gl M:67 MAN gltext.b[308]
+    sys(Sys_gl,gl_EnableVertexAttribArray,VertexLoc)
+Sys_gl M:67 MAN gltext.b[310] sys(Sys_gl,gl_VertexData,VertexLoc,3,8,0)
+Sys_gl M:67 MAN gltext.b[319]
+    sys(Sys_gl,gl_EnableVertexAttribArray,ColorLoc)
+Sys_gl M:67 MAN gltext.b[321] sys(Sys_gl,gl_VertexData,ColorLoc,3,8,3)
+Sys_gl M:67 MAN gltext.b[330]
+    sys(Sys_gl,gl_EnableVertexAttribArray,DataLoc)
+Sys_gl M:67 MAN gltext.b[332] sys(Sys_gl,gl_VertexData,DataLoc,2,8,6)
+Sys_gl M:67 MAN gltext.b[345]
+    IndexBuffer:=sys(Sys_gl,gl_GenIndexBuffer,...,ivec)
+Sys_gl M:67 MAN gltext.b[391]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+Sys_gl M:67 MAN gltext.b[432]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+Sys_gl M:67 MAN gltext.b[454]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+Sys_gl M:67 MAN gltext.b[463]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+Sys_gl M:67 MAN gltext.b[474]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+Sys_gl M:67 MAN gltext.b[513]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+Sys_gl M:67 MAN gltext.b[524]
+    sys(Sys_gl,gl_UniformMatrix4fv,MatrixLoc,glprog,projectionMatrix)
+Sys_gl M:67 MAN gltext.b[559]
+    sys(Sys_gl,gl_UniformMatrix4fv,ControlLoc,glprog,control)
+Sys_gl M:67 MAN gltext.b[565]
+    sys(Sys_gl,gl_Clear,GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+Sys_gl M:67 MAN gltext.b[566]
+    sys(Sys_gl,gl_ClearColour, 0.705, 0.705, 0.980, 1.000)
+Sys_gl M:67 MAN gltext.b[570] sys(Sys_gl,gl_SwapBuffers)
+Sys_gl M:67 MAN gltext.b[578]
+    sys(Sys_gl,gl_DisableVertexAttribArray,VertexLoc)
+Sys_gl M:67 MAN gltext.b[579]
+    sys(Sys_gl,gl_DisableVertexAttribArray,ColorLoc)
+Sys_gl M:67 MAN gltext.b[580]
+    sys(Sys_gl,gl_DisableVertexAttribArray,DataLoc)
+Sys_gl M:67 MAN gltext.b[584] sys(Sys_gl,gl_Quit)
+Sys_gl M:67 MAN gltext.b[622]
+    shader:=sys(Sys_gl,isVshader->gl_CompileVshader,gl_CompileFshader,prog,buf)
+Sys_gl M:67 MAN gltext.b[641]
+    sys(Sys_gl,gl_DrawElements,mode,size,offset)
+Sys_gl M:67 MAN gltext.b[732] sys(Sys_gl,gl_Quit)
+Sys_globin M:24 DEF libhdr.h[431] Sys_globin=24
+Sys_graphics M:34 DEF libhdr.h[440] Sys_graphics=34
+Sys_inc M:55 DEF libhdr.h[459] Sys_inc=55
+Sys_incdcount M:65 DEF libhdr.h[470] Sys_incdcount=65
+Sys_interpret M:7 DEF libhdr.h[415] Sys_interpret=7
+Sys_intflag M:28 DEF libhdr.h[434] Sys_intflag=28
+Sys_joy M:69 DEF libhdr.h[475] Sys_joy=69
+Sys_loadseg M:23 DEF libhdr.h[430] Sys_loadseg=23
+Sys_lockirq M:41 DEF libhdr.h[445] Sys_lockirq=41
+Sys_muldiv M:26 DEF libhdr.h[433] Sys_muldiv=26
+Sys_openappend M:19 DEF libhdr.h[426] Sys_openappend=19
+Sys_openread M:14 DEF libhdr.h[421] Sys_openread=14
+Sys_openreadwrite M:47 DEF libhdr.h[451] Sys_openreadwrite=47
+Sys_openwrite M:15 DEF libhdr.h[422] Sys_openwrite=15
+Sys_platform M:54 DEF libhdr.h[458] Sys_platform=54
+Sys_pollsardch M:64 DEF libhdr.h[469] Sys_pollsardch=64
+Sys_putsysval M:49 DEF libhdr.h[453] Sys_putsysval=49
+Sys_quit M:0 DEF libhdr.h[408] Sys_quit=0
+Sys_read M:12 DEF libhdr.h[419] Sys_read=12
+Sys_renamefile M:18 DEF libhdr.h[425] Sys_renamefile=18
+Sys_rti M:1 DEF libhdr.h[409] Sys_rti=1
+Sys_sardch M:10 DEF libhdr.h[417] Sys_sardch=10
+Sys_saveregs M:2 DEF libhdr.h[410] Sys_saveregs=2
+Sys_sawrch M:11 DEF libhdr.h[418] Sys_sawrch=11
+Sys_sdl M:66 DEF libhdr.h[472] Sys_sdl=66
+Sys_seek M:38 DEF libhdr.h[442] Sys_seek=38
+Sys_setcount M:-1 DEF libhdr.h[407] Sys_setcount=-1
+Sys_setprefix M:32 DEF libhdr.h[438] Sys_setprefix=32
+Sys_setraster M:29 DEF libhdr.h[435] Sys_setraster=29
+Sys_setst M:3 DEF libhdr.h[411] Sys_setst=3
+Sys_settracing M:70 DEF libhdr.h[476] Sys_settracing=70
+Sys_settrcount M:61 DEF libhdr.h[466] Sys_settrcount=61
+Sys_shellcom M:50 DEF libhdr.h[454] Sys_shellcom=50
+Sys_sound M:58 DEF libhdr.h[462] Sys_sound=58
+Sys_tally M:6 DEF libhdr.h[414] Sys_tally=6
+Sys_tell M:39 DEF libhdr.h[443] Sys_tell=39
+Sys_tracing M:4 DEF libhdr.h[412] Sys_tracing=4
+Sys_trpush M:60 DEF libhdr.h[465] Sys_trpush=60
+Sys_unloadseg M:25 DEF libhdr.h[432] Sys_unloadseg=25
+Sys_unlockirq M:42 DEF libhdr.h[446] Sys_unlockirq=42
+Sys_waitirq M:40 DEF libhdr.h[444] Sys_waitirq=40
+Sys_watch M:5 DEF libhdr.h[413] Sys_watch=5
+Sys_write M:13 DEF libhdr.h[420] Sys_write=13
+Task_cli M:1 DEF libhdr.h[724] Task_cli=1
+Task_consolehandler M:3 DEF libhdr.h[726] Task_consolehandler=3
+Task_debug M:2 DEF libhdr.h[725] Task_debug=2
+Task_filehandler M:4 DEF libhdr.h[727] Task_filehandler=4
+Task_mbxhandler M:5 DEF libhdr.h[728] Task_mbxhandler=5
+Task_tcphandler M:6 DEF libhdr.h[729] Task_tcphandler=6
+UTF8 M:-1 DEF libhdr.h[617] UTF8=-1
+VertexBuffer G:247 DEF gltext.b[146] VertexBuffer=
+VertexBuffer G:247 SG gltext.b[300]
+    VertexBuffer:=sys(Sys_gl,gl_GenVertexBuffer,...,vvec)
+VertexLoc G:216 DEF gltext.b[115] VertexLoc=
+VertexLoc G:216 LG gltext.b[308]
+    sys(Sys_gl,gl_EnableVertexAttribArray,VertexLoc)
+VertexLoc G:216 LG gltext.b[310]
+    sys(Sys_gl,gl_VertexData,VertexLoc,3,8,0)
+VertexLoc G:216 LG gltext.b[578]
+    sys(Sys_gl,gl_DisableVertexAttribArray,VertexLoc)
+VertexLoc G:216 SG gltext.b[235]
+    VertexLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vVertex")
+Vshader G:214 DEF gltext.b[112] Vshader=
+Vshader G:214 SG gltext.b[215]
+    Vshader:=Compileshader(glprog,TRUE,"gltex'ader.sdr")
+abort G:28 DEF libhdr.h[64] abort=28
+abort G:28 LG gl.b[223] abort(999)
+abort G:28 LG gl.b[363] abort(999)
+abort G:28 LG gl.b[371] abort(999)
+abort G:28 LG gl.b[387] abort(999)
+abort G:28 LG gl.b[412] abort(999)
+abort G:28 LG gl.b[418] abort(999)
+abort G:28 LG gl.b[435] abort(999)
+abort G:28 LG gl.b[442] abort(999)
+abort G:28 LG gl.b[503] abort(999)
+abort G:28 LG gl.b[534] abort(999)
+abort G:28 LG gl.b[931] abort(999)
+abort G:28 LG gltext.b[661] abort(5555)
+adjustlength F:12 LF gltext.b[758] adjustlength(@clx)
+adjustlength F:12 LF gltext.b[758] adjustlength(@ctx)
+adjustlength F:12 LF gltext.b[758] adjustlength(@cwx)
+adjustlength F:12 RT gltext.b[762] LET adjustlength(v)BE..
+adjustortho F:13 LF gltext.b[759] adjustortho(@ctx,@clx)
+adjustortho F:13 LF gltext.b[759] adjustortho(@ctx,@cwx)
+adjustortho F:13 LF gltext.b[759] adjustortho(@cwx,@clx)
+adjustortho F:13 RT gltext.b[770] LET adjustortho(a,b)BE..
+alloc2dvecs F:34 LF gl.b[942] alloc2dvecs()
+alloc2dvecs F:34 RT gl.b[923] LET alloc2dvecs()BE..
+appendstream G:66 DEF libhdr.h[102] appendstream=66
+binrdch G:39 DEF libhdr.h[75] binrdch=39
+binwrch G:42 DEF libhdr.h[78] binwrch=42
+bitsperbyte M:8 DEF libhdr.h[241] bitsperbyte=8
+bitsperbyte M:8 MAN libhdr.h[242] bitsperword=bitsperbyte*bytesperword
+bitsperword M:32 DEF libhdr.h[242] bitsperword=bitsperbyte*bytesperword
+bitsperword M:32 MAN libhdr.h[244] minint=1<<bitsperword-1
+bld_CYGWIN32 M:43 DEF libhdr.h[515] bld_CYGWIN32=43
+bld_MacOSX M:31 DEF libhdr.h[507] bld_MacOSX=31
+bld_MacOSXSDL M:32 DEF libhdr.h[508] bld_MacOSXSDL=32
+bld_MacOSXSDL2 M:33 DEF libhdr.h[509] bld_MacOSXSDL2=33
+bld_MacOSXSDL2GL M:35 DEF libhdr.h[511] bld_MacOSXSDL2GL=35
+bld_MacOSXSDLGL M:34 DEF libhdr.h[510] bld_MacOSXSDLGL=34
+bld_VmsVax M:41 DEF libhdr.h[513] bld_VmsVax=41
+bld_Win32 M:42 DEF libhdr.h[514] bld_Win32=42
+bld_linux M:1 DEF libhdr.h[494] bld_linux=1
+bld_linuxGL M:4 DEF libhdr.h[497] bld_linuxGL=4
+bld_linuxRaspi M:21 DEF libhdr.h[501] bld_linuxRaspi=21
+bld_linuxRaspiSDL M:22 DEF libhdr.h[502] bld_linuxRaspiSDL=22
+bld_linuxRaspiSDL2 M:23 DEF libhdr.h[503] bld_linuxRaspiSDL2=23
+bld_linuxRaspiSDL2GL M:25 DEF libhdr.h[505] bld_linuxRaspiSDL2GL=25
+bld_linuxRaspiSDLGL M:24 DEF libhdr.h[504] bld_linuxRaspiSDLGL=24
+bld_linuxSDL M:2 DEF libhdr.h[495] bld_linuxSDL=2
+bld_linuxSDL2 M:3 DEF libhdr.h[496] bld_linuxSDL2=3
+bld_linuxSDL2GL M:6 DEF libhdr.h[499] bld_linuxSDL2GL=6
+bld_linuxSDLGL M:5 DEF libhdr.h[498] bld_linuxSDLGL=5
+bld_unknown M:0 DEF libhdr.h[493] bld_unknown=0
+bldf_callc M:2 DEF libhdr.h[520] bldf_callc=1<<1
+bldf_joystick M:4 DEF libhdr.h[521] bldf_joystick=1<<2
+bldf_sound M:1 DEF libhdr.h[519] bldf_sound=1
+bootregs M:11 DEF libhdr.h[481] bootregs=11
+bytesperword M:4 DEF libhdr.h[240] bytesperword=1<<B2Wsh
+bytesperword M:4 MAN gl.b[109] LET mes=VEC 256/bytesperword
+bytesperword M:4 MAN gl.b[127] LET mes=VEC 256/bytesperword
+bytesperword M:4 MAN gl.b[628] LET s=VEC 256/bytesperword
+bytesperword M:4 MAN gl.b[865] LET s=VEC 256/bytesperword
+bytesperword M:4 MAN libhdr.h[242] bitsperword=bitsperbyte*bytesperword
+bytesperword M:4 MAN libhdr.h[243] mcaddrinc=bytesperword
+bytesperword M:4 MAN libhdr.h[567]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+bytesperword M:4 MAN libhdr.h[682]
+    tcb_upb=tcb_namebase+15/bytesperword+1
+callco G:19 DEF libhdr.h[55] callco=19
+callseg G:107 DEF libhdr.h[144] callseg=107
+capitalch G:96 DEF libhdr.h[133] capitalch=96
+capitalch G:96 LG gltext.b[655] SWITCHON capitalch(eventa2) INTO..
+cenl FG:246 DEF gltext.b[144] FLT cenl=
+cenl FG:246 LG gltext.b[417]
+    setvec(projectionMatrix,16, 1.000, 0.000, 0.000, 0.000,...)
+cenl FG:246 LG gltext.b[670] cenl#:=cenl#+ 0.500
+cenl FG:246 LG gltext.b[671] cenl#:=cenl#- 0.500
+cenl FG:246 SG gltext.b[367] cenl#:= 0.000
+cenl FG:246 SG gltext.b[670] cenl#:=cenl#+ 0.500
+cenl FG:246 SG gltext.b[671] cenl#:=cenl#- 0.500
+cent FG:244 DEF gltext.b[144] FLT cent=
+cent FG:244 LG gltext.b[417]
+    setvec(projectionMatrix,16, 1.000, 0.000, 0.000, 0.000,...)
+cent FG:244 LG gltext.b[666] cent#:=cent#+ 0.500
+cent FG:244 LG gltext.b[667] cent#:=cent#- 0.500
+cent FG:244 SG gltext.b[367] cent#:= 0.000
+cent FG:244 SG gltext.b[666] cent#:=cent#+ 0.500
+cent FG:244 SG gltext.b[667] cent#:=cent#- 0.500
+cenw FG:245 DEF gltext.b[144] FLT cenw=
+cenw FG:245 LG gltext.b[417]
+    setvec(projectionMatrix,16, 1.000, 0.000, 0.000, 0.000,...)
+cenw FG:245 LG gltext.b[668] cenw#:=cenw#+ 0.500
+cenw FG:245 LG gltext.b[669] cenw#:=cenw#- 0.500
+cenw FG:245 SG gltext.b[367] cenw#:= 0.000
+cenw FG:245 SG gltext.b[668] cenw#:=cenw#+ 0.500
+cenw FG:245 SG gltext.b[669] cenw#:=cenw#- 0.500
+ch G:474 DEF gl.h[102] ch=
+ch G:474 LG gl.b[478] SWITCHON ch INTO..
+ch G:474 LG gl.b[480] error("line 'del file",lineno,ch)
+ch G:474 LG gl.b[489] UNTIL ch=10|ch=endstreamch DO ..
+ch G:474 LG gl.b[501] UNLESS ch=115 DO ..
+ch G:474 LG gl.b[517] TEST ch=115 THEN .. ELSE ..
+ch G:474 LG gl.b[521] TEST ch=115 THEN .. ELSE ..
+ch G:474 SG gl.b[323] ch:=rdch()
+ch G:474 SG gl.b[481] ch:=rdch()
+ch G:474 SG gl.b[489] ch:=rdch()
+ch G:474 SG gl.b[496] ch:=rdch()
+ch G:474 SG gl.b[500] ch:=rdch()
+ch G:474 SG gl.b[506] ch:=rdch()
+ch G:474 SG gl.b[509] ch:=rdch()
+ch G:474 SG gl.b[510] ch:=rdch()
+ch G:474 SG gl.b[511] ch:=rdch()
+ch G:474 SG gl.b[512] ch:=rdch()
+ch G:474 SG gl.b[513] ch:=rdch()
+ch G:474 SG gl.b[514] ch:=rdch()
+ch G:474 SG gl.b[515] ch:=rdch()
+ch G:474 SG gl.b[516] ch:=rdch()
+ch G:474 SG gl.b[517] ch:=rdch()
+ch G:474 SG gl.b[520] ch:=rdch()
+ch G:474 SG gl.b[521] ch:=rdch()
+ch G:474 SG gl.b[524] ch:=rdch()
+ch G:474 SG gl.b[537] ch:=rdch()
+changeco G:6 DEF libhdr.h[41] changeco=6
+changepri G:155 DEF libhdr.h[206] changepri=155
+checkfor F:12 RT gl.b[472] LET checkfor(tok,mess)BE..
+cis G:12 DEF libhdr.h[48] cis=12
+clear_words G:115 DEF libhdr.h[152] clear_words=115
+cli_commanddir G:136 DEF libhdr.h[176] cli_commanddir=136
+cli_commandfile G:143 DEF libhdr.h[187] cli_commandfile=143
+cli_commandname G:138 DEF libhdr.h[182] cli_commandname=138
+cli_currentinput G:142 DEF libhdr.h[186] cli_currentinput=142
+cli_currentoutput G:146 DEF libhdr.h[193] cli_currentoutput=146
+cli_data G:135 DEF libhdr.h[175] cli_data=135
+cli_defaultstack G:147 DEF libhdr.h[194] cli_defaultstack=147
+cli_faillevel G:139 DEF libhdr.h[183] cli_faillevel=139
+cli_init G:133 DEF libhdr.h[173] cli_init=133
+cli_initialfaillevel M:10 DEF libhdr.h[626]
+    cli_initialfaillevel=return_hard
+cli_initialstack M:50000 DEF libhdr.h[625] cli_initialstack=50000
+cli_module G:149 DEF libhdr.h[196] cli_module=149
+cli_module_gn M:149 DEF libhdr.h[624] cli_module_gn=149
+cli_preloadlist G:145 DEF libhdr.h[192] cli_preloadlist=145
+cli_prompt G:140 DEF libhdr.h[184] cli_prompt=140
+cli_result2 G:134 DEF libhdr.h[174] cli_result2=134
+cli_returncode G:137 DEF libhdr.h[177] cli_returncode=137
+cli_standardinput G:141 DEF libhdr.h[185] cli_standardinput=141
+cli_standardoutput G:148 DEF libhdr.h[195] cli_standardoutput=148
+cli_status G:144 DEF libhdr.h[189] cli_status=144
+cli_tallyflag G:132 DEF libhdr.h[172] cli_tallyflag=132
+clibit_comcom M:4 DEF libhdr.h[631] clibit_comcom=4
+clibit_endcli M:256 DEF libhdr.h[637] clibit_endcli=256
+clibit_eofdel M:2 DEF libhdr.h[630] clibit_eofdel=2
+clibit_maincli M:8 DEF libhdr.h[632] clibit_maincli=8
+clibit_mbxcli M:64 DEF libhdr.h[635] clibit_mbxcli=64
+clibit_newcli M:16 DEF libhdr.h[633] clibit_newcli=16
+clibit_noprompt M:1 DEF libhdr.h[629] clibit_noprompt=1
+clibit_runcli M:32 DEF libhdr.h[634] clibit_runcli=32
+clibit_tcpcli M:128 DEF libhdr.h[636] clibit_tcpcli=128
+clihook G:4 DEF libhdr.h[39] clihook=4
+cliregs M:21 DEF libhdr.h[482] cliregs=21
+closesdl1 F:19 RT gl.b[658] LET closesdl1()BE..
+clx FG:234 DEF gltext.b[133] FLT clx=
+clx FG:234 LG gltext.b[426] setvec(workMatrix,16,ctx,cty,ctz, 0.000,...)
+clx FG:234 LG gltext.b[679] writef("cl   't=%9.6f*n",clx,cly,clz,rldot)
+clx FG:234 LG gltext.b[742] ctx#-l#*cwx#+w#*clx
+clx FG:234 LG gltext.b[743] l#*ctx#+cwx#-t#*clx
+clx FG:234 LG gltext.b[744] #-w#*ctx#+t#*cwx#+clx
+clx FG:234 LLG gltext.b[758] adjustlength(@clx)
+clx FG:234 LLG gltext.b[759] adjustortho(@ctx,@clx)
+clx FG:234 LLG gltext.b[759] adjustortho(@cwx,@clx)
+clx FG:234 SG gltext.b[363] clx#:= 0.000
+clx FG:234 SG gltext.b[756] clx#:=lx
+cly FG:235 DEF gltext.b[133] FLT cly=
+cly FG:235 LG gltext.b[426] setvec(workMatrix,16,ctx,cty,ctz, 0.000,...)
+cly FG:235 LG gltext.b[679] writef("cl   't=%9.6f*n",clx,cly,clz,rldot)
+cly FG:235 LG gltext.b[746] cty#-l#*cwy#+w#*cly
+cly FG:235 LG gltext.b[747] l#*cty#+cwy#-t#*cly
+cly FG:235 LG gltext.b[748] #-w#*cty#+t#*cwy#+cly
+cly FG:235 SG gltext.b[363] cly#:= 1.000
+cly FG:235 SG gltext.b[756] cly#:=ly
+clz FG:236 DEF gltext.b[133] FLT clz=
+clz FG:236 LG gltext.b[426] setvec(workMatrix,16,ctx,cty,ctz, 0.000,...)
+clz FG:236 LG gltext.b[679] writef("cl   't=%9.6f*n",clx,cly,clz,rldot)
+clz FG:236 LG gltext.b[750] ctz#-l#*cwz#+w#*clz
+clz FG:236 LG gltext.b[751] l#*ctz#+cwz#-t#*clz
+clz FG:236 LG gltext.b[752] #-w#*ctz#+t#*cwz#+clz
+clz FG:236 SG gltext.b[363] clz#:= 0.000
+clz FG:236 SG gltext.b[756] clz#:=lz
+co_c M:5 DEF libhdr.h[286] co_c=
+co_fn M:3 DEF libhdr.h[284] co_fn=
+co_list M:2 DEF libhdr.h[283] co_list=
+co_parent M:1 DEF libhdr.h[282] co_parent=
+co_pptr M:0 DEF libhdr.h[281] co_pptr=0
+co_size M:4 DEF libhdr.h[285] co_size=
+codewrch G:126 DEF libhdr.h[163] codewrch=126
+colist G:8 DEF libhdr.h[43] colist=8
+colourkey G:484 DEF gl.h[116] colourkey=
+colourkey G:484 LG gl.b[845] UNLESS currcolour=colourkey DO ..
+colourkey G:484 SG gl.b[665] colourkey:=col
+compch G:97 DEF libhdr.h[134] compch=97
+compstring G:98 DEF libhdr.h[135] compstring=98
+concatstr F:1 FN gltext.b[155] LET concatstr(s1,s2,s3)=..
+concatstr F:1 LF gltext.b[195]
+    screenxsize:=glMkScreen(concatstr("OpenG' Test:  ",...),1024,512)
+consoletask G:171 DEF libhdr.h[219] consoletask=171
+copy_bytes G:116 DEF libhdr.h[153] copy_bytes=116
+copy_words G:114 DEF libhdr.h[151] copy_words=114
+copydir G:79 DEF libhdr.h[115] copydir=79
+copyobj G:75 DEF libhdr.h[111] copyobj=75
+copystring G:99 DEF libhdr.h[136] copystring=99
+cos G:13 DEF libhdr.h[49] cos=13
+cowait G:20 DEF libhdr.h[56] cowait=20
+createco G:17 DEF libhdr.h[53] createco=17
+createdev G:172 DEF libhdr.h[220] createdev=172
+createdir G:82 DEF libhdr.h[118] createdir=82
+createtask G:153 DEF libhdr.h[204] createtask=153
+ctx FG:228 DEF gltext.b[131] FLT ctx=
+ctx FG:228 LG gltext.b[426] setvec(workMatrix,16,ctx,cty,ctz, 0.000,...)
+ctx FG:228 LG gltext.b[675] writef("ct   't=%9.6f*n",ctx,cty,ctz,rtdot)
+ctx FG:228 LG gltext.b[742] ctx#-l*cwx#+w*clx
+ctx FG:228 LG gltext.b[743] l#*ctx#+cwx#-t*clx
+ctx FG:228 LG gltext.b[744] #-w#*ctx#+t*cwx#+clx
+ctx FG:228 LLG gltext.b[758] adjustlength(@ctx)
+ctx FG:228 LLG gltext.b[759] adjustortho(@ctx,@clx)
+ctx FG:228 LLG gltext.b[759] adjustortho(@ctx,@cwx)
+ctx FG:228 SG gltext.b[361] ctx#:= 0.000
+ctx FG:228 SG gltext.b[754] ctx#:=tx
+cty FG:229 DEF gltext.b[131] FLT cty=
+cty FG:229 LG gltext.b[426] setvec(workMatrix,16,ctx,cty,ctz, 0.000,...)
+cty FG:229 LG gltext.b[675] writef("ct   't=%9.6f*n",ctx,cty,ctz,rtdot)
+cty FG:229 LG gltext.b[746] cty#-l*cwy#+w*cly
+cty FG:229 LG gltext.b[747] l#*cty#+cwy#-t*cly
+cty FG:229 LG gltext.b[748] #-w#*cty#+t*cwy#+cly
+cty FG:229 SG gltext.b[361] cty#:= 0.000
+cty FG:229 SG gltext.b[754] cty#:=ty
+ctz FG:230 DEF gltext.b[131] FLT ctz=
+ctz FG:230 LG gltext.b[426] setvec(workMatrix,16,ctx,cty,ctz, 0.000,...)
+ctz FG:230 LG gltext.b[675] writef("ct   't=%9.6f*n",ctx,cty,ctz,rtdot)
+ctz FG:230 LG gltext.b[750] ctz#-l*cwz#+w*clz
+ctz FG:230 LG gltext.b[751] l#*ctz#+cwz#-t*clz
+ctz FG:230 LG gltext.b[752] #-w#*ctz#+t*cwz#+clz
+ctz FG:230 SG gltext.b[361] ctz#:=#- 1.000
+ctz FG:230 SG gltext.b[754] ctz#:=tz
+currco G:7 DEF libhdr.h[42] currco=7
+currcolour G:483 DEF gl.h[115] currcolour=
+currcolour G:483 LG gl.b[812] currcolour
+currcolour G:483 LG gl.b[845] UNLESS currcolour=colourkey DO ..
+currcolour G:483 LG gl.b[849] pxlv!(pxlxsize*y+x):=currcolour
+currcolour G:483 SG gl.b[663] currcolour:=col
+current_language G:190 DEF libhdr.h[231] current_language=190
+currentdir G:14 DEF libhdr.h[50] currentdir=14
+currx G:481 DEF gl.h[113] currx=
+currx G:481 LG gl.b[669] moveto(currx+dx,curry+dy)
+currx G:481 LG gl.b[672] currx
+currx G:481 LG gl.b[695] drawto(currx+dx,curry+dy)
+currx G:481 LG gl.b[701] write_ch_slice(currx,curry+11-line,ch,line)
+currx G:481 LG gl.b[702] currx:=currx+9
+currx G:481 LG gl.b[707] currx
+currx G:481 SG gl.b[1011] currx:=x0
+currx G:481 SG gl.b[1070] currx:=x0
+currx G:481 SG gl.b[1141] currx:=x0
+currx G:481 SG gl.b[649] currx:=0
+currx G:481 SG gl.b[668] currx:=x
+currx G:481 SG gl.b[686] currx:=x
+currx G:481 SG gl.b[698] currx:=10
+currx G:481 SG gl.b[702] currx:=currx+9
+currx G:481 SG gl.b[842] currx:=cx
+currx G:481 SG gl.b[999] currx:=x0
+curry G:482 DEF gl.h[114] curry=
+curry G:482 LG gl.b[669] moveto(currx+dx,curry+dy)
+curry G:482 LG gl.b[672] curry
+curry G:482 LG gl.b[695] drawto(currx+dx,curry+dy)
+curry G:482 LG gl.b[698] curry:=curry-14
+curry G:482 LG gl.b[701] write_ch_slice(currx,curry+11-line,ch,line)
+curry G:482 LG gl.b[707] curry
+curry G:482 SG gl.b[1011] curry:=y0
+curry G:482 SG gl.b[1070] curry:=y0
+curry G:482 SG gl.b[1141] curry:=y0
+curry G:482 SG gl.b[649] curry:=0
+curry G:482 SG gl.b[668] curry:=y
+curry G:482 SG gl.b[686] curry:=y
+curry G:482 SG gl.b[698] curry:=curry-14
+curry G:482 SG gl.b[842] curry:=cy
+curry G:482 SG gl.b[999] curry:=y0
+cwx FG:231 DEF gltext.b[132] FLT cwx=
+cwx FG:231 LG gltext.b[426] setvec(workMatrix,16,ctx,cty,ctz, 0.000,...)
+cwx FG:231 LG gltext.b[677] writef("cw   't=%9.6f*n",cwx,cwy,cwz,rwdot)
+cwx FG:231 LG gltext.b[742] ctx#-l#*cwx#+w*clx
+cwx FG:231 LG gltext.b[743] l#*ctx#+cwx#-t*clx
+cwx FG:231 LG gltext.b[744] #-w#*ctx#+t#*cwx#+clx
+cwx FG:231 LLG gltext.b[758] adjustlength(@cwx)
+cwx FG:231 LLG gltext.b[759] adjustortho(@ctx,@cwx)
+cwx FG:231 LLG gltext.b[759] adjustortho(@cwx,@clx)
+cwx FG:231 SG gltext.b[362] cwx#:=#- 1.000
+cwx FG:231 SG gltext.b[755] cwx#:=wx
+cwy FG:232 DEF gltext.b[132] FLT cwy=
+cwy FG:232 LG gltext.b[426] setvec(workMatrix,16,ctx,cty,ctz, 0.000,...)
+cwy FG:232 LG gltext.b[677] writef("cw   't=%9.6f*n",cwx,cwy,cwz,rwdot)
+cwy FG:232 LG gltext.b[746] cty#-l#*cwy#+w*cly
+cwy FG:232 LG gltext.b[747] l#*cty#+cwy#-t*cly
+cwy FG:232 LG gltext.b[748] #-w#*cty#+t#*cwy#+cly
+cwy FG:232 SG gltext.b[362] cwy#:= 0.000
+cwy FG:232 SG gltext.b[755] cwy#:=wy
+cwz FG:233 DEF gltext.b[132] FLT cwz=
+cwz FG:233 LG gltext.b[426] setvec(workMatrix,16,ctx,cty,ctz, 0.000,...)
+cwz FG:233 LG gltext.b[677] writef("cw   't=%9.6f*n",cwx,cwy,cwz,rwdot)
+cwz FG:233 LG gltext.b[750] ctz#-l#*cwz#+w*clz
+cwz FG:233 LG gltext.b[751] l#*ctz#+cwz#-t*clz
+cwz FG:233 LG gltext.b[752] #-w#*ctz#+t#*cwz#+clz
+cwz FG:233 SG gltext.b[362] cwz#:= 0.000
+cwz FG:233 SG gltext.b[755] cwz#:=wz
+dat_to_strings G:110 DEF libhdr.h[147] dat_to_strings=110
+datstamp G:109 DEF libhdr.h[146] datstamp=109
+datstring G:108 DEF libhdr.h[145] datstring=108
+deadcode M:#xDEADC0DE DEF libhdr.h[264] deadcode=-#x21523F22
+debug G:202 DEF gltext.b[92] debug=
+debug G:202 LG gltext.b[268] IF debug DO ..
+debug G:202 LG gltext.b[374] IF FALSE&debug DO ..
+debug G:202 SG gltext.b[180] debug:=argv!0
+delay G:128 DEF libhdr.h[165] delay=128
+delay G:128 LG gltext.b[571] delay(20)
+delayuntil G:129 DEF libhdr.h[166] delayuntil=129
+deleteco G:18 DEF libhdr.h[54] deleteco=18
+deletedev G:173 DEF libhdr.h[221] deletedev=173
+deletefile G:76 DEF libhdr.h[112] deletefile=76
+deleteself G:125 DEF libhdr.h[162] deleteself=125
+deletetask G:154 DEF libhdr.h[205] deletetask=154
+deplete G:43 DEF libhdr.h[79] deplete=43
+done G:200 DEF gltext.b[90] done=ug
+done G:200 LG gltext.b[408] UNTIL done DO ..
+done G:200 SG gltext.b[355] done:=FALSE
+done G:200 SG gltext.b[658] done:=TRUE
+drawby G:492 DEF gl.h[126] drawby=
+drawby G:492 RT gl.b[695] LET drawby(dx,dy)BE..
+drawch G:502 DEF gl.h[138] drawch=
+drawch G:502 LG gl.b[621] drawch(s%i)
+drawch G:502 LG gl.b[859] drawch(s%i)
+drawch G:502 RT gl.b[697] LET drawch(ch)BE..
+drawcircle F:41 RT gl.b[1144] LET drawcircle(x0,y0,radius)BE..
+drawf G:501 DEF gl.h[137] drawf=
+drawf G:501 RT gl.b[862] LET drawf(x,y,form,a,b,c,d,...)BE..
+drawfillcircle F:42 RT gl.b[1180] LET drawfillcircle(x0,y0,radius)BE..
+drawfillrect G:498 DEF gl.h[133] drawfillrect=
+drawfillrect G:498 RT gl.b[1002] LET drawfillrect(x0,y0,x1,y1)BE..
+drawfillrndrect G:499 DEF gl.h[134] drawfillrndrect=
+drawfillrndrect G:499 RT gl.b[1073]
+    LET drawfillrndrect(x0,y0,x1,y1,radius)BE..
+drawfilltriangle G:495 DEF gl.h[130] drawfilltriangle=
+drawfstr G:507 DEF gl.h[144] drawfstr=
+drawfstr G:507 LG gl.b[867] drawfstr%0:=0
+drawfstr G:507 LG gl.b[871] drawstr(x,y,drawfstr)
+drawfstr G:507 LG gl.b[875] drawfstr%0+1
+drawfstr G:507 LG gl.b[876] drawfstr%strlen:=ch
+drawfstr G:507 LG gl.b[877] drawfstr%0:=strlen
+drawfstr G:507 SG gl.b[866] drawfstr:=s
+drawmodel F:9 LF gltext.b[568] drawmodel()
+drawmodel F:9 RT gltext.b[631] LET drawmodel()BE..
+drawpoint G:493 DEF gl.h[127] drawpoint=
+drawpoint G:493 LG gl.b[1009] drawpoint(x,y)
+drawpoint G:493 LG gl.b[1027] drawpoint(x,ymin)
+drawpoint G:493 LG gl.b[1028] drawpoint(x,ymax)
+drawpoint G:493 LG gl.b[1031] drawpoint(xmin,y)
+drawpoint G:493 LG gl.b[1032] drawpoint(xmax,y)
+drawpoint G:493 LG gl.b[1043] drawpoint(xmax,ymin+r)
+drawpoint G:493 LG gl.b[1044] drawpoint(xmin,ymin+r)
+drawpoint G:493 LG gl.b[1045] drawpoint(xmax,ymax-r)
+drawpoint G:493 LG gl.b[1046] drawpoint(xmin,ymax-r)
+drawpoint G:493 LG gl.b[1060] drawpoint(xmax-r+x,ymax-r+y)
+drawpoint G:493 LG gl.b[1061] drawpoint(xmin+r-x,ymax-r+y)
+drawpoint G:493 LG gl.b[1062] drawpoint(xmax-r+x,ymin+r-y)
+drawpoint G:493 LG gl.b[1063] drawpoint(xmin+r-x,ymin+r-y)
+drawpoint G:493 LG gl.b[1064] drawpoint(xmax-r+y,ymax-r+x)
+drawpoint G:493 LG gl.b[1065] drawpoint(xmin+r-y,ymax-r+x)
+drawpoint G:493 LG gl.b[1066] drawpoint(xmax-r+y,ymin+r-x)
+drawpoint G:493 LG gl.b[1067] drawpoint(xmin+r-y,ymin+r-x)
+drawpoint G:493 LG gl.b[1087] drawpoint(x,y)
+drawpoint G:493 LG gl.b[1088] drawpoint(x,y)
+drawpoint G:493 LG gl.b[1100] drawpoint(xmax,ymin+r)
+drawpoint G:493 LG gl.b[1101] drawpoint(xmin,ymin+r)
+drawpoint G:493 LG gl.b[1102] drawpoint(xmax,ymax-r)
+drawpoint G:493 LG gl.b[1103] drawpoint(xmin,ymax-r)
+drawpoint G:493 LG gl.b[1117] drawpoint(xmax-r+x,ymax-r+y)
+drawpoint G:493 LG gl.b[1118] drawpoint(xmin+r-x,ymax-r+y)
+drawpoint G:493 LG gl.b[1119] drawpoint(xmax-r+x,ymin+r-y)
+drawpoint G:493 LG gl.b[1120] drawpoint(xmin+r-x,ymin+r-y)
+drawpoint G:493 LG gl.b[1121] drawpoint(xmax-r+y,ymax-r+x)
+drawpoint G:493 LG gl.b[1122] drawpoint(xmin+r-y,ymax-r+x)
+drawpoint G:493 LG gl.b[1123] drawpoint(xmax-r+y,ymin+r-x)
+drawpoint G:493 LG gl.b[1124] drawpoint(xmin+r-y,ymin+r-x)
+drawpoint G:493 LG gl.b[1128] drawpoint(fx,ymax-r+x)
+drawpoint G:493 LG gl.b[1129] drawpoint(fx,ymin+r-x)
+drawpoint G:493 LG gl.b[1135] drawpoint(fx,ymax-r+y)
+drawpoint G:493 LG gl.b[1136] drawpoint(fx,ymin+r-y)
+drawpoint G:493 LG gl.b[1152] drawpoint(x0,y0+radius)
+drawpoint G:493 LG gl.b[1153] drawpoint(x0,y0-radius)
+drawpoint G:493 LG gl.b[1154] drawpoint(x0+radius,y0)
+drawpoint G:493 LG gl.b[1155] drawpoint(x0-radius,y0)
+drawpoint G:493 LG gl.b[1169] drawpoint(x0+x,y0+y)
+drawpoint G:493 LG gl.b[1170] drawpoint(x0-x,y0+y)
+drawpoint G:493 LG gl.b[1171] drawpoint(x0+x,y0-y)
+drawpoint G:493 LG gl.b[1172] drawpoint(x0-x,y0-y)
+drawpoint G:493 LG gl.b[1173] drawpoint(x0+y,y0+x)
+drawpoint G:493 LG gl.b[1174] drawpoint(x0-y,y0+x)
+drawpoint G:493 LG gl.b[1175] drawpoint(x0+y,y0-x)
+drawpoint G:493 LG gl.b[1176] drawpoint(x0-y,y0-x)
+drawpoint G:493 LG gl.b[1189] drawpoint(x0,y0+radius)
+drawpoint G:493 LG gl.b[1190] drawpoint(x0,y0-radius)
+drawpoint G:493 LG gl.b[1191] drawpoint(x,y0)
+drawpoint G:493 LG gl.b[1205] drawpoint(x0+x,y0+y)
+drawpoint G:493 LG gl.b[1206] drawpoint(x0-x,y0+y)
+drawpoint G:493 LG gl.b[1207] drawpoint(x0+x,y0-y)
+drawpoint G:493 LG gl.b[1208] drawpoint(x0-x,y0-y)
+drawpoint G:493 LG gl.b[1209] drawpoint(x0+y,y0+x)
+drawpoint G:493 LG gl.b[1210] drawpoint(x0-y,y0+x)
+drawpoint G:493 LG gl.b[1211] drawpoint(x0+y,y0-x)
+drawpoint G:493 LG gl.b[1212] drawpoint(x0-y,y0-x)
+drawpoint G:493 LG gl.b[1215] drawpoint(fx,y0+x)
+drawpoint G:493 LG gl.b[1216] drawpoint(fx,y0-x)
+drawpoint G:493 LG gl.b[1222] drawpoint(fx,y0+y)
+drawpoint G:493 LG gl.b[1223] drawpoint(fx,y0-y)
+drawpoint G:493 LG gl.b[684] drawpoint(x,y)
+drawpoint G:493 LG gl.b[828] drawpoint(x+0,y)
+drawpoint G:493 LG gl.b[829] drawpoint(x+1,y)
+drawpoint G:493 LG gl.b[830] drawpoint(x+2,y)
+drawpoint G:493 LG gl.b[831] drawpoint(x+3,y)
+drawpoint G:493 LG gl.b[832] drawpoint(x+4,y)
+drawpoint G:493 LG gl.b[833] drawpoint(x+5,y)
+drawpoint G:493 LG gl.b[834] drawpoint(x+6,y)
+drawpoint G:493 LG gl.b[835] drawpoint(x+7,y)
+drawpoint G:493 LG gl.b[992] drawpoint(x,ymin)
+drawpoint G:493 LG gl.b[993] drawpoint(x,ymax)
+drawpoint G:493 LG gl.b[996] drawpoint(xmin,y)
+drawpoint G:493 LG gl.b[997] drawpoint(xmax,y)
+drawpoint G:493 RT gl.b[845] LET drawpoint(x,y)BE..
+drawquad G:500 DEF gl.h[135] drawquad=
+drawquad G:500 RT gl.b[978] LET drawquad(x1,y1,x2,y2,x3,y3,x4,y4)BE..
+drawrect G:496 DEF gl.h[131] drawrect=
+drawrect G:496 RT gl.b[984] LET drawrect(x0,y0,x1,y1)BE..
+drawrndrect G:497 DEF gl.h[132] drawrndrect=
+drawrndrect G:497 RT gl.b[1014] LET drawrndrect(x0,y0,x1,y1,radius)BE..
+drawstr F:30 LF gl.b[871] drawstr(x,y,drawfstr)
+drawstr F:30 RT gl.b[857] LET drawstr(x,y,s)BE..
+drawstring G:505 DEF gl.h[141] drawstring=
+drawstring G:505 LG gl.b[634] drawstring(x,y,plotfstr)
+drawstring G:505 RT gl.b[619] LET drawstring(x,y,s)BE..
+drawto G:491 DEF gl.h[125] drawto=
+drawto G:491 LG gl.b[695] drawto(currx+dx,curry+dy)
+drawto G:491 LG gl.b[970] drawto(rightxv!y,y)
+drawto G:491 RT gl.b[671] LET drawto(x1,y1)BE..
+drawtriangle G:494 DEF gl.h[129] drawtriangle=
+drawtriangle G:494 LG gl.b[980] drawtriangle(x1,y1,x2,y2,x3,y3)
+drawtriangle G:494 LG gl.b[981] drawtriangle(x2,y2,x3,y3,x4,y4)
+drawtriangle G:494 RT gl.b[938] LET drawtriangle(x1,y1,x2,y2,x3,y3)BE..
+drawwrch G:503 DEF gl.h[139] drawwrch=
+drawwrch G:503 LG gl.b[868] wrch:=drawwrch
+drawwrch G:503 RT gl.b[874] LET drawwrch(ch)BE..
+dvec G:207 DEF gltext.b[101] dvec=
+dvec G:207 LG gltext.b[283]
+    writef(" %i3 'i3  %i3*n",dvec!i,dvec!(i+1),dvec!(i+2))
+dvec G:207 LG gltext.b[582] freevec(dvec)
+dvec G:207 LG gltext.b[635] @dvec!p
+dvecupb G:208 DEF gltext.b[102] dvecupb=
+dvecupb G:208 LG gltext.b[282] FOR i=0 TO dvecupb BY 3 DO..
+dvecupb G:208 LG gltext.b[634] FOR p=0 TO dvecupb BY 3 DO..
+endread G:60 DEF libhdr.h[96] endread=60
+endstream G:62 DEF libhdr.h[98] endstream=62
+endstream G:62 LG gl.b[467] endstream(instream)
+endstream G:62 LG gltext.b[617] endstream(instream)
+endstream G:62 LG gltext.b[627] endstream(ramstream)
+endstreamch M:-1 DEF libhdr.h[247] endstreamch=-1
+endstreamch M:-1 MAN gl.b[484] CASE endstreamch:.. 
+endstreamch M:-1 MAN gl.b[489] UNTIL ch=10|ch=endstreamch DO ..
+endstreamch M:-1 MAN gltext.b[610] IF ch=endstreamch DO ..
+endtask G:162 DEF libhdr.h[213] endtask=162
+endwrite G:61 DEF libhdr.h[97] endwrite=61
+entryword M:57311 DEF libhdr.h[266] entryword=57311
+error F:8 LF gl.b[228] error("Numbe'expected")
+error F:8 LF gl.b[317] error("Troub' file %s",filename)
+error F:8 LF gl.b[417] error("Too m'vupb=%n*n",dpos,dvupb)
+error F:8 LF gl.b[457] error("One o' missing")
+error F:8 LF gl.b[480] error("line 'del file",lineno,ch)
+error F:8 LF gl.b[533] error("Bad f't number")
+error F:8 RT gl.b[218] LET error(mes,a,b,c)BE..
+eventa1 G:463 DEF gl.h[83] eventa1=
+eventa2 G:464 DEF gl.h[84] eventa2=
+eventa2 G:464 LG gltext.b[655] SWITCHON capitalch(eventa2) INTO..
+eventa3 G:465 DEF gl.h[85] eventa3=
+eventa4 G:466 DEF gl.h[86] eventa4=
+eventa5 G:467 DEF gl.h[87] eventa5=
+eventtype G:462 DEF gl.h[82] eventtype=
+eventtype G:462 LG gltext.b[649] SWITCHON eventtype INTO..
+eventtype G:462 LLG gl.b[216] sys(Sys_gl,gl_pollevent,@eventtype)
+eyedistance FG:243 DEF gltext.b[141] FLT eyedistance=
+eyedistance FG:243 LG gltext.b[467]
+    setvec(workMatrix,16, 1.000, 0.000, 0.000, 0.000,...)
+eyedistance FG:243 LG gltext.b[684]
+    writef("eyedi'= %9.3f*n",eyedistance)
+eyedistance FG:243 LG gltext.b[700] eyedistance#:=eyedistance#* 1.100
+eyedistance FG:243 LG gltext.b[703] IF eyedistance#>= 1.000 DO ..
+eyedistance FG:243 LG gltext.b[704] eyedistance#:=eyedistance#/ 1.100
+eyedistance FG:243 SG gltext.b[372] eyedistance#:= 80.000
+eyedistance FG:243 SG gltext.b[700] eyedistance#:=eyedistance#* 1.100
+eyedistance FG:243 SG gltext.b[704] eyedistance#:=eyedistance#/ 1.100
+eyex FG:240 DEF gltext.b[138] FLT eyex=
+eyex FG:240 LG gltext.b[438] eyex
+eyex FG:240 LG gltext.b[682] writef("eyepo'f %9.3f*n",eyex,eyey,eyez)
+eyex FG:240 SG gltext.b[370] eyex#:= 0.000
+eyex FG:240 SG gltext.b[690] eyex#:= 0.000
+eyex FG:240 SG gltext.b[691] eyex#:= 0.707
+eyex FG:240 SG gltext.b[692] eyex#:= 1.000
+eyex FG:240 SG gltext.b[693] eyex#:= 0.707
+eyex FG:240 SG gltext.b[694] eyex#:= 0.000
+eyex FG:240 SG gltext.b[695] eyex#:=#- 0.707
+eyex FG:240 SG gltext.b[696] eyex#:=#- 1.000
+eyex FG:240 SG gltext.b[697] eyex#:=#- 0.707
+eyey FG:241 DEF gltext.b[138] FLT eyey=
+eyey FG:241 LG gltext.b[438] eyey
+eyey FG:241 LG gltext.b[682] writef("eyepo'f %9.3f*n",eyex,eyey,eyez)
+eyey FG:241 SG gltext.b[370] eyey#:= 0.000
+eyez FG:242 DEF gltext.b[138] FLT eyez=
+eyez FG:242 LG gltext.b[438] eyez
+eyez FG:242 LG gltext.b[682] writef("eyepo'f %9.3f*n",eyex,eyey,eyez)
+eyez FG:242 SG gltext.b[370] eyez#:= 1.000
+eyez FG:242 SG gltext.b[690] eyez#:= 1.000
+eyez FG:242 SG gltext.b[691] eyez#:= 0.707
+eyez FG:242 SG gltext.b[692] eyez#:=#- 0.000
+eyez FG:242 SG gltext.b[693] eyez#:=#- 0.707
+eyez FG:242 SG gltext.b[694] eyez#:=#- 1.000
+eyez FG:242 SG gltext.b[695] eyez#:=#- 0.707
+eyez FG:242 SG gltext.b[696] eyez#:= 0.000
+eyez FG:242 SG gltext.b[697] eyez#:= 0.707
+fault G:174 DEF libhdr.h[222] fault=174
+fillpxlplane F:29 RT gl.b[853] LET fillpxlplane(col)BE..
+findappend G:130 DEF libhdr.h[167] findappend=130
+findarg G:104 DEF libhdr.h[141] findarg=104
+findinoutput G:50 DEF libhdr.h[86] findinoutput=50
+findinoutput G:50 LG gltext.b[598] findinoutput("RAM:")
+findinput G:48 DEF libhdr.h[84] findinput=48
+findinput G:48 LG gl.b[294] findinput(filename)
+findinput G:48 LG gltext.b[599] findinput(filename)
+findoutput G:49 DEF libhdr.h[85] findoutput=49
+findstream G:52 DEF libhdr.h[88] findstream=52
+findupdate G:51 DEF libhdr.h[87] findupdate=51
+fl_64to32 M:45 DEF libhdr.h[613] fl_64to32=
+fl_64to32 M:45 MAN gl.b[235] RESULTIS sys(Sys_flt,fl_64to32,x)
+fl_F2N M:42 DEF libhdr.h[610] fl_F2N=
+fl_N2F M:41 DEF libhdr.h[609] fl_N2F=
+fl_abs M:5 DEF libhdr.h[580] fl_abs=
+fl_acos M:20 DEF libhdr.h[585] fl_acos=20
+fl_add M:9 DEF libhdr.h[582] fl_add=
+fl_asin M:21 DEF libhdr.h[586] fl_asin=
+fl_atan M:22 DEF libhdr.h[587] fl_atan=
+fl_atan2 M:23 DEF libhdr.h[588] fl_atan2=
+fl_avail M:0 DEF libhdr.h[578] fl_avail=0
+fl_ceil M:38 DEF libhdr.h[603] fl_ceil=
+fl_cos M:24 DEF libhdr.h[589] fl_cos=
+fl_cos M:24 MAN gltext.b[529]
+    CosRudder#:=sys(Sys_flt,fl_cos,RudderAngle)
+fl_cos M:24 MAN gltext.b[534]
+    CosElevator#:=sys(Sys_flt,fl_cos,ElevatorAngle)
+fl_cos M:24 MAN gltext.b[539]
+    CosAileron#:=sys(Sys_flt,fl_cos,AileronAngle)
+fl_cosh M:27 DEF libhdr.h[592] fl_cosh=
+fl_div M:7 DEF libhdr.h[581] fl_div=
+fl_eq M:13 DEF libhdr.h[583] fl_eq=
+fl_exp M:30 DEF libhdr.h[595] fl_exp=
+fl_fix M:4 DEF libhdr.h[580] fl_fix=
+fl_float M:3 DEF libhdr.h[580] fl_float=
+fl_floor M:39 DEF libhdr.h[604] fl_floor=
+fl_frexp M:31 DEF libhdr.h[596] fl_frexp=
+fl_ge M:18 DEF libhdr.h[583] fl_ge=
+fl_gr M:16 DEF libhdr.h[583] fl_gr=
+fl_ldexp M:32 DEF libhdr.h[597] fl_ldexp=
+fl_le M:17 DEF libhdr.h[583] fl_le=
+fl_log M:33 DEF libhdr.h[598] fl_log=
+fl_log10 M:34 DEF libhdr.h[599] fl_log10=
+fl_ls M:15 DEF libhdr.h[583] fl_ls=
+fl_mk M:1 DEF libhdr.h[579] fl_mk=
+fl_mod M:8 DEF libhdr.h[581] fl_mod=
+fl_modf M:40 DEF libhdr.h[605] fl_modf=
+fl_mul M:6 DEF libhdr.h[581] fl_mul=
+fl_ne M:14 DEF libhdr.h[583] fl_ne=
+fl_neg M:12 DEF libhdr.h[582] fl_neg=
+fl_pos M:11 DEF libhdr.h[582] fl_pos=
+fl_pow M:36 DEF libhdr.h[601] fl_pow=36
+fl_radius2 M:43 DEF libhdr.h[611] fl_radius2=
+fl_radius3 M:44 DEF libhdr.h[612] fl_radius3=
+fl_sin M:25 DEF libhdr.h[590] fl_sin=
+fl_sin M:25 MAN gltext.b[530]
+    SinRudder#:=sys(Sys_flt,fl_sin,RudderAngle)
+fl_sin M:25 MAN gltext.b[535]
+    SinElevator#:=sys(Sys_flt,fl_sin,ElevatorAngle)
+fl_sin M:25 MAN gltext.b[540]
+    SinAileron#:=sys(Sys_flt,fl_sin,AileronAngle)
+fl_sinh M:28 DEF libhdr.h[593] fl_sinh=
+fl_sqrt M:37 DEF libhdr.h[602] fl_sqrt=
+fl_sqrt M:37 MAN gl.b[189] sys(Sys_flt,fl_sqrt,x*x+y*y)
+fl_sqrt M:37 MAN gl.b[191] sys(Sys_flt,fl_sqrt,x*x+y*y+z*z)
+fl_sub M:10 DEF libhdr.h[582] fl_sub=
+fl_tan M:26 DEF libhdr.h[591] fl_tan=
+fl_tanh M:29 DEF libhdr.h[594] fl_tanh=
+fl_unmk M:2 DEF libhdr.h[579] fl_unmk=
+flag_a M:1 DEF libhdr.h[738] flag_a=1<<0
+flag_b M:2 DEF libhdr.h[739] flag_b=1<<1
+flag_c M:4 DEF libhdr.h[740] flag_c=1<<2
+flag_d M:8 DEF libhdr.h[741] flag_d=1<<3
+flag_e M:16 DEF libhdr.h[742] flag_e=1<<4
+format G:457 DEF gl.h[74] format=
+freeobj G:78 DEF libhdr.h[114] freeobj=78
+freevec G:27 DEF libhdr.h[63] freevec=27
+freevec G:27 LG gl.b[659] freevec(leftxv)
+freevec G:27 LG gl.b[660] freevec(rightxv)
+freevec G:27 LG gltext.b[338] freevec(vvec)
+freevec G:27 LG gltext.b[349] freevec(ivec)
+freevec G:27 LG gltext.b[576] freevec(pxlv)
+freevec G:27 LG gltext.b[582] freevec(dvec)
+g_colist M:8 DEF libhdr.h[272] g_colist=8
+g_currco M:7 DEF libhdr.h[271] g_currco=7
+g_extbase M:950 DEF libhdr.h[756] g_extbase=950
+g_glbase M:450 DEF libhdr.h[754] g_glbase=450
+g_glbase M:450 MAN gl.h[57] glInit=g_glbase
+g_globsize M:0 DEF libhdr.h[269] g_globsize=0
+g_grbase M:450 DEF libhdr.h[752] g_grbase=450
+g_keyboard M:20 DEF libhdr.h[276] g_keyboard=20
+g_memsize M:14 DEF libhdr.h[275] g_memsize=14
+g_rootnode M:9 DEF libhdr.h[273] g_rootnode=9
+g_screen M:21 DEF libhdr.h[277] g_screen=21
+g_sdlbase M:450 DEF libhdr.h[753] g_sdlbase=450
+g_sndbase M:450 DEF libhdr.h[755] g_sndbase=450
+g_sys M:3 DEF libhdr.h[270] g_sys=3
+get_record G:71 DEF libhdr.h[107] get_record=71
+get_text G:93 DEF libhdr.h[130] get_text=93
+get_textblib G:93 DEF libhdr.h[129] get_textblib=93
+getevent G:461 DEF gl.h[80] getevent=
+getevent G:461 FN gl.b[216] LET getevent()=..
+getevent G:461 LG gltext.b[649] WHILE getevent() DO ..
+getlogname G:118 DEF libhdr.h[155] getlogname=118
+getremipaddr G:54 DEF libhdr.h[90] getremipaddr=54
+getvec G:25 DEF libhdr.h[61] getvec=25
+getvec G:25 LG gl.b[342] vv:=getvec(vvupb)
+getvec G:25 LG gl.b[384] iv:=getvec(ivupb)
+getvec G:25 LG gl.b[398] dv:=getvec(dvupb)
+getvec G:25 LG gl.b[926] leftxv:=getvec(upb)
+getvec G:25 LG gl.b[927] rightxv:=getvec(upb)
+getvec G:25 LG gltext.b[402] pxlv:=getvec(pxlxsize*pxlysize-1)
+getword G:32 DEF libhdr.h[68] getword=32
+glAPIno G:451 DEF gl.h[58] glAPIno=
+glCallBackfnv G:455 DEF gl.h[68] glCallBackfnv=
+glEndEventLoop G:453 DEF gl.h[62] glEndEventLoop=
+glInit G:450 DEF gl.h[57] glInit=g_glbase
+glInit G:450 FN gl.b[104] LET glInit()=..
+glInit G:450 LG gltext.b[185] rc:=glInit()
+glMainEventLoop G:452 DEF gl.h[61] glMainEventLoop=
+glMkScreen G:468 DEF gl.h[90] glMkScreen=
+glMkScreen G:468 FN gl.b[119] LET glMkScreen(title,xsize,ysize)=..
+glMkScreen G:468 LG gltext.b[195]
+    screenxsize:=glMkScreen(concatstr("OpenG' Test:  ",...),1024,512)
+glRadius2 G:470 DEF gl.h[92] glRadius2=
+glRadius2 G:470 FN gl.b[189] LET glRadius2(FLT x,FLT y)=..
+glRadius2 G:470 LG gltext.b[439] glRadius2(ex,ez)
+glRadius3 G:471 DEF gl.h[94] glRadius3=
+glRadius3 G:471 FN gl.b[191] LET glRadius3(FLT x,FLT y,FLT z)=..
+glRadius3 G:471 LG gltext.b[440] glRadius3(ex,ey,ez)
+glRadius3 G:471 LG gltext.b[764] glRadius3(v!0,v!1,v!2)
+glSetPerspective G:469 DEF gl.h[91] glSetPerspective=
+glSetPerspective G:469 LG gltext.b[502]
+    glSetPerspective(workMatrix, 0.500,aspect, 0.100, 5000.000)
+glSetPerspective G:469 RT gl.b[165]
+    LET glSetPerspective(mat4,FLT fovy,FLT aspect,FLT n,FLT f)BE..
+gl_BindAttribLocation M:20 DEF gl.h[178] gl_BindAttribLocation=20
+gl_BindTexture M:64 DEF gl.h[209] gl_BindTexture=64
+gl_BlendFunc M:61 DEF gl.h[205] gl_BlendFunc=61
+gl_BlendFunc M:61 MAN gl.b[154]
+    sys(Sys_gl,gl_BlendFunc,GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA)
+gl_Clear M:40 DEF gl.h[202] gl_Clear=40
+gl_Clear M:40 MAN gltext.b[565]
+    sys(Sys_gl,gl_Clear,GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+gl_ClearBuffer M:23 DEF gl.h[181] gl_ClearBuffer=23
+gl_ClearColour M:22 DEF gl.h[180] gl_ClearColour=22
+gl_ClearColour M:22 MAN gltext.b[566]
+    sys(Sys_gl,gl_ClearColour, 0.705, 0.705, 0.980, 1.000)
+gl_CompileFshader M:9 DEF gl.h[167] gl_CompileFshader=9
+gl_CompileFshader M:9 MAN gltext.b[622]
+    shader:=sys(Sys_gl,isVshader->gl_CompileVshader,gl_CompileFshader,prog,buf)
+gl_CompileVshader M:8 DEF gl.h[166] gl_CompileVshader=8
+gl_CompileVshader M:8 MAN gltext.b[622]
+    shader:=sys(Sys_gl,isVshader->gl_CompileVshader,gl_CompileFshader,prog,buf)
+gl_DeleteBuffer M:60 DEF gl.h[204] gl_DeleteBuffer=60
+gl_DeleteShader M:12 DEF gl.h[170] gl_DeleteShader=12
+gl_DeleteTextures M:63 DEF gl.h[208] gl_DeleteTextures=63
+gl_DepthFunc M:28 DEF gl.h[190] gl_DepthFunc=28
+gl_DepthFunc M:28 MAN gltext.b[290] sys(Sys_gl,gl_DepthFunc,GL_LESS)
+gl_Disable M:27 DEF gl.h[189] gl_Disable=27
+gl_DisableVertexAttribArray M:32 DEF gl.h[194]
+    gl_DisableVertexAttribArray=32
+gl_DisableVertexAttribArray M:32 MAN gltext.b[578]
+    sys(Sys_gl,gl_DisableVertexAttribArray,VertexLoc)
+gl_DisableVertexAttribArray M:32 MAN gltext.b[579]
+    sys(Sys_gl,gl_DisableVertexAttribArray,ColorLoc)
+gl_DisableVertexAttribArray M:32 MAN gltext.b[580]
+    sys(Sys_gl,gl_DisableVertexAttribArray,DataLoc)
+gl_DrawElements M:30 DEF gl.h[192] gl_DrawElements=30
+gl_DrawElements M:30 MAN gltext.b[641]
+    sys(Sys_gl,gl_DrawElements,mode,size,offset)
+gl_Enable M:26 DEF gl.h[188] gl_Enable=26
+gl_Enable M:26 MAN gl.b[155] sys(Sys_gl,gl_Enable,GL_BLEND)
+gl_Enable M:26 MAN gltext.b[288] sys(Sys_gl,gl_Enable,GL_DEPTH_TEST)
+gl_EnableVertexAttribArray M:31 DEF gl.h[193]
+    gl_EnableVertexAttribArray=31
+gl_EnableVertexAttribArray M:31 MAN gltext.b[308]
+    sys(Sys_gl,gl_EnableVertexAttribArray,VertexLoc)
+gl_EnableVertexAttribArray M:31 MAN gltext.b[319]
+    sys(Sys_gl,gl_EnableVertexAttribArray,ColorLoc)
+gl_EnableVertexAttribArray M:31 MAN gltext.b[330]
+    sys(Sys_gl,gl_EnableVertexAttribArray,DataLoc)
+gl_GenIndexBuffer M:34 DEF gl.h[196] gl_GenIndexBuffer=34
+gl_GenIndexBuffer M:34 MAN gltext.b[345]
+    IndexBuffer:=sys(Sys_gl,gl_GenIndexBuffer,...,ivec)
+gl_GenTextures M:62 DEF gl.h[207] gl_GenTextures=62
+gl_GenVertexBuffer M:33 DEF gl.h[195] gl_GenVertexBuffer=33
+gl_GenVertexBuffer M:33 MAN gltext.b[300]
+    VertexBuffer:=sys(Sys_gl,gl_GenVertexBuffer,...,vvec)
+gl_GetAttribLocation M:10 DEF gl.h[168] gl_GetAttribLocation=10
+gl_GetAttribLocation M:10 MAN gltext.b[235]
+    VertexLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vVertex")
+gl_GetAttribLocation M:10 MAN gltext.b[236]
+    ColorLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vColor")
+gl_GetAttribLocation M:10 MAN gltext.b[237]
+    DataLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vData")
+gl_GetError M:4 DEF gl.h[161] gl_GetError=4
+gl_GetError M:4 MAN gl.b[145] sys(Sys_gl,gl_GetError,mes)
+gl_GetUniformLocation M:11 DEF gl.h[169] gl_GetUniformLocation=11
+gl_GetUniformLocation M:11 MAN gltext.b[244]
+    MatrixLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"matrix")
+gl_GetUniformLocation M:11 MAN gltext.b[245]
+    ControlLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"control")
+gl_Init M:1 DEF gl.h[158] gl_Init=1
+gl_Init M:1 MAN gl.b[106] sys(Sys_gl,gl_Init)
+gl_LinkProgram M:14 DEF gl.h[172] gl_LinkProgram=14
+gl_LinkProgram M:14 MAN gltext.b[226]
+    UNLESS sys(Sys_gl,gl_LinkProgram,glprog)=-1 DO ..
+gl_LoadModel M:19 DEF gl.h[177] gl_LoadModel=19
+gl_M4mulM4 M:24 DEF gl.h[182] gl_M4mulM4=24
+gl_M4mulM4 M:24 MAN gltext.b[391]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+gl_M4mulM4 M:24 MAN gltext.b[432]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+gl_M4mulM4 M:24 MAN gltext.b[454]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+gl_M4mulM4 M:24 MAN gltext.b[463]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+gl_M4mulM4 M:24 MAN gltext.b[474]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+gl_M4mulM4 M:24 MAN gltext.b[513]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+gl_M4mulV M:36 DEF gl.h[198] gl_M4mulV=36
+gl_MkProg M:7 DEF gl.h[165] gl_MkProg=7
+gl_MkProg M:7 MAN gltext.b[204] glprog:=sys(Sys_gl,gl_MkProg)
+gl_MkScreen M:5 DEF gl.h[162] gl_MkScreen=5
+gl_MkScreen M:5 MAN gl.b[137]
+    screenxsize:=sys(Sys_gl,gl_MkScreen,title,...)
+gl_PrimitiveRestartIndex M:38 DEF gl.h[200] gl_PrimitiveRestartIndex=38
+gl_Quit M:3 DEF gl.h[160] gl_Quit=3
+gl_Quit M:3 MAN gltext.b[584] sys(Sys_gl,gl_Quit)
+gl_Quit M:3 MAN gltext.b[732] sys(Sys_gl,gl_Quit)
+gl_ScreenSize M:37 DEF gl.h[199] gl_ScreenSize=37
+gl_SetFltScale M:2 DEF gl.h[159] gl_SetFltScale=2
+gl_SwapBuffers M:6 DEF gl.h[163] gl_SwapBuffers=6
+gl_SwapBuffers M:6 MAN gltext.b[570] sys(Sys_gl,gl_SwapBuffers)
+gl_TexImage2D M:65 DEF gl.h[210] gl_TexImage2D=65
+gl_Uniform1f M:15 DEF gl.h[173] gl_Uniform1f=15
+gl_Uniform2f M:16 DEF gl.h[174] gl_Uniform2f=16
+gl_Uniform3f M:17 DEF gl.h[175] gl_Uniform3f=17
+gl_Uniform4f M:18 DEF gl.h[176] gl_Uniform4f=18
+gl_UniformMatrix4fv M:21 DEF gl.h[179] gl_UniformMatrix4fv=21
+gl_UniformMatrix4fv M:21 MAN gltext.b[524]
+    sys(Sys_gl,gl_UniformMatrix4fv,MatrixLoc,glprog,projectionMatrix)
+gl_UniformMatrix4fv M:21 MAN gltext.b[559]
+    sys(Sys_gl,gl_UniformMatrix4fv,ControlLoc,glprog,control)
+gl_UseProgram M:13 DEF gl.h[171] gl_UseProgram=13
+gl_UseProgram M:13 MAN gltext.b[232] sys(Sys_gl,gl_UseProgram,glprog)
+gl_VertexAttribPointer M:35 DEF gl.h[197] gl_VertexAttribPointer=35
+gl_VertexData M:29 DEF gl.h[191] gl_VertexData=29
+gl_VertexData M:29 MAN gltext.b[310]
+    sys(Sys_gl,gl_VertexData,VertexLoc,3,8,0)
+gl_VertexData M:29 MAN gltext.b[321]
+    sys(Sys_gl,gl_VertexData,ColorLoc,3,8,3)
+gl_VertexData M:29 MAN gltext.b[332]
+    sys(Sys_gl,gl_VertexData,DataLoc,2,8,6)
+gl_pollevent M:25 DEF gl.h[184] gl_pollevent=25
+gl_pollevent M:25 MAN gl.b[216] sys(Sys_gl,gl_pollevent,@eventtype)
+gl_test M:39 DEF gl.h[201] gl_test=39
+globin G:24 DEF libhdr.h[60] globin=24
+globsize G:0 DEF libhdr.h[35] globsize=0
+globword M:#x8F8F0000 DEF libhdr.h[262] globword=-#x70710000
+glprog G:213 DEF gltext.b[111] glprog=
+glprog G:213 LG gltext.b[207] IF glprog<0 DO ..
+glprog G:213 LG gltext.b[215]
+    Vshader:=Compileshader(glprog,TRUE,"gltex'ader.sdr")
+glprog G:213 LG gltext.b[220]
+    Fshader:=Compileshader(glprog,FALSE,"gltex'ader.sdr")
+glprog G:213 LG gltext.b[226]
+    UNLESS sys(Sys_gl,gl_LinkProgram,glprog)=-1 DO ..
+glprog G:213 LG gltext.b[232] sys(Sys_gl,gl_UseProgram,glprog)
+glprog G:213 LG gltext.b[235]
+    VertexLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vVertex")
+glprog G:213 LG gltext.b[236]
+    ColorLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vColor")
+glprog G:213 LG gltext.b[237]
+    DataLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vData")
+glprog G:213 LG gltext.b[244]
+    MatrixLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"matrix")
+glprog G:213 LG gltext.b[245]
+    ControlLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"control")
+glprog G:213 LG gltext.b[524]
+    sys(Sys_gl,gl_UniformMatrix4fv,MatrixLoc,glprog,projectionMatrix)
+glprog G:213 LG gltext.b[559]
+    sys(Sys_gl,gl_UniformMatrix4fv,ControlLoc,glprog,control)
+glprog G:213 SG gltext.b[204] glprog:=sys(Sys_gl,gl_MkProg)
+hold G:158 DEF libhdr.h[209] hold=158
+id_appendscb M:132 DEF libhdr.h[527] id_appendscb=132
+id_inoutscb M:131 DEF libhdr.h[526] id_inoutscb=131
+id_inscb M:129 DEF libhdr.h[524] id_inscb=129
+id_outscb M:130 DEF libhdr.h[525] id_outscb=130
+initco G:22 DEF libhdr.h[58] initco=22
+initio G:46 DEF libhdr.h[82] initio=46
+initsdl1 F:17 FN gl.b[644] LET initsdl1()=..
+input G:58 DEF libhdr.h[94] input=58
+input G:58 LG gl.b[293] input()
+input G:58 LG gltext.b[594] input()
+instrcount G:121 DEF libhdr.h[158] instrcount=121
+intflag G:119 DEF libhdr.h[156] intflag=119
+isrregs M:41 DEF libhdr.h[488] isrregs=41
+ivec G:205 DEF gltext.b[99] ivec=
+ivec G:205 LG gltext.b[279] writef(" %i3",ivec!i)
+ivec G:205 LG gltext.b[345]
+    IndexBuffer:=sys(Sys_gl,gl_GenIndexBuffer,...,ivec)
+ivec G:205 LG gltext.b[349] freevec(ivec)
+ivec G:205 SG gltext.b[351] ivec:=0
+ivecupb G:206 DEF gltext.b[100] ivecupb=
+ivecupb G:206 LG gltext.b[277] FOR i=0 TO ivecupb DO..
+ivecupb G:206 LG gltext.b[345]
+    IndexBuffer:=sys(Sys_gl,gl_GenIndexBuffer,...,ivec)
+klibregs M:21 DEF libhdr.h[483] klibregs=21
+leftxv G:485 DEF gl.h[118] leftxv=
+leftxv G:485 LG gl.b[659] IF leftxv DO ..
+leftxv G:485 LG gl.b[659] freevec(leftxv)
+leftxv G:485 LG gl.b[902] IF leftxv!y>x DO ..
+leftxv G:485 LG gl.b[902] leftxv!y:=x
+leftxv G:485 LG gl.b[928] UNLESS leftxv&rightxv DO ..
+leftxv G:485 LG gl.b[935] leftxv!y:=upb
+leftxv G:485 LG gl.b[942] UNLESS leftxv DO ..
+leftxv G:485 LG gl.b[969] moveto(leftxv!y,y)
+leftxv G:485 LG gl.b[972] leftxv!y:=pxlysize-1
+leftxv G:485 SG gl.b[646] leftxv:=0
+leftxv G:485 SG gl.b[926] leftxv:=getvec(upb)
+level G:15 DEF libhdr.h[51] level=15
+lex G:473 DEF gl.h[101] lex=
+lex G:473 LG gl.b[229] lex()
+lex G:473 LG gl.b[327] lex()
+lex G:473 LG gl.b[337] lex()
+lex G:473 LG gl.b[359] lex()
+lex G:473 LG gl.b[381] lex()
+lex G:473 LG gl.b[396] lex()
+lex G:473 LG gl.b[422] lex()
+lex G:473 LG gl.b[431] lex()
+lex G:473 LG gl.b[474] lex()
+lex G:473 RT gl.b[477] LET lex()BE..
+lexval G:477 DEF gl.h[105] lexval=
+lexval G:477 LG gl.b[227] lexval
+lexval G:477 SG gl.b[531] lexval:=readflt()
+lineno G:475 DEF gl.h[103] lineno=
+lineno G:475 LG gl.b[220] writef("ERROR'ine %n: ",lineno)
+lineno G:475 LG gl.b[330] writef("line 'el file*n",lineno)
+lineno G:475 LG gl.b[480] error("line 'del file",lineno,ch)
+lineno G:475 LG gl.b[493] lineno:=lineno+1
+lineno G:475 SG gl.b[314] lineno:=1
+lineno G:475 SG gl.b[493] lineno:=lineno+1
+loadmodel G:472 DEF gl.h[97] loadmodel=
+loadmodel G:472 FN gl.b[239] LET loadmodel(filename,modelv)=..
+loadmodel G:472 LG gltext.b[252] model:=loadmodel(modelfilename,@vvec)
+loadseg G:105 DEF libhdr.h[142] loadseg=105
+locatedir G:80 DEF libhdr.h[116] locatedir=80
+locateobj G:81 DEF libhdr.h[117] locateobj=81
+longjump G:16 DEF libhdr.h[52] longjump=16
+maxint M:#x7FFFFFFF DEF libhdr.h[245] maxint=minint-1
+maxy G:488 DEF gl.h[121] maxy=
+maxy G:488 LG gl.b[905] IF maxy<y DO ..
+maxy G:488 LG gl.b[965] FOR y=miny TO maxy DO..
+maxy G:488 SG gl.b[650] maxy:=0
+maxy G:488 SG gl.b[905] maxy:=y
+maxy G:488 SG gl.b[948] maxy:=-1
+mcaddrinc M:4 DEF libhdr.h[243] mcaddrinc=bytesperword
+memoryfree G:131 DEF libhdr.h[168] memoryfree=131
+minint M:#x80000000 DEF libhdr.h[244] minint=1<<bitsperword-1
+minint M:#x80000000 MAN libhdr.h[245] maxint=minint-1
+miny G:487 DEF gl.h[120] miny=
+miny G:487 LG gl.b[904] IF miny>y DO ..
+miny G:487 LG gl.b[965] FOR y=miny TO maxy DO..
+miny G:487 SG gl.b[650] miny:=0
+miny G:487 SG gl.b[904] miny:=y
+miny G:487 SG gl.b[948] miny:=pxlysize
+model G:209 DEF gltext.b[104] model=
+model G:209 LG gltext.b[256] UNLESS model DO ..
+model G:209 SG gltext.b[252] model:=loadmodel(modelfilename,@vvec)
+modelfilename G:227 DEF gltext.b[129] modelfilename=
+moveby G:490 DEF gl.h[124] moveby=
+moveby G:490 RT gl.b[669] LET moveby(dx,dy)BE..
+moveto G:489 DEF gl.h[123] moveto=
+moveto G:489 LG gl.b[620] moveto(x,y)
+moveto G:489 LG gl.b[669] moveto(currx+dx,curry+dy)
+moveto G:489 LG gl.b[858] moveto(x,y)
+moveto G:489 LG gl.b[969] moveto(leftxv!y,y)
+moveto G:489 RT gl.b[668] LET moveto(x,y)BE..
+muldiv G:5 DEF libhdr.h[40] muldiv=5
+newline G:84 DEF libhdr.h[120] newline=84
+newline G:84 LG gl.b[222] newline()
+newline G:84 LG gltext.b[284] newline()
+newline G:84 LG gltext.b[387] newline()
+newline G:84 LG gltext.b[674] newline()
+newline G:84 LG gltext.b[681] newline()
+newpage G:120 DEF libhdr.h[157] newpage=120
+note G:63 DEF libhdr.h[99] note=63
+notinuse M:-1 DEF libhdr.h[640] notinuse=-1
+nxt F:66 LAB gl.b[325] nxt:lex()
+output G:59 DEF libhdr.h[95] output=59
+output G:59 LG gltext.b[595] output()
+packstring G:30 DEF libhdr.h[66] packstring=30
+pathfindinput G:53 DEF libhdr.h[89] pathfindinput=53
+peercom G:179 DEF libhdr.h[225] peercom=179
+pkt_a1 M:5 DEF libhdr.h[649] pkt_a1=5
+pkt_a2 M:6 DEF libhdr.h[650] pkt_a2=6
+pkt_a3 M:7 DEF libhdr.h[651] pkt_a3=7
+pkt_a4 M:8 DEF libhdr.h[652] pkt_a4=8
+pkt_a5 M:9 DEF libhdr.h[653] pkt_a5=9
+pkt_a6 M:10 DEF libhdr.h[654] pkt_a6=10
+pkt_arg1 M:5 DEF libhdr.h[649] pkt_arg1=5
+pkt_arg2 M:6 DEF libhdr.h[650] pkt_arg2=6
+pkt_arg3 M:7 DEF libhdr.h[651] pkt_arg3=7
+pkt_arg4 M:8 DEF libhdr.h[652] pkt_arg4=8
+pkt_arg5 M:9 DEF libhdr.h[653] pkt_arg5=9
+pkt_arg6 M:10 DEF libhdr.h[654] pkt_arg6=10
+pkt_devid M:1 DEF libhdr.h[645] pkt_devid=1
+pkt_devtaskid M:1 DEF libhdr.h[645] pkt_devtaskid=1
+pkt_id M:1 DEF libhdr.h[645] pkt_id=1
+pkt_link M:0 DEF libhdr.h[644] pkt_link=0
+pkt_op M:2 DEF libhdr.h[646] pkt_op=2
+pkt_r1 M:3 DEF libhdr.h[647] pkt_r1=3
+pkt_r2 M:4 DEF libhdr.h[648] pkt_r2=4
+pkt_res1 M:3 DEF libhdr.h[647] pkt_res1=3
+pkt_res2 M:4 DEF libhdr.h[648] pkt_res2=4
+pkt_taskid M:1 DEF libhdr.h[645] pkt_taskid=1
+pkt_type M:2 DEF libhdr.h[646] pkt_type=2
+plotf G:508 DEF gl.h[146] plotf=
+plotf G:508 RT gl.b[624] LET plotf(x,y,form,a,b,c,d,...)BE..
+plotfstr G:509 DEF gl.h[147] plotfstr=
+plotfstr G:509 LG gl.b[630] plotfstr%0:=0
+plotfstr G:509 LG gl.b[634] drawstring(x,y,plotfstr)
+plotfstr G:509 LG gl.b[638] plotfstr%0+1
+plotfstr G:509 LG gl.b[639] plotfstr%strlen:=ch
+plotfstr G:509 LG gl.b[640] plotfstr%0:=strlen
+plotfstr G:509 SG gl.b[629] plotfstr:=s
+plotwrch G:506 DEF gl.h[142] plotwrch=
+plotwrch G:506 LG gl.b[631] wrch:=plotwrch
+plotwrch G:506 RT gl.b[637] LET plotwrch(ch)BE..
+point G:64 DEF libhdr.h[100] point=64
+pollingch M:-3 DEF libhdr.h[249] pollingch=-3
+prmat F:14 LF gltext.b[388] prmat(workMatrix)
+prmat F:14 LF gltext.b[390] prmat(projectionMatrix)
+prmat F:14 LF gltext.b[393] prmat(projectionMatrix)
+prmat F:14 RT gltext.b[780] LET prmat(m)BE..
+processevents F:10 LF gltext.b[409] processevents()
+processevents F:10 RT gltext.b[649] LET processevents()BE..
+projectionMatrix G:249 DEF gltext.b[149] projectionMatrix=
+projectionMatrix G:249 LG gltext.b[381]
+    setvec(projectionMatrix,16, 1.000, 2.000, 3.000, 4.000,...)
+projectionMatrix G:249 LG gltext.b[390] prmat(projectionMatrix)
+projectionMatrix G:249 LG gltext.b[391]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+projectionMatrix G:249 LG gltext.b[393] prmat(projectionMatrix)
+projectionMatrix G:249 LG gltext.b[417]
+    setvec(projectionMatrix,16, 1.000, 0.000, 0.000, 0.000,...)
+projectionMatrix G:249 LG gltext.b[432]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+projectionMatrix G:249 LG gltext.b[454]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+projectionMatrix G:249 LG gltext.b[463]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+projectionMatrix G:249 LG gltext.b[474]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+projectionMatrix G:249 LG gltext.b[513]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+projectionMatrix G:249 LG gltext.b[524]
+    sys(Sys_gl,gl_UniformMatrix4fv,MatrixLoc,glprog,projectionMatrix)
+projectionMatrix G:249 SG gltext.b[172] projectionMatrix:=m1
+prv F:15 RT gltext.b[788] LET prv(v)BE..
+put_record G:72 DEF libhdr.h[108] put_record=72
+putword G:33 DEF libhdr.h[69] putword=33
+pxlrgba F:18 FN gl.b[655] LET pxlrgba(r,g,b,a)=..
+pxlv G:212 DEF gltext.b[109] pxlv=
+pxlv G:212 LG gltext.b[403] UNLESS pxlv DO ..
+pxlv G:212 LG gltext.b[576] IF pxlv DO ..
+pxlv G:212 LG gltext.b[576] freevec(pxlv)
+pxlv G:212 SG gltext.b[173] pxlv:=0
+pxlv G:212 SG gltext.b[402] pxlv:=getvec(pxlxsize*pxlysize-1)
+pxlv G:480 DEF gl.h[111] pxlv=
+pxlv G:480 LG gl.b[849] pxlv!(pxlxsize*y+x):=currcolour
+pxlv G:480 LG gl.b[854] FOR p=pxlv TO pxlxsize*pxlysize+pxlv-1 DO..
+pxlxsize G:210 DEF gltext.b[107] pxlxsize=
+pxlxsize G:210 LG gltext.b[399] UNTIL pxlxsize<-screenxsize DO ..
+pxlxsize G:210 LG gltext.b[399] pxlxsize:=pxlxsize/2
+pxlxsize G:210 LG gltext.b[401]
+    writef("pxlxs'size=%n*n",pxlxsize,pxlysize)
+pxlxsize G:210 LG gltext.b[402] pxlv:=getvec(pxlxsize*pxlysize-1)
+pxlxsize G:210 SG gltext.b[398] pxlxsize:=4096
+pxlxsize G:210 SG gltext.b[399] pxlxsize:=pxlxsize/2
+pxlxsize G:478 DEF gl.h[109] pxlxsize=
+pxlxsize G:478 LG gl.b[848] IF 0<=x&x<pxlxsize&0<=y&y<pxlysize DO ..
+pxlxsize G:478 LG gl.b[849] pxlv!(pxlxsize*y+x):=currcolour
+pxlxsize G:478 LG gl.b[854] FOR p=pxlv TO pxlxsize*pxlysize+pxlv-1 DO..
+pxlysize G:211 DEF gltext.b[108] pxlysize=
+pxlysize G:211 LG gltext.b[400] UNTIL pxlysize<-screenysize DO ..
+pxlysize G:211 LG gltext.b[400] pxlysize:=pxlysize/2
+pxlysize G:211 LG gltext.b[401]
+    writef("pxlxs'size=%n*n",pxlxsize,pxlysize)
+pxlysize G:211 LG gltext.b[402] pxlv:=getvec(pxlxsize*pxlysize-1)
+pxlysize G:211 SG gltext.b[398] pxlysize:=4096
+pxlysize G:211 SG gltext.b[400] pxlysize:=pxlysize/2
+pxlysize G:479 DEF gl.h[110] pxlysize=
+pxlysize G:479 LG gl.b[848] IF 0<=x&x<pxlxsize&0<=y&y<pxlysize DO ..
+pxlysize G:479 LG gl.b[854] FOR p=pxlv TO pxlxsize*pxlysize+pxlv-1 DO..
+pxlysize G:479 LG gl.b[900] IF 0<=y&y<pxlysize DO ..
+pxlysize G:479 LG gl.b[924] pxlysize-1
+pxlysize G:479 LG gl.b[929] sawritef("Unabl'ize=%i3*n",pxlysize)
+pxlysize G:479 LG gl.b[948] miny:=pxlysize
+pxlysize G:479 LG gl.b[972] leftxv!y:=pxlysize-1
+qpkt G:161 DEF libhdr.h[212] qpkt=161
+ramstream P:10 LOC gltext.b[598] LET ramstream=findinoutput("RAM:")
+randno G:34 DEF libhdr.h[70] randno=34
+randseed G:127 DEF libhdr.h[164] randseed=127
+rdargs G:102 DEF libhdr.h[139] rdargs=102
+rdargs G:102 LG gltext.b[175] UNLESS rdargs("-d/s,-a/s",argv,50) DO ..
+rdargs2 G:26 DEF libhdr.h[62] rdargs2=26
+rdch G:38 DEF libhdr.h[74] rdch=38
+rdch G:38 LG gl.b[323] ch:=rdch()
+rdch G:38 LG gl.b[481] ch:=rdch()
+rdch G:38 LG gl.b[489] ch:=rdch()
+rdch G:38 LG gl.b[496] ch:=rdch()
+rdch G:38 LG gl.b[500] ch:=rdch()
+rdch G:38 LG gl.b[506] ch:=rdch()
+rdch G:38 LG gl.b[509] ch:=rdch()
+rdch G:38 LG gl.b[510] ch:=rdch()
+rdch G:38 LG gl.b[511] ch:=rdch()
+rdch G:38 LG gl.b[512] ch:=rdch()
+rdch G:38 LG gl.b[513] ch:=rdch()
+rdch G:38 LG gl.b[514] ch:=rdch()
+rdch G:38 LG gl.b[515] ch:=rdch()
+rdch G:38 LG gl.b[516] ch:=rdch()
+rdch G:38 LG gl.b[517] ch:=rdch()
+rdch G:38 LG gl.b[520] ch:=rdch()
+rdch G:38 LG gl.b[521] ch:=rdch()
+rdch G:38 LG gl.b[524] ch:=rdch()
+rdch G:38 LG gl.b[537] ch:=rdch()
+rdch G:38 LG gltext.b[609] rdch()
+rdflt32 F:10 FN gl.b[233] LET rdflt32()=..
+rdflt32 F:10 LF gl.b[376] vv!vpos:=rdflt32()
+rditem G:103 DEF libhdr.h[140] rditem=103
+rdnum F:9 FN gl.b[226] LET rdnum()=..
+rdnum F:9 LF gl.b[234] rdnum()
+rdnum F:9 LF gl.b[338] n:=FIX rdnum()
+rdnum F:9 LF gl.b[382] ivupb:=FIX rdnum()
+rdnum F:9 LF gl.b[397] dvupb:=FIX rdnum()
+rdnum F:9 LF gl.b[423] dv!(dpos+0):=FIX rdnum()
+rdnum F:9 LF gl.b[424] dv!(dpos+1):=FIX rdnum()
+rdnum F:9 LF gl.b[425] dv!(dpos+2):=FIX rdnum()
+rdnum F:9 LF gl.b[447] iv!ipos:=FIX rdnum()
+readflt G:74 DEF libhdr.h[110] readflt=74
+readflt G:74 LG gl.b[531] lexval:=readflt()
+readn G:83 DEF libhdr.h[119] readn=83
+readwords G:44 DEF libhdr.h[80] readwords=44
+recordnote G:70 DEF libhdr.h[106] recordnote=70
+recordpoint G:69 DEF libhdr.h[105] recordpoint=69
+release G:159 DEF libhdr.h[210] release=159
+renamefile G:77 DEF libhdr.h[113] renamefile=77
+result2 G:10 DEF libhdr.h[45] result2=10
+result2 G:10 LG gl.b[138] screenysize:=result2
+result2 G:10 LG gl.b[532] IF result2 DO ..
+result2 G:10 LG gltext.b[198] screenysize:=result2
+result2 G:10 SG gl.b[157] result2:=screenysize
+resumeco G:21 DEF libhdr.h[57] resumeco=21
+ret F:17 LAB gltext.b[575] ret:IF pxlv DO ..
+ret F:17 LF gltext.b[405] GOTO ret
+ret F:65 LAB gl.b[466] ret:IF instream DO ..
+ret F:65 LF gl.b[332] GOTO ret
+ret F:65 LF gl.b[346] GOTO ret
+ret F:65 LF gl.b[365] GOTO ret
+ret F:65 LF gl.b[373] GOTO ret
+ret F:65 LF gl.b[389] GOTO ret
+ret F:65 LF gl.b[403] GOTO ret
+ret F:65 LF gl.b[414] GOTO ret
+ret F:65 LF gl.b[420] GOTO ret
+ret F:65 LF gl.b[437] GOTO ret
+ret F:65 LF gl.b[444] GOTO ret
+ret F:65 LF gl.b[459] GOTO ret
+returnFromCallback G:454 DEF gl.h[64] returnFromCallback=
+return_hard M:10 DEF libhdr.h[621] return_hard=10
+return_hard M:10 MAN libhdr.h[626] cli_initialfaillevel=return_hard
+return_ok M:0 DEF libhdr.h[623] return_ok=0
+return_severe M:20 DEF libhdr.h[620] return_severe=20
+return_soft M:5 DEF libhdr.h[622] return_soft=5
+returnpkt G:169 DEF libhdr.h[217] returnpkt=169
+rewindstream G:65 DEF libhdr.h[101] rewindstream=65
+rightxv G:486 DEF gl.h[119] rightxv=
+rightxv G:486 LG gl.b[660] IF rightxv DO ..
+rightxv G:486 LG gl.b[660] freevec(rightxv)
+rightxv G:486 LG gl.b[903] IF rightxv!y<x DO ..
+rightxv G:486 LG gl.b[903] rightxv!y:=x
+rightxv G:486 LG gl.b[928] UNLESS leftxv&rightxv DO ..
+rightxv G:486 LG gl.b[935] rightxv!y:=0
+rightxv G:486 LG gl.b[970] drawto(rightxv!y,y)
+rightxv G:486 LG gl.b[972] rightxv!y:=0
+rightxv G:486 SG gl.b[646] rightxv:=0
+rightxv G:486 SG gl.b[927] rightxv:=getvec(upb)
+rldot FG:239 DEF gltext.b[135] FLT rldot=
+rldot FG:239 LG gltext.b[413] rotate(rtdot,rwdot,rldot)
+rldot FG:239 LG gltext.b[528] #-rldot#* 5.000#* 75.000
+rldot FG:239 LG gltext.b[679]
+    writef("cl   't=%9.6f*n",clx,cly,clz,rldot)
+rldot FG:239 LG gltext.b[707] rldot#:=rldot#+ 0.000
+rldot FG:239 LG gltext.b[708] IF rldot#> 0.006 DO ..
+rldot FG:239 LG gltext.b[710] rldot#:=rldot#- 0.000
+rldot FG:239 LG gltext.b[711] IF rldot#<- 0.006 DO ..
+rldot FG:239 SG gltext.b[365] rldot#:= 0.000
+rldot FG:239 SG gltext.b[707] rldot#:=rldot#+ 0.000
+rldot FG:239 SG gltext.b[708] rldot#:= 0.006
+rldot FG:239 SG gltext.b[710] rldot#:=rldot#- 0.000
+rldot FG:239 SG gltext.b[711] rldot#:=#- 0.006
+rootnode G:9 DEF libhdr.h[44] rootnode=9
+rootnodeaddr M:100 DEF libhdr.h[293] rootnodeaddr=100
+rotate F:11 LF gltext.b[413] rotate(rtdot,rwdot,rldot)
+rotate F:11 RT gltext.b[736] LET rotate(FLT t,FLT w,FLT l)BE..
+rtdot FG:237 DEF gltext.b[135] FLT rtdot=
+rtdot FG:237 LG gltext.b[413] rotate(rtdot,rwdot,rldot)
+rtdot FG:237 LG gltext.b[538] rtdot#* 500.000
+rtdot FG:237 LG gltext.b[675]
+    writef("ct   't=%9.6f*n",ctx,cty,ctz,rtdot)
+rtdot FG:237 LG gltext.b[721] rtdot#:=rtdot#+ 0.000
+rtdot FG:237 LG gltext.b[722] IF rtdot#> 0.006 DO ..
+rtdot FG:237 LG gltext.b[724] rtdot#:=rtdot#- 0.000
+rtdot FG:237 LG gltext.b[725] IF rtdot#<- 0.006 DO ..
+rtdot FG:237 SG gltext.b[365] rtdot#:= 0.000
+rtdot FG:237 SG gltext.b[721] rtdot#:=rtdot#+ 0.000
+rtdot FG:237 SG gltext.b[722] rtdot#:= 0.006
+rtdot FG:237 SG gltext.b[724] rtdot#:=rtdot#- 0.000
+rtdot FG:237 SG gltext.b[725] rtdot#:=#- 0.006
+rtn_abortcode M:27 DEF libhdr.h[329] rtn_abortcode=
+rtn_adjclock M:33 DEF libhdr.h[347] rtn_adjclock=
+rtn_blib M:19 DEF libhdr.h[318] rtn_blib=
+rtn_blklist M:4 DEF libhdr.h[300] rtn_blklist=
+rtn_boot M:17 DEF libhdr.h[316] rtn_boot=
+rtn_boottrace M:39 DEF libhdr.h[362] rtn_boottrace=
+rtn_bptaddr M:9 DEF libhdr.h[307] rtn_bptaddr=
+rtn_bptinstr M:10 DEF libhdr.h[308] rtn_bptinstr=
+rtn_clkintson M:6 DEF libhdr.h[303] rtn_clkintson=
+rtn_clwkq M:12 DEF libhdr.h[311] rtn_clwkq=
+rtn_context M:28 DEF libhdr.h[330] rtn_context=
+rtn_crntask M:3 DEF libhdr.h[299] rtn_crntask=
+rtn_days M:40 DEF libhdr.h[365] rtn_days=
+rtn_dbgvars M:11 DEF libhdr.h[309] rtn_dbgvars=
+rtn_dcountv M:34 DEF libhdr.h[349] rtn_dcountv=
+rtn_devtab M:1 DEF libhdr.h[297] rtn_devtab=
+rtn_dumpflag M:25 DEF libhdr.h[326] rtn_dumpflag=
+rtn_envlist M:26 DEF libhdr.h[327] rtn_envlist=
+rtn_gvecsize M:63 DEF libhdr.h[398] rtn_gvecsize=
+rtn_hdrsvar M:37 DEF libhdr.h[358] rtn_hdrsvar=
+rtn_hostaddsize M:62 DEF libhdr.h[395] rtn_hostaddsize=
+rtn_icount M:48 DEF libhdr.h[378] rtn_icount=
+rtn_idletcb M:32 DEF libhdr.h[346] rtn_idletcb=
+rtn_info M:15 DEF libhdr.h[314] rtn_info=
+rtn_insadebug M:8 DEF libhdr.h[305] rtn_insadebug=
+rtn_intflag M:24 DEF libhdr.h[325] rtn_intflag=
+rtn_joyaxis0 M:55 DEF libhdr.h[387] rtn_joyaxis0=
+rtn_joyaxis1 M:56 DEF libhdr.h[388] rtn_joyaxis1=
+rtn_joyaxis2 M:57 DEF libhdr.h[389] rtn_joyaxis2=
+rtn_joyaxis3 M:58 DEF libhdr.h[390] rtn_joyaxis3=
+rtn_joyaxis4 M:59 DEF libhdr.h[391] rtn_joyaxis4=
+rtn_joyaxis5 M:60 DEF libhdr.h[392] rtn_joyaxis5=
+rtn_joyaxis6 M:61 DEF libhdr.h[393] rtn_joyaxis6=
+rtn_joyaxiscount M:52 DEF libhdr.h[384] rtn_joyaxiscount=
+rtn_joybuttoncount M:51 DEF libhdr.h[383] rtn_joybuttoncount=
+rtn_joybuttons M:54 DEF libhdr.h[386] rtn_joybuttons=
+rtn_joycurrbuttons M:53 DEF libhdr.h[385] rtn_joycurrbuttons=
+rtn_joystickfd M:49 DEF libhdr.h[381] rtn_joystickfd=
+rtn_joystickfd1 M:50 DEF libhdr.h[382] rtn_joystickfd1=
+rtn_keyboard M:20 DEF libhdr.h[319] rtn_keyboard=
+rtn_klib M:18 DEF libhdr.h[317] rtn_klib=
+rtn_lastch M:7 DEF libhdr.h[304] rtn_lastch=
+rtn_mc0 M:43 DEF libhdr.h[370] rtn_mc0=
+rtn_mc1 M:44 DEF libhdr.h[372] rtn_mc1=
+rtn_mc2 M:45 DEF libhdr.h[373] rtn_mc2=
+rtn_mc3 M:46 DEF libhdr.h[374] rtn_mc3=
+rtn_membase M:13 DEF libhdr.h[312] rtn_membase=
+rtn_memsize M:14 DEF libhdr.h[313] rtn_memsize=
+rtn_mins M:41 DEF libhdr.h[367] rtn_mins=rtn_msecs
+rtn_msecs M:41 DEF libhdr.h[366] rtn_msecs=
+rtn_msecs M:41 MAN libhdr.h[367] rtn_mins=rtn_msecs
+rtn_pathvar M:36 DEF libhdr.h[356] rtn_pathvar=
+rtn_rootvar M:35 DEF libhdr.h[354] rtn_rootvar=
+rtn_screen M:21 DEF libhdr.h[320] rtn_screen=
+rtn_scriptsvar M:38 DEF libhdr.h[360] rtn_scriptsvar=
+rtn_sys M:16 DEF libhdr.h[315] rtn_sys=
+rtn_sysg M:30 DEF libhdr.h[339] rtn_sysg=
+rtn_sysp M:29 DEF libhdr.h[338] rtn_sysp=
+rtn_sysst M:31 DEF libhdr.h[340] rtn_sysst=
+rtn_system M:47 DEF libhdr.h[376] rtn_system=
+rtn_tallyv M:5 DEF libhdr.h[301] rtn_tallyv=
+rtn_tasktab M:0 DEF libhdr.h[296] rtn_tasktab=0
+rtn_tcblist M:2 DEF libhdr.h[298] rtn_tcblist=
+rtn_ticks M:42 DEF libhdr.h[368] rtn_ticks=
+rtn_upb M:80 DEF libhdr.h[404] rtn_upb=80
+rtn_vecstatsv M:22 DEF libhdr.h[322] rtn_vecstatsv=
+rtn_vecstatsvupb M:23 DEF libhdr.h[323] rtn_vecstatsvupb=
+rwdot FG:238 DEF gltext.b[135] FLT rwdot=
+rwdot FG:238 LG gltext.b[413] rotate(rtdot,rwdot,rldot)
+rwdot FG:238 LG gltext.b[533] rwdot#* 500.000
+rwdot FG:238 LG gltext.b[677]
+    writef("cw   't=%9.6f*n",cwx,cwy,cwz,rwdot)
+rwdot FG:238 LG gltext.b[714] rwdot#:=rwdot#+ 0.000
+rwdot FG:238 LG gltext.b[715] IF rwdot#> 0.006 DO ..
+rwdot FG:238 LG gltext.b[717] rwdot#:=rwdot#- 0.000
+rwdot FG:238 LG gltext.b[718] IF rwdot#<- 0.006 DO ..
+rwdot FG:238 SG gltext.b[365] rwdot#:= 0.000
+rwdot FG:238 SG gltext.b[714] rwdot#:=rwdot#+ 0.000
+rwdot FG:238 SG gltext.b[715] rwdot#:= 0.006
+rwdot FG:238 SG gltext.b[717] rwdot#:=rwdot#- 0.000
+rwdot FG:238 SG gltext.b[718] rwdot#:=#- 0.006
+s_b M:7 DEF gl.h[239] s_b=
+s_b M:7 MAN gl.b[202] CASE s_b:.. 
+s_b M:7 MAN gl.b[356] CASE s_b:.. 
+s_b M:7 MAN gl.b[514] token:=s_b
+s_d M:9 DEF gl.h[241] s_d=
+s_d M:9 MAN gl.b[204] CASE s_d:.. 
+s_d M:9 MAN gl.b[358] CASE s_d:.. 
+s_d M:9 MAN gl.b[518] token:=s_d
+s_ds M:12 DEF gl.h[246] s_ds=
+s_ds M:12 MAN gl.b[209] CASE s_ds:.. 
+s_ds M:12 MAN gl.b[395] CASE s_ds:.. 
+s_ds M:12 MAN gl.b[517] token:=s_ds
+s_eof M:15 DEF gl.h[250] s_eof=
+s_eof M:15 MAN gl.b[213] CASE s_eof:.. 
+s_eof M:15 MAN gl.b[329] UNTIL token=s_eof DO ..
+s_eof M:15 MAN gl.b[451] CASE s_eof:.. 
+s_eof M:15 MAN gl.b[452] token:=s_eof
+s_eof M:15 MAN gl.b[485] token:=s_eof
+s_g M:6 DEF gl.h[238] s_g=
+s_g M:6 MAN gl.b[201] CASE s_g:.. 
+s_g M:6 MAN gl.b[355] CASE s_g:.. 
+s_g M:6 MAN gl.b[513] token:=s_g
+s_i M:11 DEF gl.h[244] s_i=
+s_i M:11 MAN gl.b[207] CASE s_i:.. 
+s_i M:11 MAN gl.b[430] CASE s_i:.. 
+s_i M:11 MAN gl.b[522] token:=s_i
+s_is M:10 DEF gl.h[243] s_is=
+s_is M:10 MAN gl.b[206] CASE s_is:.. 
+s_is M:10 MAN gl.b[380] CASE s_is:.. 
+s_is M:10 MAN gl.b[521] token:=s_is
+s_k M:8 DEF gl.h[240] s_k=
+s_k M:8 MAN gl.b[203] CASE s_k:.. 
+s_k M:8 MAN gl.b[357] CASE s_k:.. 
+s_k M:8 MAN gl.b[515] token:=s_k
+s_num M:14 DEF gl.h[249] s_num=
+s_num M:14 MAN gl.b[212] CASE s_num:.. 
+s_num M:14 MAN gl.b[228] UNLESS token=s_num DO ..
+s_num M:14 MAN gl.b[538] token:=s_num
+s_r M:5 DEF gl.h[237] s_r=
+s_r M:5 MAN gl.b[200] CASE s_r:.. 
+s_r M:5 MAN gl.b[354] CASE s_r:.. 
+s_r M:5 MAN gl.b[512] token:=s_r
+s_t M:13 DEF gl.h[247] s_t=
+s_t M:13 MAN gl.b[210] CASE s_t:.. 
+s_t M:13 MAN gl.b[409] CASE s_t:.. 
+s_t M:13 MAN gl.b[524] token:=s_t
+s_vs M:1 DEF gl.h[233] s_vs=1
+s_vs M:1 MAN gl.b[196] CASE s_vs:.. 
+s_vs M:1 MAN gl.b[334] CASE s_vs:.. 
+s_vs M:1 MAN gl.b[505] token:=s_vs
+s_x M:2 DEF gl.h[234] s_x=
+s_x M:2 MAN gl.b[197] CASE s_x:.. 
+s_x M:2 MAN gl.b[351] CASE s_x:.. 
+s_x M:2 MAN gl.b[509] token:=s_x
+s_y M:3 DEF gl.h[235] s_y=
+s_y M:3 MAN gl.b[198] CASE s_y:.. 
+s_y M:3 MAN gl.b[352] CASE s_y:.. 
+s_y M:3 MAN gl.b[510] token:=s_y
+s_z M:4 DEF gl.h[236] s_z=
+s_z M:4 MAN gl.b[199] CASE s_z:.. 
+s_z M:4 MAN gl.b[353] CASE s_z:.. 
+s_z M:4 MAN gl.b[511] token:=s_z
+sardch G:36 DEF libhdr.h[72] sardch=36
+saveregs M:31 DEF libhdr.h[484] saveregs=31
+sawrch G:37 DEF libhdr.h[73] sawrch=37
+sawritef G:95 DEF libhdr.h[132] sawritef=95
+sawritef G:95 LG gl.b[929] sawritef("Unabl'ize=%i3*n",pxlysize)
+scb_blength M:14 DEF libhdr.h[552] scb_blength=
+scb_block M:9 DEF libhdr.h[547] scb_block=
+scb_buf M:3 DEF libhdr.h[541] scb_buf=
+scb_buf M:3 MAN gltext.b[620] buf:=ramstream!scb_buf
+scb_bufend M:11 DEF libhdr.h[549] scb_bufend=
+scb_encoding M:20 DEF libhdr.h[563] scb_encoding=
+scb_end M:5 DEF libhdr.h[543] scb_end=
+scb_endfn M:8 DEF libhdr.h[546] scb_endfn=
+scb_fd M:16 DEF libhdr.h[554] scb_fd=
+scb_fd1 M:17 DEF libhdr.h[555] scb_fd1=
+scb_id M:0 DEF libhdr.h[538] scb_id=0
+scb_lblock M:12 DEF libhdr.h[550] scb_lblock=
+scb_ldata M:13 DEF libhdr.h[551] scb_ldata=
+scb_maxnamelen M:31 DEF libhdr.h[536] scb_maxnamelen=31
+scb_maxnamelen M:31 MAN libhdr.h[567]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_name M:21 DEF libhdr.h[565] scb_name=
+scb_name M:21 MAN libhdr.h[567]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_nameeend M:28 DEF libhdr.h[567]
+    scb_nameeend=scb_name+scb_maxnamelen/bytesperword
+scb_pos M:4 DEF libhdr.h[542] scb_pos=
+scb_rdfn M:6 DEF libhdr.h[544] scb_rdfn=
+scb_reclen M:15 DEF libhdr.h[553] scb_reclen=
+scb_size M:29 DEF libhdr.h[570] scb_size=
+scb_size M:29 MAN libhdr.h[571] scb_upb=scb_size-1
+scb_task M:2 DEF libhdr.h[540] scb_task=
+scb_timeout M:18 DEF libhdr.h[556] scb_timeout=
+scb_timeoutact M:19 DEF libhdr.h[559] scb_timeoutact=
+scb_type M:1 DEF libhdr.h[539] scb_type=
+scb_upb M:28 DEF libhdr.h[571] scb_upb=scb_size-1
+scb_wrfn M:7 DEF libhdr.h[545] scb_wrfn=
+scb_write M:10 DEF libhdr.h[548] scb_write=
+scbt_console M:-1 DEF libhdr.h[532] scbt_console=-1
+scbt_file M:1 DEF libhdr.h[530] scbt_file=1
+scbt_mbx M:-2 DEF libhdr.h[533] scbt_mbx=-2
+scbt_net M:2 DEF libhdr.h[529] scbt_net=2
+scbt_ram M:0 DEF libhdr.h[531] scbt_ram=0
+scbt_tcp M:-3 DEF libhdr.h[534] scbt_tcp=-3
+screen G:456 DEF gl.h[73] screen=
+screenaspect FG:460 DEF gl.h[78] FLT screenaspect=
+screenaspect FG:460 SG gl.b[139]
+    screenaspect#:=FLOAT screenxsize#/FLOAT screenysize
+screenxsize G:458 DEF gl.h[76] screenxsize=
+screenxsize G:458 LG gl.b[139]
+    screenaspect#:=FLOAT screenxsize#/FLOAT screenysize
+screenxsize G:458 LG gl.b[144] UNLESS screenxsize>0 DO ..
+screenxsize G:458 LG gl.b[158] RESULTIS screenxsize
+screenxsize G:458 LG gltext.b[199] UNLESS screenxsize DO ..
+screenxsize G:458 LG gltext.b[399] UNTIL pxlxsize<-screenxsize DO ..
+screenxsize G:458 LG gltext.b[479] FLOAT screenxsize#/FLOAT screenysize
+screenxsize G:458 SG gl.b[132] screenxsize:=xsize
+screenxsize G:458 SG gl.b[137]
+    screenxsize:=sys(Sys_gl,gl_MkScreen,title,...)
+screenxsize G:458 SG gltext.b[195]
+    screenxsize:=glMkScreen(concatstr("OpenG' Test:  ",...),1024,512)
+screenysize G:459 DEF gl.h[77] screenysize=
+screenysize G:459 LG gl.b[139]
+    screenaspect#:=FLOAT screenxsize#/FLOAT screenysize
+screenysize G:459 LG gl.b[157] result2:=screenysize
+screenysize G:459 LG gltext.b[400] UNTIL pxlysize<-screenysize DO ..
+screenysize G:459 LG gltext.b[479] FLOAT screenxsize#/FLOAT screenysize
+screenysize G:459 SG gl.b[132] screenysize:=ysize
+screenysize G:459 SG gl.b[138] screenysize:=result2
+screenysize G:459 SG gltext.b[198] screenysize:=result2
+sdle_active M:1 DEF gl.h[212] sdle_active=1
+sdle_arrowdown M:274 DEF gl.h[229] sdle_arrowdown=274
+sdle_arrowdown M:274 MAN gltext.b[714] CASE sdle_arrowdown:.. 
+sdle_arrowleft M:276 DEF gl.h[231] sdle_arrowleft=276
+sdle_arrowleft M:276 MAN gltext.b[721] CASE sdle_arrowleft:.. 
+sdle_arrowright M:275 DEF gl.h[230] sdle_arrowright=275
+sdle_arrowright M:275 MAN gltext.b[724] CASE sdle_arrowright:.. 
+sdle_arrowup M:273 DEF gl.h[228] sdle_arrowup=273
+sdle_arrowup M:273 MAN gltext.b[717] CASE sdle_arrowup:.. 
+sdle_joyaxismotion M:7 DEF gl.h[218] sdle_joyaxismotion=7
+sdle_joyballmotion M:8 DEF gl.h[219] sdle_joyballmotion=8
+sdle_joybuttondown M:10 DEF gl.h[221] sdle_joybuttondown=10
+sdle_joybuttonup M:11 DEF gl.h[222] sdle_joybuttonup=11
+sdle_joyhatmotion M:9 DEF gl.h[220] sdle_joyhatmotion=9
+sdle_keydown M:2 DEF gl.h[213] sdle_keydown=2
+sdle_keydown M:2 MAN gltext.b[654] CASE sdle_keydown:.. 
+sdle_keyup M:3 DEF gl.h[214] sdle_keyup=3
+sdle_mousebuttondown M:5 DEF gl.h[216] sdle_mousebuttondown=5
+sdle_mousebuttonup M:6 DEF gl.h[217] sdle_mousebuttonup=6
+sdle_mousemotion M:4 DEF gl.h[215] sdle_mousemotion=4
+sdle_quit M:12 DEF gl.h[223] sdle_quit=12
+sdle_quit M:12 MAN gltext.b[730] CASE sdle_quit:.. 
+sdle_syswmevent M:13 DEF gl.h[224] sdle_syswmevent=13
+sdle_userevent M:15 DEF gl.h[226] sdle_userevent=15
+sdle_videoresize M:14 DEF gl.h[225] sdle_videoresize=14
+sectword M:64991 DEF libhdr.h[265] sectword=64991
+selectinput G:56 DEF libhdr.h[92] selectinput=56
+selectinput G:56 LG gl.b[321] selectinput(instream)
+selectinput G:56 LG gl.b[468] selectinput(stdin)
+selectinput G:56 LG gltext.b[607] selectinput(instream)
+selectinput G:56 LG gltext.b[618] selectinput(oldin)
+selectoutput G:57 DEF libhdr.h[93] selectoutput=57
+selectoutput G:57 LG gltext.b[606] selectoutput(ramstream)
+selectoutput G:57 LG gltext.b[616] selectoutput(oldout)
+sendpkt G:165 DEF libhdr.h[215] sendpkt=165
+set_process_name G:175 DEF libhdr.h[223] set_process_name=175
+setbit G:112 DEF libhdr.h[149] setbit=112
+setbulk G:122 DEF libhdr.h[159] setbulk=122
+setcolour F:20 RT gl.b[663] LET setcolour(col)BE..
+setcolourkey F:21 RT gl.b[665] LET setcolourkey(col)BE..
+setflags G:156 DEF libhdr.h[207] setflags=156
+setlims F:33 LF gl.b[961] setlims(x1,y1,x2,y2)
+setlims F:33 LF gl.b[962] setlims(x2,y2,x3,y3)
+setlims F:33 LF gl.b[963] setlims(x3,y3,x1,y1)
+setlims F:33 RT gl.b[880] LET setlims(x0,y0,x1,y1)BE..
+setlogname G:117 DEF libhdr.h[154] setlogname=117
+setrecordlength G:68 DEF libhdr.h[104] setrecordlength=68
+setseed G:35 DEF libhdr.h[71] setseed=35
+settimeout G:55 DEF libhdr.h[91] settimeout=55
+settimeoutact G:124 DEF libhdr.h[161] settimeoutact=124
+setvec G:181 DEF libhdr.h[228] setvec=181
+setvec G:181 LG gl.b[183]
+    setvec(mat4,16,fv#/aspect, 0.000, 0.000, 0.000,...)
+setvec G:181 LG gltext.b[375]
+    setvec(workMatrix,16, 2.000, 0.000, 0.000, 0.000,...)
+setvec G:181 LG gltext.b[381]
+    setvec(projectionMatrix,16, 1.000, 2.000, 3.000, 4.000,...)
+setvec G:181 LG gltext.b[417]
+    setvec(projectionMatrix,16, 1.000, 0.000, 0.000, 0.000,...)
+setvec G:181 LG gltext.b[426]
+    setvec(workMatrix,16,ctx,cty,ctz, 0.000,...)
+setvec G:181 LG gltext.b[447]
+    setvec(workMatrix,16,cos_theta, 0.000,sin_theta, 0.000,...)
+setvec G:181 LG gltext.b[457]
+    setvec(workMatrix,16, 1.000, 0.000, 0.000, 0.000,...)
+setvec G:181 LG gltext.b[467]
+    setvec(workMatrix,16, 1.000, 0.000, 0.000, 0.000,...)
+splitname G:47 DEF libhdr.h[83] splitname=47
+srchwk G:150 DEF libhdr.h[201] srchwk=150
+stackfree G:123 DEF libhdr.h[160] stackfree=123
+stackword M:#xABCD1234 DEF libhdr.h[263] stackword=-#x5432EDCC
+start G:1 DEF libhdr.h[36] start=1
+start G:1 FN gltext.b[164] LET start()=..
+startco G:23 DEF libhdr.h[59] startco=23
+stepping G:201 DEF gltext.b[91] stepping=
+stepping G:201 LG gltext.b[411] IF stepping DO ..
+stepping G:201 LG gltext.b[687] stepping:=~stepping
+stepping G:201 SG gltext.b[356] stepping:=TRUE
+stepping G:201 SG gltext.b[687] stepping:=~stepping
+stepstream G:67 DEF libhdr.h[103] stepstream=67
+stop G:2 DEF libhdr.h[37] stop=2
+str2numb G:101 DEF libhdr.h[138] str2numb=101
+string_to_dat G:111 DEF libhdr.h[148] string_to_dat=111
+string_to_number G:100 DEF libhdr.h[137] string_to_number=100
+sys G:3 DEF libhdr.h[38] sys=3
+sys G:3 LG gl.b[106] sys(Sys_gl,gl_Init)
+sys G:3 LG gl.b[137] screenxsize:=sys(Sys_gl,gl_MkScreen,title,...)
+sys G:3 LG gl.b[145] sys(Sys_gl,gl_GetError,mes)
+sys G:3 LG gl.b[154]
+    sys(Sys_gl,gl_BlendFunc,GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA)
+sys G:3 LG gl.b[155] sys(Sys_gl,gl_Enable,GL_BLEND)
+sys G:3 LG gl.b[189] sys(Sys_flt,fl_sqrt,x#*x#+y#*y)
+sys G:3 LG gl.b[191] sys(Sys_flt,fl_sqrt,x#*x#+y#*y#+z#*z)
+sys G:3 LG gl.b[216] sys(Sys_gl,gl_pollevent,@eventtype)
+sys G:3 LG gl.b[235] RESULTIS sys(Sys_flt,fl_64to32,x)
+sys G:3 LG gltext.b[204] glprog:=sys(Sys_gl,gl_MkProg)
+sys G:3 LG gltext.b[226]
+    UNLESS sys(Sys_gl,gl_LinkProgram,glprog)=-1 DO ..
+sys G:3 LG gltext.b[232] sys(Sys_gl,gl_UseProgram,glprog)
+sys G:3 LG gltext.b[235]
+    VertexLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vVertex")
+sys G:3 LG gltext.b[236]
+    ColorLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vColor")
+sys G:3 LG gltext.b[237]
+    DataLoc:=sys(Sys_gl,gl_GetAttribLocation,glprog,"g_vData")
+sys G:3 LG gltext.b[244]
+    MatrixLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"matrix")
+sys G:3 LG gltext.b[245]
+    ControlLoc:=sys(Sys_gl,gl_GetUniformLocation,glprog,"control")
+sys G:3 LG gltext.b[288] sys(Sys_gl,gl_Enable,GL_DEPTH_TEST)
+sys G:3 LG gltext.b[290] sys(Sys_gl,gl_DepthFunc,GL_LESS)
+sys G:3 LG gltext.b[300]
+    VertexBuffer:=sys(Sys_gl,gl_GenVertexBuffer,...,vvec)
+sys G:3 LG gltext.b[308]
+    sys(Sys_gl,gl_EnableVertexAttribArray,VertexLoc)
+sys G:3 LG gltext.b[310] sys(Sys_gl,gl_VertexData,VertexLoc,3,8,0)
+sys G:3 LG gltext.b[319] sys(Sys_gl,gl_EnableVertexAttribArray,ColorLoc)
+sys G:3 LG gltext.b[321] sys(Sys_gl,gl_VertexData,ColorLoc,3,8,3)
+sys G:3 LG gltext.b[330] sys(Sys_gl,gl_EnableVertexAttribArray,DataLoc)
+sys G:3 LG gltext.b[332] sys(Sys_gl,gl_VertexData,DataLoc,2,8,6)
+sys G:3 LG gltext.b[345]
+    IndexBuffer:=sys(Sys_gl,gl_GenIndexBuffer,...,ivec)
+sys G:3 LG gltext.b[391]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+sys G:3 LG gltext.b[432]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+sys G:3 LG gltext.b[454]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+sys G:3 LG gltext.b[463]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+sys G:3 LG gltext.b[474]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+sys G:3 LG gltext.b[513]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+sys G:3 LG gltext.b[524]
+    sys(Sys_gl,gl_UniformMatrix4fv,MatrixLoc,glprog,projectionMatrix)
+sys G:3 LG gltext.b[529] CosRudder#:=sys(Sys_flt,fl_cos,RudderAngle)
+sys G:3 LG gltext.b[530] SinRudder#:=sys(Sys_flt,fl_sin,RudderAngle)
+sys G:3 LG gltext.b[534] CosElevator#:=sys(Sys_flt,fl_cos,ElevatorAngle)
+sys G:3 LG gltext.b[535] SinElevator#:=sys(Sys_flt,fl_sin,ElevatorAngle)
+sys G:3 LG gltext.b[539] CosAileron#:=sys(Sys_flt,fl_cos,AileronAngle)
+sys G:3 LG gltext.b[540] SinAileron#:=sys(Sys_flt,fl_sin,AileronAngle)
+sys G:3 LG gltext.b[559]
+    sys(Sys_gl,gl_UniformMatrix4fv,ControlLoc,glprog,control)
+sys G:3 LG gltext.b[565]
+    sys(Sys_gl,gl_Clear,GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+sys G:3 LG gltext.b[566]
+    sys(Sys_gl,gl_ClearColour, 0.705, 0.705, 0.980, 1.000)
+sys G:3 LG gltext.b[570] sys(Sys_gl,gl_SwapBuffers)
+sys G:3 LG gltext.b[578]
+    sys(Sys_gl,gl_DisableVertexAttribArray,VertexLoc)
+sys G:3 LG gltext.b[579]
+    sys(Sys_gl,gl_DisableVertexAttribArray,ColorLoc)
+sys G:3 LG gltext.b[580] sys(Sys_gl,gl_DisableVertexAttribArray,DataLoc)
+sys G:3 LG gltext.b[584] sys(Sys_gl,gl_Quit)
+sys G:3 LG gltext.b[622]
+    shader:=sys(Sys_gl,isVshader->gl_CompileVshader,gl_CompileFshader,prog,buf)
+sys G:3 LG gltext.b[641] sys(Sys_gl,gl_DrawElements,mode,size,offset)
+sys G:3 LG gltext.b[732] sys(Sys_gl,gl_Quit)
+sysabort G:29 DEF libhdr.h[65] sysabort=29
+t_bhunk M:3000 DEF libhdr.h[259] t_bhunk=3000
+t_bhunk64 M:4000 DEF libhdr.h[260] t_bhunk64=4000
+t_end M:1002 DEF libhdr.h[255] t_end=1002
+t_end64 M:2002 DEF libhdr.h[258] t_end64=2002
+t_hunk M:1000 DEF libhdr.h[253] t_hunk=1000
+t_hunk64 M:2000 DEF libhdr.h[256] t_hunk64=2000
+t_reloc M:1001 DEF libhdr.h[254] t_reloc=1001
+t_reloc64 M:2001 DEF libhdr.h[257] t_reloc64=2001
+taskid G:152 DEF libhdr.h[203] taskid=152
+taskwait G:160 DEF libhdr.h[211] taskwait=160
+tcb G:151 DEF libhdr.h[202] tcb=151
+tcb_a M:11 DEF libhdr.h[671] tcb_a=tcb_regs
+tcb_active M:10 DEF libhdr.h[668] tcb_active=10
+tcb_b M:12 DEF libhdr.h[672] tcb_b=12
+tcb_c M:13 DEF libhdr.h[673] tcb_c=13
+tcb_count M:18 DEF libhdr.h[678] tcb_count=18
+tcb_flags M:5 DEF libhdr.h[663] tcb_flags=5
+tcb_g M:15 DEF libhdr.h[675] tcb_g=15
+tcb_gbase M:8 DEF libhdr.h[666] tcb_gbase=8
+tcb_link M:0 DEF libhdr.h[658] tcb_link=0
+tcb_namebase M:19 DEF libhdr.h[680] tcb_namebase=19
+tcb_namebase M:19 MAN libhdr.h[682]
+    tcb_upb=tcb_namebase+15/bytesperword+1
+tcb_p M:14 DEF libhdr.h[674] tcb_p=14
+tcb_pc M:17 DEF libhdr.h[677] tcb_pc=17
+tcb_pri M:2 DEF libhdr.h[660] tcb_pri=2
+tcb_regs M:11 DEF libhdr.h[670] tcb_regs=11
+tcb_regs M:11 MAN libhdr.h[671] tcb_a=tcb_regs
+tcb_sbase M:9 DEF libhdr.h[667] tcb_sbase=9
+tcb_seglist M:7 DEF libhdr.h[665] tcb_seglist=7
+tcb_st M:16 DEF libhdr.h[676] tcb_st=16
+tcb_state M:4 DEF libhdr.h[662] tcb_state=4
+tcb_stsiz M:6 DEF libhdr.h[664] tcb_stsiz=6
+tcb_taskid M:1 DEF libhdr.h[659] tcb_taskid=1
+tcb_upb M:23 DEF libhdr.h[682] tcb_upb=tcb_namebase+15/bytesperword+1
+tcb_wkq M:3 DEF libhdr.h[661] tcb_wkq=3
+tempval G:11 DEF libhdr.h[46] tempval=11
+testbit G:113 DEF libhdr.h[150] testbit=113
+testflags G:157 DEF libhdr.h[208] testflags=157
+tg M:190 DEF libhdr.h[237] tg=190
+timeoutch M:-2 DEF libhdr.h[248] timeoutch=-2
+tok2str F:6 FN gl.b[193] LET tok2str(tok)=..
+tok2str F:6 LF gl.b[473]
+    writef("ERROR's tok=%s",mess,tok2str(token),tok2str(tok))
+token G:476 DEF gl.h[104] token=
+token G:476 LG gl.b[228] UNLESS token=s_num DO ..
+token G:476 LG gl.b[329] SWITCHON token INTO..
+token G:476 LG gl.b[329] UNTIL token=s_eof DO ..
+token G:476 LG gl.b[472] UNLESS token=tok DO ..
+token G:476 LG gl.b[473]
+    writef("ERROR's tok=%s",mess,tok2str(token),tok2str(tok))
+token G:476 SG gl.b[452] token:=s_eof
+token G:476 SG gl.b[485] token:=s_eof
+token G:476 SG gl.b[505] token:=s_vs
+token G:476 SG gl.b[509] token:=s_x
+token G:476 SG gl.b[510] token:=s_y
+token G:476 SG gl.b[511] token:=s_z
+token G:476 SG gl.b[512] token:=s_r
+token G:476 SG gl.b[513] token:=s_g
+token G:476 SG gl.b[514] token:=s_b
+token G:476 SG gl.b[515] token:=s_k
+token G:476 SG gl.b[517] token:=s_ds
+token G:476 SG gl.b[518] token:=s_d
+token G:476 SG gl.b[521] token:=s_is
+token G:476 SG gl.b[522] token:=s_i
+token G:476 SG gl.b[524] token:=s_t
+token G:476 SG gl.b[538] token:=s_num
+ug M:200 DEF libhdr.h[238] ug=200
+ug M:200 MAN gltext.b[90] done=ug
+unhold G:159 DEF libhdr.h[210] unhold=159
+unloadseg G:106 DEF libhdr.h[143] unloadseg=106
+unpackstring G:31 DEF libhdr.h[67] unpackstring=31
+unrdch G:40 DEF libhdr.h[76] unrdch=40
+unrdch G:40 LG gl.b[529] unrdch()
+vvec G:203 DEF gltext.b[96] vvec=
+vvec G:203 LG gltext.b[274] writef(" %5.2f",vvec!i)
+vvec G:203 LG gltext.b[300]
+    VertexBuffer:=sys(Sys_gl,gl_GenVertexBuffer,...,vvec)
+vvec G:203 LG gltext.b[338] freevec(vvec)
+vvec G:203 LLG gltext.b[252] model:=loadmodel(modelfilename,@vvec)
+vvec G:203 SG gltext.b[340] vvec:=0
+vvecupb G:204 DEF gltext.b[98] vvecupb=
+vvecupb G:204 LG gltext.b[272] FOR i=0 TO vvecupb DO..
+vvecupb G:204 LG gltext.b[300]
+    VertexBuffer:=sys(Sys_gl,gl_GenVertexBuffer,...,vvec)
+workMatrix G:250 DEF gltext.b[152] workMatrix=
+workMatrix G:250 LG gltext.b[375]
+    setvec(workMatrix,16, 2.000, 0.000, 0.000, 0.000,...)
+workMatrix G:250 LG gltext.b[388] prmat(workMatrix)
+workMatrix G:250 LG gltext.b[391]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+workMatrix G:250 LG gltext.b[426]
+    setvec(workMatrix,16,ctx,cty,ctz, 0.000,...)
+workMatrix G:250 LG gltext.b[432]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+workMatrix G:250 LG gltext.b[447]
+    setvec(workMatrix,16,cos_theta, 0.000,sin_theta, 0.000,...)
+workMatrix G:250 LG gltext.b[454]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+workMatrix G:250 LG gltext.b[457]
+    setvec(workMatrix,16, 1.000, 0.000, 0.000, 0.000,...)
+workMatrix G:250 LG gltext.b[463]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+workMatrix G:250 LG gltext.b[467]
+    setvec(workMatrix,16, 1.000, 0.000, 0.000, 0.000,...)
+workMatrix G:250 LG gltext.b[474]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+workMatrix G:250 LG gltext.b[502]
+    glSetPerspective(workMatrix, 0.500,aspect, 0.100, 5000.000)
+workMatrix G:250 LG gltext.b[513]
+    sys(Sys_gl,gl_M4mulM4,workMatrix,projectionMatrix,projectionMatrix)
+workMatrix G:250 SG gltext.b[172] workMatrix:=m2
+wrch G:41 DEF libhdr.h[77] wrch=41
+wrch G:41 LG gl.b[627] wrch
+wrch G:41 LG gl.b[864] wrch
+wrch G:41 LG gltext.b[611] wrch(ch)
+wrch G:41 LG gltext.b[614] wrch(0)
+wrch G:41 SG gl.b[631] wrch:=plotwrch
+wrch G:41 SG gl.b[633] wrch:=oldwrch
+wrch G:41 SG gl.b[868] wrch:=drawwrch
+wrch G:41 SG gl.b[870] wrch:=oldwrch
+write_ch_slice G:504 DEF gl.h[140] write_ch_slice=
+write_ch_slice G:504 LG gl.b[701]
+    write_ch_slice(currx,curry+11-line,ch,line)
+write_ch_slice G:504 RT gl.b[705] LET write_ch_slice(x,y,ch,line)BE..
+writed G:85 DEF libhdr.h[121] writed=85
+writee G:180 DEF libhdr.h[227] writee=180
+writef G:94 DEF libhdr.h[131] writef=94
+writef G:94 LG gl.b[146] writef("Unabl'een: %s*n",mes)
+writef G:94 LG gl.b[220] writef("ERROR'ine %n: ",lineno)
+writef G:94 LG gl.b[221] writef(mes,a,b,c)
+writef G:94 LG gl.b[330] writef("line 'el file*n",lineno)
+writef G:94 LG gl.b[344] writef("Unabl' upb=%n*n",vvupb)
+writef G:94 LG gl.b[362] writef("Verte'located*n")
+writef G:94 LG gl.b[369] writef("Too m'vupb=%n*n",vpos,vvupb)
+writef G:94 LG gl.b[386] writef("Unabl' upb=%n*n",ivupb)
+writef G:94 LG gl.b[401] writef("Unabl' upb=%n*n",dvupb)
+writef G:94 LG gl.b[411] writef("Displ'located*n")
+writef G:94 LG gl.b[434] writef("Index'llocate*n")
+writef G:94 LG gl.b[441] writef("Too m'vupb=%n*n",ipos,ivupb)
+writef G:94 LG gl.b[473]
+    writef("ERROR's tok=%s",mess,tok2str(token),tok2str(tok))
+writef G:94 LG gl.b[502] writef("Bad v'rective*n")
+writef G:94 LG gl.b[632] writef(form,a,b,c,d,e,...)
+writef G:94 LG gl.b[869] writef(form,a,b,c,d,e,...)
+writef G:94 LG gltext.b[176] writef("Bad a' gltext*n")
+writef G:94 LG gltext.b[189] writef("*nOpen'ailable*n")
+writef G:94 LG gltext.b[200] writef("*nUnab' window*n")
+writef G:94 LG gltext.b[208] writef("*nUnab'program*n")
+writef G:94 LG gltext.b[227] writef("*nglte'program*n")
+writef G:94 LG gltext.b[257] writef("*nglte'del: %s*n",modelfilename)
+writef G:94 LG gltext.b[271] writef("*nVertex data*n")
+writef G:94 LG gltext.b[273] writef("*n%i3: ",i/8)
+writef G:94 LG gltext.b[274] writef(" %5.2f",vvec!i)
+writef G:94 LG gltext.b[276] writef("*n*nIndex data*n")
+writef G:94 LG gltext.b[278] writef("*n%i6: ",i)
+writef G:94 LG gltext.b[279] writef(" %i3",ivec!i)
+writef G:94 LG gltext.b[281] writef("*n*nDis'a items*n")
+writef G:94 LG gltext.b[283]
+    writef(" %i3 'i3  %i3*n",dvec!i,dvec!(i+1),dvec!(i+2))
+writef G:94 LG gltext.b[389] writef("times*n")
+writef G:94 LG gltext.b[392] writef("gives*n")
+writef G:94 LG gltext.b[401] writef("pxlxs'size=%n*n",pxlxsize,pxlysize)
+writef G:94 LG gltext.b[404] writef("Unabl'te pxlv*n")
+writef G:94 LG gltext.b[601] writef("Compi'streams*n")
+writef G:94 LG gltext.b[675] writef("ct   't=%9.6f*n",ctx,cty,ctz,rtdot)
+writef G:94 LG gltext.b[677] writef("cw   't=%9.6f*n",cwx,cwy,cwz,rwdot)
+writef G:94 LG gltext.b[679] writef("cl   't=%9.6f*n",clx,cly,clz,rldot)
+writef G:94 LG gltext.b[682] writef("eyepo'f %9.3f*n",eyex,eyey,eyez)
+writef G:94 LG gltext.b[684] writef("eyedi'= %9.3f*n",eyedistance)
+writef G:94 LG gltext.b[731] writef("QUIT*n")
+writef G:94 LG gltext.b[782] writef(" %12.' %12.7f*n",m!0,m!4,m!8,m!12)
+writef G:94 LG gltext.b[783] writef(" %12.' %12.7f*n",m!1,m!5,m!9,m!13)
+writef G:94 LG gltext.b[784] writef(" %12.' %12.7f*n",m!2,m!6,m!10,m!14)
+writef G:94 LG gltext.b[785] writef(" %12.' %12.7f*n",m!3,m!7,m!11,m!15)
+writef G:94 LG gltext.b[790] writef(" %12.' %12.7f*n",v!0,v!1,v!2,v!3)
+writeflt G:73 DEF libhdr.h[109] writeflt=73
+writehex G:87 DEF libhdr.h[123] writehex=87
+writen G:86 DEF libhdr.h[122] writen=86
+writeoct G:88 DEF libhdr.h[124] writeoct=88
+writes G:89 DEF libhdr.h[125] writes=89
+writet G:90 DEF libhdr.h[126] writet=90
+writeu G:91 DEF libhdr.h[127] writeu=91
+writewords G:45 DEF libhdr.h[81] writewords=45
+writez G:92 DEF libhdr.h[128] writez=92

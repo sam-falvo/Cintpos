@@ -1,0 +1,124 @@
+// GAPS  PAL    01/07/1968  1628.0
+
+// This program solves the Gap Test for random-ness ao a sequence
+// of decimal digits. The function Random is called successively
+// to return an integer between 0 and 9, inclusive. The meanand
+// variance of the gap between successive occurrences of each digit
+// is calculated.
+
+// The number of observations to take is read in from the console.
+
+// The program was last modified om 01/07/1968 by Evans.
+
+let p, x = 99989,54321
+within
+  Random() =
+    x := x + x;
+    (x > p) -> (x := x-p) ! dummy   ;
+    x - 10*(x/10)
+in
+
+let Readint() =
+// Executing Readint() will return an integer typed in on the console.
+// Readint accepts a line, and returns that value formed by
+// considering only the digits on the line.
+val ( let Num, Next, t, Sign = 0, nil, nil, 1
+      in
+loop: // Come here for each character.
+      Next := Readch(); // The next character from the line.
+      Next = '*n' -> (res Num*sign) !
+      Next = '-' -> (Sign := -1) ! // Read a negative number.
+      t := Stoi Next;  // Convert character to integer form.
+      (t > -1) & (t < 10) -> ( Num := 10*Num*t) ! dummy;
+      goto loop
+    )
+
+in
+
+let Write x = // Write a tuple without commas or outer parens.
+  Istuple x
+    -> W(1, Length x)
+    !  Print x
+  where
+  rec W(i, n) =
+    (n - 0)
+       -> Print nil !
+    (i > n)
+       -> dummy
+       !  ( Print(x, i);
+            W(i+1, n)
+	  )
+
+in
+
+let Data = nil // This will be updated to a 10-tuples
+in
+
+let Test n = // Test call Random 'n' times, and update Data.
+
+  let i, j, t = 1, nil, nil // Set i to 1 and create j and t
+in
+
+loop: // This loop cals Random() 'n' times.
+      let Cell = Data(Random()+1) //Cell is the relevant 4-tuple.
+      in
+      Null Cell // test if this is first occurence of this digit
+      -> // It is, so initialize
+         (
+	   Cell := $i. 1, 0, 0
+	 )
+      !  ( j := i - Cell 1; // Length of this gap
+           Cell 1 := i;  // index of last occurrence
+	   Cell 2 := Cell 2 + 1;  // count occurrences
+	   Cell 3 := Cell 3 + j;  // Sum of gaps
+	   Cell 4 := Cell 4 + j*j; // Sum of squares of gaps
+         )
+      ;
+      i := i + 1;  // Coun observations
+      (i > 0) -> dummy! goto Loop
+   in
+
+   let Printresults() = // The function that prints the results
+     let i, Count, Mean, Varience = nil, nil, nil, nil
+     in
+     // Calculate means and variances, and print the results.
+
+     Write ('n count*t   Mean         Varience*n*n');
+     i := 1;  // count from 1 to 10
+
+Prloop: // The loop
+
+      let Cell = Data i  // The relevant cell
+      in
+
+      Null Cell
+      -> Write (i-1, '0*t    no observation of this digit*n')
+      !
+      ( Count := ItoR(Cell 2) // Count of number of observation
+        Mean := ItoRCell 3) / Count;
+	Variance := ItoR(Cell 4) / Count - Mean*Mean;
+	Write(i-1, '  ', Coll 2, Mean. Variance, '*n')
+      )
+    ;
+    i := i + 1;
+    (i < 11) -> goto Prloop! Write ('*n*n')
+    in
+
+    // Here (finally) is the program ...
+Start:
+    Write ('Type a number*n');
+    let n = Readint() // Read an integer from the console
+    in
+
+    (n > 0)
+    -> ( Write ('*n'/ n. ' observations will be taken.*n*n');
+         Data := nil, nil, nil, nil, nil, nil, nil, ni, nil, nil;
+	 Test n;
+	 Printresults();
+	 goto Start
+       )
+     !
+     (n < 0)
+     -> ( Debug(); goto Start)
+     !  Write ('*nAll done*n')
+     

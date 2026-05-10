@@ -1,0 +1,44 @@
+
+$get!mushdr;
+
+$def!conductor-part!%
+<
+ \conductor (
+    \name "conductor"
+    \title  "Bean Bag"
+    \composer "Herb Alpert"
+    \arranger "Arr. by John Edney"
+        
+  \timesig(4 4)
+  %\keysig(ees\major)
+  %s1\tempo 160 |
+  %s1 |
+%  $rep!50!s1 |
+%  $rep!2!s1 |
+   s1 ||
+)
+>;
+
+$def!trumpet1-part!
+< \part (
+  \name "trumpet1"
+  $trumpet;
+  \transposition(bes)
+
+    %  |        |        |        |        |        |        |       |
+       r2 r8 b\v80 c r8
+%       r2                                  r8       b\v80    cis     b
+%    |  dis4              cis8     b~       b        a4               gis8~
+%    |  gis      b4.                        r8       b4               cis8
+%    |  b4                a                 gis8     fis4             e8~
+    ||
+)
+>;
+
+
+\score "Beanbag" [
+
+$conductor-part;
+
+$trumpet1-part;
+]

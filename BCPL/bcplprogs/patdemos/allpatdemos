@@ -1,0 +1,57 @@
+.k file,opt
+
+c b coins
+coins
+echo coins
+wait 2
+
+c b eval
+eval
+echo eval
+wait 2
+
+c b fft
+fft
+echo fft
+wait 2
+
+c b fib
+fib
+echo fib
+wait 2
+
+c b match
+match
+echo match
+wait 2
+
+c b prover
+prover
+echo prover
+wait 2
+
+c b queens
+queens
+echo queens
+wait 2
+
+c b splay
+splay
+echo splay
+wait 2
+
+c b tttree
+tttree
+echo tttree
+wait 2
+
+c b turing
+turing
+echo turing
+
+
+
+
+
+
+

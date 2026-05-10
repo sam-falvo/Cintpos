@@ -1,0 +1,16 @@
+//#ifdef GL_ES
+//precision mediump float;
+//#endif
+
+varying   vec4 g_vVSColor;
+
+void main()
+{ gl_FragColor = g_vVSColor;
+  //if (g_vVSColor.r<0.2 && g_vVSColor.g<0.2 && g_vVSColor.b<0.2)
+  //{ gl_FragColor.r = 1.0;
+  //  gl_FragColor.g = 1.0;
+  //  gl_FragColor.b = 1.0;
+  //}
+}
+
+

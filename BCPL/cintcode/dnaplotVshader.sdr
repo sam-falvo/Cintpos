@@ -1,0 +1,40 @@
+// This is the GL vertex shader used by dnaplot.b
+
+// Implemented by Mrtin Richards (c) 15 Feb 2021
+
+// Variables only exist if they are used.
+
+uniform mat4 matrix;        // Rotation and translation matrix
+
+attribute vec4  g_vVertex;
+attribute float g_vColourNo;
+
+varying   vec4  g_vVSColor;
+
+void main()
+{ g_vVSColor = vec4(1.0, 1.0, 1.0, 1.0);  // White unless colourno in 0 to 5
+
+  if (g_vColourNo==0.0) g_vVSColor = vec4(1.0, 0.0, 0.0, 1.0);  // Colour for A
+  if (g_vColourNo==1.0) g_vVSColor = vec4(0.0, 1.0, 0.0, 1.0);  // Colour for C
+  if (g_vColourNo==2.0) g_vVSColor = vec4(0.0, 0.0, 1.0, 1.0);  // Colour for G
+  if (g_vColourNo==3.0) g_vVSColor = vec4(1.0, 0.0, 1.0, 1.0);  // Colour for T
+  if (g_vColourNo==4.0) g_vVSColor = vec4(1.0, 1.0, 1.0, 1.0);  // col_white
+  if (g_vColourNo==5.0) g_vVSColor = vec4(0.0, 0.0, 0.0, 1.0);  // col_black
+  if (g_vColourNo==6.0) g_vVSColor = vec4(0.0, 0.0, 0.0, 0.0);  // This indicates
+                                                                // that this is a
+								// vertex of the
+								// pixel plane.
+
+  //vec4 Pos = g_vVertex;        // Coords of the vertex
+
+  if (g_vColourNo==6.0) {
+    // This is a vertex of the pixel plane so do not multiply by matrix.
+    //gl_Position = g_vVertex;
+    gl_Position = (matrix * g_vVertex);
+    // The fragment shader will notice that the colour is (0,0,0,0) and
+    // so will apply the pixel plane texture.
+  } else {
+    // Rotate and translate the model
+    gl_Position = (matrix * g_vVertex);
+  }
+}

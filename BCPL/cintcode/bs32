@@ -1,0 +1,3 @@
+.k file/a,opt
+echo "bcpl sysb/<file>.b to cin/syscin/<file> t32 <opt>"
+bcpl sysb/<file>.b to cin/syscin/<file> t32 <opt>

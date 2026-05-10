@@ -1,0 +1,18 @@
+This directory contains software that is strongly related to the loki
+chip being developed in the Computer Lab. This chip contains 16 tiles
+which each contain 8 cores which are simple risc processors. These
+cores have a 32 bit instruction word consisting of a 7 bit op code,
+three 5 bit operands, 8 bits of immediate data and a 2 bit field that
+controls whether the instruction is actually executed. The 5 bit
+operands can refer to one of 24 32 bit registers, 6 communication
+channels that can comunicate with other cores, one register that
+always holds the value zero and a register that essentially gives the
+location of the current instruction.
+
+In due course there will be an interpreter to execute these
+instruction but initially the cores will run as coroutines with bodies
+being written in BCPL. The implementation of the channels will be
+simplified.
+
+MR
+11 Feb 2019

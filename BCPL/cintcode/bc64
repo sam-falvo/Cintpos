@@ -1,0 +1,4 @@
+.k file/a,arg
+echo "bcpl com/<file>.b to cin64/<file> t64 <arg>"
+bcpl com/<file>.b to cin64/<file> t64 <arg>
+

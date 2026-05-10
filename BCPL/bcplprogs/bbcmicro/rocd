@@ -1,0 +1,9 @@
+.k file/a,opt
+echo "bbcbcpl nonames com16/<file>.b <opt>"
+bbcbcpl nonames com16/<file>.b <opt>
+echo "prbbcocode OCODE$$ to rocode/<file>.ocd"
+prbbcocode OCODE$$ to rocode/<file>.ocd
+echo ""
+
+
+

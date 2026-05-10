@@ -1,0 +1,3 @@
+.k file/a,opt
+echo "bcpl <file>.b to <file> <opt>"
+bcpl <file>.b to <file> <opt>

@@ -1,0 +1,547 @@
+This file (Systests.txt) contains a record of recent tests of the BCPL
+32 and 64 bit Cintcode Systems on various computers and operating
+systems. A similar file (Cintpos/cintpos/Postests.txt) will be
+maintained for the Cintpos System in due course.
+
+This is a new file. Oly a few of the tests have been done so far.
+
+Updated: 31 Oct 2023
+
+1) Dell laptop     ##### NOT TESTED #####
+   CPU: Intel Core i5-8250U, 8th Gen
+        1.60 GHz  1.80 GHz
+   RAM: 8.00 GB
+        64-bit OS
+	x64 based processor
+   OS:  Windows 10 Pro
+        Running Ubuntu Linux 18.04 LTS under Oracle VM Virtualbox
+
+   Tests 32-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version of cintsys
+   make -f Makefile
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+  
+   Tests 64-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version
+   make -f Makefile          needed to
+   logout
+   make -f Makefile clean64  build the 64-bit version
+   make -f Makefile run64
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+  
+
+2) Samsung NC10 Netbook
+   CPU: 1.60 GHz
+   RAM: 8.00 GB
+        32-bit OS
+	x32 based processor
+   OS:  Replaced Windows XP by Ubuntu Linux 18.04 LTS
+
+   Tests 32-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version of cintsys
+   make -f Makefile
+   sysinfo => TGZDATE: Thu 19 Nov 07:03:04 GMT 2023
+              Build: Linux
+	      Flags: SOUND CALLC ALSAavail SDLavail
+	      Host address: 32 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 38,299,043
+   c allcmpltests                           OK
+   pidigs                                   OK
+   engine                    SDL tests      OK
+   life                                     OK
+   bucket                                   OK
+   gltst                     GL tests       Not available
+   dnaplot                                  Not available
+  
+   Tests 64-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version
+   make -f Makefile          needed to
+   logout
+   make -f Makefile clean64  build the 64-bit version
+   make -f Makefile run64
+   sysinfo => TGZDATE: Thu  2 Nov 07:03:04 GMT 2023
+              Build: Linux
+	      Flags: SOUND CALLC ALSAaval SDLavail
+	      Host address: 32 bits  BCPLWORD: 64 bits
+              Cintcode instructions per sec: 29,107,759
+   c allcmpltests64                          OK
+   pidigs                                    OK
+   engine                    SDL tests       OK
+   life                                      OK
+   bucket                                    OK
+   gltst                     GL tests        Not available
+   dnaplot                                   Not availavle
+  
+
+3) Apple: Mac Mini 6,1
+   CPU: Dual core Intel i5
+        2.50 GHz
+   RAM: 8.00 GB   Disc 500 GB
+   OS:  macOS Catalina 10.15.7
+
+   Tests 32-bit:
+   cd $BCPLROOT
+   make -f MakefileMacOSX clean    Build the 32-bit version of cintsys
+   make -f MakefileMacOSX
+   sysinfo => TGZDATE: Wed  1 Nov 17:15:36 GMT 2023
+              Build: MacOSX
+	      Flags: CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 110,254,821
+   c allcmpltests                             OK
+   pidigs                                     OK
+   engine                    SDL tests        Not available yet
+   life                                       Not available yet
+   bucket                                     Not available yet
+   gltst                     GL tests         Not available yet
+   dnaplot                                    Not available yet
+  
+   Tests 64-bit:
+   cd $BCPLROOT
+   make -f MakefileMacOSX clean    Build the 32-bit version
+   make -f MakefileMacOSX          needed to
+   logout
+   make -f MakefileMacOSX clean64  build the 64-bit version
+   make -f MakefileMacOSX run64
+   sysinfo => TGZDATE: Wed 19 Jan 17:15:36 BST 2022
+              Build: MaxOSX
+	      Flags: CALLC
+	      Host address: 64 bits  BCPLWORD: 64 bits
+              Cintcode instructions per sec: 147,889,541
+   c allcmpltests64                           OK
+   pidigs                                     OK
+   engine                    SDL tests        Not available
+   life                                       Not available
+   bucket                                     Not available
+   gltst                     GL tests         Not available
+   dnaplot                                    Not available
+  
+
+4) Raspberry Pi B+ V1.2 2014    ##### Not TESTED #####
+   CPU: ARMv6-compatible processor rev 7 (v6l)
+        1.60 GHz ???
+   RAM: 0.50 GB  SD Card: ??GB 
+   OS:  32-bit Ubuntu Linux
+
+   Tests 32-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version of cintsys
+   make -f Makefile
+   sysinfo => TGZDATE: Thu  2 Nov 07:03:04 GMT 2023
+              Build: Linux
+	      Flags: SOUND CALLC ALSAavail SDLavail GLaval
+	      Host address: 32 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+  
+   Tests 64-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version
+   make -f Makefile          needed to
+   logout
+   make -f Makefile clean64  build the 64-bit version
+   make -f Makefile run64
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+  
+
+4) Raspberry Pi 2 Model B V1.1 2014     ##### NOT TESTED #####
+   CPU: ARM
+        1.60 GHz  1.80 GHz ???
+   RAM: 1.00 GB  SD Card: 8GB
+   OS:  32-bit Ubuntu Linux
+
+   Tests 32-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version of cintsys
+   make -f Makefile
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+  
+   Tests 64-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version
+   make -f Makefile          needed to
+   logout
+   make -f Makefile clean64  build the 64-bit version
+   make -f Makefile run64
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+
+5) Raspberry Pi 3 Model B V1.2 2015
+   CPU: ARMv7 rev 4 x4
+        1.60 GHz  1.80 GHz  1.80 GHz  1.80 GHz ???
+   RAM: 1.00 GB  SD Card: 64 GB
+   OS:  32-bit Ubuntu Linux
+
+   Tests 32-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version of cintsys
+   make -f Makefile
+   sysinfo => TGZDATE: Thu  2 Nov 07:03:04 GMT 2023
+              Build: Linux
+	      Flags: SOUND CALLC ALSAavail SDLavail GLavail
+	      Host address: 32 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 70,527,884
+   c allcmpltests                              OK
+   pidigs                                      OK
+   engine                    SDL tests         OK
+   life                                        OK
+   bucket                                      OK
+   gltst                     GL tests          OK
+   dnaplot                                     OK
+  
+   Tests 64-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version
+   make -f Makefile          needed to
+   logout
+   make -f Makefile clean64  build the 64-bit version
+   make -f Makefile run64
+   sysinfo => TGZDATE: Thu  2 Nov 07:03:03 GMT 202
+              Build: Linux
+	      Flags: SOUND CALLC ALSAavail SDLavail GLavail
+	      Host address: 32 bits  BCPLWORD: 64 bits
+              Cintcode instructions per sec: 58,903,970
+   c allcmpltests64                          OK
+   pidigs                                    OK
+   engine                    SDL tests       OK
+   life                                      OK
+   bucket                                    OK
+   gltst                     GL tests        BUG
+   dnaplot                                   BUG
+  
+
+6) Raspberry Pi 4 Model B Rev 1.2     ##### NOT TESTED #####
+   CPU: ARM
+        1.80 GHz  1.80 GHz  1.80 GHz  1.80 GHz ???
+   RAM: 4.00 GB  SD Card: 128 GB
+   OS:  32-bit Ubuntu Linux
+
+   Tests 32-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version of cintsys
+   make -f Makefile
+   sysinfo => TGZDATE: Thu  2 Nov 07:03:04 GMT 2023
+              Build: Linux
+	      Flags: SOUND CALLC ALSAavail SDLavail GLaval
+	      Host address: 32 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 69,575,877
+   c allcmpltests                              OK
+   pidigs                                      OK
+   engine                    SDL tests         OK
+   life                                        OK
+   bucket                                      OK
+   gltst                     GL tests          OK
+   dnaplot
+  
+   Tests 64-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version
+   make -f Makefile          needed to
+   logout
+   make -f Makefile clean64  build the 64-bit version
+   make -f Makefile run64
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 32 bits  BCPLWORD: 64 bits
+              Cintcode instructions per sec: 71,978,609
+   c allcmpltests64                            OK
+   pidigs                                      OK
+   engine                    SDL tests         OK
+   life                                        OK
+   bucket                                      OK
+   gltst                     GL tests          BUG
+   dnaplot                                     BUG
+  
+
+7) Dell 32-bit Cywin under Windows 10 Pro     ##### NOT TESTED #####
+   CPU: Intel Core i5-8250U, 8th Gen
+        1.60 GHz  1.80 GHz
+   RAM: 8.00 GB
+        64-bit OS
+	x64 based processor
+   OS:  Windows 10 Pro running 32-bit Cygwin
+
+   Tests 32-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version of cintsys
+   make -f Makefile
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+  
+   Tests 64-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version
+   make -f Makefile          needed to
+   logout
+   make -f Makefile clean64  build the 64-bit version
+   make -f Makefile run64
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+ 
+8) Dell 64-bit Cywin under Windows 10 Pro     ##### NOT TESTED #####
+   CPU: Intel Core i5-8250U, 8th Gen
+        1.60 GHz  1.80 GHz
+   RAM: 8.00 GB
+        64-bit OS
+	x64 based processor
+   OS:  Windows 10 Pro running 64-bit Cygwin
+
+   Tests 32-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version of cintsys
+   make -f Makefile
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+  
+   Tests 64-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version
+   make -f Makefile          needed to
+   logout
+   make -f Makefile clean64  build the 64-bit version
+   make -f Makefile run64
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+  
+
+9) Lenova G50
+   CPU: Intel Pentium CPU N3540 @ 2.16GHz
+   RAM: 8.00 GB
+        64-bit OS
+	x64 based processor
+   OS:  Windows 10 Pro running 64-bit
+        Running Ubuntu Linux 20.04 LTS under Oracle VM Virtualbox
+   Tests 32-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version of cintsys
+   make -f Makefile
+   sysinfo => TGZDATE: Wed  1 Nov 11:23:04 GMT 2023
+              Build: Linux
+	      Flags: SOUND CALLC ALSAavail SDLaval GLavail
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 91,363,301
+   c allcmpltests                          OK
+   pidigs                                  OK
+   engine                    SDL tests     OK
+   life                                    OK
+   bucket                                  OK
+   gltst                     GL tests      OK
+   dnaplot                                 OK
+  
+   Tests 64-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version
+   make -f Makefile          needed to
+   logout
+   make -f Makefile clean64  build the 64-bit version
+   make -f Makefile run64
+   sysinfo => TGZDATE: Wed  1 Nov 11:23:04 BST 2023
+              Build: Linux
+	      Flags: SOUND CALLC ALSAavail SDLavail GLavail
+	      Host address: 64 bits  BCPLWORD: 64 bits
+              Cintcode instructions per sec: 96,231,061
+   c allcmpltests64                        OK
+   pidigs                                  OK
+   engine                    SDL tests     OK
+   life                                    OK
+   bucket                                  OK
+   gltst                     GL tests      FAILED
+   dnaplot                                 FAILED
+  
+
+10) iPad Air (3rd generation)     ##### NOT TESTED #####
+   CPU: 
+   RAM:
+   Disc:64.00 GB
+   OS:  iSH app running Alpine Linux, no ALSA, no SDL, no GL
+
+   Tests 32-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version of cintsys
+   make -f Makefile
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+  
+   Tests 64-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version
+   make -f Makefile          needed to
+   logout
+   make -f Makefile clean64  build the 64-bit version
+   make -f Makefile run64
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+  
+
+11) iPhone SE running iOS 16.6.1     ##### NOT TESTED #####
+   CPU: 
+   RAM:
+   Disc:64.00 GB
+   OS:  iSH app running Alpine Linux, no ALSA, no SDL, no GL
+
+   Tests 32-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version of cintsys
+   make -f Makefile
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+  
+   Tests 64-bit:
+   cd $BCPLROOT
+   make -f Makefile clean    Build the 32-bit version
+   make -f Makefile          needed to
+   logout
+   make -f Makefile clean64  build the 64-bit version
+   make -f Makefile run64
+   sysinfo
+   sysinfo => TGZDATE: Wed 19 Jan 19:21:08 BST 2022
+              Build: Linux
+	      Flags: SOUND CALLC
+	      Host address: 64 bits  BCPLWORD: 32 bits
+              Cintcode instructions per sec: 29,752,592
+   c allcmpltests
+   pidigs
+   engine                    SDL tests
+   life
+   bucket
+   gltst                     GL tests
+   dnaplot
+
+End of file
+

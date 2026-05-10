@@ -1,0 +1,111 @@
+// NCUBES    PAL         12/03/67  1338.4
+
+// This is an editted version of the program that
+// ran on CTSS at Project MAC of MIT on 12/03/67.
+// The -* , consructs have been replaced by ->  !.
+// gr has been replaced by >.
+// Some comments have been added.
+// These edits were done by Martin Richards 02/29/2024.
+
+// This program lists paths along the edges of an
+// N dimensional cube that do not pass through any
+// vertex adjacent to any previous vertex on the path.
+
+let N = 4 in
+
+// This program takes a 4 dimensional cube as an example.
+// The vertex coordinates are represented by 4-tuples of
+// truth values.
+
+// The 4D cube can be thought of as a 3D cube inside a
+// larger 3D cube. The fourth elements of the inner cube
+// are false, and true for the outer cube.
+
+let g n y m -> m=n -> not y m, y m
+in
+
+// y is a function or a tuple giving the coordinates of a
+// vertex. g n y yields a function giving the coordinates of
+// the adjacent vertex in direction n from y. Ie the same
+// coordinates as y except for element n which is complemented.
+
+let rec Next (n, y, x, B) = n=0 -> not N !
+                            y n = x n -> Next(n-1, y, x, B)     !
+			    B         -> Next(n-1, y, x, false) !
+			    false
+in
+
+// The call Next(N, y, x, true) returns true if the coordinates
+// y and x represent adjacent vertices. This is equivalent to
+// testing whether the coordinates of y and x are identical except
+// for one complemented element.
+
+let rec Adj(y, n, P, x) =
+                    Next(N, y, x, true) -> true !
+		    n=0 -> false !
+		    Adj(g ((P n) y, y, n-1, P, x)
+in
+
+// P is a tuple of directions in the range 1 to n
+// reresenting a path along the edges of the N
+// dimensional cube.
+// P n is the direction taken by the last edge in the
+// path.
+// Edge P n is from vertex y to vertex x.
+// g (P n) y gives the coordinate of the vertex in path P
+// immediately prior to y.
+// Adj returns true if this vertex x is adjacent to any vertex
+// prior to y in path P.
+// Note that this function uses recursion to check the vertices
+// in the path in reverse order.
+
+let Ok(n, P, k, x) = not Adj(g (P n) x, n-1, P, g k x)
+// k is a proposed direction from the vertex x leading to g k x.
+// g (P n) x is the vertex immediately prior to x in the path.
+
+in
+
+let rec Srch(n, k, P, x) =
+       k > N -> 0 !
+       ( Ok(n, P, k, x) -> ( let Q = P aug k
+		             Print Q; print '*n';
+                             in Srch(n+1, 1, Q, g k x)
+			   )
+			 !  dummy;
+	 Srch(n, k+1, P, x) )
+
+// n is the number of edge directions in tuple Prepresenting a path.
+// x is the vertex reached by the edge of direction k from the last
+//   vertex in path P.
+// Q is the path P extended by an edge in direction k provided that
+//   it satisfies the adjacency constraints..
+// Srch outputs all paths that are extentions of P that do not
+//   contain vertices adjacent to other vertices in the path other
+//   than immediately adjacent vertices in the path. 
+
+in
+
+Srch(3, 1, (1,2,3), (false, false, false, true))
+
+// Assuming path (1,2,3) leads to vertex (false,false,false,true),
+// this call outputs all extension of the path satisfying the
+// adjacency constraints.
+
+
+// When this program is run it outputs the following:
+
+// (1, 2, 3, 1)
+// (1, 2, 3, 1, 4)
+// (1, 2, 3, 1, 4)
+// (1, 2, 3, 1, 4, 2)
+// (1, 2, 3, 1, 4, 2, 1)
+// (1, 2, 3, 1, 4, 3)
+// (1, 2, 3, 4)
+// (1, 2, 3, 4, 1)
+// (1, 2, 3, 4, 1, 2)
+// (1, 2, 3, 4, 1, 3)
+// (1, 2, 3, 4, 2)
+// (1, 2, 3, 4, 2, 1)
+
+// Execution finished
+

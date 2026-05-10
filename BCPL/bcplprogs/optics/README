@@ -1,0 +1,29 @@
+
+The design of optical instruments is renowned for requiring very high
+precision calculations. The directory will hold a program that
+experiments with the design of a catadioptric telescope using the high
+precision library in cintcode/g/arith.h and arith.b.
+
+The telescope has a convex lens objective with front and rear
+spherical surfaces of radius R1 and R2. The thickness is of the
+objective lens is held in T1.  A rear silvered concave glass mirror
+whose front and rear surfaces have radii R3 and R4 is placed a roughly
+half the focal length of the objective. The thickness of the mirror is
+held in T2. The objective lens is of crown glass with refractive index
+of between 1.50 and 1.54, and the concave mirror is made of flint
+glass with refractive index of between 1.60 and 1.62. We assume the
+refractive index of these two glasses for blue and red light is as
+follow.
+
+               crown        flint
+blue 486 nm    1.51690      1.6321
+red  640 nm    1.50917      1.6161
+
+The program performs ray tracing thought the telescope for blue and
+red at various small angle relative to the axis of the telescope.
+These rays enters the objective at various positions. the result
+is an image of the positionf these rays hit thr focus plane. With
+perfect optics they would all hit the focus plane at the same point.
+
+MR
+16 Apr 2016

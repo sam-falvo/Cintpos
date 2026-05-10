@@ -1,0 +1,44 @@
+// sonichdr.mus
+$def!sc_base!<
+  \bank(87 $eval!64+((#1-1)R7);)
+  \patch $eval!(#1-1)&127;
+>;
+
+$def!sc_orch!<
+  \bank(93 $eval!7+((#1-1)R7);)
+  \patch $eval!(#1-1)&127;
+>;
+
+$def!instr!<%
+  \instrumentname "#1"
+  \bank(#2 $eval!#3+((#4-1)R7);)
+  \patch $eval!(#4-1)&127;
+>;
+$def!organ!<\nonvarvol $instr!harpsichord!93!7!293;>;
+
+$def!piano!<\nonvarvol $instr!Piano!93!7!275;>;  % Complete Orchestra SRX-6
+
+$def!piano!<\nonvarvol $instr!piano!93!24!3;>;    % Complete Piano SRX-11
+$def!harp!<\nonvarvol $instr!piano!93!7!1;>;
+
+$def!test!<\varvol $instr!test!93!7!250;>;
+
+$def!harpsichord!<\nonvarvol $instr!harpsichord!93!7!293;>;
+$def!flute!<\varvol $instr!flute!93!7!162;>;
+$def!oboe!<\varvol $instr!oboe!93!7!185;>;
+$def!clarinet!<\varvol $instr!clarinet!93!7!177;>;
+$def!bassoon!<\varvol $instr!bassoon!93!7!192;>;
+
+$def!trumpet!<\varvol $instr!trumpet!93!7!237;>;
+$def!horn!<\varvol $instr!horn!93!7!222;>;
+$def!trombone!<\varvol $instr!trombone!93!7!252;>;
+$def!tuba!<\varvol $instr!tuba!93!7!267;>;
+
+$def!violin!<\varvol $instr!violin!93!7!66;>;
+$def!viola!<\varvol $instr!viola!93!7!68;>;
+$def!cello!<\varvol $instr!cello!93!7!70;>;
+$def!doublebass!<\varvol $instr!doublebass!93!7!76;>;
+
+
+
+

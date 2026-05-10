@@ -1,0 +1,165 @@
+Before calling findsections
+fcounter=0 notfcounter=0 mcounter=0 notmcounter=0
+codevsize-fcounter-notfcounter=206
+codevsize-mcounter-notmcounter=206
+
+Calling findsections
+
+    0: 03E8 CODE  Section     size   200 bytes
+  202: Max global number 122
+  198: G122 =    14   TRAPSTART
+After calling findsections
+fcounter=1 notfcounter=13 mcounter=0 notmcounter=14
+codevsize-fcounter-notfcounter=192
+codevsize-mcounter-notmcounter=192
+
+Calling findnames
+
+Finding section, needs and entry names
+    4: SECTION Name: GLOBALS
+After calling findnames
+fcounter=1 notfcounter=23 mcounter=0 notmcounter=24
+codevsize-fcounter-notfcounter=182
+codevsize-mcounter-notmcounter=182
+
+Calling scancode
+
+After calling scancode
+fcounter=73 notfcounter=58 mcounter=0 notmcounter=130
+codevsize-fcounter-notfcounter=75
+codevsize-mcounter-notmcounter=76
+
+Calling findnotf
+
+After calling findnotf
+fcounter=73 notfcounter=133 mcounter=0 notmcounter=130
+codevsize-fcounter-notfcounter=0
+codevsize-mcounter-notmcounter=76
+
+Calling findstrings
+
+After calling findstrings
+fcounter=73 notfcounter=133 mcounter=0 notmcounter=202
+codevsize-fcounter-notfcounter=0
+codevsize-mcounter-notmcounter=4
+About to call dumpcode()
+
+//     0: 03E8 0064                MHUNK    size=100
+//     4: FDDF                     Section name: GLOBALS
+//     6: 07 47 4C 4F 42 41 4C 53
+
+//    14: GLOBAL ENTRY             G122 TRAPSTART
+//    14: 11           L1          
+//    15: A3          SP3          
+//    16: 32 00       LLG     0    G000 MAXGLOB
+//    18: A4          SP4          
+//    19: 30 00        LG     0    G000 MAXGLOB
+//    21: A5          SP5          
+//    22: 84          LP4          
+//    23: AA         SP10          
+//    24: 30 00        LG     0    G000 MAXGLOB
+//    26: AB         SP11          
+//    27: 5A DD       LLL   122    "The global vector at %N size %N*n"
+//    29: 26 5A       K6G    90    G090 WRITEF
+//    31: 1A          L10          
+//    32: 85          LP5          
+//    33: 7C 85       JGR    40    
+//    35: 61 FF 02     LW   767    
+//    38: 9C 87       JLE    47    
+
+//    40: L00040:
+//    40: 60 C8         L   200    
+//    42: A5          SP5          
+//    43: 5A EF       LLL   156    "GLOBAL ZERO CORRUPTED*n"
+//    45: 26 5A       K6G    90    G090 WRITEF
+
+//    47: L00047:
+//    47: 11           L1          
+//    48: A6          SP6          
+//    49: 85          LP5          
+//    50: A7          SP7          
+//    51: BA B4         J   105    
+
+//    53: L00053:
+//    53: 84          LP4          
+//    54: D9         RVP6          
+//    55: 61 88 FC     LW  -888    
+//    58: 1C AA       JEQ   102    
+//    60: 84          LP4          
+//    61: D9         RVP6          
+//    62: AD         SP13          
+//    63: 86          LP6          
+//    64: AC         SP12          
+//    65: 5A F1       LLL   180    "  G%I3 %A"
+//    67: 28 5A       K8G    90    G090 WRITEF
+//    69: 83          LP3          
+//    70: 14           L4          
+//    71: 36          REM          
+//    72: 3E 95      JNE0    95    
+//    74: 28 54       K8G    84    G084 NEWLINE
+//    76: 10           L0          
+//    77: 60 FF         L   255    
+//    79: B6         GBYT          
+//    80: 60 7F         L   127    
+//    82: 9C 89       JLE    93    
+//    84: 60 7E         L   126    
+//    86: 28 23       K8G    35    G035 OPSYS
+//    88: 61 F9 03     LW  1017    
+//    91: 28 17       K8G    23    G023 ABORT
+
+//    93: L00093:
+//    93: BA 84         J    99    
+
+//    95: L00095:
+//    95: 5A DD       LLL   190    "     "
+//    97: 28 5A       K8G    90    G090 WRITEF
+
+//    99: L00099:
+//    99: 11           L1          
+//   100: C3          AP3          
+//   101: A3          SP3          
+
+//   102: L00102:
+//   102: 11           L1          
+//   103: C6          AP6          
+//   104: A6          SP6          
+
+//   105: L00105:
+//   105: 86          LP6          
+//   106: 87          LP7          
+//   107: 9C 48       JLE    53    
+//   109: 83          LP3          
+//   110: 14           L4          
+//   111: 36          REM          
+//   112: 11           L1          
+//   113: 1C 82       JEQ   117    
+//   115: 26 54       K6G    84    G084 NEWLINE
+
+//   117: L00117:
+//   117: 10           L0          
+//   118: 26 02       K6G     2    G002 STOP
+//   120: 7B          RTN          
+//   121: D0          NOP          
+
+//   122: 20 String: "The global vector at %N size %N*n"
+//   122: 20 54 68 65 20 67 6C 6F 62 61 6C 20 76 65 63 74 
+//   138: 6F 72 20 61 74 20 25 4E 20 73 69 7A 65 20 25 4E 
+//   154: 0A 
+
+//   156: 16 String: "GLOBAL ZERO CORRUPTED*n"
+//   156: 16 47 4C 4F 42 41 4C 20 5A 45 52 4F 20 43 4F 52 
+//   172: 52 55 50 54 45 44 0A 
+
+//   180: 09 String: "  G%I3 %A"
+//   180: 09 20 20 47 25 49 33 20 25 41 
+
+//   190: 05 String: "     "
+//   190: 05 20 20 20 20 20 
+
+//   196: 0000      Ginit end mark
+//   198: 007A 000A Init  G122 = 14  TRAPSTART
+//   202: 007A      Highest Global  G122 TRAPSTART
+//   204: 03E0                  END
+
+
+No unclassified bytes

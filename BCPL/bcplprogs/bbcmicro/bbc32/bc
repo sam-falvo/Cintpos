@@ -1,0 +1,4 @@
+.k file/a,opt
+echo "bbcbcpl32 com32/<file>.b to cin32/<file> <opt>"
+bbcbcpl32 com32/<file>.b to cin32/<file> <opt>
+

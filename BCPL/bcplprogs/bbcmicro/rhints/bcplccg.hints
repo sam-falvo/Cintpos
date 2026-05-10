@@ -1,0 +1,414 @@
+START:1;STOP:2;STARTINIT:3;MCRESULT:11;RESULT2:15;ABORT:23;FREEVEC:25
+GETVEC:26;LEVEL:27;LONGJUMP:28;MAXVEC:29;CALL:31;OPSYS:35;MOVE:36;MULDIV:37
+TRAP:38;COMPCH:42;CALLCO:43;COWAIT:44;CREATECO:45;DELETECO:46;RESUMECO:47
+CNSLINSTR:52;CNSLOUTSTR:53;CAPCH:59;DELFILE:64;FINDINPUT:66;FINDOUTPUT:67
+RENAME:70;ENDREAD:71;ENDWRITE:72;INPUT:73;OUTPUT:74;RDBIN:75;RDCH:76
+TESTSTR:77;READN:78;SELECTINPUT:79;SELECTOUTPUT:80;WRBIN:81;WRCH:82
+UNRDCH:83;NEWLINE:84;NEWPAGE:85;WRITED:88;WRITEF:90;WRITEHEX:91;WRITEN:92
+WRITES:94;COMPSTRING:95;FINDARG:96;RDARGS:97;RDITEM:98;SPLIT:99;GLOBIN:100
+GLOBUNIN:101;LOADSEG:104;READWORDS:106;TESTFLAGS:108;WRITEWORDS:109
+RANDOM:111;TIME:112;MODE:115;RUNPROG:118;CALLBYTE:121;SAVE:123;FILETOVEC:125
+VECTOFILE:126;SOUND:128;ENVELOPE:129;READVEC:168;READ:169;VDU:200;ADVAL:201
+SAVEVEC:204
+
+MAXGLOB:0;ABORTCODE:4;ABORTLABEL:5;ABORTLEVEL:6;STOREFILES:16;STREAMCHAIN:17
+SYSINDEX:18;TRAPSTACK:19;MAINSTACK:20;LASTERROR:21;CURRCO:22;ENDPROG:24
+STACKSIZE:30;CLIINSTR:33;ENDTRAP:34;FSTYPE:39;WRITET:40;WRITEU:41;HEAP:48
+HEAPEND:54;ERRORSTREAM:58;COMMON2:62;COMMON3:63;DELXFILE:65;FINDXINPUT:68
+FINDXOUTPUT:69;WRITEA:86;WRITEBA:87;WRITEDB:89;WRITEOCT:93;EXTSFILE:102
+UNLOADSEG:105;LINKEDFILES:114;VDUINFO:116;LIBBASE:117;TRAPSTART:122
+APTOVEC:127;CONTPRG:149;COLIST:166;ERRORMSG:202;SHUFFLE:203;FAULTROUTINE:205
+TIDYSTATE:208;MOVEBYTE:213;BACKMVBY:218;BACKMOVE:219
+
+
+fin_p:237; fin_l:238
+errcount:291; errmax:292; gostream: 297
+
+codegenerate: 729
+
+
+rc:250
+fromfile:251
+verstream:252
+ocodeoutstream:253
+ocodeinstream:454
+codestream:254
+datvec:255
+err.p:256
+err.l:257
+ocodefile:258
+keepocode:259
+
+// CG options
+cgworksize:260
+workspace:261
+//cglisting:261
+naming:262
+callcounting:263
+profcounting:264
+stkchking:265
+restricted:266
+altobj:267
+cg.a:268
+cg.b:269
+cg.y:275
+cg.z:276
+
+
+// Global procedures.
+rdn:211     // reads numbers from the OCODE buffer
+
+cgsects    : 300//
+rdn        : 301//
+rdl        : 302//
+rdgn       : 303//
+newlab     : 304//
+checklab   : 305//
+cgerror    : 306//
+
+initstack  : 310//
+stack      : 311//
+store      : 312//
+scan       : 313//
+cgpendingop: 314//
+loadval    : 315
+loadba     : 316
+setba      : 317
+
+genxch     : 320//
+genatb     : 321//
+loada      : 322//
+push       : 323//
+loadboth   : 324//
+inreg_a    : 325//
+inreg_b    : 326//
+addinfo_a  : 329//
+addinfo_b  : 723
+pushinfo   : 724
+xchinfo    : 725
+atbinfo    : 726
+
+setinfo_a  : 327//
+setinfo_b  : 328//
+
+forget_a   : 330//
+forget_b   : 331//
+forgetall  : 332//
+forgetvar  : 333
+forgetallvars: 334//
+mustforget : 335//
+isnum      : 336//
+iszero     : 337//
+storet     : 338//
+gensp      : 339//
+loadt      : 340//
+lose1      : 341//
+swapargs   : 342//
+cgbyteop   : 343//
+cgstind    : 344//
+storein    : 345//
+
+cgrv       : 350//
+cgplus     : 351//
+cgaddk     : 732
+cgglobal   : 352//
+cgentry    : 353//
+cgsave     : 354//
+cgapply    : 355//
+cgreturn   : 356//
+cgjump     : 357//
+jmpfn      : 358//
+jfn0       : 359//
+revjfn     : 360//
+compjfn    : 361//
+prepj      : 362//
+
+cgswitch   : 370//
+cgswitchb  : 371//
+cgswitchl  : 372//
+cgstring   : 373//
+setlab     : 374//
+cgdatalab  : 376//
+
+cgstatics  : 377//
+newblk     : 378//
+getblk     : 380//
+freeblk    : 379//
+
+initdatalists : 381//
+
+geng       : 390//
+gen        : 391//
+genb       : 392
+genr       : 393//
+genw       : 394//
+checkspace : 395
+codeb      : 396
+codew      : 397//
+coder      : 398//
+
+getw       : 399//
+putw       : 410//
+aligneven  : 411//
+chkrefs    : 412//
+dealwithrefs: 413//
+genindword : 414//
+inrange_d  : 415//
+inrange_i  : 416//
+fillref_d  : 417//
+fillref_i  : 418//
+relref     : 419//
+
+outputsection : 420//
+OBJWORD    : 421//
+dboutput   : 422//
+
+wrcode     : 424//
+
+// Global variables.
+arg1       : 431//
+arg2       : 432//
+
+ssp        : 471//
+
+dpblk      : 475//
+dq         : 476//
+dpblklist  : 477//
+
+tempt      : 483//
+tempv      : 484//
+stv        : 480//
+stvp       : 481//
+
+ch         : 710
+
+dp         : 442//
+freelist   : 443
+
+incode     : 445//
+labv       : 446//
+
+casek      : 434//
+casel      : 435//
+
+maxgn      : 450//
+maxlab     : 451//
+maxssp     : 452//
+
+op         : 455//
+labnumber  : 456//
+pendingop  : 457//
+procdepth  : 458//
+
+progsize   : 460//
+
+infok_a    : 461//
+infon_a    : 462//
+infok_b    : 463//
+infon_b    : 464//
+reflist    : 465//
+refliste   : 466//
+rlist      : 468//
+rliste     : 469//
+glist      : 438//
+
+gliste     : 439//
+nlist      : 440//
+nliste     : 441//
+skiplab    : 470//
+
+naming     : 751
+debug      : 437//
+bining     : 753
+
+oldoutstream: 482
+
+#t  242 n
+#t 245 v
+#t 253 i
+#t 255 end limit
+#t 262 c
+#t 264 i
+#t 272 v%i := c
+#t 282 FOR i = n+1 TO 7 DO
+#t 299 TEST op=s_section THEN
+
+#t  841 Case s_debug
+#t  850 Case s_lp
+#t  853 k_loc
+#t  858 Case s_lg
+#t  861 k_glob
+#t  866 Case s_ll
+#t  869 k_lab
+#t  874 Case s_ln
+#t  877 k_numb
+#t  882 Case s_lstr
+#t  888 Case s_true
+#t  895 Case s_false
+#t  902 Case s_llp
+#t  905 k_lvloc
+#t  910 Case s_llg
+#t  913 k_lvglob
+#t  918 Case s_lll and s_lf
+#t  921 k_lvlab
+#t  927 Case s_sp
+#t  935 Case s_sg
+#t  943 Case s_sl
+#t  951 Case s_stind
+#t  955 Case s_rv
+#t  959 Simple arithmetic ops
+#t  967 Case s_endfor
+#t  969 s_le
+#t  973 Case s_jt
+#t  981 Case s_jf
+#t  989 Case s_goto
+#t 1020 Case s_lab and s_lab1
+#t 1061 Case s_query
+#t 1069 Case s_stack
+#t 1077 Case s_store
+#t 1088 Case s_entry
+#t 1105 Case s_save
+#t 1111 Case s_rtap and s_fnap
+#t 1120 Case s_rtrn and s_fnrn
+
+#t 1126 Case s_endproc
+#t 1138 s_res and s_jump
+#t 1238 s_rstack
+#t 1250 s_finish
+#t 1274 s_switchon
+#t 1303 s_putbyte and s_getbyte
+#t 1309 s_global
+#t 1318 Case s_datalab
+
+#t 1651 f
+#t 1653 sym
+#t 1656 pndop
+
+#t 1668 cgconstexp
+
+#t 1683 s_abs
+#t 1690 f_jge
+#t 1700 f_neg
+#t 1707 s_neg
+#t 1711 f_neg
+#t 1718 s_not
+#t 1722 k_not
+#t 1729 s_eq s_ne s_ls s_gr s_le s_ge
+#t 1761 s_minus
+
+#t 1970 cgconstexp
+#t 1780 s_plus
+#t 1783 s_mult
+#t 1788 s_div
+#t 1795 s_rem
+#t 1802 s_lshift
+#t 1809 s_rshift
+#t 1816 s_logand
+#t 1821 s_logor
+#t 1826 s_eqv s_neqv
+
+
+
+#t 1986 s_neg
+#t 1975 s_abs
+#t 1995 s_not
+#t 1972 s_none
+
+#t 2014 cgconstdyadic
+
+#t 2044 cgconstdyadic
+#t 2058 s_minus
+#t 2063 s_plus
+#t 2067 s_mult
+#t 2072 s_div
+#t 2077 s_rem
+#t 2082 s_lshift
+#t 2088 s_rshift
+#t 2092 s_logand
+#t 2097 s_logor
+#t 2102 s_eqv
+#t 2108 s_neqv
+
+
+#t 2120 s_mult
+#t 2124 s_div
+#t 2128 s_rem
+#t 2132 s_plus
+#t 2136 s_minus
+#t 2140 s_lshift
+#t 2144 s_rshift
+#t 2148 s_logand
+#t 2152 s_logor
+#t 2156 s_eqv
+#t 2160 s_neqv
+
+#t 2026 s_neg
+#t 2030 s_abs
+#t 2034 s_not
+#t 2038 s_none
+
+#t 2273 k_a
+#t 2281 THIS CODE IS WRONG
+#t 2288 k_numb
+
+#t 2334 f_lw
+
+#t 2340 k_loc
+#t 2378 k_glob
+#t 2386 k_lab
+
+#t 2394 k_lvloc
+#t 2403 f_llp
+#t 2411 f_llpw 
+#t 2417 k_lvglob
+#t 2419 f_llg
+#t 2425 k_lvlab
+#t 2427 f_lll
+
+#t 2433 k_loc0
+#t 2435 f_l0p0
+#t 2440 k_loc1
+#t 2442 f_l1p0
+#t 2447 k_loc2
+#t 2449 f_l2p0
+#t 2454 k_loc3
+#t 2456 f_l3p0
+#t 2461 k_loc4
+#t 2463 f_l4p0
+
+#t 2468 k_glob0
+#t 2470 f_l0g
+#t 2476 k_glob1
+#t 2478 f_l1g
+#t 2484 k_glob2
+#t 2486 f_l2g
+
+#t 2661 xa
+#t 2665 ya
+#t 2669 xb
+#t 2673 yb
+#t 2782 yk
+#t 2784 yn
+
+#t 2996 k_glob0
+#t 3001 k_glob2
+
+#t 3342 s_gbyt
+
+#t 3349 f_gbyt
+#t 3393 f_atc
+#t 3399 f_pbyt
+#t 3560 k
+#t 3563 n
+#t 3564 k_glob
+#t 3609 f_st0
+
+#t 4023 k_loc0
+#t 4028 k_loc4
+
+#t 5526 s_itemn
+#t 5545 s_iteml
+
+#t 6358 np
+#t 6360 addr
+#t 6362 lab

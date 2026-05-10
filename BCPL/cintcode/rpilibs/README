@@ -1,0 +1,17 @@
+
+This directory will hold the runtime library modules for the native
+code implementation of BCPL for the Raspberry Pi.
+
+These libraries and the codegenerator (com/bcplcgrpi.b) were
+implemented by D.J.Allerton with minor modifications by M.Richards to
+allow them to run under modern Cintcode BCPL. What is planned is both
+a cross compiler running on the Cintcode BCPL system and a native code
+version of the compiler running directly on the Raspberry Pi.
+
+All this is still under development. Initially this system will be
+limited to 32-bit BCPL and will not compile the floating point
+operators and constants. But floating point will be available using the
+sys(Sys_flt,...) facilities.
+
+MR
+8 April 2026

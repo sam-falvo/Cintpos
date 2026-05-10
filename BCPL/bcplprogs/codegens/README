@@ -1,0 +1,41 @@
+This directory BCPL/bcplprogs/codegens contains the following file.
+
+cg68k.b
+This was written om december 1980 and modified to run under the Tripos
+portable operating in November 1981.
+It is a standalone program that reads the numerical representation of
+OCODE dating from the 1980s and generate position independent machine code
+for the Motorala 68000 represented by a sequence of 32-bit words in hex
+preceeded by the word t.hunk (=1000) follow by a word givinfg the number
+of words of code. This is the format used by the Tripos system.
+It can be compiled using the modern BCPL system using the command:
+  c b cg6k
+But it is meant to be called from te BCPL frontend. It interface to the
+frontend can be modified by copying the way BCPL/cintcode/com/bcplcgcin.b
+is implemented. Of course some of the recent extensions will not be
+handled by cg68k.b.
+
+cg8086.b
+This in a BCPL Codegenerator for the Intel 8086 microprocessor dating
+from 1982. It generates code for 16-bit BCPL and needs to be interfaced
+with 16-bit frontends from the 1980s such as tose for the LSI4, the PDP11
+or the Nova. These can be found i the Archive distribution.
+
+cg-intcode.b
+This is a codegenerator to Intcode which is a very simple assembly
+language for a trivially simple interpretive code for BCPL. It was
+designed to provide a way to transfer the BCPL compiler on paper tape
+or cards to distant places such as Australia.
+
+interp.b
+This is an assembler and interpreter in BCPL for Intcode which needed
+to be hand translated into a language available on the destination
+machine.
+
+cgmips.b
+This is a codegenerator for the MIPS machine, a 32-bit RISC architecture.
+
+cgpdp11.b
+A codegenerator of the Digital PDP11/45 machines used by the Systems
+research Group in the 1980s. A 16-bit bit byte addressed machine.
+

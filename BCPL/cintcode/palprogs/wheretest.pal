@@ -1,0 +1,5 @@
+let a = b within c = a where b = d where d = 1
+in
+let f x = ( x := y where y = x)
+in
+( g 123 where g = f)

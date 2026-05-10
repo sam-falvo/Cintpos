@@ -1,0 +1,47 @@
+            Notes about some of the commands
+	     by Martin Richards, 5 Jan 2020
+
+bbcbcpl  Attempts to compile BBC BCPL to 16 bit BBC Cintcode
+
+bbcbcpl32 Compiles BBC BCPL to 32 bit modern Cintcode
+          This command will be removed since it is better to
+	  use bbc2bcpl
+
+bbc2bcpl  This command converts BBC BCPL to BCPL suitable for
+          compilation using the modern BCPL Cintcode compiler.
+	  With the default settings it capitalises all reserved
+	  and makes the capitalisation of identifiers to agree
+	  with their first occurrences. Several reserved words
+	  are replaced by symbols, for example LOGAND, LOGOR,
+	  EQ and LE are replaced by &, |, =, and <=. || is
+	  replaced by // and dots in identifiers are replaced
+	  by underlines. To see all the other modifications
+	  see bbc2bcpl.b. The main purpose of this command
+	  is to possibly aid the reconstruction of the BBC
+	  Domesday Project that ran on BBC Microcomputers
+	  around 1986. Much of the source code has recently
+	  been discovered.
+
+z80bcpl.b This uses bcplsyn.b, bcpltrn.b and bcplz80cg.b to
+          build a BCPL to Z80 native code compiler. Since I
+	  did not have access to a Z80 machine I wrote a
+	  partially complete Z80 emulator to test this
+	  compiler. There is a test program z80cmpltest.b
+	  which can be used to test both the compiler and
+	  the emulator.
+
+z80asm.b  This is a reconstruction of a Z80 assembler implemented
+          in the early 1980s. I believe this version can be
+	  compiled using the modern BCPL Cintcode system.
+
+m68kasm.b This is a reconstruction of an assembler for the
+          Motorola 68000. I believe it cam be compiled using
+	  the modern BCPL Cintcode system. I suspect it generates
+	  Tripos object code format.
+
+disasm68.b This is a disassembler for Motorola 68000 machine code
+           probably held in Tripos object format.
+
+bbcbcpl32.b This combines bbcbcplfe32.b and bcplcgcin.b to form
+            a compiler from the version of BCPL used on the BBC
+	    Microprocessor to modern Cintcode.

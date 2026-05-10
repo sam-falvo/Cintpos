@@ -1,0 +1,473 @@
+$get!mushdr;
+
+$def!conductor-part!%
+<
+ \conductor (
+  \timesig(4 4)
+  \keysig(c\major)
+  s1\t(56)\da50 | //1
+  %s1\t(46) | //1
+  s |    //  2
+  s |    //  3
+  s |    //  4
+  s |    //  5
+  s |    //  6
+  s |    //  7
+  s ||   //  8
+\timesig(3 4)
+%  s2. || //  9
+  s2. | //  9
+\timesig(4 4)
+  s1 |   // 10
+  s |    // 11
+  s |    // 12
+  s ||   // 13
+\timesig(2 4)
+  s2 ||  // 14
+\timesig(4 4)
+  s1 |   // 15
+  s ||   // 16
+\timesig(3 4)
+  s2. |  // 17
+  s2. |  // 18
+  s2. |  // 19
+  s2. |  // 20
+  s2. |  // 21
+  s2. |  // 22
+  s2. |  // 23
+  s2. |  // 24
+  s2. || // 25
+\timesig(4 4)
+  s1 ||  // 26
+\timesig(3 4)
+  s2. |  // 27
+  s2. |  // 28
+  s2. |  // 29
+  s2. |  // 30
+  s2. |  // 31
+  s2. |  // 32
+  s2. || // 33
+\timesig(2 4)
+  s2 ||  // 34
+\timesig(4 4)
+  s1 |   // 35
+  s ||   // 36
+\timesig(3 4)
+  s2. |  // 37
+  s2. || // 38
+\timesig(4 4)
+  s1 ||  // 39
+\timesig(3 4)
+  s2. |  // 40
+  s2. |  // 41
+  s2. |  // 42
+  s2. |  // 43
+  s2. |  // 44
+  s2. || // 45
+\timesig(4 4)
+  s1 |   // 46
+  s1 ||  // 47
+\timesig(3 4)
+  s2. |  // 48
+  s2. |  // 49
+  s2. |  // 50
+  s2. |  // 51
+  s2. |  // 52
+  s2. |  // 53
+  s2. || //54
+\timesig(4 4)
+  s1 |   //55
+  s1 |   //56
+  s1 ||  //57
+\timesig(3 4)
+  s2. |  //58
+  s2. |  //59
+  s2. || //60
+\timesig(4 4)
+  s1 ||  //61
+\timesig(3 4)
+  s2. |  //62
+  s2. |  //63
+  s2. |  //64
+  s2. || //65 // Last bar
+)
+>;
+
+% Try slightly random timing of the flute part
+%$def!rd!<z\d$rnd!256;>;
+$def!rd!<>;
+
+$def!flute-part!
+< \part (
+  \name "Flute part"
+  $flute;
+  \trebleclef
+  \timesig(4 4)
+  \keysig(c\major)
+$rd;
+z\portaoff
+r4 r8 4f$p;\l100 bes des f ges | //   1
+6des$mp; a bes f ges$p;\l150 r r4 | //   2
+6f4$pp;\l85 ees8\l100 des c bes a bes | //   3
+$rd;
+5f8 f' ees4.\l80\v(80 20) ees8$p;\l100 f ges | //   4
+5a8$mp; bes c4.\v(50 20)\l80 ges8$p;\l100 f$pp; ees | //   5
+(5ees8.. f16.. ees. f ees f ees8 f$mp; ees des c)\tup s4
+  des4~$p; des16$pp; r 4f8$p; bes des | //   6
+5f8 bes$mp; des,4~ des16$pp; r f,8$p; bes des | //   7
+5aes8$mp; des des,4~ des16\v20 r f8$p; e des' || //   8
+\timesig(3 4)
+$rd;
+6c8$mp; aes e f des aes' || //  9
+\timesig(4 4)
+z$mp; 5f2.~ f8$pp; r | //  10
+6f4$p;\l94 ees8\l100 des c bes a bes | //11
+5f8 f' ees4~ ees16 r des8 ees f | //12
+5f4. g8 bes aes g f || //13
+\timesig(2 4)
+5g8 e c r || //14
+\timesig(4 4)
+r8 5f g aes c des f4 | //15
+r8 6f aes ces, des aes g c || //16
+\timesig(3 4)
+5c2~ c8$pp; r | //17
+5c4$pp; c'~ c8 r | //18
+6e4$mf; d8 c b a | // 19
+5gis8 a e4.$pp; e8$mp; | // 20
+5b c gis a c e | // 21
+6fis2~ fis8 r | // 22
+5bes8 ees, d4 ees8 bes' | // 23
+5a2~ a16 r fis8 | // 24
+5g8 fis g4~ g8 r || // 25
+\timesig(4 4)
+r8 r16 6g32$f; b b,8. bes32 d b8. g32 d b8 r16 6g32 d || // 26
+\timesig(3 4)
+6des4$f; bes~ bes8$mf; r | // 27
+s2. | // 28
+r8 r16 6g32$f; b b,8. bes32 d b8. g32 d || // 29
+5bes2$mf; ges8$mp; r | // 30
+4bes4$f; aes8 ges f ees | // 31
+5d8 ees bes4. bes8$mp; | // 32
+5d ees fes ges aes bes || // 33
+\timesig(2 4)
+6c4~$mf; c8 r || // 34
+\timesig(4 4)
+4c2.~$f; c8 r$mp; | // 35
+r1 || // 36
+\timesig(3 4)
+6c8$p; ees d bes des c | // 37
+5e$mp; f aes g c,4$p; || // 38
+\timesig(4 4)
+  r1 || // 39
+\timesig(3 4)
+6(ees4)$f; des8 ces des16 ees ces des$mf; | // 40
+z$f;(6fis32 g fis8)\tup s8 r8 r4  (5fis32 g fis8)\tup s8 r8 | // 41
+(4fis32 g fis8)\tup s8 r8 r4 r | // 42
+(5fis32 g fis8)\tup s8 r8  (4fis32 g fis8)\tup s8 r8 r4 | // 43
+5a4$mf; gis8 a cis b | // 44
+5a8.$f; gis32 fis bis8 fis' cis$mf; r || // 45
+\timesig(4 4)
+r1 | // 46
+(($rep!13!6g aes ;)\tup s2.)$f; 6g8$mf; r || // 47
+\timesig(3 4)
+  r2.\l100 | // 48
+6f2$pp; 5aes8 r | // 49
+5ees2 ges8 r | // 50
+6cis2$p; 5e8 r | // 51
+(5f2.~)$f; | // 52
+5f2. | // 53
+4ges2.~ || //54
+\timesig(4 4)
+4ges8$p; r r4 r2 | //55
+6f4$pp; ees8 des c bes a bes | //56
+6ces8 d 5f4~ f16 r d8 ees f || //57
+\timesig(3 4)
+5aes8 ges d ees f ges | //58
+4bes a c4~ c8 r | //59
+6des8$ppp; 5ges f4 ges8 des' || //60
+\timesig(4 4)
+6c4~ c16 r a8 bes a bes4 || //61
+\timesig(3 4)
+(4f2.~)$p; | //62
+4f8 r r2\v100 | //63
+6f2.~ | //64
+6f8 r\v0 r4 r4\l10 || //65 // Last bar
+)
+>;
+
+$def!righthand-part!
+< \part (
+  \name "Piano RH"
+  $piano;
+  \trebleclef
+  \timesig(4 4)
+  \keysig(c\major)
+
+\pedon
+r8 4f$p; bes des f bes des a | //1
+5bes8$mp; f ges ees a, r r4 | //2
+\pedoffon
+[4des8 f]$p; [des f] r4 [4des8 f] [des f] r4 | //3
+[4c8 ges']$mp; [4c 4ges] r4 [4ees8 a] [4ees a] r4 | //4
+[4ges8 c] [4ges c] r4 [4ees8 a] [4ees a] r4 | //5
+\pedoffon
+[4des8 4bes]$mp; [4des 4bes] r4 [4des8 f] [4des f] r4 | //6
+\pedoffon
+[3ges8 4des] [3ges 4des] r4 [4des8 ges] [4des ges] r4 | //7
+\pedoff
+[4des8 4aes] [4des 4aes]$p; r4 4e g || //8
+\timesig(3 4)
+4f4$mp; aes e || //9
+\timesig(4 4)
+r8 [4ges bes des]$p;
+   [4c f a] [4des ges bes]
+   [3a c f] [3bes des ges]
+   [3f a d] [3ges bes c] | //10
+[4des f]$pp; [3f 4des] [3f 4des] [4des f] 
+[4des f] [3f 4des] [3f 4des] [4des f] | //11
+[4des ges] [3ges 4des] [3ges 4des] [4des ges]
+[4des ges] [3ges 4des] [3ges 4c]   [4c 4ges] | //12
+[3f 4c] [4c f] [4c f] [3f 4c]
+[3f 3b] [3b 4f] [3b 4f] [3f 3b] || //13
+\timesig(2 4)
+[3g8 4e] [e g] [e g] [3g 4e] || //14
+\timesig(4 4)
+  [3f8 c']$mf; [c f] [c f] [3f c']
+  [3aes des]$mp; [des aes'] [4des aes'] [3aes des] | // 15
+  [3aes d] [d aes'] [4d aes'] [3aes d]
+  [3bes e] [e aes] [3bes e] [e g] | // 16
+\timesig(3 4)
+  [4c8 f a c] [4d f a d] [5c2 ([4e8 f a] [4e4 f a] [4e8 f a])]  | // 17
+  [([4c8 c'] [4d d'] [5c2 e]) ([4d4 f] [4f2 g c e])]$pp; | // 18
+  [4c8 e]$mp; [3e c'] [3e c'] [4c8 e] [4c8 e][3e c']  | // 19
+  6e4 d8 c b a | // 20
+  5gis8 a e4 [4c8 e gis] [e gis c] | // 21
+  [(4bes2~ bes8 r)
+   ([4e8 fis bes] [3bes e fis] [3bes e fis][4e8 fis bes]
+    [4c ees fis] [ees fis bes] )] | // 22
+  \bassclef
+  [3d8 bes']$p; [bes d] [bes d] [3d8 bes'] [3ees bes'] [bes ees] | // 23
+  \trebleclef
+  [3a8 d] [d a'] [4d a'] [3a d] [a d] [d a'] | // 24
+  [3g8 d'] [d g] [3g c] [4c4 g'] [4c8 g'] || // 25
+\timesig(4 4)
+  [3b g']$mf; [g b] [g b] [3b g']
+  [3b g']     [g b] [g b] [3b g'] || // 26
+\timesig(3 4)
+  [3ges8 bes] [bes ges'] r 5des ees f | // 27
+  [(4bes4 c2) (4bes4 r fis') (5ges8 aes bes4 c8 d)] | // 28
+  [([4b g'] [4g b] [g b] [3b g'] [3b g'] [g b]) (5b2~ b8 r)] | // 29
+  [4fes bes] [bes d] [bes d] [4fes bes] [3aes d] [d ges] | // 30
+  [3ges ees']$mf; [ees ges] [ees ges] [3ges ees'] [3ges ees'] [ees g] | // 31
+  [(5bes4 aes8 ges f ees)
+   ([3ges8 ees'] [ees ges] [ees ges] [3ges ees'] [3ges ees'] [ees ges])] | //32
+  [(5ges8 ees bes'4 4ges8 d)
+   ([4bes8 des] [4ges bes] [d ges] [d ges] [3bes des] [3ges bes])] || // 33
+\timesig(2 4)
+  [(4c4~ c8 r)
+   ([3g8 bes'][3g~ bes'~][3g bes'] r)]$mp; || // 34
+\timesig(4 4)
+  [([5aes4 c] 5d4 5ges8 bes [g4 c])
+   (5f8 ees [f bes] [5c aes'] [4bes d] [d ges] e c)]$p;  | // 35
+  [(6c4 5f bes'16 c aes bes c4)
+   ([5f8 aes] ees [des bes'] [5c aes'] [5des ges] [5c ees] [e4 ges])] || // 36
+\timesig(3 4)
+  5f8$p; 4ges f bes g aes | // 37
+  5des8 c b d 4e4 || // 38
+\timesig(4 4)
+  [(5c4 (bes32 c bes8)\tup s8 aes ges bes c4)
+   ([4c8 aes'] g f ees des f g c')]$mp; || // 39
+\timesig(3 4)
+  5ces8$mf; bes aes ges aes e | // 40
+  [(4b4 ais8 b dis cis)
+   (4fis8 b, dis fis g ais)]$f; | // 41
+  [(4b8. ais32 gis fis4 g8 ais)
+   (4fis8 b, dis4 cis8 g')] | // 42
+  [(4b4 ais8 b dis cis)
+   (4fis b, dis fis g ais)] | // 43
+  [(4e a e a f b)
+   (3a e' a, e' b f')]$mf; | // 44
+  [(4e8 a 3bis4 b8 r)
+   (3a e' fis,4 gis8 r)] || // 45
+\timesig(4 4)
+  [(5cis4 [4g8 b] g a b c4)
+   ([4c8 fis] [cis fis] 4d4 [b f'] [eis gis])]$f; | // 46
+  [4c4 ees g]$ff;
+  [3aes8 des f] [3g bes ees] [3f aes des] [3aes des f]
+  [3b4 d g] || // 47
+\timesig(3 4)
+  [4c8 ees aes]$f; [3aes c ees]
+  [3bes d f] [4d f bes]
+  [4c ees aes] [4e a c] | // 48
+  [([4des4 des'] [4c8 c'] [4des des'] [4c c'] aes)
+   (4aes8 f aes f aes4)]$p; | // 49
+  [([4c4 c'] [4des8 d'] [4ees ees'] [3bes4 bes'])
+   (4g8 ees c' g ges d)] | // 50
+  [(4cis2 e4)
+   (r8[3a f' a] [3gis cis gis'] [3a f' a] [3b e b'] [4c c'])] | // 51
+  [3f2 bes f']$f; [2aes4 b d] | // 52
+  [2ges2.
+    bes2.
+    (ees4 f ges)] | // 53
+  [3ees2. a2.] || //54
+\timesig(4 4)
+  [(r8 4bes a ges f g a r)
+   (r8 5f ees des c bes c r)]$mp; | //55
+  [(4des8 des des des des des des des)
+   (4f8 f, f f' f f, f f')]$p; | //56
+  [(4d8 d d d d d d d)
+   (5ces ces, ces ces' ces ces, ces ces')] || //57
+\timesig(3 4)
+  [(4ees8 ees ees ees ees ees)
+   (4ges8 ges, ges ges' ges ges,)] | //58
+  [(3a a a a~ a4 )
+   (4ges8 ges, ges ges' ees4)] | //59
+  [(4des8 des des ges des des)
+   (3ges ges' ges des' ges, ges,)]$pp; || //60
+\timesig(4 4)
+  [(3a8 c' c f bes, ees c4)
+   (4c8 f f c' ees, bes' ges4)] || //61
+\timesig(3 4)
+  [3f8 bes d f]$p; [3g bes d g] [3a2 d f a] | //62
+  [ 3bes2 d a'] r4 | //63
+  [3des2.~ des'2.~] | //64
+  [3des8 des'] r r4 r || //65 // Last bar
+)
+>;
+
+$def!lefthand-part!%
+< \part (
+  \name "Piano LH"
+  $piano;
+  \bassclef
+  \timesig(4 4)
+  \keysig(c\major)
+
+r1 | //1
+r1 | //2
+\pedon
+r4 2bes8$p; bes r4 2bes8 bes | //3
+r4 2bes8$mp; bes r4 2bes8 bes | //4
+r4 2bes8 bes r4 2bes8 bes | //5
+r4 2bes8$mp; bes r4 2bes8 bes | //6
+\pedoffon
+r4 2ees8 ees r4 3ees8 ees | //7
+\pedoffon
+r4 2f8 f 3bes$p; 2g 4des 3e || //8
+\timesig(3 4)
+\pedoff
+4c8$p; 2aes 4des 2bes 3bes 3c || //9
+\timesig(4 4)
+[2f2. 3a. 4f.]$mp; r4 | //10
+2bes2.$p; bes,4 | //11
+2ees2. aes4 | //12
+2des2. des'4 || //13
+\timesig(2 4)
+3c2 || //14
+\timesig(4 4)
+2aes2$mf; bes | //15
+2b2 c4 c, || //16
+[[2f2. 3c.] ([3a2 (r4 5e)] 3a)] | //17
+[1e2. 2e. (r4 3gis e) (r4 4d2)]$pp; | //18 
+  1a2$mf; a'4~ | // 19
+[ (3e8 e' e e, e e')
+  (4c8 c  c c  c c )
+  2a2.~] | // 20
+  [ (3e8 e' e e, r4)
+    (4c8 c c c r4)
+    (2a2 a4)] | // 21
+  3d2 d,8 r | // 22
+  2g2$p; c4 | // 23
+  [fis2. fis,. (r8 3ees a2)] | // 24
+  2bes4 a2 || // 25
+\timesig(4 4)
+  [1g1 g']$mf; || // 26
+\timesig(3 4)
+  [2ees2. (r4 [3ges8 bes] [ges4 bes] [ges8 bes])] | // 27
+  [(2d2 r4)
+   (r4 3fis d)
+   (r8 4c ees2)] | // 28
+  [1g2. g'.] | // 29
+  2ges2 bes4 | // 30
+  2(ees2.~)$mf; | // 31
+  [(4ees8 ees ees ees ees ees)
+   (3ges8 ges' ges ges, ges ges')
+   2ees2.] | // 32
+  3ees2 ees,4 || // 33
+\timesig(2 4)
+  2aes4 g8 r$p;  || // 34
+\timesig(4 4)
+  [(3f8 ees des c bes des e c)
+   (3aes4 f des8 ges g4)
+   (4c4 bes8 aes ges bes c4)]$p; | // 35
+  [(3f8 ees des c des c e c)
+   (3aes4 f ges8 ees g4)
+   (4c4 bes8 aes bes16 c aes bes c4)] || // 36
+\timesig(3 4)
+  3aes8$p; f bes d e f | // 37
+  3bes8 aes g b c4 || // 38
+\timesig(4 4)
+  3f8$mp; ees des c bes des e4 || // 39
+\timesig(3 4)
+  3aes8$mf; ges fes ees fes g | // 40
+  4dis8$f; dis, f dis 3ais e | // 41
+  4dis8 dis, 3b fis ais e | // 42
+  4dis dis, fis dis 3ais e | // 43
+  [(2cis4 r r)
+   (3cis8 e cis e gis d)]$mf; | // 44
+  [(3cis4 r r)
+   (3cis8 e d 2gis cis r)] || // 45
+\timesig(4 4)
+  [(2fis4 g d' cis)
+   (3a8 a b b g d' b4)]$f; | // 46
+  [(r8 [2c2. c,.] [2c8~ c,~])
+   (3c4 aes8 g f aes b4)
+   (3ees4 des8 bes aes des d4)
+   (3g4 f8ees des f g4)]$ff; || // 47
+\timesig(3 4)
+  [(2c2~ c8 r)
+   (1c2~ c8 r)
+   (3c8 aes bes d c e)
+   (3ees8 c d f ees a)
+   (3aes ees f bes aes c)] | // 48
+  [(2f8 r r4 fes8 r)
+   (3f8 aes f aes fes aes)]$p; | // 49
+  [(2ees8 r r4 s8 r)
+   (3ees8 g ees g d ges)] | // 50
+  [(2cis8 r r4 c8 r)
+   (3cis8 f cis f c e)] | // 51
+  [(1f8 ges f ges f ges)
+   (2des2 [1b4 d])]$f; | // 52
+  [(1f8 ges f ges f ges)
+   [1bes2. ees2.]] | // 53
+  [2ges2.
+   1f2.
+   (r8 2ges f ges ges' f~)] || //54
+\timesig(4 4)
+  [(3f2.~ f8 r)
+   (4ges16 r des8 c bes a des f r)]  | //55
+  2bes2.$p; bes,4 | //56
+  2bes2. bes'4 || //57
+\timesig(3 4)
+  2bes2 bes,4 | //58
+  2bes2 aes4 | //59
+  2bes4$pp; ees2 || //60
+\timesig(4 4)
+  [2a2 a,] [2ges4 ges,] [2ees ees,] || //61
+\timesig(3 4)
+  [([2bes2 bes,] 2f4~)
+   (r4 5d8 r r 3d)]$p; | //62
+  [(2f2 r4)
+   (3f8 g a4 3d)] | //63
+  [(r4 1bes2~)
+   (3f2.~)] | //64
+  [3f8 1bes] r r4 r || //65 // Last bar
+)
+>;
+
+\score "Poulenc Cantilena" [
+$conductor-part;
+$flute-part;
+$righthand-part;
+$lefthand-part;
+]

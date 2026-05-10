@@ -1,0 +1,105 @@
+# This tests most programs in the directory bcplprogs/raspi
+
+echo "*nTesting the programs in bcplprogs/raspi*n"
+
+c b hello
+hello
+
+c b fib1
+fib1
+
+c b fib2
+fib2
+
+c b fib3
+fib3
+
+c b fib4
+fib4
+
+c b prime1
+prime1
+
+c b prime2
+prime2
+
+c b multab
+multab
+
+c b fib5
+fib5
+
+c b rsa
+rsa
+
+c b vec1
+vec1
+
+c b vec2
+vec2
+
+c b vec3
+vec3
+
+c b vec4
+#vec4
+
+c b vec5
+vec5
+
+c b vec6
+vec6
+
+c b gcd
+gcd
+
+c b powmod
+powmod
+
+c b demo
+demo
+
+c b collatz0
+collatz0
+
+c b collatz1
+collatz1
+
+c b collatz2
+collatz2
+
+c b pig
+# pig
+
+c b enigma-m3
+# enigma-m3
+
+c b aes128
+aes128
+
+c b reedsolomon
+reedsolomon
+
+c b queens
+queens
+
+c b sudoku
+sudoku
+
+c b blocks
+blocks
+
+c b rubik
+rubik
+
+c b eval2
+eval2
+
+c b evale
+evale
+
+c b epr163
+epr163
+
+c b pidigs
+pidigs

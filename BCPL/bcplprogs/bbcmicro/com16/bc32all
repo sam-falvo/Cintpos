@@ -1,0 +1,8 @@
+.k arg
+
+c bc32 bcpl "<arg>"
+c bc32 bcplarg "<arg>"
+c bc32 bcplsyn "<arg>"
+c bc32 bcpltrn "<arg>"
+c bc32 bcplccg "<arg>"
+

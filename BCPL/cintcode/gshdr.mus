@@ -1,0 +1,172 @@
+// gshdr.mus
+% Instrument definitions for the Microsoft GS2 Wavetable SW Synth
+% and the GM spec given by Wiki General MIDI
+% using numbers in the range 0-127 (not 1-128).
+%
+%           Instrument table
+%       GM2                GM
+%
+%    0  Piano1             Acoustic Grand Piano
+%    1  Piano2             Bright Acoustic Piano
+%    2  Piano3             Electric Grand Piano
+%    3  Honky-tonk         Honky-tonk Piano
+%    4  E.Piano1           Electric Piano 1
+%    5  E.Piano2           Electric Piano 2
+%    6  Harpsichord        Harpsichord
+%    7  Clav               Clavinet
+%    8  Celesta            Celesta
+%    9  Glockenspiel       Glockenspiel
+%   10  Music Box          Music Box
+%   11  Vibraphone         Vibraphone
+%   12  Marimba            Marimba
+%   13  Xylophone          Xylophone
+%   14  Tubular-bell       Tubular Bell
+%   15  Santur             Dulcimer
+%   16  Organ1             Drawbar Organ
+%   17  Organ2             Percussive Organ
+%   18  organ3             Rock Organ
+%   19  Church Org1        Church Organ
+%   20  Read Organ         Read Organ
+%   21  Accordian Fr       Accordian
+%   22  Harmonica          Harmonica
+%   23  Bandoneon          Tango Accordian
+%   24  Nylon Str Gt       Accoustic Guitar (nylon)
+%   25  Steel Str Gt       Accoustic Guitar (steel)
+%   26  Jazz Gt            Electric Guitar (jazz)
+%   27  Clean Gt           Electric Guitar (clean)
+%   28  Muted Gt           Electric Guitar (muted)
+%   29  Overdrive Gt       Overdriven Guitar
+%   30  DistortionGt       Distortion Guitar
+%   31  GtHarmonics        Guitar harmonics
+%   32  Accoustic Bs       Accoustic Bass
+%   33  Figured Bs         Electric Bass (finger)
+%   34  Picked Bs          Electric Bass (pick)
+%   35  Fretless Bs        Fretless Bass
+%   36  Slap Bs1           Slap Bass 1
+%   37  Slap Bs2           Slap Bass 2
+%   38  Synth Bs1          Synth Bass 1
+%   39  Synth Bs2          Synth Bass 2
+%   40  Violin             Violin
+%   41  Viola              Viola
+%   42  Cello              Cello
+%   43  Contrabass         Contrabass
+%   44  Tremolo Str        Tremolo Strings
+%   45  PizzicatoStr       Pizzicato Strings
+%   46  Harp               Orchestral Harp
+%   47  Timpani            Timpani
+%   48  Strings            String Ensemble 1
+%   49  Slow Strings       String Ensemble 2
+%   50  Synth Str1         Synth Strings 1
+%   51  Synth Str2         Synth Strings 2
+%   52  Choir Aahs         Choir Aahs
+%   53  Choir Oohs         Choir Oohs
+%   54  SynVox             Synth Choir
+%   55  Analog Voice       Orchestra Hit
+%   56  Trumpet            Trumpet
+%   57  Trombone           Trombone
+%   58  Tuba               Tuba
+%   59  Muted Trumpet      Muted Trumpet
+%   60  French Horns       French Horn
+%   61  Brass1             Brass Section
+%   62  Synth Brass1       Synth Brass 1
+%   63  Synth Brass2       Synth Brass 2
+%   64  Soprano Sax        Soprano Sax
+%   65  Alto Sax           Alto Sax
+%   66  Tenor Sax          Tenor Sax
+%   67  Baritone Sax       Baritone Sax
+%   68  Oboe               Oboe
+%   69  English Horn       English Horn
+%   70  Bassoon            Bassoon
+%   71  Clarinet           Clarinet
+%   72  Piccolo            Piccolo
+%   73  Flute              Flute
+%   74  Recorder           Recorder
+%   75  Pan Flute          Pan Flute
+%   76  Bottle Blow        Blown Bottle
+%   77  Shackuhachi        Shackuhachi
+%   78  Whistle            Whistle
+%   79  Ocarina            Ocarina
+%   80  Square Wave        Lead 1 (square)
+%   81  Saw Wave           Lead 2 (sawtooth)
+%   82  Syn.Calliope       Lead 3 (calliope)
+%   83  Chiffer Lead       Lead 4 (chiff)
+%   84  Charang            Lead 5 (charang)
+%   85  Solo Vox           Lead 6 (voice)
+%   86  5th Saw Wave       Lead 7 (fifths)
+%   87  Bass&Lead          Lead 8 (bass+lead)
+%   88  Fantasia           Pad 1 (new age)
+%   89  Warm Pad           Pad 2 (warm)
+%   90  Polysynth          Pad 3 (polysynth)
+%   91  Space Voice        Pad 4 (choir)
+%   92  Bowed Glass        Pad 5 (bowed)
+%   93  Metal Pad          Pad 6 (metallic)
+%   94  Halo Pad           Pad 7 (halo)
+%   95  Sweep Pad          Pad 8 (sweep)
+%   96  Ice Rain           FX 1 (rain)
+%   97  Soundtrack         FX 1 (soundtrack)
+%   98  Crystal            FX 1 (crystal)
+%   99  Atmosphere         FX 1 (atmosphere)
+%  100  Brightness         FX 1 (brightness)
+%  101  Goblin             FX 1 (goblins)
+%  102  Echo Drops         FX 1 (echoes)
+%  103  Star Theme         FX 1 (sci-fi)
+%  104  Sitar              Sitar
+%  105  Banjo              Banjo
+%  106  Shamisen           Shamisen
+%  107  Koto               Koto
+%  108  Kalimba            Kalimba
+%  109  Bagpipe            Bagpipe
+%  110  Fiddle             Fiddle
+%  111  Shanai             Shanai
+%  112  Tinkle Bell        Tinkle Bell
+%  113  Agogo              Agogo
+%  114  Steel Drums        Steel Drums
+%  115  Woodblock          Woodblock
+%  116  Taiko              Taiko Drum
+%  117  Melo Tom1          Melodic Tom
+%  118  Synth Drum         Synth Drum
+%  119  Revers Cym.        Reverse Cymbal
+%  120  Gt.FretNoise       Guitar Fret Noise
+%  121  Breath Noise       Breath Noise
+%  122  Sea Shore          Seashore
+%  123  Bird               Bird Tweet
+%  124  Telephone1         Telephone Ring
+%  125  Helicopter         Helicopter
+%  126  Applause           Applause
+%  127  Gun Shot           Gun Shot
+%
+$def!instr!<%
+  \instrumentname "#1"
+  \bank(#2 $eval!#3+(#4R7);)
+  \patch $eval!#4&127;
+>;%
+
+$def!piano!<\nonvarvol $instr!piano!1!1!0;>;%
+
+$def!organ!<\varvol $instr!organ!1!1!19;>;%
+
+$def!harpsichord!<\nonvarvol $instr!harpsichord!1!1!6;>;%
+
+$def!flute!<\varvol $instr!flute!1!1!73;>;%
+
+$def!oboe!<\varvol $instr!oboe!1!1!68;>;%
+
+$def!clarinet!<\varvol $instr!clarinet!1!1!71;>;%
+
+$def!trumpet!<\varvol $instr!trumpet!1!1!56;>;%
+$def!mutedtrumpet!<\varvol $instr!mutedtrumpet!1!1!59;>;%
+$def!horn!<\varvol $instr!horn!1!1!60;>;%
+$def!trombone!<\varvol $instr!trombone!1!1!57;>;%
+$def!tuba!<\varvol $instr!tuba!1!1!58;>;%
+
+$def!bassoon!<\varvol $instr!bassoon!1!1!70;>;%
+
+$def!violin!<\varvol $instr!violin!1!1!40;>;%
+
+$def!viola!<\varvol $instr!viola!1!1!41;>;%
+
+$def!cello!<\varvol $instr!cello!1!1!42;>;%
+
+$def!doublebass!<\varvol $instr!doublebass!1!1!43;>;%
+
+$def!timpani!<\nonvarvol $instr!timpani!1!1!47;>;%

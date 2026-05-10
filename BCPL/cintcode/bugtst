@@ -1,0 +1,6 @@
+.k file/a,opt
+echo "bugify <file>.b  <opt>"
+bugify <file>.b <opt>
+echo "*nDifferences*n"
+shellcom "diff <file>.b BUGIFIED.b"
+bcpl BUGIFIED.b to junk

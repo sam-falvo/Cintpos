@@ -1,0 +1,64 @@
+# This is the script file to setup the environment variables
+# needed by the BCPL Cintcode System.
+
+# It assumes the bash shel is being used. If zsh or some other
+# shell is in used I recommend thatt you update your account to
+# use bash by running the following command 'chsh -s /bin/bash'
+# then close andreopen your terminal window.
+
+# The environment variable HOME should have already been set to
+# the absolute filename of your home directory. This can be
+# checked by the command: echo $HOME
+# On my MacMini computer this outputs:
+#/Users/mr10
+
+# So that the BCPL environment variables are always setup I
+# recommend that you add the following line near the end of
+# both ~/.profile and ~/.bashrc.
+# . $HOME/distribution/BCPL/cintcode/os/MacOSX/setbcplenv
+
+
+
+export BCPLROOT=$HOME/distribution/BCPL/cintcode
+
+export BCPLHDRS=$BCPLROOT/g
+export BCPLPATH=$BCPLROOT/cin
+export BCPLSCRIPTS=$BCPLROOT/s
+export PATH=$PATH:$BCPLROOT/bin
+
+# BCPLROOT must be the absolute filename of the cintcode directory.
+
+# For other BCPL related systems I recommend you also include the
+# following lines as well.
+
+# The following are for 64 bit BCPL
+export BCPL64ROOT=$HOME/distribution/BCPL/cintcode
+export BCPL64PATH=$BCPL64ROOT/cin64
+export BCPL64HDRS=$BCPL64ROOT/g
+export BCPL64SCRIPTS=$BCPL64ROOT/s
+
+# The following are for 32 bit Cintpos
+export POSROOT=$HOME/distribution/Cintpos/cintpos
+export POSPATH=$POSROOT/cin
+export POSHDRS=$POSROOT/g
+export POSSCRIPTS=$POSROOT/s
+
+# The following are for 64 bit Cintpos
+export POS64ROOT=$HOME/distribution/Cintpos/cintpos
+export POS64PATH=$POS64ROOT/cin64
+export POS64HDRS=$POS64ROOT/g
+export POS64SCRIPTS=$POS64ROOT/s
+
+# The following are for 32 bit MCPL
+export MCPLROOT=$HOME/distribution/MCPL/mintcode
+export MCPLPATH=$MCPLROOT/min
+export MCPLHDRS=$MCPLROOT/g
+export MCPLSCRIPTS=$MCPLROOT/s
+
+# The following are for the Mus header files used by playmus
+export MUSHDRS=$HOME/distribution/Musprogs/g
+
+export PATH=$BCPLROOT/bin:$MCPLROOT/bin:$POSROOT/bin:$POS64ROOT/bin:$PATH
+
+# MR
+# 11 Aug 2021

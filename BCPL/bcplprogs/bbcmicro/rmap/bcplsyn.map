@@ -1,0 +1,4284 @@
+Before calling findsections
+fcounter=0 notfcounter=0 mcounter=0 notmcounter=0
+codevsize-fcounter-notfcounter=5726
+codevsize-mcounter-notmcounter=5726
+
+Calling findsections
+
+    0: 03E8 BCPL  Section     size  1048 bytes
+ 1050: Max global number 463
+ 1046: G400 =    16   nextsymb
+
+ 1052: 03E8 BCPL  Section     size   716 bytes
+ 1770: Max global number 457
+ 1766: G402 =  1228   declsyswords
+ 1762: G432 =  1184   compstring
+ 1758: G401 =  1068   lookupword
+
+ 1772: 03E8 BCPL  Section     size   646 bytes
+ 2420: Max global number 459
+ 2416: G408 =  2148   rdstrch
+ 2412: G407 =  2076   readnumber
+ 2408: G406 =  1960   performget
+ 2404: G405 =  1890   rdtag
+ 2400: G404 =  1848   wrchbuf
+ 2396: G403 =  1788   rch
+
+ 2422: 03E8 BCPL  Section     size  1390 bytes
+ 3814: Max global number 466
+ 3810: G416 =  2868   synreport
+ 3806: G431 =  2846   makelist
+ 3802: G415 =  2818   list6
+ 3798: G414 =  2794   list5
+ 3794: G413 =  2776   list4
+ 3790: G412 =  2760   list3
+ 3786: G411 =  2748   list2
+ 3782: G410 =  2740   list1
+ 3778: G409 =  2674   newvec
+ 3774: G001 =  2438   START
+
+ 3816: 03E8 BCPL  Section     size   536 bytes
+ 4354: Max global number 464
+ 4350: G424 =  4308   checkfor
+ 4346: G423 =  4300   ignore
+ 4342: G422 =  4290   rname
+ 4338: G421 =  4226   rnamelist
+ 4334: G420 =  4180   rdsect
+ 4330: G419 =  4096   rdcdefs
+ 4326: G418 =  3984   rdseq
+ 4322: G417 =  3832   rdblockbody
+
+ 4356: 03E8 BCPL  Section     size   862 bytes
+ 5220: Max global number 464
+ 5216: G428 =  5046   rdef
+ 5212: G427 =  4980   rexplist
+ 5208: G426 =  4650   rexp
+ 5204: G425 =  4372   rbexp
+
+ 5222: 03E8 BCPL  Section     size   498 bytes
+ 5722: Max global number 452
+ 5718: G430 =  5656   rcom
+ 5714: G429 =  5238   rbcom
+After calling findsections
+fcounter=34 notfcounter=207 mcounter=0 notmcounter=241
+codevsize-fcounter-notfcounter=5485
+codevsize-mcounter-notmcounter=5485
+
+Calling findnames
+
+Finding section, needs and entry names
+    6: SECTION Name: SYN1   
+ 1058: SECTION Name: SYN2   
+ 1778: SECTION Name: SYN3   
+ 2428: SECTION Name: SYN4   
+ 3822: SECTION Name: SYN5   
+ 4362: SECTION Name: SYN6   
+ 5228: SECTION Name: SYN7   
+After calling findnames
+fcounter=34 notfcounter=277 mcounter=0 notmcounter=311
+codevsize-fcounter-notfcounter=5415
+codevsize-mcounter-notmcounter=5415
+
+Calling scancode
+
+After calling scancode
+fcounter=2335 notfcounter=2418 mcounter=0 notmcounter=4736
+codevsize-fcounter-notfcounter=973
+codevsize-mcounter-notmcounter=990
+
+Calling findnotf
+
+After calling findnotf
+fcounter=2335 notfcounter=3253 mcounter=0 notmcounter=4736
+codevsize-fcounter-notfcounter=138
+codevsize-mcounter-notmcounter=990
+
+Calling findstrings
+
+After calling findstrings
+fcounter=2335 notfcounter=3267 mcounter=0 notmcounter=5567
+codevsize-fcounter-notfcounter=124
+codevsize-mcounter-notmcounter=159
+About to call dumpcode()
+
+//     0: 03E8 020C                HUNK    size=524
+//     4: 020C
+//     6: FDDF                     Section name: SYN1   
+//     8: 07 53 59 4E 31 20 20 20
+
+//    16: GLOBAL ENTRY             G400 nextsymb
+//    16: 10           L0          
+//    17: 51 C8       SG1   200    G456 nlpending
+
+//    19: L00019:
+//    19: BB F6        J$   673    
+
+//    21: CASE 13:
+//    21: CASE 10:
+
+//    21: L00021:
+//    21: 0F          LM1          
+//    22: 51 C8       SG1   200    G456 nlpending
+
+//    24: CASE 32:
+//    24: CASE 9:
+
+//    24: L00024:
+//    24: 43 93      K3G1   147    G403 rch
+//    26: 60 20         L    32    
+//    28: 50 1F       LG1    31    G287 ch
+//    30: 1C 78       JEQ    24    
+//    32: BA 71         J    19    
+
+//    34: CASE 57:
+//    34: CASE 56:
+//    34: CASE 55:
+//    34: CASE 54:
+//    34: CASE 53:
+//    34: CASE 52:
+//    34: CASE 51:
+//    34: CASE 50:
+//    34: CASE 49:
+//    34: CASE 48:
+
+//    34: L00034:
+//    34: 11           L1          
+//    35: 51 C2       SG1   194    G450 symb
+//    37: 1A          L10          
+//    38: 43 97      K3G1   151    G407 readnumber
+//    40: 7B          RTN          
+
+//    41: CASE 122:
+//    41: CASE 121:
+//    41: CASE 120:
+//    41: CASE 119:
+//    41: CASE 118:
+//    41: CASE 117:
+//    41: CASE 116:
+//    41: CASE 115:
+//    41: CASE 114:
+//    41: CASE 113:
+//    41: CASE 112:
+//    41: CASE 111:
+//    41: CASE 110:
+//    41: CASE 109:
+//    41: CASE 108:
+//    41: CASE 107:
+//    41: CASE 106:
+//    41: CASE 105:
+//    41: CASE 104:
+//    41: CASE 103:
+//    41: CASE 102:
+//    41: CASE 101:
+//    41: CASE 100:
+//    41: CASE 99:
+//    41: CASE 98:
+//    41: CASE 97:
+//    41: CASE 90:
+//    41: CASE 89:
+//    41: CASE 88:
+//    41: CASE 87:
+//    41: CASE 86:
+//    41: CASE 85:
+//    41: CASE 84:
+//    41: CASE 83:
+//    41: CASE 82:
+//    41: CASE 81:
+//    41: CASE 80:
+//    41: CASE 79:
+//    41: CASE 78:
+//    41: CASE 77:
+//    41: CASE 76:
+//    41: CASE 75:
+//    41: CASE 74:
+//    41: CASE 73:
+//    41: CASE 72:
+//    41: CASE 71:
+//    41: CASE 70:
+//    41: CASE 69:
+//    41: CASE 68:
+//    41: CASE 67:
+//    41: CASE 66:
+//    41: CASE 65:
+
+//    41: L00041:
+//    41: 50 1F       LG1    31    G287 ch
+//    43: A3          SP3          
+//    44: 44 93      K4G1   147    G403 rch
+//    46: 83          LP3          
+//    47: 44 95      K4G1   149    G405 rdtag
+//    49: 50 CF       LG1   207    G463 skipnode
+//    51: 1E 82      JEQ0    55    
+//    53: BA 5C         J    19    
+
+//    55: L00055:
+//    55: 44 91      K4G1   145    G401 lookupword
+//    57: 51 C2       SG1   194    G450 symb
+//    59: 60 5D         L    93        s.get
+//    61: 3C 84       JNE    67    
+//    63: 44 96      K4G1   150    G406 performget
+//    65: BA 50         J    19    
+
+//    67: L00067:
+//    67: 7B          RTN          
+
+//    68: CASE 123:    s.lsect      Case '{'
+
+//    68: L00068:
+//    68: 60 5B         L    91    
+//    70: 51 C2       SG1   194    G450 symb
+//    72: 43 93      K3G1   147    G403 rch
+//    74: 5A B4       LLL   128    
+//    76: 9B         GOTO          
+
+//    77: CASE 125:    s.rsect      Case '}'
+
+//    77: L00077:
+//    77: 60 5C         L    92    
+//    79: 51 C2       SG1   194    G450 symb
+//    81: 43 93      K3G1   147    G403 rch
+//    83: 5A AB       LLL   128    
+//    85: 9B         GOTO          
+
+//    86: CASE 36:    s.lsect      Case '$'
+
+//    86: L00086:
+//    86: 60 5B         L    91    
+//    88: A7          SP7          
+//    89: 60 5C         L    92        s.rsect
+//    91: A8          SP8          
+//    92: 60 6B         L   107        s.setcond
+//    94: A9          SP9          
+//    95: 60 6C         L   108        s.lcond
+//    97: AA         SP10          
+//    98: 60 6D         L   109        s.rcond
+//   100: AB         SP11          
+//   101: 60 5B         L    91        s.lsect
+//   103: AC         SP12          
+//   104: 60 5C         L    92        s.rsect
+//   106: AD         SP13          
+//   107: 60 5B         L    91        s.lsect
+//   109: AE         SP14          
+//   110: 60 5C         L    92        s.rsect
+//   112: AF         SP15          
+//   113: 10           L0          
+//   114: B0         SP16          
+//   115: 5B FF      LLL$   954    "()$<>[]{}"
+//   117: 5B FF      LLL$  1000        multichar
+//   119: 03           K3          
+//   120: 50 C2       LG1   194    G450 symb
+//   122: 3E 84      JNE0   128    
+//   124: 60 5B         L    91    
+//   126: 43 A0      K3G1   160    G416 synreport
+
+//   128: L00128:    s.lsect
+
+//   128: 60 5B         L    91    
+//   130: 50 C2       LG1   194    G450 symb
+//   132: 1C 84       JEQ   138    
+//   134: 60 5C         L    92        s.rsect
+//   136: 3C 8D       JNE   151    
+
+//   138: L00138:    '$'
+//   138: 60 24         L    36    
+//   140: 43 95      K3G1   149    G405 rdtag
+//   142: 50 CF       LG1   207    G463 skipnode
+//   144: 1E 82      JEQ0   148    
+//   146: BB FF        J$    19    
+
+//   148: L00148:
+//   148: 43 91      K3G1   145    G401 lookupword
+//   150: 7B          RTN          
+
+//   151: L00151:
+//   151: 50 C2       LG1   194    G450 symb
+//   153: A3          SP3          
+//   154: 60 3C         L    60        '<'
+//   156: 44 95      K4G1   149    G405 rdtag
+//   158: 44 91      K4G1   145    G401 lookupword
+//   160: 51 C2       SG1   194    G450 symb
+//   162: 60 6D         L   109        s.rcond
+//   164: 83          LP3              op
+//   165: 3C 8B       JNE   178    
+//   167: 50 C4       LG1   196    G452 wordnode
+//   169: 50 CF       LG1   207    G463 skipnode
+//   171: 3C 83       JNE   176    
+//   173: 10           L0          
+//   174: 51 CF       SG1   207    G463 skipnode
+
+//   176: L00176:
+//   176: BB F0        J$    19    
+
+//   178: L00178:
+//   178: 50 CF       LG1   207    G463 skipnode
+//   180: 1E 82      JEQ0   184    
+//   182: BB ED        J$    19    
+
+//   184: L00184:    s.setcond
+//   184: 60 6B         L   107    
+//   186: 83          LP3              op
+//   187: 3C 8D       JNE   202    
+//   189: 14           L4              s.true
+//   190: 50 C2       LG1   194    G450 symb
+//   192: 3C 83       JNE   197    
+//   194: 15           L5              s.false
+//   195: BA 81         J   198    
+
+//   197: L00197:    s.true
+//   197: 14           L4          
+
+//   198: L00198:
+//   198: 42 C4      S0G1   196    G452 wordnode
+//   200: BB E4        J$    19    
+
+//   202: L00202:
+//   202: 14           L4          
+//   203: 50 C2       LG1   194    G450 symb
+//   205: 3C 82       JNE   209    
+//   207: BB E0        J$    19    
+
+//   209: L00209:
+//   209: 50 C4       LG1   196    G452 wordnode
+//   211: 51 CF       SG1   207    G463 skipnode
+//   213: BA 82         J   217    
+
+//   215: L00215:
+//   215: 44 90      K4G1   144    G400 nextsymb
+
+//   217: L00217:
+//   217: 50 CF       LG1   207    G463 skipnode
+//   219: 3E 7A      JNE0   215    
+//   221: 7B          RTN          
+
+//   222: CASE 91:    s.lparen         Cases '[' and '('
+//   222: CASE 40:
+
+//   222: L00222:
+//   222: 60 69         L   105    
+//   224: 51 C2       SG1   194    G450 symb
+//   226: BB E1        J$   950    
+
+//   228: CASE 93:    s.rparen         Cases ']' and ')'
+//   228: CASE 41:
+
+//   228: L00228:
+//   228: 60 6A         L   106    
+//   230: 51 C2       SG1   194    G450 symb
+//   232: BB DE        J$   950    
+
+//   234: CASE 35:    radix            Case '#'
+
+//   234: L00234:
+//   234: 18           L8          
+//   235: A3          SP3          
+//   236: 44 93      K4G1   147    G403 rch
+//   238: 60 30         L    48        '0'
+//   240: 50 1F       LG1    31    G287 ch
+//   242: 7C 84       JGR   248    
+//   244: 60 37         L    55        '7'
+//   246: 9C AA       JLE   290    
+
+//   248: L00248:
+//   248: BA 91         J   267    
+
+//   250: DEFAULT:
+
+//   250: L00250:
+//   250: 60 21         L    33    
+//   252: 44 A0      K4G1   160    G416 synreport
+
+//   254: CASE 66:    'B'
+
+//   254: L00254:
+//   254: 12           L2          
+//   255: A3          SP3          
+//   256: BA 9E         J   288    
+
+//   258: CASE 79:    'O'
+
+//   258: L00258:
+//   258: 18           L8          
+//   259: A3          SP3          
+//   260: BA 9A         J   288    
+
+//   262: CASE 88:    'X'
+
+//   262: L00262:
+//   262: 60 10         L    16    
+//   264: A3          SP3          
+//   265: BA 95         J   288    
+
+//   267: L00267:
+//   267: 50 1F       LG1    31    G287 ch
+//   269: 24 3B       K4G    59    G059 CAPCH
+//   271: 92          SWB          
+//   272: 0003        len =    3
+//   274: FFE8    default =>   250
+//   276: 0042      const =    66
+//   278: FFE8      label =>   254
+//   280: 004F      const =    79
+//   282: FFE8      label =>   258
+//   284: 0058      const =    88
+//   286: FFE8      label =>   262
+
+//   288: L00288:
+//   288: 44 93      K4G1   147    G403 rch
+
+//   290: L00290:
+//   290: 83          LP3          
+//   291: 44 97      K4G1   151    G407 readnumber
+//   293: 11           L1              s.number
+//   294: 51 C2       SG1   194    G450 symb
+//   296: 7B          RTN          
+
+//   297: CASE 63:    Case '?'
+
+//   297: L00297:
+//   297: 60 10         L    16    
+//   299: 51 C2       SG1   194    G450 symb
+//   301: BB BB        J$   950    
+
+//   303: CASE 43:    Case '+'
+
+//   303: L00303:
+//   303: 60 0E         L    14    
+//   305: 51 C2       SG1   194    G450 symb
+//   307: BB B8        J$   950    
+
+//   309: CASE 44:    Case ','
+
+//   309: L00309:
+//   309: 60 26         L    38    
+//   311: 51 C2       SG1   194    G450 symb
+//   313: BB B5        J$   950    
+
+//   315: CASE 59:
+
+//   315: L00315:
+//   315: 60 61         L    97    
+//   317: 51 C2       SG1   194    G450 symb
+//   319: BB B2        J$   950    
+
+//   321: CASE 64:
+
+//   321: L00321:
+//   321: 17           L7          
+//   322: 51 C2       SG1   194    G450 symb
+//   324: BB B0        J$   950    
+
+//   326: CASE 38:
+
+//   326: L00326:
+//   326: 60 21         L    33    
+//   328: 51 C2       SG1   194    G450 symb
+//   330: BB AD        J$   950    
+
+//   332: CASE 61:
+
+//   332: L00332:
+//   332: 60 14         L    20    
+//   334: 51 C2       SG1   194    G450 symb
+//   336: BB AA        J$   950    
+
+//   338: CASE 33:
+
+//   338: L00338:
+//   338: 19           L9          
+//   339: 51 C2       SG1   194    G450 symb
+//   341: BB A7        J$   950    
+
+//   343: CASE 37:    Case '%'
+
+//   343: L00343:
+//   343: 60 1C         L    28    
+//   345: 51 C2       SG1   194    G450 symb
+//   347: BB A4        J$   950    
+
+//   349: CASE 42:    Case '*'
+
+//   349: L00349:
+//   349: 60 0B         L    11    
+//   351: 51 C2       SG1   194    G450 symb
+//   353: BB A1        J$   950    
+
+//   355: CASE 124:    Case '|'
+
+//   355: L00355:
+//   355: 10           L0          
+//   356: A7          SP7          
+//   357: 60 22         L    34    
+//   359: A8          SP8          
+//   360: 5B 9F      LLL$   964    "|"
+//   362: 5B 85      LLL$  1000    
+//   364: 03           K3          
+//   365: 50 C2       LG1   194    G450 symb
+//   367: 1E 81      JEQ0   370    
+//   369: 7B          RTN          
+
+//   370: L00370:
+
+//   370: BA 82         J   374    
+
+//   372: L00372:
+//   372: 43 93      K3G1   147    G403 rch
+
+//   374: L00374:    '*n'
+//   374: 1A          L10          
+//   375: 50 1F       LG1    31    G287 ch
+//   377: 1C 8D       JEQ   392    
+//   379: 60 0D         L    13        '*c'
+//   381: 1C 89       JEQ   392    
+//   383: B5          XCH          
+//   384: 60 0C         L    12        '*p'
+//   386: 1C 84       JEQ   392    
+//   388: B5          XCH          
+//   389: 0F          LM1              endstreamch
+//   390: 3C 6C       JNE   372    
+
+//   392: L00392:
+//   392: BB 84        J$    19    
+
+//   394: CASE 47:    s.logand         Case '/'
+
+//   394: L00394:
+//   394: 60 21         L    33    
+//   396: A7          SP7          
+//   397: 10           L0          
+//   398: A8          SP8          
+//   399: 0F          LM1          
+//   400: A9          SP9          
+//   401: 60 0C         L    12    
+//   403: AA         SP10          
+//   404: 5B 8A      LLL$   966    "\/*"
+//   406: 5B 6F      LLL$  1000    
+//   408: 03           K3          
+//   409: 50 C2       LG1   194    G450 symb
+//   411: 9E 81      JLE0   414    
+//   413: 7B          RTN          
+
+//   414: L00414:
+//   414: 50 C2       LG1   194    G450 symb
+//   416: 3E 83      JNE0   421    
+//   418: 5A 4E       LLL   370    
+//   420: 9B         GOTO          
+
+//   421: L00421:    '*'
+//   421: 60 2A         L    42    
+//   423: 50 1F       LG1    31    G287 ch
+//   425: 3C 8C       JNE   439    
+//   427: 43 93      K3G1   147    G403 rch
+//   429: 60 2F         L    47        '/'
+//   431: 50 1F       LG1    31    G287 ch
+//   433: 3C 82       JNE   437    
+//   435: BA 8F         J   452    
+
+//   437: L00437:
+//   437: BA 6E         J   421    
+
+//   439: L00439:
+//   439: 0F          LM1          
+//   440: 50 1F       LG1    31    G287 ch
+//   442: 3C 84       JNE   448    
+//   444: 60 3F         L    63    
+//   446: 43 A0      K3G1   160    G416 synreport
+
+//   448: L00448:
+//   448: 43 93      K3G1   147    G403 rch
+//   450: BA 61         J   421    
+
+//   452: L00452:
+//   452: 43 93      K3G1   147    G403 rch
+//   454: BB 65        J$    19    
+
+//   456: CASE 126:
+
+//   456: L00456:
+//   456: 60 15         L    21    
+//   458: A7          SP7          
+//   459: 60 1E         L    30    
+//   461: A8          SP8          
+//   462: 5B FE      LLL$   970    "="
+//   464: 5B 52      LLL$  1000    
+//   466: 03           K3          
+//   467: 7B          RTN          
+
+//   468: CASE 92:
+
+//   468: L00468:
+//   468: 60 22         L    34    
+//   470: A7          SP7          
+//   471: 60 15         L    21    
+//   473: A8          SP8          
+//   474: 60 1E         L    30    
+//   476: A9          SP9          
+//   477: 5B FD      LLL$   974    "/="
+//   479: 5B 4A      LLL$  1000    
+//   481: 03           K3          
+//   482: 7B          RTN          
+
+//   483: CASE 60:
+
+//   483: L00483:
+//   483: 60 18         L    24    
+//   485: A7          SP7          
+//   486: 60 1F         L    31    
+//   488: A8          SP8          
+//   489: 60 16         L    22    
+//   491: A9          SP9          
+//   492: 5B F9      LLL$   978    "=<"
+//   494: 5B 43      LLL$  1000    
+//   496: 03           K3          
+//   497: 7B          RTN          
+
+//   498: CASE 62:
+
+//   498: L00498:
+//   498: 60 19         L    25    
+//   500: A7          SP7          
+//   501: 60 20         L    32    
+//   503: A8          SP8          
+//   504: 60 17         L    23    
+//   506: A9          SP9          
+//   507: 5B F2      LLL$   982    "=>"
+//   509: 5B 3B      LLL$  1000    
+//   511: 03           K3          
+//   512: 7B          RTN          
+//   513: D0          NOP          
+
+//   514: 009F          Resolving word => 673
+
+//   516: CASE 45:
+
+//   516: L00516:
+//   516: 60 25         L    37    
+//   518: A7          SP7          
+//   519: 60 0F         L    15    
+//   521: A8          SP8          
+//   522: 5B EC      LLL$   988    ">"
+//   524: 5B 34      LLL$  1000    
+//   526: 03           K3          
+//   527: 7B          RTN          
+
+//   528: CASE 58:
+
+//   528: L00528:
+//   528: 60 32         L    50    
+//   530: A7          SP7          
+//   531: 60 36         L    54    
+//   533: A8          SP8          
+//   534: 5B E7      LLL$   990    "="
+//   536: 5B 2E      LLL$  1000    
+//   538: 03           K3          
+//   539: 7B          RTN          
+
+//   540: CASE 34:
+
+//   540: L00540:
+//   540: 10           L0          
+//   541: A3          SP3          
+//   542: 44 93      K4G1   147    G403 rch
+//   544: BA 94         J   566    
+
+//   546: L00546:
+//   546: 60 FF         L   255    
+//   548: 83          LP3          
+//   549: 3C 84       JNE   555    
+//   551: 60 22         L    34    
+//   553: 44 A0      K4G1   160    G416 synreport
+
+//   555: L00555:
+//   555: 11           L1          
+//   556: C3          AP3          
+//   557: A3          SP3          
+//   558: 44 98      K4G1   152    G408 rdstrch
+//   560: B8          ATC          
+//   561: A4          SP4          
+//   562: 50 0B       LG1    11    G267 wordv
+//   564: 83          LP3          
+//   565: B7         PBYT          
+
+//   566: L00566:
+//   566: 60 22         L    34    
+//   568: 50 1F       LG1    31    G287 ch
+//   570: 3C 66       JNE   546    
+//   572: 83          LP3          
+//   573: B8          ATC          
+//   574: A4          SP4          
+//   575: 50 0B       LG1    11    G267 wordv
+//   577: 10           L0          
+//   578: B7         PBYT          
+//   579: 13           L3          
+//   580: 51 C2       SG1   194    G450 symb
+//   582: BB 2F        J$   950    
+
+//   584: CASE 96:
+//   584: CASE 39:
+
+//   584: L00584:
+//   584: 43 93      K3G1   147    G403 rch
+//   586: 43 98      K3G1   152    G408 rdstrch
+//   588: 51 C3       SG1   195    G451 decval
+//   590: 11           L1          
+//   591: 51 C2       SG1   194    G450 symb
+//   593: 60 27         L    39    
+//   595: 50 1F       LG1    31    G287 ch
+//   597: 1C 88       JEQ   607    
+//   599: 60 60         L    96    
+//   601: 1C 84       JEQ   607    
+//   603: 60 22         L    34    
+//   605: 43 A0      K3G1   160    G416 synreport
+
+//   607: L00607:
+//   607: BB 22        J$   950    
+
+//   609: CASE 95:
+//   609: CASE 94:
+//   609: CASE 31:
+//   609: CASE 30:
+//   609: CASE 29:
+//   609: CASE 28:
+//   609: CASE 27:
+//   609: CASE 26:
+//   609: CASE 25:
+//   609: CASE 24:
+//   609: CASE 23:
+//   609: CASE 22:
+//   609: CASE 21:
+//   609: CASE 20:
+//   609: CASE 19:
+//   609: CASE 18:
+//   609: CASE 17:
+//   609: CASE 16:
+//   609: CASE 15:
+//   609: CASE 14:
+//   609: CASE 12:
+//   609: CASE 11:
+//   609: CASE 8:
+//   609: CASE 7:
+//   609: CASE 6:
+//   609: CASE 5:
+//   609: CASE 4:
+//   609: CASE 3:
+//   609: CASE 2:
+//   609: CASE 1:
+//   609: CASE 0:
+
+//   609: DEFAULT:
+
+//   609: L00609:
+//   609: 60 20         L    32    
+//   611: 51 1F       SG1    31    G287 ch
+//   613: 60 5E         L    94    
+//   615: 43 A0      K3G1   160    G416 synreport
+
+//   617: CASE 46:
+//   617: CASE -1:
+
+//   617: L00617:
+//   617: 50 CB       LG1   203    G459 getp
+//   619: 3E 8D      JNE0   634    
+//   621: 60 5A         L    90    
+//   623: 51 C2       SG1   194    G450 symb
+//   625: BA 85         J   632    
+//   627: D0          NOP          
+
+//   628: 0146          Resolving word => 954
+//   630: 0172          Resolving word => 1000
+
+//   632: L00632:
+//   632: BB 16        J$   950    
+
+//   634: L00634:
+//   634: 23 47       K3G    71    G071 ENDREAD
+//   636: 10           L0          
+//   637: 51 CF       SG1   207    G463 skipnode
+//   639: 50 CB       LG1   203    G459 getp
+//   641: B3           S3          
+//   642: 51 CB       SG1   203    G459 getp
+//   644: 53 0A       AG1    10    G266 getv
+//   646: 74           RV          
+//   647: 51 1E       SG1    30    G286 sourcestream
+//   649: 23 4F       K3G    79    G079 SELECTINPUT
+//   651: 50 CB       LG1   203    G459 getp
+//   653: D1           A1          
+//   654: 53 0A       AG1    10    G266 getv
+//   656: BA 82         J   660    
+
+//   658: FD81          Resolving word => 19
+
+//   660: L00660:
+//   660: 74           RV          
+//   661: 51 20       SG1    32    G288 linecount
+//   663: 50 CB       LG1   203    G459 getp
+//   665: D2           A2          
+//   666: 53 0A       AG1    10    G266 getv
+//   668: 74           RV          
+//   669: 51 1F       SG1    31    G287 ch
+//   671: BB B8        J$    19    
+
+//   673: L00673:
+//   673: 50 1F       LG1    31    G287 ch
+//   675: BA 87         J   684    
+//   677: D0          NOP          
+
+//   678: 0110          Resolving word => 950
+//   680: 011C          Resolving word => 964
+//   682: 011C          Resolving word => 966
+
+//   684: L00684:
+//   684: 93          SWL          
+//   685: D0
+//   686: 0080        len =  128
+//   688: FFB1    default =>   609
+//   690: FFFF       mink =    -1
+//   692: FFB5      label =>   617
+//   694: FFAB      label =>   609
+//   696: FFA9      label =>   609
+//   698: FFA7      label =>   609
+//   700: FFA5      label =>   609
+//   702: FFA3      label =>   609
+//   704: FFA1      label =>   609
+//   706: FF9F      label =>   609
+//   708: FF9D      label =>   609
+//   710: FF9B      label =>   609
+//   712: FD50      label =>    24
+//   714: FD4B      label =>    21
+//   716: FF95      label =>   609
+//   718: FF93      label =>   609
+//   720: FD45      label =>    21
+//   722: FF8F      label =>   609
+//   724: FF8D      label =>   609
+//   726: FF8B      label =>   609
+//   728: FF89      label =>   609
+//   730: FF87      label =>   609
+//   732: FF85      label =>   609
+//   734: FF83      label =>   609
+//   736: FF81      label =>   609
+//   738: FF7F      label =>   609
+//   740: FF7D      label =>   609
+//   742: FF7B      label =>   609
+//   744: FF79      label =>   609
+//   746: FF77      label =>   609
+//   748: FF75      label =>   609
+//   750: FF73      label =>   609
+//   752: FF71      label =>   609
+//   754: FF6F      label =>   609
+//   756: FF6D      label =>   609
+//   758: FD22      label =>    24
+//   760: FE5A      label =>   338
+//   762: FF22      label =>   540
+//   764: FDEE      label =>   234
+//   766: FD58      label =>    86
+//   768: FE57      label =>   343
+//   770: FE44      label =>   326
+//   772: FF44      label =>   584
+//   774: FDD8      label =>   222
+//   776: FDDC      label =>   228
+//   778: FE53      label =>   349
+//   780: FE23      label =>   303
+//   782: FE27      label =>   309
+//   784: FEF4      label =>   516
+//   786: FF57      label =>   617
+//   788: FE76      label =>   394
+//   790: FD0C      label =>    34
+//   792: FD0A      label =>    34
+//   794: FD08      label =>    34
+//   796: FD06      label =>    34
+//   798: FD04      label =>    34
+//   800: FD02      label =>    34
+//   802: FD00      label =>    34
+//   804: FCFE      label =>    34
+//   806: FCFC      label =>    34
+//   808: FCFA      label =>    34
+//   810: FEE6      label =>   528
+//   812: FE0F      label =>   315
+//   814: FEB5      label =>   483
+//   816: FE1C      label =>   332
+//   818: FEC0      label =>   498
+//   820: FDF5      label =>   297
+//   822: FE0B      label =>   321
+//   824: FCF1      label =>    41
+//   826: FCEF      label =>    41
+//   828: FCED      label =>    41
+//   830: FCEB      label =>    41
+//   832: FCE9      label =>    41
+//   834: FCE7      label =>    41
+//   836: FCE5      label =>    41
+//   838: FCE3      label =>    41
+//   840: FCE1      label =>    41
+//   842: FCDF      label =>    41
+//   844: FCDD      label =>    41
+//   846: FCDB      label =>    41
+//   848: FCD9      label =>    41
+//   850: FCD7      label =>    41
+//   852: FCD5      label =>    41
+//   854: FCD3      label =>    41
+//   856: FCD1      label =>    41
+//   858: FCCF      label =>    41
+//   860: FCCD      label =>    41
+//   862: FCCB      label =>    41
+//   864: FCC9      label =>    41
+//   866: FCC7      label =>    41
+//   868: FCC5      label =>    41
+//   870: FCC3      label =>    41
+//   872: FCC1      label =>    41
+//   874: FCBF      label =>    41
+//   876: FD72      label =>   222
+//   878: FE66      label =>   468
+//   880: FD74      label =>   228
+//   882: FEEF      label =>   609
+//   884: FEED      label =>   609
+//   886: FED2      label =>   584
+//   888: FCB1      label =>    41
+//   890: FCAF      label =>    41
+//   892: FCAD      label =>    41
+//   894: FCAB      label =>    41
+//   896: FCA9      label =>    41
+//   898: FCA7      label =>    41
+//   900: FCA5      label =>    41
+//   902: FCA3      label =>    41
+//   904: FCA1      label =>    41
+//   906: FC9F      label =>    41
+//   908: FC9D      label =>    41
+//   910: FC9B      label =>    41
+//   912: FC99      label =>    41
+//   914: FC97      label =>    41
+//   916: FC95      label =>    41
+//   918: FC93      label =>    41
+//   920: FC91      label =>    41
+//   922: FC8F      label =>    41
+//   924: FC8D      label =>    41
+//   926: FC8B      label =>    41
+//   928: FC89      label =>    41
+//   930: FC87      label =>    41
+//   932: FC85      label =>    41
+//   934: FC83      label =>    41
+//   936: FC81      label =>    41
+//   938: FC7F      label =>    41
+//   940: FC98      label =>    68
+//   942: FDB5      label =>   355
+//   944: FC9D      label =>    77
+//   946: FE16      label =>   456
+//   948: BB 2E        J$    19    
+
+//   950: L00950:
+//   950: 43 93      K3G1   147    G403 rch
+//   952: 7B          RTN          
+//   953: D0          NOP          
+
+//   954: 09 String: "()$<>[]{}"
+//   954: 09 28 29 24 3C 3E 5B 5D 7B 7D 
+
+//   964: 01 String: "|"
+//   964: 01 7C 
+
+//   966: 03 String: "\/**"
+//   966: 03 5C 2F 2A 
+
+//   970: 01 String: "="
+//   970: 01 3D 
+
+//   972: FFFE          Resolving word => 970
+
+//   974: 02 String: "/="
+//   974: 02 2F 3D 
+
+//   978: 02 String: "=<"
+//   978: 02 3D 3C 
+
+//   982: 02 String: "=>"
+//   982: 02 3D 3E 
+
+//   986: FFF4          Resolving word => 974
+
+//   988: 01 String: ">"
+//   988: 01 3E 
+
+//   990: 01 String: "="
+//   990: 01 3D 
+
+//   992: FFF2          Resolving word => 978
+//   994: FFF4          Resolving word => 982
+//   996: FFF8          Resolving word => 988
+//   998: FFF8          Resolving word => 990
+
+//  1000: NON GLOBAL ENTRY          multichar
+
+//  1000: L01000:
+
+//  1000: 40 03       LLP     3    
+//  1002: AE         SP14          
+//  1003: B5          XCH          
+//  1004: 10           L0          
+//  1005: B6         GBYT          
+//  1006: B0         SP16          
+//  1007: 11           L1          
+//  1008: AF         SP15          
+//  1009: 50 93       LG1   147    G403 rch
+//  1011: 20 11         K    17    
+//  1013: BA 90         J  1031    
+
+//  1015: L01015:
+//  1015: 83          LP3          
+//  1016: 8F         LP15          
+//  1017: B6         GBYT          
+//  1018: 50 1F       LG1    31    G287 ch
+//  1020: 3C 86       JNE  1028    
+//  1022: 50 93       LG1   147    G403 rch
+//  1024: 20 11         K    17    
+//  1026: BA 87         J  1035    
+
+//  1028: L01028:
+//  1028: 8F         LP15          
+//  1029: D1           A1          
+//  1030: AF         SP15          
+
+//  1031: L01031:
+//  1031: 8F         LP15          
+//  1032: 90         LP16          
+//  1033: 9C 6C       JLE  1015    
+
+//  1035: L01035:
+//  1035: 8E         LP14          
+//  1036: C0 0F        AP    15    
+//  1038: 74           RV          
+//  1039: 51 C2       SG1   194    G450 symb
+//  1041: 7B          RTN          
+
+//  1042: FC01          Resolving word => 19
+
+//  1044: 0000      Ginit end mark
+//  1046: 0190 000C Init  G400 = 16  nextsymb
+//  1050: 01CF      Highest Global  G463 skipnode
+
+//  1052: 03E8 0166                HUNK    size=358
+//  1056: 0166
+//  1058: FDDF                     Section name: SYN2   
+//  1060: 07 53 59 4E 32 20 20 20
+
+//  1068: GLOBAL ENTRY             G401 lookupword
+//  1068: 50 0B       LG1    11    G267 wordv
+//  1070: 10           L0          
+//  1071: B6         GBYT          
+//  1072: A3          SP3          
+//  1073: 11           L1          
+//  1074: A4          SP4          
+//  1075: 83          LP3          
+//  1076: A5          SP5          
+//  1077: BA 8F         J  1094    
+
+//  1079: L01079:
+//  1079: 83          LP3          
+//  1080: C3          AP3          
+//  1081: C3          AP3          
+//  1082: A6          SP6          
+//  1083: 50 0B       LG1    11    G267 wordv
+//  1085: 84          LP4          
+//  1086: B6         GBYT          
+//  1087: 27 3B       K7G    59    G059 CAPCH
+//  1089: C6          AP6          
+//  1090: A3          SP3          
+//  1091: 11           L1          
+//  1092: C4          AP4          
+//  1093: A4          SP4          
+
+//  1094: L01094:
+//  1094: 84          LP4          
+//  1095: 85          LP5          
+//  1096: 9C 6D       JLE  1079    
+//  1098: 60 7F         L   127    
+//  1100: 83          LP3          
+//  1101: 58          AND          
+//  1102: A3          SP3          
+//  1103: 10           L0          
+//  1104: A4          SP4          
+//  1105: 50 09       LG1     9    G265 nametable
+//  1107: D6         RVP3          
+//  1108: 51 C4       SG1   196    G452 wordnode
+//  1110: BA 84         J  1116    
+
+//  1112: L01112:
+//  1112: 4E C4      L1G1   196    G452 wordnode
+//  1114: 51 C4       SG1   196    G452 wordnode
+
+//  1116: L01116:
+//  1116: 50 C4       LG1   196    G452 wordnode
+//  1118: 1E 89      JEQ0  1129    
+//  1120: D2           A2          
+//  1121: 50 0B       LG1    11    G267 wordv
+//  1123: A9          SP9          
+//  1124: B5          XCH          
+//  1125: 45 B0      K5G1   176    G432 compstring
+//  1127: 3E 6F      JNE0  1112    
+
+//  1129: L01129:
+//  1129: 50 C4       LG1   196    G452 wordnode
+//  1131: 3E B0      JNE0  1181    
+//  1133: 50 0B       LG1    11    G267 wordv
+//  1135: 10           L0          
+//  1136: B6         GBYT          
+//  1137: 11           L1          
+//  1138: 57          RSH          
+//  1139: A5          SP5          
+//  1140: D2           A2          
+//  1141: 46 99      K6G1   153    G409 newvec
+//  1143: 51 C4       SG1   196    G452 wordnode
+//  1145: 12           L2          
+//  1146: 42 C4      S0G1   196    G452 wordnode
+//  1148: 50 09       LG1     9    G265 nametable
+//  1150: D6         RVP3          
+//  1151: 50 C4       LG1   196    G452 wordnode
+//  1153: 95          ST1          
+//  1154: 10           L0          
+//  1155: A6          SP6          
+//  1156: 85          LP5          
+//  1157: A7          SP7          
+//  1158: BA 8C         J  1172    
+
+//  1160: L01160:
+//  1160: 50 0B       LG1    11    G267 wordv
+//  1162: D9         RVP6          
+//  1163: A8          SP8          
+//  1164: 12           L2          
+//  1165: C6          AP6          
+//  1166: 53 C4       AG1   196    G452 wordnode
+//  1168: 94           ST          
+//  1169: 11           L1          
+//  1170: C6          AP6          
+//  1171: A6          SP6          
+
+//  1172: L01172:
+//  1172: 86          LP6          
+//  1173: 87          LP7          
+//  1174: 9C 70       JLE  1160    
+//  1176: 50 C4       LG1   196    G452 wordnode
+//  1178: 50 09       LG1     9    G265 nametable
+//  1180: 98         STP3          
+
+//  1181: L01181:
+//  1181: 4D C4      L0G1   196    G452 wordnode
+//  1183: 7B          RTN          
+
+//  1184: GLOBAL ENTRY             G432 compstring
+//  1184: 10           L0          
+//  1185: B6         GBYT          
+//  1186: A5          SP5          
+//  1187: 84          LP4          
+//  1188: 10           L0          
+//  1189: B6         GBYT          
+//  1190: 85          LP5          
+//  1191: 1C 83       JEQ  1196    
+//  1193: 12           L2          
+//  1194: BA 9F         J  1227    
+
+//  1196: L01196:
+//  1196: 11           L1          
+//  1197: A6          SP6          
+//  1198: 85          LP5          
+//  1199: A7          SP7          
+//  1200: BA 94         J  1222    
+
+//  1202: L01202:
+//  1202: 83          LP3          
+//  1203: 86          LP6          
+//  1204: B6         GBYT          
+//  1205: 28 3B       K8G    59    G059 CAPCH
+//  1207: A8          SP8          
+//  1208: 84          LP4          
+//  1209: 86          LP6          
+//  1210: B6         GBYT          
+//  1211: 29 3B       K9G    59    G059 CAPCH
+//  1213: 88          LP8          
+//  1214: 1C 83       JEQ  1219    
+//  1216: 12           L2          
+//  1217: BA 88         J  1227    
+
+//  1219: L01219:
+//  1219: 11           L1          
+//  1220: C6          AP6          
+//  1221: A6          SP6          
+
+//  1222: L01222:
+//  1222: 86          LP6          
+//  1223: 87          LP7          
+//  1224: 9C 68       JLE  1202    
+//  1226: 10           L0          
+
+//  1227: L01227:
+//  1227: 7B          RTN          
+
+//  1228: GLOBAL ENTRY             G402 declsyswords
+//  1228: 5A 92       LLL  1248    
+//  1230: 51 C2       SG1   194    G450 symb
+//  1232: 5B E7      LLL$  1370    "AND/ABS/BE/BREAK/BY/CASE/DO/DEFAULT/EQ/EQV/ELSE/ENDCASE/FALSE/FOR/FINISH/GOTO/GE/GR/GT/GLOBAL/GET/IF/INTO/LET/LV/LE/LS/LT/LOGOR/LOGAND/LOOP/LSHIFT//"
+//  1234: 5B E7      LLL$  1702    
+//  1236: 03           K3          
+//  1237: 5B E6      LLL$  1520    "MANIFEST/NE/NIL/NOT/NEQV/NEEDS/OR/RESULTIS/RETURN/REM/RSHIFT/RV/REPEAT/REPEATWHILE/REPEATUNTIL/SWITCHON/STATIC/SECTION/TO/TEST/TRUE/THEN/TABLE/UNTIL/UNLESS/VEC/VALOF/WHILE/$//"
+//  1239: 5B E4      LLL$  1702    
+//  1241: 03           K3          
+//  1242: 50 C4       LG1   196    G452 wordnode
+//  1244: 51 C9       SG1   201    G457 nulltag
+//  1246: 7B          RTN          
+//  1247: D0          NOP          
+
+//  1248: L01248:
+
+//  1248: 0028       DATA     40
+//  1250: 0013       DATA     19
+//  1252: 0059       DATA     89
+//  1254: 0042       DATA     66
+//  1256: 0064       DATA    100
+//  1258: 0047       DATA     71
+//  1260: 0065       DATA    101
+//  1262: 0048       DATA     72
+//  1264: 0014       DATA     20
+//  1266: 0023       DATA     35
+//  1268: 0066       DATA    102
+//  1270: 0045       DATA     69
+//  1272: 0005       DATA      5
+//  1274: 0038       DATA     56
+//  1276: 0044       DATA     68
+//  1278: 0034       DATA     52
+//  1280: 0019       DATA     25
+//  1282: 0017       DATA     23
+//  1284: 0017       DATA     23
+//  1286: 004C       DATA     76
+//  1288: 005D       DATA     93
+//  1290: 0039       DATA     57
+//  1292: 0062       DATA     98
+//  1294: 004A       DATA     74
+//  1296: 0007       DATA      7
+//  1298: 0018       DATA     24
+//  1300: 0016       DATA     22
+//  1302: 0016       DATA     22
+//  1304: 0022       DATA     34
+//  1306: 0021       DATA     33
+//  1308: 0041       DATA     65
+//  1310: 001F       DATA     31
+//  1312: 004B       DATA     75
+//  1314: 0015       DATA     21
+//  1316: 0010       DATA     16
+//  1318: 001E       DATA     30
+//  1320: 0024       DATA     36
+//  1322: 0030       DATA     48
+//  1324: 0066       DATA    102
+//  1326: 0035       DATA     53
+//  1328: 0043       DATA     67
+//  1330: 000D       DATA     13
+//  1332: 0020       DATA     32
+//  1334: 0008       DATA      8
+//  1336: 003D       DATA     61
+//  1338: 003E       DATA     62
+//  1340: 003F       DATA     63
+//  1342: 0046       DATA     70
+//  1344: 004F       DATA     79
+//  1346: 0031       DATA     49
+//  1348: 0063       DATA     99
+//  1350: 0037       DATA     55
+//  1352: 0004       DATA      4
+//  1354: 0065       DATA    101
+//  1356: 0027       DATA     39
+//  1358: 003C       DATA     60
+//  1360: 003A       DATA     58
+//  1362: 0067       DATA    103
+//  1364: 0006       DATA      6
+//  1366: 003B       DATA     59
+//  1368: 0000       DATA      0
+
+//  1370: 94 String: "AND/ABS/BE/BREAK/BY/CASE/DO/DEFAULT/EQ/EQV/ELSE/ENDCASE/FALSE/FOR/FINISH/GOTO/GE/GR/GT/GLOBAL/GET/IF/INTO/LET/LV/LE/LS/LT/LOGOR/LOGAND/LOOP/LSHIFT//"
+//  1370: 94 41 4E 44 2F 41 42 53 2F 42 45 2F 42 52 45 41 
+//  1386: 4B 2F 42 59 2F 43 41 53 45 2F 44 4F 2F 44 45 46 
+//  1402: 41 55 4C 54 2F 45 51 2F 45 51 56 2F 45 4C 53 45 
+//  1418: 2F 45 4E 44 43 41 53 45 2F 46 41 4C 53 45 2F 46 
+//  1434: 4F 52 2F 46 49 4E 49 53 48 2F 47 4F 54 4F 2F 47 
+//  1450: 45 2F 47 52 2F 47 54 2F 47 4C 4F 42 41 4C 2F 47 
+//  1466: 45 54 2F 49 46 2F 49 4E 54 4F 2F 4C 45 54 2F 4C 
+//  1482: 56 2F 4C 45 2F 4C 53 2F 4C 54 2F 4C 4F 47 4F 52 
+//  1498: 2F 4C 4F 47 41 4E 44 2F 4C 4F 4F 50 2F 4C 53 48 
+//  1514: 49 46 54 2F 2F 
+
+//  1520: AF String: "MANIFEST/NE/NIL/NOT/NEQV/NEEDS/OR/RESULTIS/RETURN/REM/RSHIFT/RV/REPEAT/REPEATWHILE/REPEATUNTIL/SWITCHON/STATIC/SECTION/TO/TEST/TRUE/THEN/TABLE/UNTIL/UNLESS/VEC/VALOF/WHILE/$//"
+//  1520: AF 4D 41 4E 49 46 45 53 54 2F 4E 45 2F 4E 49 4C 
+//  1536: 2F 4E 4F 54 2F 4E 45 51 56 2F 4E 45 45 44 53 2F 
+//  1552: 4F 52 2F 52 45 53 55 4C 54 49 53 2F 52 45 54 55 
+//  1568: 52 4E 2F 52 45 4D 2F 52 53 48 49 46 54 2F 52 56 
+//  1584: 2F 52 45 50 45 41 54 2F 52 45 50 45 41 54 57 48 
+//  1600: 49 4C 45 2F 52 45 50 45 41 54 55 4E 54 49 4C 2F 
+//  1616: 53 57 49 54 43 48 4F 4E 2F 53 54 41 54 49 43 2F 
+//  1632: 53 45 43 54 49 4F 4E 2F 54 4F 2F 54 45 53 54 2F 
+//  1648: 54 52 55 45 2F 54 48 45 4E 2F 54 41 42 4C 45 2F 
+//  1664: 55 4E 54 49 4C 2F 55 4E 4C 45 53 53 2F 56 45 43 
+//  1680: 2F 56 41 4C 4F 46 2F 57 48 49 4C 45 2F 24 2F 2F 
+
+//  1696: FEBA          Resolving word => 1370
+//  1698: 0004          Resolving word => 1702
+//  1700: FF4C          Resolving word => 1520
+
+//  1702: L01702:
+
+//  1702: 11           L1          
+//  1703: A4          SP4          
+//  1704: 10           L0          
+//  1705: A5          SP5          
+
+//  1706: L01706:
+//  1706: 83          LP3          
+//  1707: 84          LP4          
+//  1708: B6         GBYT          
+//  1709: A6          SP6          
+//  1710: 60 2F         L    47    
+//  1712: 3C 9A       JNE  1740    
+//  1714: 85          LP5          
+//  1715: 3E 81      JNE0  1718    
+//  1717: 7B          RTN          
+
+//  1718: L01718:
+//  1718: 85          LP5          
+//  1719: B8          ATC          
+//  1720: A7          SP7          
+//  1721: 50 0B       LG1    11    G267 wordv
+//  1723: 10           L0          
+//  1724: B7         PBYT          
+//  1725: 47 91      K7G1   145    G401 lookupword
+//  1727: 4D C2      L0G1   194    G450 symb
+//  1729: 42 C4      S0G1   196    G452 wordnode
+//  1731: 50 C2       LG1   194    G450 symb
+//  1733: D1           A1          
+//  1734: 51 C2       SG1   194    G450 symb
+//  1736: 10           L0          
+//  1737: A5          SP5          
+//  1738: BA 8A         J  1750    
+
+//  1740: L01740:
+//  1740: 11           L1          
+//  1741: C5          AP5          
+//  1742: A5          SP5          
+//  1743: 86          LP6          
+//  1744: B8          ATC          
+//  1745: A7          SP7          
+//  1746: 50 0B       LG1    11    G267 wordv
+//  1748: 85          LP5          
+//  1749: B7         PBYT          
+
+//  1750: L01750:
+//  1750: 11           L1          
+//  1751: C4          AP4          
+//  1752: A4          SP4          
+//  1753: BA 4F         J  1706    
+//  1755: D0          NOP          
+
+//  1756: 0000      Ginit end mark
+//  1758: 0191 000C Init  G401 = 1068  lookupword
+//  1762: 01B0 0080 Init  G432 = 1184  compstring
+//  1766: 0192 00AC Init  G402 = 1228  declsyswords
+//  1770: 01C9      Highest Global  G457 nulltag
+
+//  1772: 03E8 0143                HUNK    size=323
+//  1776: 0143
+//  1778: FDDF                     Section name: SYN3   
+//  1780: 07 53 59 4E 33 20 20 20
+
+//  1788: GLOBAL ENTRY             G403 rch
+
+//  1788: L01788:
+//  1788: 23 4C       K3G    76    G076 RDCH
+//  1790: 51 1F       SG1    31    G287 ch
+//  1792: 60 20         L    32    
+//  1794: BC A5       JGE  1833    
+//  1796: B5          XCH          
+//  1797: 1A          L10          
+//  1798: 1C 8A       JEQ  1810    
+//  1800: B5          XCH          
+//  1801: 60 0C         L    12    
+//  1803: 1C 85       JEQ  1810    
+//  1805: B5          XCH          
+//  1806: 60 0D         L    13    
+//  1808: 3C 8A       JNE  1820    
+
+//  1810: L01810:
+//  1810: 1A          L10          
+//  1811: 51 1F       SG1    31    G287 ch
+//  1813: 50 20       LG1    32    G288 linecount
+//  1815: D1           A1          
+//  1816: 51 20       SG1    32    G288 linecount
+//  1818: BA 8D         J  1833    
+
+//  1820: L01820:
+//  1820: 50 1F       LG1    31    G287 ch
+//  1822: 5E 89      JLS0  1833    
+//  1824: 19           L9          
+//  1825: 1C 86       JEQ  1833    
+//  1827: 50 1F       LG1    31    G287 ch
+//  1829: 1E 82      JEQ0  1833    
+//  1831: BA 53         J  1788    
+
+//  1833: L01833:
+//  1833: 50 C7       LG1   199    G455 chcount
+//  1835: D1           A1          
+//  1836: 51 C7       SG1   199    G455 chcount
+//  1838: 60 3F         L    63    
+//  1840: 58          AND          
+//  1841: 53 0D       AG1    13    G269 chbuf
+//  1843: 50 1F       LG1    31    G287 ch
+//  1845: B5          XCH          
+//  1846: 94           ST          
+//  1847: 7B          RTN          
+
+//  1848: GLOBAL ENTRY             G404 wrchbuf
+//  1848: 5A A2       LLL  1884    "*n..."
+//  1850: 23 5E       K3G    94    G094 WRITES
+//  1852: 0E 3F        LM    63    
+//  1854: 53 C7       AG1   199    G455 chcount
+//  1856: A3          SP3          
+//  1857: 50 C7       LG1   199    G455 chcount
+//  1859: A4          SP4          
+//  1860: BA 8F         J  1877    
+
+//  1862: L01862:
+//  1862: 60 3F         L    63    
+//  1864: 83          LP3          
+//  1865: 58          AND          
+//  1866: 53 0D       AG1    13    G269 chbuf
+//  1868: 74           RV          
+//  1869: A5          SP5          
+//  1870: 9E 82      JLE0  1874    
+//  1872: 26 52       K6G    82    G082 WRCH
+
+//  1874: L01874:
+//  1874: 11           L1          
+//  1875: C3          AP3          
+//  1876: A3          SP3          
+
+//  1877: L01877:
+//  1877: 83          LP3          
+//  1878: 84          LP4          
+//  1879: 9C 6D       JLE  1862    
+//  1881: 23 54       K3G    84    G084 NEWLINE
+//  1883: 7B          RTN          
+
+//  1884: 04 String: "*n..."
+//  1884: 04 0A 2E 2E 2E 
+
+//  1890: GLOBAL ENTRY             G405 rdtag
+//  1890: 11           L1          
+//  1891: A4          SP4          
+//  1892: 83          LP3          
+//  1893: B8          ATC          
+//  1894: A5          SP5          
+//  1895: 50 0B       LG1    11    G267 wordv
+//  1897: 84          LP4          
+//  1898: B7         PBYT          
+
+//  1899: L01899:
+//  1899: 60 41         L    65    
+//  1901: 50 1F       LG1    31    G287 ch
+//  1903: 7C 84       JGR  1909    
+//  1905: 60 5A         L    90    
+//  1907: 9C 9C       JLE  1937    
+
+//  1909: L01909:
+//  1909: 60 61         L    97    
+//  1911: 50 1F       LG1    31    G287 ch
+//  1913: 7C 84       JGR  1919    
+//  1915: 60 7A         L   122    
+//  1917: 9C 92       JLE  1937    
+
+//  1919: L01919:
+//  1919: 60 30         L    48    
+//  1921: 50 1F       LG1    31    G287 ch
+//  1923: 7C 84       JGR  1929    
+//  1925: 60 39         L    57    
+//  1927: 9C 88       JLE  1937    
+
+//  1929: L01929:
+//  1929: 60 2E         L    46    
+//  1931: 50 1F       LG1    31    G287 ch
+//  1933: 1C 82       JEQ  1937    
+//  1935: BA 8F         J  1952    
+
+//  1937: L01937:
+//  1937: 11           L1          
+//  1938: C4          AP4          
+//  1939: A4          SP4          
+//  1940: 50 1F       LG1    31    G287 ch
+//  1942: B8          ATC          
+//  1943: A5          SP5          
+//  1944: 50 0B       LG1    11    G267 wordv
+//  1946: 84          LP4          
+//  1947: B7         PBYT          
+//  1948: 45 93      K5G1   147    G403 rch
+//  1950: BA 4B         J  1899    
+
+//  1952: L01952:
+//  1952: 84          LP4          
+//  1953: B8          ATC          
+//  1954: A5          SP5          
+//  1955: 50 0B       LG1    11    G267 wordv
+//  1957: 10           L0          
+//  1958: B7         PBYT          
+//  1959: 7B          RTN          
+
+//  1960: GLOBAL ENTRY             G406 performget
+//  1960: 10           L0          
+//  1961: A3          SP3          
+//  1962: 44 90      K4G1   144    G400 nextsymb
+//  1964: 13           L3          
+//  1965: 50 C2       LG1   194    G450 symb
+//  1967: 3C 87       JNE  1976    
+//  1969: 50 CB       LG1   203    G459 getp
+//  1971: D2           A2          
+//  1972: 60 14         L    20    
+//  1974: 9C 84       JLE  1980    
+
+//  1976: L01976:
+//  1976: 60 61         L    97    
+//  1978: 44 A0      K4G1   160    G416 synreport
+
+//  1980: L01980:
+//  1980: 30 FF        LG   255    G255 maxoption
+//  1982: 3E A4      JNE0  2020    
+//  1984: 10           L0          
+//  1985: A8          SP8          
+//  1986: 50 0B       LG1    11    G267 wordv
+//  1988: 24 3C       K4G    60    G060 FINDFILE
+//  1990: 3E 9C      JNE0  2020    
+//  1992: 50 0B       LG1    11    G267 wordv
+//  1994: 24 94       K4G   148    G148 FINDSTFILE
+//  1996: 3E 96      JNE0  2020    
+//  1998: 10           L0          
+//  1999: A8          SP8          
+//  2000: A9          SP9          
+//  2001: 50 0B       LG1    11    G267 wordv
+//  2003: 24 A9       K4G   169    G169 READ
+//  2005: 50 0B       LG1    11    G267 wordv
+//  2007: 24 94       K4G   148    G148 FINDSTFILE
+//  2009: A4          SP4          
+//  2010: 1E 88      JEQ0  2020    
+//  2012: 0F          LM1          
+//  2013: D7         RVP4          
+//  2014: 61 FF 7F     LW 32767    
+//  2017: 58          AND          
+//  2018: 0F          LM1          
+//  2019: 99         STP4          
+
+//  2020: L02020:
+//  2020: 50 0B       LG1    11    G267 wordv
+//  2022: 24 42       K4G    66    G066 FINDINPUT
+//  2024: A3          SP3          
+//  2025: 3E 87      JNE0  2034    
+//  2027: 50 0B       LG1    11    G267 wordv
+//  2029: A8          SP8          
+//  2030: 60 60         L    96    
+//  2032: 44 A0      K4G1   160    G416 synreport
+
+//  2034: L02034:
+//  2034: 50 0A       LG1    10    G266 getv
+//  2036: 53 CB       AG1   203    G459 getp
+//  2038: 50 1E       LG1    30    G286 sourcestream
+//  2040: B5          XCH          
+//  2041: 94           ST          
+//  2042: 50 CB       LG1   203    G459 getp
+//  2044: D1           A1          
+//  2045: 53 0A       AG1    10    G266 getv
+//  2047: 50 20       LG1    32    G288 linecount
+//  2049: B5          XCH          
+//  2050: 94           ST          
+//  2051: 50 CB       LG1   203    G459 getp
+//  2053: D2           A2          
+//  2054: 53 0A       AG1    10    G266 getv
+//  2056: 50 1F       LG1    31    G287 ch
+//  2058: B5          XCH          
+//  2059: 94           ST          
+//  2060: 50 CB       LG1   203    G459 getp
+//  2062: D3           A3          
+//  2063: 51 CB       SG1   203    G459 getp
+//  2065: 11           L1          
+//  2066: 51 20       SG1    32    G288 linecount
+//  2068: 83          LP3          
+//  2069: 51 1E       SG1    30    G286 sourcestream
+//  2071: 24 4F       K4G    79    G079 SELECTINPUT
+//  2073: 44 93      K4G1   147    G403 rch
+//  2075: 7B          RTN          
+
+//  2076: GLOBAL ENTRY             G407 readnumber
+//  2076: 50 1F       LG1    31    G287 ch
+//  2078: 5A A0       LLL  2112        value
+//  2080: 04           K4          
+//  2081: A4          SP4              d
+//  2082: 51 C3       SG1   195    G451 decval
+//  2084: 83          LP3          
+//  2085: 5C 84       JLS  2091    
+//  2087: 60 21         L    33    
+//  2089: 45 A0      K5G1   160    G416 synreport
+
+//  2091: L02091:
+//  2091: 45 93      K5G1   147    G403 rch
+//  2093: 50 1F       LG1    31    G287 ch
+//  2095: 5A 8F       LLL  2112        value
+//  2097: 05           K5          
+//  2098: A4          SP4          
+//  2099: 83          LP3          
+//  2100: 5C 81       JLS  2103    
+//  2102: 7B          RTN          
+
+//  2103: L02103:
+//  2103: 50 C3       LG1   195    G451 decval
+//  2105: 83          LP3          
+//  2106: 34          MUL          
+//  2107: C4          AP4          
+//  2108: 51 C3       SG1   195    G451 decval
+//  2110: BA 6B         J  2091    
+
+//  2112: L02112:    LET value(ch) =
+
+//  2112: 24 3B       K4G    59    G059 CAPCH
+//  2114: A4          SP4          
+//  2115: 60 30         L    48    
+//  2117: 5C 8A       JLS  2129    
+//  2119: B5          XCH          
+//  2120: 60 39         L    57    
+//  2122: 7C 85       JGR  2129    
+//  2124: 0E 30        LM    48    
+//  2126: C4          AP4          
+//  2127: BA 92         J  2147    
+
+//  2129: L02129:
+//  2129: 60 41         L    65    
+//  2131: 84          LP4          
+//  2132: 7C 8B       JGR  2145    
+//  2134: 60 46         L    70    
+//  2136: 7C 87       JGR  2145    
+//  2138: 0E 41        LM    65    
+//  2140: C4          AP4          
+//  2141: E0 0A         A    10    
+//  2143: BA 82         J  2147    
+
+//  2145: L02145:
+//  2145: 60 64         L   100    
+
+//  2147: L02147:
+//  2147: 7B          RTN          
+
+//  2148: GLOBAL ENTRY             G408 rdstrch
+
+//  2148: L02148:
+//  2148: 50 1F       LG1    31    G287 ch
+//  2150: A3          SP3          
+//  2151: 44 93      K4G1   147    G403 rch
+//  2153: 1A          L10          
+//  2154: 83          LP3          
+//  2155: 3C 84       JNE  2161    
+//  2157: 60 22         L    34    
+//  2159: 44 A0      K4G1   160    G416 synreport
+
+//  2161: L02161:
+//  2161: 60 2A         L    42    
+//  2163: 83          LP3          
+//  2164: 3D 70      JNE$  2347    
+//  2166: 1A          L10          
+//  2167: 50 1F       LG1    31    G287 ch
+//  2169: 1C 8D       JEQ  2184    
+//  2171: 60 20         L    32    
+//  2173: 1C 89       JEQ  2184    
+//  2175: B5          XCH          
+//  2176: 60 0D         L    13    
+//  2178: 1C 84       JEQ  2184    
+//  2180: B5          XCH          
+//  2181: 19           L9          
+//  2182: 3C A1       JNE  2217    
+
+//  2184: L02184:
+//  2184: 44 93      K4G1   147    G403 rch
+//  2186: 60 20         L    32    
+//  2188: 50 1F       LG1    31    G287 ch
+//  2190: 1C 78       JEQ  2184    
+//  2192: 1A          L10          
+//  2193: 1C 75       JEQ  2184    
+//  2195: B5          XCH          
+//  2196: 60 0D         L    13    
+//  2198: 1C 70       JEQ  2184    
+//  2200: B5          XCH          
+//  2201: 19           L9          
+//  2202: 1C 6C       JEQ  2184    
+//  2204: B5          XCH          
+//  2205: 60 2A         L    42    
+//  2207: 1C 84       JEQ  2213    
+//  2209: 60 22         L    34    
+//  2211: 44 A0      K4G1   160    G416 synreport
+
+//  2213: L02213:
+//  2213: 44 93      K4G1   147    G403 rch
+//  2215: BA 3B         J  2148    
+
+//  2217: L02217:
+//  2217: 50 1F       LG1    31    G287 ch
+//  2219: A3          SP3          
+//  2220: 24 3B       K4G    59    G059 CAPCH
+//  2222: 51 1F       SG1    31    G287 ch
+//  2224: 60 54         L    84    
+//  2226: 3C 82       JNE  2230    
+//  2228: 19           L9          
+//  2229: A3          SP3          
+
+//  2230: L02230:
+//  2230: 60 53         L    83    
+//  2232: 50 1F       LG1    31    G287 ch
+//  2234: 3C 83       JNE  2239    
+//  2236: 60 20         L    32    
+//  2238: A3          SP3          
+
+//  2239: L02239:
+//  2239: 60 4E         L    78    
+//  2241: 50 1F       LG1    31    G287 ch
+//  2243: 3C 82       JNE  2247    
+//  2245: 1A          L10          
+//  2246: A3          SP3          
+
+//  2247: L02247:
+//  2247: 60 45         L    69    
+//  2249: 50 1F       LG1    31    G287 ch
+//  2251: 3C 83       JNE  2256    
+//  2253: 60 1B         L    27    
+//  2255: A3          SP3          
+
+//  2256: L02256:
+//  2256: 60 42         L    66    
+//  2258: 50 1F       LG1    31    G287 ch
+//  2260: 3C 82       JNE  2264    
+//  2262: 18           L8          
+//  2263: A3          SP3          
+
+//  2264: L02264:
+//  2264: 60 43         L    67    
+//  2266: 50 1F       LG1    31    G287 ch
+//  2268: 3C 83       JNE  2273    
+//  2270: 60 0D         L    13    
+//  2272: A3          SP3          
+
+//  2273: L02273:
+//  2273: 60 50         L    80    
+//  2275: 50 1F       LG1    31    G287 ch
+//  2277: 3C 83       JNE  2282    
+//  2279: 60 0C         L    12    
+//  2281: A3          SP3          
+
+//  2282: L02282:
+//  2282: 60 58         L    88    
+//  2284: 50 1F       LG1    31    G287 ch
+//  2286: 1C 8E       JEQ  2302    
+//  2288: 60 4F         L    79    
+//  2290: 1C 8A       JEQ  2302    
+//  2292: B5          XCH          
+//  2293: 60 30         L    48    
+//  2295: 5C B0       JLS  2345    
+//  2297: B5          XCH          
+//  2298: 60 39         L    57    
+//  2300: 7C AB       JGR  2345    
+
+//  2302: L02302:
+//  2302: 18           L8          
+//  2303: A4          SP4          
+//  2304: 13           L3          
+//  2305: A5          SP5          
+//  2306: 60 4F         L    79    
+//  2308: 50 1F       LG1    31    G287 ch
+//  2310: 3C 82       JNE  2314    
+//  2312: 46 93      K6G1   147    G403 rch
+
+//  2314: L02314:
+//  2314: 60 58         L    88    
+//  2316: 50 1F       LG1    31    G287 ch
+//  2318: 3C 87       JNE  2327    
+//  2320: 60 10         L    16    
+//  2322: A4          SP4          
+//  2323: 12           L2          
+//  2324: A5          SP5          
+//  2325: 46 93      K6G1   147    G403 rch
+
+//  2327: L02327:
+//  2327: 85          LP5          
+//  2328: AA         SP10          
+//  2329: 84          LP4          
+//  2330: 5A 94       LLL  2352    
+//  2332: 06           K6          
+//  2333: A3          SP3          
+//  2334: 60 FF         L   255    
+//  2336: 9C 84       JLE  2342    
+//  2338: 60 22         L    34    
+//  2340: 46 A0      K6G1   160    G416 synreport
+
+//  2342: L02342:
+//  2342: 83          LP3          
+//  2343: BA 85         J  2350    
+
+//  2345: L02345:
+//  2345: 44 93      K4G1   147    G403 rch
+
+//  2347: L02347:
+//  2347: 83          LP3          
+//  2348: BA 80         J  2350    
+
+//  2350: L02350:
+//  2350: 7B          RTN          
+//  2351: D0          NOP          
+
+//  2352: L02352:    LET readoctalorhex(radix,digits) =
+
+//  2352: 10           L0          
+//  2353: A5          SP5          
+//  2354: 11           L1          
+//  2355: A6          SP6              i
+//  2356: 84          LP4          
+//  2357: A7          SP7          
+//  2358: BA 97         J  2383    
+
+//  2360: L02360:
+//  2360: 50 1F       LG1    31    G287 ch
+//  2362: 5B 0E      LLL$  2112        value
+//  2364: 08           K8          
+//  2365: A8          SP8          
+//  2366: 83          LP3          
+//  2367: 5C 84       JLS  2373    
+//  2369: 60 22         L    34    
+//  2371: 49 A0      K9G1   160    G416 synreport
+
+//  2373: L02373:
+//  2373: 83          LP3          
+//  2374: 85          LP5          
+//  2375: 34          MUL          
+//  2376: C8          AP8          
+//  2377: A5          SP5          
+//  2378: 49 93      K9G1   147    G403 rch
+//  2380: 11           L1          
+//  2381: C6          AP6          
+//  2382: A6          SP6          
+
+//  2383: L02383:
+//  2383: 86          LP6          
+//  2384: 87          LP7          
+//  2385: 9C 65       JLE  2360    
+//  2387: 85          LP5          
+//  2388: 7B          RTN          
+//  2389: D0          NOP          
+
+//  2390: FFD5          Resolving word => 2347
+//  2392: FEE8          Resolving word => 2112
+
+//  2394: 0000      Ginit end mark
+//  2396: 0193 000C Init  G403 = 1788  rch
+//  2400: 0194 0048 Init  G404 = 1848  wrchbuf
+//  2404: 0195 0072 Init  G405 = 1890  rdtag
+//  2408: 0196 00B8 Init  G406 = 1960  performget
+//  2412: 0197 012C Init  G407 = 2076  readnumber
+//  2416: 0198 0174 Init  G408 = 2148  rdstrch
+//  2420: 01CB      Highest Global  G459 getp
+
+//  2422: 03E8 02B7                HUNK    size=695
+//  2426: 02B7
+//  2428: FDDF                     Section name: SYN4   
+//  2430: 07 53 59 4E 34 20 20 20
+
+//  2438: GLOBAL ENTRY             G001 START
+//  2438: 10           L0          
+//  2439: A3          SP3          
+//  2440: 42 09      S0G1     9    G265 nametable
+//  2442: 50 09       LG1     9    G265 nametable
+//  2444: D1           A1          
+//  2445: A8          SP8          
+//  2446: 60 C0         L   192    
+//  2448: A9          SP9          
+//  2449: 50 09       LG1     9    G265 nametable
+//  2451: 24 24       K4G    36    G036 MOVE
+//  2453: 10           L0          
+//  2454: 51 C7       SG1   199    G455 chcount
+//  2456: 51 CB       SG1   203    G459 getp
+//  2458: 50 0C       LG1    12    G268 gett
+//  2460: 51 D0       SG1   208    G464 listp
+//  2462: 24 1B       K4G    27    G027 LEVEL
+//  2464: 51 00       SG1     0    G256 err.p
+//  2466: 5B FF      LLL$  2660    
+//  2468: 51 01       SG1     1    G257 err.l
+//  2470: 10           L0          
+//  2471: 51 CF       SG1   207    G463 skipnode
+//  2473: 60 81         L   129    
+//  2475: 24 1A       K4G    26    G026 GETVEC
+//  2477: 51 03       SG1     3    G259 blk
+//  2479: 10           L0          
+//  2480: 42 03      S0G1     3    G259 blk
+//  2482: 52 03      LLG1     3    G259 blk
+//  2484: 51 D2       SG1   210    G466 blklist
+//  2486: 60 81         L   129    
+//  2488: 53 03       AG1     3    G259 blk
+//  2490: 51 24       SG1    36    G292 blkt
+//  2492: 50 03       LG1     3    G259 blk
+//  2494: D1           A1          
+//  2495: 51 25       SG1    37    G293 blkp
+//  2497: 10           L0          
+//  2498: A8          SP8          
+//  2499: 11           L1          
+//  2500: 44 9B      K4G1   155    G411 list2
+//  2502: 51 27       SG1    39    G295 zeronode
+//  2504: 44 92      K4G1   146    G402 declsyswords
+//  2506: 44 93      K4G1   147    G403 rch
+//  2508: 0F          LM1          
+//  2509: 50 1F       LG1    31    G287 ch
+//  2511: 3C 83       JNE  2516    
+//  2513: 5B E9      LLL$  2660    
+//  2515: 9B         GOTO          
+
+//  2516: L02516:
+//  2516: 50 00       LG1     0    G256 err.p
+//  2518: 51 CD       SG1   205    G461 rec.p
+//  2520: 5A 82       LLL  2524    
+//  2522: 51 CE       SG1   206    G462 rec.l
+
+//  2524: 44 90      K4G1   144    G400 nextsymb    reclab:
+//  2526: BA C2         J  2594    
+
+//  2528: L02528:    LET rdsectionorneeds() =
+
+//  2528: 50 C2       LG1   194    G450 symb
+//  2530: A3          SP3          
+//  2531: 10           L0          
+//  2532: A4          SP4          
+//  2533: A5          SP5          
+//  2534: 46 90      K6G1   144    G400 nextsymb
+//  2536: 13           L3          
+//  2537: 50 C2       LG1   194    G450 symb
+//  2539: 1C 84       JEQ  2545    
+//  2541: 60 5F         L    95    
+//  2543: 46 A0      K6G1   160    G416 synreport
+
+//  2545: L02545:
+//  2545: 46 A9      K6G1   169    G425 rbexp
+//  2547: A4          SP4          
+//  2548: 60 31         L    49    
+//  2550: 83          LP3          
+//  2551: 3C 87       JNE  2560    
+//  2553: 11           L1          
+//  2554: C4          AP4          
+//  2555: AA         SP10          
+//  2556: 5A 98       LLL  2582    "Section %S*n"
+//  2558: 26 5A       K6G    90    G090 WRITEF
+
+//  2560: L02560:
+//  2560: 60 30         L    48    
+//  2562: 50 C2       LG1   194    G450 symb
+//  2564: 3C 85       JNE  2571    
+//  2566: 5A 58       LLL  2528    
+//  2568: 06           K6          
+//  2569: BA 82         J  2573    
+
+//  2571: L02571:
+//  2571: 46 A1      K6G1   161    G417 rdblockbody
+
+//  2573: L02573:
+//  2573: A5          SP5          
+//  2574: 84          LP4          
+//  2575: AA         SP10          
+//  2576: 85          LP5          
+//  2577: AB         SP11          
+//  2578: 83          LP3          
+//  2579: 46 9C      K6G1   156    G412 list3
+//  2581: 7B          RTN          
+
+//  2582: 0B String: "Section %S*n"
+//  2582: 0B 53 65 63 74 69 6F 6E 20 25 53 0A 
+
+//  2594: L02594:
+//  2594: 60 31         L    49    
+//  2596: 50 C2       LG1   194    G450 symb
+//  2598: 1C 84       JEQ  2604    
+//  2600: 60 30         L    48    
+//  2602: 3C 85       JNE  2609    
+
+//  2604: L02604:
+//  2604: 5A 32       LLL  2528    
+//  2606: 04           K4          
+//  2607: BA 82         J  2611    
+
+//  2609: L02609:
+//  2609: 44 A1      K4G1   161    G417 rdblockbody
+
+//  2611: L02611:
+//  2611: A3          SP3          
+//  2612: 60 5A         L    90    
+//  2614: 50 C2       LG1   194    G450 symb
+//  2616: 1C 84       JEQ  2622    
+//  2618: 60 63         L    99    
+//  2620: 44 A0      K4G1   160    G416 synreport
+
+//  2622: L02622:
+//  2622: BA 82         J  2626    
+
+//  2624: L02624:
+//  2624: 44 93      K4G1   147    G403 rch
+
+//  2626: L02626:
+//  2626: 1A          L10          
+//  2627: 50 1F       LG1    31    G287 ch
+//  2629: 1C 83       JEQ  2634    
+//  2631: 0F          LM1          
+//  2632: 3C 76       JNE  2624    
+
+//  2634: L02634:
+//  2634: 44 93      K4G1   147    G403 rch
+//  2636: 60 20         L    32    
+//  2638: 50 1F       LG1    31    G287 ch
+//  2640: 1C 78       JEQ  2634    
+//  2642: 19           L9          
+//  2643: 1C 75       JEQ  2634    
+//  2645: B5          XCH          
+//  2646: 1A          L10          
+//  2647: 1C 71       JEQ  2634    
+//  2649: B5          XCH          
+//  2650: 0F          LM1          
+//  2651: 1C 82       JEQ  2655    
+//  2653: 24 53       K4G    83    G083 UNRDCH
+
+//  2655: L02655:
+//  2655: 5A 85       LLL  2662    "Text read*n"
+//  2657: 24 5E       K4G    94    G094 WRITES
+//  2659: D0          NOP          
+
+//  2660: L02660:
+
+//  2660: 83          LP3          
+//  2661: 7B          RTN          
+
+//  2662: 0A String: "Text read*n"
+//  2662: 0A 54 65 78 74 20 72 65 61 64 0A 
+
+//  2674: GLOBAL ENTRY             G409 newvec
+//  2674: 53 25       AG1    37    G293 blkp
+//  2676: 50 24       LG1    36    G292 blkt
+//  2678: BC 87       JGE  2687    
+//  2680: 83          LP3          
+//  2681: 55          SUB          
+//  2682: B1           S1          
+//  2683: 51 24       SG1    36    G292 blkt
+//  2685: BA B3         J  2738    
+
+//  2687: L02687:
+//  2687: 83          LP3          
+//  2688: 60 0D         L    13    
+//  2690: 9C 92       JLE  2710    
+//  2692: 11           L1          
+//  2693: C3          AP3          
+//  2694: 24 1A       K4G    26    G026 GETVEC
+//  2696: A4          SP4          
+//  2697: 50 25       LG1    37    G293 blkp
+//  2699: B1           S1          
+//  2700: DC        ST0P4          
+//  2701: 84          LP4          
+//  2702: 42 D2      S0G1   210    G466 blklist
+//  2704: 84          LP4          
+//  2705: 51 D2       SG1   210    G466 blklist
+//  2707: D1           A1          
+//  2708: BA 9C         J  2738    
+
+//  2710: L02710:
+//  2710: 60 81         L   129    
+//  2712: 24 1A       K4G    26    G026 GETVEC
+//  2714: A4          SP4          
+//  2715: 10           L0          
+//  2716: DC        ST0P4          
+//  2717: 50 25       LG1    37    G293 blkp
+//  2719: B1           S1          
+//  2720: 51 D2       SG1   210    G466 blklist
+//  2722: 84          LP4          
+//  2723: 42 D2      S0G1   210    G466 blklist
+//  2725: 11           L1          
+//  2726: C4          AP4          
+//  2727: 51 25       SG1    37    G293 blkp
+//  2729: 60 81         L   129    
+//  2731: C4          AP4          
+//  2732: 83          LP3          
+//  2733: 55          SUB          
+//  2734: 51 24       SG1    36    G292 blkt
+//  2736: BA 80         J  2738    
+
+//  2738: L02738:
+//  2738: 7B          RTN          
+//  2739: D0          NOP          
+
+//  2740: GLOBAL ENTRY             G410 list1
+//  2740: 10           L0          
+//  2741: 44 99      K4G1   153    G409 newvec
+//  2743: A4          SP4          
+//  2744: 83          LP3          
+//  2745: DC        ST0P4          
+//  2746: 84          LP4          
+//  2747: 7B          RTN          
+
+//  2748: GLOBAL ENTRY             G411 list2
+//  2748: 11           L1          
+//  2749: 45 99      K5G1   153    G409 newvec
+//  2751: A5          SP5          
+//  2752: 83          LP3          
+//  2753: B5          XCH          
+//  2754: 94           ST          
+//  2755: 84          LP4          
+//  2756: 85          LP5          
+//  2757: 95          ST1          
+//  2758: 85          LP5          
+//  2759: 7B          RTN          
+
+//  2760: GLOBAL ENTRY             G412 list3
+//  2760: 12           L2          
+//  2761: 46 99      K6G1   153    G409 newvec
+//  2763: A6          SP6          
+//  2764: 83          LP3          
+//  2765: B5          XCH          
+//  2766: 94           ST          
+//  2767: 84          LP4          
+//  2768: 86          LP6          
+//  2769: 95          ST1          
+//  2770: 85          LP5          
+//  2771: 86          LP6          
+//  2772: 96          ST2          
+//  2773: 86          LP6          
+//  2774: 7B          RTN          
+//  2775: D0          NOP          
+
+//  2776: GLOBAL ENTRY             G413 list4
+//  2776: 13           L3          
+//  2777: 47 99      K7G1   153    G409 newvec
+//  2779: A7          SP7          
+//  2780: 83          LP3          
+//  2781: B5          XCH          
+//  2782: 94           ST          
+//  2783: 84          LP4          
+//  2784: 87          LP7          
+//  2785: 95          ST1          
+//  2786: 85          LP5          
+//  2787: 87          LP7          
+//  2788: 96          ST2          
+//  2789: 86          LP6          
+//  2790: 87          LP7          
+//  2791: 97          ST3          
+//  2792: 87          LP7          
+//  2793: 7B          RTN          
+
+//  2794: GLOBAL ENTRY             G414 list5
+//  2794: 14           L4          
+//  2795: 48 99      K8G1   153    G409 newvec
+//  2797: A8          SP8          
+//  2798: 83          LP3          
+//  2799: B5          XCH          
+//  2800: 94           ST          
+//  2801: 84          LP4          
+//  2802: 88          LP8          
+//  2803: 95          ST1          
+//  2804: 85          LP5          
+//  2805: 88          LP8          
+//  2806: 96          ST2          
+//  2807: 86          LP6          
+//  2808: 88          LP8          
+//  2809: 97          ST3          
+//  2810: 14           L4          
+//  2811: C8          AP8          
+//  2812: 87          LP7          
+//  2813: B5          XCH          
+//  2814: 94           ST          
+//  2815: 88          LP8          
+//  2816: 7B          RTN          
+//  2817: D0          NOP          
+
+//  2818: GLOBAL ENTRY             G415 list6
+//  2818: 15           L5          
+//  2819: 49 99      K9G1   153    G409 newvec
+//  2821: A9          SP9          
+//  2822: 83          LP3          
+//  2823: B5          XCH          
+//  2824: 94           ST          
+//  2825: 84          LP4          
+//  2826: 89          LP9          
+//  2827: 95          ST1          
+//  2828: 85          LP5          
+//  2829: 89          LP9          
+//  2830: 96          ST2          
+//  2831: 86          LP6          
+//  2832: 89          LP9          
+//  2833: 97          ST3          
+//  2834: 14           L4          
+//  2835: C9          AP9          
+//  2836: 87          LP7          
+//  2837: B5          XCH          
+//  2838: 94           ST          
+//  2839: 15           L5          
+//  2840: C9          AP9          
+//  2841: 88          LP8          
+//  2842: B5          XCH          
+//  2843: 94           ST          
+//  2844: 89          LP9          
+//  2845: 7B          RTN          
+
+//  2846: GLOBAL ENTRY             G431 makelist
+//  2846: 11           L1          
+//  2847: C4          AP4          
+//  2848: 45 99      K5G1   153    G409 newvec
+//  2850: A5          SP5          
+//  2851: 83          LP3          
+//  2852: B5          XCH          
+//  2853: 94           ST          
+//  2854: 84          LP4          
+//  2855: 85          LP5          
+//  2856: 95          ST1          
+//  2857: 12           L2          
+//  2858: C5          AP5          
+//  2859: AA         SP10          
+//  2860: 84          LP4          
+//  2861: AB         SP11          
+//  2862: 50 D0       LG1   208    G464 listp
+//  2864: 26 24       K6G    36    G036 MOVE
+//  2866: 85          LP5          
+//  2867: 7B          RTN          
+
+//  2868: GLOBAL ENTRY             G416 synreport
+//  2868: 10           L0          
+//  2869: A5          SP5          
+//  2870: BA F0         J  2984    
+
+//  2872: DEFAULT:
+
+//  2872: L02872:
+//  2872: 83          LP3          
+//  2873: A4          SP4          
+//  2874: 5B FA      LLL$  3254    "Error %N"
+//  2876: BB FA        J$  3118    
+
+//  2878: CASE 6:
+
+//  2878: L02878:
+//  2878: 5B FA      LLL$  3264    "$( expected"
+//  2880: BB F8        J$  3118    
+
+//  2882: CASE 7:
+
+//  2882: L02882:
+//  2882: 5B F9      LLL$  3276    "$) expected"
+//  2884: BB F6        J$  3118    
+
+//  2886: CASE 43:
+//  2886: CASE 40:
+//  2886: CASE 8:
+
+//  2886: L02886:
+//  2886: 5B F8      LLL$  3288    "Name expected"
+//  2888: BB F4        J$  3118    
+
+//  2890: CASE 9:
+
+//  2890: L02890:
+//  2890: 5B F7      LLL$  3302    "Untagged $) mismatch"
+//  2892: BB F2        J$  3118    
+
+//  2894: CASE 41:
+//  2894: CASE 19:
+//  2894: CASE 15:
+
+//  2894: L02894:
+//  2894: 5B F6      LLL$  3324    ") missing"
+//  2896: BB F0        J$  3118    
+
+//  2898: CASE 30:
+
+//  2898: L02898:
+//  2898: 5B F5      LLL$  3334    "Bad condition"
+//  2900: BB EE        J$  3118    
+
+//  2902: CASE 32:
+
+//  2902: L02902:
+//  2902: 5B F4      LLL$  3348    "Bad expression"
+//  2904: BB EC        J$  3118    
+
+//  2906: CASE 33:
+
+//  2906: L02906:
+//  2906: 5B F3      LLL$  3364    "Bad number"
+//  2908: BB EA        J$  3118    
+
+//  2910: CASE 34:
+
+//  2910: L02910:
+//  2910: 5B F2      LLL$  3406    "Bad string or character constant"
+//  2912: BB E8        J$  3118    
+
+//  2914: CASE 42:
+
+//  2914: L02914:
+//  2914: 5B F1      LLL$  3462    "Bad procedure heading"
+//  2916: BB E6        J$  3118    
+
+//  2918: CASE 45:
+//  2918: CASE 44:
+
+//  2918: L02918:
+//  2918: 5B F0      LLL$  3486    "Bad declaration"
+//  2920: BB E4        J$  3118    
+
+//  2922: CASE 50:
+
+//  2922: L02922:
+//  2922: 5B EF      LLL$  3502    "Unexpected :"
+//  2924: BB E2        J$  3118    
+
+//  2926: CASE 51:
+
+//  2926: L02926:
+//  2926: 5B EE      LLL$  3516    "Bad command"
+//  2928: BB E0        J$  3118    
+
+//  2930: CASE 54:
+
+//  2930: L02930:
+//  2930: 5B FE      LLL$  3528    "ELSE expected"
+//  2932: BB DE        J$  3118    
+
+//  2934: CASE 58:
+//  2934: CASE 57:
+
+//  2934: L02934:
+//  2934: 5B FD      LLL$  3542    "Bad FOR loop"
+//  2936: BB DC        J$  3118    
+
+//  2938: CASE 60:
+
+//  2938: L02938:
+//  2938: 5B FC      LLL$  3556    "INTO expected"
+//  2940: BB DA        J$  3118    
+
+//  2942: CASE 62:
+//  2942: CASE 61:
+
+//  2942: L02942:
+//  2942: 5B FB      LLL$  3570    ": expected"
+//  2944: BB D8        J$  3118    
+
+//  2946: CASE 63:
+
+//  2946: L02946:
+//  2946: 5B FA      LLL$  3582    "*/ missing"
+//  2948: BB D6        J$  3118    
+
+//  2950: CASE 91:
+
+//  2950: L02950:
+//  2950: 5B F9      LLL$  3594    "Unexpected $"
+//  2952: BB D4        J$  3118    
+
+//  2954: CASE 94:
+
+//  2954: L02954:
+//  2954: 5B F8      LLL$  3608    "Bad character"
+//  2956: BB D2        J$  3118    
+
+//  2958: CASE 95:
+
+//  2958: L02958:
+//  2958: 5B F7      LLL$  3622    "Bad section name"
+//  2960: BB D0        J$  3118    
+
+//  2962: CASE 96:
+
+//  2962: L02962:
+//  2962: 5B F6      LLL$  3642    "Cannot GET %S"
+//  2964: BB CE        J$  3118    
+
+//  2966: CASE 97:
+
+//  2966: L02966:
+//  2966: 5B F5      LLL$  3656    "Bad GET directive"
+//  2968: BB CC        J$  3118    
+
+//  2970: CASE 98:
+
+//  2970: L02970:
+//  2970: 5B F4      LLL$  3678    "Program too large"
+//  2972: BB CA        J$  3118    
+
+//  2974: CASE 99:
+
+//  2974: L02974:
+//  2974: 5B FE      LLL$  3696    "Incorrect termination"
+//  2976: BA 82         J  2980    
+
+//  2978: FEC2          Resolving word => 2660
+
+//  2980: L02980:
+//  2980: BB C6        J$  3118    
+
+//  2982: FEBE          Resolving word => 2660
+
+//  2984: L02984:
+//  2984: 83          LP3          
+//  2985: 92          SWB          
+//  2986: 0020        len =   32
+//  2988: FF8C    default =>  2872
+//  2990: 0006      const =     6
+//  2992: FF8E      label =>  2878
+//  2994: 0007      const =     7
+//  2996: FF8E      label =>  2882
+//  2998: 0008      const =     8
+//  3000: FF8E      label =>  2886
+//  3002: 0009      const =     9
+//  3004: FF8E      label =>  2890
+//  3006: 000F      const =    15
+//  3008: FF8E      label =>  2894
+//  3010: 0013      const =    19
+//  3012: FF8A      label =>  2894
+//  3014: 001E      const =    30
+//  3016: FF8A      label =>  2898
+//  3018: 0020      const =    32
+//  3020: FF8A      label =>  2902
+//  3022: 0021      const =    33
+//  3024: FF8A      label =>  2906
+//  3026: 0022      const =    34
+//  3028: FF8A      label =>  2910
+//  3030: 0028      const =    40
+//  3032: FF6E      label =>  2886
+//  3034: 0029      const =    41
+//  3036: FF72      label =>  2894
+//  3038: 002A      const =    42
+//  3040: FF82      label =>  2914
+//  3042: 002B      const =    43
+//  3044: FF62      label =>  2886
+//  3046: 002C      const =    44
+//  3048: FF7E      label =>  2918
+//  3050: 002D      const =    45
+//  3052: FF7A      label =>  2918
+//  3054: 0032      const =    50
+//  3056: FF7A      label =>  2922
+//  3058: 0033      const =    51
+//  3060: FF7A      label =>  2926
+//  3062: 0036      const =    54
+//  3064: FF7A      label =>  2930
+//  3066: 0039      const =    57
+//  3068: FF7A      label =>  2934
+//  3070: 003A      const =    58
+//  3072: FF76      label =>  2934
+//  3074: 003C      const =    60
+//  3076: FF76      label =>  2938
+//  3078: 003D      const =    61
+//  3080: FF76      label =>  2942
+//  3082: 003E      const =    62
+//  3084: FF72      label =>  2942
+//  3086: 003F      const =    63
+//  3088: FF72      label =>  2946
+//  3090: 005B      const =    91
+//  3092: FF72      label =>  2950
+//  3094: 005E      const =    94
+//  3096: FF72      label =>  2954
+//  3098: 005F      const =    95
+//  3100: FF72      label =>  2958
+//  3102: 0060      const =    96
+//  3104: FF72      label =>  2962
+//  3106: 0061      const =    97
+//  3108: FF72      label =>  2966
+//  3110: 0062      const =    98
+//  3112: FF72      label =>  2970
+//  3114: 0063      const =    99
+//  3116: FF72      label =>  2974
+
+//  3118: L03118:
+//  3118: A5          SP5          
+//  3119: 60 60         L    96    
+//  3121: 83          LP3          
+//  3122: 3C 84       JNE  3128    
+//  3124: 30 0F        LG    15    G015 RESULT2
+//  3126: BA 82         J  3130    
+
+//  3128: L03128:
+//  3128: 60 28         L    40    
+
+//  3130: L03130:
+//  3130: 31 FA        SG   250    G250 rc
+//  3132: 50 21       LG1    33    G289 reportcount
+//  3134: D1           A1          
+//  3135: 51 21       SG1    33    G289 reportcount
+//  3137: 50 20       LG1    32    G288 linecount
+//  3139: AA         SP10          
+//  3140: 5B F9      LLL$  3718    "*nError near line %N:*n"
+//  3142: 26 5A       K6G    90    G090 WRITEF
+//  3144: 84          LP4          
+//  3145: AA         SP10          
+//  3146: 85          LP5          
+//  3147: 26 5A       K6G    90    G090 WRITEF
+//  3149: 46 94      K6G1   148    G404 wrchbuf
+//  3151: 11           L1          
+//  3152: 83          LP3          
+//  3153: 1C 89       JEQ  3164    
+//  3155: 60 60         L    96    
+//  3157: 1C 85       JEQ  3164    
+//  3159: 60 62         L    98    
+//  3161: 83          LP3          
+//  3162: 3C 87       JNE  3171    
+
+//  3164: L03164:
+//  3164: 5B FE      LLL$  3740    "*nFATAL ERROR*n"
+//  3166: 26 5E       K6G    94    G094 WRITES
+//  3168: 5A B8       LLL  3226    
+//  3170: 9B         GOTO          
+
+//  3171: L03171:
+//  3171: 50 21       LG1    33    G289 reportcount
+//  3173: 1A          L10          
+//  3174: 9C 87       JLE  3183    
+//  3176: 5B F9      LLL$  3754    "*nTOO MANY ERRORS*n"
+//  3178: 26 5E       K6G    94    G094 WRITES
+//  3180: 5A AC       LLL  3226    
+//  3182: 9B         GOTO          
+
+//  3183: L03183:
+//  3183: 10           L0          
+//  3184: 51 C8       SG1   200    G456 nlpending
+//  3186: BA 82         J  3190    
+
+//  3188: L03188:
+//  3188: 46 90      K6G1   144    G400 nextsymb
+
+//  3190: L03190:
+//  3190: 60 5B         L    91    
+//  3192: 50 C2       LG1   194    G450 symb
+//  3194: 1C 97       JEQ  3219    
+//  3196: 60 5C         L    92    
+//  3198: 1C 93       JEQ  3219    
+//  3200: B5          XCH          
+//  3201: 60 4A         L    74    
+//  3203: 1C 8E       JEQ  3219    
+//  3205: B5          XCH          
+//  3206: 60 28         L    40    
+//  3208: 1C 89       JEQ  3219    
+//  3210: B5          XCH          
+//  3211: 60 5A         L    90    
+//  3213: 1C 84       JEQ  3219    
+//  3215: 50 C8       LG1   200    G456 nlpending
+//  3217: 1E 61      JEQ0  3188    
+
+//  3219: L03219:
+//  3219: 50 CE       LG1   206    G462 rec.l
+//  3221: AA         SP10          
+//  3222: 50 CD       LG1   205    G461 rec.p
+//  3224: 26 1C       K6G    28    G028 LONGJUMP
+
+//  3226: L03226:
+
+//  3226: BA 8E         J  3242    
+
+//  3228: L03228:
+//  3228: 26 47       K6G    71    G071 ENDREAD
+//  3230: 50 CB       LG1   203    G459 getp
+//  3232: B3           S3          
+//  3233: 51 CB       SG1   203    G459 getp
+//  3235: 53 0A       AG1    10    G266 getv
+//  3237: 74           RV          
+//  3238: 51 1E       SG1    30    G286 sourcestream
+//  3240: 26 4F       K6G    79    G079 SELECTINPUT
+
+//  3242: L03242:
+//  3242: 50 CB       LG1   203    G459 getp
+//  3244: 3E 6E      JNE0  3228    
+//  3246: 50 01       LG1     1    G257 err.l
+//  3248: AA         SP10          
+//  3249: 50 00       LG1     0    G256 err.p
+//  3251: 26 1C       K6G    28    G028 LONGJUMP
+//  3253: 7B          RTN          
+
+//  3254: 08 String: "Error %N"
+//  3254: 08 45 72 72 6F 72 20 25 4E 
+
+//  3264: 0B String: "$( expected"
+//  3264: 0B 24 28 20 65 78 70 65 63 74 65 64 
+
+//  3276: 0B String: "$) expected"
+//  3276: 0B 24 29 20 65 78 70 65 63 74 65 64 
+
+//  3288: 0D String: "Name expected"
+//  3288: 0D 4E 61 6D 65 20 65 78 70 65 63 74 65 64 
+
+//  3302: 14 String: "Untagged $) mismatch"
+//  3302: 14 55 6E 74 61 67 67 65 64 20 24 29 20 6D 69 73 
+//  3318: 6D 61 74 63 68 
+
+//  3324: 09 String: ") missing"
+//  3324: 09 29 20 6D 69 73 73 69 6E 67 
+
+//  3334: 0D String: "Bad condition"
+//  3334: 0D 42 61 64 20 63 6F 6E 64 69 74 69 6F 6E 
+
+//  3348: 0E String: "Bad expression"
+//  3348: 0E 42 61 64 20 65 78 70 72 65 73 73 69 6F 6E 
+
+//  3364: 0A String: "Bad number"
+//  3364: 0A 42 61 64 20 6E 75 6D 62 65 72 
+
+//  3376: FF86          Resolving word => 3254
+//  3378: FEFC          Resolving word => 3118
+//  3380: FF8C          Resolving word => 3264
+//  3382: FF96          Resolving word => 3276
+//  3384: FFA0          Resolving word => 3288
+//  3386: FFAC          Resolving word => 3302
+//  3388: FFC0          Resolving word => 3324
+//  3390: FFC8          Resolving word => 3334
+//  3392: FFD4          Resolving word => 3348
+//  3394: FFE2          Resolving word => 3364
+//  3396: 000A          Resolving word => 3406
+//  3398: 0040          Resolving word => 3462
+//  3400: 0056          Resolving word => 3486
+//  3402: 0064          Resolving word => 3502
+//  3404: 0070          Resolving word => 3516
+
+//  3406: 20 String: "Bad string or character constant"
+//  3406: 20 42 61 64 20 73 74 72 69 6E 67 20 6F 72 20 63 
+//  3422: 68 61 72 61 63 74 65 72 20 63 6F 6E 73 74 61 6E 
+//  3438: 74 
+
+//  3440: 0058          Resolving word => 3528
+//  3442: 0064          Resolving word => 3542
+//  3444: 0070          Resolving word => 3556
+//  3446: 007C          Resolving word => 3570
+//  3448: 0086          Resolving word => 3582
+//  3450: 0090          Resolving word => 3594
+//  3452: 009C          Resolving word => 3608
+//  3454: 00A8          Resolving word => 3622
+//  3456: 00BA          Resolving word => 3642
+//  3458: 00C6          Resolving word => 3656
+//  3460: 00DA          Resolving word => 3678
+
+//  3462: 15 String: "Bad procedure heading"
+//  3462: 15 42 61 64 20 70 72 6F 63 65 64 75 72 65 20 68 
+//  3478: 65 61 64 69 6E 67 
+
+//  3484: 00D4          Resolving word => 3696
+
+//  3486: 0F String: "Bad declaration"
+//  3486: 0F 42 61 64 20 64 65 63 6C 61 72 61 74 69 6F 6E 
+
+//  3502: 0C String: "Unexpected :"
+//  3502: 0C 55 6E 65 78 70 65 63 74 65 64 20 3A 
+
+//  3516: 0B String: "Bad command"
+//  3516: 0B 42 61 64 20 63 6F 6D 6D 61 6E 64 
+
+//  3528: 0D String: "ELSE expected"
+//  3528: 0D 45 4C 53 45 20 65 78 70 65 63 74 65 64 
+
+//  3542: 0C String: "Bad FOR loop"
+//  3542: 0C 42 61 64 20 46 4F 52 20 6C 6F 6F 70 
+
+//  3556: 0D String: "INTO expected"
+//  3556: 0D 49 4E 54 4F 20 65 78 70 65 63 74 65 64 
+
+//  3570: 0A String: ": expected"
+//  3570: 0A 3A 20 65 78 70 65 63 74 65 64 
+
+//  3582: 0A String: "**/ missing"
+//  3582: 0A 2A 2F 20 6D 69 73 73 69 6E 67 
+
+//  3594: 0C String: "Unexpected $"
+//  3594: 0C 55 6E 65 78 70 65 63 74 65 64 20 24 
+
+//  3608: 0D String: "Bad character"
+//  3608: 0D 42 61 64 20 63 68 61 72 61 63 74 65 72 
+
+//  3622: 10 String: "Bad section name"
+//  3622: 10 42 61 64 20 73 65 63 74 69 6F 6E 20 6E 61 6D 
+//  3638: 65 
+
+//  3640: 004E          Resolving word => 3718
+
+//  3642: 0D String: "Cannot GET %S"
+//  3642: 0D 43 61 6E 6E 6F 74 20 47 45 54 20 25 53 
+
+//  3656: 11 String: "Bad GET directive"
+//  3656: 11 42 61 64 20 47 45 54 20 64 69 72 65 63 74 69 
+//  3672: 76 65 
+
+//  3674: 0042          Resolving word => 3740
+//  3676: 004E          Resolving word => 3754
+
+//  3678: 11 String: "Program too large"
+//  3678: 11 50 72 6F 67 72 61 6D 20 74 6F 6F 20 6C 61 72 
+//  3694: 67 65 
+
+//  3696: 15 String: "Incorrect termination"
+//  3696: 15 49 6E 63 6F 72 72 65 63 74 20 74 65 72 6D 69 
+//  3712: 6E 61 74 69 6F 6E 
+
+//  3718: 15 String: "*nError near line %N:*n"
+//  3718: 15 0A 45 72 72 6F 72 20 6E 65 61 72 20 6C 69 6E 
+//  3734: 65 20 25 4E 3A 0A 
+
+//  3740: 0D String: "*nFATAL ERROR*n"
+//  3740: 0D 0A 46 41 54 41 4C 20 45 52 52 4F 52 0A 
+
+//  3754: 11 String: "*nTOO MANY ERRORS*n"
+//  3754: 11 0A 54 4F 4F 20 4D 41 4E 59 20 45 52 52 4F 52 
+//  3770: 53 0A 
+
+//  3772: 0000      Ginit end mark
+//  3774: 0001 000C Init  G001 = 2438  START
+//  3778: 0199 00F8 Init  G409 = 2674  newvec
+//  3782: 019A 013A Init  G410 = 2740  list1
+//  3786: 019B 0142 Init  G411 = 2748  list2
+//  3790: 019C 014E Init  G412 = 2760  list3
+//  3794: 019D 015E Init  G413 = 2776  list4
+//  3798: 019E 0170 Init  G414 = 2794  list5
+//  3802: 019F 0188 Init  G415 = 2818  list6
+//  3806: 01AF 01A4 Init  G431 = 2846  makelist
+//  3810: 01A0 01BA Init  G416 = 2868  synreport
+//  3814: 01D2      Highest Global  G466 blklist
+
+//  3816: 03E8 010C                HUNK    size=268
+//  3820: 010C
+//  3822: FDDF                     Section name: SYN5   
+//  3824: 07 53 59 4E 35 20 20 20
+
+//  3832: GLOBAL ENTRY             G417 rdblockbody
+//  3832: 50 CD       LG1   205    G461 rec.p
+//  3834: A3          SP3          
+//  3835: 50 CE       LG1   206    G462 rec.l
+//  3837: A4          SP4          
+//  3838: 10           L0          
+//  3839: A5          SP5              a
+//  3840: 40 05       LLP     5    
+//  3842: A6          SP6              ptr
+
+//  3843: L03843:    op
+//  3843: 10           L0          
+//  3844: A7          SP7          
+//  3845: 28 1B       K8G    27    G027 LEVEL
+//  3847: 51 CD       SG1   205    G461 rec.p
+//  3849: 5A 9B       LLL  3878    
+//  3851: 51 CE       SG1   206    G462 rec.l
+//  3853: 60 61         L    97    
+//  3855: 48 A7      K8G1   167    G423 ignore
+//  3857: BA C8         J  3931    
+
+//  3859: CASE 79:
+//  3859: CASE 76:
+//  3859: CASE 75:
+
+//  3859: L03859:
+//  3859: 50 C2       LG1   194    G450 symb
+//  3861: A7          SP7          
+//  3862: 48 90      K8G1   144    G400 nextsymb
+//  3864: 50 A3       LG1   163    G419 rdcdefs
+//  3866: 48 A4      K8G1   164    G420 rdsect
+//  3868: 86          LP6          
+//  3869: 94           ST          
+//  3870: BA DA         J  3962    
+
+//  3872: CASE 74:
+
+//  3872: L03872:
+//  3872: 48 90      K8G1   144    G400 nextsymb
+//  3874: 48 AC      K8G1   172    G428 rdef
+//  3876: 86          LP6          
+//  3877: 94           ST          
+
+//  3878: 86          LP6          
+//  3879: A8          SP8          
+//  3880: BA 92         J  3900    
+
+//  3882: L03882:
+//  3882: 49 90      K9G1   144    G400 nextsymb
+//  3884: 50 AC       LG1   172    G428 rdef
+//  3886: 20 0E         K    14    
+//  3888: AE         SP14          
+//  3889: E8         L0P8          
+//  3890: AD         SP13          
+//  3891: 60 28         L    40    
+//  3893: 49 9C      K9G1   156    G412 list3
+//  3895: 88          LP8          
+//  3896: 94           ST          
+//  3897: E8         L0P8          
+//  3898: D2           A2          
+//  3899: A8          SP8          
+
+//  3900: L03900:
+//  3900: 60 28         L    40    
+//  3902: 50 C2       LG1   194    G450 symb
+//  3904: 1C 68       JEQ  3882    
+//  3906: 60 4A         L    74    
+//  3908: A7          SP7          
+//  3909: BA B3         J  3962    
+
+//  3911: DEFAULT:
+
+//  3911: L03911:
+//  3911: 49 A2      K9G1   162    G418 rdseq
+//  3913: 86          LP6          
+//  3914: 94           ST          
+//  3915: 60 5C         L    92    
+//  3917: 50 C2       LG1   194    G450 symb
+//  3919: 1C 88       JEQ  3929    
+//  3921: 60 5A         L    90    
+//  3923: 1C 84       JEQ  3929    
+//  3925: 60 33         L    51    
+//  3927: 49 A0      K9G1   160    G416 synreport
+
+//  3929: CASE 92:
+//  3929: CASE 90:
+
+//  3929: L03929:
+//  3929: BA AD         J  3976    
+
+//  3931: L03931:
+//  3931: 50 C2       LG1   194    G450 symb
+//  3933: 92          SWB          
+//  3934: 0006        len =    6
+//  3936: FFE7    default =>  3911
+//  3938: 004A      const =    74
+//  3940: FFBC      label =>  3872
+//  3942: 004B      const =    75
+//  3944: FFAB      label =>  3859
+//  3946: 004C      const =    76
+//  3948: FFA7      label =>  3859
+//  3950: 004F      const =    79
+//  3952: FFA3      label =>  3859
+//  3954: 005A      const =    90
+//  3956: FFE5      label =>  3929
+//  3958: 005C      const =    92
+//  3960: FFE1      label =>  3929
+
+//  3962: L03962:
+//  3962: E6         L0P6          
+//  3963: AC         SP12          
+//  3964: 10           L0          
+//  3965: AD         SP13          
+//  3966: 87          LP7          
+//  3967: 48 9C      K8G1   156    G412 list3
+//  3969: 86          LP6          
+//  3970: 94           ST          
+//  3971: E6         L0P6          
+//  3972: D2           A2          
+//  3973: A6          SP6          
+//  3974: BB AB        J$  3843    
+
+//  3976: L03976:
+//  3976: 83          LP3          
+//  3977: 51 CD       SG1   205    G461 rec.p
+//  3979: 84          LP4          
+//  3980: 51 CE       SG1   206    G462 rec.l
+//  3982: 85          LP5          
+//  3983: 7B          RTN          
+
+//  3984: GLOBAL ENTRY             G418 rdseq
+//  3984: 10           L0          
+//  3985: A3          SP3          
+//  3986: 50 D0       LG1   208    G464 listp
+//  3988: A4          SP4          
+//  3989: 50 CD       LG1   205    G461 rec.p
+//  3991: A5          SP5          
+//  3992: 50 CE       LG1   206    G462 rec.l
+//  3994: A6          SP6          
+//  3995: 27 1B       K7G    27    G027 LEVEL
+//  3997: 51 CD       SG1   205    G461 rec.p
+//  3999: 5A C7       LLL  4072    
+//  4001: 51 CE       SG1   206    G462 rec.l
+
+//  4003: L04003:
+//  4003: D0          NOP          
+
+//  4004: L04004:
+
+//  4004: 60 61         L    97    
+//  4006: 47 A7      K7G1   167    G423 ignore
+//  4008: 47 AE      K7G1   174    G430 rcom
+//  4010: 42 D0      S0G1   208    G464 listp
+//  4012: 50 D0       LG1   208    G464 listp
+//  4014: D1           A1          
+//  4015: 51 D0       SG1   208    G464 listp
+//  4017: 11           L1          
+//  4018: C3          AP3          
+//  4019: A3          SP3          
+//  4020: 60 5C         L    92    
+//  4022: 50 C2       LG1   194    G450 symb
+//  4024: 1C 84       JEQ  4030    
+//  4026: 60 5A         L    90    
+//  4028: 3C 65       JNE  4003    
+
+//  4030: L04030:
+
+//  4030: 85          LP5          
+//  4031: 51 CD       SG1   205    G461 rec.p
+//  4033: 86          LP6          
+//  4034: 51 CE       SG1   206    G462 rec.l
+//  4036: 84          LP4          
+//  4037: 51 D0       SG1   208    G464 listp
+//  4039: 11           L1          
+//  4040: 83          LP3          
+//  4041: 3C 84       JNE  4047    
+//  4043: 4D D0      L0G1   208    G464 listp
+//  4045: BA AF         J  4094    
+
+//  4047: L04047:
+//  4047: 12           L2          
+//  4048: 83          LP3          
+//  4049: 3C 8C       JNE  4063    
+//  4051: 4D D0      L0G1   208    G464 listp
+//  4053: AB         SP11          
+//  4054: 4E D0      L1G1   208    G464 listp
+//  4056: AC         SP12          
+//  4057: 60 61         L    97    
+//  4059: 47 9C      K7G1   156    G412 list3
+//  4061: BA 9F         J  4094    
+
+//  4063: L04063:
+//  4063: 83          LP3          
+//  4064: AB         SP11          
+//  4065: 60 49         L    73    
+//  4067: 47 AF      K7G1   175    G431 makelist
+//  4069: BA 97         J  4094    
+//  4071: D0          NOP          
+
+//  4072: 60 5C         L    92    
+//  4074: 50 C2       LG1   194    G450 symb
+//  4076: 1C 84       JEQ  4082    
+//  4078: 60 5A         L    90    
+//  4080: 3C 83       JNE  4085    
+
+//  4082: L04082:
+//  4082: 5A 4A       LLL  4030    
+//  4084: 9B         GOTO          
+
+//  4085: L04085:
+//  4085: 85          LP5          
+//  4086: 51 CD       SG1   205    G461 rec.p
+//  4088: 86          LP6          
+//  4089: 51 CE       SG1   206    G462 rec.l
+//  4091: 5A 27       LLL  4004    
+//  4093: 9B         GOTO          
+
+//  4094: L04094:
+//  4094: 7B          RTN          
+//  4095: D0          NOP          
+
+//  4096: GLOBAL ENTRY             G419 rdcdefs
+//  4096: 10           L0          
+//  4097: A3          SP3          
+//  4098: 50 CD       LG1   205    G461 rec.p
+//  4100: A4          SP4          
+//  4101: 50 CE       LG1   206    G462 rec.l
+//  4103: A5          SP5          
+//  4104: 50 D0       LG1   208    G464 listp
+//  4106: A6          SP6          
+//  4107: 27 1B       K7G    27    G027 LEVEL
+//  4109: 51 CD       SG1   205    G461 rec.p
+//  4111: 5A A9       LLL  4154        rec
+//  4113: 51 CE       SG1   206    G462 rec.l
+
+//  4115: L04115:
+//  4115: 47 A6      K7G1   166    G422 rname
+//  4117: 42 D0      S0G1   208    G464 listp
+//  4119: 50 D0       LG1   208    G464 listp
+//  4121: D1           A1          
+//  4122: 51 D0       SG1   208    G464 listp
+//  4124: 60 14         L    20    
+//  4126: 50 C2       LG1   194    G450 symb
+//  4128: 1C 88       JEQ  4138    
+//  4130: 60 36         L    54    
+//  4132: 1C 84       JEQ  4138    
+//  4134: 60 2D         L    45    
+//  4136: 47 A0      K7G1   160    G416 synreport
+
+//  4138: L04138:
+//  4138: 47 90      K7G1   144    G400 nextsymb
+//  4140: 10           L0          
+//  4141: 47 AA      K7G1   170    G426 rexp
+//  4143: 42 D0      S0G1   208    G464 listp
+//  4145: 50 D0       LG1   208    G464 listp
+//  4147: D1           A1          
+//  4148: 51 D0       SG1   208    G464 listp
+//  4150: 12           L2          
+//  4151: C3          AP3          
+//  4152: A3          SP3          
+//  4153: D0          NOP          
+
+//  4154: 60 61         L    97        Label rec:
+//  4156: 47 A7      K7G1   167    G423 ignore
+//  4158: 12           L2          
+//  4159: 50 C2       LG1   194    G450 symb
+//  4161: 1C 50       JEQ  4115    
+//  4163: 86          LP6          
+//  4164: 51 D0       SG1   208    G464 listp
+//  4166: 84          LP4          
+//  4167: 51 CD       SG1   205    G461 rec.p
+//  4169: 85          LP5          
+//  4170: 51 CE       SG1   206    G462 rec.l
+//  4172: 83          LP3          
+//  4173: AB         SP11          
+//  4174: 60 49         L    73    
+//  4176: 47 AF      K7G1   175    G431 makelist
+//  4178: 7B          RTN          
+//  4179: D0          NOP          
+
+//  4180: GLOBAL ENTRY             G420 rdsect
+//  4180: 50 C4       LG1   196    G452 wordnode
+//  4182: A4          SP4          
+//  4183: 10           L0          
+//  4184: A5          SP5          
+//  4185: 16           L6          
+//  4186: AA         SP10          
+//  4187: 60 5B         L    91    
+//  4189: 46 A8      K6G1   168    G424 checkfor
+//  4191: 83          LP3          
+//  4192: 06           K6          
+//  4193: A5          SP5          
+//  4194: 60 5C         L    92    
+//  4196: 50 C2       LG1   194    G450 symb
+//  4198: 1C 83       JEQ  4203    
+//  4200: 17           L7          
+//  4201: 46 A0      K6G1   160    G416 synreport
+
+//  4203: L04203:
+//  4203: 50 C4       LG1   196    G452 wordnode
+//  4205: 84          LP4          
+//  4206: 3C 84       JNE  4212    
+//  4208: 46 90      K6G1   144    G400 nextsymb
+//  4210: BA 8C         J  4224    
+
+//  4212: L04212:
+//  4212: 50 C9       LG1   201    G457 nulltag
+//  4214: 50 C4       LG1   196    G452 wordnode
+//  4216: 3C 86       JNE  4224    
+//  4218: 10           L0          
+//  4219: 51 C2       SG1   194    G450 symb
+//  4221: 19           L9          
+//  4222: 46 A0      K6G1   160    G416 synreport
+
+//  4224: L04224:
+//  4224: 85          LP5          
+//  4225: 7B          RTN          
+
+//  4226: GLOBAL ENTRY             G421 rnamelist
+//  4226: 10           L0          
+//  4227: A3          SP3          
+//  4228: 50 D0       LG1   208    G464 listp
+//  4230: A4          SP4          
+
+//  4231: L04231:
+//  4231: 45 A6      K5G1   166    G422 rname
+//  4233: 42 D0      S0G1   208    G464 listp
+//  4235: 50 D0       LG1   208    G464 listp
+//  4237: D1           A1          
+//  4238: 51 D0       SG1   208    G464 listp
+//  4240: 11           L1          
+//  4241: C3          AP3          
+//  4242: A3          SP3          
+//  4243: 60 26         L    38    
+//  4245: 50 C2       LG1   194    G450 symb
+//  4247: 1C 82       JEQ  4251    
+//  4249: BA 84         J  4255    
+
+//  4251: L04251:
+//  4251: 45 90      K5G1   144    G400 nextsymb
+//  4253: BA 68         J  4231    
+
+//  4255: L04255:
+//  4255: 84          LP4          
+//  4256: 51 D0       SG1   208    G464 listp
+//  4258: 11           L1          
+//  4259: 83          LP3          
+//  4260: 3C 84       JNE  4266    
+//  4262: 4D D0      L0G1   208    G464 listp
+//  4264: BA 96         J  4288    
+
+//  4266: L04266:
+//  4266: 12           L2          
+//  4267: 83          LP3          
+//  4268: 3C 8C       JNE  4282    
+//  4270: 4D D0      L0G1   208    G464 listp
+//  4272: A9          SP9          
+//  4273: 4E D0      L1G1   208    G464 listp
+//  4275: AA         SP10          
+//  4276: 60 26         L    38    
+//  4278: 45 9C      K5G1   156    G412 list3
+//  4280: BA 86         J  4288    
+
+//  4282: L04282:
+//  4282: 83          LP3          
+//  4283: A9          SP9          
+//  4284: 60 2B         L    43    
+//  4286: 45 AF      K5G1   175    G431 makelist
+
+//  4288: L04288:
+//  4288: 7B          RTN          
+//  4289: D0          NOP          
+
+//  4290: GLOBAL ENTRY             G422 rname
+//  4290: 50 C4       LG1   196    G452 wordnode
+//  4292: A3          SP3          
+//  4293: 18           L8          
+//  4294: A8          SP8          
+//  4295: 12           L2          
+//  4296: 44 A8      K4G1   168    G424 checkfor
+//  4298: 83          LP3          
+//  4299: 7B          RTN          
+
+//  4300: GLOBAL ENTRY             G423 ignore
+//  4300: 50 C2       LG1   194    G450 symb
+//  4302: 3C 82       JNE  4306    
+//  4304: 44 90      K4G1   144    G400 nextsymb
+
+//  4306: L04306:
+//  4306: 7B          RTN          
+//  4307: D0          NOP          
+
+//  4308: GLOBAL ENTRY             G424 checkfor
+//  4308: 50 C2       LG1   194    G450 symb
+//  4310: 1C 83       JEQ  4315    
+//  4312: 84          LP4          
+//  4313: 45 A0      K5G1   160    G416 synreport
+
+//  4315: L04315:
+//  4315: 45 90      K5G1   144    G400 nextsymb
+//  4317: 7B          RTN          
+
+//  4318: FE25          Resolving word => 3843
+
+//  4320: 0000      Ginit end mark
+//  4322: 01A1 000C Init  G417 = 3832  rdblockbody
+//  4326: 01A2 00A4 Init  G418 = 3984  rdseq
+//  4330: 01A3 0114 Init  G419 = 4096  rdcdefs
+//  4334: 01A4 0168 Init  G420 = 4180  rdsect
+//  4338: 01A5 0196 Init  G421 = 4226  rnamelist
+//  4342: 01A6 01D6 Init  G422 = 4290  rname
+//  4346: 01A7 01E0 Init  G423 = 4300  ignore
+//  4350: 01A8 01E8 Init  G424 = 4308  checkfor
+//  4354: 01D0      Highest Global  G464 listp
+
+//  4356: 03E8 01AF                HUNK    size=431
+//  4360: 01AF
+//  4362: FDDF                     Section name: SYN6   
+//  4364: 07 53 59 4E 36 20 20 20
+
+//  4372: GLOBAL ENTRY             G425 rbexp
+//  4372: 10           L0          
+//  4373: A3          SP3          
+//  4374: 50 C2       LG1   194    G450 symb
+//  4376: A4          SP4          
+//  4377: BB EC        J$  4576    
+
+//  4379: DEFAULT:
+
+//  4379: L04379:
+//  4379: 60 20         L    32    
+//  4381: 45 A0      K5G1   160    G416 synreport
+
+//  4383: CASE 16:
+
+//  4383: L04383:
+//  4383: 45 90      K5G1   144    G400 nextsymb
+//  4385: 60 10         L    16    
+//  4387: 45 9A      K5G1   154    G410 list1
+//  4389: BB E7        J$  4648    
+
+//  4391: CASE 5:
+//  4391: CASE 4:
+//  4391: CASE 2:
+
+//  4391: L04391:
+//  4391: 50 C4       LG1   196    G452 wordnode
+//  4393: A3          SP3          
+//  4394: 45 90      K5G1   144    G400 nextsymb
+//  4396: 83          LP3          
+//  4397: BB E3        J$  4648    
+
+//  4399: CASE 3:
+
+//  4399: L04399:
+//  4399: 50 0B       LG1    11    G267 wordv
+//  4401: 10           L0          
+//  4402: B6         GBYT          
+//  4403: 12           L2          
+//  4404: 35          DIV          
+//  4405: A5          SP5          
+//  4406: D1           A1          
+//  4407: 46 99      K6G1   153    G409 newvec
+//  4409: A3          SP3          
+//  4410: 13           L3          
+//  4411: DB        ST0P3          
+//  4412: 10           L0          
+//  4413: A6          SP6          
+//  4414: 85          LP5          
+//  4415: A7          SP7          
+//  4416: BA 8A         J  4428    
+
+//  4418: L04418:
+//  4418: 50 0B       LG1    11    G267 wordv
+//  4420: D9         RVP6          
+//  4421: A8          SP8          
+//  4422: 11           L1          
+//  4423: C6          AP6          
+//  4424: 98         STP3          
+//  4425: 11           L1          
+//  4426: C6          AP6          
+//  4427: A6          SP6          
+
+//  4428: L04428:
+//  4428: 86          LP6          
+//  4429: 87          LP7          
+//  4430: 9C 72       JLE  4418    
+//  4432: 46 90      K6G1   144    G400 nextsymb
+//  4434: 83          LP3          
+//  4435: BB D0        J$  4648    
+
+//  4437: CASE 1:
+
+//  4437: L04437:
+//  4437: 50 C3       LG1   195    G451 decval
+//  4439: A5          SP5          
+//  4440: 46 90      K6G1   144    G400 nextsymb
+//  4442: 85          LP5          
+//  4443: 3E 84      JNE0  4449    
+//  4445: 50 27       LG1    39    G295 zeronode
+//  4447: BB CA        J$  4648    
+
+//  4449: L04449:
+//  4449: 85          LP5          
+//  4450: 46 28      K6G1    40    G296 smallnumber
+//  4452: 1E 83      JEQ0  4457    
+//  4454: 85          LP5          
+//  4455: BB C6        J$  4648    
+
+//  4457: L04457:
+//  4457: 85          LP5          
+//  4458: AA         SP10          
+//  4459: 11           L1          
+//  4460: 46 9B      K6G1   155    G411 list2
+//  4462: BB C3        J$  4648    
+
+//  4464: CASE 105:
+
+//  4464: L04464:
+//  4464: 45 90      K5G1   144    G400 nextsymb
+//  4466: 10           L0          
+//  4467: 45 AA      K5G1   170    G426 rexp
+//  4469: A3          SP3          
+//  4470: 60 0F         L    15    
+//  4472: A9          SP9          
+//  4473: 60 6A         L   106    
+//  4475: 45 A8      K5G1   168    G424 checkfor
+//  4477: 83          LP3          
+//  4478: BB BB        J$  4648    
+
+//  4480: CASE 6:
+
+//  4480: L04480:
+//  4480: 45 90      K5G1   144    G400 nextsymb
+//  4482: 49 AE      K9G1   174    G430 rcom
+//  4484: A9          SP9          
+//  4485: 16           L6          
+//  4486: 45 9B      K5G1   155    G411 list2
+//  4488: BB B6        J$  4648    
+
+//  4490: CASE 9:
+
+//  4490: L04490:
+//  4490: 18           L8          
+//  4491: A4          SP4          
+
+//  4492: CASE 8:
+//  4492: CASE 7:
+
+//  4492: L04492:
+//  4492: 45 90      K5G1   144    G400 nextsymb
+//  4494: 60 25         L    37    
+//  4496: 49 AA      K9G1   170    G426 rexp
+//  4498: A9          SP9          
+//  4499: 84          LP4          
+//  4500: 45 9B      K5G1   155    G411 list2
+//  4502: BB AF        J$  4648    
+
+//  4504: CASE 14:
+
+//  4504: L04504:
+//  4504: 45 90      K5G1   144    G400 nextsymb
+//  4506: 60 22         L    34    
+//  4508: 45 AA      K5G1   170    G426 rexp
+//  4510: BB AB        J$  4648    
+
+//  4512: CASE 15:
+
+//  4512: L04512:
+//  4512: 45 90      K5G1   144    G400 nextsymb
+//  4514: 60 22         L    34    
+//  4516: 45 AA      K5G1   170    G426 rexp
+//  4518: A3          SP3          
+//  4519: 45 28      K5G1    40    G296 smallnumber
+//  4521: 1E 88      JEQ0  4531    
+//  4523: 83          LP3          
+//  4524: F1          NEG          
+//  4525: A9          SP9          
+//  4526: 11           L1          
+//  4527: 45 9B      K5G1   155    G411 list2
+//  4529: BA F5         J  4648    
+
+//  4531: L04531:
+//  4531: 83          LP3          
+//  4532: A9          SP9          
+//  4533: 60 11         L    17    
+//  4535: 45 9B      K5G1   155    G411 list2
+//  4537: BA ED         J  4648    
+
+//  4539: CASE 30:
+
+//  4539: L04539:
+//  4539: 45 90      K5G1   144    G400 nextsymb
+//  4541: 60 18         L    24    
+//  4543: 49 AA      K9G1   170    G426 rexp
+//  4545: A9          SP9          
+//  4546: 60 1E         L    30    
+//  4548: 45 9B      K5G1   155    G411 list2
+//  4550: BA E0         J  4648    
+
+//  4552: CASE 19:
+
+//  4552: L04552:
+//  4552: 45 90      K5G1   144    G400 nextsymb
+//  4554: 60 23         L    35    
+//  4556: 49 AA      K9G1   170    G426 rexp
+//  4558: A9          SP9          
+//  4559: 60 13         L    19    
+//  4561: 45 9B      K5G1   155    G411 list2
+//  4563: BA D3         J  4648    
+
+//  4565: CASE 39:
+
+//  4565: L04565:
+//  4565: 45 90      K5G1   144    G400 nextsymb
+//  4567: 49 AB      K9G1   171    G427 rexplist
+//  4569: A9          SP9          
+//  4570: 60 27         L    39    
+//  4572: 45 9B      K5G1   155    G411 list2
+//  4574: BA C8         J  4648    
+
+//  4576: L04576:
+//  4576: 50 C2       LG1   194    G450 symb
+//  4578: 92          SWB          
+//  4579: D0
+//  4580: 0010        len =   16
+//  4582: FF35    default =>  4379
+//  4584: 0001      const =     1
+//  4586: FF6B      label =>  4437
+//  4588: 0002      const =     2
+//  4590: FF39      label =>  4391
+//  4592: 0003      const =     3
+//  4594: FF3D      label =>  4399
+//  4596: 0004      const =     4
+//  4598: FF31      label =>  4391
+//  4600: 0005      const =     5
+//  4602: FF2D      label =>  4391
+//  4604: 0006      const =     6
+//  4606: FF82      label =>  4480
+//  4608: 0007      const =     7
+//  4610: FF8A      label =>  4492
+//  4612: 0008      const =     8
+//  4614: FF86      label =>  4492
+//  4616: 0009      const =     9
+//  4618: FF80      label =>  4490
+//  4620: 000E      const =    14
+//  4622: FF8A      label =>  4504
+//  4624: 000F      const =    15
+//  4626: FF8E      label =>  4512
+//  4628: 0010      const =    16
+//  4630: FF09      label =>  4383
+//  4632: 0013      const =    19
+//  4634: FFAE      label =>  4552
+//  4636: 001E      const =    30
+//  4638: FF9D      label =>  4539
+//  4640: 0027      const =    39
+//  4642: FFB3      label =>  4565
+//  4644: 0069      const =   105
+//  4646: FF4A      label =>  4464
+
+//  4648: L04648:
+//  4648: 7B          RTN          
+//  4649: D0          NOP          
+
+//  4650: GLOBAL ENTRY             G426 rexp
+//  4650: 44 A9      K4G1   169    G425 rbexp
+//  4652: A4          SP4          
+//  4653: 10           L0          
+//  4654: A5          SP5          
+//  4655: A6          SP6          
+//  4656: A7          SP7          
+//  4657: A8          SP8          
+
+//  4658: L04658:
+//  4658: 50 C2       LG1   194    G450 symb
+//  4660: A9          SP9          
+//  4661: 50 C8       LG1   200    G456 nlpending
+//  4663: 1E 83      JEQ0  4668    
+//  4665: 84          LP4          
+//  4666: BB FD        J$  4978    
+
+//  4668: L04668:
+//  4668: BB FD        J$  4881    
+
+//  4670: DEFAULT:
+
+//  4670: L04670:
+//  4670: 84          LP4          
+//  4671: BB FA        J$  4978    
+
+//  4673: CASE 105:
+
+//  4673: L04673:
+//  4673: 4A 90     K10G1   144    G400 nextsymb
+//  4675: 10           L0          
+//  4676: A5          SP5          
+//  4677: 60 6A         L   106    
+//  4679: 50 C2       LG1   194    G450 symb
+//  4681: 1C 83       JEQ  4686    
+//  4683: 4A AB     K10G1   171    G427 rexplist
+//  4685: A5          SP5          
+
+//  4686: L04686:
+//  4686: 60 13         L    19    
+//  4688: AE         SP14          
+//  4689: 60 6A         L   106    
+//  4691: 4A A8     K10G1   168    G424 checkfor
+//  4693: 84          LP4          
+//  4694: AE         SP14          
+//  4695: 85          LP5          
+//  4696: AF         SP15          
+//  4697: 1A          L10          
+//  4698: 4A 9C     K10G1   156    G412 list3
+//  4700: A4          SP4          
+//  4701: BA 53         J  4658    
+
+//  4703: CASE 9:    s.vecap
+
+//  4703: L04703:
+//  4703: 60 28         L    40    
+//  4705: A7          SP7          
+//  4706: 5B EB      LLL$  4856    
+//  4708: 9B         GOTO          
+
+//  4709: CASE 8:    s.rv changed to s.vecap
+
+//  4709: L04709:
+//  4709: 19           L9          
+//  4710: 51 C2       SG1   194    G450 symb
+
+//  4712: CASE 28:    s.byteap
+
+//  4712: L04712:
+//  4712: 60 24         L    36    
+//  4714: A7          SP7          
+//  4715: 5B E6      LLL$  4856    
+//  4717: 9B         GOTO          
+
+//  4718: CASE 13:
+//  4718: CASE 12:
+//  4718: CASE 11:
+
+//  4718: L04718:
+//  4718: 60 23         L    35    
+//  4720: A7          SP7          
+//  4721: 5B E3      LLL$  4856    
+//  4723: 9B         GOTO          
+
+//  4724: CASE 15:
+//  4724: CASE 14:
+
+//  4724: L04724:
+//  4724: 60 22         L    34    
+//  4726: A7          SP7          
+//  4727: 5A FF       LLL  4856    
+//  4729: 9B         GOTO          
+
+//  4730: CASE 25:
+//  4730: CASE 24:
+//  4730: CASE 23:
+//  4730: CASE 22:
+//  4730: CASE 21:
+//  4730: CASE 20:
+
+//  4730: L04730:
+//  4730: 83          LP3          
+//  4731: 60 1E         L    30    
+//  4733: 5C 83       JLS  4738    
+//  4735: 84          LP4          
+//  4736: BB DA        J$  4978    
+
+//  4738: L04738:
+//  4738: 4A 90     K10G1   144    G400 nextsymb
+//  4740: 60 1E         L    30    
+//  4742: 4A AA     K10G1   170    G426 rexp
+//  4744: A5          SP5          
+//  4745: 84          LP4          
+//  4746: AE         SP14          
+//  4747: 85          LP5          
+//  4748: AF         SP15          
+//  4749: 89          LP9          
+//  4750: 4A 9C     K10G1   156    G412 list3
+//  4752: A4          SP4          
+//  4753: 86          LP6          
+//  4754: 3E 84      JNE0  4760    
+//  4756: 84          LP4          
+//  4757: A6          SP6          
+//  4758: BA 89         J  4769    
+
+//  4760: L04760:
+//  4760: 86          LP6          
+//  4761: AE         SP14          
+//  4762: 84          LP4          
+//  4763: AF         SP15          
+//  4764: 60 21         L    33    
+//  4766: 4A 9C     K10G1   156    G412 list3
+//  4768: A6          SP6          
+
+//  4769: L04769:
+//  4769: 85          LP5          
+//  4770: A4          SP4          
+//  4771: 50 C2       LG1   194    G450 symb
+//  4773: A9          SP9          
+//  4774: 60 14         L    20    
+//  4776: 89          LP9          
+//  4777: 7C 84       JGR  4783    
+//  4779: 60 19         L    25    
+//  4781: 9C 53       JLE  4738    
+
+//  4783: L04783:
+//  4783: 86          LP6          
+//  4784: A4          SP4          
+//  4785: BB CD        J$  4658    
+
+//  4787: CASE 32:
+//  4787: CASE 31:
+
+//  4787: L04787:
+//  4787: 60 19         L    25    
+//  4789: A7          SP7          
+//  4790: 60 1E         L    30    
+//  4792: A8          SP8          
+//  4793: 5A BF       LLL  4858    
+//  4795: 9B         GOTO          
+
+//  4796: CASE 33:
+
+//  4796: L04796:
+//  4796: 60 17         L    23    
+//  4798: A7          SP7          
+//  4799: 5A B7       LLL  4856    
+//  4801: 9B         GOTO          
+
+//  4802: CASE 34:
+
+//  4802: L04802:
+//  4802: 60 16         L    22    
+//  4804: A7          SP7          
+//  4805: 5A B1       LLL  4856    
+//  4807: 9B         GOTO          
+
+//  4808: CASE 36:
+//  4808: CASE 35:
+
+//  4808: L04808:
+//  4808: 60 15         L    21    
+//  4810: A7          SP7          
+//  4811: 5A AB       LLL  4856    
+//  4813: 9B         GOTO          
+
+//  4814: CASE 37:
+
+//  4814: L04814:
+//  4814: 83          LP3          
+//  4815: 60 0D         L    13    
+//  4817: 5C 83       JLS  4822    
+//  4819: 84          LP4          
+//  4820: BB B0        J$  4978    
+
+//  4822: L04822:
+//  4822: 4A 90     K10G1   144    G400 nextsymb
+//  4824: 10           L0          
+//  4825: 4A AA     K10G1   170    G426 rexp
+//  4827: A5          SP5          
+//  4828: 60 1E         L    30    
+//  4830: AE         SP14          
+//  4831: 60 26         L    38    
+//  4833: 4A A8     K10G1   168    G424 checkfor
+//  4835: 10           L0          
+//  4836: 50 AA       LG1   170    G426 rexp
+//  4838: 20 10         K    16    
+//  4840: B0         SP16          
+//  4841: 84          LP4          
+//  4842: AE         SP14          
+//  4843: 85          LP5          
+//  4844: AF         SP15          
+//  4845: 60 25         L    37    
+//  4847: 4A 9D     K10G1   157    G413 list4
+//  4849: A4          SP4          
+//  4850: BB AD        J$  4658    
+
+//  4852: FEEC          Resolving word => 4576
+//  4854: FF32          Resolving word => 4648
+
+//  4856: L04856:
+
+//  4856: 87          LP7          
+//  4857: A8          SP8          
+
+//  4858: L04858:
+
+//  4858: 83          LP3          
+//  4859: 87          LP7          
+//  4860: 5C 83       JLS  4865    
+//  4862: 84          LP4          
+//  4863: BA F1         J  4978    
+
+//  4865: L04865:
+//  4865: 4A 90     K10G1   144    G400 nextsymb
+//  4867: 88          LP8          
+//  4868: 50 AA       LG1   170    G426 rexp
+//  4870: 20 0F         K    15    
+//  4872: AF         SP15          
+//  4873: 84          LP4          
+//  4874: AE         SP14          
+//  4875: 89          LP9          
+//  4876: 4A 9C     K10G1   156    G412 list3
+//  4878: A4          SP4          
+//  4879: BB 9E        J$  4658    
+
+//  4881: L04881:
+//  4881: 89          LP9          
+//  4882: 92          SWB          
+//  4883: D0
+//  4884: 0016        len =   22
+//  4886: FF28    default =>  4670
+//  4888: 0008      const =     8
+//  4890: FF4B      label =>  4709
+//  4892: 0009      const =     9
+//  4894: FF41      label =>  4703
+//  4896: 000B      const =    11
+//  4898: FF4C      label =>  4718
+//  4900: 000C      const =    12
+//  4902: FF48      label =>  4718
+//  4904: 000D      const =    13
+//  4906: FF44      label =>  4718
+//  4908: 000E      const =    14
+//  4910: FF46      label =>  4724
+//  4912: 000F      const =    15
+//  4914: FF42      label =>  4724
+//  4916: 0014      const =    20
+//  4918: FF44      label =>  4730
+//  4920: 0015      const =    21
+//  4922: FF40      label =>  4730
+//  4924: 0016      const =    22
+//  4926: FF3C      label =>  4730
+//  4928: 0017      const =    23
+//  4930: FF38      label =>  4730
+//  4932: 0018      const =    24
+//  4934: FF34      label =>  4730
+//  4936: 0019      const =    25
+//  4938: FF30      label =>  4730
+//  4940: 001C      const =    28
+//  4942: FF1A      label =>  4712
+//  4944: 001F      const =    31
+//  4946: FF61      label =>  4787
+//  4948: 0020      const =    32
+//  4950: FF5D      label =>  4787
+//  4952: 0021      const =    33
+//  4954: FF62      label =>  4796
+//  4956: 0022      const =    34
+//  4958: FF64      label =>  4802
+//  4960: 0023      const =    35
+//  4962: FF66      label =>  4808
+//  4964: 0024      const =    36
+//  4966: FF62      label =>  4808
+//  4968: 0025      const =    37
+//  4970: FF64      label =>  4814
+//  4972: 0069      const =   105
+//  4974: FED3      label =>  4673
+//  4976: BB 6E        J$  4658    
+
+//  4978: L04978:
+//  4978: 7B          RTN          
+//  4979: D0          NOP          
+
+//  4980: GLOBAL ENTRY             G427 rexplist
+//  4980: 10           L0          
+//  4981: A3          SP3          
+//  4982: A4          SP4          
+//  4983: 50 D0       LG1   208    G464 listp
+//  4985: A5          SP5          
+
+//  4986: L04986:
+//  4986: 10           L0          
+//  4987: 46 AA      K6G1   170    G426 rexp
+//  4989: 42 D0      S0G1   208    G464 listp
+//  4991: 50 D0       LG1   208    G464 listp
+//  4993: D1           A1          
+//  4994: 51 D0       SG1   208    G464 listp
+//  4996: 11           L1          
+//  4997: C4          AP4          
+//  4998: A4          SP4          
+//  4999: 60 26         L    38    
+//  5001: 50 C2       LG1   194    G450 symb
+//  5003: 1C 82       JEQ  5007    
+//  5005: BA 84         J  5011    
+
+//  5007: L05007:
+//  5007: 46 90      K6G1   144    G400 nextsymb
+//  5009: BA 67         J  4986    
+
+//  5011: L05011:
+//  5011: 85          LP5          
+//  5012: 51 D0       SG1   208    G464 listp
+//  5014: 11           L1          
+//  5015: 84          LP4          
+//  5016: 3C 84       JNE  5022    
+//  5018: 4D D0      L0G1   208    G464 listp
+//  5020: BA 96         J  5044    
+
+//  5022: L05022:
+//  5022: 12           L2          
+//  5023: 84          LP4          
+//  5024: 3C 8C       JNE  5038    
+//  5026: 4D D0      L0G1   208    G464 listp
+//  5028: AA         SP10          
+//  5029: 4E D0      L1G1   208    G464 listp
+//  5031: AB         SP11          
+//  5032: 60 26         L    38    
+//  5034: 46 9C      K6G1   156    G412 list3
+//  5036: BA 86         J  5044    
+
+//  5038: L05038:
+//  5038: 84          LP4          
+//  5039: AA         SP10          
+//  5040: 60 2B         L    43    
+//  5042: 46 AF      K6G1   175    G431 makelist
+
+//  5044: L05044:
+//  5044: 7B          RTN          
+//  5045: D0          NOP          
+
+//  5046: GLOBAL ENTRY             G428 rdef
+//  5046: 43 A5      K3G1   165    G421 rnamelist
+//  5048: A3          SP3          
+//  5049: BB 4A        J$  5180    
+
+//  5051: CASE 105:
+
+//  5051: L05051:
+//  5051: 10           L0          
+//  5052: A4          SP4          
+//  5053: 45 90      K5G1   144    G400 nextsymb
+//  5055: E3         L0P3          
+//  5056: 12           L2          
+//  5057: 1C 84       JEQ  5063    
+//  5059: 60 28         L    40    
+//  5061: 45 A0      K5G1   160    G416 synreport
+
+//  5063: L05063:
+//  5063: 12           L2          
+//  5064: 50 C2       LG1   194    G450 symb
+//  5066: 3C 83       JNE  5071    
+//  5068: 45 A5      K5G1   165    G421 rnamelist
+//  5070: A4          SP4          
+
+//  5071: L05071:
+//  5071: 60 29         L    41    
+//  5073: A9          SP9          
+//  5074: 60 6A         L   106    
+//  5076: 45 A8      K5G1   168    G424 checkfor
+//  5078: 60 59         L    89    
+//  5080: 50 C2       LG1   194    G450 symb
+//  5082: 3C 91       JNE  5101    
+//  5084: 45 90      K5G1   144    G400 nextsymb
+//  5086: 4B AE     K11G1   174    G430 rcom
+//  5088: AB         SP11          
+//  5089: 83          LP3          
+//  5090: A9          SP9          
+//  5091: 84          LP4          
+//  5092: AA         SP10          
+//  5093: 10           L0          
+//  5094: AC         SP12          
+//  5095: 60 2D         L    45    
+//  5097: 45 9E      K5G1   158    G414 list5
+//  5099: BA DF         J  5196    
+
+//  5101: L05101:
+//  5101: 60 14         L    20    
+//  5103: 50 C2       LG1   194    G450 symb
+//  5105: 3C 92       JNE  5125    
+//  5107: 45 90      K5G1   144    G400 nextsymb
+//  5109: 10           L0          
+//  5110: 4B AA     K11G1   170    G426 rexp
+//  5112: AB         SP11          
+//  5113: 83          LP3          
+//  5114: A9          SP9          
+//  5115: 84          LP4          
+//  5116: AA         SP10          
+//  5117: 10           L0          
+//  5118: AC         SP12          
+//  5119: 60 2C         L    44    
+//  5121: 45 9E      K5G1   158    G414 list5
+//  5123: BA C7         J  5196    
+
+//  5125: L05125:
+//  5125: 60 2A         L    42    
+//  5127: 45 A0      K5G1   160    G416 synreport
+
+//  5129: DEFAULT:
+
+//  5129: L05129:
+//  5129: 60 2C         L    44    
+//  5131: 44 A0      K4G1   160    G416 synreport
+
+//  5133: CASE 20:
+
+//  5133: L05133:
+//  5133: 44 90      K4G1   144    G400 nextsymb
+//  5135: 60 67         L   103    
+//  5137: 50 C2       LG1   194    G450 symb
+//  5139: 3C 96       JNE  5163    
+//  5141: 44 90      K4G1   144    G400 nextsymb
+//  5143: E3         L0P3          
+//  5144: 12           L2          
+//  5145: 1C 84       JEQ  5151    
+//  5147: 60 2B         L    43    
+//  5149: 44 A0      K4G1   160    G416 synreport
+
+//  5151: L05151:
+//  5151: 10           L0          
+//  5152: 49 AA      K9G1   170    G426 rexp
+//  5154: A9          SP9          
+//  5155: 83          LP3          
+//  5156: A8          SP8          
+//  5157: 60 2A         L    42    
+//  5159: 44 9C      K4G1   156    G412 list3
+//  5161: BA A1         J  5196    
+
+//  5163: L05163:
+//  5163: 49 AB      K9G1   171    G427 rexplist
+//  5165: A9          SP9          
+//  5166: 83          LP3          
+//  5167: A8          SP8          
+//  5168: 60 29         L    41    
+//  5170: 44 9C      K4G1   156    G412 list3
+//  5172: BA 96         J  5196    
+
+//  5174: FF3C          Resolving word => 4978
+//  5176: FED9          Resolving word => 4881
+//  5178: FEBE          Resolving word => 4856
+
+//  5180: L05180:
+//  5180: 50 C2       LG1   194    G450 symb
+//  5182: 92          SWB          
+//  5183: D0
+//  5184: 0002        len =    2
+//  5186: FFC7    default =>  5129
+//  5188: 0014      const =    20
+//  5190: FFC7      label =>  5133
+//  5192: 0069      const =   105
+//  5194: FF71      label =>  5051
+
+//  5196: L05196:
+//  5196: 7B          RTN          
+//  5197: D0          NOP          
+
+//  5198: FDE4          Resolving word => 4658
+//  5200: FFEC          Resolving word => 5180
+
+//  5202: 0000      Ginit end mark
+//  5204: 01A9 000C Init  G425 = 4372  rbexp
+//  5208: 01AA 0122 Init  G426 = 4650  rexp
+//  5212: 01AB 026C Init  G427 = 4980  rexplist
+//  5216: 01AC 02AE Init  G428 = 5046  rdef
+//  5220: 01D0      Highest Global  G464 listp
+
+//  5222: 03E8 00F9                HUNK    size=249
+//  5226: 00F9
+//  5228: FDDF                     Section name: SYN7   
+//  5230: 07 53 59 4E 37 20 20 20
+
+//  5238: GLOBAL ENTRY             G429 rbcom
+//  5238: BB CE        J$  5538    
+
+//  5240: DEFAULT:
+
+//  5240: L05240:
+//  5240: 10           L0          
+//  5241: BB CD        J$  5650    
+
+//  5243: CASE 105:
+//  5243: CASE 9:
+//  5243: CASE 8:
+//  5243: CASE 7:
+//  5243: CASE 5:
+//  5243: CASE 4:
+//  5243: CASE 3:
+//  5243: CASE 2:
+//  5243: CASE 1:
+
+//  5243: L05243:
+//  5243: 44 AB      K4G1   171    G427 rexplist
+//  5245: A3          SP3          
+//  5246: 60 32         L    50    
+//  5248: 50 C2       LG1   194    G450 symb
+//  5250: 3C 8D       JNE  5265    
+//  5252: A4          SP4          
+//  5253: 45 90      K5G1   144    G400 nextsymb
+//  5255: 4A AB     K10G1   171    G427 rexplist
+//  5257: AA         SP10          
+//  5258: 83          LP3          
+//  5259: A9          SP9          
+//  5260: 84          LP4          
+//  5261: 45 9C      K5G1   156    G412 list3
+//  5263: BB C2        J$  5650    
+
+//  5265: L05265:
+//  5265: 83          LP3          
+//  5266: 44 28      K4G1    40    G296 smallnumber
+//  5268: 1E 84      JEQ0  5274    
+//  5270: 60 33         L    51    
+//  5272: 44 A0      K4G1   160    G416 synreport
+
+//  5274: L05274:
+//  5274: 60 36         L    54    
+//  5276: 50 C2       LG1   194    G450 symb
+//  5278: 3C 97       JNE  5303    
+//  5280: E3         L0P3          
+//  5281: 12           L2          
+//  5282: 1C 84       JEQ  5288    
+//  5284: 60 32         L    50    
+//  5286: 44 A0      K4G1   160    G416 synreport
+
+//  5288: L05288:
+//  5288: 44 90      K4G1   144    G400 nextsymb
+//  5290: 49 AD      K9G1   173    G429 rbcom
+//  5292: A9          SP9          
+//  5293: 83          LP3          
+//  5294: A8          SP8          
+//  5295: 10           L0          
+//  5296: AA         SP10          
+//  5297: 60 36         L    54    
+//  5299: 44 9D      K4G1   157    G413 list4
+//  5301: BB AF        J$  5650    
+
+//  5303: L05303:
+//  5303: E3         L0P3          
+//  5304: 1A          L10          
+//  5305: 3C 86       JNE  5313    
+//  5307: 60 33         L    51    
+//  5309: DB        ST0P3          
+//  5310: 83          LP3          
+//  5311: BB AA        J$  5650    
+
+//  5313: L05313:
+//  5313: 60 33         L    51    
+//  5315: 44 A0      K4G1   160    G416 synreport
+//  5317: 83          LP3          
+//  5318: BB A7        J$  5650    
+
+//  5320: CASE 53:
+//  5320: CASE 52:
+
+//  5320: L05320:
+//  5320: 50 C2       LG1   194    G450 symb
+//  5322: A4          SP4          
+//  5323: 45 90      K5G1   144    G400 nextsymb
+//  5325: 10           L0          
+//  5326: 49 AA      K9G1   170    G426 rexp
+//  5328: A9          SP9          
+//  5329: 84          LP4          
+//  5330: 45 9B      K5G1   155    G411 list2
+//  5332: BB A0        J$  5650    
+
+//  5334: CASE 60:
+//  5334: CASE 59:
+//  5334: CASE 58:
+//  5334: CASE 57:
+
+//  5334: L05334:
+//  5334: 50 C2       LG1   194    G450 symb
+//  5336: A4          SP4          
+//  5337: 45 90      K5G1   144    G400 nextsymb
+//  5339: 10           L0          
+//  5340: 45 AA      K5G1   170    G426 rexp
+//  5342: A3          SP3          
+//  5343: 60 65         L   101    
+//  5345: 45 A7      K5G1   167    G423 ignore
+//  5347: 4A AE     K10G1   174    G430 rcom
+//  5349: AA         SP10          
+//  5350: 83          LP3          
+//  5351: A9          SP9          
+//  5352: 84          LP4          
+//  5353: 45 9C      K5G1   156    G412 list3
+//  5355: BB 94        J$  5650    
+
+//  5357: CASE 55:
+
+//  5357: L05357:
+//  5357: 45 90      K5G1   144    G400 nextsymb
+//  5359: 10           L0          
+//  5360: 45 AA      K5G1   170    G426 rexp
+//  5362: A3          SP3          
+//  5363: 60 65         L   101    
+//  5365: 45 A7      K5G1   167    G423 ignore
+//  5367: 45 AE      K5G1   174    G430 rcom
+//  5369: A4          SP4          
+//  5370: 60 36         L    54    
+//  5372: A9          SP9          
+//  5373: 60 66         L   102    
+//  5375: 45 A8      K5G1   168    G424 checkfor
+//  5377: 4B AE     K11G1   174    G430 rcom
+//  5379: AB         SP11          
+//  5380: 83          LP3          
+//  5381: A9          SP9          
+//  5382: 84          LP4          
+//  5383: AA         SP10          
+//  5384: 60 37         L    55    
+//  5386: 45 9D      K5G1   157    G413 list4
+//  5388: BB 84        J$  5650    
+
+//  5390: CASE 56:
+
+//  5390: L05390:
+//  5390: 10           L0          
+//  5391: A6          SP6          
+//  5392: 47 90      K7G1   144    G400 nextsymb
+//  5394: 47 A6      K7G1   166    G422 rname
+//  5396: A3          SP3          
+//  5397: 60 39         L    57    
+//  5399: AB         SP11          
+//  5400: 60 14         L    20    
+//  5402: 47 A8      K7G1   168    G424 checkfor
+//  5404: 10           L0          
+//  5405: 47 AA      K7G1   170    G426 rexp
+//  5407: A4          SP4          
+//  5408: 60 3A         L    58    
+//  5410: AB         SP11          
+//  5411: 60 63         L    99    
+//  5413: 47 A8      K7G1   168    G424 checkfor
+//  5415: 10           L0          
+//  5416: 47 AA      K7G1   170    G426 rexp
+//  5418: A5          SP5          
+//  5419: 60 64         L   100    
+//  5421: 50 C2       LG1   194    G450 symb
+//  5423: 3C 86       JNE  5431    
+//  5425: 47 90      K7G1   144    G400 nextsymb
+//  5427: 10           L0          
+//  5428: 47 AA      K7G1   170    G426 rexp
+//  5430: A6          SP6          
+
+//  5431: L05431:
+//  5431: 60 65         L   101    
+//  5433: 47 A7      K7G1   167    G423 ignore
+//  5435: 50 AE       LG1   174    G430 rcom
+//  5437: 20 0F         K    15    
+//  5439: AF         SP15          
+//  5440: 83          LP3          
+//  5441: AB         SP11          
+//  5442: 84          LP4          
+//  5443: AC         SP12          
+//  5444: 85          LP5          
+//  5445: AD         SP13          
+//  5446: 86          LP6          
+//  5447: AE         SP14          
+//  5448: 60 38         L    56    
+//  5450: 47 9F      K7G1   159    G415 list6
+//  5452: BB 64        J$  5650    
+
+//  5454: CASE 69:
+//  5454: CASE 68:
+//  5454: CASE 67:
+//  5454: CASE 66:
+//  5454: CASE 65:
+
+//  5454: L05454:
+//  5454: 50 C4       LG1   196    G452 wordnode
+//  5456: A3          SP3          
+//  5457: 44 90      K4G1   144    G400 nextsymb
+//  5459: 83          LP3          
+//  5460: BB 60        J$  5650    
+
+//  5462: CASE 70:
+
+//  5462: L05462:
+//  5462: 44 90      K4G1   144    G400 nextsymb
+//  5464: 10           L0          
+//  5465: 44 AA      K4G1   170    G426 rexp
+//  5467: A3          SP3          
+//  5468: 60 3C         L    60    
+//  5470: A8          SP8          
+//  5471: 60 62         L    98    
+//  5473: 44 A8      K4G1   168    G424 checkfor
+//  5475: 50 A2       LG1   162    G418 rdseq
+//  5477: 49 A4      K9G1   164    G420 rdsect
+//  5479: A9          SP9          
+//  5480: 83          LP3          
+//  5481: A8          SP8          
+//  5482: 60 46         L    70    
+//  5484: 44 9C      K4G1   156    G412 list3
+//  5486: BB 53        J$  5650    
+
+//  5488: CASE 71:
+
+//  5488: L05488:
+//  5488: 45 90      K5G1   144    G400 nextsymb
+//  5490: 10           L0          
+//  5491: 45 AA      K5G1   170    G426 rexp
+//  5493: A3          SP3          
+//  5494: 60 3D         L    61    
+//  5496: A9          SP9          
+//  5497: 60 36         L    54    
+//  5499: 45 A8      K5G1   168    G424 checkfor
+//  5501: 45 AD      K5G1   173    G429 rbcom
+//  5503: A4          SP4          
+//  5504: 83          LP3          
+//  5505: A9          SP9          
+//  5506: 84          LP4          
+//  5507: AA         SP10          
+//  5508: 60 47         L    71    
+//  5510: 45 9C      K5G1   156    G412 list3
+//  5512: BB 46        J$  5650    
+
+//  5514: CASE 72:
+
+//  5514: L05514:
+//  5514: 44 90      K4G1   144    G400 nextsymb
+//  5516: 60 3E         L    62    
+//  5518: A8          SP8          
+//  5519: 60 36         L    54    
+//  5521: 44 A8      K4G1   168    G424 checkfor
+//  5523: 48 AD      K8G1   173    G429 rbcom
+//  5525: A8          SP8          
+//  5526: 60 48         L    72    
+//  5528: 44 9B      K4G1   155    G411 list2
+//  5530: BA F6         J  5650    
+
+//  5532: CASE 91:
+
+//  5532: L05532:
+//  5532: 50 A1       LG1   161    G417 rdblockbody
+//  5534: 44 A4      K4G1   164    G420 rdsect
+//  5536: BA F0         J  5650    
+
+//  5538: L05538:
+//  5538: 50 C2       LG1   194    G450 symb
+//  5540: 92          SWB          
+//  5541: D0
+//  5542: 001A        len =   26
+//  5544: FED0    default =>  5240
+//  5546: 0001      const =     1
+//  5548: FECF      label =>  5243
+//  5550: 0002      const =     2
+//  5552: FECB      label =>  5243
+//  5554: 0003      const =     3
+//  5556: FEC7      label =>  5243
+//  5558: 0004      const =     4
+//  5560: FEC3      label =>  5243
+//  5562: 0005      const =     5
+//  5564: FEBF      label =>  5243
+//  5566: 0007      const =     7
+//  5568: FEBB      label =>  5243
+//  5570: 0008      const =     8
+//  5572: FEB7      label =>  5243
+//  5574: 0009      const =     9
+//  5576: FEB3      label =>  5243
+//  5578: 0034      const =    52
+//  5580: FEFC      label =>  5320
+//  5582: 0035      const =    53
+//  5584: FEF8      label =>  5320
+//  5586: 0037      const =    55
+//  5588: FF19      label =>  5357
+//  5590: 0038      const =    56
+//  5592: FF36      label =>  5390
+//  5594: 0039      const =    57
+//  5596: FEFA      label =>  5334
+//  5598: 003A      const =    58
+//  5600: FEF6      label =>  5334
+//  5602: 003B      const =    59
+//  5604: FEF2      label =>  5334
+//  5606: 003C      const =    60
+//  5608: FEEE      label =>  5334
+//  5610: 0041      const =    65
+//  5612: FF62      label =>  5454
+//  5614: 0042      const =    66
+//  5616: FF5E      label =>  5454
+//  5618: 0043      const =    67
+//  5620: FF5A      label =>  5454
+//  5622: 0044      const =    68
+//  5624: FF56      label =>  5454
+//  5626: 0045      const =    69
+//  5628: FF52      label =>  5454
+//  5630: 0046      const =    70
+//  5632: FF56      label =>  5462
+//  5634: 0047      const =    71
+//  5636: FF6C      label =>  5488
+//  5638: 0048      const =    72
+//  5640: FF82      label =>  5514
+//  5642: 005B      const =    91
+//  5644: FF90      label =>  5532
+//  5646: 0069      const =   105
+//  5648: FE6B      label =>  5243
+
+//  5650: L05650:
+//  5650: 7B          RTN          
+//  5651: D0          NOP          
+
+//  5652: FF8E          Resolving word => 5538
+//  5654: FFFC          Resolving word => 5650
+
+//  5656: GLOBAL ENTRY             G430 rcom
+//  5656: 43 AD      K3G1   173    G429 rbcom
+//  5658: A3          SP3          
+//  5659: 3E 84      JNE0  5665    
+//  5661: 60 33         L    51    
+//  5663: 44 A0      K4G1   160    G416 synreport
+
+//  5665: L05665:
+//  5665: BA 9C         J  5695    
+
+//  5667: L05667:
+//  5667: 50 C2       LG1   194    G450 symb
+//  5669: A4          SP4          
+//  5670: 45 90      K5G1   144    G400 nextsymb
+//  5672: 60 3D         L    61    
+//  5674: 84          LP4          
+//  5675: 3C 88       JNE  5685    
+//  5677: 83          LP3          
+//  5678: A9          SP9          
+//  5679: 84          LP4          
+//  5680: 45 9B      K5G1   155    G411 list2
+//  5682: A3          SP3          
+//  5683: BA 8A         J  5695    
+
+//  5685: L05685:
+//  5685: 10           L0          
+//  5686: 4A AA     K10G1   170    G426 rexp
+//  5688: AA         SP10          
+//  5689: 83          LP3          
+//  5690: A9          SP9          
+//  5691: 84          LP4          
+//  5692: 45 9C      K5G1   156    G412 list3
+//  5694: A3          SP3          
+
+//  5695: L05695:
+//  5695: 60 3D         L    61    
+//  5697: 50 C2       LG1   194    G450 symb
+//  5699: 1C 5E       JEQ  5667    
+//  5701: 60 3E         L    62    
+//  5703: 1C 5A       JEQ  5667    
+//  5705: B5          XCH          
+//  5706: 60 3F         L    63    
+//  5708: 1C 55       JEQ  5667    
+//  5710: 83          LP3          
+//  5711: 7B          RTN          
+
+//  5712: 0000      Ginit end mark
+//  5714: 01AD 000C Init  G429 = 5238  rbcom
+//  5718: 01AE 01AE Init  G430 = 5656  rcom
+//  5722: 01C4      Highest Global  G452 wordnode
+//  5724: 03E0                  END
+
+
+No unclassified bytes

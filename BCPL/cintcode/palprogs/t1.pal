@@ -1,0 +1,6 @@
+let f x = valof
+{ x := x+1;
+  res x 
+}
+in
+PRINT (f 5)

@@ -1,0 +1,116 @@
+Installation of Cygwin 
+
+Cygwin in no longer maintained for Window XP but there are
+instructions on the web telling you how to install an older
+version. This README file describes how to install the latest Cygwin
+on my Lenova 64 bit laptop running Window 10, and then how to install
+the BCPL Cintcode system. You can get additional information about
+Cygwin by doing a Google search on: how to install cygwin on windows.
+
+I chose to install the 64 bit version of cygwin and so downloaded a
+file called: setup-x86-64.exe. I created a shortcut for this program
+since it will be used both for the initial installation and later when
+additional packages need to be installed.
+
+
+###############This is being changed###################
+
+
+To install and run Cintcode BCPL under Cygwin, first install
+Cygwin typically in the default directory C:\cygwin.
+
+If you have a problem, try a google search on:
+
+how to install cygwin on windows
+
+Get bcpl.tgz from my home page (www.cl.cam.ac.uk/users/mr10) and place
+it in c:\cygwin
+
+Initially, just install the base version of Cygwin. Additional
+packages are easily installed later as needed.
+
+Enter cygwin, typically by double clicking on the cygwin icon on the
+desktop.  This icon may have the name: cygwin terminal. I normally
+change its name to cygwin.
+
+This should cause you to enter cygwin prompting you for a shell
+command.  The command language is probably bash. Type the command: pwd
+This should respond with the file name of you current directory. On my
+machine the response is
+
+/home/mr10
+
+My user name on this machine under windows XP and Cygwin is mr10. Yours
+will be different.
+
+Create the directory distribution and enter it by typing:
+
+mkdir distribution
+cd distribution
+pwd
+
+Check that bcpl.tgz is in /cygwin by typing
+
+ls -lrt /cygwin
+
+Extract all the files from bcpl.tgz by typing the following:
+
+tar zxvf /cygwin/bcpl.tgz
+
+Copy cygwin.bat into directory /cygwin by typing:
+
+cp BCPL/cintcode/os/cywin/cygwin.bat /cygwin
+
+You will need to make a minor change to cygwin.bat to replace my user id
+to yours in the line
+
+SET HOME=/home/mr10
+
+Now leave cygwin by typing:
+
+exit
+
+Right click on the cygwin icon and select the properties menu item to
+allow you to cause this icon to execute cygwin.bat when double clicked. 
+
+
+
+
+
+
+
+This should rebuild Cintcode BCPL and enter it, leaving a prompt similar to:
+
+
+BCPL Cintcode System (14 Jan 2012)
+0.000> 
+
+Test the system by typing:
+
+echo hello
+bcpl com/bcpl.b to junk
+junk com/bcpl.b to junk
+c compall
+bench100
+
+If this fails the most common fault is in the setting of
+environment variables in cygwin.bat or the location of the
+BCPL directories.
+
+To diagnose the problem double-click on the Cygwin shortcut
+and type the following:
+
+cd distribution/BCPL/cintcode
+cintsys -f
+
+This traces the use of the environment variables when opening files.
+
+cintsys -f -v
+
+gives a more detailed trace.
+
+Good luck!
+
+Martin Richards
+24 Jan 2012
+
