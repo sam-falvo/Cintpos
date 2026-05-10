@@ -305,18 +305,24 @@ AND base.n.add.a.set.shift(n, base) BE
       error.64.bits()
 }
 
+AND label.addr.reg.set(reg, prefix, modletter, labelval) BE
+{
+   LET xval = nextlab()
+
+   writef("*nX%c%n:", modletter, xval)
+   writef("*n auipc %s,%c%c%n-X%c%n+2048", reg, prefix, modletter, labelval, modletter, xval)
+   writef("*n addi %s,%s,%c%c%n-X%c%n", reg, reg, prefix, modletter, labelval, modletter, xval)
+}
+
 AND label.fetch.reg.set(modletter, labelval, reg) BE
 {
-   writef("*n la %s,L%c%n", reg, modletter, labelval)
+   label.addr.reg.set(reg, 'L', modletter, labelval)
    writef("*n ld %s,0(%s)", reg, reg)
 }
 
 AND label.fetch.a.set(modletter, labelval) BE label.fetch.reg.set(modletter, labelval, "a0")
 
-AND label.reg.set(reg, prefix, modletter, labelval) BE
-{
-   writef("*n la %s,%c%c%n", reg, prefix, modletter, labelval)
-}
+AND label.reg.set(reg, prefix, modletter, labelval) BE label.addr.reg.set(reg, prefix, modletter, labelval)
 
 AND label.a.set(prefix, modletter, labelval) BE
 {
@@ -1020,7 +1026,7 @@ $( LET op = rdf()
                        ENDCASE
 
       CASE f_lstr:     cvfm("LSTR") // a := Mn   (pointer to string)
-                       writef("*n la a0,M%c%n", modletter, mval)
+                       label.addr.reg.set("a0", 'M', modletter, mval)
                        writef("*n srli a0,a0,3")
                        ENDCASE
 
@@ -1057,7 +1063,7 @@ $( LET n = rdk()
    writef("*n bge a0,t0,L%c%n", modletter, l)
 
    // T0 -> switch table
-   writef("*n la t0,S%c%n", modletter, lab)
+   label.addr.reg.set("t0", 'S', modletter, lab)
 
    // dispatch to the A-th element of T0
    writef("*n slli a0,a0,3")
@@ -1102,8 +1108,8 @@ $( LET n = rdk()
    $( LET g = rdg()
       LET n = rdl()
       writef(";  G%n L%n*n", g, n)
-      writef(" la t0,L%c%n*n", modletter, n)
-      writef(" sd t0,%n(a0)*n", 8*g)
+      label.addr.reg.set("t0", 'L', modletter, n)
+      writef("*n sd t0,%n(a0)*n", 8*g)
    $)
    writef(";  G%n", rdg()) // total size of the global vector, I think
    writef("*n jalr x0,0(ra)")
@@ -1115,8 +1121,6 @@ AND rdchars() = VALOF
   FOR i = 1 TO n DO charv%i := rdc()
   RESULTIS n
 }
-
-// yet to do
 
 AND cvstring() BE
 $( LET lab = rdm()
