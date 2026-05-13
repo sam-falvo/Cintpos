@@ -290,7 +290,7 @@ AND base.n.add.a.set.shift(n, base) BE
    LET ofs = 8*n
    TEST fits.12.bits(ofs) THEN {
       writef("*n addi a0,a%n,%n", base, ofs)
-      writef("*n srli a0,a0,3")
+      writef("*n srai a0,a0,3")
    }
    ELSE TEST fits.32.bits(ofs) THEN {
       // Account for sign extension of LD instruction offset
@@ -299,7 +299,7 @@ AND base.n.add.a.set.shift(n, base) BE
       writef("*n lui t0,%n", ofs)
       writef("*n addi t0,t0,%n", ofs & #xFFF)
       writef("*n add a0,t0,a%n", base)
-      writef("*n srli a0,a0,3")
+      writef("*n srai a0,a0,3")
    }
    ELSE
       error.64.bits()
@@ -332,7 +332,7 @@ AND label.a.set(prefix, modletter, labelval) BE
 AND label.a.set.shift(prefix, modletter, labelval) BE
 {
    label.a.set(prefix, modletter, labelval)
-   writef("*n srli a0,a0,3")
+   writef("*n srai a0,a0,3")
 }
 
 AND label.a.store(prefix, modletter, labelval) BE
@@ -776,7 +776,7 @@ $( LET op = rdf()
                      ENDCASE
 
       CASE f_rsh:    cvf("RSH") // a := b >> a 
-                     writef("*n srl a0,a1,a0")
+                     writef("*n sra a0,a1,a0")
                      ENDCASE
 
       CASE f_and:    cvf("AND") // a := b & a 
@@ -803,7 +803,7 @@ $( LET op = rdf()
                      ENDCASE
 
       CASE f_xgbyt:  cvf("XGBYT") // a := a % b 
-                     writef("*n slli t0,aa,3")
+                     writef("*n slli t0,a0,3")
                      writef("*n add t0,t0,a1")
                      writef("*n lbu a0,0(t0)")
                      ENDCASE
@@ -815,7 +815,7 @@ $( LET op = rdf()
                      ENDCASE
 
       CASE f_xpbyt:  cvf("XPBYT") // a % b := c 
-                     writef("*n slli t0,aa,3")
+                     writef("*n slli t0,a0,3")
                      writef("*n add t0,t0,a1")
                      writef("*n sb a2,0(t0)")
                      ENDCASE
@@ -862,7 +862,7 @@ $( LET op = rdf()
 
       CASE f_atbl:   cvfk("ATBL") // b := a; a := k
                      atb()
-                     lit.a.set()
+                     lit.a.set(kval)
                      ENDCASE
 
       CASE f_j:      cvfl("J") // jump to Ln
@@ -1027,7 +1027,7 @@ $( LET op = rdf()
 
       CASE f_lstr:     cvfm("LSTR") // a := Mn   (pointer to string)
                        label.addr.reg.set("a0", 'M', modletter, mval)
-                       writef("*n srli a0,a0,3")
+                       writef("*n srai a0,a0,3")
                        ENDCASE
 
       CASE f_entry:    cventry() // Start of a function
