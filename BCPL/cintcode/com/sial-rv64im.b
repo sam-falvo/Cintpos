@@ -423,6 +423,7 @@ AND a.n.add.fetch.a.set(val) BE
    LET ofs = 8*val
 
    TEST fits.12.bits(ofs) THEN {
+      writef("*n slli a0,a0,3")
       writef("*n ld a0,%n(a0)", ofs)
    }
    ELSE TEST fits.32.bits(ofs) THEN {
@@ -430,6 +431,7 @@ AND a.n.add.fetch.a.set(val) BE
 
       writef("*n lui t0,%n", ofs)
       writef("*n add a0,a0,t0")
+      writef("*n slli a0,a0,3")
       writef("*n ld a0,%n(a0)", ofs & #xFFF)
    }
    ELSE
