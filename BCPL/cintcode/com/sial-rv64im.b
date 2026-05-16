@@ -448,6 +448,7 @@ AND base.n.add.fetch.a.add.b.store(base, val) BE
    TEST fits.12.bits(ofs) THEN {
       writef("*n ld t0,%n(a%n)", ofs, base)
       writef("*n add t0,t0,a0")
+      writef("*n slli t0,t0,3")
       writef("*n sd a1,0(t0)")
    }
    ELSE TEST fits.32.bits(ofs) THEN {
@@ -457,6 +458,7 @@ AND base.n.add.fetch.a.add.b.store(base, val) BE
       writef("*n add t0,t0,a%n", base)
       writef("*n ld t0,%n(t0)", ofs & #xFFF)
       writef("*n add t0,t0,a0")
+      writef("*n slli t0,t0,3")
       writef("*n sd a1,0(t0)")
    }
    ELSE
@@ -522,6 +524,7 @@ AND reg.n.add.a.store(reg, val) BE
 AND base.n.add.fetch.k.add.a.store(base, v1, v2) BE
 {
    base.n.add.fetch.reg.set(base, v1, "t0")
+   writef("*n slli t0,t0,3")
    reg.n.add.a.store("t0", v2)
 }
 
@@ -606,15 +609,18 @@ $( LET op = rdf()
 
       CASE f_lkp:    cvfkp("LKP") // a := P!n!k
                      base.n.add.fetch.reg.set(3, pval, "t0")
+                     writef("*n slli t0,t0,3")
                      reg.n.add.fetch.a.set("t0", kval)
                      ENDCASE
 
       CASE f_lkg:    cvfkg("LKG") // a := G!n!k
                      base.n.add.fetch.reg.set("t0", 4, gval)
+                     writef("*n slli t0,t0,3")
                      reg.n.add.fetch.a.set("t0", kval)
                      ENDCASE
 
       CASE f_rv:     cvf("RV")  // a := ! a
+                     writef("*n slli a0,a0,3")
                      writef("*n ld a0,0(a0)")
                      ENDCASE
 
@@ -648,6 +654,7 @@ $( LET op = rdf()
                      ENDCASE
 
       CASE f_xst:    cvf("XST") // !b := a
+      		     writef("*n slli a1,a1,3")
                      writef("*n sd a0,0(a1)")
                      ENDCASE
 
