@@ -438,6 +438,7 @@ AND a.n.add.fetch.a.set(val) BE
 
 AND b.a.store() BE
 {
+   writef("*n slli a0,a0,3")
    writef("*n sd a1,0(a0)")
 }
 
@@ -908,7 +909,7 @@ $( LET op = rdf()
       CASE f_ikl:    cvfkl("IKL") // a := !Ln + k; !Ln := a
                      label.fetch.a.set(modletter, lval)
                      lit.add(kval)
-                     label.a.store(modletter, lval)
+                     label.a.store('L', modletter, lval)
                      ENDCASE
 
       CASE f_ip:     cvfp("IP") // a := P!n + a; P!n := a
